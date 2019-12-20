@@ -1,0 +1,26 @@
+.mnparentfile{position: relative;background: #fff;}
+.rajuharry-form fieldset + fieldset{border: 0px;}
+.logoareavl{min-height: 148px;}
+.radiobtnnm .radio {margin-top: 0px;}
+.radiobtnnm .gnmnbhleft {margin-left: 10px;}
+.radiobtnnm{margin-bottom: 14px;}
+.btnmnpwdchn{margin: 0px 0px;margin-top: 27.5px;}
+.mgnm{font-size: 15px;padding: 0px 10px;}
+.icnmnb{font-size: 30px;}
+.icnmnb:hover{color: #2da5da;}
+#Validatepwd fieldset{padding: 0px;}
+#Validateorgdtl .lastupdtepwd{padding: 10px;}
+.rajuharry-form {box-shadow: none;border: 1px solid #e7ecf3;}
+#Validateorgdtl .lastupdtepwd{    border: 1px dashed #dadada;
+    padding: 10px;}
+.rajuharry-form fieldset + fieldset.logoavatar{    padding: 0px 40px;
+    margin-bottom: 20px;}
+.rajuharry-form footer{border: 0px;}
+.rajuharry-form section.uploadbntn{margin: 15px auto;margin-bottom: 0px;}
+.logoareavl .mnimgnmmet{display: block;margin: 0px auto;border: 1px dashed #dadada;width: 180px;}
+.rajuharry-form section.imguploadimmg{margin-bottom: 0px;}
+.rajuharry-form .note.notegettet{    padding: 0px 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px dashed #dadada;
+    padding-bottom: 10px;}
+

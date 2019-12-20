@@ -1,0 +1,54 @@
+
+.cssouter { background: url(img/microsoft/bg_thankyou.jpg); width: 100%; background-repeat: repeat; }
+.thank ul li:last-child { background: #fff; text-align: center; padding-bottom: 30px;}
+.thank ul li:last-child p{ padding: 0 50px; line-height: 36px; }
+.thank ul li:last-child h2{font-size: 40px; margin-top: 0px; padding-top: 30px; font-family: 'roboto' }
+.thank ul li:first-child span {
+    background: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 20px;
+    margin: 10px 0;
+    width: 140px;
+    height: 140px;
+}
+
+.thank {
+    width: 40%;
+    text-align: center;
+    margin: 90px auto;
+}
+ul , li , a{ list-style: none; text-decoration: none; }
+
+.cssBckSucc{ background: #18b69e; padding: 19px; }
+.cssBckFail{ background: #d43f3a;  }
+.csssuccess{ color: #18b69e; font-weight: 600; }
+.cssfailure{ color: #d43f3a; font-weight: 600; }
+div#apprvrqst { background: #fff; padding-bottom: 20px;
+}
+
+body { background: #fff;  }
+
+h1.cssheading {
+    color: #000; padding-left: 10px;
+}
+
+.forreject {
+    background: #fff;
+    padding: 10px;
+    box-shadow: 2px 4px 5px #ccc;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.csssubheading {
+    padding-left: 10px;
+    font-style: italic;
+}
+section.col.col-md-6.cssfield {
+    margin-top: 17px;
+}
+.cssfield {
+    margin-top: 10px;
+}
+

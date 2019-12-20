@@ -1,0 +1,78 @@
+
+.boxshadow{
+    background-color: white;
+    list-style: none;
+    width: 100%;
+    overflow: hidden;
+    padding: 30px;
+    box-sizing: border-box;
+    margin: 35px 0;
+    border: 1px solid #e7ecf3;
+}
+
+.form_heading{
+    text-decoration: underline;
+    padding: 5px;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: 'Gotham Rounded';
+    text-align: center;
+}
+.votingcss{margin: 50px auto;}
+.exitpollcss{margin: 50px auto; width: 100%;}
+
+.selvt{
+    border-radius: 0;
+    line-height: 30px;
+    width: 60%;    
+    display: block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #DDE2E8;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.nmvt{
+    border-radius: 0;
+    line-height: 30px;
+    width: 100%;    
+    display: block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #DDE2E8;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+/* ----------------- Chart CSS ----------------- */
+.progress .progress-bar{position:relative;} 
+
+.voteclass {
+    float: left;
+    margin-right: 7px;
+    border-right: 1px dotted #dadada;
+    padding-right: 10px;
+    font-size: 12px;
+}
+.cmdot {
+    width: 14px;
+    height: 14px;
+    border: 3px solid #d2d3d2;
+    border-radius: 14px;
+    margin: 2px 5px 2px 0px;
+}
+.assentcolor { background: #26B99A; }
+.dessentcolor { background: #d9534f; }
+.interestedcolor { background: #F39C12; }
+/* ----------------- Chart CSS ----------------- */
+#wrtyrnotes .form-control {
+    text-transform: capitalize;
+    font-size: 14px;
+    font-family: sans-serif;
+}

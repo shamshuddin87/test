@@ -1,0 +1,260 @@
+.preloder_wraper{
+    z-index: 1111;
+}
+
+input#fileToUpload {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+.trailreq th ,.trailreq td { padding:10px;color: #000;   border: 1px solid #ddd;}
+.trailreq th { color: #000;  background: #17395b; color: #fff;}
+
+.trailreq tr:nth-child(even){background-color: #f2f2f2;}
+
+.trailreq tr:hover {background-color: #ddd;}
+
+/* .trailreq .table th {
+    color: #fff;
+    background: #17395b;
+} */
+
+/* Rounded sliders */
+ .switch_button {
+  position: relative;
+  display: inline-block;
+  width: 60px; position: relative; top:0px;
+  height: 34px; left: 47%;
+} 
+form#uploadtrade {
+    margin-top: 20px;
+}
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+#searchcmp ul { padding-left: 0px; }
+#searchcmp .topul {
+    cursor: pointer;
+    background: #cacaca;
+    padding: 7px;
+    list-style: none;
+    margin: 5px 0;
+    color: #000;
+}
+span#typebtn {
+    float: right;
+/*    position: absolute;*/
+    right: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* Rounded sliders */
+
+
+#searchcmp{
+    overflow: scroll;
+    height: 125px;
+}
+.topul {
+cursor:pointer;
+}
+.topulup {
+cursor:pointer;
+}
+.close { padding: 8px; }
+.modal .modal-dialog {width:65%;}
+h4.trade {color: #000;}
+
+/*############################ Give Pointers ##########################*/
+.cstatus, .pstatus{
+  cursor: pointer;
+}
+.rejmessage{
+ cursor: pointer;
+}
+
+.modal-title { color: #000; }
+
+button.btn.personal.active {
+    background: #034b92;
+    color: #fff;
+}
+button.btn.relatives.active {
+    background: #034b92;
+    color: #fff;
+}
+
+.bg_white {
+    float: left;
+    background: #fff;
+    padding: 8px;
+}
+  
+.box_outer {
+    background: #fff;
+    padding: 11px 3px;
+    float: left;
+    box-shadow: 3px 5px 5px #ccc;
+    margin: 10px 5px;
+    width: 98%;
+}
+
+.cssnumrws {
+    width: 40%; float:left;
+    color: #000;
+    padding: 10px 0;
+}
+.top_margin {
+    float: left;
+    margin: 30px 24px 0 0;
+}
+
+.create_button {float: right;}
+
+
+/*################ Pagination Start ######################*/
+.paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
+.paginationmn .pagination ul li.inactive,
+.paginationmn .pagination ul li.inactive:hover{background-color:#ededed;
+color:#bababa; border:1px solid #bababa; cursor: default;}
+.paginationmn .data ul li{ list-style: none; font-family: verdana; margin: 5px 0 5px 0; color: #000;font-size: 13px;}
+.paginationmn .pagination{width: 100%;margin: 0px auto; /*height: 25px;*/}
+.paginationmn .pagination ul li{
+    list-style: none;
+    float: left;
+    border: 1px solid #5d6677;
+    padding: 2px 6px 2px 6px;
+    margin: 0 3px 0 3px;
+    font-family: arial;
+    font-size: 14px;
+    color: #5d6677; cursor: pointer;
+    font-weight: bold;
+    background-color: #f2f2f2;
+    width: auto !important;
+}
+header
+{
+	font-family: 'Lobster', cursive;
+	text-align: center;
+	font-size: 25px;	
+}
+
+#info
+{
+	font-size: 18px;
+	color: #555;
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+/* a{
+  color: #074E8C;
+} */
+
+.scrollbar
+{
+	margin-left: 30px;
+	float: left;
+	height: 300px;
+	width: 65px;
+	background: #F5F5F5;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+
+.force-overflow
+{
+	min-height: 450px;
+}
+
+#wrapper
+{
+	text-align: center;
+	width: 500px;
+	margin: auto;
+}
+
+.trailreq p {
+    color: black;
+    font-weight: 540;
+    border: 1px solid #bdbdbd;
+    padding: 10px;
+}
+
+textarea#mymess {
+    padding: 23px;
+    width: 96%;
+    margin-left: 11px;
+    margin-bottom: 16px;
+}
+
+#Mymodalaudittrail p {
+    color: black;
+    font-weight: 540;
+}
+
+
+i.fa.fa-bar-chart{cursor: pointer;}
+
+
+
+/* start: status filter */
+.makeitresponsive 
+{
+    float: left;
+    width: 100%;
+}
+
+.cssfilter 
+{
+    float: right;
+}
+
+/* end: status filter */
+

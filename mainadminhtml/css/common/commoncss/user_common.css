@@ -1,0 +1,36 @@
+/*-----------------Add client css-------------------*/
+
+.rajuharryironman-form  .faicon {font-size: 20px;
+    background: #dadada;
+    border-radius: 100%;
+    padding: 6px 8px;
+    line-height: normal;}
+    .rajuharryironman-form  .faicontri {font-size: 20px;
+    padding: 6px 8px;
+    line-height: normal;}
+ .rajuharryironman-form  .titleoftah{font-size: 15px;
+    padding: 4.5px 5px;}  
+ .rajuharryironman-form  .titleofem{font-size: 15px;
+    padding: 4.5px 50px;}
+  .addclelemnt,.addemelemnt{cursor: pointer;} 
+  .extracontact_div,.extraemail_div{display: none;font-size: 21px;} 
+
+.rajuharryironman-form .input.disabled{pointer-events: none;opacity: 0.7;}
+.iclick{
+	z-index: 10000;
+}
+
+.appendcontactdet .col-3,.appendemdet .col-3{position: relative;}
+.rajuharryironman-form .appendcontactdet .iclick,.rajuharryironman-form .appendemdet  .iclick{position: absolute;
+    top: -7px;
+    line-height: normal;
+    width: auto;
+    height: auto;
+    /* left: 154px; */
+    border: 0px;
+    background: #dadada;
+    color: #fff;
+    padding: 2px 2px;
+    border-radius: 100%;
+    font-size: 11px;cursor: pointer;}
+ /*-----------------Add client css End-------------------*/ 

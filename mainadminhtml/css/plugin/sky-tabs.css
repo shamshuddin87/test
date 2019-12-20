@@ -1,0 +1,820 @@
+
+.rajuharryironman,
+.rajuharryironman * {
+	/*margin: 0;
+	padding: 0;
+	outline: none;
+	border: 0;
+	background: none;*/
+}
+.rajuharryironman {
+	position: relative;
+	font-size: 0;
+	text-align: left;
+	color: #666;
+}
+.rajuharryironman > input {
+	position: absolute;
+	display: none;
+}
+.rajuharryironman > label {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	padding: 1px;
+	padding-top: 0;
+	padding-left: 0;
+	font-size: 13px;
+	line-height: 45px;
+	cursor: pointer;box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.16),0 0px 0px 0 rgba(0,0,0,0.12);
+}
+.rajuharryironman > label.inverse {
+	float: right;
+	padding-right: 0;
+	padding-left: 1px;
+}
+.rajuharryironman > label.disabled {
+	cursor: default;
+}
+.rajuharryironman > label span {
+	display: block;
+	padding: 5px;
+	background: rgba(255,255,255,0.9);
+}
+.rajuharryironman > label span span {
+	padding: 0 20px;
+	background: transparent;
+	transition: background 0.4s, color 0.4s;
+	-o-transition: background 0.4s, color 0.4s;
+	-ms-transition: background 0.4s, color 0.4s;
+	-moz-transition: background 0.4s, color 0.4s;
+	-webkit-transition: background 0.4s, color 0.4s;	
+}
+.rajuharryironman > label:hover span span {
+	background: #2da5da;
+	color: #fff;	
+}
+.rajuharryironman > label.disabled span span {
+	background: transparent;
+	color: inherit;
+}
+.rajuharryironman > input:checked + label {
+	cursor: default;
+}
+.rajuharryironman > input:checked + label span span {
+	background: #2da5da;
+	color: #fff;
+}
+.rajuharryironman > .switcher {
+	display: none;
+}
+.rajuharryironman > .switcher a {
+	display: block;
+	margin: 0 -20px;
+	padding: 0 20px;
+	text-decoration: none;
+	color: inherit;
+}
+.rajuharryironman > ul {
+	list-style: none;
+	position: relative;
+	display: block;
+	font-size: 13px;margin: 0;
+	padding: 0;
+	outline: none;
+	border: 0;
+	background: none;margin-bottom: 2%;
+}
+.rajuharryironman > ul > li {
+	position: absolute;
+	top: 2px;
+	left: 0;
+	width: 100%;
+	*overflow: auto;
+    overflow: hidden;
+	padding: 20px 25px 25px;
+	background: rgba(255,255,255,0.9);
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	opacity: 0;
+	-o-transform-origin: 0% 0%;
+	-ms-transform-origin: 0% 0%;
+	-moz-transform-origin: 0% 0%;
+	-webkit-transform-origin: 0% 0%;
+	-o-transition: opacity 0.8s, -o-transform 0.8s;	
+	-ms-transition: opacity 0.8s, -ms-transform 0.8s;	
+	-moz-transition: opacity 0.8s, -moz-transform 0.8s;	
+	-webkit-transition: opacity 0.8s, -webkit-transform 0.8s;box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+.rajuharryironman > .rajuharryironman-content-1:checked ~ ul > .rajuharryironman-content-1,
+.rajuharryironman > .rajuharryironman-content-2:checked ~ ul > .rajuharryironman-content-2,
+.rajuharryironman > .rajuharryironman-content-3:checked ~ ul > .rajuharryironman-content-3,
+.rajuharryironman > .rajuharryironman-content-4:checked ~ ul > .rajuharryironman-content-4,
+.rajuharryironman > .rajuharryironman-content-5:checked ~ ul > .rajuharryironman-content-5,
+.rajuharryironman > .rajuharryironman-content-6:checked ~ ul > .rajuharryironman-content-6,
+.rajuharryironman > .rajuharryironman-content-7:checked ~ ul > .rajuharryironman-content-7,
+.rajuharryironman > .rajuharryironman-content-8:checked ~ ul > .rajuharryironman-content-8,
+.rajuharryironman > .rajuharryironman-content-9:checked ~ ul > .rajuharryironman-content-9,
+.rajuharryironman > .rajuharryironman-content-10:checked ~ ul > .rajuharryironman-content-10,
+.rajuharryironman > .rajuharryironman-content-11:checked ~ ul > .rajuharryironman-content-11,
+.rajuharryironman > .rajuharryironman-content-12:checked ~ ul > .rajuharryironman-content-12,
+.rajuharryironman > .rajuharryironman-content-13:checked ~ ul > .rajuharryironman-content-13,
+.rajuharryironman > .rajuharryironman-content-14:checked ~ ul > .rajuharryironman-content-14,
+.rajuharryironman > .rajuharryironman-content-15:checked ~ ul > .rajuharryironman-content-15,
+.rajuharryironman > .rajuharryironman-content-16:checked ~ ul > .rajuharryironman-content-16,
+.rajuharryironman > .rajuharryironman-content-17:checked ~ ul > .rajuharryironman-content-17,
+.rajuharryironman > .rajuharryironman-content-18:checked ~ ul > .rajuharryironman-content-18,
+.rajuharryironman > .rajuharryironman-content-19:checked ~ ul > .rajuharryironman-content-19,
+.rajuharryironman > .rajuharryironman-content-20:checked ~ ul > .rajuharryironman-content-20,
+.rajuharryironman > .rajuharryironman-content-21:checked ~ ul > .rajuharryironman-content-21,
+.rajuharryironman > .rajuharryironman-content-22:checked ~ ul > .rajuharryironman-content-22,
+.rajuharryironman > .rajuharryironman-content-23:checked ~ ul > .rajuharryironman-content-23,
+.rajuharryironman > .rajuharryironman-content-24:checked ~ ul > .rajuharryironman-content-24,
+.rajuharryironman > .rajuharryironman-content-25:checked ~ ul > .rajuharryironman-content-25{
+	position: relative;
+	z-index: 1;
+	opacity: 1;
+}
+
+
+/**/
+/* positions */
+/**/
+.rajuharryironman-pos-top-center {
+	text-align: center;
+}
+.rajuharryironman-pos-top-right {
+	text-align: right;
+}
+.rajuharryironman-pos-top-right > label {
+	padding-right: 0;
+	padding-left: 1px;
+}
+.rajuharryironman-pos-top-justify > label {
+	padding-right: 0;
+	padding-left: 1px;
+}
+.rajuharryironman-pos-top-justify.rajuharryironman-amount-2 > label {
+	width: 50%;
+}
+.rajuharryironman-pos-top-justify.rajuharryironman-amount-3 > label {
+	width: 33.33%;
+}
+.rajuharryironman-pos-top-justify.rajuharryironman-amount-4 > label {
+	width: 25%;
+}
+.rajuharryironman-pos-top-justify.rajuharryironman-amount-5 > label {
+	width: 20%;
+}
+.rajuharryironman-pos-top-justify.rajuharryironman-amount-6 > label {
+	width: 16.66%;
+}
+.rajuharryironman-pos-top-justify.rajuharryironman-amount-7 > label {
+	width: 14.28%;
+}
+.rajuharryironman-pos-top-justify.rajuharryironman-amount-8 > label {
+	width: 12.5%;
+}
+.rajuharryironman-pos-top-justify.rajuharryironman-amount-9 > label {
+	width: 11.11%;
+}
+.rajuharryironman-pos-top-justify > input:first-child + label {
+	padding-left: 0;
+}
+.rajuharryironman-pos-left > label,
+.rajuharryironman-pos-right > label {
+	display: block;
+	width: 25%;
+	float: left;
+	clear: left;
+	margin-right: 0;
+}
+.rajuharryironman-pos-right > label {
+	float: right;
+	clear: right;
+}
+.rajuharryironman-pos-left > ul {
+	margin-left: 25%;
+}
+.rajuharryironman-pos-right > ul {
+	margin-right: 25%;
+}
+.rajuharryironman-pos-right > label {
+	padding-right: 0;
+	padding-left: 1px;
+}
+.rajuharryironman-pos-top-center > ul > li,
+.rajuharryironman-pos-top-justify > ul > li {
+	-o-transform-origin: 50% 0%;
+	-ms-transform-origin: 50% 0%;
+	-moz-transform-origin: 50% 0%;
+	-webkit-transform-origin: 50% 0%;
+}
+.rajuharryironman-pos-right > ul > li,
+.rajuharryironman-pos-top-right > ul > li {
+	-o-transform-origin: 100% 0%;
+	-ms-transform-origin: 100% 0%;
+	-moz-transform-origin: 100% 0%;
+	-webkit-transform-origin: 100% 0%;
+}
+
+
+/**/
+/* animations */
+/**/
+.rajuharryironman-anim-slide-up > ul > li {
+	-o-transform: translateY(-15%);
+	-ms-transform: translateY(-15%);
+	-moz-transform: translateY(-15%);
+	-webkit-transform: translateY(-15%);
+}
+.rajuharryironman-anim-slide-right > ul > li {
+	-o-transform: translateX(15%);
+	-ms-transform: translateX(15%);
+	-moz-transform: translateX(15%);
+	-webkit-transform: translateX(15%);
+}
+.rajuharryironman-anim-slide-down > ul > li {
+	-o-transform: translateY(15%);
+	-ms-transform: translateY(15%);
+	-moz-transform: translateY(15%);
+	-webkit-transform: translateY(15%);
+}
+.rajuharryironman-anim-slide-left > ul > li {
+	-o-transform: translateX(-15%);
+	-ms-transform: translateX(-15%);
+	-moz-transform: translateX(-15%);
+	-webkit-transform: translateX(-15%);
+}
+.rajuharryironman-anim-slide-up-left > ul > li {
+	-o-transform: translate(-15%,-15%);
+	-ms-transform: translate(-15%,-15%);
+	-moz-transform: translate(-15%,-15%);
+	-webkit-transform: translate(-15%,-15%);
+}
+.rajuharryironman-anim-slide-up-right > ul > li {
+	-o-transform: translate(15%,-15%);
+	-ms-transform: translate(15%,-15%);
+	-moz-transform: translate(15%,-15%);
+	-webkit-transform: translate(15%,-15%);	
+}
+.rajuharryironman-anim-slide-down-right > ul > li {
+	-o-transform: translate(15%,15%);
+	-ms-transform: translate(15%,15%);
+	-moz-transform: translate(15%,15%);
+	-webkit-transform: translate(15%,15%);	
+}
+.rajuharryironman-anim-slide-down-left > ul > li {
+	-o-transform: translate(-15%,15%);
+	-ms-transform: translate(-15%,15%);
+	-moz-transform: translate(-15%,15%);
+	-webkit-transform: translate(-15%,15%);	
+}
+.rajuharryironman > .rajuharryironman-content-1:checked ~ ul > .rajuharryironman-content-1,
+.rajuharryironman > .rajuharryironman-content-2:checked ~ ul > .rajuharryironman-content-2,
+.rajuharryironman > .rajuharryironman-content-3:checked ~ ul > .rajuharryironman-content-3,
+.rajuharryironman > .rajuharryironman-content-4:checked ~ ul > .rajuharryironman-content-4,
+.rajuharryironman > .rajuharryironman-content-5:checked ~ ul > .rajuharryironman-content-5,
+.rajuharryironman > .rajuharryironman-content-6:checked ~ ul > .rajuharryironman-content-6,
+.rajuharryironman > .rajuharryironman-content-7:checked ~ ul > .rajuharryironman-content-7,
+.rajuharryironman > .rajuharryironman-content-8:checked ~ ul > .rajuharryironman-content-8,
+.rajuharryironman > .rajuharryironman-content-9:checked ~ ul > .rajuharryironman-content-9,
+.rajuharryironman > .rajuharryironman-content-10:checked ~ ul > .rajuharryironman-content-10,
+.rajuharryironman > .rajuharryironman-content-11:checked ~ ul > .rajuharryironman-content-11,
+.rajuharryironman > .rajuharryironman-content-12:checked ~ ul > .rajuharryironman-content-12,
+.rajuharryironman > .rajuharryironman-content-13:checked ~ ul > .rajuharryironman-content-13,
+.rajuharryironman > .rajuharryironman-content-14:checked ~ ul > .rajuharryironman-content-14,
+.rajuharryironman > .rajuharryironman-content-15:checked ~ ul > .rajuharryironman-content-15
+.rajuharryironman > .rajuharryironman-content-16:checked ~ ul > .rajuharryironman-content-16,
+.rajuharryironman > .rajuharryironman-content-17:checked ~ ul > .rajuharryironman-content-17,
+.rajuharryironman > .rajuharryironman-content-18:checked ~ ul > .rajuharryironman-content-18,
+.rajuharryironman > .rajuharryironman-content-19:checked ~ ul > .rajuharryironman-content-19,
+.rajuharryironman > .rajuharryironman-content-20:checked ~ ul > .rajuharryironman-content-20,
+.rajuharryironman > .rajuharryironman-content-21:checked ~ ul > .rajuharryironman-content-21,
+.rajuharryironman > .rajuharryironman-content-22:checked ~ ul > .rajuharryironman-content-22,
+.rajuharryironman > .rajuharryironman-content-23:checked ~ ul > .rajuharryironman-content-23,
+.rajuharryironman > .rajuharryironman-content-24:checked ~ ul > .rajuharryironman-content-24,
+.rajuharryironman > .rajuharryironman-content-25:checked ~ ul > .rajuharryironman-content-25{
+	-o-transform: translate(0,0);
+	-ms-transform: translate(0,0);
+	-moz-transform: translate(0,0);
+	-webkit-transform: translate(0,0);
+}
+
+.rajuharryironman-anim-scale > ul > li {
+	-o-transform: scale(0.1,0.1);
+	-ms-transform: scale(0.1,0.1);
+	-moz-transform: scale(0.1,0.1);
+	-webkit-transform: scale(0.1,0.1);
+}
+.rajuharryironman-anim-scale > .rajuharryironman-content-1:checked ~ ul > .rajuharryironman-content-1,
+.rajuharryironman-anim-scale > .rajuharryironman-content-2:checked ~ ul > .rajuharryironman-content-2,
+.rajuharryironman-anim-scale > .rajuharryironman-content-3:checked ~ ul > .rajuharryironman-content-3,
+.rajuharryironman-anim-scale > .rajuharryironman-content-4:checked ~ ul > .rajuharryironman-content-4,
+.rajuharryironman-anim-scale > .rajuharryironman-content-5:checked ~ ul > .rajuharryironman-content-5,
+.rajuharryironman-anim-scale > .rajuharryironman-content-6:checked ~ ul > .rajuharryironman-content-6,
+.rajuharryironman-anim-scale > .rajuharryironman-content-7:checked ~ ul > .rajuharryironman-content-7,
+.rajuharryironman-anim-scale > .rajuharryironman-content-8:checked ~ ul > .rajuharryironman-content-8,
+.rajuharryironman-anim-scale > .rajuharryironman-content-9:checked ~ ul > .rajuharryironman-content-9,
+.rajuharryironman-anim-scale > .rajuharryironman-content-10:checked ~ ul > .rajuharryironman-content-10,
+.rajuharryironman-anim-scale > .rajuharryironman-content-11:checked ~ ul > .rajuharryironman-content-11,
+.rajuharryironman-anim-scale > .rajuharryironman-content-12:checked ~ ul > .rajuharryironman-content-12,
+.rajuharryironman-anim-scale > .rajuharryironman-content-13:checked ~ ul > .rajuharryironman-content-13,
+.rajuharryironman-anim-scale > .rajuharryironman-content-14:checked ~ ul > .rajuharryironman-content-14,
+.rajuharryironman-anim-scale > .rajuharryironman-content-15:checked ~ ul > .rajuharryironman-content-15,
+.rajuharryironman-anim-scale > .rajuharryironman-content-16:checked ~ ul > .rajuharryironman-content-16,
+.rajuharryironman-anim-scale > .rajuharryironman-content-17:checked ~ ul > .rajuharryironman-content-17,
+.rajuharryironman-anim-scale > .rajuharryironman-content-18:checked ~ ul > .rajuharryironman-content-18,
+.rajuharryironman-anim-scale > .rajuharryironman-content-19:checked ~ ul > .rajuharryironman-content-19,
+.rajuharryironman-anim-scale > .rajuharryironman-content-20:checked ~ ul > .rajuharryironman-content-20,
+.rajuharryironman-anim-scale > .rajuharryironman-content-21:checked ~ ul > .rajuharryironman-content-21,
+.rajuharryironman-anim-scale > .rajuharryironman-content-22:checked ~ ul > .rajuharryironman-content-22,
+.rajuharryironman-anim-scale > .rajuharryironman-content-23:checked ~ ul > .rajuharryironman-content-23,
+.rajuharryironman-anim-scale > .rajuharryironman-content-24:checked ~ ul > .rajuharryironman-content-24,
+.rajuharryironman-anim-scale > .rajuharryironman-content-25:checked ~ ul > .rajuharryironman-content-25{
+	-o-transform: scale(1,1);
+	-ms-transform: scale(1,1);
+	-moz-transform: scale(1,1);
+	-webkit-transform: scale(1,1);
+}
+
+.rajuharryironman-anim-rotate > ul > li {
+	-o-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+}
+.rajuharryironman-anim-rotate.rajuharryironman-pos-right > ul > li,
+.rajuharryironman-anim-rotate.rajuharryironman-pos-top-right > ul > li {
+	-o-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+}
+.rajuharryironman-anim-rotate > .rajuharryironman-content-1:checked ~ ul > .rajuharryironman-content-1,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-2:checked ~ ul > .rajuharryironman-content-2,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-3:checked ~ ul > .rajuharryironman-content-3,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-4:checked ~ ul > .rajuharryironman-content-4,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-5:checked ~ ul > .rajuharryironman-content-5,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-6:checked ~ ul > .rajuharryironman-content-6,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-7:checked ~ ul > .rajuharryironman-content-7,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-8:checked ~ ul > .rajuharryironman-content-8,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-9:checked ~ ul > .rajuharryironman-content-9,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-10:checked ~ ul > .rajuharryironman-content-10,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-11:checked ~ ul > .rajuharryironman-content-11,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-12:checked ~ ul > .rajuharryironman-content-12,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-13:checked ~ ul > .rajuharryironman-content-13,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-14:checked ~ ul > .rajuharryironman-content-14,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-15:checked ~ ul > .rajuharryironman-content-15,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-16:checked ~ ul > .rajuharryironman-content-16,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-17:checked ~ ul > .rajuharryironman-content-17,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-18:checked ~ ul > .rajuharryironman-content-18,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-19:checked ~ ul > .rajuharryironman-content-19,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-20:checked ~ ul > .rajuharryironman-content-20,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-21:checked ~ ul > .rajuharryironman-content-21,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-22:checked ~ ul > .rajuharryironman-content-22,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-23:checked ~ ul > .rajuharryironman-content-23,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-24:checked ~ ul > .rajuharryironman-content-24,
+.rajuharryironman-anim-rotate > .rajuharryironman-content-25:checked ~ ul > .rajuharryironman-content-25{
+	-o-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+}
+
+.rajuharryironman-anim-flip > ul {
+	perspective: 2000px;
+	-o-perspective: 2000px;
+	-ms-perspective: 2000px;
+	-moz-perspective: 2000px;
+	-webkit-perspective: 2000px;
+	perspective-origin: 50% 50%;
+	-o-perspective-origin: 50% 50%;
+	-ms-perspective-origin: 50% 50%;
+	-moz-perspective-origin: 50% 50%;
+	-webkit-perspective-origin: 50% 50%;
+}
+.rajuharryironman-anim-flip > ul > li {
+	-o-transform: rotateX(-90deg);
+	-ms-transform: rotateX(-90deg);
+	-moz-transform: rotateX(-90deg);
+	-webkit-transform: rotateX(-90deg);
+}
+.rajuharryironman-anim-flip.rajuharryironman-pos-left > ul > li {
+	-o-transform: rotateY(90deg);
+	-ms-transform: rotateY(90deg);
+	-moz-transform: rotateY(90deg);
+	-webkit-transform: rotateY(90deg);	
+}
+.rajuharryironman-anim-flip.rajuharryironman-pos-right > ul > li {
+	-o-transform: rotateY(-90deg);
+	-ms-transform: rotateY(-90deg);
+	-moz-transform: rotateY(-90deg);
+	-webkit-transform: rotateY(-90deg);
+}
+.rajuharryironman-anim-flip > .rajuharryironman-content-1:checked ~ ul > .rajuharryironman-content-1,
+.rajuharryironman-anim-flip > .rajuharryironman-content-2:checked ~ ul > .rajuharryironman-content-2,
+.rajuharryironman-anim-flip > .rajuharryironman-content-3:checked ~ ul > .rajuharryironman-content-3,
+.rajuharryironman-anim-flip > .rajuharryironman-content-4:checked ~ ul > .rajuharryironman-content-4,
+.rajuharryironman-anim-flip > .rajuharryironman-content-5:checked ~ ul > .rajuharryironman-content-5,
+.rajuharryironman-anim-flip > .rajuharryironman-content-6:checked ~ ul > .rajuharryironman-content-6,
+.rajuharryironman-anim-flip > .rajuharryironman-content-7:checked ~ ul > .rajuharryironman-content-7,
+.rajuharryironman-anim-flip > .rajuharryironman-content-8:checked ~ ul > .rajuharryironman-content-8,
+.rajuharryironman-anim-flip > .rajuharryironman-content-9:checked ~ ul > .rajuharryironman-content-9,
+.rajuharryironman-anim-flip > .rajuharryironman-content-10:checked ~ ul > .rajuharryironman-content-10,
+.rajuharryironman-anim-flip > .rajuharryironman-content-11:checked ~ ul > .rajuharryironman-content-11,
+.rajuharryironman-anim-flip > .rajuharryironman-content-12:checked ~ ul > .rajuharryironman-content-12,
+.rajuharryironman-anim-flip > .rajuharryironman-content-13:checked ~ ul > .rajuharryironman-content-13,
+.rajuharryironman-anim-flip > .rajuharryironman-content-14:checked ~ ul > .rajuharryironman-content-14,
+.rajuharryironman-anim-flip > .rajuharryironman-content-15:checked ~ ul > .rajuharryironman-content-15,
+.rajuharryironman-anim-flip > .rajuharryironman-content-16:checked ~ ul > .rajuharryironman-content-16,
+.rajuharryironman-anim-flip > .rajuharryironman-content-17:checked ~ ul > .rajuharryironman-content-17,
+.rajuharryironman-anim-flip > .rajuharryironman-content-18:checked ~ ul > .rajuharryironman-content-18,
+.rajuharryironman-anim-flip > .rajuharryironman-content-19:checked ~ ul > .rajuharryironman-content-19,
+.rajuharryironman-anim-flip > .rajuharryironman-content-20:checked ~ ul > .rajuharryironman-content-20,
+.rajuharryironman-anim-flip > .rajuharryironman-content-21:checked ~ ul > .rajuharryironman-content-21,
+.rajuharryironman-anim-flip > .rajuharryironman-content-22:checked ~ ul > .rajuharryironman-content-22,
+.rajuharryironman-anim-flip > .rajuharryironman-content-23:checked ~ ul > .rajuharryironman-content-23,
+.rajuharryironman-anim-flip > .rajuharryironman-content-24:checked ~ ul > .rajuharryironman-content-24,
+.rajuharryironman-anim-flip > .rajuharryironman-content-25:checked ~ ul > .rajuharryironman-content-25{
+	-o-transform: rotateX(0deg);
+	-ms-transform: rotateX(0deg);
+	-moz-transform: rotateX(0deg);
+	-webkit-transform: rotateX(0deg);
+	-o-transition-delay: 0.2s;
+	-ms-transition-delay: 0.2s;
+	-moz-transition-delay: 0.2s;
+	-webkit-transition-delay: 0.2s;
+}
+
+
+/**/
+/* grid system */
+/**/
+.rajuharryironman .grid-row {
+	margin-top: 20px;
+}
+.rajuharryironman .grid-row:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+.rajuharryironman .grid-row:first-child {
+	margin-top: 0;
+}
+.rajuharryironman .grid-col {
+	display: block;
+	float: left;
+	width: 100%;
+	margin-left: 2%;
+}
+.rajuharryironman .grid-col:first-child {
+	margin-left: 0;
+}
+.rajuharryironman .grid-col .inner {
+	padding: 10px 0;
+	border-radius: 5px;
+	background: rgba(0,0,0,0.1);
+	text-align: center;
+}
+.rajuharryironman .grid-col-1 {
+	width: 6.5%;
+}
+.rajuharryironman .grid-col-2 {
+	width: 15%;
+}
+.rajuharryironman .grid-col-3 {
+	width: 23.5%;
+}
+.rajuharryironman .grid-col-4 {
+	width: 32%;
+}
+.rajuharryironman .grid-col-5 {
+	width: 40.5%;
+}
+.rajuharryironman .grid-col-6 {
+	width: 49%;
+}
+.rajuharryironman .grid-col-7 {
+	width: 57.5%;
+}
+.rajuharryironman .grid-col-8 {
+	width: 66%;
+}
+.rajuharryironman .grid-col-9 {
+	width: 74.5%;
+}
+.rajuharryironman .grid-col-10 {
+	width: 83%;
+}
+.rajuharryironman .grid-col-11 {
+	width: 91.5%;
+}
+.rajuharryironman .grid-col-offset-1,
+.rajuharryironman .grid-col-offset-1:first-child {
+	margin-left: 8.5%;
+}
+.rajuharryironman .grid-col-offset-2,
+.rajuharryironman .grid-col-offset-2:first-child {
+	margin-left: 17%;
+}
+.rajuharryironman .grid-col-offset-3,
+.rajuharryironman .grid-col-offset-3:first-child {
+	margin-left: 25.5%;
+}
+.rajuharryironman .grid-col-offset-4,
+.rajuharryironman .grid-col-offset-4:first-child {
+	margin-left: 34%;
+}
+.rajuharryironman .grid-col-offset-5,
+.rajuharryironman .grid-col-offset-5:first-child {
+	margin-left: 42.5%;
+}
+.rajuharryironman .grid-col-offset-6,
+.rajuharryironman .grid-col-offset-6:first-child {
+	margin-left: 51%;
+}
+.rajuharryironman .grid-col-offset-7,
+.rajuharryironman .grid-col-offset-7:first-child {
+	margin-left: 59.5%;
+}
+.rajuharryironman .grid-col-offset-8,
+.rajuharryironman .grid-col-offset-8:first-child {
+	margin-left: 68%;
+}
+.rajuharryironman .grid-col-offset-9,
+.rajuharryironman .grid-col-offset-9:first-child {
+	margin-left: 76.5%;
+}
+.rajuharryironman .grid-col-offset-10,
+.rajuharryironman .grid-col-offset-10:first-child {
+	margin-left: 85%;
+}
+.rajuharryironman .grid-col-offset-11,
+.rajuharryironman .grid-col-offset-11:first-child {
+	margin-left: 93.5%;
+}
+
+
+/**/
+/* typography */
+/**/
+.rajuharryironman .typography h1,
+.rajuharryironman .typography h2,
+.rajuharryironman .typography h3,
+.rajuharryironman .typography h4,
+.rajuharryironman .typography h5,
+.rajuharryironman .typography h6 {
+	margin: 40px 0 0 0;
+	padding: 0;
+	text-align: left;
+	color: #333;
+}
+.rajuharryironman .typography h1 {
+	font-size: 40px;
+	line-height: 50px;
+	font-weight: 300;
+}
+.rajuharryironman .typography h2 {
+	font-size: 34px;
+	line-height: 44px;
+	font-weight: 300;
+}
+.rajuharryironman .typography h3 {
+	font-size: 28px;
+	line-height: 36px;
+	font-weight: 300;
+}
+.rajuharryironman .typography h4 {
+	font-size: 22px;
+	line-height: 30px;
+	font-weight: 400;
+}
+.rajuharryironman .typography h5 {
+	font-size: 16px;
+	line-height: 23px;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+.rajuharryironman .typography h6 {
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+.rajuharryironman .typography p {
+	margin: 20px 0 0 0;
+	padding: 0;
+	line-height: 20px;
+	text-align: left;
+}
+.rajuharryironman .typography ul,
+.rajuharryironman .typography ol {
+	list-style: none;
+	margin: 20px 0 0 0;
+	padding: 0;
+	line-height: 20px;
+}
+.rajuharryironman .typography li {
+	position: relative;
+	margin-top: 5px;
+	padding-left: 20px;
+}
+.rajuharryironman .typography li ul,
+.rajuharryironman .typography li ol {
+	margin-top: 5px;
+}
+.rajuharryironman .typography ul li:before {
+	content: '';
+	position: absolute;
+	top: 8px;
+	left: 0;
+	width: 4px;
+	height: 4px;
+	background: #333;
+}
+.rajuharryironman .typography ol {
+	counter-reset: list1;
+}
+.rajuharryironman .typography ol > li:before {
+	counter-increment:list1;
+	content: counter(list1)'.';
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #333;
+}
+.rajuharryironman .typography a {
+	text-decoration: underline;
+	color: #2da5da;
+}
+.rajuharryironman .typography a:hover {
+	text-decoration: none;
+}
+.rajuharryironman .typography .pic {
+	padding: 4px;
+	border: 1px dotted #ccc;
+}
+.rajuharryironman .typography .pic img {
+	display: block;
+}
+.rajuharryironman .typography .pic-right {
+	float: right;
+	margin: 0 0 10px 20px;
+}
+.rajuharryironman .typography .link {
+	text-decoration: underline;
+	color: #2da5da;
+	cursor: pointer;
+}
+.rajuharryironman .typography .link:hover {
+	text-decoration: none;
+}
+.rajuharryironman .typography h1:first-child,
+.rajuharryironman .typography h2:first-child,
+.rajuharryironman .typography h3:first-child,
+.rajuharryironman .typography h4:first-child,
+.rajuharryironman .typography h5:first-child,
+.rajuharryironman .typography h6:first-child,
+.rajuharryironman .typography p:first-child {
+	margin-top: 0;
+}
+.rajuharryironman .typography .text-center {
+	text-align: center;
+}
+.rajuharryironman .typography .text-right {
+	text-align: right;
+}
+
+
+/**/
+/* icons */
+/**/
+.rajuharryironman > label .fa {
+	display: block;
+	float: left;
+	width: 18px;
+	margin: 0 12px 0 -6px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 45px;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/**/
+/* pad */
+/**/
+@media screen and (max-width: 1000px) {
+	.rajuharryironman > label span span {
+		padding: 0 15px;
+	}
+	.rajuharryironman > label .fa {
+		margin-right: 10px;
+		margin-left: -5px;
+	}
+}
+
+
+/**/
+/* phone */
+/**/
+@media screen and (max-width: 767px) {
+	
+	.rajuharryironman .grid-col,
+	.rajuharryironman .grid-col:first-child {
+		float: none;
+		width: 100%;
+		margin: 20px 0 0 0;
+	}
+	
+	.rajuharryironman-response-to-stack > label {
+		display: block;
+		width: 100%;
+		padding-right: 0;
+		padding-left: 0;
+		text-align: left;
+	}
+	.rajuharryironman-response-to-stack > ul {
+		margin-top: 0;
+		margin-right: 0;
+		margin-left: 0;
+	}
+	.rajuharryironman-response-to-stack > ul > li {
+		-o-transform-origin: 50% 0%;
+		-ms-transform-origin: 50% 0%;
+		-moz-transform-origin: 50% 0%;
+		-webkit-transform-origin: 50% 0%;
+	}
+	.rajuharryironman-response-to-stack.rajuharryironman-anim-flip > ul > li {
+		-webkit-transform: rotateX(-90deg);
+	}
+	
+	.rajuharryironman-response-to-icons > label {
+		font-size: 0;
+	}
+	.rajuharryironman-response-to-icons > label .fa {
+		width: 45px;
+		margin: 0;
+		font-size: 16px;
+	}
+	.rajuharryironman-response-to-icons > label span span {
+		padding: 0;
+	}
+	.rajuharryironman-response-to-icons.rajuharryironman-pos-left > label,
+	.rajuharryironman-response-to-icons.rajuharryironman-pos-right > label {
+		width: 56px;
+	}
+	.rajuharryironman-response-to-icons.rajuharryironman-pos-left > ul {
+		margin-left: 56px;
+	}
+	.rajuharryironman-response-to-icons.rajuharryironman-pos-right > ul {
+		margin-right: 56px;
+	}
+	
+	.rajuharryironman-response-to-switcher > label {
+		display: none;
+		width: 100%;
+		padding-right: 0;
+		padding-left: 0;
+		text-align: left;
+	}
+	.rajuharryironman-response-to-switcher > .switcher {
+		display: block;
+	}
+	.rajuharryironman-response-to-switcher:hover > label {
+		display: block;
+	}
+	.rajuharryironman-response-to-switcher:hover > .switcher {
+		display: none;
+	}
+	.rajuharryironman-response-to-switcher > ul {
+		margin-top: 0;
+		margin-right: 0;
+		margin-left: 0;
+	}
+	.rajuharryironman-response-to-switcher > ul > li {
+		-o-transform-origin: 50% 0%;
+		-ms-transform-origin: 50% 0%;
+		-moz-transform-origin: 50% 0%;
+		-webkit-transform-origin: 50% 0%;
+	}
+	.rajuharryironman-response-to-switcher.rajuharryironman-anim-flip > ul > li {
+		-webkit-transform: rotateX(-90deg);
+	}
+}
+.rajuharryironman .footerbottomtab{    *position: absolute;
+    margin: 0px auto;
+    display: block;
+    right: 0;cursor: pointer;}
+.footerbottomtab label{cursor: pointer;}
+.rajuharryironman .headertoptab{position: absolute;
+    margin: 0px auto;
+    display: block;
+    top:0;margin-top: 20px; margin-right: 20px;
+    right: 0;cursor: pointer;}
+.headertoptab label{cursor: pointer;}

@@ -1,0 +1,97 @@
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #555;
+    text-align: center;
+}
+.table thead tr td.hideme{font-size:0; }
+
+.sectiontwocss{
+    margin: 180px auto;
+    padding: 40px;
+}
+.customcss{
+    width: 70%;
+    margin: 50px 170px auto;
+}
+.registerhtmldata{overflow: auto;}
+.registerhtmldatatwo{overflow: auto;}
+
+.rgtr_heading h2{
+    margin:1px;
+    font-size:13px;
+    font-weight: bold;
+    color:#000;
+    text-align:center;
+    display: block;    
+}
+.pagebreak{
+    page-break-after: always;
+    display: block;
+}
+
+
+/* ######################### ManualGenerate Start ######################### */
+.rgstr-container{border:1px solid ;width:900px;margin:0px auto 15px auto;display:block;padding:10px; }
+.rgstr1-excel{margin-bottom:20px;}	
+.rgstr-table-heading h2{display: block; text-align: left;font-size:12px;font-weight:bold;margin:20px 0px 10px 0px;     font-family: sans-serif;}
+.rgstr1-excel h2{display: block; text-align: center;font-size:11px;font-weight:bold;margin:5px;     font-family: sans-serif; }	
+.field-name div.fields{display: block; text-align: left;font-size:11px;font-weight:bold;margin:5px;    font-family: sans-serif;}
+
+.border-dot{border:1px dotted #222;width:100%;height:auto;display:flex; }
+
+.first-part-fields{float:left ;width:50%;height:250px;display:block;border-right:1px dotted #000;   }
+
+.fieldsname h2{display: block; text-align: left;font-size:11px;font-weight:bold;margin:5px;    font-family: sans-serif;}
+.fieldsname p{display: block; text-align: left;font-size:10px;margin:5px;    font-family: sans-serif;}
+
+.secand-part-fields{float:right;margin-top:-250px ;width:50%;height:250px;display:block;border-right:1px dotted #000;   }
+
+.fieldsname2nd h2{display: block; text-align: left;font-size:11px;font-weight:bold;margin:5px;    font-family: sans-serif;}
+.fieldsname2nd p{display: block; text-align: left;font-size:10px;margin:5px;    font-family: sans-serif;}
+.subsectionfields p{margin-left:25px; }
+.border-dot-bottom{border-left:1px dotted #222;border-right:1px dotted #222;border-bottom:1px dotted #222;width:100%;height:auto;display:flex;}
+.third-part-fields{width:100%;height:100%;display:block;}
+.third-part-fields h2{display: block; text-align: left;font-size:11px;font-weight:bold;margin:5px;    font-family: sans-serif;}
+.third-part-fields p{display: block; text-align: left;font-size:10px;margin:5px;    font-family: sans-serif;}
+.insidepagebeak{page-break-inside: avoid;}
+/* ######################### ManualGenerate End ######################### */
+
+
+/* ===============pdf add share certificate no===========================*/
+     dl.dl-css{margin: 0px; padding: 0px;display: block;}
+    .dl-css dd{margin:0px; display: block;padding: 0px;font-size: 13px;}
+    .colmd4{width:40%; margin:5px auto;float:none; padding:0px 3px 0px 3px;position: relative;}
+    .colmd8{width: 80%; margin:5px auto;float:none;  padding: 0px 3px 0px 3px; position: relative;}
+    .formtitle h4{font-size: 15px;margin:5px 0px 5px 0px;font-weight: normal; }
+    .formtitle{text-align: center;}
+    .qquitytext{text-align:left;}
+    .equityshares_amount, .equityshares_amount{border:1px solid #000;}
+    .certificatebox{ border: 1px solid #000;padding:5px;margin: 0px}
+    .certificatebox dl{margin: 0px; padding: 2px;}
+    .certificatebox dl dd{margin: 0px; padding: 5px;}
+    .certificate h4{text-align:center;font-size:15px;font-weight: bold;}
+    .leftpanel{padding:5px;height: 853px;border: 1px solid #000;}
+    .rightpanel{padding:5px;height: 853px;border: 1px solid #000; }
+    .companyact,.numaddrtwo{text-align: center;}
+    .no-padding{ padding: 0;}
+    .notetext p{padding-top:12px;font-size: 10px;}
+    .compnyname{font-size: 14px;font-weight: bold;text-transform: capitalize;margin-bottom: -8px;}
+    .registradd{margin: 6px 0px;}
+    .registradd p{font-size:13px; }
+    .form-font h4{font-weight:bold;margin:0px;}
+    .txttitle{margin-top:8px; }
+    .companyact p{margin: 0;}
+    .font-equt {padding:5px;margin: 0px;}
+    .font-equt h4{font-weight: bold;margin: 0px;padding: 0px}
+    .equity_share span.titleshares{font-weight: bold;font-size: 18px;}
+    .compnyseal{margin:5px 0px 0px 0px;}
+    .registrdadd b{font-weight: normal;}
+    .certificatebox dd.certinumtwo span b{font-weight: normal;}
+    .qquitytext{font-size: 13px;}
+    .director h4{margin:10px 0px 0px 0px; }
+    .authorisedsign h4{margin:10px 0px 0px 0px;}
+/* ===============pdf share certificate no===========================*/

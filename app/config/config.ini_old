@@ -1,0 +1,37 @@
+[database]
+adapter  = Mysql
+host     = 192.168.0.119
+username = remote
+password = passwd123
+dbname   = mamajarvis
+
+[dbcdata]
+adapter  = Mysql
+host     = 192.168.0.119
+username = remote
+password = passwd123
+dbname   = customerdata
+
+[dbtrd]
+adapter  = Mysql
+host     = 192.168.0.119
+username = remote
+password = passwd123
+dbname   = website_trading
+
+[application]
+controllersDir = app/controllers/
+modelsDir      = app/models/
+viewsDir       = app/views/
+pluginsDir     = app/plugins/
+formsDir       = app/forms/
+libraryDir     = app/library/
+languageDir    = app/language/
+baseUri        = /insidertrading/
+
+
+[imgdir]
+userdocDir   	          = img/userdoc
+sharescreenDir   	      = img/sharescreendoc
+dscDir                    = img/dsc
+cmpmodule                 =  img/cmpmodule

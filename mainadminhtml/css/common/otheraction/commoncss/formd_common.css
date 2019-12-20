@@ -1,0 +1,162 @@
+/* form b form c form d css*/
+.downloadpdf { float: right; }
+a.downlodthfle {
+    background: #1A82C3;
+    float: left;
+    padding: 10px 14px;
+    border-radius: 3px;
+}
+.pdf_button {
+    background: no-repeat;
+    border: none; float: right;
+}
+.table_wraper {
+    background: #fff;
+    padding: 10px; box-shadow: 2px 5px 3px #ccc;
+}
+
+.downloadpdf.btn.btn-primary.floatright.pdf_button:hover {
+    background: none;
+    box-shadow: none;
+}
+/*form b form c form d */
+i#sendforaprvformd {
+    text-align: center;
+    width: 69%;
+    font-size: 18px;
+}
+i#previewd {
+    text-align: center;
+    width: 69%;
+    font-size: 18px;
+}
+.preloder_wraper{
+    z-index: 1111;
+}
+.formelementmain {
+    padding: 30px 0;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px #cccc;
+    margin: 20px 0;
+}
+.formcpdf i.fa.fa-file-pdf-o, .formdpdf i.fa.fa-file-pdf-o{
+    color: #c10000;
+    margin-right: 5px;
+}
+
+
+.modal_width { width: 82% }
+input[type="radio"], input[type="checkbox"] {
+    margin: 4px 5px 0;
+    margin-top: 1px 9;
+    line-height: normal;
+}
+
+.pdfln {
+    float: left;
+}
+
+i.fa.fa-check {
+    text-align: center;
+    width: 69%;
+    color: #226700;
+    font-size: 18px;
+}
+button.formcpdf, button.down_load, button.formdpdf {
+    padding: 7px;
+    border-radius: 4px;
+    border: none; color: #1A82C3;
+}
+
+
+/* form b form c form d css*/
+a.downlodthfle {
+    background: #1A82C3;
+    float: left;
+    padding: 10px 14px;
+    border-radius: 3px;
+}
+.pdf_button {
+    background: no-repeat;
+    border: none; float: right;
+}
+
+.downloadpdf.btn.btn-primary.floatright.pdf_button:hover {
+    background: none;
+    box-shadow: none;
+}
+/*form b form c form d */
+
+.button_pdf {
+    display: inline-block;
+    width: 96%;
+    text-align: right;
+}
+.button_pdf i.fa.fa-download {
+    margin-right: 6px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1A82C3;
+    border-color: #1A82C3;
+    margin-left: 10px;
+}
+
+.formcbtn, .formdbtn {
+    float: right;
+}
+.table-responsive.table_wraper {
+    width: 100%;
+}
+.input {
+    margin: 12px 0 0 0;
+}
+label.control-label.heading {
+    font-size: 15px;
+    float: left;
+    width: 100%;
+}
+
+input.btn.btn-primary.saveformbbtn {
+    margin: 15px 0;
+    float: right;
+}
+i.fa.fa-edit.faicon.floatleft.editformb {
+    margin: 0 7px;
+    font-size: 16px;
+    cursor: pointer;
+}
+i.fa-trash-o.faicon.floatleft.deleteformb {
+    margin: 0 7px;
+    font-size: 16px;
+    cursor: pointer;
+}
+input.btn.btn-primary.updateformbbtn {
+    margin: 15px 0;
+    float: right;
+}
+/*################ Pagination Start ######################*/
+.paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
+.paginationmn .pagination ul li.inactive,
+.paginationmn .pagination ul li.inactive:hover{background-color:#ededed;
+color:#bababa; border:1px solid #bababa; cursor: default;}
+.paginationmn .data ul li{ list-style: none; font-family: verdana; margin: 5px 0 5px 0; color: #000;font-size: 13px;}
+.paginationmn .pagination{width: 100%;margin: 0px auto; /*height: 25px;*/}
+.paginationmn .pagination ul li{
+    list-style: none;
+    float: left;
+    border: 1px solid #5d6677;
+    padding: 2px 6px 2px 6px;
+    margin: 0 3px 0 3px;
+    font-family: arial;
+    font-size: 14px;
+    color: #5d6677;
+    font-weight: bold;
+    background-color: #f2f2f2;
+    width: auto !important;
+    cursor: pointer;
+}
+
+

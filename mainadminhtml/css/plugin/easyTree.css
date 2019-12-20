@@ -1,0 +1,72 @@
+ul.bootstraptreemenu {
+    padding: 0em;
+}
+
+ul.bootstraptreemenu  li, ul.bootstraptreemenu  li ul li {
+    position:relative;
+    top:0;
+    bottom:0;
+    padding-bottom: 7px;
+
+}
+ul.bootstraptreemenu  li a{text-decoration: none;}
+ul.bootstraptreemenu  li ul {
+    margin-left: 1em;
+}
+ul.bootstraptreemenu  li ul li ul {
+    margin-left: 4em;
+    padding: 0px;
+}
+
+ul.bootstraptreemenu  li {
+    list-style-type: none;
+}
+
+ul.bootstraptreemenu  li a {
+    padding:0 0 0 10px;
+    position: relative;
+    top:1em;
+    cursor: pointer;
+}
+
+ul.bootstraptreemenu  li a:hover {
+    text-decoration: none;color: #999;
+}
+ul.bootstraptreemenu .fa {color: #5e6265;}
+a.addBorderBefore:before {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 28px;
+    position: absolute;
+    left: -36px;
+    top:-20px;
+    border-left: 1px solid gray;
+}
+
+ul.bootstraptreemenu li:before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 0;
+    position: relative;
+    left: 0em;
+    top: 9px;
+    border-top: 1px solid gray;
+}
+
+ul.bootstraptreemenu  li ul li:last-child:after, ul.bootstraptreemenu  li:last-child:after {
+    content: '';
+    display: block;
+    width: 1em;
+    height: 1em;
+    position: relative;
+    background: #fff;
+    top: 9px;
+    left: -1px;
+}
+.hideitul{display: none;}
+ul.bootstraptreemenu  li a.toogle{padding: 0px;}
+ul.bootstraptreemenu  li a.toogleparent{padding: 0px 0px 0px 10px;}
+
+.easy-tree ul.bootstraptreemenu li ul li:last-child:after, .easy-tree  ul.bootstraptreemenu li:last-child:after{background: transparent;}

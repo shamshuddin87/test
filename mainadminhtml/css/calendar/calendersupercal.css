@@ -1,0 +1,211 @@
+@font-face {font-family: 'robotobold'; src: url('../../fonts/roboto-bold-webfont.woff2') format('woff2'), url('../../fonts/roboto-bold-webfont.woff') format('woff'); font-weight: normal; font-style: normal;}
+@font-face {font-family: 'robotolight';src: url('../../fonts/roboto-light-webfont.woff2') format('woff2'), url('../../fonts/roboto-light-webfont.woff') format('woff');font-weight: normal; font-style: normal;}
+@font-face {font-family: 'robotomedium';src: url('../../fonts/roboto-medium-webfont.woff2') format('woff2'),url('../../fonts/roboto-medium-webfont.woff') format('woff');font-weight: normal;font-style: normal;}
+@font-face {font-family: 'robotoregular';src: url('../../fonts/roboto-regular-webfont.woff2') format('woff2'),url('../../fonts/roboto-regular-webfont.woff') format('woff');font-weight: normal;font-style: normal;}
+@font-face {font-family: 'robotothin';src: url('../../fonts/roboto-thin-webfont.woff2') format('woff2'),url('../../fonts/roboto-thin-webfont.woff') format('woff');font-weight: normal;font-style: normal;}/*reset css start*/
+
+.maintabdiv {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center
+}
+#mainform{
+    width:100%;
+    margin: 0px auto;
+    float: left;
+    padding: 0;
+}
+
+.container,
+.supercal {
+    width: 100%
+}
+
+.supercal {
+    z-index: 9
+}
+
+.supercal .supercal-header {
+    display: block;
+    line-height: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative
+}
+
+.supercal .supercal-header .prev-month {
+    float: left;
+    z-index: 10000
+}
+
+.supercal .supercal-header .next-month {
+    float: right
+}
+
+.supercal-month {
+    position: relative;
+    z-index: 0;
+    background:#1d2029;
+    *box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    overflow: hidden;
+    width: 100%;
+    border-radius:0 0 4px 4px;
+}
+
+.supercal table {
+    width: 100%;
+    table-layout: fixed;
+    background:#1d2029;
+    margin-bottom: 0;
+}
+
+.supercal table th {
+    text-align: center;
+    color: #33c7fc;
+    border: none
+}
+
+.supercal td {
+    cursor: pointer
+}
+
+.supercal td.month-next .dat-title-cell{
+    background: #ddd;
+    color: #fff!important;
+}
+
+.supercal td.month-prev .dat-title-cell {
+    background: -webkit-linear-gradient(#d12a2b 0%, #c71212 51%, #c11615 100%);
+    background: -o-linear-gradient(#d12a2b 0%, #c71212 51%, #c11615 100%);
+    background: linear-gradient(#d12a2b 0%, #c71212 51%, #c11615 100%);
+}
+
+.supercal td.today {
+    font-weight: 700
+}
+
+.supercal .monthname {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'robotoregular';
+    color: #fff;
+}
+
+.supercal .table td {
+    line-height: normal;
+    text-align: center;
+    border:1px solid #21242d;
+    background: -webkit-linear-gradient(#494b59 0%, #363845 51%, #242730 100%);
+    background: -o-linear-gradient(#494b59 0%, #363845 51%, #242730 100%);
+    background: linear-gradient(#494b59 0%, #363845 51%, #242730 100%);
+    padding:0;
+}
+
+.supercal .table td.dateofthmonth .dat-title-cell {
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+    padding: 14px 10px;
+    font-size: 14px;
+    line-height: normal;
+    text-align: center;
+    vertical-align: top;
+    border: 1px solid transparent;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin: 0 auto;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'robotoregular';
+}
+
+.supercal .table td.todayselected .dat-title-cell {
+    color: #fff;
+    background: -webkit-linear-gradient(#f46914 0%, #e53a10 51%, #fb4807 100%);
+    background: -o-linear-gradient(#f46914 0%, #e53a10 51%, #fb4807 100%);
+    background: linear-gradient(#f46914 0%, #e53a10 51%, #fb4807 100%);
+}
+
+.supercal td.selected .dat-title-cell {
+    background: #666;
+    color: #fff!important;
+    font-weight: 400;
+    border: 1px solid transparent;box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.supercal td.selected.month-next .dat-title-cell,
+.supercal td.selected.month-prev .dat-title-cell {
+    background: #eee;
+    color: #000;
+    font-weight: 400;
+    border: 1px solid #ddd
+}
+
+.supercal td:hover .dat-title-cell {
+    background: #C0C0C0;
+    color: #fff;
+    border: 1px solid transparent;box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.event-circle {
+    border-radius: 100%;
+    background: #3498db;
+    display: block;
+    text-align: Center;
+    width: 4px;
+    height: 4px;
+    float: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    margin: 0 auto
+}
+
+.supercal .table td.month-next,
+.supercal .table td.month-next .dat-title-cell,
+.supercal .table td.month-prev {
+    cursor: text;
+    pointer-events: none;
+    color: #9a9a9a
+}
+
+.supercal .supercal-footer {
+    width: 100%;
+    display: table
+}
+
+.supercal .supercal-footer span.supercal-input {
+    display: table-cell;
+    width: 100%;
+    cursor: default
+}
+
+button.next-month.change-month.btn,
+button.prev-month.change-month.btn {
+    background: 0 0;
+    border: none;
+    box-shadow: none;
+    outline: 0;
+    color:#fff;
+}
+
+.month-next .dat-title-cell .event-circle,
+.month-prev .dat-title-cell .event-circle {
+    display: none;
+}
+
+.getallevent .mainevent {
+    display: block;
+    margin: 20px auto;
+    margin-top: 0px;
+}
+
+.mainevent .floatleft.leftmaintitl {font-size: 2.1em;padding: 0px 20px 0px 0px;width: 50%;color: #33c7fc}
+.mainevent .floatleft.leftmaindesc {font-size: 16px;font-weight: 600}
+.noevnet {font-size: 2.1em;display: block;text-align: center}
+.table>tbody>tr>th{border: 0px;}

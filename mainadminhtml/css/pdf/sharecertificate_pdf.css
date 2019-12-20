@@ -1,0 +1,278 @@
+/*---------------------------------Share Certificate POPup CSS-----------------------------*/
+
+        .maincontain{
+            width: 800px;
+            margin: 30px auto;
+            display: block;
+            border: 2px solid black;
+            padding: 2px;
+        }
+        .submain {
+            border: 1px solid black;
+            padding: 10px 50px;
+        }
+        .heading {
+            font-size: 15px;
+            text-align: center;
+        }
+        .decs {
+            line-height: 20px;
+        }
+        .borders {
+            text-align: center;
+            font-size: 15px;
+            padding: 18px 0px;
+            border: 2px solid black;
+            border-radius: 30px;
+            line-height: 32px;
+        }
+        .reg_border {
+            padding: 18px 10px;
+            border: 2px solid black;
+            border-radius: 30px;
+            height: auto;
+        }
+        .flotleft {
+            float: left;
+            margin: 0px 10px 0px 0px;
+        }
+        .texts {
+            font-size: 15px;
+        } 
+        .pdfright{
+            margin-top: -20px;
+            margin-left: 290px;
+        }
+        .texts_figures {
+            line-height: 20px;
+            font-size: 12px;
+            display: block;
+            margin: -10px 0px;
+        }
+        .marbot30 {
+            margin: 0px 0px 30px 0px;
+        } 
+        .cntr {
+            text-align: center;
+            display: block;
+        }
+
+        table,td{
+            border-collapse: collapse;
+            border: 1px solid #222;
+        }
+        td{
+            padding: 5px;
+            text-align: center;
+        }
+
+/*---------------------------------Share Certificate POPup CSS END-----------------------------*/
+
+/* ===============pdf add share certificate no===========================*/
+     dl.dl-css{margin: 0px; padding: 0px;display: block;}
+    .dl-css dd{margin:0px; display: block;padding: 0px;font-size: 13px;}
+    .colmd4{width: 50%;margin:0px auto;   padding:0px 2px 0px 2px;float: none; position: relative;} 
+    .colmd8{width: 100%;margin:0px auto;  padding:0px 3px 0px 3px;float: none; position: relative;}
+    .formtitle h4{font-size: 15px;margin:5px 0px 5px 0px;font-weight: normal; }
+    .formtitle{text-align: center;}
+    .qquitytext{text-align:left;}
+    .equityshares_amount, .equityshares_amount{border:1px solid #000;}
+    .certificatebox{ border: 1px solid #000;padding: 10px;margin: 0px}
+    .certificatebox dl{margin: 0px; padding: 5px;}
+    .certificatebox dl dd{margin: 0px; padding: 5px;}
+    .certificate h4{text-align:center;font-size:15px;font-weight: bold;}
+    .leftpanel{padding:10px;height:100%; border: 1px solid #000;}
+    .rightpanel{padding:10px;height:100%;  border: 1px solid #000; }
+    .companyact,.registradd{text-align: center;}
+    .no-padding{ padding: 0;}
+    .notetext p{padding-top:12px;font-size: 10px;}
+    .compnyname{font-size: 14px;font-weight: bold;text-transform: capitalize;margin-bottom: -8px; text-align: center;}
+    .registradd{margin: 6px 0px;}
+    .registradd p{font-size:13px; }
+    .form-font h4{font-weight:bold;margin:0px;}
+    .txttitle{margin-top:8px; }
+    .companyact p{margin: 0;}
+    .font-equt {padding: 8px;margin: 0px;}
+    .font-equt h4{font-weight: bold;margin: 0px;padding: 0px}
+    .equity_share span.titleshares{font-weight: bold;font-size: 18px;}
+    .compnyseal{margin-top: 5px;}
+    .registrdadd b{font-weight: normal;}
+    .certificatebox dd.certinumtwo span b{font-weight: normal;}
+    .qquitytext{font-size: 13px;}
+    .director h4{margin-top:10px; }
+    .authorisedsign h4{margin-top:10px;}
+    
+  }
+/* ===============pdf share certificate no===========================*/
+
+
+
+/* ===============pdf share certificate 56===========================*/
+.maindiv56{
+    max-width: 95%;
+    width:100%;
+    margin:auto; 
+}   
+
+.left-panel56{
+    border:1px solid #222;
+    width:46%;
+    *float: left;
+    margin: 5px auto;
+    padding: 10px;
+    height:872px;
+    display: table;
+}
+.tittle56 h3{
+    text-align: center;
+    margin: 30px 0px 20px 0px;
+    font-size: 16px;
+}
+.cer-nu56{}
+.cer-nu56 p{font-size: 11px;}
+.dir56 p{font-size: 13px; margin-top:30px; }
+.dirdate56 p{
+    margin-top:20px; 
+    font-size: 11px;
+
+}
+
+
+.right-panel56{
+    *border:1px solid #222; 
+    width:85%;
+    *float: left;
+    margin: 5px auto;
+    padding: 1px;
+    height:871px;
+        display: table;
+}
+.company_name56{
+    margin-top: 45px;
+    margin-bottom:10px; 
+}
+.company_name56 h3{
+    text-align: center;
+    padding-bottom:10px; 
+    margin: 10px 0px 5px 0px;
+    font-size:12px; 
+}
+.company_name56 p{
+    text-align: center;
+    padding-bottom:10px; 
+    margin: 0px 0px 5px 0px;
+    font-size:12px; 
+}
+
+
+.text56 p{
+    margin: 1px 0px 0px 0px;
+    font-size: 11px;
+    text-align: center;
+}
+.para-text56{
+    margin-top:50px;  
+    }
+.para-text56 p{
+    margin: 0px 0px 0px 0px;
+    font-size: 13px;
+}
+
+.paid-rupess56 p{
+    font-size: 13px;
+    text-align: center;
+}
+.box56{
+    border:1px solid #222;
+    padding:10px 30px 30px 30px; 
+    display: table;
+
+}
+
+.reg-foil56{
+
+   /* width: 200px;*/
+    *border: 1px solid red;
+    float: left;
+        *margin: 10px 0px 10px 0px;
+}
+.reg-foil56 p{
+    font-size: 11px;
+}
+/*.reg-foil56 p b,.filed-size56 p b{ font-size:11px;  }*/
+
+.cert-foil56{
+    /*width: 310px;*/
+    margin-left:220px;
+    margin-top:-40px;  
+    *border: 1px solid red;
+    float: left;
+        /*margin: 10px 0px 10px 0px;*/
+}
+.cert-foil56 p{
+    font-size: 11px;
+}
+
+.name-holder56{
+     *border: 1px solid red;
+        display: table;
+     margin: 10px 0px 10px 0px;
+}
+.name-holder56 p{
+        font-size: 11px;
+}
+.numb-share{
+     *border: 1px solid red;
+        display: table;
+     margin: 10px 0px 10px 0px;
+}
+.numb-share p{
+    font-size:11px; 
+}
+.filed-pare56 span{font-size: 11px;}
+.filed-size56{
+    width:100%;
+    text-align: left;
+    /*float: left;*/
+    margin-top:5px; 
+    font-size: 11px;
+}
+.compny-date p{
+    margin:30px 0px;  
+    font-size: 11px;
+}
+
+.director56{
+    float: left;
+    width: 450px;
+    display: table;
+}
+.director-right56{
+    display: table;
+    width:250px;
+    float: right; 
+}
+.director-text,.director-text1,.director-text2{
+    text-align: center;
+    font-size:12px;
+    font-weight: bold; 
+}
+.director-text p,.director-text1 p,.director-text2 p{
+    margin: 12px 0px 0px 0px;
+}
+.dire56{
+        display: table;
+    width: 100%;
+    margin: 0px 0px 40px 0px;
+}
+.note56 p{
+    font-size:11px;
+    margin: 0px; 
+}
+
+
+
+/* ===============pdf share certificate 56 end===========================*/
+
+
+

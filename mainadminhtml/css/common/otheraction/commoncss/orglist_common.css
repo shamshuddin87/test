@@ -1,0 +1,62 @@
+.editbtnattr,.trashbtnattr,.viewbtnattr{cursor: pointer;margin: 0px 7px;font-size: 15px;}
+.viewbtnattr:hover,.editbtnattr:focus,.trashbtnattr:hover,.trashbtnattr:focus,.viewbtnattr:hover,.viewbtnattr:focus{color: #2196F3;}
+.modal-content{background: #fff;border-radius: 4px; overflow-y: scroll; padding-bottom: 10px;}
+/*.topbtmimg{background: url(../../../img/topimgbg.png) center no-repeat;width: 100%;height: 280px;background-size: cover;    position: absolute;}
+.btmbtmimg{background: url(../../../img/btmimgbg.png) center no-repeat;width: 100%;height: 280px;background-size: cover;}
+*/#myModalViewOrg .modal-body{padding: 0px;}
+#myModalViewOrg .modal-dialog {width: 860px;}
+#myModalViewOrg .modal-header,#myModalViewOrg  .modal-footer{padding: 0px;min-height: 0px;}
+.mnmnmelmnn{position: relative;top: 50px;}
+.compnamem{font-size: 24px;
+    font-weight: bold;
+    padding: 24px 0px;
+    border-bottom: 2px solid #dadada;
+    margin-bottom: 20px;}
+.ownerfname{margin-right: 5px;}
+.orgdtl{margin: 0px 24px;min-height: 500px;}
+.ttll{font-size: 16px;font-weight: bold;margin-right: 5px;}
+.indtype,.frmtp{padding: 2px;line-height: normal;}
+.mnfmnn{line-height: normal;}
+.mnememell{margin: 20px auto;}
+.emailmn{margin-left: 10px;}
+.ownerfname {margin-left: 10px;}
+.mnfmnnvv{font-size: 14px;margin-bottom: 7px;}
+.bnattrdtlmn,.bncdtl,.bnaddrdtlmn{margin-bottom: 20px;
+padding: 0px;
+border-bottom: 1px solid #dadada;
+padding-bottom: 12px;    line-height: normal;}
+.namenmm,.ttl{font-weight: bold;width: 112px;font-size: 12px;}
+.ttl{float: left;}
+.bnattrdtl,.nmnmnm{margin-bottom: 8px;}
+.banknamemlp{font-weight: bold;font-weight: bold;
+    font-size: 14px;
+    border-bottom: 1px dashed #dadada;
+    padding-bottom: 10px;}
+.mainbodmnm .close{position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    background: #000;
+    padding: 6px 10px;
+    margin-top: 12px;
+    margin-right: 12px;
+    border-radius: 100%;
+    color: #fff;
+    font-weight: normal;}
+.addresslong,.mobile,.landline{margin-bottom: 8px;}
+.fa-mobile{    font-size: 16px;
+    margin-right: 3px;}
+.bnaddrdtlmn{margin-top: 27px;}
+.nnmtmtmtmtm{    font-size: 12px;
+    max-width: 200px;
+    margin: 0px auto;
+    margin-left: 20px;
+    font-weight: bold;}
+.orgdtlbtn{max-width: 200px;margin-bottom: 20px;}
+
+@media (max-width: 900px) {
+    #myModalViewOrg .modal-dialog {width:97%;} 
+    .orgdtl {min-height: auto;width:100%; margin:0 0  15px 0;}
+    .mnmnmelmnn .col-md-4 {width: 100%;}
+    .nnmtmtmtmtm {margin-left: 0;}
+}

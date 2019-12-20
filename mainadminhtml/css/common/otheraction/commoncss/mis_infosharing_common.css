@@ -1,0 +1,26 @@
+.formelementmain {padding: 30px 0;  background: #fff; border-radius: 4px; box-shadow: 2px 2px 5px #cccc; margin: 20px 0;}
+tbody.appendrow { background: #fff;}
+.control-label.btnsubmitme.cntrol_tab_one { float: left; margin-top: 20px;}
+input[type="radio"], input[type="checkbox"] {  margin: 4px 5px 0;  margin-top: 1px 9;  line-height: normal;}
+.faicon { margin: 0px 20px;}
+.fa-search.active {  color: #373F89;}
+.boxshadow{ background-color: white;list-style: none;  width: 100%;  overflow: hidden;  padding: 30px;  box-sizing: border-box;  margin: 35px 0;  border: 1px solid #e7ecf3;}
+.company_asses { text-align: right; }
+.input {  margin: 12px 0 0 0;}
+label.control-label { color: #000; }
+.form_heading{  text-decoration: underline;  padding: 5px;  font-weight: 700;  font-size: 20px;  font-family: 'Gotham Rounded';  text-align: center;}
+.table-responsive { overflow-x: auto; min-height: 0.01%;}
+.trailshare th ,.trailshare td { padding:10px;color: #000;   border: 1px solid #ddd;}
+.trailshare th { color: #000;  background: #17395b; color: #fff;}
+.trailshare tr:nth-child(even){background-color: #f2f2f2;}
+.trailshare tr:hover {background-color: #ddd;}
+.floatright {text-align: right;}
+/*################ Pagination Start ######################*/
+.paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
+.paginationmn .pagination ul li.inactive,
+.paginationmn .pagination ul li.inactive:hover{background-color:#ededed;
+color:#bababa; border:1px solid #bababa; cursor: default;}
+.paginationmn .data ul li{ list-style: none; font-family: verdana; margin: 5px 0 5px 0; color: #000;font-size: 13px;}
+.paginationmn .pagination{width: 100%;margin: 0px auto; /*height: 25px;*/}
+.paginationmn .pagination ul li{  list-style: none; float: left;border: 1px solid #5d6677;padding: 2px 6px 2px 6px;margin: 0 3px 0 3px;font-family: arial;font-size: 14px;color: #5d6677;
+font-weight: bold;background-color: #f2f2f2;width: auto !important;cursor: pointer;}

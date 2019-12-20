@@ -1,0 +1,94 @@
+
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Juris Metrics Invoice</title>
+
+        <style type="text/css">
+        .invbody{padding: 0; margin: 0; font-family: arial;color: #000;}
+        h1, h2, h3, h4, h5, h6, p{margin: 0; padding: 0; color: #000;}
+        td, th{border:1px solid #000000;padding: 10px;}
+        .maintableget tr{font-size:14px;}.annexure .annex tr{font-size:10px;}table{border-collapse: collapse;}
+        @media print {
+        * { -webkit-print-color-adjust: exact;}
+        html { background: none; padding: 0; }
+        .invbody { box-shadow: none; margin: 0; }
+        span:empty { display: none; }
+        .add, .cut { display: none; }
+        }
+        .maintableget{ width:100%;}
+        .uppercasecl{text-transform: uppercase;text-align: left;}
+        .fontweightbold{font-weight: bold;}
+        .textalingleft{text-align: left;}
+        .maintableget{
+          /*page-break-after:always;*/
+        }
+        
+        </style>
+        </head>
+        <body class="invbody" style="margin-top:150px;">
+        <div class=Section2>
+        <table class="maintableget" style="">
+          <tr>
+            <td colspan="3" style="border-right:0;"><div style="font-weight:bold;" class="textalingleft">To,</div>
+            <p style="font-weight:bold; margin:0px;" class="textalingleft">Manager,</p>
+            <p style="font-weight:bold;margin:0px; text-transform:uppercase;" class="textalingleft">PNB HOUSING FINANCE LTD - VIRAR</p>
+            <p style="text-transform:uppercase;margin:0px;" class="textalingleft">302,3RD FLOOR, RIDDHI ARCADE, Y K NAGAR NX-II,100 FEET NARANGI BYPASS ROAD,</p>
+            <p style="text-transform:uppercase;margin:0px;" class="textalingleft">VIRAR (WEST),MUMBAI-401303</p>
+            <p style="text-transform:uppercase;margin:0px;" class="textalingleft">GSTN : <b> -</b></p><p style="text-transform:uppercase;margin:0px;" class="textalingleft">Pan No : <b> -</b></p><p style="text-transform:uppercase;margin:0px;" class="textalingleft">SAC Code : <b> -</b></p></td>
+            <td colspan="2" align="right" width="35%" style="border-left:0;">
+              <div><span style="font-weight:bold;" class="textalingleft">Date:</span> <span style="margin-left:15px;">1st Jul 2019</span></div>
+              <div style="text-transform:uppercase;"><span style="font-weight:bold; text-transform:none;" class="textalingleft">Invoice No:</span> <span style="margin-left:15px;" class="textalingleft">PVR8</span></div>
+            </td>
+          </tr>
+
+        <tr>
+          <td colspan="5" style="">
+            <h5 style="text-decoration:underline; font-weight:bold; font-size:18px; text-align:center"><span style="text-transform:uppercase">Sub:</span> Invoice for July 2019</h5>
+            <div class="textalingleft" style="margin-top:15px;">Dear Sir,</div>
+            <div class="textalingleft" style="margin-top:15px;margin-left:45px; padding-bottom:20px;">Please find attached bill of Rs. 3500.00 for legal report prepared by us.</div>
+          </td>
+        </tr>
+          <tr>
+            <th >Sr no</th>
+            <th >Nature Of Service</th>
+            <th >Qty</th>
+            <th >Fee (Rs)</th>
+            <th >Amount Payable (Rs)</th>
+          </tr><tr>
+              <td>1</td>
+              <td>Legal + Search</td>
+              <td>1</td>
+              <td>3500.00</td>
+              <td>3500.00</td>
+            </tr><tr>
+                <td colspan="2"><p>TOTAL</p></td>
+                <td colspan="2"></td>
+                <td><p>3500.00</p></td>
+            </tr><tr>
+            <td colspan="5">
+            <div class="textalingleft">Pan No.: ATGPS9767B</div><div class="textalingleft">Please Pay Rupees <span class="uppercasecl">"three thousand five hundred"</span></div>
+              <div class="fontweightnormal textalingleft" style="text-align:left !important;">Thanking you.</div>
+              <div class="fontweightbold textalingleft" style="text-align:left !important;">For <span class="uppercasecl">Juris Metrics</span></div>
+              <br/><br/>
+              <div class="fontweightbold textalingleft" style="text-align:left !important;">Poonam Sharma</span></div>
+            </td>
+                      
+          </tr>
+        </table>
+            <div class="annexure" style="page-break-before:always;;margin-top:20px;">
+            <h4>Annexure</h4>
+              <table class = "annex">
+                <thead>
+                  <tr>
+                    <th class="service annex" style="width:10px;">Sr No</th>
+                    <th class="desc annex" style="width:10px;">Type of verification</th>
+                    <th class="annex" style="width:10px;">Ref NO</th>
+                    <th class="annex" style="width:10px;">Case Name</th><th class="annex" style="width:10px;">APS ID</th><th class="service annex" style="width:20px;">Property Address</th><th class="service annex" style="width:10px;">Branch</th><th class="service annex" style="width:10px;">Amount</th><th class="annex" style="width:10px;">Report Date</th></tr>
+                </thead>
+                <tbody><tr><td colspan = "9" style="font-weight:bold;text-align:left;">LEGAL + SEARCH</td></tr><tr>
+                    <td class="service annex">1</td>
+                    <td class="desc annex">Legal + Search</td>
+                    <td class="unit annex">yfyg25</td>
+                    <td class="qty annex">cggyyjhh</td><td class="qty annex">jgbn</td><td class="qty annex" >jg</td><td class="qty annex" >jhgv</td><td class="qty annex">3500.00</td><td class="qty annex">-</td></tr></tbody></table></div></div></body></html>

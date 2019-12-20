@@ -1,0 +1,139 @@
+.mainelemnetclass{padding: 100px 0px;}
+.manititleofit{display: block;
+margin: 0px auto;
+text-align: center;
+letter-spacing: 1px;font-size: 20px;font-weight: bold;}
+.labelmn{display: block;
+margin: 0px auto;
+text-align: center;
+margin-bottom: 5px;
+}.officeaddrhead{display: block;
+margin: 0px auto;
+text-align: center;
+margin-bottom: 20px;
+padding: 0px 20px;}
+.officeaddress_res{margin: 0px auto;text-align: Center;}
+.maincinlbl{display: block;
+margin: 0px auto;
+text-align: center;
+margin-bottom: 11px;
+}
+.lblcin,.cin_res{display: inline-block;}
+.firsttnxt,.secondtnxt,.thirdtnxt,.fourthnxt,.fivehnxt, .seventhtnxt ,.dinmndetails,.dinmnaddrdetails,.dinmndatedetails,.dinmnplacedetails,.internalelement,.directorname_res,.directordesignation_res{display: block;
+margin: 0px auto;
+text-align: justify;
+padding: 0px 30px; margin-bottom: 20px;
+}
+.firsttnxt .companyname_res,.firsttnxt .date_re,.firsttnxt .officeaddress_res,
+.secondtnxt .companyname_res,.secondtnxt .date_re,.secondtnxt .officeaddress_res,
+.thirdtnxt .companyname_res,.thirdtnxt .date_re,.thirdtnxt .officeaddress_res,.dirdin_res,.date_re{display: initial;font-weight: bold;}
+.firsttnxt .officeaddress_res,
+.secondtnxt .officeaddress_res,
+.thirdtnxt  .officeaddress_res{border:0px;text-align: left;}
+.directorname_res,.directordesignation_res{margin-bottom: 0px;}
+.centerelement{display: block;
+margin: 0px auto;
+width: 100%;}
+.mainaddrtop{
+margin: 0px auto;}
+.mainaddrtop{display: block;font-weight: normal;}
+.dinmnaddrdetails .diraddr_res{display: block;
+width: 200px;
+text-align: left;}
+.companyname_res{display: inline;}
+.dinmndetails,.internalelement{margin-bottom: 0px;}
+.borderget{border-bottom: 2px dotted #dadada;
+padding: 8px;
+margin: 0px auto;
+margin-bottom: 20px;}
+.mainaddrtop .officeaddress_res{    font-weight: normal;}
+.officeaddressnew_res {display:inline;}
+.thirdtnxt .directorname_res  {    display: inline;padding: 0px;font-weight: 600;}
+.thirdtnxt .dir_nm_two {    display: inline;padding: 0px;font-weight: 600;}
+.secondtnxt .date_of_bsheet, .dir_nm_two, .dir_nm_three, .cs_nm, aud_nm {    display: inline;padding: 0px;font-weight: bold;}
+.thirdtnxt .aud_nm, .date_of_bsheet{    display: inline;padding: 0px;font-weight: bold;}
+.thirdtnxt  .directorname_res_two{display: inline;padding: 0px;font-weight: 600;}
+.fourthtnxt     {display: block; margin: 0px auto; text-align: justify; padding: 0px 145px; margin-bottom: 20px;}
+.fourthtnxt .roc {    display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .aud_nm , .aud_locn {    display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .add_dir_namea {display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .roc {    display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .nom_dir_namea{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt  .nom_dir_namea_din{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .nom_dir_repa{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .date_of_appoint{display: inline;padding: 0px;font-weight: bold;}
+.thirdtnxt .roc{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .fem_dir_namea{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .cv_dir_namea {display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .cv_dir_respa{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .art_aoaa{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .aud_namea{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .res_aud_namea{display: inline;padding: 0px;font-weight: bold;}
+.thirdtnxt .aud_namea{display: inline;padding: 0px;font-weight: bold;}
+.thirdtnxt  .date_of_bal_sheeta{display: inline;padding: 0px;font-weight: bold;}
+.fourthtnxt .directorname_res{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .dir_name_twoa{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .dir_name_threea{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .ret_dir_namea{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .ind_dir_namea_din{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .ind_dir_namea{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .dir_tenre{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .ca_namea{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .ca_numa{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .date_of_bsheet{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .rem_caa{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .cs_namea{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .cs_numa{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .date_of_joininga{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .alt_dir_namea{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .alt_dirto_namea{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt .add_dir_namea_din{display: inline;padding: 0px;font-weight: bold;}
+.secondtnxt > * {display: inline;padding: 0px;font-weight: bold;}
+.fourthtnxt > * {display: inline;padding: 0px;font-weight: bold;}
+.fifthtnxt{    display: block; margin: 0px auto; text-align: justify; padding: 0px 145px; margin-bottom: 20px;}
+.fifthtnxt > * {display: inline;padding: 0px;font-weight: bold; }
+.sixthtnxt{    display: block; margin: 0px auto; text-align: justify; padding: 0px 145px; margin-bottom: 20px;}
+.sixthtnxt > *  { padding: 0px; }
+.thirdtnxt > *  {display: inline;padding: 0px;font-weight: bold; }
+.sixthtnxt > .dir_filea {display: inline;padding: 0px;font-weight: bold; }
+.clearelement {clear: both;margin: 0px auto;display: block;font-size: 0px;height: 0px;line-height: 0px;content: "";}
+.internalelement{margin-top: 50px;}
+.dinmnaddrdetails{width: 260px;
+    margin-left: 0px;
+word-break: break-word;text-align: left;}
+.mainelemnetclass .fourthtnxt,
+.mainelemnetclass .fifthtnxt,
+.mainelemnetclass .sixthtnxt,
+.mainelemnetclass .seventhnxt{padding: 0px 30px;}
+.vlaw_dompdf{margin-top:500px; display: block;}
+.mainelementbody th,.mainelementbody td,.mainelementbody tr {
+  border:1px solid black;
+  border-collapse:collapse;
+}
+
+.mainelementbody table {
+  border:2px solid black;
+  border-collapse:collapse;
+}
+
+.mainelementbody td {
+  font-family:Arial;
+  font-size:11px;
+}
+.explanatorystatement, .explanatorystatement1 > *{
+display: block;
+margin:40px auto;
+text-align: justify;
+padding: 0px 30px !important;margin-bottom:0px;
+}
+.explanatorystatement1{
+display: block;
+/*margin:40px auto;*/
+text-align: justify;
+padding: 0px 26px !important;margin-bottom:0px; 
+}
+.title{
+    display: block;
+    text-align: center;
+    margin-bottom: 15px;
+}

@@ -1,0 +1,175 @@
+@font-face {font-family: 'robotobold'; src: url('../../fonts/roboto-bold-webfont.woff') format('woff'), url('../../fonts/roboto-bold-webfont.woff') format('woff'); font-weight: normal; font-style: normal;}
+@font-face {font-family: 'robotolight';src: url('../../fonts/roboto-light-webfont.woff') format('woff'), url('../../fonts/roboto-light-webfont.woff') format('woff');font-weight: normal; font-style: normal;}
+@font-face {font-family: 'robotomedium';src: url('../../fonts/roboto-medium-webfont.woff') format('woff'),url('../../fonts/roboto-medium-webfont.woff') format('woff');font-weight: normal;font-style: normal;}
+@font-face {font-family: 'robotoregular';src: url('../../fonts/roboto-regular-webfont.woff') format('woff'),url('../../fonts/roboto-regular-webfont.woff') format('woff');font-weight: normal;font-style: normal;}
+@font-face {font-family: 'robotothin';src: url('../../fonts/roboto-thin-webfont.woff') format('woff'),url('../../fonts/roboto-thin-webfont.woff') format('woff');font-weight: normal;font-style: normal;}/*reset css start*/
+
+
+/* --------------------------- MENUCSS Start --------------------------- */
+.vertical-menu {
+    width: 270px;
+    border-right: 1px solid #ccc;
+    background: #eee;
+    /*height: 890px;*/
+}
+
+.vertical-menu a {
+    background-color: #eee;
+    color: #333;
+    display: block;
+    padding: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    font-family: 'robotoregular';
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc;
+}
+
+.vertical-menu a.active {
+    background-color: #22a788;
+    color: white;
+}
+/* --------------------------- MENUCSS End --------------------------- */
+
+/*----------------------- Form CSS Start ------------------------------*/
+.formcss{
+    background-color: white;
+    list-style: none;
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 35px 0;
+    border-radius: 4px;
+    position: relative;
+}
+.formcss .col-md-3 {padding:0;}
+
+.form_heading{
+    text-decoration: underline;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: 'Gotham Rounded';
+    text-align: center;
+    margin: 0;
+    padding: 15px 0;
+}
+.sectioncss{padding: 0px 0px;    display:none;}
+.btncss {
+    float: right;
+    margin:0;
+    padding: 13px 25px;
+    outline: none;
+    border: 0;
+    color: #fff;
+    background: #22a788;
+    font-family: 'robotoregular';
+    font-size: 14px;
+    border-radius: 4px 0 0 4px;
+}
+.tblsection{
+    background-color: white;
+    list-style: none;
+    width: 100%;
+    overflow: scroll;
+    padding: 30px;
+    box-sizing: border-box;
+    margin: 35px 0;
+    border: 1px solid #ddd;
+}
+
+.aitemsection{padding: 0px 0px;    display:none;}
+.boxshadow{
+    background-color: white;
+    list-style: none;
+    width: 100%;
+    overflow: hidden;
+    padding: 30px;
+    box-sizing: border-box;
+    margin: 35px 0;
+    border: 1px solid #ddd;
+}
+
+.addrowitem {
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+    display: block;
+    margin: 0px auto;
+    background: #dadada;
+    width: 38px;
+    height: 38px;
+    text-align: center;
+    border-radius: 100%;
+    padding: 10px;
+    margin-left: 0px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    background: rgba(45,165,218,0.9);
+    color: #fff;
+    margin-top:12px; 
+}
+/*----------------------- Form CSS End ------------------------------*/
+
+/*----------------------- Modal Delete Start ------------------------------*/
+.show_shadow{
+    display: block;
+    margin: 40px;
+    padding: 15px;
+    border: 1px solid #e7ecf3;   
+    overflow: hidden;
+}
+.alert_heading{
+    text-decoration: underline;
+    padding: 5px;
+    font-weight: 700;
+    font-size: 13px;
+    font-family: 'Gotham Rounded';
+    text-align: center;
+}
+/*----------------------- Modal Delete End ------------------------------*/
+
+.checkbox-inline input[type="checkbox"] {position: inherit;}
+#addlistforshare tr td {text-align: left;}
+#addlistforshare tr td label {text-align: center;}
+
+.preloder_wraper {z-index: 9999;}
+.table-responsive .dataTables_wrapper .dataTables_filter input {border:1px solid #ddd;}
+
+.Item_add_btn button {float: left;padding: 8px 25px; border-radius: 4px;}
+.description_btn {text-align: left; display: inline-block;padding: 0;}
+.description_btn button {float: none;padding: 8px 25px; margin-top: 10px; border-radius: 4px;}
+.itemdynamic tr td:last-child{text-align: center;}
+.itemdynamic td .itemdelete {margin-left: 15px;}
+.hotd_ctel {padding:10px 10px 10px 0; color:#333; font-size: 12px; font-family: 'robotoregular';}
+.hotd_subject, .hotd_subject .col-md-6 {padding: 0;}
+#datablerushi .appendrow tr td:last-child {text-align: center;}
+
+#datablerushi .appendrow tr td:nth-child(6) .fa { font-size: 18px; margin:0 10px 0 0!important;}
+
+.eq_bar {display: inline-block; float: left; padding: 10px;display: none; cursor: pointer;}
+.eq_bar .fa {font-size: 23px; float: left;}
+.close_meet {display: none;outline: none;border: none; background: transparent;}
+.meeting_overly {width:100%;height: 100%; z-index: -9; position: fixed;top: 0; left:0; display: none;}
+.table-bordered #addlistforshare {width:100%;}
+.table-bordered #addlistforshare tr td:last-child {width: 100%;}
+
+
+@media (max-width: 1200px) {
+    .meet_left {position: absolute; left: 0px; top: 0px; z-index: 9; margin-left: -310px;}
+    .meet_right {width:100%;}
+    .eq_bar {display:block;}
+    .close_meet {display: block; position: absolute; right: 0px; top: 8px;}
+    .close_meet .fa {font-size: 23px; color: #333;}
+}
+
+@media(max-width: 668px) {
+    .dataTables_length, .dataTables_wrapper .dataTables_filter {width:100%; float: left; text-align: left!important;}
+    .modal-dialog {width:100%;}
+
+}
+@media(max-width: 480px) {
+    .vertical-menu {width:200px;}
+}

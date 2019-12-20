@@ -1,0 +1,404 @@
+@font-face {font-family: 'robotobold'; src: url('../../fonts/roboto-bold-webfont.woff') format('woff'), url('../../fonts/roboto-bold-webfont.woff') format('woff'); font-weight: normal; font-style: normal;}
+@font-face {font-family: 'robotolight';src: url('../../fonts/roboto-light-webfont.woff') format('woff'), url('../../fonts/roboto-light-webfont.woff') format('woff');font-weight: normal; font-style: normal;}
+@font-face {font-family: 'robotomedium';src: url('../../fonts/roboto-medium-webfont.woff') format('woff'),url('../../fonts/roboto-medium-webfont.woff') format('woff');font-weight: normal;font-style: normal;}
+@font-face {font-family: 'robotoregular';src: url('../../fonts/roboto-regular-webfont.woff') format('woff'),url('../../fonts/roboto-regular-webfont.woff') format('woff');font-weight: normal;font-style: normal;}
+@font-face {font-family: 'robotothin';src: url('../../fonts/roboto-thin-webfont.woff') format('woff'),url('../../fonts/roboto-thin-webfont.woff') format('woff');font-weight: normal;font-style: normal;}/*reset css start*/
+label.control-label {
+    color: red;
+}
+ul, h1, h2, h3, h4, h5, h6, p {padding: 0;margin: 0;}
+.tile-stats .icon i{font-size: 36px;}
+.tile-stats .icon {right: 40px;top: 20px;}
+.tile-stats{padding: 10px;}
+.tile-stats h3{font-size: 18px;}
+.blucolo{color: #2196f3;}
+.timeline h2.title.orangecolor:before {
+    background: #ffa500;
+}
+.timeline h2.title.greencolor:before {
+    background: #4caf50;
+}
+.timeline h2.title.voiletcolor:before {
+    background: #673ab7;
+}
+.timeline h2.title.redcolor:before {
+    background: #f44336;
+}
+.timeline h2.title.greencolor{background: transparent;border: 0px solid #d9edf7;box-shadow: 0px 0px 0px #ccc;width:auto;text-align: left;padding: 0px;}
+
+.mnfottval{
+    max-width:85%;
+    width:100%;
+    margin:0px auto;
+    list-style: none;
+    padding: 0px;
+    display: table;
+}
+
+.orangecolor .fa {color: #ffa500;font-size: 15px; margin-right: 5px;}
+.greenitcolor .fa {color: #4caf50; font-size: 15px; margin-right: 5px;}
+.violetcolor .fa {color: #673ab7; font-size: 15px; margin-right: 5px;}
+.redcolor .fa {color: #f44336; font-size: 15px; margin-right: 5px;}
+.greycolor .fa {color: #777; font-size: 15px; margin-right: 5px;}
+.browncolor .fa {color: #6e462d; font-size: 15px; margin-right: 5px;}
+
+    .colormean {position: absolute;bottom: 0;padding: 15px 0px;}
+    .colomn{float: left;margin-right: 7px;border-right: 1px dotted #434348;padding-right: 10px;font-size: 11px;}
+    .mnfottval .colomn{font-size: 16px;}
+    .colomn .fa-rupee{margin: 0px 10px;}
+    .x_panel{*min-height: 320px;padding-bottom: 50px;}
+    .x_content{*min-height: 265px;}
+    .timeline.widget{height: 350px;}
+    .readbtnmore{color: #dadada;margin-bottom: 5px;}
+    .invcompanel.x_panel{*padding-bottom: 30px;}
+    .invcompanel .colomn{font-size: 1em;}
+    .invcompanel .fa-rupee{margin-left: 7px;}
+
+    .cel{cursor: pointer;display: block;margin: 0px auto;text-align: center;}
+    .dat-title-cell { background: #fff; color: #000 !important;}
+    .supercal .table td.todayselected .dat-title-cell { background: #fff;color: red !important;}
+    .supercal-header {background: #2A3F54 !important;}
+    .calgetit_t .table>tbody>tr>th { background: #2A3F54 !important; }
+    .supercal td.month-prev .dat-title-cell {background: #ccc;}
+    .supercal .table td:hover {
+    transform: scale(1.1);
+    transition: all 0.6s ease;
+    position: relative;
+    z-index: 99;
+    /* border: 1px solid; */
+}
+
+.mainelementfom { float: left;}
+    /*################ Pagination ######################*/
+
+    .paginateul{ float: left;padding: 0px;margin: 0px auto}
+    .containergrid .pagination ul li.inactive,
+    .containergrid .pagination ul li.inactive:hover{
+        background-color:#f7f7f7;
+        color:#bababa;
+        border:1px solid #e7ecf3;
+        cursor: default;
+        padding: 5px;
+        color: #333;
+        font-size: 12px;
+        font-weight: normal;
+        font-family: sans-serif;
+    }
+    .containergrid .data ul li{
+        list-style: none;
+        font-family: verdana;
+        margin: 5px 0 5px 0;
+        color: #000;
+        font-size: 13px;
+    }
+
+    .containergrid .pagination{
+        width: 100%;
+        margin: 0px auto;
+        /*height: 25px;*/
+    }
+    .containergrid .pagination ul li{
+        list-style: none;
+        float: left;
+        border: 1px solid #5d6677;
+        padding: 2px 6px 2px 6px;
+        margin: 0 3px 0 3px;
+        font-family: arial;
+        font-size: 14px;
+        color: #5d6677;
+        font-weight: bold;
+        background-color: #f2f2f2;
+    }
+    .containergrid .pagination ul li:hover{
+        color: #fff;
+        background-color: #5d6677;
+        cursor: pointer;
+    }
+    .go_button{
+        background-color:#0747A6;
+        color:#fff;
+        padding:2px 6px 2px 6px;
+        cursor:pointer;
+        margin-top:-1px;
+        border: none;
+    }
+    .total
+    {
+        float:right;font-family:arial;color:#999;
+    }
+    .gobtnmnh {}
+    .ttolmnbtn{margin: 5px auto;}
+    .gobtnman{    margin: 1px 10px;
+        border-right: 1px dotted #5d6677;
+        padding-right: 10px;}
+        .paginationmn.topmnp .pagination{border-bottom: 1px dotted #dadada;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+        }
+
+        /*################ Pagination End######################*/
+
+        /*############# Emp Biz Card ###########*/
+        .employeecard{max-width:592px;height: 338px;background: url('../../img/employeecardbg.png') no-repeat center;margin: 0px auto;margin-bottom: 20px;position: relative;     box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        border: 1px solid #e7ecf3;}
+        .rajuharry-form fieldset.employeecardmnv{padding: 0px;border: 0px;}
+        .newpaddwd{padding: 0px;max-width: 592px;width: 100%;margin: 0px auto;margin-bottom: 20px;float: none;}
+        .empname{font-size: 40px;margin: 0px auto;text-align: center;padding-top: 60px;}
+        .employeecard .fa{font-size: 24px;width: 30px;height: auto;text-align: center;}
+        .empemail,.empdepartment,.emprole,.dobchn,.empaddr{padding: 10px;font-size: 14px;line-height: normal;}
+        .mainelemntemp{position: absolute;bottom: 0;padding: 30px;word-wrap: break-word;padding-bottom: 10px;}
+        .mnelmp{margin-bottom: 10px;}
+        .empaddr{padding-top: 0px; line-height: 18px;}
+        .empaddrtu{border-top: 2px dotted #dadada;padding-top: 10px;}
+
+        /*############# Emp Biz Card /-###########*/
+        .rajuharry-form fieldset.getemprecdtl{margin-bottom: 20px;padding: 0px;}
+        #myModalgetemp .modal-dialog {
+            width: 1024px;
+        }
+        #myModalgetemp .cmdot{margin: 3px auto;margin-right: 14px;width: 18px;height: 18px;}
+        .yemplcb{margin-right: 20px;}
+        h2.title{background: transparent;}
+
+
+
+/*==============================================pi-chart css================================*/
+/*.highcharts-color-0{
+    fill:#88a7a6;
+    stroke:#88a7a6;
+}
+.highcharts-color-1{
+    fill:#5d5857;
+    stroke:#5d5857;
+}
+*/
+.highcharts-color-2{
+    fill:#b5a199;
+    stroke:#b5a199;
+}
+/*==============================================pi-chart css end================================*/
+
+table.dataTable.nowrap th, table.dataTable.nowrap td {white-space: normal;}
+table.dataTable thead th, table.dataTable thead td {padding: 10px 10px;border-bottom: 1px solid #dadada;}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {vertical-align: middle;}
+
+.dataTables_length{margin: 0px auto;font-size: 12px;}
+.banjomoviemn th,.banjomoviemn td,.banjomoviemnhit th,.banjomoviemnhit td{font-size: 11.6px;line-height: normal;}
+
+
+/*########################## Calender #########################*/
+.rajuharryironman .rajuharry-form{max-width: 100%;}
+
+a,a:hover,a:focus{text-decoration: none;}
+::-webkit-input-placeholder {
+    color: #666666;
+    
+    font-size: 16px;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: #666666;
+    
+    font-size: 16px;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: #666666;
+    
+    font-size: 16px; 
+}
+
+:-ms-input-placeholder {  
+    color: #666666;
+    
+    font-size: 16px;  
+}
+.calgetit_t .supercal .supercal-header{
+    padding: 5px 0px;
+    margin: 0px auto; 
+    border-radius: 4px 4px 0 0;
+    background:-moz-linear-gradient(to bottom, #484a57 0%,#3f414f 51%,#2d2f3a 100%);
+    background: -webkit-linear-gradient(to bottom, #484a57 0%,#3f414f 51%,#2d2f3a 100%);
+    background: linear-gradient(to bottom, #484a57 0%,#3f414f 51%,#2d2f3a 100%);
+}
+.calgetit_t .table>tbody>tr>th {
+    border: 0px;
+    margin-top: 5px;
+    color: #fff;
+    font-size: 14px;
+    background: -webkit-linear-gradient(#22252e 0%, #21242d 51%, #21242d 100%);
+    background: -o-linear-gradient(#22252e 0%, #21242d 51%, #21242d 100%);
+    background: linear-gradient(#22252e 0%, #21242d 51%, #21242d 100%);
+    font-family: 'robotoregular';
+    font-weight: normal;
+}
+
+.supercal .supercal-footer{
+    padding: 15px;
+    text-align: center;
+    font-size: 25px;
+    background: #fff;
+    color: #666;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: 600;
+    border-top: 1px solid #e7ecf3;
+}
+.supercal .table td.dateofthmonth .dat-title-cell.eventtooltip {
+    color: #fff;
+    background: -webkit-linear-gradient(#28a387 0%, #1c9879 51%, #148464 100%);
+    background: -o-linear-gradient(#28a387 0%, #1c9879 51%, #148464 100%);
+    background: linear-gradient(#28a387 0%, #1c9879 51%, #148464 100%);
+}
+
+.home_bodymncl .right_col {min-height: auto;}
+.home_bodymncl .main_container {padding-bottom: 0;}
+
+.supercal .supercal-footer {display: none;}
+
+
+.mainprogressbarforall{position: absolute;top: 0;left: 0;right: 0;}
+.over_height {display: flex;flex-wrap: wrap;width: 100%;}
+.height_fix {display: flex;}
+.mcscrollbar1,.mcscrollbar2,.mcscrollbar3{height: 300px;}
+
+#calender_put {box-shadow: 0 1px 1px rgba(0,0,0,.05);height: 330px;padding: 15px 3px 15px 15px; background: #fff; border-radius: 0 0 4px 4px;}
+.not_found {width:100%;}
+.not_found .fa-ban{font-size: 40px;background: #dadada;border-radius: 100%;padding: 6px 8px;line-height: normal;color: #ef483e;}
+.not_found .nfmssg{font-weight: bold;margin: 0px auto;padding: 12px;cursor: pointer;margin-left: 0px;background: #dadada;}
+.not_found img {opacity: 0.6;}
+
+/*#################### Mailbox Design ############################*/
+.mainmainbox.rajuharry-form{max-width: 100%;background: #fff; padding: 20px 15px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);box-shadow: 0 1px 1px rgba(0,0,0,0.05);border: 1px solid #dfdfdf;}
+.mail_list_column{padding: 0px 20px;border: 0px;}
+.mail_view{padding: 0px 20px;}
+.mail_list{margin: 0px auto;padding: 12px;cursor: pointer;display: inline-block;margin-left: 0px;-webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease-out;-ms-transition: all 0.3s ease-out;-o-transition: all 0.3s ease-out;transition: all 0.3s ease-out;}
+.mail_list:hover,.mail_list.activestate{background: #dadada;}
+.maincontnetn,.fonticonmn{padding: 0px;font-weight: bold;}
+.maininbox,.mainoutbox,.maintyinbox{max-height: 500px;padding-top: 20px;}
+.fa-paperclip{padding-right: 15px;}
+.mail_heading h4.subjectline{margin-top: 0px;border-bottom: 1px solid #dfdfdf;font-weight: bold;font-size: 16px;padding: 10px 0px;}
+.timeagoeml{font-size: 11px;font-weight: bold;}
+.sender-dropdown{margin: 0px 10px;}
+.emilbn{margin-right: 10px;border-bottom: 1px solid #dfdfdf;padding-bottom: 7px;margin-bottom: 10px;}
+.attachment{font-size: 20px;display: block;margin: 7px 10px;}
+.textform {margin: 10px 0px;font-size: 15px}
+.attachment:hover{text-decoration: none; color: #1976d2;}
+.typtccat{font-size: 11px;}
+.getnameof{font-size: 10px;margin: 4px auto;padding-bottom: 5px;}
+.typeofeml{font-size: 14px;margin-left: 10px;color: #666;text-shadow: 0px 0px 3px #666;border-left: 1px dotted #dadada;padding: 0px 10px;border-right: 1px dotted #dadada;}
+ul.bar_tabs{height: auto;}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus,ul.bar_tabs > li a{
+    padding: 10px 20px;
+    line-height: normal;border: 0px;
+}
+ul.bar_tabs > li{margin: 0px auto;margin-top: 0px;border-bottom: 0px;}
+ul.bar_tabs > li.active{border-top:1px solid #E6E9ED;border-right: 7px solid #D3D6DA;border-radius: 4px 9px 0 0;margin-top: 0px;}
+ul.bar_tabs{margin-bottom: 0px;padding-left: 0px;}
+.tab-content>.active {
+    display: block;
+    visibility: visible;
+    border: 1px solid #E6E9ED;
+    border-left: 0px;
+    border-right: 0px;
+}
+.fa.fa-commenting{font-size: 15px;}
+.coomenticon{margin-top: 15px;}
+.doc_listmn.coomenticon,.doc_listmn .fa.fa-commenting{font-size: 16px;cursor: pointer;}
+.rajuharry-form a.listingalldoc{color: #fff;text-align: center; background:#666;}
+.userlist{clear: both;}
+ul.bar_tabs > li a {color: #666;}
+ul.bar_tabs > li.active a {font-weight: 600;}
+/*#################### Mailbox Design /-############################*/
+
+.empdtl .ho_left{width: auto; margin-right: 20px;}
+
+.mCS-rounded-dark.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    background: -webkit-linear-gradient(#28a387 0%, #1c9879 51%, #148464 100%);
+    background: -o-linear-gradient(#28a387 0%, #1c9879 51%, #148464 100%);
+    background: linear-gradient(#28a387 0%, #1c9879 51%, #148464 100%);
+}
+
+
+
+
+
+
+/*jay styling here*/
+
+/* Latest Doc Css Starts */
+.scroller_wraper {width:100%; height: 100%; position: fixed;top: 0;left: 0; z-index: 99; background: rgba(0,0,0,.5); display: none;}
+.scroller_body {width:800px;height: 500px;padding:10px 30px 30px 30px;border-radius: 4px; margin: auto; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999; background: #fff; display: none;}
+.scroller_inner {overflow: scroll; height: 450px;}
+.scroller_inner #customers {width:100%;}
+.scroller_inner #customers tr th {border: 1px solid #dfdfdf;text-align: center;padding: 5px; background: #D3D3DE;}
+.scroller_inner #customers tr td {border: 1px solid #dfdfdf;text-align: center;padding: 6px;}
+.scroller_inner #customers tr td a {color: #333;font-weight: 600;}
+.scroller_inner #customers tr td a:hover {text-decoration: underline;}
+
+.scroller_body .latest_docs {color: #333; font-size: 18px; font-weight: normal;display: inline-block; padding-bottom: 10px; font-family:'robotomedium';}
+.scroller_body .time_close {float: right; font-size:14px;color: #333;}
+/* Latest Doc Css Ends */
+
+
+
+
+.eventnofound {text-align: center;}
+
+#DataTables_Table_0 .tdsdeducteedata1 tr .td_icon {text-align: center;}
+#DataTables_Table_0 .tdsdeducteedata1 tr .td_icon .fa-times {color: red;}
+#DataTables_Table_0 .tdsdeducteedata1 tr .td_icon .fa-check {color: green;}
+#DataTables_Table_0 .tdsdeducteedata1 tr .td_icon .fa-clock-o {color: blue;}
+.delete_round {padding-left: 10px;cursor:pointer;}
+.edit_round{cursor:pointer;}
+
+
+.accepte_wraper {width:100%; display: block; margin: 0 auto 20px; text-align: center; border:1px solid #ddd; padding:15px 10px;}
+.accepte_wraper ul {padding: 0; margin: 0; list-style: none;}
+.accepte_wraper li {display: inline-block; padding: 0 15px; font-weight: 600; color: #333; font-size: 16px;}
+.accepte_wraper li .fa-check {color:green; padding-left: 8px;}
+.accepte_wraper li .fa-times {color: red; padding-left: 8px;}
+.accepte_wraper li .fa-clock-o {color: blue; padding-left: 8px;}
+
+.over_height { display: flex; flex-wrap: wrap; width: 100%}
+.height_fix {display: flex; }
+
+
+/*start reponsive cod here*/
+
+
+
+
+@media (max-width: 1366px) {
+}
+
+@media (max-width: 1024px) {
+    #calender_put .calender_put_box {width:100%;}
+}
+
+@media (max-width: 980px) {
+}
+@media (max-width: 800px) {
+  #mainform {width: 100%;}
+  #myModalgetlatest .modal-dialog {width:90%; margin: 5% auto;}
+  .scroller_body {width:90%; padding: 10px 15px;}  
+}
+@media (max-width: 700px) {
+}
+@media (max-width: 668px) {
+  #myModalgetlatest .modal-dialog .modal-content {overflow: scroll;}
+}
+@media (max-width: 568px) {
+  #myModalgetlatest .modal-dialog .modal-content {overflow: scroll;}
+}
+@media (max-width: 480px) {
+    .calender_put_box .calender_put_left {width:100%;}
+    .calender_put_left .box_circle {margin:0 0 15px 0;}
+    .calender_put_box .calender_put_right {width:100%; padding: 0 13px;}
+    #calender_put {padding: 10px;}
+    .top_blo_left li {width:100%;}
+}   
+
+
+

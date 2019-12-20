@@ -1,0 +1,185 @@
+
+.mainelemnetclass{padding: 100px 0px;}
+.mainelemnetclass p {
+    margin: 0 0 0px;
+}
+/*.mainelemnetclass.customcss {
+    display: inherit;
+}*/
+.manititleofit{display: block;
+margin: 0px auto;
+text-align: center;
+letter-spacing: 1px;font-size: 20px;font-weight: bold;}
+.labelmn{display: block;
+margin: 0px auto;
+text-align: center;
+margin-bottom: 5px;
+}.officeaddrhead{display: block;
+margin: 0px auto;
+text-align: center;
+margin-bottom: 20px;
+padding: 0px 20px;}
+.officeaddress_res{margin: 0px auto;text-align: Center;}
+.maincinlbl{display: block;
+margin: 0px auto;
+text-align: center;
+margin-bottom: 11px;
+}
+.lblcin,.cin_res{display: inline-block;}
+.firsttnxt,.secondtnxt,.thirdtnxt,.fourthnxt,.fivehnxt, .seventhtnxt ,.dinmndetails,.dinmnaddrdetails,.dinmndatedetails,.dinmnplacedetails,.internalelement,.directorname_res,.directordesignation_res, .explanatorystatemnt{display: block;
+margin: 0px auto;
+text-align: justify;
+padding: 0px 30px; margin-bottom: 20px;
+}
+.firsttnxt .companyname_res,.firsttnxt .date_re,.firsttnxt .officeaddress_res,
+.secondtnxt .companyname_res,.secondtnxt .date_re,.secondtnxt .officeaddress_res,
+.thirdtnxt .companyname_res,.thirdtnxt .date_re,.thirdtnxt .officeaddress_res,.dirdin_res,.date_re{display: initial;}
+.firsttnxt .officeaddress_res,
+.secondtnxt .officeaddress_res,
+.thirdtnxt  .officeaddress_res{border:0px;text-align: left;}
+.directorname_res,.directordesignation_res{margin-bottom: 0px;}
+.centerelement{display: block;
+margin: 0px auto;
+width: 100%;}
+.mainaddrtop{
+margin: 0px auto;}
+.mainaddrtop{display: block;font-weight: normal;}
+.dinmnaddrdetails .diraddr_res{display: block;
+width: 200px;
+text-align: left;}
+.companyname_res{display: inline;}
+.dinmndetails,.internalelement{margin-bottom: 0px;}
+.borderget{border-bottom: 2px dotted #dadada;
+padding: 8px;
+margin: 0px auto;
+margin-bottom: 20px;}
+.mainaddrtop .officeaddress_res{    font-weight: normal;}
+.officeaddressnew_res {display:inline;}
+.thirdtnxt .directorname_res  {    display: inline;padding: 0px;font-weight: 600;}
+.thirdtnxt .dir_nm_two {    display: inline;padding: 0px;font-weight: 600;}
+.secondtnxt .date_of_bsheet, .dir_nm_two, .dir_nm_three, .cs_nm, aud_nm {    display: inline;padding: 0px;}
+.thirdtnxt .aud_nm, .date_of_bsheet{    display: inline;padding: 0px;}
+.thirdtnxt  .directorname_res_two{display: inline;padding: 0px;font-weight: 600;}
+.fourthtnxt     {display: block; margin: 0px auto; text-align: justify; padding: 0px 145px; margin-bottom: 20px;}
+.fourthtnxt .roc {    display: inline;padding: 0px;}
+.secondtnxt .aud_nm , .aud_locn {    display: inline;padding: 0px;}
+.secondtnxt .add_dir_namea {display: inline;padding: 0px;}
+.secondtnxt .roc {    display: inline;padding: 0px;}
+.secondtnxt .nom_dir_namea{display: inline;padding: 0px;}
+.secondtnxt  .nom_dir_namea_din{display: inline;padding: 0px;}
+.secondtnxt .nom_dir_repa{display: inline;padding: 0px;}
+.secondtnxt .date_of_appoint{display: inline;padding: 0px;}
+.thirdtnxt .roc{display: inline;padding: 0px;}
+.secondtnxt .fem_dir_namea{display: inline;padding: 0px;}
+.secondtnxt .cv_dir_namea {display: inline;padding: 0px;}
+.secondtnxt .cv_dir_respa{display: inline;padding: 0px;}
+.secondtnxt .art_aoaa{display: inline;padding: 0px;}
+.secondtnxt .aud_namea{display: inline;padding: 0px;}
+.secondtnxt .res_aud_namea{display: inline;padding: 0px;}
+.thirdtnxt .aud_namea{display: inline;padding: 0px;}
+.thirdtnxt  .date_of_bal_sheeta{display: inline;padding: 0px;}
+.fourthtnxt .directorname_res{display: inline;padding: 0px;}
+.secondtnxt .dir_name_twoa{display: inline;padding: 0px;}
+.secondtnxt .dir_name_threea{display: inline;padding: 0px;}
+.secondtnxt .ret_dir_namea{display: inline;padding: 0px;}
+.secondtnxt .ind_dir_namea_din{display: inline;padding: 0px;}
+.secondtnxt .ind_dir_namea{display: inline;padding: 0px;}
+.secondtnxt .dir_tenre{display: inline;padding: 0px;}
+.secondtnxt .ca_namea{display: inline;padding: 0px;}
+.secondtnxt .ca_numa{display: inline;padding: 0px;}
+.secondtnxt .date_of_bsheet{display: inline;padding: 0px;}
+.secondtnxt .rem_caa{display: inline;padding: 0px;}
+.secondtnxt .cs_namea{display: inline;padding: 0px;}
+.secondtnxt .cs_numa{display: inline;padding: 0px;}
+.secondtnxt .date_of_joininga{display: inline;padding: 0px;}
+.secondtnxt .alt_dir_namea{display: inline;padding: 0px;}
+.secondtnxt .alt_dirto_namea{display: inline;padding: 0px;}
+.secondtnxt .add_dir_namea_din{display: inline;padding: 0px;}
+.secondtnxt > * {display: inline;padding: 0px;}
+.fourthtnxt > * {display: inline;padding: 0px;}
+.fifthtnxt{    display: block; margin: 0px auto; text-align: justify; padding: 0px 145px; margin-bottom: 20px;}
+.fifthtnxt > * {display: inline;padding: 0px; }
+.sixthtnxt{    display: block; margin: 0px auto; text-align: justify; padding: 0px 145px; margin-bottom: 20px;}
+.sixthtnxt > *  { padding: 0px; }
+.thirdtnxt > *  {display: inline;padding: 0px; }
+.sixthtnxt > .dir_filea {display: inline;padding: 0px; }
+.clearelement {clear: both;margin: 0px auto;display: block;font-size: 0px;height: 0px;line-height: 0px;content: "";}
+.internalelement{margin-top: 50px;}
+.dinmnaddrdetails{width: 260px;
+    margin-left: 0px;
+word-break: break-word;text-align: left;}
+.mainelemnetclass .fourthtnxt,
+.mainelemnetclass .fifthtnxt,
+.mainelemnetclass .sixthtnxt,
+.mainelemnetclass .seventhnxt{padding: 0px 30px;}
+.vlaw_dompdf{margin-top:500px; display: block;}
+/*.mainelementbody th,.mainelementbody td,.mainelementbody tr {
+  border:1px solid black;
+  border-collapse:collapse;
+}
+
+.mainelementbody table {
+  border:2px solid black;
+  border-collapse:collapse;
+}
+
+.mainelementbody td {
+  font-family:Arial;
+  font-size:11px;
+}*/
+.mainelementbody table{
+    width: 95%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:15px; 
+    
+}
+ 
+.mainelementbody tr {
+    padding: 5px;
+    text-align: left;
+    width: 52;
+     border: 1px solid black;
+} 
+.mainelementbody td {
+    padding: 2px;
+    text-align: left;
+    border: 1px solid black;
+  
+}  
+
+
+.explanatorystatement, .explanatorystatement1 > *{
+display: block;
+margin:40px auto;
+text-align: justify;
+padding: 0px 30px !important;margin-bottom:0px;
+}
+.explanatorystatement1{
+display: block;
+/*margin:40px auto;*/
+text-align: justify;
+padding: 0px 26px !important;margin-bottom:0px; 
+}
+
+.floatleft.dingenfile{float: left;display: inline;margin: 0px auto;}
+.dingenfile{min-height: 250px;}
+.firsttnxt .date_re{
+    text-transform: uppercase;  
+}
+.rosh_not{
+    text-align: center;
+    display: block;
+    font-weight: bold;
+}
+.special_bus{
+    margin-left:30px;font-weight:bold;
+}
+
+.secaudit div.h3{display:block;text-align:center}
+
+.secaudit .table,th,td{border:1px solid #444;padding:3px;border-collapse:collapse; } 
+.secaudit li{font-size:12px; }
+

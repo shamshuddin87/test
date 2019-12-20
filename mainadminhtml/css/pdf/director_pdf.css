@@ -1,0 +1,137 @@
+/* ############################ Director Report ############################ */
+
+     .container-main{
+        max-width: 750px;
+        width:100%;
+        margin:0px auto;
+    }
+
+    .main-content{
+        padding: 10px;
+        *border:1px solid #222;
+    }
+
+    .main-content h1{
+        font-size:18px;
+        color:#222;
+        text-align: center;
+        text-transform: uppercase;
+        margin: 25px 0px 15px 0px;  
+        font-family: sans-serif;
+    }
+    .decs1 p{
+        margin:15px 0px 0px  0px;
+        font-size: 15px;
+        text-align:justify;
+        line-height: 24px;
+        color: black; 
+        font-family: sans-serif;
+    }
+    .fic_hei h1{
+        font-size:18px;
+        color:#222;
+        text-align: left;
+        text-transform: uppercase;
+        margin: 28px 0px 12px 0px;
+         font-family: sans-serif;
+    }
+
+    /*.fic_hei > .tables{
+        margin:15px 0px 20px 0px; 
+    } 
+
+    .fic_hei table{
+        max-width:90%;
+        margin: 0px auto; 
+    }
+
+    .fic_hei table {
+        border-collapse: collapse;
+    }
+
+    .fic_hei table, th, td {
+       border: 1px solid black;
+       padding: 8px;
+    }
+
+    .contracts_table table{
+        max-width:90%;
+        margin: 0px auto; 
+        border-collapse: collapse;
+    }
+    .contracts_table  table, th, td {
+       border: 1px solid black;
+       padding: 8px;
+       margin:15px auto 15px auto; 
+        width:650px;
+
+    }*/
+
+    .lists{
+        list-style: none;
+    }
+    .lists div{
+        margin: 18px 0px 15px 0px;
+    }
+
+    .fl-left{
+        float: left;
+    }
+    .fl-rght{
+        float: right;
+    }
+
+    .repot h1{
+        font-size: 18px;
+        color: #222;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 30px;
+        font-family: sans-serif;
+    }
+
+    /*.tables_web  table{
+        max-width:90%;
+        margin: 0px auto; 
+        border-collapse: collapse;
+    }
+
+    .tables_web  table, th, td {
+       border: 1px solid black;
+       padding: 8px;
+       margin:15px auto 15px auto; 
+    }
+
+    .tables_web1 > table{
+        max-width:90%;
+        margin: 0px auto; 
+        border-collapse: collapse;
+    }
+
+    .tables_web1  > table, th{
+       border: 1px solid black;
+       margin:15px auto 15px auto; 
+    }*/
+
+
+    table{
+         border-collapse: collapse;
+         width: 100%; 
+    }
+
+    table, th, td {
+    border: 1px solid black;
+    padding:6px;
+    color:black;
+    }
+
+    .fl-rght{
+        margin-left: 481px;
+    }
+    .fl-left{
+        margin-top:-40px; 
+    }
+
+
+
+/* ############################ Director Report ############################ */
