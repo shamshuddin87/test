@@ -28,8 +28,7 @@ class UpsimasterController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $data = $this->request->getPost();
-                // print_r($data);exit;
-                
+                 
                 
                 if(empty($data['upname']))
                 {

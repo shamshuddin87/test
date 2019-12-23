@@ -28,16 +28,26 @@
                        
                         <div class="clearelement"></div>        
                       
-                        <section class="col col-md-6 col-xs-6">
-                            <label class="control-label">Type Of  UPSI*</label>
+                        <section class="col col-md-10 col-xs-6">
+                            <label class="control-label">Title Of UPSI*</label>
                             <div class="input">
                                 <input type="text" id="upnm" name="upname" required="required" class="form_fields form-control col-md-7 col-xs-12" >
                             </div>
                         </section>
 
 
+                        <section class="col col-md-10 col-xs-6">
+                            <label class="control-label">Description*</label>
+                            <div class="input">
+                            <textarea rows="4" cols="50" id="desc" name="desc" required="required" class="form_fields form-control col-md-7 col-xs-12" >
+                            </textarea> 
+                            </div>
+                        </section>
+
+
                         <div class="clearelement"></div>                   
-                                              
+                         
+
                         <section class="col col-md-6 col-xs-12">               
                         
                         <div class="control-label formgroup  btnuop">
@@ -61,14 +71,15 @@
                                 <option value="50">50</option><option value="100">100</option>
                             </select> 
                             <span>Entries</span>
-                        </div>
+                </div>
                         
                         <div class="table-responsive">
                             <table class="table table-inverse" id="datableabhi">
                               <thead>
                                 <tr>
                                     <th>Sr No</th>
-                                    <th>UPSI Type</th>                                              
+                                    <th>UPSI Type</th>  
+                                    <th>Description</th>                                                         
                                     <th>Actions</th>
                                 </tr>
                               </thead>
