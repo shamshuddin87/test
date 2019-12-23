@@ -63,6 +63,11 @@ class MisController extends ControllerBase
     {
 
     }
+    
+    public function upsitypeclassifyAction()
+    {
+        
+    }
 
     public function misdetailsAction()
     {
@@ -84,11 +89,13 @@ class MisController extends ControllerBase
     
     public function mis_infosharingAction()
     {
-        
+        $upsiid=$_GET['upsid'];
+        $this->view->upsiid=$upsiid;
     }
     public function archive_missharingAction()
     {
-        
+        $upsiid=$_GET['upsitype'];
+        $this->view->upsiid=$upsiid;
     }
 
     public function mis_initialdiscsrAction()
@@ -470,8 +477,9 @@ class MisController extends ControllerBase
             {
                 $noofrows=$this->request->getPost('noofrows');
                 $pagenum=$this->request->getPost('pagenum');
+                $upsitypeid=$this->request->getPost('upsitypeid');
                 $mainquery = '';
-                $getres = $this->miscommon->fetchinfosharing($getuserid,$user_group_id,$mainquery);
+                $getres = $this->miscommon->fetchinfosharing($getuserid,$user_group_id,$upsitypeid,$mainquery);
                 /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
                 $rslmt =' LIMIT '.$rsstrt.','.$noofrows;
@@ -480,7 +488,7 @@ class MisController extends ControllerBase
                 $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
                 $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
                 
-                $getresult = $this->miscommon->fetchinfosharing($getuserid,$user_group_id,$rslmt);
+                $getresult = $this->miscommon->fetchinfosharing($getuserid,$user_group_id,$upsitypeid,$rslmt);
                 //print_r($getres);exit;
                 if($getresult)
                 {
@@ -527,8 +535,9 @@ class MisController extends ControllerBase
             {
                 $noofrows=$this->request->getPost('noofrows');
                 $pagenum=$this->request->getPost('pagenum');
+                $upsitypeid=$this->request->getPost('upsitypeid');
                 $mainquery = '';
-                $getres = $this->miscommon->fetcharchiveinfosharing($getuserid,$user_group_id,$mainquery);
+                $getres = $this->miscommon->fetcharchiveinfosharing($getuserid,$user_group_id,$upsitypeid,$mainquery);
                 /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
                 $rslmt =' LIMIT '.$rsstrt.','.$noofrows;
@@ -537,7 +546,7 @@ class MisController extends ControllerBase
                 $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
                 $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
                 
-                $getres = $this->miscommon->fetcharchiveinfosharing($getuserid,$user_group_id,$rslmt);
+                $getres = $this->miscommon->fetcharchiveinfosharing($getuserid,$user_group_id,$upsitypeid,$rslmt);
                 //print_r($getres);exit;
                 if($getres)
                 {
@@ -1196,4 +1205,115 @@ class MisController extends ControllerBase
             exit('No direct script access allowed');
         }
     }
+    
+    // ****************************  fetch All Upsi table start***************************
+    public function fetchallupsitypesAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $noofrows=$this->request->getPost('noofrows');
+                $pagenum=$this->request->getPost('pagenum');
+                $mainquery = '';
+                $getres = $this->miscommon->fetchallupsitypes($getuserid,$user_group_id,$mainquery);
+                /* start pagination */
+                $rsstrt = ($pagenum-1) * $noofrows;
+                $rslmt =' LIMIT '.$rsstrt.','.$noofrows;
+                $rscnt=count($getres);
+                $rspgs = ceil($rscnt/$noofrows);
+                $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                
+                $getres = $this->miscommon->fetchallupsitypes($getuserid,$user_group_id,$rslmt);
+                // print_r($getres);exit;
+                if(!empty($getres))
+                {
+                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres,'user_group_id'=>$user_group_id,"pgnhtml"=>$pgnhtml);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "Record Not Added..!!","pgnhtml"=>$pgnhtml);
+                    $this->response->setJsonContent($data);
+                }
+                
+
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+        
+    }
+    
+    public function fetchallupsiexportAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $request=$this->request->getPost('request');
+                $getres = $this->miscommon->fetchallupsitypes($getuserid,$user_group_id,'');
+                //print_r($getres);exit;
+                if($request=="pdf")
+                {
+                   $gethtml=$this->miscommon->allupsihtml($getres);
+                   $genfile =$this->dompdfgen->getpdf($gethtml,"upsitypeclassify","upsi","misrecip");
+                }
+                else
+                {
+                 $genfile = $this->phpimportexpogen->fetchallupsiexportexcel($getuserid,$user_group_id,$getres);
+                }
+              
+                 // print_r($genfile);exit;
+
+                if(!empty($genfile))
+                {
+                    $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "File Not Generated..!!");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+           
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+        
+    }
+    
+    
    }

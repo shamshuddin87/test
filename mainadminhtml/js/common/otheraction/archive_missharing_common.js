@@ -44,7 +44,8 @@ function getdataonload()
 {
     var noofrows = website('#noofrows').val(); 
     var pagenum = website('#pagenum').val();
-    var formdata = {noofrows:noofrows,pagenum:pagenum};
+    var upsitypeid = website('#upsitypeid').val();
+    var formdata = {noofrows:noofrows,pagenum:pagenum,upsitypeid:upsitypeid};
     website.ajax({
       url:'mis/fetcharchiveinfosharing',
       data:formdata,
@@ -91,14 +92,6 @@ function getdataonload()
             addhtmlnxt += '<td width="10%">'+enddate+'</td>';
             addhtmlnxt += '<td width="10%">'+response.resdta[i].datashared+'</td>';
             addhtmlnxt += '<td width="10%">'+response.resdta[i].purpose+'</td>';
-            if(response.resdta[i].filepath)
-            {
-                addhtmlnxt += '<td width="10%"><a href="'+response.resdta[i].filepath+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';
-            }
-            else
-            {
-                addhtmlnxt += '<td width="10%"></td>';
-            }
             addhtmlnxt += '<td width="5%"><i class="fa fa-bar-chart viewtrail" infoshrid="'+response.resdta[i].id+'"></i></td>';
             addhtmlnxt += '<td width="10%">'+response.resdta[i].fullname+'</td>'; 
             addhtmlnxt += '</tr>';                        

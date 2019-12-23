@@ -1169,6 +1169,40 @@ class Tradingrequestcommon extends Component
             //echo '<pre>';print_r($getlist);exit;
             return $getlist;
         }
+    
+        public function getupsitradingblock($uid,$usergroup)
+        {
+            $connection = $this->dbtrd;
+            $todate = date('d-m-Y');
+            $getlist = array();
+            $queryget = "SELECT * FROM `upsimaster` 
+                WHERE (STR_TO_DATE('".$todate."','%d-%m-%Y') BETWEEN STR_TO_DATE(`projstartdate`,'%d-%m-%Y') AND STR_TO_DATE(`enddate`,'%d-%m-%Y')
+                OR (STR_TO_DATE(`projstartdate`,'%d-%m-%Y') < STR_TO_DATE('".$todate."','%d-%m-%Y')   AND (`enddate` IS NULL OR `enddate`=''))) AND (FIND_IN_SET('".$uid."',`projectowner`) OR FIND_IN_SET('".$uid."',`connecteddps`)) ";
+                //echo $queryget;exit;
+            try{
+                    $exeget = $connection->query($queryget);
+                    $getnum = trim($exeget->numRows());
+
+                    if($getnum>0)
+                    {
+                        while($row = $exeget->fetch())
+                        {
+                            $getlist[] = $row;
+                        }
+                        //echo '<pre>';print_r($getlist);exi//
+                    }
+                    else{
+                        $getlist = array();
+                    }
+                }
+                catch (Exception $e)
+                {
+                    $getlist = array();
+                    //$connection->close();
+                }
+            //echo '<pre>';print_r($getlist);exit;
+            return $getlist;
+        }
 
         //######### VALIDATION OF REQUEST ################
 

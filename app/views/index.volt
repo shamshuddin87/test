@@ -92,6 +92,8 @@ and getcontrolleractionname  !="mis_formc"
 and getcontrolleractionname  !="mis_formpct"
 and getcontrolleractionname  !="mis_initialdiscsr"
 and getcontrolleractionname  !="mis_annualdiscsr"
+and getcontrolleractionname  !="upsi_infosharing"
+and getcontrolleractionname  !="upsitypeclassify"
 
 
 
@@ -156,6 +158,8 @@ or getcontrolleractionname  =="mis_formc"
 or getcontrolleractionname  =="mis_formpct"
 or getcontrolleractionname  =="mis_initialdiscsr"
 or getcontrolleractionname =="mis_annualdiscsr"
+or getcontrolleractionname =="upsi_infosharing"
+or getcontrolleractionname =="upsitypeclassify"
 
 %}
 {% set otheractioncss = ['css/common/otheraction/',dispatcher.getActionName(),'_common', '.php?v='~timestampfile]|join('') %}
@@ -222,7 +226,7 @@ or getcontrolleractionname =="mis_annualdiscsr"
 {{ assets.outputJs('validatejs') }}
 {% endif %}
 
-{% if getcontrollername =="organisation" or getcontrollername =="particalrecordsetting" or getcontrollername =="employeerecord" or getcontrollername =="clientrecord" or getcontrollername =="servicerecord" or getcontrollername =="taskrecord" or getcontrollername =="clientservicerelk" or getcontrollername =="taskbundle" or getcontrollername =="invoicerecord" or getcontrollername =="leadbundle" or getcontrollername =="edittaskbundle" or getcontrollername =="accountsetting" or  getcontrollername =="restrictedcompany" or getcontrollername =="employeemodule"  or getcontrollername =="portfolio" or getcontrollername =="holdingstatement" or  getcontrollername =="sensitiveinformation" or getcontrollername =="tradingrequest"  or getcontrollername =="holdingsummary" or getcontrollername =="blackoutperiod" or getcontrollername =="tradingplan" or getcontrollername =="declarationform" or getcontrollername =="exceptionreq" or getcontrollername =="reconcilation" or getcontrollername =="esop" or getcontrollername =="randomrequest" or getcontrollername =="randomexception" or getcontrollername =="sebi" or getcontrollername =="mis" or getcontrollername =="usermaster"  or getcontrollername =="approvelperinfo" %}
+{% if getcontrollername =="organisation" or getcontrollername =="particalrecordsetting" or getcontrollername =="employeerecord" or getcontrollername =="clientrecord" or getcontrollername =="servicerecord" or getcontrollername =="taskrecord" or getcontrollername =="clientservicerelk" or getcontrollername =="taskbundle" or getcontrollername =="invoicerecord" or getcontrollername =="leadbundle" or getcontrollername =="edittaskbundle" or getcontrollername =="accountsetting" or  getcontrollername =="restrictedcompany" or getcontrollername =="employeemodule"  or getcontrollername =="portfolio" or getcontrollername =="holdingstatement" or  getcontrollername =="sensitiveinformation" or getcontrollername =="tradingrequest"  or getcontrollername =="holdingsummary" or getcontrollername =="blackoutperiod" or getcontrollername =="tradingplan" or getcontrollername =="declarationform" or getcontrollername =="exceptionreq" or getcontrollername =="reconcilation" or getcontrollername =="esop" or getcontrollername =="randomrequest" or getcontrollername =="randomexception" or getcontrollername =="sebi" or getcontrollername =="mis" or getcontrollername =="usermaster"  or getcontrollername =="approvelperinfo"  or getcontrollername =="upsimaster"%}
 {{ assets.outputJs('daterangepicker') }}
 {{ assets.outputJs('datatablemn') }}
 {% endif %}
@@ -231,7 +235,7 @@ or getcontrolleractionname =="mis_annualdiscsr"
 {{ assets.outputJs('tableexport') }}  
 {% endif %} 
 
-{% if  getcontrollername =="home" or getcontrollername =="adminmodule" or getcontrollername =="companymaster" or getcontrollername =="upsimaster" or getcontrollername =="departmentmaster" or getcontrollername =="homepage" or getcontrollername =="meeting" or getcontrollername =="sharescreen" or getcontrollername =="companymodule" or getcontrollername =="employeemodule" or getcontrollername =="restrictedcompany" or getcontrollername =="sensitiveinformation" or getcontrollername =="holdingstatement" or getcontrollername =="holdingsummary" or getcontrollername =="blackoutperiod" or getcontrollername =="tradingplan" or getcontrollername =="declarationform" or getcontrollername =="exceptionreq"  or getcontrollername =="reconcilation" or getcontrollername =="esop" or getcontrollername =="randomrequest" or getcontrollername =="randomexception" or getcontrollername =="sebi" or  getcontrollername =="mis"%}
+{% if  getcontrollername =="home" or getcontrollername =="adminmodule" or getcontrollername =="companymaster" or getcontrollername =="upsimaster" or getcontrollername =="departmentmaster" or getcontrollername =="homepage" or getcontrollername =="meeting" or getcontrollername =="sharescreen" or getcontrollername =="companymodule" or getcontrollername =="employeemodule" or getcontrollername =="restrictedcompany" or getcontrollername =="sensitiveinformation" or getcontrollername =="holdingstatement" or getcontrollername =="holdingsummary" or getcontrollername =="blackoutperiod" or getcontrollername =="tradingplan" or getcontrollername =="declarationform" or getcontrollername =="exceptionreq"  or getcontrollername =="reconcilation" or getcontrollername =="esop" or getcontrollername =="randomrequest" or getcontrollername =="randomexception" or getcontrollername =="sebi" or  getcontrollername =="mis"  or getcontrollername =="upsimaster"%}
 {{ assets.outputJs('highcharts') }}  
 {{ assets.outputJs('datatablemn') }}
 <script src="js/shared/jquery.cookie.js"></script>
@@ -323,6 +327,8 @@ and getcontrolleractionname  !="mis_formc"
 and getcontrolleractionname  !="mis_formpct"
 and getcontrolleractionname  !="mis_initialdiscsr"
 and getcontrolleractionname  !="mis_annualdiscsr"
+and getcontrolleractionname  !="upsi_infosharing"
+and getcontrolleractionname  !="upsitypeclassify"
 
 %}
 <?php
@@ -379,6 +385,8 @@ or getcontrolleractionname  =="mis_formc"
 or getcontrolleractionname  =="mis_formpct"
 or getcontrolleractionname  =="mis_initialdiscsr"
 or getcontrolleractionname  =="mis_annualdiscsr"
+or getcontrolleractionname  =="upsi_infosharing"
+or getcontrolleractionname  =="upsitypeclassify"
     
 %}
 <?php

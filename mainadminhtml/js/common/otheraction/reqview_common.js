@@ -182,7 +182,7 @@ function subuserapproval()
                 }
                 else
                 {
-                    addhtmlnxt += '<td colspan="13" style="text-align:center;">Data Not Found..!!!</td>';
+                    addhtmlnxt += '<tr><td colspan="13" style="text-align:center;">Data Not Found..!!!</td></tr>';
                 }
                        
                 website(".viewreqtable").html(addhtmlnxt);

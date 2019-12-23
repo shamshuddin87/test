@@ -1786,4 +1786,66 @@ Class Email extends Phalcon\Mvc\User\Component {
        
     }
     
+    //##########################  for UPSI trading window data ##############################
+    public function mailofupsitradingwindow($emailid,$username,$upsitype,$enddate,$addedby,$pstartdate,$today)
+    {
+        $gethtml = $this->htmlelements->mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$pstartdate,$today);
+        //print_r($gethtml);exit;
+        $mail = new PHPMailer();
+        //Tell PHPMailer to use SMTP
+        $mail->isSMTP();
+        //Enable SMTP debugging
+        // 0 = off (for production use)
+        // 1 = client messages
+        // 2 = client and server messages
+        $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
+        $mail->Debugoutput = 'html';
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
+        $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
+        $mail->SMTPAuth = true;
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
+        //add cc
+       // $mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+        //Set who the message is to be sent to
+        $mail->addAddress($emailid, 'Volody');
+        //Set the subject line
+        $mail->Subject = 'Trading Window Closure';
+        //Read an HTML message body from an external file, convert referenced images to embedded,
+        //convert HTML into a basic plain-text alternative body
+    
+        $mail->msgHTML($gethtml);
+        //Replace the plain text body with one created manually
+
+        //Attach an image file
+        //$mail->addAttachment('images/phpmailer_mini.png');
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            $get = array('logged'=>true,'message'=>'sent');
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false,'message'=>'nosent');
+        }
+
+        //$mail->ClearAddresses();
+        //$mail->ClearAttachments();
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+ 
+       
+    }
+    
 }

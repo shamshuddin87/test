@@ -5,6 +5,8 @@ $cssFiles = array(
    "../scrollbar/jquery.mCustomScrollbar.css", 
    "../plugin/higchart.css", 
    "../preloader.css", 
+   "../calendar/bootstrap-material-datetimepicker.css",  
+    "../calendar/bootstrap-datetimepicker.min.css",   
    "../calendar/calendersupercal.css",  
    "commoncss/upsimaster_common.css"   
 );

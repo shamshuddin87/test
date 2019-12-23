@@ -48,25 +48,25 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
             
              <?php  } ?>
 
-              <?php if($gettypm['user_group_id']=='2'){ ?>
+              <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'|| $gettypm['user_group_id']=='7'){ ?>
 
 
                 <li>
                   <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> Masters <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                
-             
+             <?php if($gettypm['user_group_id']=='2'){ ?>
              
               <li>
-                  <a href="companymaster"><i class="fa fa-building " id="cmp_mst"></i>Company Master</a>
+                  <a href="companymaster"><i class="" id="cmp_mst"></i>Company Master</a>
                </li> 
                
-               <li><a href="departmentmaster"><i class="fa fa-group"></i>Department Master</a></li>
+               <li><a href="departmentmaster"><i class=""></i>Department Master</a></li>
                     
-                <li><a href="usermaster"><i class="fa fa-drivers-license-o"></i>User Master</a></li>
+                <li><a href="usermaster"><i class=""></i>User Master</a></li>
 
-
-                 <li><a href="upsimaster"><i class="fa fa-drivers-license-o"></i> Type of UPSI</a></li> 
+              <?php  } ?>
+                 <li><a href="upsimaster"><i class=""></i> Type of UPSI</a></li> 
 
              
                <!--  <li><a href="usermaster/userview"><i class="fa fa-eye"></i>View Users</a></li>   -->
@@ -116,12 +116,12 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
              
              
               <li>
-                  <a href="adminmodule"><i class="fa fa-building " id="cmp_mst"></i>Module Access</a>
+                  <a href="adminmodule"><i class="" id="cmp_mst"></i>Module Access</a>
                </li> 
                
-               <li><a href="adminmodule/tradingdays"><i class="glyphicon glyphicon-paperclip"></i>Trading Days</a></li>
+               <li><a href="adminmodule/tradingdays"><i class=""></i>Trading Days</a></li>
 
-                 <li><a href="adminmodule/autoaprove"><i class="glyphicon glyphicon-paperclip"></i>Auto Approval Shares</a></li>
+                 <li><a href="adminmodule/autoaprove"><i class=""></i>Auto Approval Shares</a></li>
                     
              </ul> 
             </li>
@@ -138,10 +138,10 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
              
              
               <li>
-                  <a href="sensitiveinformation/recipient"><i class="fa fa-building " id="cmp_mst"></i>Connected Person</a>
+                  <a href="sensitiveinformation/recipient"><i class="" id="cmp_mst"></i>Connected Person</a>
                </li> 
                
-               <li><a href="sensitiveinformation/infosharing"><i class="fa fa-group"></i>Information Sharing</a></li>
+               <li><a href="sensitiveinformation/upsi_infosharing"><i class=""></i>Information Sharing</a></li>
                     
             
             
@@ -185,7 +185,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
 
                    <li><a href="mis"><i class=""></i> Master MIS</a></li>
                    <li><a href="mis/mis_recipient"><i class=""></i> Connected Person</a></li>
-                   <li><a href="mis/mis_infosharing"><i class=""></i> UPSI Sharing</a></li>
+                   <li><a href="mis/upsitypeclassify"><i class=""></i> UPSI Sharing</a></li>
                    <li><a href="mis/mis_annualdiscsr"><i class=""></i>Annual Disclosures</a></li>
                    <li><a href="mis/mis_initialdiscsr"><i class=""></i>Initial Disclosures</a></li>
                    <li><a href="mis/mis_formc"><i class=""></i>Form C</a></li>
@@ -208,36 +208,36 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
           <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> My Info<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
             
-               <li><a href="employeemodule"><i class="fa fa-info-circle" id="cmp_mst"></i>Personal information</a></li> 
+               <li><a href="employeemodule"><i class="" id="cmp_mst"></i>Personal information</a></li> 
                
-               <li><a href="portfolio"><i class="fa fa-group"></i>Demat Accounts</a></li>
+               <li><a href="portfolio"><i class=""></i>Demat Accounts</a></li>
                
 
-               <li><a href="tradingrequest"><i class="fa fa-plane"></i>Request</a></li>
+               <li><a href="tradingrequest"><i class=""></i>Request</a></li>
 
              <!--     <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li>  -->  
 
 
             <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2'){?>
 
-             <li><a href="tradingrequest/reqview"><i class="fa fa-eye" id="viewreq"></i>View request</a></li>  
+             <li><a href="tradingrequest/reqview"><i class="" id="viewreq"></i>View request</a></li>  
                 
             <?php } ?>
                
-            <li><a href="exceptionreq"><i class="fa fa-plane"></i>Exception Request</a></li>
+            <li><a href="exceptionreq"><i class=""></i>Exception Request</a></li>
                 
             <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2'){?>
 
-            <li><a href="exceptionreq/exception_req"><i class="fa fa-eye"></i>View Exception request</a></li>
-             <li> <a href="approvelperinfo"><i class="fa fa-eye"></i>View Personal Info Request</a></li>
+            <li><a href="exceptionreq/exception_req"><i class=""></i>View Exception request</a></li>
+             <li> <a href="approvelperinfo"><i class=""></i>View Personal Info Request</a></li>
 
 
                 
             <?php } ?>
 
-               <li><a href="holdingstatement"><i class="fa fa-edit"></i>Holding Statement</a></li>
+               <li><a href="holdingstatement"><i class=""></i>Holding Statement</a></li>
                 
-                <li><a href="declarationform"><i class="fa fa-edit"></i>Declaration Form</a></li>    
+                <li><a href="declarationform"><i class=""></i>Declaration Form</a></li>    
                  <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li>
                 <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>   
             </ul> 
@@ -258,9 +258,9 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
          <li><a class="click_board click_board3" href="javascript:;"><i class="fa fa-share-alt"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
              <li>
-                  <a href="sensitiveinformation/recipient"><i class="fa fa-building " id="cmp_mst"></i>Connected Person</a>
+                  <a href="sensitiveinformation/recipient"><i class="" id="cmp_mst"></i>Connected Person</a>
              </li> 
-              <li><a href="sensitiveinformation/infosharing"><i class="fa fa-group"></i>
+              <li><a href="sensitiveinformation/upsi_infosharing"><i class=""></i>
                 <p>Information Sharing</p></a></li>
      
              </ul> 

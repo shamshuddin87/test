@@ -308,7 +308,7 @@
                     <div class="boxes">
                                  <div class="col-container">
                                      <div class="col-md-2 col-sm-4 col-xl-6">
-                                        <a href="/insidertrading/tradingrequest?redirect=<?php print_r(base64_encode('modal')); ?>">
+                                        <a href="tradingrequest?redirect=<?php print_r(base64_encode('modal')); ?>">
                                          <section class="col panel left-border1 panel-featured-left panel-featured-primary">
                                             <div class="panel-body">
                                               <div class="widget-summary">

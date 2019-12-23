@@ -493,20 +493,26 @@ class Miscommon extends Component
     // **************************** recipient mis fetch for edit ***************************
     
     // **************************** infosharing mis fetch for table***************************
-    public function fetchinfosharing($getuserid,$user_group_id,$query)
+    public function fetchinfosharing($getuserid,$user_group_id,$upsitypeid,$query)
     {
        $connection = $this->dbtrd;
         try
          {
             //print_r($masteruserdata);exit;
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryget = "SELECT ss.*, memb.fullname,sc.`category` AS category_name FROM `sensitiveinfo_sharing` ss
-                        INNER JOIN `it_memberlist` memb ON memb.wr_id = ss.user_id
-                        INNER JOIN `sensitiveinfo_category` sc ON sc.`id` = ss.`category` 
-                        WHERE ss.`user_id` IN (".$grpusrs['ulstring'].")".$query; 
+             $queryget = "SELECT ss.*,sr.name,sr.nameofentity,sr.identityno,utype.upsitype,
+                    memb.`fullname`,sc.`category` AS category_name 
+                    FROM `sensitiveinfo_sharing` ss 
+                    LEFT JOIN `sensitiveinfo_recipient` sr ON ss.`recipientid` = sr.`id` 
+                    LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ss.`user_id` 
+                    LEFT JOIN `upsimaster` utype ON utype.id = ss.`upsitype` 
+                    LEFT JOIN `sensitiveinfo_category` sc ON sc.`id` = sr.`category`
+				    WHERE ss.`user_id` IN (".$grpusrs['ulstring'].") AND ss.`upsitype`= '".$upsitypeid."' ORDER BY ss.`id` DESC ".$query; 
+
           
             
             //echo $queryget;  exit;
+            //,sr.`othercategory`
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
 
@@ -567,19 +573,22 @@ class Miscommon extends Component
     }
     
     // **************************** infosharing fetch for Archive table***************************
-    public function fetcharchiveinfosharing($getuserid,$user_group_id,$query)
+    public function fetcharchiveinfosharing($getuserid,$user_group_id,$upsitypeid,$query)
     {
        $connection = $this->dbtrd;
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryget = "SELECT ss.*, memb.fullname,sc.`category` AS category_name FROM `sensitiveinfo_sharing` ss
+            $queryget = "SELECT ss.*, memb.fullname,sc.`category` AS category_name 
+                        FROM `sensitiveinfo_sharing` ss
                         LEFT JOIN `it_memberlist` memb ON memb.wr_id = ss.user_id
                         LEFT JOIN `sensitiveinfo_category` sc ON sc.`id` = ss.`category`
-                        WHERE ss.`user_id` IN (".$grpusrs['ulstring'].") AND ss.`enddate` !=''  ".$query; 
+                        LEFT JOIN `sensitiveinfo_recipient` sr ON ss.`recipientid` = sr.`id` 
+                        WHERE ss.`user_id` IN (".$grpusrs['ulstring'].") AND ss.`upsitype`= '".$upsitypeid."' AND ss.`enddate` !=''  ".$query; 
           
             
             //echo $queryget;  exit;
+            //,sr.`othercategory`
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
 
@@ -1268,6 +1277,81 @@ class Miscommon extends Component
         }
         
         return $getlist;
+    }
+    
+    public function fetchallupsitypes($userid,$user_group_id,$rslmt)
+    {
+       $connection = $this->dbtrd;
+       $time = time();
+       $getmasterid = $this->tradingrequestcommon->getmasterid($userid);
+       try{
+             $query="SELECT *,ups.`date_added` as dtadd,ups.`id` as uppid FROM `upsimaster` ups  LEFT JOIN  `it_memberlist` it ON ups.`user_id`=it.`wr_id` WHERE  ups.`projectowner` IN(".$userid.") ".$rslmt;
+             //print_r($query);exit;
+             $exeget = $connection->query($query);
+             $getnum = trim($exeget->numRows());
+             if($getnum>0)
+              {
+                while($row = $exeget->fetch())
+                    {
+                        
+                        $getlist[] = $row;
+                    }
+              }
+             else{
+                   $getlist=array();
+               }
+
+           }
+           catch(Exception $e)
+           {
+              $getlist=array();
+           }
+
+           // print_r(count($getlist));exit;
+        return $getlist;
+    }
+    
+    public function allupsihtml($data)
+    {
+       $myhtml='';
+       for($i=0;$i<sizeof($data);$i++)
+       {
+          // print_r($data[$i]);exit;
+           $j=$i+1;
+            $myhtml.="<tr>";
+            $myhtml.="<td>".$j."</td>";
+            $myhtml.="<td>".$data[$i]['upsitype']."</td>";
+            $myhtml.="<td>".$data[$i]['projstartdate']."</td>";
+            $myhtml.="<td>".$data[$i]['enddate']."</td>";
+            $myhtml.="<td>".$data[$i][11]."</td>";
+            $myhtml.="<td>".$data[$i]['fullname']."</td>";
+            $myhtml.="</tr>";
+       }
+
+       // print_r($myhtml);exit;
+
+      $html="<!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+      </head>
+      <body>
+         <h5 style='text-align:center;'>Database of UPSI Shared</h5>
+         <table>
+            <tr>
+               <th>Sr No</th>
+               <th>Name Of Upsi</th>
+               <th>Project Start Date</th>
+               <th>Project End Date</th>
+               <th>Creation Date</th>
+               <th>Added By</th>
+            </tr>
+         ".$myhtml."
+         </table>
+        </body>
+      </html>";
+   
+       return $html;
     }
     
 

@@ -152,6 +152,58 @@ class AutomailerController extends ControllerBase
                 }
             /* ----- End Blackout Period (Trading Window) ----- */
                 
+                /*--- send UPSI trading window mail --*/
+                if($svl['qtypeid']=='5')
+                {
+                    $emailid = $svl['sendtoemail'];
+                    $username = $svl['sendtoname'];
+                    $usergrpid = $svl['user_group_id'];
+                    if(!empty($svl['maildata']))
+                    {
+                        $maildata = json_decode($svl['maildata'], true);
+                        //echo '<pre>'; print_r($maildata); exit;
+                        // ---
+                        if(isset($maildata['upsitype']))
+                        {   $upsitype = $maildata['upsitype'];    }
+                        else
+                        {   $upsitype = '';    }
+                        
+                        // ---
+                        if(isset($maildata['enddate']))
+                        {   $enddate = $maildata['enddate'];    }
+                        else
+                        {   $enddate = '';    }
+                        
+                        if(isset($maildata['nameaddedby']))
+                        {   $addedby = $maildata['nameaddedby'];    }
+                        else
+                        {   $addedby = '';    }
+                        
+                        if(isset($maildata['emaildate']))
+                        {   $emaildate = $maildata['emaildate'];    }
+                        else
+                        {   $emaildate = '';    }
+                        
+                        if(isset($maildata['projectstart']))
+                        {   $pstartdate = $maildata['projectstart'];    }
+                        else
+                        {   $pstartdate = '';    }
+                        
+                        
+                    }
+                    else
+                    {
+                        $upsitype = '';
+                        $enddate = '';
+                        $addedby = '';
+                        $emaildate = '';
+                        $pstartdate = '';
+                    }                    
+                    $today = date('d-m-Y');
+                    $result = $this->emailer->mailofupsitradingwindow($emailid,$username,$upsitype,$enddate,$addedby,$pstartdate,$emaildate);
+                    //echo '<pre>'; print_r($result); exit;
+                    
+                }
                 
                 if($result['logged']==true)
                 {
