@@ -28,10 +28,17 @@ class SensitiveinformationController extends ControllerBase
     {     
         $uid = $this->session->loginauthspuserfront['id'];
         $gmnlog = $this->session->loginauthspuserfront;
-        $this->view->upsitypes = $this->sensitiveinformationcommon->getallupsitypes($uid);
+        $upsiid = $this->session->upsitypeid;
+        $this->view->getupsiname = $this->sensitiveinformationcommon->fetchupsitype($upsiid);
     }
     
     public function archive_infosharingAction()
+    {
+        $uid = $this->session->loginauthspuserfront['id'];
+        $gmnlog = $this->session->loginauthspuserfront;
+    }
+    
+    public function upsi_infosharingAction()
     {
         $uid = $this->session->loginauthspuserfront['id'];
         $gmnlog = $this->session->loginauthspuserfront;
@@ -53,6 +60,11 @@ class SensitiveinformationController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $category   = $this->request->getPost('category','trim');
+                $othercate = '';
+                if($category == 16)
+                {
+                    $othercate = $this->request->getPost('othercategory','trim');
+                }
                 $entity   = $this->request->getPost('entity','trim');
                 $name   = $this->request->getPost('name','trim');
                 $identitynum   = $this->request->getPost('identitynum','trim');
@@ -104,7 +116,7 @@ class SensitiveinformationController extends ControllerBase
                         $agreemntfilepath = $upload_filepath;
                   }
                 //print_r($agreemntfilepath);exit;
-                  $getres = $this->sensitiveinformationcommon->insertrecipient($getuserid,$user_group_id,$category,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath);
+                  $getres = $this->sensitiveinformationcommon->insertrecipient($getuserid,$user_group_id,$category,$othercate,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath);
                     //echo "checking form data";print_r($getres); exit;      
                     if($getres)
                     {
@@ -242,6 +254,11 @@ class SensitiveinformationController extends ControllerBase
             {
                 //echo "checking form data";print_r($this->request->getPost()); exit;
                 $category   = $this->request->getPost('category','trim');
+                $othrcategory = '';
+                if($category == 16)
+                {
+                    $othrcategory = $this->request->getPost('othercategory','trim');
+                }
                 $entity   = $this->request->getPost('entity','trim');
                 $name   = $this->request->getPost('name','trim');
                 $identitynum   = $this->request->getPost('identitynum','trim');
@@ -307,7 +324,7 @@ class SensitiveinformationController extends ControllerBase
                 //print_r($agreemntfilepath);exit;
                 
                 
-                    $getres = $this->sensitiveinformationcommon->updaterecipient($getuserid,$user_group_id,$category,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$id);
+                    $getres = $this->sensitiveinformationcommon->updaterecipient($getuserid,$user_group_id,$category,$othrcategory,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$id);
                     
                     //echo "checking form data";print_r($getres); exit;      
                     if($getres)
@@ -400,10 +417,9 @@ class SensitiveinformationController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $name   = $this->request->getPost('name','trim');
-                $selectupsi   = $this->request->getPost('selectupsi','trim');
+                $upsitypeid   = $this->request->getPost('upsitypeid','trim');
                 $flag=0;
 
-              
                 $date   = $this->request->getPost('date','trim');
                 $date1 =  date("d-m-Y", strtotime($date));
                 $stdate=new DateTime($date);
@@ -411,22 +427,23 @@ class SensitiveinformationController extends ControllerBase
                 $enddate   = $this->request->getPost('enddate','trim');
                 $endchkdate= new DateTime($enddate);
                 $mytoday=new DateTime($todaydate);
-                  if(!empty($enddate))
-                  {
-                        if($endchkdate>$stdate && $mytoday>=$endchkdate)
-                        {
-                          $flag=0;
-                        }
-                        else
-                        {
-                          $flag=1;
-                        }
-                   }
+                if(!empty($enddate) )
+                {
+                    if($endchkdate>$stdate && $mytoday>=$endchkdate)
+                    {
+                        $flag=0;
+                    }
+                    else
+                    {
+                        $flag=1;
+                    }
+                }
 
                 $datashared   = $this->request->getPost('datashared','trim');
                 $purpose   = $this->request->getPost('purpose','trim');
                 $file   = $this->request->getPost('upload','trim');
                 $category   = $this->request->getPost('category','trim');
+                $recipientid   = $this->request->getPost('recid','trim');
                 $filepath = '';
                 //print_r($time);
                 if(empty($date))
@@ -454,51 +471,51 @@ class SensitiveinformationController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Time Cannot Exceed 24:59!!');
                     $this->response->setJsonContent($data);
                 }
-                else if($file)
-                {
-                    $data = array("logged" => false,'message' => 'Please select Attachment!!');
-                    $this->response->setJsonContent($data);
-                }
+//                else if($file)
+//                {
+//                    $data = array("logged" => false,'message' => 'Please select Attachment!!');
+//                    $this->response->setJsonContent($data);
+//                }
                 else
                 {
-                    if(!empty($_FILES["upload"]))
-                    {
-                            $userfile_name = $_FILES['upload']['name'];
-                            //echo $userfile_name;exit;
-                            $userfile_tmp = $_FILES['upload']['tmp_name'];
-                            $userfile_size = $_FILES['upload']['size'];
-                            $userfile_type = $_FILES['upload']['type'];
-                            $filename = basename($_FILES['upload']['name']);
-                            //echo $filename;exit;
-                            $filenm = explode('.', $filename);
-                            $filenms[] = $filenm[0];
-                            $file_ext = $this->validationcommon->getfileext($filename);
-                            // print_r($userfile_name);exit;
-
-                            $upload_path = $this->infoshareattachment."/";  
-                            //echo $upload_path;exit; 
-                            $large_imp_name = 'Uploadedby-'.$firstname.'_'.$lastname.'_userid-'.$getuserid.'_timeago-'.$timeago;
-                            $upload_filepath = $upload_path.$large_imp_name.".".$file_ext;
-                            $uploadedornot = move_uploaded_file($userfile_tmp, $upload_filepath);
-                            //-----------------Encrypt File------------------------//
-                              $content=file_get_contents($upload_filepath);
-                              $pdfencrypt=$upload_path.time().".pdf";
-                             
-                              $encrypt=$this->encryptdecryptcommon->getpdffileencrypt($content,$pdfencrypt);
-                              // echo $encrypt;
-                              // $decrypt=$this->encryptdecryptcommon->getdecrptedwordfile($encrypt);
-                              // echo $decrypt;
-
-                              if(isset($encrypt))
-                              {
-                                  unlink($upload_filepath);
-                              }
-
-                           //--------------------------------------------------------------------//
-                            $filepath = $encrypt;
-                        
-                    }
-                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$purpose,$filepath,$category,$selectupsi);
+//                    if(!empty($_FILES["upload"]))
+//                    {
+//                            $userfile_name = $_FILES['upload']['name'];
+//                            //echo $userfile_name;exit;
+//                            $userfile_tmp = $_FILES['upload']['tmp_name'];
+//                            $userfile_size = $_FILES['upload']['size'];
+//                            $userfile_type = $_FILES['upload']['type'];
+//                            $filename = basename($_FILES['upload']['name']);
+//                            //echo $filename;exit;
+//                            $filenm = explode('.', $filename);
+//                            $filenms[] = $filenm[0];
+//                            $file_ext = $this->validationcommon->getfileext($filename);
+//                            // print_r($userfile_name);exit;
+//
+//                            $upload_path = $this->infoshareattachment."/";  
+//                            //echo $upload_path;exit; 
+//                            $large_imp_name = 'Uploadedby-'.$firstname.'_'.$lastname.'_userid-'.$getuserid.'_timeago-'.$timeago;
+//                            $upload_filepath = $upload_path.$large_imp_name.".".$file_ext;
+//                            $uploadedornot = move_uploaded_file($userfile_tmp, $upload_filepath);
+//                            //-----------------Encrypt File------------------------//
+//                              $content=file_get_contents($upload_filepath);
+//                              $pdfencrypt=$upload_path.time().".pdf";
+//                             
+//                              $encrypt=$this->encryptdecryptcommon->getpdffileencrypt($content,$pdfencrypt);
+//                              // echo $encrypt;
+//                              // $decrypt=$this->encryptdecryptcommon->getdecrptedwordfile($encrypt);
+//                              // echo $decrypt;
+//
+//                              if(isset($encrypt))
+//                              {
+//                                  unlink($upload_filepath);
+//                              }
+//
+//                           //--------------------------------------------------------------------//
+//                            $filepath = $encrypt;
+//                        
+//                    }
+                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$purpose,$category,$upsitypeid,$recipientid);
                     
                   if($getres)
                     {
@@ -617,8 +634,9 @@ class SensitiveinformationController extends ControllerBase
             {
                 $noofrows=$this->request->getPost('noofrows');
                 $pagenum=$this->request->getPost('pagenum');
+                $upsitypeid = $this->request->getPost('upsitypeid');
                 $mainquery = '';
-                $getres = $this->sensitiveinformationcommon->fetchinfosharing($getuserid,$user_group_id,$mainquery);
+                $getres = $this->sensitiveinformationcommon->fetchinfosharing($getuserid,$user_group_id,$upsitypeid,$mainquery);
                 /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
                 $rslmt =' LIMIT '.$rsstrt.','.$noofrows;
@@ -627,7 +645,7 @@ class SensitiveinformationController extends ControllerBase
                 $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
                 $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
                 
-                $getres = $this->sensitiveinformationcommon->fetchinfosharing($getuserid,$user_group_id,$rslmt);
+                $getres = $this->sensitiveinformationcommon->fetchinfosharing($getuserid,$user_group_id,$upsitypeid,$rslmt);
                 $getaccess =$this->adminmodulecommon->gatallaccessdetails($getuserid);
                 //print_r($getres);exit;
                 if($getres)
@@ -1168,5 +1186,111 @@ class SensitiveinformationController extends ControllerBase
     //     }
     // }
     // **************************** infosharing fetch for Archive table end***************************
+    
+     // ------------- UPSI TYPE fetch START
+    public function fetchupsiinfoAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $noofrows = $this->request->getPost('noofrows');
+                $pagenum = $this->request->getPost('pagenum');
+                $mainquery = '';
+                
+                $getres = $this->sensitiveinformationcommon->fetchupsiinfo($getuserid,$user_group_id,'',$mainquery);
+                
+                /* start pagination */
+                $rsstrt = ($pagenum-1) * $noofrows;
+                $rslmt =' LIMIT '.$rsstrt.','.$noofrows;
+                $rscnt=count($getres);
+                $rspgs = ceil($rscnt/$noofrows);
+                $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                
+                 $getresult = $this->sensitiveinformationcommon->fetchupsiinfo($getuserid,$user_group_id,'',$rslmt);
+              
+                if($getresult)
+                {
+                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres,'user_group_id'=>$user_group_id,"pgnhtml"=>$pgnhtml);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "Record Not Added..!!","pgnhtml"=>$pgnhtml);
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+        
+    }
+    // ------------- UPSI TYPE fetch END 
+    
+    /* ----------- SET SESSION of UpsiTypeID start -----------*/
+    public function upsiidSETsessionAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {   
+                $upsitypeid = $this->request->getPost('upsitypeid');                             
+                //echo $upsitypeid; exit;
+                if(!empty($upsitypeid))
+                {
+                    // ----------- userid_session Start -----------
+                    $upsitypeid = $this->session->set('upsitypeid',$upsitypeid);
+                    $upsitypeid =  $this->session->upsitypeid; 
+                    // ----------- userid_session End -----------
+                    
+                }
+                //echo "<pre>";print_r($this->session->userid);exit;
+              
+                if(!empty($upsitypeid))
+                {
+                    $data = array("logged" => true, 'message' => 'Session SET');
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false, 'message' => "Session Not SET");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+    /* ----------- SET SESSION of UpsiTypeID end -----------*/
     
 }

@@ -340,6 +340,7 @@ function draftreq()
                     styling: 'bootstrap3',
                     addclass: 'dark ',
                 }); 
+                setTimeout(function(){window.location.reload();}, 1000);
             }
             else
             {    
@@ -401,6 +402,7 @@ website('body').on('click','#Yesreqst',function(e)
                     styling: 'bootstrap3',
                     addclass: 'dark ',
             }); 
+             setTimeout(function(){window.location.reload();}, 1000);
               
          }
          else
@@ -417,7 +419,7 @@ website('body').on('click','#Yesreqst',function(e)
         complete: function(response) 
     { 
         website('.preloder_wraper').fadeOut(); 
-        window.location.reload();
+        //window.location.reload();
      },
     error: function() 
     {   }
@@ -751,7 +753,7 @@ function getalltradingrequest(url_status)
             }
             else
             {
-                addhtmlnxt += '<td colspan="13" style="text-align:center;"> No Data Found..!!!</td>';
+                addhtmlnxt += '<tr><td colspan="13" style="text-align:center;"> No Data Found..!!!</td></tr>';
             }
 
             website(".reqtable").html(addhtmlnxt);

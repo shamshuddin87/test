@@ -11,16 +11,14 @@ website(document).ready(function()
 {getdataonload();});website('body').on('click','.paginationmn li',function(e)
 {var rscrntpg=website(this).attr('p');website('.panel.panel-white #pagenum').val(rscrntpg);getdataonload();});website('body').on('click','.go_button',function(e)
 {var rscrntpg=website('.gotobtn').val();website('.panel.panel-white #pagenum').val(rscrntpg);getdataonload();});function getdataonload()
-{var noofrows=website('#noofrows').val();var pagenum=website('#pagenum').val();var formdata={noofrows:noofrows,pagenum:pagenum};website.ajax({url:'sensitiveinformation/fetchinfosharing',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{var upsitypeid=website('#upsitypeid').val();var noofrows=website('#noofrows').val();var pagenum=website('#pagenum').val();var formdata={noofrows:noofrows,pagenum:pagenum,upsitypeid:upsitypeid};website.ajax({url:'sensitiveinformation/fetchinfosharing',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {var addhtmlnxt='';for(var i=0;i<response.resdta.length;i++)
-{var category=response.resdta[i].category_name?response.resdta[i].category_name:'';var enddate=response.resdta[i].enddate?response.resdta[i].enddate:'';var datefrom=response.resdta[i].sharingdate;var upsiname=response.resdta[i].upsiname;var time=response.resdta[i].sharingtime?response.resdta[i].sharingtime:'';var newtime=time.replace(/:[^:]*$/,'');addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="10%">'+response.resdta[i].name+'</td>';addhtmlnxt+='<td width="10%">'+category+'</td>';addhtmlnxt+='<td width="10%">'+datefrom+'</td>';addhtmlnxt+='<td width="5%">'+newtime+'</td>';addhtmlnxt+='<td width="10%">'+enddate+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].datashared+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].purpose+'</td>';addhtmlnxt+='<td width="10%">'+upsiname+'</td>';if(response.resdta[i].filepath)
-{addhtmlnxt+='<td width="10%"><i class="fa fa-download getfile" filepath="'+response.resdta[i].filepath+'" d="uploadattached1" aria-hidden="true"></i></td>';}
-else
-{addhtmlnxt+='<td width="10%"></td>';}
-addhtmlnxt+='<td width="5%"><i class="fa fa-bar-chart viewtrail" infoshrid="'+response.resdta[i].id+'"></i></td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].fullname+'</td>';addhtmlnxt+='<td width="25%">';if(response.getaccess[0].upsi_infoshare_delete==1)
+{var category=response.resdta[i].category_name?response.resdta[i].category_name:'';var enddate=response.resdta[i].enddate?response.resdta[i].enddate:'';var datefrom=response.resdta[i].sharingdate;var upsiname=response.resdta[i].upsiname;var time=response.resdta[i].sharingtime?response.resdta[i].sharingtime:'';var newtime=time.replace(/:[^:]*$/,'');addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="10%">'+response.resdta[i].name+'</td>';if(response.resdta[i].category==16)
+{category=response.resdta[i].othercategory?response.resdta[i].othercategory:'';}
+addhtmlnxt+='<td width="10%">'+category+'</td>';addhtmlnxt+='<td width="10%">'+datefrom+'</td>';addhtmlnxt+='<td width="5%">'+newtime+'</td>';addhtmlnxt+='<td width="10%">'+enddate+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].datashared+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].purpose+'</td>';addhtmlnxt+='<td width="10%">'+upsiname+'</td>';addhtmlnxt+='<td width="5%"><i class="fa fa-bar-chart viewtrail" infoshrid="'+response.resdta[i].id+'"></i></td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].fullname+'</td>';addhtmlnxt+='<td width="25%">';if(response.getaccess[0].upsi_infoshare_delete==1)
 {addhtmlnxt+='<i class="fa fa-trash-o faicon floatleft deleterestrictedcmp" title="Delete entry" aprvllistid="'+response.resdta[i].id+'" ></i>';}
 else
 {addhtmlnxt+='';}
@@ -30,20 +28,20 @@ addhtmlnxt+='</td>';addhtmlnxt+='</tr>';}
 if(response.getaccess[0].upsi_infoshare_add==1)
 {website('.formelementmain').css('display','block');}
 else
-{website('.formelementmain').css('display','none');new PNotify({title:'You Do Not Have Access To Add Info Sharing',text:"Please Contact To Your Admin",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+{website('.formelementmain').css('display','none');website('#alertcommon #allalertmsg').html("You Do Not Have Access To Add Info Sharing");website('#alertcommon').modal('show');}
 if(response.getaccess[0].upsi_infoshare_view==1)
 {website('.table-responsive.table_wraper ').css('display','block');website('.appendrow').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);}
 else
-{website('.table-responsive.table_wraper ').css('display','none');new PNotify({title:'You Do Not Have Access To View This Section',text:"Please Contact To Your Admin",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}
+{website('.table-responsive.table_wraper ').css('display','none');website('#alertcommon #allalertmsg').html("You Do Not Have Access To View This Section");website('#alertcommon').modal('show');}}
 else
 {if(response.getaccess[0].upsi_infoshare_add==1)
 {website('.formelementmain').css('display','block');}
 else
-{website('.formelementmain').css('display','none');new PNotify({title:'You Do Not Have Access To Add Info Sharing',text:"Please Contact To Your Admin",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+{website('.formelementmain').css('display','none');website('#alertcommon #allalertmsg').html("You Do Not Have Access To Add Info Sharing");website('#alertcommon').modal('show');}
 if(response.getaccess[0].upsi_infoshare_view==1)
 {website('.table-responsive.table_wraper ').css('display','block');website('.appendrow').html('<tr><td style="text-align:center;" colspan="14">Data Not Found!!!!</td></tr>');website('.paginationmn').html(response.pgnhtml);}
 else
-{website('.table-responsive.table_wraper ').css('display','none');new PNotify({title:'You Do Not Have Access To View This Section',text:"Please Contact To Your Admin",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}},complete:function(response)
+{website('.table-responsive.table_wraper ').css('display','none');website('#alertcommon #allalertmsg').html("You Do Not Have Access To View This Section");website('#alertcommon').modal('show');}}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});}
 website('body').on('click','.editrestrictedcmp',function(){var id=website(this).attr('aprvllistid');var formdata={id:id};website.ajax({url:'sensitiveinformation/fetchinfosharingforedit',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
@@ -131,7 +129,7 @@ else
 website("#Mymodaledit .mainprogressbarforall .progress .progress-bar").width('100%');},complete:function(response)
 {website('#Mymodaledit .search-row').fadeIn();website("#Mymodaledit .mainprogressbarforall .progress .progress-bar").fadeOut();},error:function(jqXHR,textStatus,errorThrown)
 {}});}}
-website('body').on('click','.validatorsid',function(e){var recid=website(this).attr('id');var name=website(this).attr('name');var cate=website(this).attr('category');website('#insertinfosharing #search-box').val(name);website('#search-box').attr('recid',recid);website('#search-box').attr('name',name);website('#insertinfosharing #recid').val(recid);website('#insertinfosharing #category').val(cate);website('#live-search-header-wrapper').fadeOut();website('#insertinfosharing #name').val(name);website('#validators').attr('recid',recid);website('#validators').attr('name',name);});website('body').on('click','#Mymodaledit .validatorsid',function(e){var recid=website(this).attr('id');var name=website(this).attr('name');var cate=website(this).attr('category');website('#updateinfosharing #search-box').val(name);website('#Mymodaledit #search-box').attr('recid',recid);website('#Mymodaledit #search-box').attr('name',name);website('#Mymodaledit #live-search-header-wrapper').fadeOut();website('#updateinfosharing #recid').val(recid);website('#updateinfosharing #category').val(cate);website('#updateinfosharing #name').val(name);website('#Mymodaledit #validators').attr('recid',recid);website('#Mymodaledit #validators').attr('name',name);});website(function(){});website(".time_of_data").inputmask();website('body').on("click",".viewtrail",function(e){var infoid=website(this).attr('infoshrid');var formdata={infoid:infoid}
+website('body').on('click','.validatorsid',function(e){var recid=website(this).attr('rec_id');var name=website(this).attr('name');var cate=website(this).attr('category');website('#insertinfosharing #search-box').val(name);website('#search-box').attr('recid',recid);website('#search-box').attr('recname',name);website('#insertinfosharing #recid').val(recid);website('#insertinfosharing #category').val(cate);website('#live-search-header-wrapper').fadeOut();website('#insertinfosharing #name').val(name);website('#validators').attr('recid',recid);website('#validators').attr('recname',name);});website('body').on('click','#Mymodaledit .validatorsid',function(e){var recid=website(this).attr('rec_id');var name=website(this).attr('name');var cate=website(this).attr('category');website('#updateinfosharing #search-box').val(name);website('#Mymodaledit #search-box').attr('recid',recid);website('#Mymodaledit #search-box').attr('recname',name);website('#Mymodaledit #live-search-header-wrapper').fadeOut();website('#updateinfosharing #recid').val(recid);website('#updateinfosharing #category').val(cate);website('#updateinfosharing #name').val(name);website('#Mymodaledit #validators').attr('recid',recid);website('#Mymodaledit #validators').attr('recname',name);});website(function(){});website(".time_of_data").inputmask();website('body').on("click",".viewtrail",function(e){var infoid=website(this).attr('infoshrid');var formdata={infoid:infoid}
 website.ajax({url:'sensitiveinformation/fetchinfotrail',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)

@@ -43,7 +43,7 @@ else
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{website('#Mymodalreq').modal('hide');getalltradingrequest("");new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+{website('#Mymodalreq').modal('hide');getalltradingrequest("");new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});setTimeout(function(){window.location.reload();},1000);}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
@@ -53,10 +53,10 @@ website('body').on('click','#Yesreqst',function(e)
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});setTimeout(function(){window.location.reload();},1000);}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
-{website('.preloder_wraper').fadeOut();window.location.reload();},error:function()
+{website('.preloder_wraper').fadeOut();},error:function()
 {}});});website('#uploadtrade').ajaxForm({dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
@@ -127,7 +127,7 @@ else
 {addhtmlnxt+='<td>';addhtmlnxt+='<i class="fa fa-edit editper" pereditid="'+response.data[i].id+'" style="font-size:15px;"></i>';addhtmlnxt+='<i class="fa fa-trash-o delreq" perdelid="'+response.data[i].id+'" style="font-size:15px; color:#F44336;"></i>';addhtmlnxt+='</td>';}
 addhtmlnxt+='</tr>';}}
 else
-{addhtmlnxt+='<td colspan="13" style="text-align:center;"> No Data Found..!!!</td>';}
+{addhtmlnxt+='<tr><td colspan="13" style="text-align:center;"> No Data Found..!!!</td></tr>';}
 website(".reqtable").html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
 {}});}

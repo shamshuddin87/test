@@ -84,9 +84,10 @@ website('body').on('click','.go_button', function(e)
 
 function getdataonload()
 {
+    var upsitypeid = website('#upsitypeid').val(); 
     var noofrows = website('#noofrows').val(); 
     var pagenum = website('#pagenum').val();
-    var formdata = {noofrows:noofrows,pagenum:pagenum};
+    var formdata = {noofrows:noofrows,pagenum:pagenum,upsitypeid:upsitypeid};
     website.ajax({
       url:'sensitiveinformation/fetchinfosharing',
       data:formdata,
@@ -106,7 +107,7 @@ function getdataonload()
         if(response.logged===true)
         {
             
-          // console.log(response.getaccess[0].upsi_infoshare_delete); 
+          //console.log(response.resdta); 
           var addhtmlnxt='';
             
         for(var i = 0; i < response.resdta.length; i++) 
@@ -119,16 +120,14 @@ function getdataonload()
              // alert(upsitype);
             var time = response.resdta[i].sharingtime?response.resdta[i].sharingtime:'';
             var newtime = time.replace(/:[^:]*$/,'');
-//            datefrom = datefrom.split(' ')[0];
-//            dtfrmtfrom = datefrom.split("-"); 
-//            dtfrmtspacefrom = datefrom.split(" ");                    
-//            ddmmyyfrom = dtfrmtspacefrom[0];
-//            dtfrmtfrom = dtfrmtspacefrom[0].split("-");
-//            ddmmyyfrom = dtfrmtfrom[2]+'-'+dtfrmtfrom[1]+'-'+dtfrmtfrom[0];
 
 //            //------------------------- Table Fields Insertion START ------------------------
             addhtmlnxt += '<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';
             addhtmlnxt += '<td width="10%">'+response.resdta[i].name+'</td>';
+            if(response.resdta[i].category == 16)
+            {
+                category = response.resdta[i].othercategory?response.resdta[i].othercategory:'';
+            }
             addhtmlnxt += '<td width="10%">'+category+'</td>';
             addhtmlnxt += '<td width="10%">'+datefrom+'</td>';
             addhtmlnxt += '<td width="5%">'+newtime+'</td>';
@@ -136,14 +135,14 @@ function getdataonload()
             addhtmlnxt += '<td width="10%">'+response.resdta[i].datashared+'</td>';
             addhtmlnxt += '<td width="10%">'+response.resdta[i].purpose+'</td>';
             addhtmlnxt += '<td width="10%">'+upsiname+'</td>';
-            if(response.resdta[i].filepath)
-            {
-                addhtmlnxt += '<td width="10%"><i class="fa fa-download getfile" filepath="'+response.resdta[i].filepath+'" d="uploadattached1" aria-hidden="true"></i></td>';
-            }
-            else
-            {
-                addhtmlnxt += '<td width="10%"></td>';
-            }
+//            if(response.resdta[i].filepath)
+//            {
+//                addhtmlnxt += '<td width="10%"><i class="fa fa-download getfile" filepath="'+response.resdta[i].filepath+'" d="uploadattached1" aria-hidden="true"></i></td>';
+//            }
+//            else
+//            {
+//                addhtmlnxt += '<td width="10%"></td>';
+//            }
             addhtmlnxt += '<td width="5%"><i class="fa fa-bar-chart viewtrail" infoshrid="'+response.resdta[i].id+'"></i></td>';
             addhtmlnxt += '<td width="10%">'+response.resdta[i].fullname+'</td>';
             addhtmlnxt += '<td width="25%">';
@@ -180,13 +179,16 @@ function getdataonload()
 	              {
 	              	    // alert();
 	                    website('.formelementmain').css('display','none');
-                         new PNotify({title: 'You Do Not Have Access To Add Info Sharing',
-                          text:"Please Contact To Your Admin",
-                          type: 'university',
-                          hide: true,
-                          styling: 'bootstrap3',
-                          addclass: 'dark ',
-                        });
+                        
+                        //  new PNotify({title: 'You Do Not Have Access To Add Info Sharing',
+                        //   text:"Please Contact To Your Admin",
+                        //   type: 'university',
+                        //   hide: true,
+                        //   styling: 'bootstrap3',
+                        //   addclass: 'dark ',
+                        // });
+                          website('#alertcommon #allalertmsg').html("You Do Not Have Access To Add Info Sharing");
+                          website('#alertcommon').modal('show');
 	              }      
 
 	                if(response.getaccess[0].upsi_infoshare_view==1)
@@ -201,13 +203,15 @@ function getdataonload()
 	              	    // alert();
 	                    website('.table-responsive.table_wraper ').css('display','none');
 
-                          new PNotify({title: 'You Do Not Have Access To View This Section',
-                          text:"Please Contact To Your Admin",
-                          type: 'university',
-                          hide: true,
-                          styling: 'bootstrap3',
-                          addclass: 'dark ',
-                        });
+                        //   new PNotify({title: 'You Do Not Have Access To View This Section',
+                        //   text:"Please Contact To Your Admin",
+                        //   type: 'university',
+                        //   hide: true,
+                        //   styling: 'bootstrap3',
+                        //   addclass: 'dark ',
+                        // });
+                         website('#alertcommon #allalertmsg').html("You Do Not Have Access To View This Section");
+                         website('#alertcommon').modal('show');
 	              }      
 	        
 	//        website('#datableabhi').DataTable();
@@ -225,13 +229,15 @@ function getdataonload()
 	              	    // alert();
 	                    website('.formelementmain').css('display','none');
                       
-                         new PNotify({title: 'You Do Not Have Access To Add Info Sharing',
-                          text:"Please Contact To Your Admin",
-                          type: 'university',
-                          hide: true,
-                          styling: 'bootstrap3',
-                          addclass: 'dark ',
-                        });
+                        //  new PNotify({title: 'You Do Not Have Access To Add Info Sharing',
+                        //   text:"Please Contact To Your Admin",
+                        //   type: 'university',
+                        //   hide: true,
+                        //   styling: 'bootstrap3',
+                        //   addclass: 'dark ',
+                        // });
+                        website('#alertcommon #allalertmsg').html("You Do Not Have Access To Add Info Sharing");
+                        website('#alertcommon').modal('show');
 	              }      
 
 	              if(response.getaccess[0].upsi_infoshare_view==1)
@@ -244,13 +250,15 @@ function getdataonload()
 	              {
 	                    website('.table-responsive.table_wraper ').css('display','none');
 
-                         new PNotify({title: 'You Do Not Have Access To View This Section',
-                          text:"Please Contact To Your Admin",
-                          type: 'university',
-                          hide: true,
-                          styling: 'bootstrap3',
-                          addclass: 'dark ',
-                        });
+                        //  new PNotify({title: 'You Do Not Have Access To View This Section',
+                        //   text:"Please Contact To Your Admin",
+                        //   type: 'university',
+                        //   hide: true,
+                        //   styling: 'bootstrap3',
+                        //   addclass: 'dark ',
+                        // });
+                        website('#alertcommon #allalertmsg').html("You Do Not Have Access To View This Section");
+                        website('#alertcommon').modal('show');
 	              }       
       
       }
@@ -757,32 +765,32 @@ function doSearchforedit(getvalue)
 
     website('body').on('click','.validatorsid',function(e){
    
-       var recid = website(this).attr('id');
+       var recid = website(this).attr('rec_id');
        var name = website(this).attr('name');
        var cate = website(this).attr('category');
         
        website('#insertinfosharing #search-box').val(name);
        website('#search-box').attr('recid',recid);
-       website('#search-box').attr('name',name);
+       website('#search-box').attr('recname',name);
        website('#insertinfosharing #recid').val(recid);
        website('#insertinfosharing #category').val(cate);
        website('#live-search-header-wrapper').fadeOut();       
        
        website('#insertinfosharing #name').val(name);
        website('#validators').attr('recid',recid);
-       website('#validators').attr('name',name);
+       website('#validators').attr('recname',name);
     });
 
 
     website('body').on('click','#Mymodaledit .validatorsid',function(e){
    
-       var recid = website(this).attr('id');
+       var recid = website(this).attr('rec_id');
        var name = website(this).attr('name');
        var cate = website(this).attr('category');
        //alert(fullname);
        website('#updateinfosharing #search-box').val(name);
        website('#Mymodaledit #search-box').attr('recid',recid);
-       website('#Mymodaledit #search-box').attr('name',name);
+       website('#Mymodaledit #search-box').attr('recname',name);
 
        website('#Mymodaledit #live-search-header-wrapper').fadeOut();       
        
@@ -790,7 +798,7 @@ function doSearchforedit(getvalue)
        website('#updateinfosharing #category').val(cate);
        website('#updateinfosharing #name').val(name);
        website('#Mymodaledit #validators').attr('recid',recid);
-       website('#Mymodaledit #validators').attr('name',name);
+       website('#Mymodaledit #validators').attr('recname',name);
     });
 
     website(function() {

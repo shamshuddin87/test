@@ -15,7 +15,11 @@ website(document).ready(function()
 {var addhtmlnxt='';for(var i=0;i<response.resdta.length;i++)
 {var mobileno=response.resdta[i].mobileno?response.resdta[i].mobileno:''
 var email=response.resdta[i].email?response.resdta[i].email:''
-addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td>'+response.resdta[i].categoryname+'</td>';addhtmlnxt+='<td>'+response.resdta[i].nameofentity+'</td>';addhtmlnxt+='<td>'+response.resdta[i].name+'</td>';addhtmlnxt+='<td>'+response.resdta[i].identityno+'</td>';addhtmlnxt+='<td>'+response.resdta[i].phoneno+'</td>';addhtmlnxt+='<td>'+mobileno+'</td>';addhtmlnxt+='<td>'+response.resdta[i].designation+'</td>';addhtmlnxt+='<td>'+email+'</td>';if(response.resdta[i].filepath)
+addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';if(response.resdta[i].category==16)
+{var category=response.resdta[i].othercategory?response.resdta[i].othercategory:'';}
+else
+{var category=response.resdta[i].categoryname?response.resdta[i].categoryname:'';}
+addhtmlnxt+='<td>'+category+'</td>';addhtmlnxt+='<td>'+response.resdta[i].nameofentity+'</td>';addhtmlnxt+='<td>'+response.resdta[i].name+'</td>';addhtmlnxt+='<td>'+response.resdta[i].identityno+'</td>';addhtmlnxt+='<td>'+response.resdta[i].phoneno+'</td>';addhtmlnxt+='<td>'+mobileno+'</td>';addhtmlnxt+='<td>'+response.resdta[i].designation+'</td>';addhtmlnxt+='<td>'+email+'</td>';if(response.resdta[i].filepath)
 {addhtmlnxt+='<td><a href="'+response.resdta[i].filepath+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';}
 else
 {addhtmlnxt+='<td></td>';}
@@ -56,7 +60,11 @@ website('body').on('click','.editrestrictedcmp',function(){var id=website(this).
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{var appendhtml='';website("#Mymodaledit #category").val(response.data['0'].category);website("#Mymodaledit #entity").val(response.data['0'].nameofentity);website("#Mymodaledit #name").val(response.data['0'].name);website("#Mymodaledit #identitynum").val(response.data['0'].identityno);website("#Mymodaledit #phonenum").val(response.data['0'].phoneno);website("#Mymodaledit #mobilenum").val(response.data['0'].mobileno);website("#Mymodaledit #designation").val(response.data['0'].designation);website("#Mymodaledit #email").val(response.data['0'].email);website('#updaterecipient #tempid').val(id);website('#updaterecipient #confiagrmnt').val(response.data['0'].agreemntfile);website('#updaterecipient #identityfile').val(response.data['0'].filepath);website('#Mymodaledit').modal('show');}
+{var appendhtml='';website("#Mymodaledit #category").val(response.data['0'].category);if(response.data['0'].category==16)
+{var html='<section class="col col-md-6 col-xs-6"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';website('#Mymodaledit .othercateedit').html(html);website("#Mymodaledit #othercategory").val(response.data['0'].othercategory);}
+else
+{website('#Mymodaledit .othercateedit').css('display','none');website('#Mymodaledit #othercategory').removeAttr('required');}
+website("#Mymodaledit #entity").val(response.data['0'].nameofentity);website("#Mymodaledit #name").val(response.data['0'].name);website("#Mymodaledit #identitynum").val(response.data['0'].identityno);website("#Mymodaledit #phonenum").val(response.data['0'].phoneno);website("#Mymodaledit #mobilenum").val(response.data['0'].mobileno);website("#Mymodaledit #designation").val(response.data['0'].designation);website("#Mymodaledit #email").val(response.data['0'].email);website('#updaterecipient #tempid').val(id);website('#updaterecipient #confiagrmnt').val(response.data['0'].agreemntfile);website('#updaterecipient #identityfile').val(response.data['0'].filepath);website('#Mymodaledit').modal('show');}
 else
 {website('.appendrowwaprvl').html('');}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
@@ -76,7 +84,13 @@ else
 else
 {new PNotify({title:'Record Not Deleted',text:'Record Not Updated',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('#myModalyesno .mainprogressbarforall').fadeOut();},error:function()
-{}});});function numberalphOnly()
+{}});});website('body').on('change','#category',function(){var id=website(this).val();if(id==16)
+{website('#insertrecipient .othercate').css('display','block');var html='<section class="col col-md-4 col-xs-12"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';website('#insertrecipient .othercate').html(html);}
+else
+{website('#insertrecipient .othercate').css('display','none');website('#insertrecipient #othercategory').removeAttr('required');}});website('body').on('change','#Mymodaledit #category',function(){var id=website(this).val();if(id==16)
+{website('#Mymodaledit .othercateedit').css('display','block');var html='<section class="col col-md-8 col-xs-8"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';website('#Mymodaledit .othercateedit').html(html);}
+else
+{website('#Mymodaledit .othercateedit').css('display','none');website('#Mymodaledit #othercategory').removeAttr('required');}});function numberalphOnly()
 {var charCode=event.keyCode;if((charCode>47&&charCode<58)||charCode==32||(charCode>64&&charCode<91)||(charCode>96&&charCode<123)||charCode==8||charCode==44||charCode==40||charCode==41||charCode==46||charCode==47)
 return true;else
 return false;}

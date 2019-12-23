@@ -137,6 +137,73 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         }
     }
     /*************   insert into ESOP end *************/
-    
+    public function fetchallupsiexportexcel($getuserid,$user_group_id,$processdata)
+    {
+
+         //echo '<pre>'; print_r($processdata);exit;
+        $connection = $this->db;
+        $time = time();
+        
+        $excelfilenamepath = 'samplefile/MIS/upsitypeclassify.xlsx';
+        $newfilepath = 'img/mis/upsitypeclassify'.'_'.$time.'.xlsx';
+        $j=1;
+        foreach($processdata as $tblrow)
+        {
+          
+          
+            $nwexcl[] = array('0' => $tblrow['upsitype'],
+                            '1' => $tblrow['projstartdate'],
+                            '2'=> $tblrow['enddate'],
+                            '3' => $tblrow[11],
+                            '4' => $tblrow['fullname']
+                            //'4' => $tblrow['designation']
+                           
+                        );
+            $j++;
+        }
+        //echo '<pre>';print_r($nwexcl);exit;
+       
+        $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+        
+        $objPHPExcel->setActiveSheetIndex(0);
+        $worksheet = $objPHPExcel->getActiveSheet();
+        $highestColumn = $worksheet->getHighestColumn();
+        $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
+        $highestRow = $worksheet->getHighestRow();
+        $worksheet = $objPHPExcel->getActiveSheet();
+               //echo "yo";exit;  
+            //echo '<pre>';print_r($nwexcl);exit;
+            if(count($nwexcl)>0)
+            {
+                $row = 2; // 1-based index
+
+                foreach($nwexcl as $rowdata)
+                {
+                    $col = 0;
+                    foreach($rowdata as $key=>$value) 
+                    {
+                        //echo $col." ".$row." ".$value.'<br>';
+                        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+                        $col++;
+                    }                    
+                    $row++;
+                }
+
+                $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+                //echo '<pre>';print_r($newfilepath);exit;
+                $objWriter->save($newfilepath);
+                //echo $newfilepath;exit;
+
+                $genfile = $newfilepath;
+            }
+            else
+            {
+                $genfile = '';
+            }
+
+        //echo '<pre>';print_r($genfile);exit;
+        return $genfile;
+
+    }
 
 }

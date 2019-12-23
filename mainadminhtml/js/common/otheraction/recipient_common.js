@@ -93,7 +93,15 @@ function getdataonload()
             var mobileno = response.resdta[i].mobileno?response.resdta[i].mobileno:''
             var email = response.resdta[i].email?response.resdta[i].email:''
             addhtmlnxt += '<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';
-            addhtmlnxt += '<td>'+response.resdta[i].categoryname+'</td>';
+            if(response.resdta[i].category == 16)
+            {
+                var category = response.resdta[i].othercategory?response.resdta[i].othercategory:'';
+            }
+            else
+            {
+                var category = response.resdta[i].categoryname?response.resdta[i].categoryname:'';
+            }
+            addhtmlnxt += '<td>'+category+'</td>';
             addhtmlnxt += '<td>'+response.resdta[i].nameofentity+'</td>';
             addhtmlnxt += '<td>'+response.resdta[i].name+'</td>';
             addhtmlnxt += '<td>'+response.resdta[i].identityno+'</td>';
@@ -255,6 +263,17 @@ var id = website(this).attr('aprvllistid');
             var appendhtml= '';  
             
             website("#Mymodaledit #category").val(response.data['0'].category);
+            if(response.data['0'].category == 16)
+            {
+                   var html = '<section class="col col-md-6 col-xs-6"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
+                   website('#Mymodaledit .othercateedit').html(html);
+                   website("#Mymodaledit #othercategory").val(response.data['0'].othercategory);
+            }
+            else
+            {
+                    website('#Mymodaledit .othercateedit').css('display','none');
+                    website('#Mymodaledit #othercategory').removeAttr('required');
+            }
             website("#Mymodaledit #entity").val(response.data['0'].nameofentity);
             website("#Mymodaledit #name").val(response.data['0'].name);
             website("#Mymodaledit #identitynum").val(response.data['0'].identityno);
@@ -390,6 +409,36 @@ website('body').on('click','.yesconfirm', function(){
         error: function() 
         {   }
     });
+});
+
+website('body').on('change','#category',function(){
+    var id = website(this).val();
+    if(id == 16)
+    {
+        website('#insertrecipient .othercate').css('display','block');
+        var html = '<section class="col col-md-4 col-xs-12"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
+        website('#insertrecipient .othercate').html(html);
+    }
+    else
+    {
+        website('#insertrecipient .othercate').css('display','none');
+        website('#insertrecipient #othercategory').removeAttr('required');
+    }
+});
+
+website('body').on('change','#Mymodaledit #category',function(){
+    var id = website(this).val();
+    if(id == 16)
+    {
+        website('#Mymodaledit .othercateedit').css('display','block');
+        var html = '<section class="col col-md-8 col-xs-8"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
+        website('#Mymodaledit .othercateedit').html(html);
+    }
+    else
+    {
+        website('#Mymodaledit .othercateedit').css('display','none');
+        website('#Mymodaledit #othercategory').removeAttr('required');
+    }
 });
 
 function numberalphOnly() 

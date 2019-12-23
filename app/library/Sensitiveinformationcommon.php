@@ -38,12 +38,12 @@ class Sensitiveinformationcommon extends Component
     }
     
        // **************************** recipient insert ***************************
-    public function insertrecipient($getuserid,$user_group_id,$category,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath)
+    public function insertrecipient($getuserid,$user_group_id,$category,$othercate,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath)
     {
         $connection = $this->dbtrd; 
         $time = time();
-           $queryinsert = "INSERT INTO `sensitiveinfo_recipient`(`user_id`,`user_group_id`,`category`,`nameofentity`, `name`, `identityno`, `phoneno`, `mobileno`, `designation`, `email`, `filepath`,`agreemntfile`,`date_added`, `date_modified`,`timeago`)
-         VALUES ('".$getuserid."','".$user_group_id."','".$category."','".$entity."','".$name."','".$identitynum."','".$phonenum."','".$mobilenum."','".$designation."','".$email."','".$filepath."','".$agreemntfilepath."',NOW(),NOW(),'".$time."')"; 
+           $queryinsert = "INSERT INTO `sensitiveinfo_recipient`(`user_id`,`user_group_id`,`category`,`othercategory`,`nameofentity`, `name`, `identityno`, `phoneno`, `mobileno`, `designation`, `email`, `filepath`,`agreemntfile`,`date_added`, `date_modified`,`timeago`)
+         VALUES ('".$getuserid."','".$user_group_id."','".$category."','".$othercate."','".$entity."','".$name."','".$identitynum."','".$phonenum."','".$mobilenum."','".$designation."','".$email."','".$filepath."','".$agreemntfilepath."',NOW(),NOW(),'".$time."')"; 
         //print_r($queryinsert);exit;
         try
         {
@@ -141,14 +141,15 @@ class Sensitiveinformationcommon extends Component
     }
     
     // **************************** recipient update ***************************
-    public function updaterecipient($getuserid,$user_group_id,$category,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$id)
+    public function updaterecipient($getuserid,$user_group_id,$category,$othrcategory,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$id)
     {
         $connection = $this->dbtrd;
         $time = time();
         //print_r($frmdta['startdate']);exit;
         
         $insertml =  "UPDATE `sensitiveinfo_recipient` SET  
-        `category`='".$category."', `nameofentity`='".$entity."', `name`='".$name."',
+        `category`='".$category."',`othercategory`='".$othrcategory."',
+        `nameofentity`='".$entity."', `name`='".$name."',
         `identityno`='".$identitynum."', `phoneno`='".$phonenum."', `mobileno`='".$mobilenum."',
         `designation`='".$designation."', `email`='".$email."', 
         `filepath`='".$filepath."', `agreemntfile`='".$agreemntfilepath."',
@@ -209,12 +210,12 @@ class Sensitiveinformationcommon extends Component
     
     
     // **************************** infosharing insert ***************************
-    public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$purpose,$filepath,$category,$selectupsi)
+   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$purpose,$category,$upsitypeid,$recipientid)
     {
         $connection = $this->dbtrd; 
         $times = time();
-           $queryinsert = "INSERT INTO `sensitiveinfo_sharing`(`user_id`,`user_group_id`,`name`,`sharingdate`,`upsitype`,`sharingtime`,`enddate`, `datashared`, `purpose`, `filepath`,`category`,`date_added`, `date_modified`,`timeago`)
-         VALUES ('".$getuserid."','".$user_group_id."','".$name."','".$sharingdate."','".$selectupsi."','".$sharingtime."','".$enddate."','".$datashared."','".$purpose."','".$filepath."','".$category."',NOW(),NOW(),'".$times."')"; 
+        $queryinsert = "INSERT INTO `sensitiveinfo_sharing`(`user_id`,`user_group_id`,`recipientid`,`name`,`sharingdate`,`upsitype`,`sharingtime`,`enddate`, `datashared`, `purpose`,`category`,`date_added`, `date_modified`,`timeago`)
+         VALUES ('".$getuserid."','".$user_group_id."','".$recipientid."','".$name."','".$sharingdate."','".$upsitypeid."','".$sharingtime."','".$enddate."','".$datashared."','".$purpose."','".$category."',NOW(),NOW(),'".$times."')"; 
         //print_r($queryinsert);exit;
         try
         {
@@ -233,19 +234,20 @@ class Sensitiveinformationcommon extends Component
  
     
     // **************************** infosharing fetch for table***************************
-    public function fetchinfosharing($getuserid,$user_group_id,$query)
+    public function fetchinfosharing($getuserid,$user_group_id,$upsitypeid,$query)
     {
        $connection = $this->dbtrd;
         try
          {
-            $queryget = "SELECT ss.*, upt.`upsitype` as upsiname, memb.`fullname`,sc.`category` AS category_name 
+            $queryget = "SELECT ss.*, upt.`upsitype` as upsiname, memb.`fullname`,sc.`category` AS category_name,sr.`othercategory`,sr.`name` 
                         FROM `sensitiveinfo_sharing` ss
                         LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ss.`user_id`
                         LEFT JOIN `upsimaster` upt ON upt.`id` = ss.`upsitype`
                         LEFT JOIN `sensitiveinfo_category` sc ON sc.`id` = ss.`category`
-                        WHERE ss.`user_id`= '".$getuserid."' ORDER BY ss.`id` DESC ".$query; 
+                        LEFT JOIN `sensitiveinfo_recipient` sr ON sr.`id` = ss.`recipientid`
+                        WHERE ss.`upsitype`='".$upsitypeid."' AND (FIND_IN_SET('".$getuserid."',upt.`projectowner`) OR FIND_IN_SET('".$getuserid."',upt.`connecteddps`)) ORDER BY ss.`id` DESC ".$query; 
             //echo $queryget;  exit;
-            
+            //
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
 
@@ -487,10 +489,13 @@ class Sensitiveinformationcommon extends Component
        $connection = $this->dbtrd;
         try
          {
-            $queryget = "SELECT ss.*, memb.fullname,sc.`category` AS category_name FROM `sensitiveinfo_sharing` ss
+            $queryget = "SELECT ss.*, memb.fullname,sc.`category` AS category_name,sr.`othercategory`  
+                        FROM `sensitiveinfo_sharing` ss
                         LEFT JOIN `it_memberlist` memb ON memb.wr_id = ss.user_id
                         LEFT JOIN `sensitiveinfo_category` sc ON sc.`id` = ss.`category`
-                        WHERE ss.`user_id`= '".$getuserid."' AND ss.`enddate` !=''  ".$query; 
+                        LEFT JOIN `sensitiveinfo_recipient` sr ON sr.`id` = ss.`recipientid`
+                        LEFT JOIN `upsimaster` upt ON upt.`id` = ss.`upsitype`
+                        WHERE (FIND_IN_SET('".$getuserid."',upt.`projectowner`) OR FIND_IN_SET('".$getuserid."',upt.`connecteddps`)) AND ss.`enddate` !=''  ".$query;  
           
             
             //echo $queryget;  exit;
@@ -596,6 +601,71 @@ class Sensitiveinformationcommon extends Component
         }
         
         return $getlist; 
+    }
+    
+    // ------------- UPSI TYPE fetch START
+    public function fetchupsiinfo($getuserid,$user_group_id,$query,$subquery)
+    {
+        $connection = $this->dbtrd;
+        
+		try
+		 {
+			$queryget = "SELECT * FROM `upsimaster`   
+                        WHERE (FIND_IN_SET('".$getuserid."',`projectowner`) OR FIND_IN_SET('".$getuserid."',`connecteddps`)) ORDER BY `id` DESC ".$query.$subquery; 
+			//echo $queryget;  exit; `companyid` IN (".$cmpid.") AND 
+			
+			$exeget = $connection->query($queryget);
+			$getnum = trim($exeget->numRows());
+
+			if($getnum>0)
+			{
+				while($row = $exeget->fetch())
+				{
+					$getlist[] = $row;
+				}
+            }else{
+				$getlist = array();
+			}
+		 
+		}
+		catch (Exception $e)
+		{
+			$getlist = array();
+			//$connection->close();
+		}
+		
+		return $getlist; 
+    }
+    // ------------- UPSI TYPE fetch END
+    
+    public function fetchupsitype($upsiid)
+    {
+        $connection = $this->dbtrd;
+		try
+		 {
+			$queryget = "SELECT * FROM `upsimaster` 
+						 WHERE `id`= '".$upsiid."'"; 
+			// echo $queryget;  exit;
+			$exeget = $connection->query($queryget);
+			$getnum = trim($exeget->numRows());
+
+			if($getnum>0)
+			{
+				$row = $exeget->fetch();
+				$getlist = $row;
+            }
+            else
+            {
+				$getlist = '';
+			}
+		}
+		catch (Exception $e)
+		{
+			$getlist = '';
+			//$connection->close();
+		}
+		
+		return $getlist; 
     }
     
     
