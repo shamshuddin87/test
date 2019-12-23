@@ -38,22 +38,26 @@ class AnnualdeclarationController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {   
+
                 $getresponse = $this->annualdeclarationcommon->getalldata($uid,$usergroup);
                 $getresponse2 = $this->annualdeclarationcommon->fetchpersonlinfo($uid,$usergroup);
+
                 $getresponse3 = $this->annualdeclarationcommon->getpastemployee($uid,$usergroup);
                 $clrhouse = $this->annualdeclarationcommon->getdespdemat($uid,$usergroup);
                 $getallrelative = $this->annualdeclarationcommon->getallrelative($uid,$usergroup);
                 // print_r($getallrelative);exit;
                 $getres = $this->relholdingsummarycommon->fetchallholdingsummary($uid,$usergroup);
+                //print_r($getres);exit; 
                 // $noofshares = $this->annualdeclarationcommon->noofsharesheld($uid,$usergroup);
                 $result = $this->relholdingsummarycommon->fetchholdingsummary($uid,$usergroup,0,25);
-                    end($result['data']);
-                $key = key( $result['data'] );   // get end number of key
+
+                    end($result);
+                $key = key( $result );   // get end number of key
                 $getequity = $this->relholdingsummarycommon->fetchequity($uid,$getres['companyid'],0,25);
                 $getprefereence = $this->relholdingsummarycommon->fetchprefereence($uid,$getres['companyid'],0,25);
                 $getdebenure = $this->relholdingsummarycommon->fetchdebenure($uid,$getres['companyid'],0,25);
                 $allclosebal=$this->generatemisrelative($result,$getequity,$getprefereence,$getdebenure);
-                // print_r($allclosebal);exit;
+                //print_r($allclosebal);exit;
                 $desigtotalshares = $this->annualdeclarationcommon->desigpershareheld($uid,$usergroup);
                 $getemployeecode = $this->annualdeclarationcommon->getemployeecode($uid,$usergroup);
                 $desimisheldshare=$this->generatemisheldshare($uid,$usergroup);
@@ -66,23 +70,23 @@ class AnnualdeclarationController extends ControllerBase
                    $desigpershareheld=0;
                 }
 
-                if(isset($allclosebal['Child-1']))
+                if(isset($allclosebal['Son']))
                 {
-                   $child1=$allclosebal['Child-1'];
+                   $Son=$allclosebal['Son'];
                 }
                 else
                 {
-                   $child1=0;
+                   $Son=0;
                 }
 
                 
-                if(isset($allclosebal['Child-2']))
+                if(isset($allclosebal['Daughter']))
                 {
-                   $child2=$allclosebal['Child-2'];
+                   $Daughter=$allclosebal['Daughter'];
                 }
                 else
                 {
-                   $child2=0;
+                   $Daughter=0;
                 }
 
                 
@@ -139,6 +143,8 @@ class AnnualdeclarationController extends ControllerBase
                 {
                    $spouse=0;
                 }
+
+               
                  // print_r($getdesperdemat);
              
                 if(!empty($clrhouse))
@@ -150,8 +156,8 @@ class AnnualdeclarationController extends ControllerBase
                    $clrhouse="Not Available";
                 }
              
-                $heldshares['child1']=$child1;
-                $heldshares['child2']=$child2;
+                $heldshares['Son']=$Son;
+                $heldshares['Daughter']=$Daughter;
                 $heldshares['mother']=$mother;
                 $heldshares['father']=$father;
                 $heldshares['brother']=$brother;
@@ -189,6 +195,7 @@ class AnnualdeclarationController extends ControllerBase
     //--------------- GENERATE PDF ----------------- 
     public function generateformbPDFAction()
     {
+       
         $this->view->disable();
         $uid = $this->session->loginauthspuserfront['id'];
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];

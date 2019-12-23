@@ -630,6 +630,7 @@ class EmployeemoduleController extends ControllerBase
             {
                 $releditid=$this->request->getPost('releditid','trim');
                 $result = $this->employeemodulecommon->singlerelative($uid,$usergroup,$releditid);
+               
                 
                 if(!empty($result))
                 {
