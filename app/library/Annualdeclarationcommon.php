@@ -33,6 +33,7 @@ class Annualdeclarationcommon extends Component
     $myarr=array();
     $time = time();
     $query="SELECT * FROM personal_info WHERE userid='".$uid."'";
+   
     
       try{
             $exeget = $connection->query($query);
