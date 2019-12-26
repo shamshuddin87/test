@@ -162,9 +162,9 @@ class HomeController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $getres = $this->homecommon->fetchholdingsummary($getuserid,$user_group_id);
-                $getequity = $this->homecommon->fetchequity($getres['companyid']);
-                $getprefereence = $this->homecommon->fetchprefereence($getres['companyid']);
-                $getdebenure = $this->homecommon->fetchdebenure($getres['companyid']);
+                $getequity = $this->homecommon->fetchequity($getuserid,$getres['companyid']);
+                $getprefereence = $this->homecommon->fetchprefereence($getuserid,$getres['companyid']);
+                $getdebenure = $this->homecommon->fetchdebenure($getuserid,$getres['companyid']);
                 //print_r($getdebenure);exit;
                 if(!empty($getres['data']))
                 {

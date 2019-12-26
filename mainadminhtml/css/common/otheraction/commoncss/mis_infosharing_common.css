@@ -24,3 +24,19 @@ color:#bababa; border:1px solid #bababa; cursor: default;}
 .paginationmn .pagination{width: 100%;margin: 0px auto; /*height: 25px;*/}
 .paginationmn .pagination ul li{  list-style: none; float: left;border: 1px solid #5d6677;padding: 2px 6px 2px 6px;margin: 0 3px 0 3px;font-family: arial;font-size: 14px;color: #5d6677;
 font-weight: bold;background-color: #f2f2f2;width: auto !important;cursor: pointer;}
+/*
+button.btn.btn-primary.genfile.excel_bg {
+    background: #27774a;
+    border: none;
+}
+*/
+.exportcss {
+    background: #0747A6;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'robotoregular';
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}

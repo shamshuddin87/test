@@ -91,12 +91,14 @@ $upsiid = $this->session->upsitypeid;
                             </div>
                         </section>
                         
+<!--
                         <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Purpose*</label>
                                 <input type="text" id="purpose" name="purpose" class="form_fields form-control col-md-7 col-xs-12" required>
                             </div>
                         </section>
+-->
 
 
                          <section class="col col-md-4 col-xs-4">
@@ -105,18 +107,31 @@ $upsiid = $this->session->upsitypeid;
                                 <input type="text" id="enddate" name="enddate" class="form-control bootdatepick" readonly required>
                             </div>
                         </section>   
-					    
-<!--
-                        <section class="col col-md-4 col-xs-4">
+					    <section class="col col-md-12 col-xs-12"></section>
+                        <div class="appendfile" filecntr='1'>
+                        <section class="col col-md-12 col-xs-12">
+                        <section class="col col-md-1 col-xs-1">
+                          <div class="input">
+                        <label class="control-label">Sr No.</label><br>
+                            <label>1.</label>
+                        </div>
+                        </section>
+                        <section class="col col-md-3 col-xs-3">
                         <div class="input">
                         <label class="control-label">Attach Data Shared</label>
                             <div class="choose_files">
-                                <input type="file" name="upload" id="upload" >
+                                <input type="file" name="upload[]" id="upload" >
                             </div>
                         </div>
                        </section>
--->
-                        
+                        </section>
+                        </div>
+                        <section class="col col-md-12 col-xs-12">
+                        <div>
+                            <input type="button" class="btn btn-primary btnaddfile" value="+" >
+                            <input type="button" class="btn btn-primary btndeletefile" value="-" >                    
+                        </div> 
+                        </section>
                       <section class="col col-md-12 company_asses">
                             <input type="submit" value="Submit" class="btn btn-primary contractexcelbtn">
                         </section>
@@ -151,9 +166,9 @@ $upsiid = $this->session->upsitypeid;
                             <th>Time</th> 
                             <th>End Date</th> 
                             <th>Data shared</th> 
-                            <th>Purpose</th> 
+<!--                            <th>Purpose</th> -->
                             <th>UPSI Type</th> 
-<!--                            <th>Attachment</th> -->
+                            <th>Attachment</th> 
                             <th>Audit Trail</th> 
                             <th>Sent By</th> 
                             <th>Action</th>
@@ -369,6 +384,23 @@ $upsiid = $this->session->upsitypeid;
 
           </form>
       </div>
+
+
+      </div>
+    </div>
+</div>
+
+<div id="modalupsiattachmnt" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">UPSI Attachment</h4>
+      </div>
+        <div class="modal-body">
+            <div class="upsifilepath"></div>  
+        </div>
 
 
       </div>

@@ -18,7 +18,7 @@ website(document).ready(function()
 {var addhtmlnxt='';for(var i=0;i<response.resdta.length;i++)
 {var category=response.resdta[i].category_name?response.resdta[i].category_name:'';var enddate=response.resdta[i].enddate?response.resdta[i].enddate:'';var datefrom=response.resdta[i].sharingdate;var upsiname=response.resdta[i].upsiname;var time=response.resdta[i].sharingtime?response.resdta[i].sharingtime:'';var newtime=time.replace(/:[^:]*$/,'');addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="10%">'+response.resdta[i].name+'</td>';if(response.resdta[i].category==16)
 {category=response.resdta[i].othercategory?response.resdta[i].othercategory:'';}
-addhtmlnxt+='<td width="10%">'+category+'</td>';addhtmlnxt+='<td width="10%">'+datefrom+'</td>';addhtmlnxt+='<td width="5%">'+newtime+'</td>';addhtmlnxt+='<td width="10%">'+enddate+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].datashared+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].purpose+'</td>';addhtmlnxt+='<td width="10%">'+upsiname+'</td>';addhtmlnxt+='<td width="5%"><i class="fa fa-bar-chart viewtrail" infoshrid="'+response.resdta[i].id+'"></i></td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].fullname+'</td>';addhtmlnxt+='<td width="25%">';if(response.getaccess[0].upsi_infoshare_delete==1)
+addhtmlnxt+='<td width="10%">'+category+'</td>';addhtmlnxt+='<td width="10%">'+datefrom+'</td>';addhtmlnxt+='<td width="5%">'+newtime+'</td>';addhtmlnxt+='<td width="10%">'+enddate+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].datashared+'</td>';addhtmlnxt+='<td width="10%">'+upsiname+'</td>';addhtmlnxt+='<td width="10%"><i class="fa fa-file" aria-hidden="true" id="upsiattachmnt" filepath="'+response.resdta[i].filepath+'"></i></td>';addhtmlnxt+='<td width="5%"><i class="fa fa-bar-chart viewtrail" infoshrid="'+response.resdta[i].id+'"></i></td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].fullname+'</td>';addhtmlnxt+='<td width="25%">';if(response.getaccess[0].upsi_infoshare_delete==1)
 {addhtmlnxt+='<i class="fa fa-trash-o faicon floatleft deleterestrictedcmp" title="Delete entry" aprvllistid="'+response.resdta[i].id+'" ></i>';}
 else
 {addhtmlnxt+='';}
@@ -155,4 +155,16 @@ else
 else
 {new PNotify({title:'Alert!!',text:'Something Went Wrong',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
-{}});};
+{}});}
+website('body').on('click','.btnaddfile',function()
+{var getlastid=website('.appendfile').attr('filecntr');getlastid=++getlastid;var addhtmlnxt='';addhtmlnxt+='<div id="row-'+getlastid+'">';addhtmlnxt+='<section class="col col-md-12 col-xs-12">';addhtmlnxt+='<section class="col col-md-1 col-xs-1"><div class="input"><label class="control-label">Sr No.</label><br><label>'+getlastid+'.</label></div></section>';addhtmlnxt+='<section class="col col-md-3 col-xs-3"><div class="input">';addhtmlnxt+='<label class="control-label">Attach Data Shared</label><div class="choose_files">';addhtmlnxt+='<input type="file" name="upload[]" id="upload" ></div></div></section>';addhtmlnxt+='</section></div>';website('.appendfile').append(addhtmlnxt);website('.appendfile').attr('filecntr',getlastid);});website('body').on('click','.btndeletefile',function()
+{var rownum=website('.appendfile').attr('filecntr');if(rownum!=1)
+{website('.appendfile #row-'+rownum).remove();website('.appendfile').attr('filecntr',parseInt(rownum)-1);}
+else
+{return false;}});website('body').on('click','#upsiattachmnt',function()
+{var filepath=website(this).attr('filepath');if(filepath)
+{filepath=filepath.split(',');var addhtml='';addhtml+='<table class="table datatable-responsive" width="100%" border="1"><tr><th>Sr No.</th><th>Attachment</th></tr>';for(var i=0;i<filepath.length;i++)
+{var j=i;j++;addhtml+='<tr><td width="50%">'+j+'.</td>';addhtml+='<td width="50%"><i class="fa fa-download getfile" filepath="'+filepath[i]+'" d="uploadattached1" aria-hidden="true"></i></td></tr>';}
+addhtml+='</tr></table>';website('#modalupsiattachmnt .upsifilepath').html(addhtml);website('#modalupsiattachmnt').modal('show');}
+else
+{new PNotify({title:'Alert!!',text:'File not available',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}});;

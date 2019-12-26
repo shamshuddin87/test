@@ -44,8 +44,8 @@ class Upsicommon extends Component
         $userids = $ownerid;
         
         //print_r($data);exit;
-        $sqlquery = "INSERT INTO `upsimaster`(`user_id`,`user_group_id`,`upsitype`,`projstartdate`,`projectowner`,`date_added`,`date_modified`,`timeago`) 
-        VALUES ('".$getuserid."','".$usergroup."','".$data['upname']."','".$data['pstartdte']."','".$data['ownerid']."',NOW(),NOW(),'".$time."')"; 
+        $sqlquery = "INSERT INTO `upsimaster`(`user_id`,`user_group_id`,`upsitype`,`projstartdate`,`projectowner`,`projdescriptn`,`date_added`,`date_modified`,`timeago`) 
+        VALUES ('".$getuserid."','".$usergroup."','".$data['upname']."','".$data['pstartdte']."','".$data['ownerid']."','".$data['projdesc']."',NOW(),NOW(),'".$time."')"; 
 
         //echo $sqlquery; exit;
         try
@@ -159,7 +159,7 @@ class Upsicommon extends Component
                 $connctdps = implode(',',$updatedata['connectdps']);
            } 
         }
-        $sqlquery = "UPDATE `upsimaster` SET  `upsitype`='".$updatedata['upname']."',`toalldps`='".$toalldps."',`projstartdate`='".$updatedata['pstartdte']."',`enddate`='".$updatedata['enddate']."',`projectowner`='".$updatedata['ownerid']."',`connecteddps`='".$connctdps."',`date_modified`=NOW(),`timeago`='".$time."'
+        $sqlquery = "UPDATE `upsimaster` SET  `upsitype`='".$updatedata['upname']."',`toalldps`='".$toalldps."',`projstartdate`='".$updatedata['pstartdte']."',`enddate`='".$updatedata['enddate']."',`projectowner`='".$updatedata['ownerid']."',`projdescriptn`='".$updatedata['projdesc']."',`connecteddps`='".$connctdps."',`date_modified`=NOW(),`timeago`='".$time."'
          WHERE `id`='".$updatedata['editid']."'"; 
         //echo $sqlquery;exit; `companyid`='".$updatedata['cmpid']."',
         try

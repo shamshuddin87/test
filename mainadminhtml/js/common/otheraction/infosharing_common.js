@@ -133,8 +133,10 @@ function getdataonload()
             addhtmlnxt += '<td width="5%">'+newtime+'</td>';
             addhtmlnxt += '<td width="10%">'+enddate+'</td>';
             addhtmlnxt += '<td width="10%">'+response.resdta[i].datashared+'</td>';
-            addhtmlnxt += '<td width="10%">'+response.resdta[i].purpose+'</td>';
+//            addhtmlnxt += '<td width="10%">'+response.resdta[i].purpose+'</td>';
             addhtmlnxt += '<td width="10%">'+upsiname+'</td>';
+            addhtmlnxt += '<td width="10%"><i class="fa fa-file" aria-hidden="true" id="upsiattachmnt" filepath="'+response.resdta[i].filepath+'"></i></td>';
+            
 //            if(response.resdta[i].filepath)
 //            {
 //                addhtmlnxt += '<td width="10%"><i class="fa fa-download getfile" filepath="'+response.resdta[i].filepath+'" d="uploadattached1" aria-hidden="true"></i></td>';
@@ -975,3 +977,71 @@ function unlinkfile(filepath)
     {}
   });
 }
+
+/* ----- Start Add/Delete Email Rows ----- */
+website('body').on('click','.btnaddfile',function()
+{
+    var getlastid = website('.appendfile').attr('filecntr');
+    //console.log(getlastid); return false;
+    getlastid = ++getlastid;
+    
+    var addhtmlnxt='';
+    addhtmlnxt += '<div id="row-'+getlastid+'">';
+    addhtmlnxt += '<section class="col col-md-12 col-xs-12">';
+    addhtmlnxt += '<section class="col col-md-1 col-xs-1"><div class="input"><label class="control-label">Sr No.</label><br><label>'+getlastid+'.</label></div></section>';
+    addhtmlnxt += '<section class="col col-md-3 col-xs-3"><div class="input">';
+    addhtmlnxt += '<label class="control-label">Attach Data Shared</label><div class="choose_files">';
+    addhtmlnxt += '<input type="file" name="upload[]" id="upload" ></div></div></section>';
+    addhtmlnxt += '</section></div>';
+    
+    website('.appendfile').append(addhtmlnxt);
+    website('.appendfile').attr('filecntr',getlastid);
+});
+
+website('body').on('click','.btndeletefile',function()
+{
+    var rownum  = website('.appendfile').attr('filecntr');
+    //console.log(rownum); return false;     
+    if(rownum != 1)
+    {
+        website('.appendfile #row-'+rownum).remove();
+        website('.appendfile').attr('filecntr',parseInt(rownum)-1);
+    }
+    else
+    {
+        return false;
+    }    
+});
+/* ----- Start Add/Delete Email Rows ----- */
+website('body').on('click','#upsiattachmnt',function()
+{
+    var filepath = website(this).attr('filepath');
+    //console.log(filepath);
+    if(filepath)
+    {
+        filepath = filepath.split(',');
+        var addhtml = '';
+        addhtml+= '<table class="table datatable-responsive" width="100%" border="1"><tr><th>Sr No.</th><th>Attachment</th></tr>';
+        for(var i=0;i<filepath.length;i++)
+        {
+            var j = i;
+            j++;
+            addhtml+= '<tr><td width="50%">'+j+'.</td>';
+            addhtml += '<td width="50%"><i class="fa fa-download getfile" filepath="'+filepath[i]+'" d="uploadattached1" aria-hidden="true"></i></td></tr>';
+        }
+        addhtml+= '</tr></table>';
+        website('#modalupsiattachmnt .upsifilepath').html(addhtml);  
+        website('#modalupsiattachmnt').modal('show');  
+    }
+    else
+    {
+        new PNotify({title: 'Alert!!',
+                  text: 'File not available',
+                  type: 'university',
+                  hide: true,
+                  styling: 'bootstrap3',
+                  addclass: 'dark ',
+              });
+    }
+    
+});

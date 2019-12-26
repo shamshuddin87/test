@@ -2,7 +2,8 @@
 $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
 $gtselctedcmp = $this->session->cmpconmemberdoc;
 $condeptsess = $this->session->contractdepartment;
-//echo "company is ";print_r($user_group_id);exit;
+
+//echo "company is ";print_r($upsitype);exit;
 ?>
 
 <!-- Main content -->
@@ -36,8 +37,8 @@ $condeptsess = $this->session->contractdepartment;
                             <th>Time</th> 
                             <th>End Date</th> 
                             <th>Datashared</th> 
-                            <th>Purpose</th> 
-                            
+<!--                            <th>Purpose</th> -->
+                            <th>Attachment</th> 
                             <th>Audit Trail</th> 
                             <th>Sent By</th> 
 <!--                            <th>Action</th>-->
@@ -251,6 +252,23 @@ $condeptsess = $this->session->contractdepartment;
 
           </form>
       </div>
+
+
+      </div>
+    </div>
+</div>
+
+<div id="modalupsiattachmnt" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">UPSI Attachment</h4>
+      </div>
+        <div class="modal-body">
+            <div class="upsifilepath"></div>  
+        </div>
 
 
       </div>

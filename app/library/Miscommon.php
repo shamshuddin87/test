@@ -501,7 +501,7 @@ class Miscommon extends Component
             //print_r($masteruserdata);exit;
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
              $queryget = "SELECT ss.*,sr.name,sr.nameofentity,sr.identityno,utype.upsitype,
-                    memb.`fullname`,sc.`category` AS category_name 
+                    memb.`fullname`,sc.`category` AS category_name,sr.`othercategory` 
                     FROM `sensitiveinfo_sharing` ss 
                     LEFT JOIN `sensitiveinfo_recipient` sr ON ss.`recipientid` = sr.`id` 
                     LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ss.`user_id` 
@@ -579,7 +579,7 @@ class Miscommon extends Component
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryget = "SELECT ss.*, memb.fullname,sc.`category` AS category_name 
+            $queryget = "SELECT ss.*, memb.fullname,sc.`category` AS category_name,sr.`othercategory` 
                         FROM `sensitiveinfo_sharing` ss
                         LEFT JOIN `it_memberlist` memb ON memb.wr_id = ss.user_id
                         LEFT JOIN `sensitiveinfo_category` sc ON sc.`id` = ss.`category`

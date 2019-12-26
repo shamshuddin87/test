@@ -100,7 +100,14 @@ $uid = $this->session->loginauthspuserfront['id'];
 -->
                         
                         
-                        <div class="clearelement"></div>                   
+                        
+                        <div class="clearelement"></div>  
+                         <section class="col col-md-6 col-xs-6">
+                              <div class="input">
+                            <label class="control-label">Project Description</label>
+                                  <textarea name="projdesc" id="projdesc" class="projdesc" style="margin: 0px;width: 475px;height: 73px;"></textarea>
+                            </div>
+                        </section>
                                               
                     </form>
                         
@@ -213,6 +220,14 @@ $uid = $this->session->loginauthspuserfront['id'];
                     <div class="input">
                     <label class="control-label">End Date*</label>
                         <input type="text" id="enddate" name="enddate" required="required" class="form_fields form-control col-md-7 col-xs-12 bootdatepick" readonly>
+                    </div>
+                </section>
+            
+                <section class="col col-md-6 col-xs-6">
+                    <input type="hidden" id="cmpprojdes" name="cmpprojdes">
+                    <div class="input">
+                    <label class="control-label">Project Description</label>
+                        <textarea name="projdesc" id="projdesc" class="projdesc" style="margin: 0px;width: 475px;height: 73px;"></textarea>
                     </div>
                 </section>
 

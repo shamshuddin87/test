@@ -170,6 +170,7 @@ website('body').on('click','.upedit',function(e){
                 var enddate = response.data['enddate']?response.data['enddate']:'';
                 var projectownerid = response.data['projectowner']?response.data['projectowner']:'';
                 var projectownername = response.data['fullname']?response.data['fullname']:'';
+                var projectdes = response.data['projdescriptn']?response.data['projdescriptn']:'';
                 
                 website('#upsimodel #upname').val(upupsnm);
                 website('#upsimodel #cmpupname').val(upupsnm);
@@ -185,6 +186,9 @@ website('body').on('click','.upedit',function(e){
                 
                 website('#upsimodel #ownermodal').val(projectownername);
                 website('#upsimodel #cmpownermodal').val(projectownername);
+                
+                website('#upsimodel #cmpprojdes').val(projectdes);
+                website('#upsimodel #projdesc').val(projectdes);
                 
                 website('#upsimodel #cmpid').val(response.data['companyid']);
                 website('#upsimodel #editid').val(response.data['id']);

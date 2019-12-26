@@ -2,7 +2,7 @@
 $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
 $gtselctedcmp = $this->session->cmpconmemberdoc;
 $condeptsess = $this->session->contractdepartment;
-//echo "company is ";print_r($user_group_id);exit;
+//echo "company is ";print_r($upsitype);exit;
 ?>
 
 <!-- Main content -->
@@ -15,9 +15,11 @@ $condeptsess = $this->session->contractdepartment;
 <div class="mainelementfom">
      
 
-    <h1 class="h1_heading text-center">Database of information shared</h1>
+    <h1 class="h1_heading text-center"><?php echo $upsitype;?></h1>
+    <h2 class="text-center">(Database of information shared)</h2>
     <input type="hidden" id="upsitypeid" value="<?php print_r($upsiid); ?>" name="upsitypeid">
-   <div class="table-responsive table_wraper">
+    
+    <div class="table-responsive table_wraper">
        <div class="cssnumrws">
                 <span>Show</span>
                 <select id="noofrows" name="noofrows" class="noofrows">
@@ -25,10 +27,13 @@ $condeptsess = $this->session->contractdepartment;
                 <option value="50">50</option><option value="100">100</option>
                 </select> 
                 <span>Entries</span>
-            </div>
-       <div class="floatright">
+           <div style="float:right;">
+               <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
+                <button type="button" class="btn btn-primary genfile excel_bg" request="excel">Export Excel</button>
                 <input type="submit" class="btn btn-primary archiveinfoshr" upsitype="<?php print_r($upsiid); ?>" value="Archive" >
             </div>
+            </div>
+       
                 <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>
@@ -38,8 +43,8 @@ $condeptsess = $this->session->contractdepartment;
                             <th>Time</th> 
                             <th>End Date</th> 
                             <th>Datashared</th> 
-                            <th>Purpose</th> 
-<!--                            <th>Attachment</th> -->
+<!--                            <th>Purpose</th> -->
+                            <th>Attachment</th> 
                             <th>Audit Trail</th> 
                             <th>Sent By</th>
                         </tr>
@@ -101,3 +106,20 @@ $condeptsess = $this->session->contractdepartment;
 </div>
 <!-- ########################################## PageContent End ########################################## --> 
  
+
+<div id="modalupsiattachmnt" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">UPSI Attachment</h4>
+      </div>
+        <div class="modal-body">
+            <div class="upsifilepath"></div>  
+        </div>
+
+
+      </div>
+    </div>
+</div>

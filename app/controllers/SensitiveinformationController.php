@@ -416,6 +416,7 @@ class SensitiveinformationController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
+                //print_r($this->request->getPost());exit;
                 $name   = $this->request->getPost('name','trim');
                 $upsitypeid   = $this->request->getPost('upsitypeid','trim');
                 $flag=0;
@@ -440,7 +441,7 @@ class SensitiveinformationController extends ControllerBase
                 }
 
                 $datashared   = $this->request->getPost('datashared','trim');
-                $purpose   = $this->request->getPost('purpose','trim');
+                //$purpose   = $this->request->getPost('purpose','trim');
                 $file   = $this->request->getPost('upload','trim');
                 $category   = $this->request->getPost('category','trim');
                 $recipientid   = $this->request->getPost('recid','trim');
@@ -478,44 +479,53 @@ class SensitiveinformationController extends ControllerBase
 //                }
                 else
                 {
-//                    if(!empty($_FILES["upload"]))
-//                    {
-//                            $userfile_name = $_FILES['upload']['name'];
-//                            //echo $userfile_name;exit;
-//                            $userfile_tmp = $_FILES['upload']['tmp_name'];
-//                            $userfile_size = $_FILES['upload']['size'];
-//                            $userfile_type = $_FILES['upload']['type'];
-//                            $filename = basename($_FILES['upload']['name']);
-//                            //echo $filename;exit;
-//                            $filenm = explode('.', $filename);
-//                            $filenms[] = $filenm[0];
-//                            $file_ext = $this->validationcommon->getfileext($filename);
-//                            // print_r($userfile_name);exit;
-//
-//                            $upload_path = $this->infoshareattachment."/";  
-//                            //echo $upload_path;exit; 
-//                            $large_imp_name = 'Uploadedby-'.$firstname.'_'.$lastname.'_userid-'.$getuserid.'_timeago-'.$timeago;
-//                            $upload_filepath = $upload_path.$large_imp_name.".".$file_ext;
-//                            $uploadedornot = move_uploaded_file($userfile_tmp, $upload_filepath);
-//                            //-----------------Encrypt File------------------------//
-//                              $content=file_get_contents($upload_filepath);
-//                              $pdfencrypt=$upload_path.time().".pdf";
-//                             
-//                              $encrypt=$this->encryptdecryptcommon->getpdffileencrypt($content,$pdfencrypt);
-//                              // echo $encrypt;
-//                              // $decrypt=$this->encryptdecryptcommon->getdecrptedwordfile($encrypt);
-//                              // echo $decrypt;
-//
-//                              if(isset($encrypt))
-//                              {
-//                                  unlink($upload_filepath);
-//                              }
-//
-//                           //--------------------------------------------------------------------//
-//                            $filepath = $encrypt;
-//                        
-//                    }
-                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$purpose,$category,$upsitypeid,$recipientid);
+                    $filepath = '';
+                    if(!empty($_FILES["upload"]))
+                    {
+                        $filepath = array();
+                        for($i=0; $i < sizeof($_FILES['upload']['name']); $i++)
+                        {
+                            if(!empty($_FILES["upload"]['name'][$i]))
+                            {
+                                // print_r($_FILES['othrdoc']['name'][$i]); exit;
+                                $userfile_name = $_FILES['upload']['name'][$i];
+                                $userfile_tmp = $_FILES['upload']['tmp_name'][$i];
+                                $userfile_size = $_FILES['upload']['size'][$i];
+                                $userfile_type = $_FILES['upload']['type'][$i];
+                                $filename = basename($_FILES['upload']['name'][$i]);
+                                $filenm = explode('.', $filename);
+                                $filenms[] = $filenm[0];
+                                $file_ext = $this->validationcommon->getfileext($filename);
+                                $upload_path = $this->infoshareattachment."/";  
+                                //echo $upload_path;exit; 
+                                $large_imp_name = 'Uploadedby-'.$firstname.'_'.$lastname.'_userid-'.$getuserid.'_timeago-'.$timeago;
+                                $upload_filepath = $upload_path.$large_imp_name.".".$file_ext;
+                                $uploadedornot = move_uploaded_file($userfile_tmp, $upload_filepath);
+                                //-----------------Encrypt File------------------------//
+                                $content=file_get_contents($upload_filepath);
+                                $pdfencrypt=$upload_path.time().".pdf";
+                                $encrypt=$this->encryptdecryptcommon->getpdffileencrypt($content,$pdfencrypt);
+                                if(isset($encrypt))
+                                {
+                                    unlink($upload_filepath);
+                                }
+                                $filepath[] = $encrypt;
+                            }
+                            else
+                            {
+                                $data = array("logged" => false,'message' => "Please select file..!!");
+                                $this->response->setJsonContent($data);
+                                $this->response->send();
+                                exit;
+                            }
+                            
+                        }
+                        $filepath = implode(',',$filepath);
+                            
+                        
+                    }
+                  //print_r($filepath);exit;
+                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$filepath);
                     
                   if($getres)
                     {
@@ -1049,6 +1059,7 @@ class SensitiveinformationController extends ControllerBase
         $cin = $this->session->memberdoccin;
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
         //echo $getuserid.'*'.$cin;exit;
+        $upsitype = $this->session->upsitypeid;
 
         if($this->request->isPost() == true)
         {
@@ -1057,7 +1068,7 @@ class SensitiveinformationController extends ControllerBase
                 $noofrows=$this->request->getPost('noofrows');
                 $pagenum=$this->request->getPost('pagenum');
                 $mainquery = '';
-                $getres = $this->sensitiveinformationcommon->fetcharchiveinfosharing($getuserid,$user_group_id,$mainquery);
+                $getres = $this->sensitiveinformationcommon->fetcharchiveinfosharing($getuserid,$user_group_id,$upsitype,$mainquery);
                 /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
                 $rslmt =' LIMIT '.$rsstrt.','.$noofrows;
@@ -1066,7 +1077,7 @@ class SensitiveinformationController extends ControllerBase
                 $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
                 $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
                 
-                $getres = $this->sensitiveinformationcommon->fetcharchiveinfosharing($getuserid,$user_group_id,$rslmt);
+                $getres = $this->sensitiveinformationcommon->fetcharchiveinfosharing($getuserid,$user_group_id,$upsitype,$rslmt);
                 //print_r($getres);exit;
                 if($getres)
                 {

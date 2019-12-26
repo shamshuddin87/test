@@ -85,12 +85,17 @@ function getdataonload()
 //            //------------------------- Table Fields Insertion START ------------------------
             addhtmlnxt += '<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';
             addhtmlnxt += '<td width="10%">'+response.resdta[i].name+'</td>';
+            if(response.resdta[i].category == 16)
+            {
+                category = response.resdta[i].othercategory?response.resdta[i].othercategory:'';
+            }
             addhtmlnxt += '<td width="10%">'+category+'</td>';
             addhtmlnxt += '<td width="10%">'+datefrom+'</td>';
             addhtmlnxt += '<td width="5%">'+newtime+'</td>';
             addhtmlnxt += '<td width="10%">'+enddate+'</td>';
             addhtmlnxt += '<td width="10%">'+response.resdta[i].datashared+'</td>';
-            addhtmlnxt += '<td width="10%">'+response.resdta[i].purpose+'</td>';
+//            addhtmlnxt += '<td width="10%">'+response.resdta[i].purpose+'</td>';
+            addhtmlnxt += '<td width="10%"><i class="fa fa-file" aria-hidden="true" id="upsiattachmnt" filepath="'+response.resdta[i].filepath+'"></i></td>';
             addhtmlnxt += '<td width="5%"><i class="fa fa-bar-chart viewtrail" infoshrid="'+response.resdta[i].id+'"></i></td>';
             addhtmlnxt += '<td width="10%">'+response.resdta[i].fullname+'</td>'; 
             addhtmlnxt += '</tr>';                        
@@ -187,5 +192,38 @@ website('body').on("click",".viewtrail",function(e){
     error: function(jqXHR, textStatus, errorThrown)
     {}
   });
+    
+});
+
+website('body').on('click','#upsiattachmnt',function()
+{
+    var filepath = website(this).attr('filepath');
+    //console.log(filepath);
+    if(filepath)
+    {
+        filepath = filepath.split(',');
+        var addhtml = '';
+        addhtml+= '<table class="table datatable-responsive" width="100%" border="1"><tr><th>Sr No.</th><th>Attachment</th></tr>';
+        for(var i=0;i<filepath.length;i++)
+        {
+            var j = i;
+            j++;
+            addhtml+= '<tr><td width="50%">'+j+'.</td>';
+            addhtml += '<td width="50%"><i class="fa fa-download getfile" filepath="'+filepath[i]+'" d="uploadattached1" aria-hidden="true"></i></td></tr>';
+        }
+        addhtml+= '</tr></table>';
+        website('#modalupsiattachmnt .upsifilepath').html(addhtml);  
+        website('#modalupsiattachmnt').modal('show');  
+    }
+    else
+    {
+        new PNotify({title: 'Alert!!',
+                  text: 'File not available',
+                  type: 'university',
+                  hide: true,
+                  styling: 'bootstrap3',
+                  addclass: 'dark ',
+              });
+    }
     
 });

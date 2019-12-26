@@ -17,9 +17,7 @@ $condeptsess = $this->session->contractdepartment;
 
     <h1 class="h1_heading text-center">Database of UPSI Shared</h1>
   <div class="containergrid formcss">
-          <button type="button" class="btn btn-primary genfile pdf_bg" request="pdf" >Export PDF</button>
-          <button type="button" class="btn btn-primary genfile excel_bg" request="excel">Export Excel</button>
-          <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
+          
   
    <div class="table-responsive table_wraper">
        <div class="cssnumrws">
@@ -29,9 +27,13 @@ $condeptsess = $this->session->contractdepartment;
                 <option value="50">50</option><option value="100">100</option>
                 </select> 
                 <span>Entries</span>
+             <div style="float:right;">
+                <button type="button" class="btn btn-primary genfile pdf_bg" request="pdf" >Export PDF</button>
+                <button type="button" class="btn btn-primary genfile excel_bg" request="excel">Export Excel</button>
+                <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
             </div>
-       <div class="floatright">
-            </div>
+        </div>
+     
                 <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>
