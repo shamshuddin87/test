@@ -1,0 +1,11 @@
+Options +FollowSymlinks
+# Prevent Directoy listing 
+Options -Indexes
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^$ mainadminhtml/     [L]
+    RewriteRule (.*) mainadminhtml/$1 [L]
+    #RewriteRule ^mainadminhtml/gentelella/ - [L]
+</IfModule>
+php_value upload_max_filesize 5M
+php_value post_max_size 5M
