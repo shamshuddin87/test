@@ -85,7 +85,7 @@ function getallupsietails()
                         dpusers = response.data[i]['connecteddps'];
                         dpusers = dpusers.split(",");
                     }
-                    if(response.userid == response.data[i]['projectowner'] || jQuery.inArray(response.userid, dpusers) !== -1)
+                    if(response.usergrp == '14' || response.userid == response.data[i]['projectowner'])
                     {
                         htmlelements+='<i class="fa fa-edit upedit" upsiid="'+response.data[i][0]+'" ></i>';
                     }
@@ -226,7 +226,7 @@ website('#updateupsimast').ajaxForm({
             styling: 'bootstrap3',
             addclass: 'dark ',
             });
-            getallcmpdetails(); 
+            getallupsietails(); 
          }
          else
          {  
@@ -372,7 +372,7 @@ website('body').on('click','#tradingrej',function(e){
                     addclass: 'dark ',
                  });
             website("#addupsimast").trigger('reset');
-            getallcmpdetails(); 
+            getallupsietails(); 
          }
          else
          {    

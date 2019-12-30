@@ -30,12 +30,15 @@ class SensitiveinformationController extends ControllerBase
         $gmnlog = $this->session->loginauthspuserfront;
         $upsiid = $this->session->upsitypeid;
         $this->view->getupsiname = $this->sensitiveinformationcommon->fetchupsitype($upsiid);
+        $this->view->upsitype = $this->sensitiveinformationcommon->fetchupsitype($upsiid);
     }
     
     public function archive_infosharingAction()
     {
         $uid = $this->session->loginauthspuserfront['id'];
         $gmnlog = $this->session->loginauthspuserfront;
+        $upsiid = $this->session->upsitypeid;
+        $this->view->upsitype = $this->sensitiveinformationcommon->fetchupsitype($upsiid);
     }
     
     public function upsi_infosharingAction()

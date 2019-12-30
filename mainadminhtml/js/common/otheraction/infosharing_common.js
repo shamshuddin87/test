@@ -627,23 +627,33 @@ function doSearch(getvalue)
                 {         
           //console.log(response.data);return false;
           for(var i = 0; i < response.data.length; i++) 
-                    {   
+          {   
+            var categoryname = ''; 
+            if(response.data[i].category == '16')
+            {
+                 categoryname = response.data[i].othercategory;
+            }
+            else
+            {
+                 categoryname = response.data[i].categoryname;
+            }
             if(i==0)
-            {                           
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="topul validatorsid">'+response.data[i].name;
+            {
+             
+              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" categoryname="'+categoryname+'" class="topul validatorsid">'+response.data[i].name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
             }
             else if(i==((response.data.length)-1))
             {
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"   class="bottomul validatorsid">'+response.data[i].name;
+              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'"  class="bottomul validatorsid">'+response.data[i].name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
               
             }
             else
             {
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="bottomul validatorsid">'+response.data[i].name;
+              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+response.data[i].name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
             }
@@ -723,20 +733,20 @@ function doSearchforedit(getvalue)
                     {   
             if(i==0)
             {                           
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="topul validatorsid">'+response.data[i].name;
+              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="topul validatorsid">'+response.data[i].name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
             }
             else if(i==((response.data.length)-1))
             {
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="bottomul validatorsid">'+response.data[i].name;
+              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+response.data[i].name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
               
             }
             else
             {
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="bottomul validatorsid">'+response.data[i].name;
+              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+response.data[i].name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
             }
@@ -770,6 +780,7 @@ function doSearchforedit(getvalue)
        var recid = website(this).attr('rec_id');
        var name = website(this).attr('name');
        var cate = website(this).attr('category');
+       var categoryname = website(this).attr('categoryname');
         
        website('#insertinfosharing #search-box').val(name);
        website('#search-box').attr('recid',recid);
@@ -779,6 +790,7 @@ function doSearchforedit(getvalue)
        website('#live-search-header-wrapper').fadeOut();       
        
        website('#insertinfosharing #name').val(name);
+       website('#insertinfosharing #categoryname').val(categoryname);
        website('#validators').attr('recid',recid);
        website('#validators').attr('recname',name);
     });
@@ -789,6 +801,7 @@ function doSearchforedit(getvalue)
        var recid = website(this).attr('rec_id');
        var name = website(this).attr('name');
        var cate = website(this).attr('category');
+       var categoryname = website(this).attr('categoryname');
        //alert(fullname);
        website('#updateinfosharing #search-box').val(name);
        website('#Mymodaledit #search-box').attr('recid',recid);
@@ -799,6 +812,7 @@ function doSearchforedit(getvalue)
        website('#updateinfosharing #recid').val(recid);
        website('#updateinfosharing #category').val(cate);
        website('#updateinfosharing #name').val(name);
+       website('#insertinfosharing #categoryname').val(categoryname);
        website('#Mymodaledit #validators').attr('recid',recid);
        website('#Mymodaledit #validators').attr('recname',name);
     });

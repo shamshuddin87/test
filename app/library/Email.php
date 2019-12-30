@@ -21,7 +21,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         $mail->SMTPDebug = 2;
         $mail->Debugoutput = 'html';
         $mail->Host = $this->Hostname;
-        $mail->Port = 465;
+        $mail->Port = 587;
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
         $mail->Username = $this->hosemail;

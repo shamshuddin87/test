@@ -12,7 +12,7 @@ website(document).ready(function()
 {for(var i=0;i<response.data.length;i++)
 {var enddate=response.data[i]['enddate']?response.data[i]['enddate']:'';var dpusers=[];var j=i+1;htmlelements+='<tr>';htmlelements+='<td width="10%">'+j+'</td>';htmlelements+='<td width="20%">'+response.data[i]['upsitype']+'</td>';htmlelements+='<td width="20%">'+response.data[i]['projstartdate']+'</td>';htmlelements+='<td width="20%">'+enddate+'</td>';htmlelements+='<td width="20%">'+response.data[i]['fullname']+'</td>';htmlelements+='<td width="10%">';if(response.data[i]['connecteddps'])
 {dpusers=response.data[i]['connecteddps'];dpusers=dpusers.split(",");}
-if(response.userid==response.data[i]['projectowner']||jQuery.inArray(response.userid,dpusers)!==-1)
+if(response.usergrp=='14'||response.userid==response.data[i]['projectowner'])
 {htmlelements+='<i class="fa fa-edit upedit" upsiid="'+response.data[i][0]+'" ></i>';}
 htmlelements+='<i class="fa fa-trash delups" delupsiid="'+response.data[i][0]+'"></i></td>';htmlelements+='</tr>';}}
 else
@@ -36,7 +36,7 @@ var upupsnm=response.data['upsitype']?response.data['upsitype']:'';var projstart
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{website("#upsimodel").modal('hide');new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});getallcmpdetails();}
+{website("#upsimodel").modal('hide');new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});getallupsietails();}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function()
@@ -58,7 +58,7 @@ else
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{website('#modaltradingwindow').modal('hide');new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website("#addupsimast").trigger('reset');getallcmpdetails();}
+{website('#modaltradingwindow').modal('hide');new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website("#addupsimast").trigger('reset');getallupsietails();}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function()
