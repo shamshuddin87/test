@@ -260,15 +260,15 @@ class TradingrequestController extends ControllerBase
                         $send_status=1;
                         $msg="Record Sent Successfully";
                         $getresult = $this->tradingrequestcommon->getblackoutperiod($uid,$usergroup);
-                        $upsitrading = $this->tradingrequestcommon->getupsitradingblock($uid,$usergroup);
-                        if(count($upsitrading)>0)
-                        {
-                            $flag = 0;
-                            $data = array("logged" => false,'message' => 'Your trading window has been closed because you have been added to the UPSI recipeint list','type'=>'');
-                            $this->response->setJsonContent($data);
-                            $this->response->send();
-                            exit;
-                        }
+//                        $upsitrading = $this->tradingrequestcommon->getupsitradingblock($uid,$usergroup);
+//                        if(count($upsitrading)>0)
+//                        {
+//                            $flag = 0;
+//                            $data = array("logged" => false,'message' => 'Your trading window has been closed because you have been added to the UPSI recipeint list','type'=>'');
+//                            $this->response->setJsonContent($data);
+//                            $this->response->send();
+//                            exit;
+//                        }
                         for($i=0;$i<sizeof($getresult);$i++)
                         {
                             if(!empty($getresult[$i]))

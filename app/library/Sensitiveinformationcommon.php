@@ -385,7 +385,9 @@ class Sensitiveinformationcommon extends Component
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
             
-             $queryget = "SELECT * FROM `sensitiveinfo_recipient` WHERE `user_id` IN (".$grpusrs['ulstring'].") AND`name` LIKE '%{$getsearchkywo}%'";
+             $queryget = "SELECT sr.*,cate.`category` AS `categoryname` FROM `sensitiveinfo_recipient` sr
+             LEFT JOIN `sensitiveinfo_category` cate ON cate.`id` = sr.`category`
+             WHERE sr.`user_id` IN (".$grpusrs['ulstring'].") AND sr.`name` LIKE '%{$getsearchkywo}%'";
             //echo $queryget;exit;
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());

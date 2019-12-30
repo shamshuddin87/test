@@ -106,7 +106,7 @@ class UpsimasterController extends ControllerBase
 
                 if(!empty($result))
                 {
-                    $data = array("logged"=>true,"message"=>'Data fetch successfully',"data"=>$result,"pgnhtml"=>$pgnhtml,'userid'=>$getuserid);
+                    $data = array("logged"=>true,"message"=>'Data fetch successfully',"data"=>$result,"pgnhtml"=>$pgnhtml,'userid'=>$getuserid,'usergrp'=>$usergroup);
                     $this->response->setJsonContent($data);
                 }
                 else
