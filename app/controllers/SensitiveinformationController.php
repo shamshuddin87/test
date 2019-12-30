@@ -68,6 +68,10 @@ class SensitiveinformationController extends ControllerBase
                 {
                     $othercate = $this->request->getPost('othercategory','trim');
                 }
+                else if($category == 14)
+                {
+                    $othercate = $this->request->getPost('empcategory','trim');
+                }
                 $entity   = $this->request->getPost('entity','trim');
                 $name   = $this->request->getPost('name','trim');
                 $identitynum   = $this->request->getPost('identitynum','trim');
@@ -261,6 +265,10 @@ class SensitiveinformationController extends ControllerBase
                 if($category == 16)
                 {
                     $othrcategory = $this->request->getPost('othercategory','trim');
+                }
+                else if($category == 14)
+                {
+                    $othrcategory = $this->request->getPost('empcategory','trim');
                 }
                 $entity   = $this->request->getPost('entity','trim');
                 $name   = $this->request->getPost('name','trim');

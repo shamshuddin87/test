@@ -101,6 +101,7 @@ function getdataonload()
             {
                 var category = response.resdta[i].categoryname?response.resdta[i].categoryname:'';
             }
+            
             addhtmlnxt += '<td>'+category+'</td>';
             addhtmlnxt += '<td>'+response.resdta[i].nameofentity+'</td>';
             addhtmlnxt += '<td>'+response.resdta[i].name+'</td>';
@@ -269,10 +270,18 @@ var id = website(this).attr('aprvllistid');
                    website('#Mymodaledit .othercateedit').html(html);
                    website("#Mymodaledit #othercategory").val(response.data['0'].othercategory);
             }
+            else if(response.data['0'].category == 14)
+            {
+                   var html = '<section class="col col-md-6 col-xs-6"><div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
+                   website('#Mymodaledit .employeecateedit').html(html);
+                   website("#Mymodaledit #empcategory").val(response.data['0'].othercategory);
+            }
             else
             {
                     website('#Mymodaledit .othercateedit').css('display','none');
+                    website('#Mymodaledit .empcateedit').css('display','none');
                     website('#Mymodaledit #othercategory').removeAttr('required');
+                    website('#Mymodaledit #empcategory').removeAttr('required');
             }
             website("#Mymodaledit #entity").val(response.data['0'].nameofentity);
             website("#Mymodaledit #name").val(response.data['0'].name);
@@ -415,14 +424,24 @@ website('body').on('change','#category',function(){
     var id = website(this).val();
     if(id == 16)
     {
+        website('#insertrecipient .employeecate').css('display','none');
         website('#insertrecipient .othercate').css('display','block');
         var html = '<section class="col col-md-4 col-xs-12"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
         website('#insertrecipient .othercate').html(html);
     }
+    else if(id == 14)
+    {
+        website('#insertrecipient .othercate').css('display','none');
+        website('#insertrecipient .employeecate').css('display','block');
+        var html = '<section class="col col-md-4 col-xs-12"><div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
+        website('#insertrecipient .employeecate').html(html);
+    }
     else
     {
         website('#insertrecipient .othercate').css('display','none');
+        website('#insertrecipient .employeecate').css('display','none');
         website('#insertrecipient #othercategory').removeAttr('required');
+        website('#insertrecipient #empcategory').removeAttr('required');
     }
 });
 
@@ -430,14 +449,25 @@ website('body').on('change','#Mymodaledit #category',function(){
     var id = website(this).val();
     if(id == 16)
     {
+        website('#Mymodaledit .employeecateedit').css('display','none');
         website('#Mymodaledit .othercateedit').css('display','block');
         var html = '<section class="col col-md-8 col-xs-8"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
         website('#Mymodaledit .othercateedit').html(html);
     }
-    else
+    else if(id == 14)
     {
         website('#Mymodaledit .othercateedit').css('display','none');
+        website('#Mymodaledit .employeecateedit').css('display','block');
+        var html = '<section class="col col-md-8 col-xs-8"><div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
+        website('#Mymodaledit .employeecateedit').html(html);
+    }
+    else
+    {
+        
+        website('#Mymodaledit .othercateedit').css('display','none');
+        website('#Mymodaledit .employeecateedit').css('display','none');
         website('#Mymodaledit #othercategory').removeAttr('required');
+        website('#Mymodaledit #empcategory').removeAttr('required');
     }
 });
 
