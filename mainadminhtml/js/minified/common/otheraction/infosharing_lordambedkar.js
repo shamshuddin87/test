@@ -18,7 +18,7 @@ website(document).ready(function()
 {var addhtmlnxt='';for(var i=0;i<response.resdta.length;i++)
 {var category=response.resdta[i].category_name?response.resdta[i].category_name:'';var enddate=response.resdta[i].enddate?response.resdta[i].enddate:'';var datefrom=response.resdta[i].sharingdate;var upsiname=response.resdta[i].upsiname;var time=response.resdta[i].sharingtime?response.resdta[i].sharingtime:'';var newtime=time.replace(/:[^:]*$/,'');addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="10%">'+response.resdta[i].name+'</td>';if(response.resdta[i].category==16)
 {category=response.resdta[i].othercategory?response.resdta[i].othercategory:'';}
-addhtmlnxt+='<td width="10%">'+category+'</td>';addhtmlnxt+='<td width="10%">'+datefrom+'</td>';addhtmlnxt+='<td width="5%">'+newtime+'</td>';addhtmlnxt+='<td width="10%">'+enddate+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].datashared+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].purpose+'</td>';addhtmlnxt+='<td width="10%">'+upsiname+'</td>';addhtmlnxt+='<td width="5%"><i class="fa fa-bar-chart viewtrail" infoshrid="'+response.resdta[i].id+'"></i></td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].fullname+'</td>';addhtmlnxt+='<td width="25%">';if(response.getaccess[0].upsi_infoshare_delete==1)
+addhtmlnxt+='<td width="10%">'+category+'</td>';addhtmlnxt+='<td width="10%">'+datefrom+'</td>';addhtmlnxt+='<td width="5%">'+newtime+'</td>';addhtmlnxt+='<td width="10%">'+enddate+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].datashared+'</td>';addhtmlnxt+='<td width="10%">'+upsiname+'</td>';addhtmlnxt+='<td width="10%"><i class="fa fa-file" aria-hidden="true" id="upsiattachmnt" filepath="'+response.resdta[i].filepath+'"></i></td>';addhtmlnxt+='<td width="5%"><i class="fa fa-bar-chart viewtrail" infoshrid="'+response.resdta[i].id+'"></i></td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].fullname+'</td>';addhtmlnxt+='<td width="25%">';if(response.getaccess[0].upsi_infoshare_delete==1)
 {addhtmlnxt+='<i class="fa fa-trash-o faicon floatleft deleterestrictedcmp" title="Delete entry" aprvllistid="'+response.resdta[i].id+'" ></i>';}
 else
 {addhtmlnxt+='';}
@@ -95,12 +95,16 @@ website.ajax({url:'sensitiveinformation/namelists',data:formdata,method:'POST',c
 {website('#live-search-header-wrapper').fadeIn();website('#live-search-header-wrapper ul').html("<li>Please wait...</li>");website('.mainprogressbarforall .progress').fadeIn();website(".mainprogressbarforall .progress .progress-bar").width(percentComplete+'%');},success:function(response,textStatus,jqXHR)
 {var addhtml='';website('#live-search-header-wrapper ul').html("");website('#live-search-header-wrapper').fadeIn();if(response.logged==true&&response.data.length>=1)
 {for(var i=0;i<response.data.length;i++)
-{if(i==0)
-{addhtml+='<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="topul validatorsid">'+response.data[i].name;addhtml+='<div class="clearelement"></div></li>';}
-else if(i==((response.data.length)-1))
-{addhtml+='<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"   class="bottomul validatorsid">'+response.data[i].name;addhtml+='<div class="clearelement"></div></li>';}
+{var categoryname='';if(response.data[i].category=='16')
+{categoryname=response.data[i].othercategory;}
 else
-{addhtml+='<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="bottomul validatorsid">'+response.data[i].name;addhtml+='<div class="clearelement"></div></li>';}}
+{categoryname=response.data[i].categoryname;}
+if(i==0)
+{addhtml+='<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" categoryname="'+categoryname+'" class="topul validatorsid">'+response.data[i].name;addhtml+='<div class="clearelement"></div></li>';}
+else if(i==((response.data.length)-1))
+{addhtml+='<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'"  class="bottomul validatorsid">'+response.data[i].name;addhtml+='<div class="clearelement"></div></li>';}
+else
+{addhtml+='<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+response.data[i].name;addhtml+='<div class="clearelement"></div></li>';}}
 website('#live-search-header-wrapper ul').html(addhtml);}
 else
 {website('#live-search-header-wrapper ul').html('<li class="noresultfound"><span class="resp_new">'+response.message+'</span></li>');}
@@ -118,18 +122,18 @@ website.ajax({url:'sensitiveinformation/namelists',data:formdata,method:'POST',c
 {var addhtml='';website('#Mymodaledit #live-search-header-wrapper ul').html("");website('#Mymodaledit #live-search-header-wrapper').fadeIn();if(response.logged==true&&response.data.length>=1)
 {for(var i=0;i<response.data.length;i++)
 {if(i==0)
-{addhtml+='<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="topul validatorsid">'+response.data[i].name;addhtml+='<div class="clearelement"></div></li>';}
+{addhtml+='<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="topul validatorsid">'+response.data[i].name;addhtml+='<div class="clearelement"></div></li>';}
 else if(i==((response.data.length)-1))
-{addhtml+='<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="bottomul validatorsid">'+response.data[i].name;addhtml+='<div class="clearelement"></div></li>';}
+{addhtml+='<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+response.data[i].name;addhtml+='<div class="clearelement"></div></li>';}
 else
-{addhtml+='<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="bottomul validatorsid">'+response.data[i].name;addhtml+='<div class="clearelement"></div></li>';}}
+{addhtml+='<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+response.data[i].name;addhtml+='<div class="clearelement"></div></li>';}}
 website('#live-search-header-wrapper ul').html(addhtml);}
 else
 {website('#Mymodaledit #live-search-header-wrapper ul').html('<li class="noresultfound"><span class="resp_new">'+response.message+'</span></li>');}
 website("#Mymodaledit .mainprogressbarforall .progress .progress-bar").width('100%');},complete:function(response)
 {website('#Mymodaledit .search-row').fadeIn();website("#Mymodaledit .mainprogressbarforall .progress .progress-bar").fadeOut();},error:function(jqXHR,textStatus,errorThrown)
 {}});}}
-website('body').on('click','.validatorsid',function(e){var recid=website(this).attr('rec_id');var name=website(this).attr('name');var cate=website(this).attr('category');website('#insertinfosharing #search-box').val(name);website('#search-box').attr('recid',recid);website('#search-box').attr('recname',name);website('#insertinfosharing #recid').val(recid);website('#insertinfosharing #category').val(cate);website('#live-search-header-wrapper').fadeOut();website('#insertinfosharing #name').val(name);website('#validators').attr('recid',recid);website('#validators').attr('recname',name);});website('body').on('click','#Mymodaledit .validatorsid',function(e){var recid=website(this).attr('rec_id');var name=website(this).attr('name');var cate=website(this).attr('category');website('#updateinfosharing #search-box').val(name);website('#Mymodaledit #search-box').attr('recid',recid);website('#Mymodaledit #search-box').attr('recname',name);website('#Mymodaledit #live-search-header-wrapper').fadeOut();website('#updateinfosharing #recid').val(recid);website('#updateinfosharing #category').val(cate);website('#updateinfosharing #name').val(name);website('#Mymodaledit #validators').attr('recid',recid);website('#Mymodaledit #validators').attr('recname',name);});website(function(){});website(".time_of_data").inputmask();website('body').on("click",".viewtrail",function(e){var infoid=website(this).attr('infoshrid');var formdata={infoid:infoid}
+website('body').on('click','.validatorsid',function(e){var recid=website(this).attr('rec_id');var name=website(this).attr('name');var cate=website(this).attr('category');var categoryname=website(this).attr('categoryname');website('#insertinfosharing #search-box').val(name);website('#search-box').attr('recid',recid);website('#search-box').attr('recname',name);website('#insertinfosharing #recid').val(recid);website('#insertinfosharing #category').val(cate);website('#live-search-header-wrapper').fadeOut();website('#insertinfosharing #name').val(name);website('#insertinfosharing #categoryname').val(categoryname);website('#validators').attr('recid',recid);website('#validators').attr('recname',name);});website('body').on('click','#Mymodaledit .validatorsid',function(e){var recid=website(this).attr('rec_id');var name=website(this).attr('name');var cate=website(this).attr('category');var categoryname=website(this).attr('categoryname');website('#updateinfosharing #search-box').val(name);website('#Mymodaledit #search-box').attr('recid',recid);website('#Mymodaledit #search-box').attr('recname',name);website('#Mymodaledit #live-search-header-wrapper').fadeOut();website('#updateinfosharing #recid').val(recid);website('#updateinfosharing #category').val(cate);website('#updateinfosharing #name').val(name);website('#insertinfosharing #categoryname').val(categoryname);website('#Mymodaledit #validators').attr('recid',recid);website('#Mymodaledit #validators').attr('recname',name);});website(function(){});website(".time_of_data").inputmask();website('body').on("click",".viewtrail",function(e){var infoid=website(this).attr('infoshrid');var formdata={infoid:infoid}
 website.ajax({url:'sensitiveinformation/fetchinfotrail',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
@@ -155,4 +159,16 @@ else
 else
 {new PNotify({title:'Alert!!',text:'Something Went Wrong',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
-{}});};
+{}});}
+website('body').on('click','.btnaddfile',function()
+{var getlastid=website('.appendfile').attr('filecntr');getlastid=++getlastid;var addhtmlnxt='';addhtmlnxt+='<div id="row-'+getlastid+'">';addhtmlnxt+='<section class="col col-md-12 col-xs-12">';addhtmlnxt+='<section class="col col-md-1 col-xs-1"><div class="input"><label class="control-label">Sr No.</label><br><label>'+getlastid+'.</label></div></section>';addhtmlnxt+='<section class="col col-md-3 col-xs-3"><div class="input">';addhtmlnxt+='<label class="control-label">Attach Data Shared</label><div class="choose_files">';addhtmlnxt+='<input type="file" name="upload[]" id="upload" ></div></div></section>';addhtmlnxt+='</section></div>';website('.appendfile').append(addhtmlnxt);website('.appendfile').attr('filecntr',getlastid);});website('body').on('click','.btndeletefile',function()
+{var rownum=website('.appendfile').attr('filecntr');if(rownum!=1)
+{website('.appendfile #row-'+rownum).remove();website('.appendfile').attr('filecntr',parseInt(rownum)-1);}
+else
+{return false;}});website('body').on('click','#upsiattachmnt',function()
+{var filepath=website(this).attr('filepath');if(filepath)
+{filepath=filepath.split(',');var addhtml='';addhtml+='<table class="table datatable-responsive" width="100%" border="1"><tr><th>Sr No.</th><th>Attachment</th></tr>';for(var i=0;i<filepath.length;i++)
+{var j=i;j++;addhtml+='<tr><td width="50%">'+j+'.</td>';addhtml+='<td width="50%"><i class="fa fa-download getfile" filepath="'+filepath[i]+'" d="uploadattached1" aria-hidden="true"></i></td></tr>';}
+addhtml+='</tr></table>';website('#modalupsiattachmnt .upsifilepath').html(addhtml);website('#modalupsiattachmnt').modal('show');}
+else
+{new PNotify({title:'Alert!!',text:'File not available',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}});;

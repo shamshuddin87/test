@@ -210,12 +210,12 @@ class Sensitiveinformationcommon extends Component
     
     
     // **************************** infosharing insert ***************************
-   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$purpose,$category,$upsitypeid,$recipientid)
+   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$filepath)
     {
         $connection = $this->dbtrd; 
         $times = time();
-        $queryinsert = "INSERT INTO `sensitiveinfo_sharing`(`user_id`,`user_group_id`,`recipientid`,`name`,`sharingdate`,`upsitype`,`sharingtime`,`enddate`, `datashared`, `purpose`,`category`,`date_added`, `date_modified`,`timeago`)
-         VALUES ('".$getuserid."','".$user_group_id."','".$recipientid."','".$name."','".$sharingdate."','".$upsitypeid."','".$sharingtime."','".$enddate."','".$datashared."','".$purpose."','".$category."',NOW(),NOW(),'".$times."')"; 
+        $queryinsert = "INSERT INTO `sensitiveinfo_sharing`(`user_id`,`user_group_id`,`recipientid`,`name`,`sharingdate`,`upsitype`,`sharingtime`,`enddate`, `datashared`,`category`,`filepath`,`date_added`, `date_modified`,`timeago`)
+         VALUES ('".$getuserid."','".$user_group_id."','".$recipientid."','".$name."','".$sharingdate."','".$upsitypeid."','".$sharingtime."','".$enddate."','".$datashared."','".$category."','".$filepath."',NOW(),NOW(),'".$times."')"; 
         //print_r($queryinsert);exit;
         try
         {
@@ -385,7 +385,9 @@ class Sensitiveinformationcommon extends Component
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
             
-             $queryget = "SELECT * FROM `sensitiveinfo_recipient` WHERE `user_id` IN (".$grpusrs['ulstring'].") AND`name` LIKE '%{$getsearchkywo}%'";
+             $queryget = "SELECT sr.*,cate.`category` AS `categoryname` FROM `sensitiveinfo_recipient` sr
+             LEFT JOIN `sensitiveinfo_category` cate ON cate.`id` = sr.`category`
+             WHERE sr.`user_id` IN (".$grpusrs['ulstring'].") AND sr.`name` LIKE '%{$getsearchkywo}%'";
             //echo $queryget;exit;
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
@@ -484,7 +486,7 @@ class Sensitiveinformationcommon extends Component
     }
     
   // **************************** infosharing fetch for Archive table***************************
-    public function fetcharchiveinfosharing($getuserid,$user_group_id,$query)
+    public function fetcharchiveinfosharing($getuserid,$user_group_id,$upsitype,$query)
     {
        $connection = $this->dbtrd;
         try
@@ -495,7 +497,7 @@ class Sensitiveinformationcommon extends Component
                         LEFT JOIN `sensitiveinfo_category` sc ON sc.`id` = ss.`category`
                         LEFT JOIN `sensitiveinfo_recipient` sr ON sr.`id` = ss.`recipientid`
                         LEFT JOIN `upsimaster` upt ON upt.`id` = ss.`upsitype`
-                        WHERE (FIND_IN_SET('".$getuserid."',upt.`projectowner`) OR FIND_IN_SET('".$getuserid."',upt.`connecteddps`)) AND ss.`enddate` !=''  ".$query;  
+                        WHERE (FIND_IN_SET('".$getuserid."',upt.`projectowner`) OR FIND_IN_SET('".$getuserid."',upt.`connecteddps`)) AND ss.`enddate` !=''   AND ss.`upsitype` = '".$upsitype."'".$query;  
           
             
             //echo $queryget;  exit;

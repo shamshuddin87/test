@@ -133,8 +133,10 @@ function getdataonload()
             addhtmlnxt += '<td width="5%">'+newtime+'</td>';
             addhtmlnxt += '<td width="10%">'+enddate+'</td>';
             addhtmlnxt += '<td width="10%">'+response.resdta[i].datashared+'</td>';
-            addhtmlnxt += '<td width="10%">'+response.resdta[i].purpose+'</td>';
+//            addhtmlnxt += '<td width="10%">'+response.resdta[i].purpose+'</td>';
             addhtmlnxt += '<td width="10%">'+upsiname+'</td>';
+            addhtmlnxt += '<td width="10%"><i class="fa fa-file" aria-hidden="true" id="upsiattachmnt" filepath="'+response.resdta[i].filepath+'"></i></td>';
+            
 //            if(response.resdta[i].filepath)
 //            {
 //                addhtmlnxt += '<td width="10%"><i class="fa fa-download getfile" filepath="'+response.resdta[i].filepath+'" d="uploadattached1" aria-hidden="true"></i></td>';
@@ -625,23 +627,33 @@ function doSearch(getvalue)
                 {         
           //console.log(response.data);return false;
           for(var i = 0; i < response.data.length; i++) 
-                    {   
+          {   
+            var categoryname = ''; 
+            if(response.data[i].category == '16')
+            {
+                 categoryname = response.data[i].othercategory;
+            }
+            else
+            {
+                 categoryname = response.data[i].categoryname;
+            }
             if(i==0)
-            {                           
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="topul validatorsid">'+response.data[i].name;
+            {
+             
+              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" categoryname="'+categoryname+'" class="topul validatorsid">'+response.data[i].name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
             }
             else if(i==((response.data.length)-1))
             {
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"   class="bottomul validatorsid">'+response.data[i].name;
+              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'"  class="bottomul validatorsid">'+response.data[i].name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
               
             }
             else
             {
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="bottomul validatorsid">'+response.data[i].name;
+              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+response.data[i].name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
             }
@@ -721,20 +733,20 @@ function doSearchforedit(getvalue)
                     {   
             if(i==0)
             {                           
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="topul validatorsid">'+response.data[i].name;
+              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="topul validatorsid">'+response.data[i].name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
             }
             else if(i==((response.data.length)-1))
             {
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="bottomul validatorsid">'+response.data[i].name;
+              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+response.data[i].name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
               
             }
             else
             {
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" class="bottomul validatorsid">'+response.data[i].name;
+              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+response.data[i].name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
             }
@@ -768,6 +780,7 @@ function doSearchforedit(getvalue)
        var recid = website(this).attr('rec_id');
        var name = website(this).attr('name');
        var cate = website(this).attr('category');
+       var categoryname = website(this).attr('categoryname');
         
        website('#insertinfosharing #search-box').val(name);
        website('#search-box').attr('recid',recid);
@@ -777,6 +790,7 @@ function doSearchforedit(getvalue)
        website('#live-search-header-wrapper').fadeOut();       
        
        website('#insertinfosharing #name').val(name);
+       website('#insertinfosharing #categoryname').val(categoryname);
        website('#validators').attr('recid',recid);
        website('#validators').attr('recname',name);
     });
@@ -787,6 +801,7 @@ function doSearchforedit(getvalue)
        var recid = website(this).attr('rec_id');
        var name = website(this).attr('name');
        var cate = website(this).attr('category');
+       var categoryname = website(this).attr('categoryname');
        //alert(fullname);
        website('#updateinfosharing #search-box').val(name);
        website('#Mymodaledit #search-box').attr('recid',recid);
@@ -797,6 +812,7 @@ function doSearchforedit(getvalue)
        website('#updateinfosharing #recid').val(recid);
        website('#updateinfosharing #category').val(cate);
        website('#updateinfosharing #name').val(name);
+       website('#insertinfosharing #categoryname').val(categoryname);
        website('#Mymodaledit #validators').attr('recid',recid);
        website('#Mymodaledit #validators').attr('recname',name);
     });
@@ -975,3 +991,71 @@ function unlinkfile(filepath)
     {}
   });
 }
+
+/* ----- Start Add/Delete Email Rows ----- */
+website('body').on('click','.btnaddfile',function()
+{
+    var getlastid = website('.appendfile').attr('filecntr');
+    //console.log(getlastid); return false;
+    getlastid = ++getlastid;
+    
+    var addhtmlnxt='';
+    addhtmlnxt += '<div id="row-'+getlastid+'">';
+    addhtmlnxt += '<section class="col col-md-12 col-xs-12">';
+    addhtmlnxt += '<section class="col col-md-1 col-xs-1"><div class="input"><label class="control-label">Sr No.</label><br><label>'+getlastid+'.</label></div></section>';
+    addhtmlnxt += '<section class="col col-md-3 col-xs-3"><div class="input">';
+    addhtmlnxt += '<label class="control-label">Attach Data Shared</label><div class="choose_files">';
+    addhtmlnxt += '<input type="file" name="upload[]" id="upload" ></div></div></section>';
+    addhtmlnxt += '</section></div>';
+    
+    website('.appendfile').append(addhtmlnxt);
+    website('.appendfile').attr('filecntr',getlastid);
+});
+
+website('body').on('click','.btndeletefile',function()
+{
+    var rownum  = website('.appendfile').attr('filecntr');
+    //console.log(rownum); return false;     
+    if(rownum != 1)
+    {
+        website('.appendfile #row-'+rownum).remove();
+        website('.appendfile').attr('filecntr',parseInt(rownum)-1);
+    }
+    else
+    {
+        return false;
+    }    
+});
+/* ----- Start Add/Delete Email Rows ----- */
+website('body').on('click','#upsiattachmnt',function()
+{
+    var filepath = website(this).attr('filepath');
+    //console.log(filepath);
+    if(filepath)
+    {
+        filepath = filepath.split(',');
+        var addhtml = '';
+        addhtml+= '<table class="table datatable-responsive" width="100%" border="1"><tr><th>Sr No.</th><th>Attachment</th></tr>';
+        for(var i=0;i<filepath.length;i++)
+        {
+            var j = i;
+            j++;
+            addhtml+= '<tr><td width="50%">'+j+'.</td>';
+            addhtml += '<td width="50%"><i class="fa fa-download getfile" filepath="'+filepath[i]+'" d="uploadattached1" aria-hidden="true"></i></td></tr>';
+        }
+        addhtml+= '</tr></table>';
+        website('#modalupsiattachmnt .upsifilepath').html(addhtml);  
+        website('#modalupsiattachmnt').modal('show');  
+    }
+    else
+    {
+        new PNotify({title: 'Alert!!',
+                  text: 'File not available',
+                  type: 'university',
+                  hide: true,
+                  styling: 'bootstrap3',
+                  addclass: 'dark ',
+              });
+    }
+    
+});

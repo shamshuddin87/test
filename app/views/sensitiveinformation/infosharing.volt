@@ -16,7 +16,8 @@ $upsiid = $this->session->upsitypeid;
 <div class="mainelementfom">
      
     <input type="hidden" name="upsitypeid" class="upsitypeid" id="upsitypeid" value="<?php echo $upsiid;?>">
-    <h1 class="h1_heading text-center">Database of information shared</h1>
+    <h1 class="h1_heading text-center"><?php echo $upsitype['upsitype'];?></h1>
+    <h2 class="text-center">(Database of information shared)</h2>
     <div class="containergrid">       
         <div class="formcss">                           
             <div class="typography form_pad">
@@ -61,6 +62,13 @@ $upsiid = $this->session->upsitypeid;
                         
                         <section class="col col-md-4 col-xs-4">
                             <div class="input">
+                                <label class="control-label">Category*</label>
+                                <input type="text" id="categoryname" name="categoryname" class="form_fields form-control col-md-7 col-xs-12" readonly required>
+                            </div>
+                        </section>
+                        
+                        <section class="col col-md-4 col-xs-4">
+                            <div class="input">
                                 <label class="control-label">Date Of Information Sharing*</label>
                                 <input type="text" id="date" name="date" class="form-control bootdatepick" readonly required>
                             </div>
@@ -91,12 +99,14 @@ $upsiid = $this->session->upsitypeid;
                             </div>
                         </section>
                         
+<!--
                         <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Purpose*</label>
                                 <input type="text" id="purpose" name="purpose" class="form_fields form-control col-md-7 col-xs-12" required>
                             </div>
                         </section>
+-->
 
 
                          <section class="col col-md-4 col-xs-4">
@@ -105,18 +115,31 @@ $upsiid = $this->session->upsitypeid;
                                 <input type="text" id="enddate" name="enddate" class="form-control bootdatepick" readonly required>
                             </div>
                         </section>   
-					    
-<!--
-                        <section class="col col-md-4 col-xs-4">
+					    <section class="col col-md-12 col-xs-12"></section>
+                        <div class="appendfile" filecntr='1'>
+                        <section class="col col-md-12 col-xs-12">
+                        <section class="col col-md-1 col-xs-1">
+                          <div class="input">
+                        <label class="control-label">Sr No.</label><br>
+                            <label>1.</label>
+                        </div>
+                        </section>
+                        <section class="col col-md-3 col-xs-3">
                         <div class="input">
                         <label class="control-label">Attach Data Shared</label>
                             <div class="choose_files">
-                                <input type="file" name="upload" id="upload" >
+                                <input type="file" name="upload[]" id="upload" >
                             </div>
                         </div>
                        </section>
--->
-                        
+                        </section>
+                        </div>
+                        <section class="col col-md-12 col-xs-12">
+                        <div>
+                            <input type="button" class="btn btn-primary btnaddfile" value="+" >
+                            <input type="button" class="btn btn-primary btndeletefile" value="-" >                    
+                        </div> 
+                        </section>
                       <section class="col col-md-12 company_asses">
                             <input type="submit" value="Submit" class="btn btn-primary contractexcelbtn">
                         </section>
@@ -151,9 +174,9 @@ $upsiid = $this->session->upsitypeid;
                             <th>Time</th> 
                             <th>End Date</th> 
                             <th>Data shared</th> 
-                            <th>Purpose</th> 
+<!--                            <th>Purpose</th> -->
                             <th>UPSI Type</th> 
-<!--                            <th>Attachment</th> -->
+                            <th>Attachment</th> 
                             <th>Audit Trail</th> 
                             <th>Sent By</th> 
                             <th>Action</th>
@@ -251,6 +274,13 @@ $upsiid = $this->session->upsitypeid;
                             <div class="input">
                                 <label class="control-label">Name Of Recipient*</label>
                                 <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" readonly required>
+                            </div>
+                        </section>
+                
+                        <section class="col col-md-6 col-xs-6">
+                            <div class="input">
+                                <label class="control-label">Category*</label>
+                                <input type="text" id="categoryname" name="categoryname" class="form_fields form-control col-md-7 col-xs-12" readonly required>
                             </div>
                         </section>
                         
@@ -369,6 +399,23 @@ $upsiid = $this->session->upsitypeid;
 
           </form>
       </div>
+
+
+      </div>
+    </div>
+</div>
+
+<div id="modalupsiattachmnt" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">UPSI Attachment</h4>
+      </div>
+        <div class="modal-body">
+            <div class="upsifilepath"></div>  
+        </div>
 
 
       </div>

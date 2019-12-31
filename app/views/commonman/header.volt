@@ -66,7 +66,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
                 <li><a href="usermaster"><i class=""></i>User Master</a></li>
 
               <?php  } ?>
-                 <li><a href="upsimaster"><i class=""></i> Type of UPSI</a></li> 
+                 <li><a href="upsimaster"><i class=""></i>UPSI Module</a></li> 
 
              
                <!--  <li><a href="usermaster/userview"><i class="fa fa-eye"></i>View Users</a></li>   -->

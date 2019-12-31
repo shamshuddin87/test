@@ -35,6 +35,7 @@ $condeptsess = $this->session->contractdepartment;
                         </section>
                         
                         <div class="othercate"></div>
+                        <div class="employeecate"></div>
                         
                         <section class="col col-md-4 col-xs-12">
                             <div class="input">
@@ -205,6 +206,7 @@ $condeptsess = $this->session->contractdepartment;
                     </section>
                 
                     <div class="othercateedit"></div>
+                    <div class="employeecateedit"></div>
 
                     <section class="col col-md-4 col-xs-12">
                         <div class="input">

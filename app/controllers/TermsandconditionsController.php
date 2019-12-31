@@ -49,7 +49,8 @@ class TermsandconditionsController extends ControllerBase
                             $filetitle = $this->request->getPost('filetitle');
 	                        $upload_path = $this->cmpmodule."/tradingrequest/";  
 	                        $target_file =  $upload_path.time();
-	                        $file=$_FILES['fileToUpload']['name'];    
+	                        $filename = $_FILES['fileToUpload']['name'];    
+	                        $file = str_replace(' ','_',$filename);  
      	                    $result = move_uploaded_file($_FILES['fileToUpload']['tmp_name'],$target_file.$file);
  
 		                       if($result==true)

@@ -85,7 +85,7 @@ function getallupsietails()
                         dpusers = response.data[i]['connecteddps'];
                         dpusers = dpusers.split(",");
                     }
-                    if(response.userid == response.data[i]['projectowner'] || jQuery.inArray(response.userid, dpusers) !== -1)
+                    if(response.usergrp == '14' || response.userid == response.data[i]['projectowner'])
                     {
                         htmlelements+='<i class="fa fa-edit upedit" upsiid="'+response.data[i][0]+'" ></i>';
                     }
@@ -170,6 +170,7 @@ website('body').on('click','.upedit',function(e){
                 var enddate = response.data['enddate']?response.data['enddate']:'';
                 var projectownerid = response.data['projectowner']?response.data['projectowner']:'';
                 var projectownername = response.data['fullname']?response.data['fullname']:'';
+                var projectdes = response.data['projdescriptn']?response.data['projdescriptn']:'';
                 
                 website('#upsimodel #upname').val(upupsnm);
                 website('#upsimodel #cmpupname').val(upupsnm);
@@ -185,6 +186,9 @@ website('body').on('click','.upedit',function(e){
                 
                 website('#upsimodel #ownermodal').val(projectownername);
                 website('#upsimodel #cmpownermodal').val(projectownername);
+                
+                website('#upsimodel #cmpprojdes').val(projectdes);
+                website('#upsimodel #projdesc').val(projectdes);
                 
                 website('#upsimodel #cmpid').val(response.data['companyid']);
                 website('#upsimodel #editid').val(response.data['id']);
@@ -222,7 +226,7 @@ website('#updateupsimast').ajaxForm({
             styling: 'bootstrap3',
             addclass: 'dark ',
             });
-            getallcmpdetails(); 
+            getallupsietails(); 
          }
          else
          {  
@@ -331,13 +335,13 @@ formdata={delid:delid};
 });
 
 website('body').on('click','.addupsitype',function(e){
-    website('#modaltradingwindow').modal('show');
+    website('#addupsimast').submit();
 });
 
-website('body').on('click','#tradingacc',function(e){
-    website('#addupsimast').submit();
-   
-});
+//website('body').on('click','#tradingacc',function(e){
+//    website('#addupsimast').submit();
+//   
+//});
 
 website('body').on('click','#tradingrej',function(e){
          
@@ -352,9 +356,9 @@ website('body').on('click','#tradingrej',function(e){
     //contentType:'application/x-www-form-urlencoded; charset=UTF-8',
     dataType:"json",
     beforeSend: function() 
-    {   },
+    { website('.preloder_wraper').fadeIn();  },
     uploadProgress: function(event, position, total, percentComplete) 
-    {   },
+    {  website('.preloder_wraper').fadeIn(); },
     success: function(response, textStatus, jqXHR) 
     {
          if(response.logged === true)
@@ -368,7 +372,7 @@ website('body').on('click','#tradingrej',function(e){
                     addclass: 'dark ',
                  });
             website("#addupsimast").trigger('reset');
-            getallcmpdetails(); 
+            getallupsietails(); 
          }
          else
          {    
@@ -382,7 +386,7 @@ website('body').on('click','#tradingrej',function(e){
          }
     },
     complete: function(response) 
-    {   },
+    {  website('.preloder_wraper').fadeOut(); },
     error: function() 
     {   }
 });

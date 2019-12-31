@@ -14,7 +14,7 @@ $condeptsess = $this->session->contractdepartment;
 <!-- My messages -->
 <div class="mainelementfom">
     
-    <h1 class="h1_heading text-center">UPSI Types</h1> 
+    <h1 class="h1_heading text-center">UPSI Module</h1> 
  <div class="containergrid"> 
     <div class="table-responsive table_wraper">
        
@@ -29,9 +29,9 @@ $condeptsess = $this->session->contractdepartment;
                 <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>
-                            <th>Type of UPSI</th>
-                            <th>Project Start Date</th>
-                            <th>Project End Date</th>
+                            <th>Title of UPSI</th>
+                            <th>UPSI Start Date</th>
+                            <th>UPSI End Date</th>
                             <th>Date of creation</th>
                             <th>Add/View Recipients</th> 
 <!--                            <th>Edit/Delete</th>-->

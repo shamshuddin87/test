@@ -144,7 +144,7 @@ class Homecommon extends Component
         return $finaldata;
     }
     
-     public function fetchequity($compid)
+     public function fetchequity($getuserid,$compid)
      {
         $connection = $this->dbtrd;
         $compid = explode(',',$compid);
@@ -153,7 +153,7 @@ class Homecommon extends Component
         {
             $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
                         LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
-                        WHERE ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='1' AND pr.`relative_id` = ''";
+                        WHERE ts.`user_id` ='".$getuserid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='1' AND pr.`relative_id` = ''";
             //echo $queryget;exit;
             try
             { 
@@ -197,7 +197,7 @@ class Homecommon extends Component
         return $getlist; 
     }
     
-     public function fetchprefereence($compid)
+     public function fetchprefereence($getuserid,$compid)
      {
         $connection = $this->dbtrd;
         $compid = explode(',',$compid);
@@ -206,7 +206,7 @@ class Homecommon extends Component
         {
             $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
                         LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
-                        WHERE ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='2' AND pr.`relative_id` = ''";
+                        WHERE ts.`user_id` ='".$getuserid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='2' AND pr.`relative_id` = ''";
             //echo $queryget;exit;
             try
             { 
@@ -252,7 +252,7 @@ class Homecommon extends Component
         return $getlist; 
     }
     
-     public function fetchdebenure($compid)
+     public function fetchdebenure($getuserid,$compid)
      {
         $connection = $this->dbtrd;
         $compid = explode(',',$compid);
@@ -261,7 +261,7 @@ class Homecommon extends Component
         {
             $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
                         LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id` 
-                        WHERE ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='3' AND pr.`relative_id` = ''";
+                        WHERE ts.`user_id` ='".$getuserid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='3' AND pr.`relative_id` = ''";
             //echo $queryget;
             
             try

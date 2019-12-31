@@ -20,8 +20,8 @@ website.ajax({url:'mis/fetchallupsiexport',data:formdata,method:'POST',contentTy
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
 {if(response.logged==true)
-{website('.dwnldExcel').fadeIn();website('.dwnldExcel').attr('href',response.genfile);website('#alertcommon #allalertmsg').html(response.message);website('#alertcommon').modal('show');}
+{website('.dwnldExcel').fadeIn();website('.dwnldExcel').attr('href',response.genfile);new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{website('#alertcommon #allalertmsg').html(response.message);website('#alertcommon').modal('show');}},complete:function(response)
+{new PNotify({title:response.message,text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function(response)
 {}});});;

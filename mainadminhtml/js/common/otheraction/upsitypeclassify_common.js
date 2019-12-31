@@ -114,20 +114,25 @@ website('body').on('click','.getallups', function(e)
             {
                 website('.dwnldExcel').fadeIn();
                 website('.dwnldExcel').attr('href',response.genfile);
-                   website('#alertcommon #allalertmsg').html(response.message);
-                 website('#alertcommon').modal('show');
+                new PNotify({title: 'Alert',
+                text: response.message,
+                type: 'university',
+                hide: true,
+                styling: 'bootstrap3',
+                addclass: 'dark ',
+              });
+                   
             }
             else
             {
-                //      new PNotify({title: response.message,
-                //   text: response.message,
-                //   type: 'university',
-                //   hide: true,
-                //   styling: 'bootstrap3',
-                //   addclass: 'dark ',
-                // }); 
-                  website('#alertcommon #allalertmsg').html(response.message);
-                  website('#alertcommon').modal('show');
+                new PNotify({title: response.message,
+                   text: response.message,
+                   type: 'university',
+                   hide: true,
+                   styling: 'bootstrap3',
+                   addclass: 'dark ',
+                 }); 
+                  
             }
            
         },

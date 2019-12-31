@@ -14,9 +14,12 @@ $condeptsess = $this->session->contractdepartment;
 <!-- My messages -->
 <div class="mainelementfom">
      
-
-    <h1 class="h1_heading text-center">Database of information shared</h1>
-  <input type="hidden" id="upsitypeid" value="<?php print_r($upsiid); ?>" name="upsitypeid">
+    
+    <h1 class="h1_heading text-center"><?php echo $upsitype;?></h1>
+    <h2 class="text-center">(Database of information shared)</h2>
+<!--    <h1 class="h1_heading text-center">Database of information shared</h1>-->
+    <input type="hidden" id="upsitypeid" value="<?php print_r($upsiid); ?>" name="upsitypeid">
+    
     <div class="table-responsive table_wraper">
        
             <div class="cssnumrws">
@@ -26,7 +29,9 @@ $condeptsess = $this->session->contractdepartment;
                 <option value="50">50</option><option value="100">100</option>
                 </select> 
                 <span>Entries</span>
-            </div>
+                <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
+                <button type="button" class="btn btn-primary genfile excel_bg" request="excel" style="float:right;">Export Excel</button>
+             </div>
                 <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>
@@ -36,8 +41,8 @@ $condeptsess = $this->session->contractdepartment;
                             <th>Time</th> 
                             <th>End Date</th> 
                             <th>Datashared</th> 
-                            <th>Purpose</th> 
-<!--                            <th>Attachment</th> -->
+<!--                            <th>Purpose</th> -->
+                            <th>Attachment</th> 
                             <th>Audit Trail</th> 
                             <th>Sent By</th> 
 <!--                            <th>Action</th>-->
@@ -251,6 +256,23 @@ $condeptsess = $this->session->contractdepartment;
 
           </form>
       </div>
+
+
+      </div>
+    </div>
+</div>
+
+<div id="modalupsiattachmnt" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">UPSI Attachment</h4>
+      </div>
+        <div class="modal-body">
+            <div class="upsifilepath"></div>  
+        </div>
 
 
       </div>

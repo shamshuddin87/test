@@ -12,7 +12,7 @@ website(document).ready(function()
 {for(var i=0;i<response.data.length;i++)
 {var enddate=response.data[i]['enddate']?response.data[i]['enddate']:'';var dpusers=[];var j=i+1;htmlelements+='<tr>';htmlelements+='<td width="10%">'+j+'</td>';htmlelements+='<td width="20%">'+response.data[i]['upsitype']+'</td>';htmlelements+='<td width="20%">'+response.data[i]['projstartdate']+'</td>';htmlelements+='<td width="20%">'+enddate+'</td>';htmlelements+='<td width="20%">'+response.data[i]['fullname']+'</td>';htmlelements+='<td width="10%">';if(response.data[i]['connecteddps'])
 {dpusers=response.data[i]['connecteddps'];dpusers=dpusers.split(",");}
-if(response.userid==response.data[i]['projectowner']||jQuery.inArray(response.userid,dpusers)!==-1)
+if(response.usergrp=='14'||response.userid==response.data[i]['projectowner'])
 {htmlelements+='<i class="fa fa-edit upedit" upsiid="'+response.data[i][0]+'" ></i>';}
 htmlelements+='<i class="fa fa-trash delups" delupsiid="'+response.data[i][0]+'"></i></td>';htmlelements+='</tr>';}}
 else
@@ -30,13 +30,13 @@ else
 {website('#upsimodel #dpsmodel').fadeIn();var connecteddps=response.data['connecteddps']?response.data['connecteddps']:'';website('#upsimodel #cmpconnectdps').val(connecteddps);if(response.dpusers)
 {var addhtml='';website.each(response.dpusers,function(k,v)
 {var userid=response.dpusers[k]['wr_id'];var username=response.dpusers[k]['fullname'];var useremail=website(this).attr('email');addhtml+='<div class="row-'+userid+'"><section class="col col-md-8 col-xs-8"><label class="control-label">Name of Connected DP*</label><input type="text" id="approvers" name="approvers[]" class="form_fields form-control col-md-7 col-xs-12" value="'+username+'" userid="'+userid+'" useremail="'+useremail+'" required readonly></section>';addhtml+='<section class="col col-md-4 col-xs-4"><i class="fa fa-trash-o faicon dbaprvl" num="'+userid+'" title="Delete entry"></i></section>';addhtml+='<input type="hidden" value="'+userid+'" name="connectdps[]">';addhtml+='<input type="hidden" value="'+useremail+'" name="useremail[]"></div>';website('#upsimodel .connectedp').html(addhtml);});}}
-var upupsnm=response.data['upsitype']?response.data['upsitype']:'';var projstartdate=response.data['projstartdate']?response.data['projstartdate']:'';var enddate=response.data['enddate']?response.data['enddate']:'';var projectownerid=response.data['projectowner']?response.data['projectowner']:'';var projectownername=response.data['fullname']?response.data['fullname']:'';website('#upsimodel #upname').val(upupsnm);website('#upsimodel #cmpupname').val(upupsnm);website('#upsimodel #pstartdte').val(projstartdate);website('#upsimodel #cmppstartdte').val(projstartdate);website('#upsimodel #enddate').val(enddate);website('#upsimodel #cmpenddate').val(enddate);website('#upsimodel #ownerid').val(projectownerid);website('#upsimodel #cmpownerid').val(projectownerid);website('#upsimodel #ownermodal').val(projectownername);website('#upsimodel #cmpownermodal').val(projectownername);website('#upsimodel #cmpid').val(response.data['companyid']);website('#upsimodel #editid').val(response.data['id']);website('#upsimodel').modal('show');}},complete:function(response)
+var upupsnm=response.data['upsitype']?response.data['upsitype']:'';var projstartdate=response.data['projstartdate']?response.data['projstartdate']:'';var enddate=response.data['enddate']?response.data['enddate']:'';var projectownerid=response.data['projectowner']?response.data['projectowner']:'';var projectownername=response.data['fullname']?response.data['fullname']:'';var projectdes=response.data['projdescriptn']?response.data['projdescriptn']:'';website('#upsimodel #upname').val(upupsnm);website('#upsimodel #cmpupname').val(upupsnm);website('#upsimodel #pstartdte').val(projstartdate);website('#upsimodel #cmppstartdte').val(projstartdate);website('#upsimodel #enddate').val(enddate);website('#upsimodel #cmpenddate').val(enddate);website('#upsimodel #ownerid').val(projectownerid);website('#upsimodel #cmpownerid').val(projectownerid);website('#upsimodel #ownermodal').val(projectownername);website('#upsimodel #cmpownermodal').val(projectownername);website('#upsimodel #cmpprojdes').val(projectdes);website('#upsimodel #projdesc').val(projectdes);website('#upsimodel #cmpid').val(response.data['companyid']);website('#upsimodel #editid').val(response.data['id']);website('#upsimodel').modal('show');}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});});website('#updateupsimast').ajaxForm({dataType:"json",beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{website("#upsimodel").modal('hide');new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});getallcmpdetails();}
+{website("#upsimodel").modal('hide');new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});getallupsietails();}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function()
@@ -54,14 +54,14 @@ else
 {website('#addupsimast #connectedpform #connectdps').attr('required','required');website('#addupsimast #connectedpform').css('display','block');}});website('body').on('change','#upsimodel #upalldps',function(){if(website(this).is(":checked"))
 {website('#updateupsimast #connectdps').removeAttr('required','required');website('#updateupsimast #dpsmodel').css('display','none');}
 else
-{console.log('in else');website('#updateupsimast #connectdps').attr('required','required');website('#updateupsimast #dpsmodel').css('display','block');}});website('body').on('click','.addupsitype',function(e){website('#modaltradingwindow').modal('show');});website('body').on('click','#tradingacc',function(e){website('#addupsimast').submit();});website('body').on('click','#tradingrej',function(e){website('#alertcommon #allalertmsg').html("Upsi Is Not Added..!!!");website('#alertcommon').modal('show');});website('#addupsimast').ajaxForm({dataType:"json",beforeSend:function()
-{},uploadProgress:function(event,position,total,percentComplete)
-{},success:function(response,textStatus,jqXHR)
+{console.log('in else');website('#updateupsimast #connectdps').attr('required','required');website('#updateupsimast #dpsmodel').css('display','block');}});website('body').on('click','.addupsitype',function(e){website('#addupsimast').submit();});website('body').on('click','#tradingrej',function(e){website('#alertcommon #allalertmsg').html("Upsi Is Not Added..!!!");website('#alertcommon').modal('show');});website('#addupsimast').ajaxForm({dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{website('#modaltradingwindow').modal('hide');new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website("#addupsimast").trigger('reset');getallcmpdetails();}
+{website('#modaltradingwindow').modal('hide');new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website("#addupsimast").trigger('reset');getallupsietails();}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
-{},error:function()
+{website('.preloder_wraper').fadeOut();},error:function()
 {}});var timer=0;function mySearch(){var getvalue=website('.header-search-input').val();doSearch(getvalue);}
 website('.header-search-input').on('keyup',function(e){var getkeycode=website.trim(e.keyCode);if(getkeycode!='40'&&getkeycode!='38'&&getkeycode!='13'){if(timer){clearTimeout(timer);}
 timer=setTimeout(mySearch,400);}});var timer=0;function mySearchforedit(){var getvalue=website('#upsimodel .header-search-input').val();doSearchforedit(getvalue);}

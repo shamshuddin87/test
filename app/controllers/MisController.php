@@ -90,11 +90,16 @@ class MisController extends ControllerBase
     public function mis_infosharingAction()
     {
         $upsiid=$_GET['upsid'];
+        $upsidata = $this->sensitiveinformationcommon->fetchupsitype($upsiid);
+        $this->view->upsitype = $upsidata['upsitype'];
+        //print_r($upsitype);exit;
         $this->view->upsiid=$upsiid;
     }
     public function archive_missharingAction()
     {
         $upsiid=$_GET['upsitype'];
+        $upsidata = $this->sensitiveinformationcommon->fetchupsitype($upsiid);
+        $this->view->upsitype = $upsidata['upsitype'];
         $this->view->upsiid=$upsiid;
     }
 
@@ -1288,6 +1293,98 @@ class MisController extends ControllerBase
               
                  // print_r($genfile);exit;
 
+                if(!empty($genfile))
+                {
+                    $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "File Not Generated..!!");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+           
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+        
+    }
+    
+    public function ExportSharedInfoAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $request = $this->request->getPost('request');
+                $upsitypeid = $this->request->getPost('upsitypeid');
+                $query = '';
+                $getres = $this->miscommon->fetchinfosharing($getuserid,$user_group_id,$upsitypeid,$query);
+                //print_r($getres);exit;
+                $genfile = $this->phpimportexpogen->fetchSharedInfoexcel($getuserid,$user_group_id,$getres);
+                //print_r($genfile);exit;
+                if(!empty($genfile))
+                {
+                    $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "File Not Generated..!!");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+           
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+        
+    }
+    
+    public function ExportArchiveSharedInfoAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $request = $this->request->getPost('request');
+                $upsitypeid = $this->request->getPost('upsitypeid');
+                $query = '';
+                $getres = $this->miscommon->fetcharchiveinfosharing($getuserid,$user_group_id,$upsitypeid,$query);
+                //print_r($getres);exit;
+                $genfile = $this->phpimportexpogen->fetchArchiveSharedInfoexcel($getuserid,$user_group_id,$getres);
+                //print_r($genfile);exit;
                 if(!empty($genfile))
                 {
                     $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
