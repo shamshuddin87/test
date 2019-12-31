@@ -15,7 +15,7 @@ $uid = $this->session->loginauthspuserfront['id'];
 <!-- My messages -->
 <div class="mainelementfom">
     
-            <h1 class="h1_heading">UPSI projects </h1>            
+            <h1 class="h1_heading">UPSI Module</h1>            
             <div class="containergrid">
                <?php if($gmnlog['user_group_id'] == 14){?>
                 <div class="containergrid formcss">                           
@@ -40,14 +40,14 @@ $uid = $this->session->loginauthspuserfront['id'];
 -->
                       
                         <section class="col col-md-6 col-xs-6">
-                            <label class="control-label">Name of Project*</label>
+                            <label class="control-label">Title of UPSI*</label>
                             <div class="input">
                                 <input type="text" id="upnm" name="upname" required="required" class="form_fields form-control col-md-7 col-xs-12" >
                             </div>
                         </section>
                         
                          <section class="col col-md-6 col-xs-6">
-                            <label class="control-label">Project Start Date*</label>
+                            <label class="control-label">UPSI Start Date*</label>
                             <div class="input">
                                 <input type="text" id="pstartdte" name="pstartdte" required="required" class="form_fields form-control col-md-7 col-xs-12 bootdatepick" readonly>
                             </div>
@@ -56,7 +56,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                       <section class="col col-md-6 col-xs-6">
                             <div class="input">
                             <div class="mainelem company_product">
-                                <label class="control-label">Enter Name of Project Owner / Group Leader*</label>
+                                <label class="control-label">Enter Name of UPSI Owner / Group Leader*</label>
                                 <div class="header-search-wrapper  floatnone find_box_company">
                                     <i class="fa fa-search"></i>
                                     <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft" placeholder="Search Project Owner/Group Leader" id="search-box" autocomplete="off"/>
@@ -80,7 +80,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                         
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
-                                <label class="control-label">Project Owner / Group Leader*</label>
+                                <label class="control-label">UPSI Owner / Group Leader*</label>
                                 <input type="text" id="owner" name="owner" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required readonly>
                             </div>
                         </section>
@@ -104,7 +104,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                         <div class="clearelement"></div>  
                          <section class="col col-md-6 col-xs-6">
                               <div class="input">
-                            <label class="control-label">Project Description</label>
+                            <label class="control-label">UPSI description</label>
                                   <textarea name="projdesc" id="projdesc" class="projdesc" style="margin: 0px;width: 475px;height: 73px;"></textarea>
                             </div>
                         </section>
@@ -142,14 +142,14 @@ $uid = $this->session->loginauthspuserfront['id'];
                               <thead>
                                 <tr>
                                     <th>Sr No</th>
-                                    <th>Project Name</th>
-                                    <th>Project Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Project Owner/Group Leader</th>
+                                    <th>Title of UPSI</th>
+                                    <th>UPSI Start Date</th>
+                                    <th>UPSI End Date</th>
+                                    <th>UPSI Owner/Group Leader</th>
 <!--                                    <th>Announcement</th>-->
                                     <th>Actions</th>
                                 </tr>
-                              </thead>
+                              </thead> 
                               <tbody class="upsitails" appendrow='1'></tbody>
                             </table>
                       <div class="panel panel-white">
@@ -181,7 +181,7 @@ $uid = $this->session->loginauthspuserfront['id'];
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">
                     &times;</button>
-             <h4 class="modal-title">Modify Project Details</h4> 
+             <h4 class="modal-title">Modify UPSI Details</h4> 
             </div>
             <div class="modal-body">
             <div class="formelementmain">                      
@@ -192,7 +192,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                 <input type="hidden" name="editid" class="editid" id="editid" value="">
 
         <div class="step_1">
-                        <i class="sec">1</i> <p>Change Project Details</p>
+                        <i class="sec">1</i> <p>Change UPSI Details</p>
                 <section class="col col-md-12 col-xs-12">
                     <div class="input">
                         <input type="checkbox" id="upalldps" name="upalldps"><label class="control-label">If UPSI relates to all DPs or specific DPs.*</label>
@@ -201,7 +201,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                       
                 <section class="col col-md-6 col-xs-6">
                     <input type="hidden" id="cmpupname" name="cmpupname">
-                    <label class="control-label">Name of Project*</label>
+                    <label class="control-label">Title of UPSI*</label>
                     <div class="input">
                         <input type="text" id="upname" name="upname" required="required" class="form_fields form-control col-md-7 col-xs-12" >
                     </div>
@@ -209,7 +209,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                         
                  <section class="col col-md-6 col-xs-6">
                      <input type="hidden" id="cmppstartdte" name="cmppstartdte">
-                    <label class="control-label">Project Start Date*</label>
+                    <label class="control-label">UPSI Start Date*</label>
                     <div class="input">
                         <input type="text" id="pstartdte" name="pstartdte" required="required" class="form_fields form-control col-md-7 col-xs-12 bootdatepick" readonly>
                     </div>
@@ -218,7 +218,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                <section class="col col-md-12 col-xs-6">
                    <input type="hidden" id="cmpenddate" name="cmpenddate">
                     <div class="input">
-                    <label class="control-label">End Date*</label>
+                    <label class="control-label">UPSI End Date*</label>
                         <input type="text" id="enddate" name="enddate" required="required" class="form_fields form-control col-md-7 col-xs-12 bootdatepick" readonly>
                     </div>
                 </section>
@@ -226,7 +226,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                 <section class="col col-md-6 col-xs-6">
                     <input type="hidden" id="cmpprojdes" name="cmpprojdes">
                     <div class="input">
-                    <label class="control-label">Project Description</label>
+                    <label class="control-label">UPSI description</label>
                         <textarea name="projdesc" id="projdesc" class="projdesc" style="margin: 0px;width: 475px;height: 73px;"></textarea>
                     </div>
                 </section>
@@ -236,12 +236,12 @@ $uid = $this->session->loginauthspuserfront['id'];
 
               <div class="step_1">
                 <div class="div">
-                        <i class="sec">2</i> <p>Change Project Owner</p>   
+                        <i class="sec">2</i> <p>Change UPSI Owner</p>   
                  </div>
                 <section class="col col-md-6 col-xs-6" id="projowner">
                     <div class="input">
                     <div class="mainelem company_product">
-                        <label class="control-label">New Project Owner / Group Leader*</label>
+                        <label class="control-label">New UPSI Owner / Group Leader*</label>
                         <div class="header-search-wrapper  floatnone find_box_company">
                             <i class="fa fa-search"></i>
                             <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft" placeholder="Search Project Owner/Group Leader" id="search-box" autocomplete="off"/>
@@ -266,7 +266,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                 <section class="col col-md-6 col-xs-6">
                     <input type="hidden" id="cmpownermodal" name="cmpownermodal">
                     <div class="input">
-                        <label class="control-label">Project Owner / Group Leader*</label>
+                        <label class="control-label">UPSI Owner / Group Leader*</label>
                         <input type="text" id="ownermodal" name="ownermodal" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required readonly>
                     </div>
                 </section>
@@ -275,14 +275,14 @@ $uid = $this->session->loginauthspuserfront['id'];
                
                <div class="step_1">
                 <div class="div">
-                        <i class="sec">3</i> <p>Enter Name of the DPs connected to this project</p>   
+                        <i class="sec">3</i> <p>Enter Name of the DPs connected to this UPSI</p>   
                  </div>       
 
                 <div id="dpsmodel">
                 <section class="col col-md-12 col-xs-12" id="connectedpmodal">
                     <div class="input">
                     <div class="mainelem company_product">
-                        <label class="control-label">Enter Name of the DPs connected to this project*</label>
+                        <label class="control-label">Enter Name of the DPs connected to this UPSI*</label>
                         <div class="header-search-wrapper  floatnone find_box_company">
                             <i class="fa fa-search"></i>
                             <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft" placeholder="Search Name of the DPs connected" id="search-box" autocomplete="off"/>
