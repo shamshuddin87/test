@@ -54,14 +54,14 @@ else
 {website('#addupsimast #connectedpform #connectdps').attr('required','required');website('#addupsimast #connectedpform').css('display','block');}});website('body').on('change','#upsimodel #upalldps',function(){if(website(this).is(":checked"))
 {website('#updateupsimast #connectdps').removeAttr('required','required');website('#updateupsimast #dpsmodel').css('display','none');}
 else
-{console.log('in else');website('#updateupsimast #connectdps').attr('required','required');website('#updateupsimast #dpsmodel').css('display','block');}});website('body').on('click','.addupsitype',function(e){website('#modaltradingwindow').modal('show');});website('body').on('click','#tradingacc',function(e){website('#addupsimast').submit();});website('body').on('click','#tradingrej',function(e){website('#alertcommon #allalertmsg').html("Upsi Is Not Added..!!!");website('#alertcommon').modal('show');});website('#addupsimast').ajaxForm({dataType:"json",beforeSend:function()
-{},uploadProgress:function(event,position,total,percentComplete)
-{},success:function(response,textStatus,jqXHR)
+{console.log('in else');website('#updateupsimast #connectdps').attr('required','required');website('#updateupsimast #dpsmodel').css('display','block');}});website('body').on('click','.addupsitype',function(e){website('#addupsimast').submit();});website('body').on('click','#tradingrej',function(e){website('#alertcommon #allalertmsg').html("Upsi Is Not Added..!!!");website('#alertcommon').modal('show');});website('#addupsimast').ajaxForm({dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {website('#modaltradingwindow').modal('hide');new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website("#addupsimast").trigger('reset');getallupsietails();}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
-{},error:function()
+{website('.preloder_wraper').fadeOut();},error:function()
 {}});var timer=0;function mySearch(){var getvalue=website('.header-search-input').val();doSearch(getvalue);}
 website('.header-search-input').on('keyup',function(e){var getkeycode=website.trim(e.keyCode);if(getkeycode!='40'&&getkeycode!='38'&&getkeycode!='13'){if(timer){clearTimeout(timer);}
 timer=setTimeout(mySearch,400);}});var timer=0;function mySearchforedit(){var getvalue=website('#upsimodel .header-search-input').val();doSearchforedit(getvalue);}

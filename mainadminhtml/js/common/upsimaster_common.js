@@ -335,13 +335,13 @@ formdata={delid:delid};
 });
 
 website('body').on('click','.addupsitype',function(e){
-    website('#modaltradingwindow').modal('show');
+    website('#addupsimast').submit();
 });
 
-website('body').on('click','#tradingacc',function(e){
-    website('#addupsimast').submit();
-   
-});
+//website('body').on('click','#tradingacc',function(e){
+//    website('#addupsimast').submit();
+//   
+//});
 
 website('body').on('click','#tradingrej',function(e){
          
@@ -356,9 +356,9 @@ website('body').on('click','#tradingrej',function(e){
     //contentType:'application/x-www-form-urlencoded; charset=UTF-8',
     dataType:"json",
     beforeSend: function() 
-    {   },
+    { website('.preloder_wraper').fadeIn();  },
     uploadProgress: function(event, position, total, percentComplete) 
-    {   },
+    {  website('.preloder_wraper').fadeIn(); },
     success: function(response, textStatus, jqXHR) 
     {
          if(response.logged === true)
@@ -386,7 +386,7 @@ website('body').on('click','#tradingrej',function(e){
          }
     },
     complete: function(response) 
-    {   },
+    {  website('.preloder_wraper').fadeOut(); },
     error: function() 
     {   }
 });
