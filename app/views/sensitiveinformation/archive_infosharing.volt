@@ -16,7 +16,7 @@ $condeptsess = $this->session->contractdepartment;
 <div class="mainelementfom">
      
     <h1 class="h1_heading text-center"><?php echo $upsitype['upsitype'];?></h1>
-    <h2 class="text-center">Database of information shared</h2>
+    <h2 class="text-center">(Database of information shared)</h2>
     <div class="table-responsive table_wraper">
        
             <div class="cssnumrws">
