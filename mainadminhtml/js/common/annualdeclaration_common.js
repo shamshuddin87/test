@@ -87,6 +87,23 @@ website('body').on('click' , '.annualform',function(){
 
 
 
+website('body').on('click','.remvtradeplan', function()
+{
+    var count = website('.appendtrade').attr('plancntr');
+    if(count != 1)
+        {
+            website('.appendtradingplan #row'+count).remove();
+            website('.appendtrade').attr('plancntr',parseInt(count)-1);
+        }
+    else
+        {
+            return false;
+        }
+});
+
+
+
+
 // website('body').on('click','.getdata',function(){
 //  // getdataonload();
 //  // website('#Mymodaldeclara').modal('show');
@@ -131,6 +148,78 @@ website('body').on('click' , '.annualform',function(){
 // });
 
 
+function addhtml(clicked){
+
+
+ var id = clicked;
+ alert(id);
+ if(type == 'addrow1') {
+          alert("type");
+         var getlastid = website('.appendd1').attr('plancntr');
+
+         getlastid = ++getlastid;
+         var addhtmlnxt='';
+       
+         addhtmlnxt += '<div class="col-md-12 row'+getlastid+'" style="padding-bottom:20px;" id="row'+getlastid+'" >';
+         addhtmlnxt += '<section class="col col-md-2 col-xs-2">  <div class="input" >  <label class="control-label">Company Name</label>   <input type="text" class="form-control" id="d1ques1" name="d1ques1[]" style="margin-top: 60px;">  </div> </section>';
+         addhtmlnxt+=' <section class="col col-md-4 col-xs-4"><div class="input"><label class="control-label">Can you significantly influence the decision making of this company?</label><select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top: 40px;"><option value="1">Yes</option> <option value="0">No</option> </select></div></section>';
+          addhtmlnxt+=' <section class="col col-md-6 col-xs-4"><div class="input"><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label><select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top: 20px;"><option value="1">Yes</option> <option value="0">No</option> </select></div></section>';
+        //addhtmlnxt += '<section class="col col-md-6 col-xs-6"><div class="input"><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label><select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12" required=""><option value="1">Yes</option> <option value="0">No</option></select> </div></section>';
+         addhtmlnxt += '</div>';
+
+      
+         website('.appenddiv1').append(addhtmlnxt);
+       
+        website('.appendd1').attr('plancntr',getlastid);
+      }
+
+
+}
+
+  // website('body').on('click','.adddiv1', function()
+  // {
+     
+  //     var type = website(".adddiv1").attr('data-type');
+     
+  // //alert(type);
+
+  //          if(type == 'addrow1') {
+  //           alert("type");
+  //          var getlastid = website('.appendd1').attr('plancntr');
+
+  //          getlastid = ++getlastid;
+  //          var addhtmlnxt='';
+         
+  //          addhtmlnxt += '<div class="col-md-12 row'+getlastid+'" style="padding-bottom:20px;" id="row'+getlastid+'" >';
+  //          addhtmlnxt += '<section class="col col-md-2 col-xs-2">  <div class="input" >  <label class="control-label">Company Name</label>   <input type="text" class="form-control" id="d1ques1" name="d1ques1[]" style="margin-top: 60px;">  </div> </section>';
+  //          addhtmlnxt+=' <section class="col col-md-4 col-xs-4"><div class="input"><label class="control-label">Can you significantly influence the decision making of this company?</label><select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top: 40px;"><option value="1">Yes</option> <option value="0">No</option> </select></div></section>';
+  //           addhtmlnxt+=' <section class="col col-md-6 col-xs-4"><div class="input"><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label><select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top: 20px;"><option value="1">Yes</option> <option value="0">No</option> </select></div></section>';
+  //         //addhtmlnxt += '<section class="col col-md-6 col-xs-6"><div class="input"><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label><select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12" required=""><option value="1">Yes</option> <option value="0">No</option></select> </div></section>';
+  //          addhtmlnxt += '</div>';
+
+        
+  //          website('.appenddiv1').append(addhtmlnxt);
+         
+  //         website('.appendd1').attr('plancntr',getlastid);
+  //       }
+         
+         
+  // });
+
+
+website('body').on('click','.remvdiv1', function()
+{
+    var count = website('.appendd1').attr('plancntr');
+    if(count != 1)
+        {
+            website('.appenddiv1 #row'+count).remove();
+            website('.appendd1').attr('plancntr',parseInt(count)-1);
+        }
+    else
+        {
+            return false;
+        }
+});
 
 function getallmydata()
 {

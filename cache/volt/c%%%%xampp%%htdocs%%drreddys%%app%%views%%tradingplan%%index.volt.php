@@ -130,12 +130,12 @@ $condeptsess = $this->session->contractdepartment;
                 </div>
                        
             <div class = "appendtradingplan " id="appendtradingplan"></div>
-                <div class="addsection">
-                    <input type="button" class="btn btn-primary addtradeplan" value="+" >
-                    <input type="button" class="btn btn-primary remvtradeplan" value="-">
-                    <input type="hidden" class="appendtrade" plancntr='1'>
-                        
-                </div>
+            <div class="addsection">
+                <input type="button" class="btn btn-primary addtradeplan" value="+" >
+                <input type="button" class="btn btn-primary remvtradeplan" value="-">
+                <input type="hidden" class="appendtrade" plancntr='1'>
+                    
+            </div>
            <div class="control-label btnsubmitme cntrol_tab_one col-md-12 col-xs-12">
                 <div class="floatright">
                 <input type="submit" class="btn btn-primary tradeplan floatleft" value="Submit" >
