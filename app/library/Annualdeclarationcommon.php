@@ -838,7 +838,7 @@ public function getallrelative($uid,$usergroup)
       $connection = $this->dbtrd;
       $myarr=array();
       $time = time();
-      $query="SELECT ar.`company`,ar.`decision`,ar.`transaction` , r.`relationshipname` FROM annual_relative ar LEFT JOIN relationship r ON ar.`relative` = r.`id` WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
+      $query="SELECT ar.`company`,ar.`decision`,ar.`transaction`, ar.`relative`, r.`relationshipname` FROM annual_relative ar LEFT JOIN relationship r ON ar.`relative` = r.`id` WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
 
       try{
            $exeget = $connection->query($query);
@@ -864,7 +864,8 @@ public function getallrelative($uid,$usergroup)
       $connection = $this->dbtrd;
       $myarr=array();
       $time = time();
-      $query="SELECT * FROM annual_relative_firm WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
+      $query="SELECT ar.`firm`,ar.`decision`,ar.`transaction`,ar.`interest`, ar.`relative`, r.`relationshipname` FROM annual_relative_firm ar LEFT JOIN relationship r ON ar.`relative` = r.`id` WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
+     // print_r($query);exit;
       try{
            $exeget = $connection->query($query);
            $getnum = trim($exeget->numRows());
@@ -889,7 +890,7 @@ public function getallrelative($uid,$usergroup)
       $connection = $this->dbtrd;
       $myarr=array();
       $time = time();
-      $query="SELECT * FROM annual_relative_publicprivate WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
+      $query="SELECT ar.`company`,ar.`decision`,ar.`transaction`, ar.`interest`,ar.`relative`, r.`relationshipname` FROM annual_relative_publicprivate ar LEFT JOIN relationship r ON ar.`relative` = r.`id` WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
       try{
            $exeget = $connection->query($query);
            $getnum = trim($exeget->numRows());
@@ -907,6 +908,37 @@ public function getallrelative($uid,$usergroup)
       {   $getlist = array(); }
 
       return $getlist;
+
+  }
+
+  public function get_relatives($uid,$usergroup)
+  {
+    
+
+      $connection = $this->dbtrd;
+      $myarr=array();
+      $time = time();
+      $query="SELECT * FROM relationship";
+
+      try{
+           $exeget = $connection->query($query);
+           $getnum = trim($exeget->numRows());
+          if($getnum>0)
+          {
+              while($row = $exeget->fetch())
+              { $getlist[] = $row; }
+           }
+          else
+          {  $getlist = array(); }
+      }
+
+     
+      catch (Exception $e)
+      {   $getlist = array(); }
+      //print_r($getlist);exit;
+
+      return $getlist;
+
 
   }
 

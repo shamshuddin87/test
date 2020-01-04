@@ -35,68 +35,7 @@ else
 {website('.appenddiv7 #row'+count).remove();website('.appendd7').attr('plancntr',parseInt(count)-1);}
 else
 {return false;}}else{return false;}}
-function annualmodal(uniqueid){website('#Mymodaldeclara').modal('show');var uniqueid=uniqueid;website.ajax({type:"POST",url:'annualdeclaration/getfilecontent',dataType:"json",beforeSend:function()
-{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
-{},success:function(response)
-{if(response.logged===true)
-{website('.modalform').html(response.pdf_content);getpdfdata(uniqueid);}},complete:function(response)
-{website('.preloder_wraper').fadeOut();},error:function()
-{}});function getpdfdata(uniqueid)
-{var formData={uniqueid:uniqueid};website.ajax({url:'annualdeclaration/fetchannualdeclaration',data:formData,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
-{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
-{},success:function(response,textStatus,jqXHR)
-{if(response.logged==true)
-{var addhtmlnxt='';var addhtmlnxt1='';var addhtmlnxt2='';var addhtmlnxt3='';var addhtmlnxt4='';var addhtmlnxt5='';var addhtmlnxt6='';if(response!=0)
-{website("#uniqueid").val(uniqueid);if(response.selfcompany)
-if(response.selfcompany!=0)
-{for(var i=0;i<response.selfcompany.length;i++)
-{addhtmlnxt+='<tr class="counter">';addhtmlnxt+='<td width="25%">'+response.selfcompany[i]['company']+'</td>';addhtmlnxt+='<td width="25%">'+response.selfcompany[i]['decision']+'</td>';addhtmlnxt+='<td width="25%">'+response.selfcompany[i]['transaction']+'</td>';addhtmlnxt+='</tr>';}}
-if(response.selffirm!=0)
-{for(var i=0;i<response.selffirm.length;i++)
-{addhtmlnxt1+='<tr class="counter">';addhtmlnxt1+='<td width="25%">'+response.selffirm[i]['firm']+'</td>';addhtmlnxt1+='<td width="25%">'+response.selffirm[i]['interest']+'</td>';addhtmlnxt1+='<td width="25%">'+response.selffirm[i]['decision']+'</td>';addhtmlnxt1+='<td width="25%">'+response.selffirm[i]['transaction']+'</td>'
-addhtmlnxt+='</tr>';}}
-if(response.selfpubpri!=0)
-{for(var i=0;i<response.selfpubpri.length;i++)
-{addhtmlnxt2+='<tr class="counter">';addhtmlnxt2+='<td width="25%">'+response.selfpubpri[i]['company']+'</td>';addhtmlnxt2+='<td width="25%">'+response.selfpubpri[i]['interest']+'</td>';addhtmlnxt2+='<td width="25%">'+response.selfpubpri[i]['decision']+'</td>';addhtmlnxt2+='<td width="25%">'+response.selfpubpri[i]['transaction']+'</td>'
-addhtmlnxt+='</tr>';}}
-if(response.selfpubshare!=0)
-{for(var i=0;i<response.selfpubshare.length;i++)
-{addhtmlnxt3+='<tr class="counter">';addhtmlnxt3+='<td width="25%">'+response.selfpubshare[i]['company']+'</td>';addhtmlnxt3+='<td width="25%">'+response.selfpubshare[i]['interest']+'</td>';addhtmlnxt3+='<td width="25%">'+response.selfpubshare[i]['decision']+'</td>';addhtmlnxt3+='<td width="25%">'+response.selfpubshare[i]['transaction']+'</td>'
-addhtmlnxt+='</tr>';}}
-if(response.relative!=0)
-{for(var i=0;i<response.relative.length;i++)
-{addhtmlnxt4+='<tr class="counter">';addhtmlnxt4+='<td width="25%">'+response.relative[i]['relative']+'</td>';addhtmlnxt4+='<td width="25%">'+response.relative[i]['company']+'</td>';addhtmlnxt4+='<td width="25%">'+response.relative[i]['decision']+'</td>';addhtmlnxt4+='<td width="25%">'+response.relative[i]['transaction']+'</td>'
-addhtmlnxt+='</tr>';}}
-if(response.relativefirm!=0)
-{for(var i=0;i<response.relativefirm.length;i++)
-{addhtmlnxt5+='<tr class="counter">';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['relative']+'</td>';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['firm']+'</td>';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['interest']+'</td>';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['decision']+'</td>';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['transaction']+'</td>'
-addhtmlnxt+='</tr>';}}
-if(response.relativepubpri!=0)
-{for(var i=0;i<response.relativepubpri.length;i++)
-{addhtmlnxt6+='<tr class="counter">';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['relative']+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['company']+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['interest']+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['decision']+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['transaction']+'</td>'
-addhtmlnxt+='</tr>';}}
-website('.selfcompany').html(addhtmlnxt);website('.selffirm').html(addhtmlnxt1);website('.selfpubpri').html(addhtmlnxt2);website('.selfpubshare').html(addhtmlnxt3);website('.relative').html(addhtmlnxt4);website('.relativefirm').html(addhtmlnxt5);website('.relativepubpri').html(addhtmlnxt6);}
-website('#Mymodaldeclara').modal('show');}
-else
-{new PNotify({title:'Alert',text:"Please Fill All The Data In Software..!!!",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
-{website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
-{}});}
-website('#insertannual').ajaxForm({dataType:"json",beforeSend:function()
-{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
-{website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
-{if(response.logged===true)
-{new PNotify({title:'Record Added Successfully',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});annualmodal(response['uniqueid']);}else{new PNotify({title:'Record Not Added',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
-{website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
-{}});website('body').on('click','.formpdf',function(e)
-{var htmldata=website('#Mymodaldeclara .modalform').html();var uniqueid=website('#uniqueid').val();var annualyear=website('#annualyear').val();var formData={htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid};website.ajax({type:"POST",url:'annualdeclaration/generateformbPDF',data:formData,dataType:"json",beforeSend:function()
-{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
-{},success:function(response)
-{if(response.logged===true)
-{website('#Mymodaldeclara .formpdf').css('display','none');website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');}
-else
-{}},complete:function(response)
-{website('.preloder_wraper').fadeOut();},error:function()
-{}});});function numberOnly()
+function numberOnly()
 {var charCode=event.keyCode;if((charCode>47&&charCode<58)||charCode==46)
 return true;else
 return false;};

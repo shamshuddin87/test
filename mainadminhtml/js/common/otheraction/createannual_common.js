@@ -1,17 +1,8 @@
 website(document).ready(function()
 {
-    // var url = new URL(window.location.href);
-    // var ifunique = url.searchParams.has("id");
-
-    // if(ifunique == true){
-     
-    //   var unique = url.searchParams.get("id");
-    //   geteditdata(unique);
-
-    // }
    
 
-   
+  
     
 });
 
@@ -294,10 +285,6 @@ function removehtml(clicked)
         {
              return false;
         }
-    }else{
-
-     return false;
-
     }
 
 
@@ -311,49 +298,51 @@ function removehtml(clicked)
    
  
   function annualmodal(uniqueid){
-  website('#Mymodaldeclara').modal('show');
-  
-  var uniqueid = uniqueid;
 
-  website.ajax({
-        type:"POST",
-        url:'annualdeclaration/getfilecontent',
+   // website('#Mymodaldeclara').modal('show');
+    
+    var uniqueid = uniqueid;
 
-       
-        //contentType: "application/json; charset=utf-8",
-        dataType:"json",
-        beforeSend: function()
-        {
-            website('.preloder_wraper').fadeIn();
-            // website('#modaldocument .downloadpdf .pdfln').html('');
-            // website('#modaldocument .trailpdfdownload').addClass('disabled');
-        },
-        uploadProgress: function(event, position, total, percentComplete)
-        {
-            
-        },
-        success: function(response) 
-        {
-            //console.log(response); return false;
-            if(response.logged===true)
-            {
+    website.ajax({
+          type:"POST",
+          url:'annualdeclaration/getfilecontent',
+
+         
+         
+          dataType:"json",
+          beforeSend: function()
+          {
+              website('.preloder_wraper').fadeIn();
+              // website('#modaldocument .downloadpdf .pdfln').html('');
+              // website('#modaldocument .trailpdfdownload').addClass('disabled');
+          },
+          uploadProgress: function(event, position, total, percentComplete)
+          {
               
-                website('.modalform').html(response.pdf_content);
+          },
+          success: function(response) 
+          {
+              //console.log(response); return false;
+              if(response.logged===true)
+              {
+                
+                  website('.modalform').html(response.pdf_content);
 
 
-                getpdfdata(uniqueid);
-            }
-        },
-        complete: function(response)
-        {
-           
-             website('.preloder_wraper').fadeOut();
-        },
-        error: function() 
-        {
-            
-        }
-    });
+                  getpdfdata(uniqueid);
+              }
+          },
+          complete: function(response)
+          {
+             
+               website('.preloder_wraper').fadeOut();
+          },
+          error: function() 
+          {
+              
+          }
+  });
+  }
 
 
 

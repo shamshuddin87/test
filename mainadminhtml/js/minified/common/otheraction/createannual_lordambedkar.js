@@ -34,14 +34,15 @@ else
 {return false;}}else if(rmid=='remvdiv7'){var count=website('.appendd7').attr('plancntr');if(count!=1)
 {website('.appenddiv7 #row'+count).remove();website('.appendd7').attr('plancntr',parseInt(count)-1);}
 else
-{return false;}}else{return false;}}
-function annualmodal(uniqueid){website('#Mymodaldeclara').modal('show');var uniqueid=uniqueid;website.ajax({type:"POST",url:'annualdeclaration/getfilecontent',dataType:"json",beforeSend:function()
+{return false;}}}
+function annualmodal(uniqueid){var uniqueid=uniqueid;website.ajax({type:"POST",url:'annualdeclaration/getfilecontent',dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
 {if(response.logged===true)
 {website('.modalform').html(response.pdf_content);getpdfdata(uniqueid);}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
-{}});function getpdfdata(uniqueid)
+{}});}
+function getpdfdata(uniqueid)
 {var formData={uniqueid:uniqueid};website.ajax({url:'annualdeclaration/fetchannualdeclaration',data:formData,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
