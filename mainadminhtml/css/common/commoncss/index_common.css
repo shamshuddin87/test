@@ -1,9 +1,67 @@
 
-body {
-margin: 0;
-padding: 0;
-background: #fff;
+body { background-image: url(../../img/wellness_login_page.jpg); }
+
+.volody_logo {
+    padding: 0 0 25px 0;
 }
+.bg_img {
+    background: #fff;
+    background-image: url(../../img/login_bg.jpg);
+    width: 100%;
+}
+
+.lost_pass a {
+    display: block;
+    float: none !important;
+}
+.reset_pass {
+    color: #0b797a;
+    font-weight: 600;
+    padding: 20px 0;
+}
+
+/* .mainloginfrmrl form input[type="submit"] {
+    border: 1px solid #ddd;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    float: left;
+    
+    height: 35px;
+    width: 120px;
+    background: transparent;
+} */
+.login {
+    background: #5124b5 !important;
+    width: 50%; font: bold 15px Helvetica,Arial,sans-serif;
+    color: #fff !important;
+    border-radius: 6px !important;
+    padding: 10px; border:none;
+}
+.width_button {
+    width: 100%;
+    text-align: center;
+}
+
+.bg_img:before {
+    content: "";
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.7;
+}
+.icon_po {
+    position: absolute;
+    left: 10px;
+    color: #5124b5;
+    top: 11px;
+}
+
+.maininputcl {
+    position: relative;
+}
+
 h1{ font-size:28px;}
 h2{ font-size:26px;}
 h3{ font-size:18px;}
@@ -27,67 +85,23 @@ form:after {
     clear: both;
     visibility: hidden;
 }
-.logo_file {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,190%);
-}
-.mainloginfrmrl h1 {
-    color: #0c797a;
-    font-family: sans-serif;
-    margin: 0;
-    padding-bottom: 20px;
-    font-weight: bold;
-    font-size: 25px;
-}
 .mainloginfrmrl{position: relative;}
 .containerfrmenl { margin: 0px auto; position: relative; width: 100%; }
-/* .mainloginfrmrl {
-    display: block;
-    margin: 7% auto 0;
-    padding: 20px 30px;
-    text-align: center;
-    width: 360px;
-    border: 1px solid #fff;
-    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2); 
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+.mainloginfrmrl {display: block;margin: 7% auto 0;padding: 20px 30px;
+text-align: center;width: 402px; float:left;border: 1px solid #fff; left: 50%;top: 190px;transform: translate(-50%, -50%); 
+-webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2); 
+box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);}
 
-} */
-
-body {
-    margin: 0;
-    padding: 0;
-    background: url(../../img/background_why.jpg);
-    width: 100%;
-    /* height: 200px; */
-    background-size: cover;
-}
-
-.mainloginfrmrl {
-    display: block;
-    padding: 20px 30px;
-    text-align: center;
-    width: 360px;
-    border: 1px solid #fff;
-    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-    position: absolute;
-    transform: translate(-50%,50%);
-    top: 50%;
-    left: 50%;
-}
 .login-form{width: 100%;}
 .leftimgfor{max-width: 350px;width: 100%;padding: 34px 0px;}
 .leftimgfor img{max-width: 300px;margin: 0px 40px;}
 .maininputclbtn{width: 100%; padding:0;margin-bottom: 10px;}
-/* .mainloginfrmrl h1 {
+.mainloginfrmrl h1 {
     color: #333;
     font-family: sans-serif;
     margin:0;
     padding-bottom: 20px;
-} */
+}
 .mainloginfrmrl h1:before,
 .mainloginfrmrl h1:after {
     content: "";
@@ -97,6 +111,16 @@ body {
     width: 27%;
 }
 
+.login_page{
+    margin: 0 auto;
+    padding: 25px 0 0;
+    position: relative;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+    width: 50%;
+
+}
+    .login_page .form-group { float: left; width: 100%}
 
 .mainloginfrmrl:after {
     -webkit-transform: rotate(2deg);
@@ -152,22 +176,11 @@ body {
     border: 1px solid #1976D2;
     outline: none;
 }
-#username { background-position: 10px 10px !important }
-#password { background-position: 10px -53px !important }
-.mainloginfrmrl form input[type="submit"] {
-    border: 1px solid #ddd;
-    color: #333;
-    font-size: 14px;
-    cursor: pointer;
-    float: left;
-    font: bold 15px Helvetica,Arial,sans-serif;
-    height: 35px;
-    width: 120px;
-    background: transparent;
-}
+#username { background-position: 10px 10px !important;padding-left:27px;}
+#password { background-position: 10px -53px !important;padding-left:27px;}
+
 .mainloginfrmrl form input[type="submit"]:hover {
     background: #22a788;
-    border: none;
     color: #fff;
 }
 .mainloginfrmrl form div a {
