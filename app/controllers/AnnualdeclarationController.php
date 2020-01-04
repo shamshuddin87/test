@@ -922,6 +922,9 @@ class AnnualdeclarationController extends ControllerBase
          //$uniqueid = $this->request->getPost('uniqueid');
          $uniqueid = '5e0ec764808fc';
 
+        $relatives = $this->annualdeclarationcommon->get_relatives($uid,$usergroup);
+         $this->view->relatives = $relatives;
+
         $getresponse1 = $this->annualdeclarationcommon->annual_self_company($uid,$usergroup,$uniqueid);
         $this->view->selfcompany = $getresponse1;
         $getresponse2 = $this->annualdeclarationcommon->annual_self_firm($uid,$usergroup,$uniqueid);
@@ -931,9 +934,10 @@ class AnnualdeclarationController extends ControllerBase
         $getresponse4 = $this->annualdeclarationcommon->annual_self_pubshare($uid,$usergroup,$uniqueid);
         $this->view->selfpubshare = $getresponse4;
         $getresponse5 = $this->annualdeclarationcommon->annual_relative($uid,$usergroup,$uniqueid);
-        
-         $this->view->relative = $getresponse5;
+
+         $this->view->relativecompany = $getresponse5;
         $getresponse6 = $this->annualdeclarationcommon->annual_relative_firm($uid,$usergroup,$uniqueid);
+        //print_r($getresponse6);exit;
         $this->view->relativefirm = $getresponse6;
         $getresponse7 = $this->annualdeclarationcommon->annual_relative_pubpri($uid,$usergroup,$uniqueid);
          $this->view->relativepublic = $getresponse7;      

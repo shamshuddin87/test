@@ -18,7 +18,7 @@ $condeptsess = $this->session->contractdepartment;
     </h1> 
 
   
-   </div> 
+    </div> 
    
        <div class="containergrid">       
         <div class="formcss">                           
@@ -82,7 +82,12 @@ $condeptsess = $this->session->contractdepartment;
                   </section>
                </div>
                <?php }} ?>
-               
+               <div class = "appenddiv1 " id="appenddiv1"></div>
+               <div class="adddiv1section1"  style="padding-bottom: 10px;">
+                  <input type="button" id ="adddiv1" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
+                  <input type="button" id = "remvdiv1" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+                  <input type="hidden" class="appendd1" plancntr="1">
+               </div>
                
                <div class="col-md-12" style="padding-bottom: 10px;">
                   <label >Are you Interested in ?</label>
@@ -256,7 +261,7 @@ $condeptsess = $this->session->contractdepartment;
                </div>
 
 
-               <!-- Section 2 start-->
+               <!-- Section 2 start from here -->
 
                <div class="col-md-12" style="padding-bottom: 20px;">
                   <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
@@ -273,41 +278,26 @@ $condeptsess = $this->session->contractdepartment;
                   </select>
                </div>
 
-                <?php if($relative){
-               for($i=0; $i < count($relative); $i++){
-                  ?>
+                <?php if($relativecompany){
+               for($i=0; $i < count($relativecompany); $i++){
+                ?>
                <div id = "div5" class="col-md-12" style="padding-bottom: 20px;">
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Relative Name</label>
                        <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" required="" style="margin-top:40px;">
-                         <?php if($relative){ ?>
+                         <?php if($relativecompany){ 
+
+                           for($j=0 ; $j <count($relatives); $j++){
+
+                              if($relativecompany[$i]['relative'] == $relatives[$j]['id']){
+                              ?>
+                              <option value="<?php echo $relatives[$j]['id']?>" selected><?php  echo $relatives[$j]['relationshipname']?></option>
+                              <?php } else { ?>
                           
-                        <option value="1"><?php echo $relative[$i]['relationshipname']?></option>
-                        <option value="1">HUF</option>
-                        <option value="2">Spouse</option>
-                        <option value="3">Father</option>
-                        <option value="4">Mother</option>
-                        <option value="5">Brother</option>
-                        <option value="6">Sister</option>
-                        <option value="7">Son</option>
-                        <option value="8">Daughter</option>
-                        <option value="9">Son's Wife</option>
-                        <option value="10">Daughter's Husband</option>
-                        <option value="11">Others</option>
-                       <?php } else {?>
-                        <option value="1">HUF</option>
-                        <option value="2">Spouse</option>
-                        <option value="3">Father</option>
-                        <option value="4">Mother</option>
-                        <option value="5">Brother</option>
-                        <option value="6">Sister</option>
-                        <option value="7">Son</option>
-                        <option value="8">Daughter</option>
-                        <option value="9">Son's Wife</option>
-                        <option value="10">Daughter's Husband</option>
-                        <option value="11">Others</option>
-                         <?php } ?>
+                             <option value=<?php echo $relatives[$j]['id']?>><?php  echo $relatives[$j]['relationshipname']?></option>
+                           <?php }}} ?>
+                       
                         </select>
                     
                      </div>
@@ -315,15 +305,20 @@ $condeptsess = $this->session->contractdepartment;
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Company Name</label>
-                        <input type="text" class="form-control inputbox4" id="d5ques2" name="d5ques2[]" style="margin-top: 40px;">
+                        <input type="text" class="form-control inputbox4" id="d5ques2" name="d5ques2[]" value="<?php echo $relativecompany[$i]['company']?>" style="margin-top: 40px;">
                      </div>
                   </section>
                   <section class="col col-md-4 col-xs-4">
                      <div class="input">
                         <label class="control-label">Can you significantly influence the decision making of this company?</label>
-                        <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" style="margin-top: 20px;">
-                           <option value="1">Yes</option>
-                           <option value="0">No</option>
+                        <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" value="<?php echo $relativecompany[$i]['company']?>" required="" style="margin-top: 20px;">
+                           <?php if($relativecompany[$i]['decision']  == 1){ ?>
+                           <option value="1" selected>Yes</option>
+                          <option value="0">No</option>
+                          <?php }elseif($relativecompany[$i]['decision']  == 0){ ?>
+                          <option value="1" >Yes</option>
+                          <option value="0" selected>No</option>
+                          <?php } ?>
                         </select>
                      </div>
                   </section>
@@ -331,8 +326,13 @@ $condeptsess = $this->session->contractdepartment;
                      <div class="input">
                         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
                         <select id="d5ques4" name="d5ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-                           <option value="1">Yes</option>
+                           <?php if($relativecompany[$i]['transaction']  == 1){ ?>
+                           <option value="1" selected>Yes</option>
                            <option value="0">No</option>
+                           <?php }elseif($relativecompany[$i]['transaction']  == 0){ ?>
+                           <option value="1" >Yes</option>
+                           <option value="0" selected>No</option>
+                         <?php } ?>
                         </select>
                      </div>
                   </section>
@@ -347,44 +347,53 @@ $condeptsess = $this->session->contractdepartment;
                <div class="col-md-12" style="padding-bottom: 10px;">
                   <label >Are you Interested in ?</label>
                </div>
+
+                <?php if($relativefirm){
+               for($i=0; $i < count($relativefirm); $i++){
+                ?>
                <div id = "div6" class="col-md-12" style="padding-bottom: 20px;">
                   <label  class="col-md-12">i.Firm</label>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Relative</label>
                         <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox5" required="" style="margin-top:60px;">
-                          <option value="1">HUF</option>
-                             <option value="2">Spouse</option>
-                            <option value="3">Father</option>
-                            <option value="4">Mother</option>
-                            <option value="5">Brother</option>
-                            <option value="6">Sister</option>
-                              <option value="7">Son</option>
-                             <option value="8">Daughter</option>
-                             <option value="9">Son's Wife</option>
-                            <option value="10">Daughter's Husband</option>
-                            <option value="11">Others</option>
+                           <?php if($relativefirm){ 
+
+                           for($j=0 ; $j <count($relatives); $j++){
+
+                              if($relativefirm[$i]['relative'] == $relatives[$j]['id']){
+                              ?>
+                              <option value="<?php echo $relatives[$j]['id']?>" selected><?php  echo $relatives[$j]['relationshipname']?></option>
+                              <?php } else { ?>
+                          
+                             <option value=<?php echo $relatives[$j]['id']?>><?php  echo $relatives[$j]['relationshipname']?></option>
+                           <?php }}} ?>
                         </select>
                      </div>
                   </section>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Firm Name</label>
-                        <input type="text" class="form-control inputbox5" id="d6ques2" name="d6ques2[]" style="margin-top: 60px;">
+                        <input type="text" class="form-control inputbox5" id="d6ques2" name="d6ques2[]" value="<?php echo $relativefirm[$i]['firm']?>" style="margin-top: 60px;">
                      </div>
                   </section>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Nature of Interest</label>
-                        <input type="text" class="form-control inputbox5" id="d6ques3" name="d6ques3[]" style="margin-top: 60px;">
+                        <input type="text" class="form-control inputbox5" id="d6ques3" name="d6ques3[]" value="<?php echo $relativefirm[$i]['interest']?>"  style="margin-top: 60px;">
                      </div>
                   </section>
                   <section class="col col-md-3 col-xs-3">
                      <div class="input">
                         <label class="control-label">Can you significantly influence the decision making of this company?</label>
                         <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox5" required="" style="margin-top:40px;">
-                           <option value="1">Yes</option>
-                           <option value="0">No</option>
+                           <?php if($relativefirm[$i]['decision']  == 1){ ?>
+                           <option value="1" selected>Yes</option>
+                          <option value="0">No</option>
+                          <?php }elseif($relativefirm[$i]['decision']  == 0){ ?>
+                          <option value="1" >Yes</option>
+                          <option value="0" selected>No</option>
+                          <?php } ?>
                         </select>
                      </div>
                   </section>
@@ -392,56 +401,72 @@ $condeptsess = $this->session->contractdepartment;
                      <div class="input">
                         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
                         <select id="d6ques5" name="d6ques5[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-                           <option value="1">Yes</option>
+                           <?php if($relativefirm[$i]['transaction']  == 1){ ?>
+                           <option value="1" selected>Yes</option>
                            <option value="0">No</option>
+                           <?php }elseif($relativefirm[$i]['transaction']  == 0){ ?>
+                           <option value="1" >Yes</option>
+                           <option value="0" selected>No</option>
+                         <?php } ?>
                         </select>
                      </div>
                   </section>
                </div>
+             <?php }} ?>
+
                <div class = "appenddiv6 " id="appenddiv6"></div>
                <div class="adddiv6section2"  style="padding-bottom: 10px;">
                   <input type="button" id ="adddiv6" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
                   <input type="button" id= "remvdiv6" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd6" plancntr="1">
                </div>
+               
+                <?php if($relativepublic){
+               for($i=0; $i < count($relativepublic); $i++){
+                ?>
                <div id = "div7" class="col-md-12" style="padding-bottom: 20px;">
                   <label  class="col-md-12">ii.Private/Public Company</label>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Relative</label>
                         <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox5" required="" style="margin-top:60px;">
-                          <option value="1">HUF</option>
-                          <option value="2">Spouse</option>
-                          <option value="3">Father</option>
-                          <option value="4">Mother</option>
-                          <option value="5">Brother</option>
-                          <option value="6">Sister</option>
-                           <option value="7">Son</option>
-                          <option value="8">Daughter</option>
-                          <option value="9">Son's Wife</option>
-                          <option value="10">Daughter's Husband</option>
-                          <option value="11">Others</option>
+                          <?php if($relativepublic){ 
+
+                           for($j=0 ; $j <count($relatives); $j++){
+
+                              if($relativepublic[$i]['relative'] == $relatives[$j]['id']){
+                              ?>
+                              <option value="<?php echo $relatives[$j]['id']?>" selected><?php  echo $relatives[$j]['relationshipname']?></option>
+                              <?php } else { ?>
+                          
+                             <option value=<?php echo $relatives[$j]['id']?>><?php  echo $relatives[$j]['relationshipname']?></option>
+                           <?php }}} ?>
                         </select>
                      </div>
                   </section>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Company Name</label>
-                        <input type="text" class="form-control inputbox5" id="d7ques2" name="d7ques2[]" style="margin-top: 60px;">
+                        <input type="text" class="form-control inputbox5" id="d7ques2" name="d7ques2[]" value="<?php echo $relativepublic[$i]['company']?>" style="margin-top: 60px;">
                      </div>
                   </section>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Nature of Interest</label>
-                        <input type="text" class="form-control inputbox5" id="d7ques3" name="d7ques3[]" style="margin-top: 60px;">
+                        <input type="text" class="form-control inputbox5" id="d7ques3" name="d7ques3[]" value="<?php echo $relativepublic[$i]['interest']?>" style="margin-top: 60px;">
                      </div>
                   </section>
                   <section class="col col-md-3 col-xs-3">
                      <div class="input">
                         <label class="control-label">Can you significantly influence the decision making of this company?</label>
                         <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox5" required="" style="margin-top:40px;">
-                           <option value="1">Yes</option>
-                           <option value="0">No</option>
+                            <?php if($relativepublic[$i]['decision']  == 1){ ?>
+                           <option value="1" selected>Yes</option>
+                          <option value="0">No</option>
+                          <?php }elseif($relativepublic[$i]['decision']  == 0){ ?>
+                          <option value="1" >Yes</option>
+                          <option value="0" selected>No</option>
+                          <?php } ?>
                         </select>
                      </div>
                   </section>
@@ -449,12 +474,18 @@ $condeptsess = $this->session->contractdepartment;
                      <div class="input">
                         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
                         <select id="d7ques5" name="d7ques5[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-                           <option value="1">Yes</option>
+                          <?php if($relativepublic[$i]['transaction']  == 1){ ?>
+                           <option value="1" selected>Yes</option>
                            <option value="0">No</option>
+                           <?php }elseif($relativepublic[$i]['transaction']  == 0){ ?>
+                           <option value="1" >Yes</option>
+                           <option value="0" selected>No</option>
+                         <?php } ?>
                         </select>
                      </div>
                   </section>
                </div>
+               <?php }} ?>
                <div class = "appenddiv7 " id="appenddiv7"></div>
                <div class="adddiv7section2"  style="padding-bottom: 10px;">
                   <input type="button" id = "adddiv7" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
@@ -462,7 +493,7 @@ $condeptsess = $this->session->contractdepartment;
                   <input type="hidden" class="appendd7" plancntr="1">
                </div>
                <div class="col-md-12"> 
-                  <button type="submit" class="btn btn-primary ">Submit</button>
+                  <button type="submit" class="btn btn-primary ">Update</button>
                </div>
             </form>                            
             <div class="clearelement"></div>
@@ -471,15 +502,15 @@ $condeptsess = $this->session->contractdepartment;
     </div>   
 
     
-   <div class="table-responsive table_wraper tradeplanview">
-    <div class="cssnumrws">
+  <!--  <div class="table-responsive table_wraper tradeplanview">
+     <div class="cssnumrws">
        <span>Show</span>
         <select id="noofrows" name="noofrows" class="noofrows">
            <option value="10">10</option><option value="25">25</option>
             <option value="50">50</option><option value="100">100</option>
         </select> 
         <span>Entries</span>
-    </div>
+      </div>
           <table class="table datatable-responsive" border="1" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>
@@ -494,10 +525,10 @@ $condeptsess = $this->session->contractdepartment;
                 </table>
       
     
-    </div>
+   </div> -->
     
     <div class="panel panel-white">
- <div class="paginationmn"></div>
+   <div class="paginationmn"></div>
 <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
 
 </div>
@@ -518,64 +549,6 @@ $condeptsess = $this->session->contractdepartment;
 
 
 
-<div id="Mymodaldeclara" class="modal  fade" role="dialog" style="overflow-y: auto;left:-22%; ">
-  <div class="modal-dialog">
-
-    <div class="modal-content" style="width:950px;">
-      <div class="modal-header">
-         <select id="annualyear" name="annualyear">
-         <option value="2020">2020</option>
-         <option value="2021">2021</option>
-         <option value="2022">2022</option>
-         <option value="2023">2023</option>
-         <option value="2024">2024</option>
-         <option value="2025">2025</option>
-       </select>
-      
-       <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <div id="downloadpdf" style="float: right;"></div>
-         <div class="in_box">
-           <button type="button" class="btn btn-primary formpdf floatright">Generate PDF</button>
-         </div>
-          <div class="modalform">
-        <!---------------------------------INITIAL DECLARATION FORM--------------------------------------------------->
-
-
-
-
-
-
-
-
-        <!----------------------------------------------------------------------------------------------------------->
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-        
-
-    <div id="delmod" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">
-                    &times;</button>
-            
-            </div>
-            <div class="modal-body">
-            <input type="hidden" id="deleteid" value="" name="">
-            <h5 style="text-align: center;">Are You Sure To Delete This Request?</h5> </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" id="deletereq" tempid="">Delete</button> 
-            </div>
-        </div>
-    </div>
-</div>  
- 
 
 
 
