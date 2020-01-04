@@ -198,14 +198,15 @@ function removehtml(clicked)
     if(rmid == 'remvdiv1')
     {
 
-
+        
         var count = website('.appendd1').attr('plancntr');
 
         if(count != 1)
         {
-           
+
               website('.appenddiv1 #row'+count).remove();
               website('.appendd1').attr('plancntr',parseInt(count)-1);
+             
         }
         else
         {
@@ -298,6 +299,55 @@ function removehtml(clicked)
 }
 
 
+ website('#updateannual').ajaxForm({
+
+    
+      
+      //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+      dataType:"json",
+      beforeSend: function()
+      {    website('.preloder_wraper').fadeIn();
+           
+
+       },
+      uploadProgress: function(event, position, total, percentComplete)
+      {  website('.preloder_wraper').fadeIn(); },
+      success: function(response, textStatus, jqXHR)
+      {
+        if(response.logged===true)
+        {  
+         
+           //console.log(response['uniqueid']);
+          new PNotify({title: 'Record Added Successfully',
+            text: response.message,
+            type: 'university',
+            hide: true,
+            styling: 'bootstrap3',
+            addclass: 'dark ',
+          });
+
+          annualmodal(response['uniqueid']);
+         
+           
+         
+           
+            
+        }else{
+          new PNotify({title: 'Record Not Added',
+            text: response.message,
+            type: 'university',
+            hide: true,
+            styling: 'bootstrap3',
+            addclass: 'dark ',
+          });
+        }
+      },
+      complete: function(response)
+      {  website('.preloder_wraper').fadeOut(); },
+      error: function(jqXHR, textStatus, errorThrown)
+      {   }
+  //});
+});
 
 
 
