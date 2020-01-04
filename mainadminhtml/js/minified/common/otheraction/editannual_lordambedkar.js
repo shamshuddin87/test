@@ -35,7 +35,13 @@ else
 {website('.appenddiv7 #row'+count).remove();website('.appendd7').attr('plancntr',parseInt(count)-1);}
 else
 {return false;}}else{return false;}}
-function numberOnly()
+website('#updateannual').ajaxForm({dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{new PNotify({title:'Record Added Successfully',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});annualmodal(response['uniqueid']);}else{new PNotify({title:'Record Not Added',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
+{}});function numberOnly()
 {var charCode=event.keyCode;if((charCode>47&&charCode<58)||charCode==46)
 return true;else
 return false;};

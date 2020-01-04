@@ -205,8 +205,8 @@ class AnnualdeclarationController extends ControllerBase
             if($this->request->isAjax() == true)
             {   
                 
-                //$uniqueid = $this->request->getPost('uniqueid');
-                $uniqueid = '5e0ec764808fc';
+                $uniqueid = $this->request->getPost('uniqueid');
+                //$uniqueid = '5e0ec764808fc';
 
                 $getresponse1 = $this->annualdeclarationcommon->annual_self_company($uid,$usergroup,$uniqueid);
                 $getresponse2 = $this->annualdeclarationcommon->annual_self_firm($uid,$usergroup,$uniqueid);
@@ -260,8 +260,8 @@ class AnnualdeclarationController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $pdf_content = $this->request->getPost('htmldata');
-                //$uniqueid =$this->request->getPost('uniqueid');
-                $uniqueid = '5e0ec764808fc';
+                $uniqueid =$this->request->getPost('uniqueid');
+               // $uniqueid = '5e0ec764808fc';
 
                 $annualyear = $this->request->getPost('annualyear');
                 // print_r($pdf_content);exit;
@@ -857,18 +857,18 @@ class AnnualdeclarationController extends ControllerBase
                  if($d1ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '')
                     {
                         //echo 'in flag 1';exit;
-                    $getres1 = $this->annualdeclarationcommon->annualselfcompany($getuserid,$d1ques1,$d1ques2,$d1ques3,$uniqid);
-                    $getres2 = $this->annualdeclarationcommon->annualselffirm($getuserid,$d2ques1,$d2ques2,$d2ques3,$d2ques4,$uniqid);
+                    $getres1 = $this->annualdeclarationcommon->inannualselfcompany($getuserid,$d1ques1,$d1ques2,$d1ques3,$uniqid);
+                    $getres2 = $this->annualdeclarationcommon->inannualselffirm($getuserid,$d2ques1,$d2ques2,$d2ques3,$d2ques4,$uniqid);
 
-                    $getres3 = $this->annualdeclarationcommon->annualselfpubprivate($getuserid,$d3ques1,$d3ques2,$d3ques3,$d3ques4,$uniqid);
+                    $getres3 = $this->annualdeclarationcommon->inannualselfpubprivate($getuserid,$d3ques1,$d3ques2,$d3ques3,$d3ques4,$uniqid);
 
-                    $getres4 = $this->annualdeclarationcommon->annualselfpubshare($getuserid,$d4ques1,$d4ques2,$d4ques3,$d4ques4,$uniqid);
+                    $getres4 = $this->annualdeclarationcommon->inannualselfpubshare($getuserid,$d4ques1,$d4ques2,$d4ques3,$d4ques4,$uniqid);
 
-                     $getres5 = $this->annualdeclarationcommon->annualrelativecompany($getuserid,$d5ques1,$d5ques2,$d5ques3,$d5ques4,$uniqid);
+                     $getres5 = $this->annualdeclarationcommon->inannualrelativecompany($getuserid,$d5ques1,$d5ques2,$d5ques3,$d5ques4,$uniqid);
 
-                    $getres6 = $this->annualdeclarationcommon->annualrelativefirm($getuserid,$d6ques1,$d6ques2,$d6ques3,$d6ques4,$d6ques5,$uniqid);
+                    $getres6 = $this->annualdeclarationcommon->inannualrelativefirm($getuserid,$d6ques1,$d6ques2,$d6ques3,$d6ques4,$d6ques5,$uniqid);
 
-                    $getres7 = $this->annualdeclarationcommon->annualrelativepublicshare($getuserid,$d7ques1,$d7ques2,$d7ques3,$d7ques4,$d7ques5,$uniqid);
+                    $getres7 = $this->annualdeclarationcommon->inannualrelativepublicshare($getuserid,$d7ques1,$d7ques2,$d7ques3,$d7ques4,$d7ques5,$uniqid);
 
            
 
@@ -893,12 +893,124 @@ class AnnualdeclarationController extends ControllerBase
 
 
     }
-
-
-
-
-
     //*************************** Insert Annual Declaration End *******************//
+
+
+
+     //*************************** Update Annual Declaration Start *******************//
+
+ public function updateannualAction(){
+ 
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+
+                $date=date('d-m-Y');
+                $d1ques1 = $this->request->getPost('d1ques1');
+                $d1ques2 = $this->request->getPost('d1ques2');
+                $d1ques3 = $this->request->getPost('d1ques3');
+
+
+                $d2ques1 = $this->request->getPost('d2ques1');
+                $d2ques2 = $this->request->getPost('d2ques2');
+                $d2ques3 = $this->request->getPost('d2ques3');
+                $d2ques4 = $this->request->getPost('d2ques4');
+
+                $d3ques1 = $this->request->getPost('d3ques1');
+                $d3ques2 = $this->request->getPost('d3ques2');
+                $d3ques3 = $this->request->getPost('d3ques3');
+                $d3ques4 = $this->request->getPost('d3ques4');
+
+                $d4ques1 = $this->request->getPost('d4ques1');
+                $d4ques2 = $this->request->getPost('d4ques2');
+                $d4ques3 = $this->request->getPost('d4ques3');
+                $d4ques4 = $this->request->getPost('d4ques4');
+
+                $d5ques1 = $this->request->getPost('d5ques1');
+                $d5ques2 = $this->request->getPost('d5ques2');
+                $d5ques3 = $this->request->getPost('d5ques3');
+                $d5ques4 = $this->request->getPost('d5ques4');
+
+                $d6ques1 = $this->request->getPost('d6ques1');
+                $d6ques2 = $this->request->getPost('d6ques2');
+                $d6ques3 = $this->request->getPost('d6ques3');
+                $d6ques4 = $this->request->getPost('d6ques4');
+                $d6ques5 = $this->request->getPost('d6ques5');
+
+                $d7ques1 = $this->request->getPost('d7ques1');
+                $d7ques2 = $this->request->getPost('d7ques2');
+                $d7ques3 = $this->request->getPost('d7ques3');
+                $d7ques4 = $this->request->getPost('d7ques4');
+                $d7ques5 = $this->request->getPost('d7ques5');
+
+                $uniqueid = $this->request->getPost('uniqueid');
+                //$uniqueid = '5e0ec764808fc';
+                
+                //ids of individual divs
+                 $d1id = $this->request->getPost('d1id');
+                 $d2id = $this->request->getPost('d2id');
+                 $d3id = $this->request->getPost('d3id');
+                 $d4id = $this->request->getPost('d4id');
+                 $d5id = $this->request->getPost('d5id');
+                 $d6id = $this->request->getPost('d6id');
+                 $d7id = $this->request->getPost('d7id');
+
+
+
+                
+               
+                //print_r($company);print_r($decision);
+
+
+                 if($d1ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '')
+                    {
+                        
+                    $getres1 = $this->annualdeclarationcommon->upannualselfcompany($getuserid,$d1ques1,$d1ques2,$d1ques3,$uniqueid,$d1id);
+                   
+                     $getres2 = $this->annualdeclarationcommon->upannualselffirm($getuserid,$d2ques1,$d2ques2,$d2ques3,$d2ques4,$uniqueid,$d2id);
+
+                     $getres3 = $this->annualdeclarationcommon->upannualselfpubprivate($getuserid,$d3ques1,$d3ques2,$d3ques3,$d3ques4,$uniqueid,$d3id);
+
+                    $getres4 = $this->annualdeclarationcommon->upannualselfpubshare($getuserid,$d4ques1,$d4ques2,$d4ques3,$d4ques4,$uniqueid,$d4id);
+
+                      $getres5 = $this->annualdeclarationcommon->upannualrelativecompany($getuserid,$d5ques1,$d5ques2,$d5ques3,$d5ques4,$uniqueid,$d5id);
+
+                     $getres6 = $this->annualdeclarationcommon->upannualrelativefirm($getuserid,$d6ques1,$d6ques2,$d6ques3,$d6ques4,$d6ques5,$uniqueid,$d6id);
+
+                     $getres7 = $this->annualdeclarationcommon->upannualrelativepublicshare($getuserid,$d7ques1,$d7ques2,$d7ques3,$d7ques4,$d7ques5,$uniqueid,$d7id);
+
+           
+
+                        if($getres1 || $getres2 || $getres3 || $getres4 || $getres5  || $getres6 || $getres7)
+                        {  
+                            $data = array("logged" => true,'message' => 'Record Updated' );
+                            $this->response->setJsonContent($data);
+                        }
+                        else
+                        {
+                            $data = array("logged" => false,'message' => "Record Not Updated..!!");
+                            $this->response->setJsonContent($data);
+                        } 
+                    }
+
+                      $this->response->send();
+
+
+            }
+
+        }
+
+
+    }
+
+     //*************************** Update Annual Declaration End *******************//
+
+
 
 
         public function createannualAction()
@@ -919,8 +1031,8 @@ class AnnualdeclarationController extends ControllerBase
         $usergroup = $this->session->loginauthspuserfront['user_group_id'];
 
         $this->view->$uid;
-         //$uniqueid = $this->request->getPost('uniqueid');
-         $uniqueid = '5e0ec764808fc';
+         $uniqueid = $this->request->getPost('uniqueid');
+        // $uniqueid = '5e0ec764808fc';
 
         $relatives = $this->annualdeclarationcommon->get_relatives($uid,$usergroup);
          $this->view->relatives = $relatives;
