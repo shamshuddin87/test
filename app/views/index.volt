@@ -94,6 +94,8 @@ and getcontrolleractionname  !="mis_initialdiscsr"
 and getcontrolleractionname  !="mis_annualdiscsr"
 and getcontrolleractionname  !="upsi_infosharing"
 and getcontrolleractionname  !="upsitypeclassify"
+and getcontrolleractionname !="createannual"
+and getcontrolleractionname !="editannual"
 
 
 
@@ -160,6 +162,10 @@ or getcontrolleractionname  =="mis_initialdiscsr"
 or getcontrolleractionname =="mis_annualdiscsr"
 or getcontrolleractionname =="upsi_infosharing"
 or getcontrolleractionname =="upsitypeclassify"
+or getcontrolleractionname == "createannual"
+or getcontrolleractionname == "editannual"
+
+
 
 %}
 {% set otheractioncss = ['css/common/otheraction/',dispatcher.getActionName(),'_common', '.php?v='~timestampfile]|join('') %}
@@ -329,6 +335,8 @@ and getcontrolleractionname  !="mis_initialdiscsr"
 and getcontrolleractionname  !="mis_annualdiscsr"
 and getcontrolleractionname  !="upsi_infosharing"
 and getcontrolleractionname  !="upsitypeclassify"
+and getcontrolleractionname != "createannual"
+and getcontrolleractionname != "editannual"
 
 %}
 <?php
@@ -387,6 +395,8 @@ or getcontrolleractionname  =="mis_initialdiscsr"
 or getcontrolleractionname  =="mis_annualdiscsr"
 or getcontrolleractionname  =="upsi_infosharing"
 or getcontrolleractionname  =="upsitypeclassify"
+or getcontrolleractionname == "createannual"
+or getcontrolleractionname == "editannual"
     
 %}
 <?php

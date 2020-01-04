@@ -14,7 +14,9 @@ $condeptsess = $this->session->contractdepartment;
 <!-- My messages -->
 <div class="mainelementfom">
   <div class="create_button">
-    <button type="button" class="btn btn-primary getdata">Create Declaration</button>
+  <a href="annualdeclaration/createannual"> <button type="button" class="btn btn-primary getdata">Create Declaration</button></a>
+ 
+ 
    </div> 
   <h1 class="h1_heading text-center" style="text-align: center;">Annual Declaration</h1>
   <table width="100%" border="1" class="table table-inverse" id="datableabhi">
@@ -33,64 +35,7 @@ $condeptsess = $this->session->contractdepartment;
 </div>
 
 
-
-<div id="Mymodaldeclara" class="modal  fade" role="dialog" style="overflow-y: auto;left:-22%; ">
-  <div class="modal-dialog">
-
-    <div class="modal-content" style="width:950px;">
-      <div class="modal-header">
-      	<select id="annualyear" name="annualyear">
-         <option value="2020">2020</option>
-         <option value="2021">2021</option>
-         <option value="2022">2022</option>
-         <option value="2023">2023</option>
-         <option value="2024">2024</option>
-         <option value="2025">2025</option>
-       </select>
-      
-       <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <div id="downloadpdf" style="float: right;"></div>
-         <div class="in_box">
-           <button type="button" class="btn btn-primary formpdf">Generate PDF</button>
-         </div>
-          <div class="modalform">
-        <!---------------------------------INITIAL DECLARATION FORM--------------------------------------------------->
-
-
-
-
-
-
-
-
-        <!----------------------------------------------------------------------------------------------------------->
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-        
-
-    <div id="delmod" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">
-                    &times;</button>
-            
-            </div>
-            <div class="modal-body">
-            <input type="hidden" id="deleteid" value="" name="">
-            <h5 style="text-align: center;">Are You Sure To Delete This Request?</h5> </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" id="deletereq" tempid="">Delete</button> 
-            </div>
-        </div>
-    </div>
-</div>    
+  
         
 
 
@@ -136,7 +81,7 @@ $condeptsess = $this->session->contractdepartment;
             <h4 class="modal-title">Annual Declaration Form</h4>
          </div>
          <div class="modal-body show_shadow">
-            <form action="annualdeclaration/insertannual" id="inannual" method="post" autocomplete="off">
+            <form action="annualdeclaration/insertannual" id="insertannual" method="post" autocomplete="off">
                <div class="col-md-12" style="padding-bottom: 20px;">
                
                   <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
@@ -149,13 +94,13 @@ $condeptsess = $this->session->contractdepartment;
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Company Name</label>
-                        <input type="text" class="form-control" id="d1ques1" name="d1ques1[]" style="margin-top: 40px;">
+                        <input type="text" class="form-control" id="d1ques1" name="d1ques1[]" style="margin-top: 40px;" required="required">
                      </div>
                   </section>
                   <section class="col col-md-4 col-xs-4">
                      <div class="input">
                         <label class="control-label">Can you significantly influence the decision making of this company?</label>
-                        <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top: 20px;">
+                        <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12" required="required" style="margin-top: 20px;">
                            <option value="1">Yes</option>
                            <option value="0">No</option>
                         </select>
@@ -164,7 +109,7 @@ $condeptsess = $this->session->contractdepartment;
                   <section class="col col-md-6 col-xs-6">
                      <div class="input">
                         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
-                        <select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+                        <select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12" required="required">
                            <option value="1">Yes</option>
                            <option value="0">No</option>
                         </select>
@@ -174,7 +119,7 @@ $condeptsess = $this->session->contractdepartment;
                <div class = "appenddiv1 " id="appenddiv1"></div>
                <div class="adddiv1section1">
                   <input type="button" id = "adddiv1" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
-                  <input type="button" class="btn btn-primary remvdiv1" value="-">
+                  <input type="button" id = "remvdiv1" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd1" plancntr="1">
                </div>
                <div class="col-md-12" style="padding-bottom: 10px;">
@@ -215,8 +160,8 @@ $condeptsess = $this->session->contractdepartment;
                </div>
                <div class = "appenddiv2" id="appenddiv2"></div>
                <div class="adddiv2section1"  style="padding-bottom: 10px;">
-                  <input type="button" id ="adddiv2" class="btn btn-primary " data-type = "addrow2" value="+" onclick="addhtml(this.id);">
-                  <input type="button" class="btn btn-primary remvdiv2" value="-">
+                  <input type="button" id ="adddiv2" class="btn btn-primary "  value="+" onclick="addhtml(this.id);">
+                  <input type="button" id = "remvdiv2" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd2" plancntr="1">
                </div>
                <div id = "div3" class="col-md-12" style="padding-bottom: 20px;">
@@ -255,7 +200,7 @@ $condeptsess = $this->session->contractdepartment;
                <div class = "appenddiv3 " id="appenddiv3"></div>
                <div class="adddiv3section1"  style="padding-bottom: 10px;">
                   <input type="button" id = "adddiv3" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
-                  <input type="button" class="btn btn-primary remvdiv3" value="-">
+                  <input type="button" id = "remvdiv3" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd3" plancntr="1">
                </div>
                <div id = "div4" class="col-md-12" style="padding-bottom: 20px;">
@@ -294,7 +239,7 @@ $condeptsess = $this->session->contractdepartment;
                <div class = "appenddiv4 " id="appenddiv4"></div>
                <div class="adddiv4section1"  style="padding-bottom: 10px;">
                   <input type="button" id ="adddiv4" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
-                  <input type="button" class="btn btn-primary remvdiv4" value="-">
+                  <input type="button" id = "remvdiv4" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd4" plancntr="1">
                </div>
 
@@ -310,7 +255,10 @@ $condeptsess = $this->session->contractdepartment;
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Relative Name</label>
-                        <input type="text" class="form-control" id="d5ques1" name="d5ques1[]" style="margin-top: 60px;">
+                       <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top:60px;">
+                           <option value="1">Yes</option>
+                           <option value="0">No</option>
+                        </select>
                      </div>
                   </section>
                   <section class="col col-md-2 col-xs-2">
@@ -341,7 +289,7 @@ $condeptsess = $this->session->contractdepartment;
                <div class = "appenddiv5 " id="appenddiv5"></div>
                <div class="adddiv5section2">
                   <input type="button" id = "adddiv5" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
-                  <input type="button" class="btn btn-primary remvdiv5" value="-">
+               <input type="button" id= "remvdiv5" class="btn btn-primary remvdiv5" value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd5" plancntr="1">
                </div>
                <div class="col-md-12" style="padding-bottom: 10px;">
@@ -392,7 +340,7 @@ $condeptsess = $this->session->contractdepartment;
                <div class = "appenddiv6 " id="appenddiv6"></div>
                <div class="adddiv6section2"  style="padding-bottom: 10px;">
                   <input type="button" id ="adddiv6" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
-                  <input type="button" class="btn btn-primary remvdiv6" value="-">
+                  <input type="button" id= "remvdiv6" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd6" plancntr="1">
                </div>
                <div id = "div7" class="col-md-12" style="padding-bottom: 20px;">
@@ -440,11 +388,11 @@ $condeptsess = $this->session->contractdepartment;
                <div class = "appenddiv7 " id="appenddiv7"></div>
                <div class="adddiv7section2"  style="padding-bottom: 10px;">
                   <input type="button" id = "adddiv7" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
-                  <input type="button" class="btn btn-primary remvdiv7" value="-">
+                  <input type="button" id = "remvdiv7" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd7" plancntr="1">
                </div>
                <div class="col-md-12"> 
-                  <button type="button" class="btn btn-primary annualform">Submit</button>
+                  <button type="submit" class="btn btn-primary ">Submit</button>
                </div>
             </form>
          </div>
@@ -453,7 +401,7 @@ $condeptsess = $this->session->contractdepartment;
       </div>
    </div>
 </div>
-<!-----------------------------------Annual Declaration Form MODAL End----------------------->
+<!-----------------------------------Annual Declaration Form MODAL End-----------------------> -->
 
 
 <!-- ########################################## PageContent End ########################################## --> 

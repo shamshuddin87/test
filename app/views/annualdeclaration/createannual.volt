@@ -2,7 +2,7 @@
 $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
 $gtselctedcmp = $this->session->cmpconmemberdoc;
 $condeptsess = $this->session->contractdepartment;
-//echo "company is ";print_r($user_group_id);exit;
+//echo "company is ";print_r($planuniqueid);exit;
 ?>
 
 <!-- Main content -->
@@ -13,75 +13,17 @@ $condeptsess = $this->session->contractdepartment;
 
 <!-- My messages -->
 <div class="mainelementfom">
-  <div class="create_button">
-  <a href="annualdeclaration/createannual"> <button type="button" class="btn btn-primary getdata">Create Declaration</button></a>
- 
- 
-   </div> 
-  <h1 class="h1_heading text-center" style="text-align: center;">Annual Declaration</h1>
-  <table width="100%" border="1" class="table table-inverse" id="datableabhi">
- <thead>
-  <tr>
-    <th>Srno</th> 
-    <th>Creation date</th>  
-    <th>Send to Compliance Officer</th>
-    <th>Annual Declaration Year</th>
-    <th>Sent Date</th>      
-    <th>Action</th>                                           
-    </tr>
- </thead>
-<tbody class="allpdf" appendrow='1'></tbody>
-</table>
-</div>
-
+    <div>  <h1 class="h1_heading text-center">Annual Declaration Form
+    
+    </h1> 
 
   
-        
-
-
-    <div id="sendmod" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">
-                    &times;</button>
-            
-            </div>
-            <div class="modal-body">
-            <input type="hidden" id="reqid" value="" name="">
-            <h5 style="text-align: center;">Are You Sure To Send This Request?</h5> </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-success" id="sendreq" tempid="">Send</button> 
-            </div>
-        </div>
-    </div>
-</div>    
-        
-<div class="clearelement"></div>
-<div class="preloder_wraper">
-    <a href="javascript:;" class="preloder"></a>
-</div>
-<div class="clearelement"></div>
-</div>
-</div>
-</div>
-
-
-<!---------------------------------------MODAL BOX-------------------------------------->
-
-
-
-<!---------------------------------------Annual Declaration Form MODAL----------------------->
-<div id="annualdeclarationform" class="modal fade" role="dialog">
-   <div class="modal-dialog">
-      <div class="modal-content" style="width: 900px">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Annual Declaration Form</h4>
-         </div>
-         <div class="modal-body show_shadow">
-            <form action="annualdeclaration/insertannual" id="insertannual" method="post" autocomplete="off">
+   </div> 
+   
+       <div class="containergrid">       
+        <div class="formcss">                           
+            <div class="typography form_pad">
+                <form action="annualdeclaration/insertannual" id="insertannual" method="post" autocomplete="off">
                <div class="col-md-12" style="padding-bottom: 20px;">
                
                   <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
@@ -94,13 +36,13 @@ $condeptsess = $this->session->contractdepartment;
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Company Name</label>
-                        <input type="text" class="form-control" id="d1ques1" name="d1ques1[]" style="margin-top: 40px;" required="required">
+                        <input type="text" class="form-control inputbox3" id="d1ques1" name="d1ques1[]" style="margin-top: 20px;" required="required">
                      </div>
                   </section>
                   <section class="col col-md-4 col-xs-4">
                      <div class="input">
                         <label class="control-label">Can you significantly influence the decision making of this company?</label>
-                        <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12" required="required" style="margin-top: 20px;">
+                        <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12" required="required">
                            <option value="1">Yes</option>
                            <option value="0">No</option>
                         </select>
@@ -130,19 +72,19 @@ $condeptsess = $this->session->contractdepartment;
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Firm Name</label>
-                        <input type="text" class="form-control" id="d2ques1" name="d2ques1[]" style="margin-top: 60px;">
+                        <input type="text" class="form-control inputbox4" id="d2ques1" name="d2ques1[]" style="margin-top: 40px;">
                      </div>
                   </section>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Nature of Interest</label>
-                        <input type="text" class="form-control" id="d2ques3" name="d2ques3[]" style="margin-top: 60px;">
+                        <input type="text" class="form-control inputbox4" id="d2ques2" name="d2ques2[]" style="margin-top: 40px;">
                      </div>
                   </section>
                   <section class="col col-md-4 col-xs-4">
                      <div class="input">
                         <label class="control-label">Can you significantly influence the decision making of this company?</label>
-                        <select id="d2ques3" name="d2ques3[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top:40px;">
+                        <select id="d2ques3" name="d2ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" style="margin-top:20px; ">
                            <option value="1">Yes</option>
                            <option value="0">No</option>
                         </select>
@@ -169,19 +111,19 @@ $condeptsess = $this->session->contractdepartment;
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Company Name</label>
-                        <input type="text" class="form-control" id="d3ques1" name="d3ques1[]" style="margin-top: 60px;">
+                        <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" style="margin-top: 40px;">
                      </div>
                   </section>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Nature of Interest</label>
-                        <input type="text" class="form-control" id="d3ques2" name="d3ques2[]" style="margin-top: 60px;">
+                        <input type="text" class="form-control inputbox4" id="d3ques2" name="d3ques2[]" style="margin-top: 40px;">
                      </div>
                   </section>
                   <section class="col col-md-4 col-xs-4">
                      <div class="input">
                         <label class="control-label">Can you significantly influence the decision making of this company?</label>
-                        <select id="d3ques3" name="d3ques3[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top:40px;">
+                        <select id="d3ques3" name="d3ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" style="margin-top:20px;">
                            <option value="1">Yes</option>
                            <option value="0">No</option>
                         </select>
@@ -208,19 +150,19 @@ $condeptsess = $this->session->contractdepartment;
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Company Name</label>
-                        <input type="text" class="form-control" id="d4ques1" name="d4ques1[]" style="margin-top: 60px;">
+                        <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" style="margin-top: 40px;">
                      </div>
                   </section>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Nature of Interest</label>
-                        <input type="text" class="form-control" id="d4ques2" name="d4ques2[]" style="margin-top: 60px;">
+                        <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" style="margin-top: 40px;">
                      </div>
                   </section>
                   <section class="col col-md-4 col-xs-4">
                      <div class="input">
                         <label class="control-label">Can you significantly influence the decision making of this company?</label>
-                        <select id="d4ques3" name="d4ques3[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top:40px;">
+                        <select id="d4ques3" name="d4ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" style="margin-top:20px;">
                            <option value="1">Yes</option>
                            <option value="0">No</option>
                         </select>
@@ -255,22 +197,31 @@ $condeptsess = $this->session->contractdepartment;
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Relative Name</label>
-                       <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top:60px;">
-                           <option value="1">Yes</option>
-                           <option value="0">No</option>
+                       <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" required="" style="margin-top:40px;">
+                        <option value="1">HUF</option>
+                        <option value="2">Spouse</option>
+                        <option value="3">Father</option>
+                        <option value="4">Mother</option>
+                        <option value="5">Brother</option>
+                        <option value="6">Sister</option>
+                        <option value="7">Son</option>
+                        <option value="8">Daughter</option>
+                        <option value="9">Son's Wife</option>
+                        <option value="10">Daughter's Husband</option>
+                        <option value="11">Others</option>
                         </select>
                      </div>
                   </section>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Company Name</label>
-                        <input type="text" class="form-control" id="d5ques2" name="d5ques2[]" style="margin-top: 60px;">
+                        <input type="text" class="form-control inputbox4" id="d5ques2" name="d5ques2[]" style="margin-top: 40px;">
                      </div>
                   </section>
                   <section class="col col-md-4 col-xs-4">
                      <div class="input">
                         <label class="control-label">Can you significantly influence the decision making of this company?</label>
-                        <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top: 40px;">
+                        <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" style="margin-top: 20px;">
                            <option value="1">Yes</option>
                            <option value="0">No</option>
                         </select>
@@ -289,7 +240,7 @@ $condeptsess = $this->session->contractdepartment;
                <div class = "appenddiv5 " id="appenddiv5"></div>
                <div class="adddiv5section2">
                   <input type="button" id = "adddiv5" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
-               <input type="button" id= "remvdiv5" class="btn btn-primary remvdiv5" value="-" onclick="removehtml(this.id);">
+                <input type="button" id= "remvdiv5" class="btn btn-primary remvdiv5" value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd5" plancntr="1">
                </div>
                <div class="col-md-12" style="padding-bottom: 10px;">
@@ -300,28 +251,37 @@ $condeptsess = $this->session->contractdepartment;
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Relative</label>
-                        <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top:100px;">
-                           <option value="1">Yes</option>
-                           <option value="0">No</option>
+                        <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox5" required="" style="margin-top:60px;">
+                          <option value="1">HUF</option>
+                             <option value="2">Spouse</option>
+                            <option value="3">Father</option>
+                            <option value="4">Mother</option>
+                            <option value="5">Brother</option>
+                            <option value="6">Sister</option>
+                              <option value="7">Son</option>
+                             <option value="8">Daughter</option>
+                             <option value="9">Son's Wife</option>
+                            <option value="10">Daughter's Husband</option>
+                            <option value="11">Others</option>
                         </select>
                      </div>
                   </section>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Firm Name</label>
-                        <input type="text" class="form-control" id="d6ques2" name="d6ques2[]" style="margin-top: 100px;">
+                        <input type="text" class="form-control inputbox5" id="d6ques2" name="d6ques2[]" style="margin-top: 60px;">
                      </div>
                   </section>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Nature of Interest</label>
-                        <input type="text" class="form-control" id="d6ques3" name="d6ques3[]" style="margin-top: 100px;">
+                        <input type="text" class="form-control inputbox5" id="d6ques3" name="d6ques3[]" style="margin-top: 60px;">
                      </div>
                   </section>
                   <section class="col col-md-3 col-xs-3">
                      <div class="input">
                         <label class="control-label">Can you significantly influence the decision making of this company?</label>
-                        <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top:60px;">
+                        <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox5" required="" style="margin-top:40px;">
                            <option value="1">Yes</option>
                            <option value="0">No</option>
                         </select>
@@ -348,28 +308,37 @@ $condeptsess = $this->session->contractdepartment;
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Relative</label>
-                        <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top:100px;">
-                           <option value="1">Yes</option>
-                           <option value="0">No</option>
+                        <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox5" required="" style="margin-top:60px;">
+                          <option value="1">HUF</option>
+                          <option value="2">Spouse</option>
+                          <option value="3">Father</option>
+                          <option value="4">Mother</option>
+                          <option value="5">Brother</option>
+                          <option value="6">Sister</option>
+                           <option value="7">Son</option>
+                          <option value="8">Daughter</option>
+                          <option value="9">Son's Wife</option>
+                          <option value="10">Daughter's Husband</option>
+                          <option value="11">Others</option>
                         </select>
                      </div>
                   </section>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Company Name</label>
-                        <input type="text" class="form-control" id="d7ques2" name="d7ques2[]" style="margin-top: 100px;">
+                        <input type="text" class="form-control inputbox5" id="d7ques2" name="d7ques2[]" style="margin-top: 60px;">
                      </div>
                   </section>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Nature of Interest</label>
-                        <input type="text" class="form-control" id="d7ques3" name="d7ques3[]" style="margin-top: 100px;">
+                        <input type="text" class="form-control inputbox5" id="d7ques3" name="d7ques3[]" style="margin-top: 60px;">
                      </div>
                   </section>
                   <section class="col col-md-3 col-xs-3">
                      <div class="input">
                         <label class="control-label">Can you significantly influence the decision making of this company?</label>
-                        <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="" style="margin-top:60px;">
+                        <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox5" required="" style="margin-top:40px;">
                            <option value="1">Yes</option>
                            <option value="0">No</option>
                         </select>
@@ -394,17 +363,117 @@ $condeptsess = $this->session->contractdepartment;
                <div class="col-md-12"> 
                   <button type="submit" class="btn btn-primary ">Submit</button>
                </div>
-            </form>
-         </div>
-         <div class="modal-footer">
-         </div>
-      </div>
-   </div>
+            </form>                            
+            <div class="clearelement"></div>
+            </div>
+       </div>     
+    </div>   
+
+    
+   <div class="table-responsive table_wraper tradeplanview">
+    <div class="cssnumrws">
+       <span>Show</span>
+        <select id="noofrows" name="noofrows" class="noofrows">
+           <option value="10">10</option><option value="25">25</option>
+            <option value="50">50</option><option value="100">100</option>
+        </select> 
+        <span>Entries</span>
+    </div>
+          <table class="table datatable-responsive" border="1" class="templatetbl" id="datableabhi" dtausi = "">
+                    <thead>
+                        <tr>
+                            <th>SR.NO.</th>
+                            <th>User Name</th>
+                            <th>Status</th>
+                            <th>View</th> 
+                        </tr>
+                    </thead>
+                    <tbody class="viewdeclaration">
+                    </tbody>
+                </table>
+      
+    
+    </div>
+    
+    <div class="panel panel-white">
+ <div class="paginationmn"></div>
+<input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
+
 </div>
-<!-----------------------------------Annual Declaration Form MODAL End-----------------------> -->
 
-
+         
+<div class="clearelement"></div>
+<div class="preloder_wraper">
+    <a href="javascript:;" class="preloder"></a>
+</div>
+<div class="clearelement"></div>
+</div>
+<!-- /main content -->
+ 
+</div>
+</div>
+</div>
 <!-- ########################################## PageContent End ########################################## --> 
+
+
+
+<div id="Mymodaldeclara" class="modal  fade" role="dialog" style="overflow-y: auto;left:-22%; ">
+  <div class="modal-dialog">
+
+    <div class="modal-content" style="width:950px;">
+      <div class="modal-header">
+         <select id="annualyear" name="annualyear">
+         <option value="2020">2020</option>
+         <option value="2021">2021</option>
+         <option value="2022">2022</option>
+         <option value="2023">2023</option>
+         <option value="2024">2024</option>
+         <option value="2025">2025</option>
+       </select>
+      
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div id="downloadpdf" style="float: right;"></div>
+         <div class="in_box">
+           <button type="button" class="btn btn-primary formpdf floatright">Generate PDF</button>
+         </div>
+          <div class="modalform">
+        <!---------------------------------INITIAL DECLARATION FORM--------------------------------------------------->
+
+
+
+
+
+
+
+
+        <!----------------------------------------------------------------------------------------------------------->
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+        
+
+    <div id="delmod" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                    &times;</button>
+            
+            </div>
+            <div class="modal-body">
+            <input type="hidden" id="deleteid" value="" name="">
+            <h5 style="text-align: center;">Are You Sure To Delete This Request?</h5> </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" id="deletereq" tempid="">Delete</button> 
+            </div>
+        </div>
+    </div>
+</div>  
  
 
 

@@ -15,7 +15,7 @@ $condeptsess = $this->session->contractdepartment;
 <div class="mainelementfom">
      
 
-    <h1 class="h1_heading text-center">Trading Plan</h1>
+<h1 class="h1_heading text-center">Trading Plan</h1>
  <div class="containergrid">       
     <div class="formcss">                           
      <div class="typography form_pad">
@@ -174,7 +174,7 @@ $condeptsess = $this->session->contractdepartment;
                 </table>
       
     
-    </div>
+  </div>
     <div class="panel panel-white">
  <div class="paginationmn"></div>
 <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">

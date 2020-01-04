@@ -27,6 +27,8 @@ class Annualdeclarationcommon extends Component
   }
 
 
+ 
+
   public function fetchpersonlinfo($uid,$usergroup)
   { 
     $connection = $this->dbtrd;
@@ -233,7 +235,7 @@ public function getallrelative($uid,$usergroup)
    }
 
 
-   public function saveinitialdeclare($uid,$usergroup,$pdfpath,$annualyear)
+   public function saveinitialdeclare($uid,$usergroup,$pdfpath,$annualyear,$uniqueid)
    {
             // print_r($usergroup);exit;
             $connection = $this->dbtrd;
@@ -242,10 +244,10 @@ public function getallrelative($uid,$usergroup)
             {
                 $querysel = "SELECT * FROM `annual_initial_declaration` WHERE `user_id` ='".$uid."' AND `annualyear`='".$annualyear."'";
                 
-                $queryin = "INSERT INTO `annual_initial_declaration` (user_id, user_group_id,send_status, pdfpath,annualyear,date_added,date_modified,timeago) 
-                VALUES   ('".$uid."','".$usergroup."',0,'".$pdfpath."','".$annualyear."',NOW(),NOW(),'".$time."')"; 
+                $queryin = "INSERT INTO `annual_initial_declaration` (user_id, user_group_id,send_status, pdfpath,annualyear,uniqueid,date_added,date_modified,timeago) 
+                VALUES   ('".$uid."','".$usergroup."',0,'".$pdfpath."','".$annualyear."','".$uniqueid."',NOW(),NOW(),'".$time."')"; 
                 
-                $queryup = "UPDATE `annual_initial_declaration` SET `send_status` = 0,`sent_date` = NULL,`pdfpath` = '".$pdfpath."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `annualyear`='".$annualyear."'";
+                $queryup = "UPDATE `annual_initial_declaration` SET `send_status` = 0,`sent_date` = NULL,`pdfpath` = '".$pdfpath."',`uniqueid` = '".$uniqueid."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `annualyear`='".$annualyear."'";
                 // echo $queryup; exit;
                 $exeget = $connection->query($querysel);
                 $getnum = trim($exeget->numRows());
@@ -505,5 +507,408 @@ public function getallrelative($uid,$usergroup)
 
         return $getlist;
     }
+
+
+
+/****************** insert Annual start ******************/
+    public function annualselfcompany($getuserid,$company,$decision,$transaction,$unique)
+    {
+     $connection = $this->dbtrd;
+     $time = time();   
+
+     for($i = 0; $i< sizeof($company);$i++)
+     {
+        
+
+                           
+          $queryinsert = "INSERT INTO `annual_self_company`
+            (`user_id`,`company`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
+             VALUES ('".$getuserid."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+         
+         
+         //echo $queryinsert;
+         $exe = $connection->query($queryinsert);
+     }
+        //echo 'here';exit;
+         
+            //echo $queryinsert;
+        try
+        {
+            return true;
+        }
+        catch (Exception $e) 
+        {
+            //echo "checkng Exception";print_r($e);exit;
+            return false;
+        }
+    }
+
+   public function annualselffirm($getuserid,$company,$interest,$decision,$transaction,$unique)
+    {
+     $connection = $this->dbtrd;
+     $time = time();   
+   
+
+     for($i = 0; $i< sizeof($company);$i++)
+     {              
+          $queryinsert = "INSERT INTO `annual_self_firm`
+            (`user_id`,`firm`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
+             VALUES ('".$getuserid."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+         
+         
+         //echo $queryinsert;
+         $exe = $connection->query($queryinsert);
+
+     }
+        //echo 'here';exit;
+         
+            //echo $queryinsert;
+        try
+        {
+            return true;
+        }
+        catch (Exception $e) 
+        {
+            //echo "checkng Exception";print_r($e);exit;
+            return false;
+        }
+    }
+    
+    public function annualselfpubprivate($getuserid,$company,$interest,$decision,$transaction,$unique)
+    {
+     $connection = $this->dbtrd;
+     $time = time();   
+     // print_r($interest);echo "hello";exit;
+
+     for($i = 0; $i< sizeof($company);$i++)
+     {              
+          $queryinsert = "INSERT INTO `annual_self_publicprivate`
+            (`user_id`,`company`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
+             VALUES ('".$getuserid."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+         
+         
+         //echo $queryinsert;
+         $exe = $connection->query($queryinsert);
+
+     }
+        //echo 'here';exit;
+         
+            //echo $queryinsert;
+        try
+        {
+            return true;
+        }
+        catch (Exception $e) 
+        {
+            //echo "checkng Exception";print_r($e);exit;
+            return false;
+        }
+    }
+    
+
+     public function annualselfpubshare($getuserid,$company,$interest,$decision,$transaction,$unique)
+    {
+     $connection = $this->dbtrd;
+     $time = time();   
+     // print_r($interest);echo "hello";exit;
+
+     for($i = 0; $i< sizeof($company);$i++)
+     {              
+          $queryinsert = "INSERT INTO `annual_self_publicshare`
+            (`user_id`,`company`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
+             VALUES ('".$getuserid."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+         
+         
+         //echo $queryinsert;
+         $exe = $connection->query($queryinsert);
+
+     }
+        //echo 'here';exit;
+         
+            //echo $queryinsert;
+        try
+        {
+            return true;
+        }
+        catch (Exception $e) 
+        {
+            //echo "checkng Exception";print_r($e);exit;
+            return false;
+        }
+    }
+
+    public function annualrelativecompany($getuserid,$relative,$company,$decision,$transaction,$unique)
+    {
+     $connection = $this->dbtrd;
+     $time = time();   
+     // print_r($interest);echo "hello";exit;
+
+     for($i = 0; $i< sizeof($relative);$i++)
+     {              
+          $queryinsert = "INSERT INTO `annual_relative`
+            (`user_id`,`relative`,`company`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
+             VALUES ('".$getuserid."','".$relative[$i]."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+         
+         
+         //echo $queryinsert;
+         $exe = $connection->query($queryinsert);
+
+     }
+        //echo 'here';exit;
+         
+            //echo $queryinsert;
+        try
+        {
+            return true;
+        }
+        catch (Exception $e) 
+        {
+            //echo "checkng Exception";print_r($e);exit;
+            return false;
+        }
+    }
+
+    public function annualrelativefirm($getuserid,$relative,$company,$interest,$decision,$transaction,$unique)
+    {
+     $connection = $this->dbtrd;
+     $time = time();   
+     //print_r($transaction);echo "hello";exit;
+
+     for($i = 0; $i< sizeof($relative);$i++)
+     {              
+          $queryinsert = "INSERT INTO `annual_relative_firm`
+            (`user_id`,`relative`,`firm`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
+             VALUES ('".$getuserid."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+         
+         
+         //echo $queryinsert;
+         $exe = $connection->query($queryinsert);
+
+     }
+        //echo 'here';exit;
+         
+            //echo $queryinsert;
+        try
+        {
+            return true;
+        }
+        catch (Exception $e) 
+        {
+            //echo "checkng Exception";print_r($e);exit;
+            return false;
+        }
+    }
+
+     public function annualrelativepublicshare($getuserid,$relative,$company,$interest,$decision,$transaction,$unique)
+    {
+     $connection = $this->dbtrd;
+     $time = time();   
+     //print_r($transaction);echo "hello";exit;
+
+     for($i = 0; $i< sizeof($relative);$i++)
+     {              
+          $queryinsert = "INSERT INTO `annual_relative_publicprivate`
+            (`user_id`,`relative`,`company`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
+             VALUES ('".$getuserid."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+         
+         
+         //echo $queryinsert;
+         $exe = $connection->query($queryinsert);
+
+     }
+        //echo 'here';exit;
+         
+            //echo $queryinsert;
+        try
+        {
+            return true;
+        }
+        catch (Exception $e) 
+        {
+            //echo "checkng Exception";print_r($e);exit;
+            return false;
+        }
+    }
+    
+
+  public function annual_self_company($uid,$usergroup,$uniqueid)
+  {
+      $connection = $this->dbtrd;
+      $myarr=array();
+      $time = time();
+      $query="SELECT * FROM annual_self_company WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
+      try{
+           $exeget = $connection->query($query);
+           $getnum = trim($exeget->numRows());
+          if($getnum>0)
+          {
+              while($row = $exeget->fetch())
+              { $getlist[] = $row; }
+           }
+          else
+          {  $getlist = array(); }
+      }
+
+     
+      catch (Exception $e)
+      {   $getlist = array(); }
+
+      return $getlist;
+
+  }
+
+   public function annual_self_firm($uid,$usergroup,$uniqueid)
+  {
+
+      $connection = $this->dbtrd;
+      $myarr=array();
+      $time = time();
+      $query="SELECT * FROM annual_self_firm WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
+      try{
+           $exeget = $connection->query($query);
+           $getnum = trim($exeget->numRows());
+          if($getnum>0)
+          {
+              while($row = $exeget->fetch())
+              { $getlist[] = $row; }
+           }
+          else
+          {  $getlist = array(); }
+      }
+
+     
+      catch (Exception $e)
+      {   $getlist = array(); }
+
+      return $getlist;
+
+  }
+   public function annual_self_pubpri($uid,$usergroup,$uniqueid)
+  {
+      $connection = $this->dbtrd;
+      $myarr=array();
+      $time = time();
+      $query="SELECT * FROM annual_self_publicprivate WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
+      try{
+           $exeget = $connection->query($query);
+           $getnum = trim($exeget->numRows());
+          if($getnum>0)
+          {
+              while($row = $exeget->fetch())
+              { $getlist[] = $row; }
+           }
+          else
+          {  $getlist = array(); }
+      }
+
+     
+      catch (Exception $e)
+      {   $getlist = array(); }
+
+      return $getlist;
+
+  }
+   public function annual_self_pubshare($uid,$usergroup,$uniqueid)
+  {
+      $connection = $this->dbtrd;
+      $myarr=array();
+      $time = time();
+      $query="SELECT * FROM annual_self_publicshare WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
+      try{
+           $exeget = $connection->query($query);
+           $getnum = trim($exeget->numRows());
+          if($getnum>0)
+          {
+              while($row = $exeget->fetch())
+              { $getlist[] = $row; }
+           }
+          else
+          {  $getlist = array(); }
+      }
+
+     
+      catch (Exception $e)
+      {   $getlist = array(); }
+
+      return $getlist;
+
+  }
+   public function annual_relative($uid,$usergroup,$uniqueid)
+  {
+      $connection = $this->dbtrd;
+      $myarr=array();
+      $time = time();
+      $query="SELECT ar.`company`,ar.`decision`,ar.`transaction` , r.`relationshipname` FROM annual_relative ar LEFT JOIN relationship r ON ar.`relative` = r.`id` WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
+
+      try{
+           $exeget = $connection->query($query);
+           $getnum = trim($exeget->numRows());
+          if($getnum>0)
+          {
+              while($row = $exeget->fetch())
+              { $getlist[] = $row; }
+           }
+          else
+          {  $getlist = array(); }
+      }
+
+     
+      catch (Exception $e)
+      {   $getlist = array(); }
+
+      return $getlist;
+
+  }
+   public function annual_relative_firm($uid,$usergroup,$uniqueid)
+  {
+      $connection = $this->dbtrd;
+      $myarr=array();
+      $time = time();
+      $query="SELECT * FROM annual_relative_firm WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
+      try{
+           $exeget = $connection->query($query);
+           $getnum = trim($exeget->numRows());
+          if($getnum>0)
+          {
+              while($row = $exeget->fetch())
+              { $getlist[] = $row; }
+           }
+          else
+          {  $getlist = array(); }
+      }
+
+     
+      catch (Exception $e)
+      {   $getlist = array(); }
+
+      return $getlist;
+
+  }
+   public function annual_relative_pubpri($uid,$usergroup,$uniqueid)
+  {
+      $connection = $this->dbtrd;
+      $myarr=array();
+      $time = time();
+      $query="SELECT * FROM annual_relative_publicprivate WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
+      try{
+           $exeget = $connection->query($query);
+           $getnum = trim($exeget->numRows());
+          if($getnum>0)
+          {
+              while($row = $exeget->fetch())
+              { $getlist[] = $row; }
+           }
+          else
+          {  $getlist = array(); }
+      }
+
+     
+      catch (Exception $e)
+      {   $getlist = array(); }
+
+      return $getlist;
+
+  }
+
 
 }
