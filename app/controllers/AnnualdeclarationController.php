@@ -205,8 +205,8 @@ class AnnualdeclarationController extends ControllerBase
             if($this->request->isAjax() == true)
             {   
                 
-                //$uniqueid = $this->request->getPost('uniqueid');
-                $uniqueid = '5e0ec764808fc';
+                $uniqueid = $this->request->getPost('uniqueid');
+                //$uniqueid = '5e0ec764808fc';
 
                 $getresponse1 = $this->annualdeclarationcommon->annual_self_company($uid,$usergroup,$uniqueid);
                 $getresponse2 = $this->annualdeclarationcommon->annual_self_firm($uid,$usergroup,$uniqueid);
@@ -260,8 +260,8 @@ class AnnualdeclarationController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $pdf_content = $this->request->getPost('htmldata');
-                //$uniqueid =$this->request->getPost('uniqueid');
-                $uniqueid = '5e0ec764808fc';
+                $uniqueid =$this->request->getPost('uniqueid');
+               // $uniqueid = '5e0ec764808fc';
 
                 $annualyear = $this->request->getPost('annualyear');
                 // print_r($pdf_content);exit;
@@ -948,8 +948,8 @@ class AnnualdeclarationController extends ControllerBase
                 $d7ques4 = $this->request->getPost('d7ques4');
                 $d7ques5 = $this->request->getPost('d7ques5');
 
-                //$uniqueid = $this->request->getPost('uniqueid');
-                $uniqueid = '5e0ec764808fc';
+                $uniqueid = $this->request->getPost('uniqueid');
+                //$uniqueid = '5e0ec764808fc';
                 
                 //ids of individual divs
                  $d1id = $this->request->getPost('d1id');
@@ -1031,8 +1031,8 @@ class AnnualdeclarationController extends ControllerBase
         $usergroup = $this->session->loginauthspuserfront['user_group_id'];
 
         $this->view->$uid;
-         //$uniqueid = $this->request->getPost('uniqueid');
-         $uniqueid = '5e0ec764808fc';
+         $uniqueid = $this->request->getPost('uniqueid');
+        // $uniqueid = '5e0ec764808fc';
 
         $relatives = $this->annualdeclarationcommon->get_relatives($uid,$usergroup);
          $this->view->relatives = $relatives;
