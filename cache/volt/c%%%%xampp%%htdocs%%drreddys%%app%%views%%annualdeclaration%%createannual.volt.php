@@ -32,11 +32,11 @@ $condeptsess = $this->session->contractdepartment;
                      <option value="0">No</option>
                   </select>
                </div>
-               <div id = "div1" class="col-md-12" style="padding-bottom: 20px;">
+               <div id = "div1" class="" style="padding-bottom: 20px;">
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Company Name</label>
-                        <input type="text" class="form-control inputbox3" id="d1ques1" name="d1ques1[]" style="margin-top: 20px;" required="required">
+                        <input type="text" class="form-control inputbox3" id="d1ques1" name="d1ques1[]" style="" required="required">
                      </div>
                   </section>
                   <section class="col col-md-4 col-xs-4">
@@ -57,18 +57,23 @@ $condeptsess = $this->session->contractdepartment;
                         </select>
                      </div>
                   </section>
-               </div>
-               <div class = "appenddiv1 " id="appenddiv1"></div>
-               <div class="adddiv1section1">
+
+                 <div class = "appenddiv1 " id="appenddiv1"></div>
+               <div class="adddiv1section1 col-md-12">
                   <input type="button" id = "adddiv1" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
                   <input type="button" id = "remvdiv1" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd1" plancntr="1">
                </div>
+                  
+
+               </div>
+
+               
                <div class="col-md-12" style="padding-bottom: 10px;">
                   <label >Are you Interested in ?</label>
                </div>
                <div id = "div2" class="col-md-12" style="padding-bottom: 20px;">
-                  <label  class="col-md-12">i.Firm</label>
+                  <label  class="col-md-12" style="padding-bottom: 10px;"><h4>i.Firm</h4></label>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Firm Name</label>
@@ -101,13 +106,14 @@ $condeptsess = $this->session->contractdepartment;
                   </section>
                </div>
                <div class = "appenddiv2" id="appenddiv2"></div>
-               <div class="adddiv2section1"  style="padding-bottom: 10px;">
+
+               <div class="adddiv2section1 col-md-12"  style="padding-bottom: 10px;">
                   <input type="button" id ="adddiv2" class="btn btn-primary "  value="+" onclick="addhtml(this.id);">
                   <input type="button" id = "remvdiv2" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd2" plancntr="1">
                </div>
                <div id = "div3" class="col-md-12" style="padding-bottom: 20px;">
-                  <label  class="col-md-12">ii.Private/Public Company</label>
+                  <label  class="col-md-12" style="padding-bottom: 10px;"><h4>ii.Private/Public Company</h4></label>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Company Name</label>
@@ -140,13 +146,15 @@ $condeptsess = $this->session->contractdepartment;
                   </section>
                </div>
                <div class = "appenddiv3 " id="appenddiv3"></div>
-               <div class="adddiv3section1"  style="padding-bottom: 10px;">
+
+               <div class="adddiv3section1 col-md-12"  style="padding-bottom: 10px;">
                   <input type="button" id = "adddiv3" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
                   <input type="button" id = "remvdiv3" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd3" plancntr="1">
                </div>
+
                <div id = "div4" class="col-md-12" style="padding-bottom: 20px;">
-                  <label  class="col-md-12">iii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
+                  <label  class="col-md-12" style="padding-bottom: 10px;"><h4>iii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</h4></label>
                   <section class="col col-md-2 col-xs-2">
                      <div class="input">
                         <label class="control-label">Company Name</label>
@@ -179,7 +187,8 @@ $condeptsess = $this->session->contractdepartment;
                   </section>
                </div>
                <div class = "appenddiv4 " id="appenddiv4"></div>
-               <div class="adddiv4section1"  style="padding-bottom: 10px;">
+
+               <div class="adddiv4section1 col-md-12"  style="padding-bottom: 10px;">
                   <input type="button" id ="adddiv4" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
                   <input type="button" id = "remvdiv4" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd4" plancntr="1">

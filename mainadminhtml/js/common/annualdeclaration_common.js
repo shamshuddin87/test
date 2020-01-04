@@ -279,11 +279,11 @@ function getdataonload()
                         // console.log(response);
                         var sentdate=response.data[i]['sent_date']?response.data[i]['sent_date']:"";
                         addhtmlnxt += '<tr class="counter">';
-                        addhtmlnxt += '<td width="25%">'+j+'</td>';
-                        addhtmlnxt += '<td width="25%">'+response.data[i]['date_added']+'</td>';
-                        addhtmlnxt += '<td width="25%"><i class="fa fa-paper-plane sendpdf" reqid="'+response.data[i]["srno"]+'"></i></td>';
-                        addhtmlnxt += '<td width="25%">'+response.data[i]["annualyear"]+'</i></td>';
-                        addhtmlnxt += '<td width="25%">'+sentdate+'</td>';
+                        addhtmlnxt += '<td width="5%">'+j+'</td>';
+                        addhtmlnxt += '<td width="20%">'+response.data[i]['date_added']+'</td>';
+                        addhtmlnxt += '<td width="15%"><i class="fa fa-paper-plane sendpdf" reqid="'+response.data[i]["srno"]+'"></i></td>';
+                        addhtmlnxt += '<td width="15%">'+response.data[i]["annualyear"]+'</i></td>';
+                        addhtmlnxt += '<td width="15%">'+sentdate+'</td>';
                         if(response.data[i]['send_status']==0)
                         {
                           addhtmlnxt += '<td width="25%"><a  href="'+response.data[i]["pdfpath"]+'"  class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a> <span class="glyphicon glyphicon-trash delfile" delid="'+response.data[i]["srno"]+'"></span> <a href = "annualdeclaration/editannual?id='+response.data[i]['uniqueid']+'" <span class="glyphicon glyphicon-edit editfile" editid="'+response.data[i]["uniqueid"]+'"></span></a></td>';

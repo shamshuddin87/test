@@ -13,12 +13,11 @@ $condeptsess = $this->session->contractdepartment;
 
 <!-- My messages -->
 <div class="mainelementfom">
-  <div class="create_button">
-  <a href="annualdeclaration/createannual"> <button type="button" class="btn btn-primary getdata">Create Declaration</button></a>
- 
- 
-   </div> 
+   
   <h1 class="h1_heading text-center" style="text-align: center;">Annual Declaration</h1>
+  <div class="create_button">
+   <a href="annualdeclaration/createannual"> <button type="button" class="btn btn-primary getdata">Create Declaration</button></a>
+   </div>
   <table width="100%" border="1" class="table table-inverse" id="datableabhi">
  <thead>
   <tr>
