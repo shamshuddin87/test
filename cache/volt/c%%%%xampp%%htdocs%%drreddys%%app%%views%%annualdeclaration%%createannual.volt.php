@@ -7,6 +7,7 @@
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
 <div class="right_col" role="main">
+<<<<<<< HEAD
 <div class="row">
 <div class="content">
 <!-- My messages -->
@@ -42,166 +43,367 @@
                      <td>
                         <div id = "div1" class="" >
                            <section class="">
+=======
+   <div class="row">
+      <div class="content">
+         <!-- My messages -->
+         <div class="mainelementfom">
+            <div>
+               <h1 class="h1_heading text-center">Annual Declaration Form
+               </h1>
+            </div>
+            <div class="containergrid">
+               <div class="formcss">
+                  <div class="typography form_pad">
+                     <form action="annualdeclaration/insertannual" id="insertannual" method="post" autocomplete="off">
+                        <div class="col-md-12" style="padding-bottom: 20px;">
+                           <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
+                           <select id="section1" name="section1" class="form_fields form-control col-md-7 col-xs-12" required="">
+                              <option value="yes">Yes</option>
+                              <option value="No">No</option>
+                           </select>
+                        </div>
+                        <div id = "div1" class="" style="padding-bottom: 20px;">
+                           <section class="col col-md-2 col-xs-2">
+>>>>>>> 4f9ee087f88feb90bb5081c087e6f5f131f2adb9
                               <div class="input">
+                                 <label class="control-label">Company Name</label>
                                  <input type="text" class="form-control inputbox3" id="d1ques1" name="d1ques1[]" style="" required="required">
                               </div>
                            </section>
+                           <section class="col col-md-4 col-xs-4">
+                              <div class="input">
+                                 <label class="control-label">Can you significantly influence the decision making of this company?</label>
+                                 <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12" required="required">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
+                           <section class="col col-md-6 col-xs-6">
+                              <div class="input">
+                                 <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
+                                 <select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12" required="required">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
+                           <div class = "appenddiv1 " id="appenddiv1"></div>
+                           <div class="adddiv1section1 col-md-12">
+                              <input type="button" id = "adddiv1" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
+                              <input type="button" id = "remvdiv1" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+                              <input type="hidden" class="appendd1" plancntr="1">
+                           </div>
                         </div>
-                     </td>
-                     <td>
-                        <section class="">
-                           <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" >
-                              <option value="">Select Option</option>
-                              <option value="yes">Yes</option>
-                              <option value="No">No</option>
-                           </select>
-                        </section>
-                     </td>
-                     <td>
-                        <section class="">
-                           <select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" >
-                              <option value="">Select Option</option>
-                              <option value="yes">Yes</option>
-                              <option value="No">No</option>
-                           </select>
-                        </section>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td colspan="4" >
-                        <div class = "appenddiv1 " id="appenddiv1">
+                        <div class="col-md-12" style="padding-bottom: 10px;">
+                           <label >Are you Interested in ?</label>
                         </div>
-                        <div class="adddiv1section1 col-md-12" style="text-align: right;">
-                           <input type="button" id = "adddiv1" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
-                           <input type="button" id = "remvdiv1" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
-                           <input type="hidden" class="appendd1" plancntr="1">
+                        <div id = "div2" class="col-md-12" style="padding-bottom: 20px;">
+                           <label  class="col-md-12" style="padding-bottom: 10px;">
+                              <h4>i.Firm</h4>
+                           </label>
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Firm Name</label>
+                                 <input type="text" class="form-control inputbox4" id="d2ques1" name="d2ques1[]" style="margin-top: 40px;">
+                              </div>
+                           </section>
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Nature of Interest</label>
+                                 <input type="text" class="form-control inputbox4" id="d2ques2" name="d2ques2[]" style="margin-top: 40px;">
+                              </div>
+                           </section>
+                           <section class="col col-md-4 col-xs-4">
+                              <div class="input">
+                                 <label class="control-label">Can you significantly influence the decision making of this company?</label>
+                                 <select id="d2ques3" name="d2ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" style="margin-top:20px; ">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
+                           <section class="col col-md-4 col-xs-4">
+                              <div class="input">
+                                 <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
+                                 <select id="d2ques4" name="d2ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
                         </div>
-                     </td>
-                  </tr>
-                </table>
-
-
-               </table>
-               <!-- table 1 end -->
-               <!-- table 2 start -->
-               <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
-                  <tr>
-                     <td colspan="4">
-                        <div class="col-md-12" >
-                           <label >2. Are you Interested in ?</label>
-                        </div>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td colspan="4">
-                        <div class="col-md-12">
-                           <label >i. Firm </label>
-                        </div>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>  <label class="control-label">Firm Name</label></td>
-                     <td>  <label class="control-label">Nature of Interest</label></td>
-                     <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-                     <td>
-                        <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <div class="input">
-                           <input type="text" class="form-control inputbox4" id="d2ques1" name="d2ques1[]" >
-                        </div>
-                     </td>
-                     <td>
-                        <div class="input">
-                           <input type="text" class="form-control inputbox4" id="d2ques2" name="d2ques2[]">
-                        </div>
-                     </td>
-                     <td>
-                        <div class="input">
-                           <select id="d2ques3" name="d2ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
-                              <option value="">Select Option</option>
-                              <option value="yes">Yes</option>
-                              <option value="No">No</option>
-                           </select>
-                        </div>
-                     </td>
-                     <td>
-                        <div class="input">
-                           <select id="d2ques4" name="d2ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-                              <option value="">Select Option</option>
-                              <option value="yes">Yes</option>
-                              <option value="No">No</option>
-                           </select>
-                        </div>
-                     </td>
-                  <tr>
-                     <td colspan="4" style="text-align: right;">
-                        <div class = "appenddiv2" id="appenddiv2">
-                        </div>
+                        <div class = "appenddiv2" id="appenddiv2"></div>
                         <div class="adddiv2section1 col-md-12"  style="padding-bottom: 10px;">
                            <input type="button" id ="adddiv2" class="btn btn-primary "  value="+" onclick="addhtml(this.id);">
                            <input type="button" id = "remvdiv2" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                            <input type="hidden" class="appendd2" plancntr="1">
                         </div>
-                     </td>
-                  </tr>
-                  </tr>
-               </table>
-               <!-- table 2 end -->
-               <!-- table 3 start-->
-               <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
-                  <tr>
-                     <td colspan="4">
-                        <div class="col-md-12">
-                           <label >ii. Private/Public Company</label>
+                        <div id = "div3" class="col-md-12" style="padding-bottom: 20px;">
+                           <label  class="col-md-12" style="padding-bottom: 10px;">
+                              <h4>ii.Private/Public Company</h4>
+                           </label>
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Company Name</label>
+                                 <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" style="margin-top: 40px;">
+                              </div>
+                           </section>
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Nature of Interest</label>
+                                 <input type="text" class="form-control inputbox4" id="d3ques2" name="d3ques2[]" style="margin-top: 40px;">
+                              </div>
+                           </section>
+                           <section class="col col-md-4 col-xs-4">
+                              <div class="input">
+                                 <label class="control-label">Can you significantly influence the decision making of this company?</label>
+                                 <select id="d3ques3" name="d3ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" style="margin-top:20px;">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
+                           <section class="col col-md-4 col-xs-4">
+                              <div class="input">
+                                 <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
+                                 <select id="d3ques4" name="d3ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
                         </div>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>  <label class="control-label">Company Name</label></td>
-                     <td>  <label class="control-label">Nature of Interest</label></td>
-                     <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-                     <td>
-                        <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <div class="input">
-                           <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" >
-                     </td>
-                     <td> 
-                     <div class="input">
-                     <input type="text" class="form-control inputbox4" id="d3ques2" name="d3ques2[]" >
-                     </div>
-                     </td>
-                     <td>
-                     <div class="input">
-                     <select id="d3ques3" name="d3ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
-                     <option value="">Select Option</option>
-                     <option value="yes">Yes</option>
-                     <option value="No">No</option>
-                     </select>
-                     </div></td>
-                     <td> 
-                     <div class="input">
-                     <select id="d3ques4" name="d3ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-                     <option value="">Select Option</option>
-                     <option value="yes">Yes</option>
-                     <option value="No">No</option>
-                     </select>
-                     </div>
-                     </td>
-                  <tr>
-                  <td colspan="4" >
-                  <div class = "appenddiv3 " id="appenddiv3" ></div>
-                  <div class="adddiv3section1 col-md-12"  style="text-align: right;">
-                  <input type="button" id = "adddiv3" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
-                  <input type="button" id = "remvdiv3" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
-                  <input type="hidden" class="appendd3" plancntr="1">
+                        <div class = "appenddiv3 " id="appenddiv3"></div>
+                        <div class="adddiv3section1 col-md-12"  style="padding-bottom: 10px;">
+                           <input type="button" id = "adddiv3" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
+                           <input type="button" id = "remvdiv3" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+                           <input type="hidden" class="appendd3" plancntr="1">
+                        </div>
+                        <div id = "div4" class="col-md-12" style="padding-bottom: 20px;">
+                           <label  class="col-md-12" style="padding-bottom: 10px;">
+                              <h4>iii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</h4>
+                           </label>
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Company Name</label>
+                                 <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" style="margin-top: 40px;">
+                              </div>
+                           </section>
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Nature of Interest</label>
+                                 <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" style="margin-top: 40px;">
+                              </div>
+                           </section>
+                           <section class="col col-md-4 col-xs-4">
+                              <div class="input">
+                                 <label class="control-label">Can you significantly influence the decision making of this company?</label>
+                                 <select id="d4ques3" name="d4ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" style="margin-top:20px;">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
+                           <section class="col col-md-4 col-xs-4">
+                              <div class="input">
+                                 <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
+                                 <select id="d4ques4" name="d4ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
+                        </div>
+                        <div class = "appenddiv4 " id="appenddiv4"></div>
+                        <div class="adddiv4section1 col-md-12"  style="padding-bottom: 10px;">
+                           <input type="button" id ="adddiv4" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
+                           <input type="button" id = "remvdiv4" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+                           <input type="hidden" class="appendd4" plancntr="1">
+                        </div>
+                        <!-- Section 2 start-->
+                        <div class="col-md-12" style="padding-bottom: 20px;">
+                           <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
+                           <select id="section2" name="section2" class="form_fields form-control col-md-7 col-xs-12" required="">
+                              <option value="yes">Yes</option>
+                              <option value="No">No</option>
+                           </select>
+                        </div>
+                        <div id = "div5" class="col-md-12" style="padding-bottom: 20px;">
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Relative Name</label>
+                                 <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" required="" style="margin-top:40px;">
+                                    <option value="1">HUF</option>
+                                    <option value="2">Spouse</option>
+                                    <option value="3">Father</option>
+                                    <option value="4">Mother</option>
+                                    <option value="5">Brother</option>
+                                    <option value="6">Sister</option>
+                                    <option value="7">Son</option>
+                                    <option value="8">Daughter</option>
+                                    <option value="9">Son's Wife</option>
+                                    <option value="10">Daughter's Husband</option>
+                                    <option value="11">Others</option>
+                                 </select>
+                              </div>
+                           </section>
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Company Name</label>
+                                 <input type="text" class="form-control inputbox4" id="d5ques2" name="d5ques2[]" style="margin-top: 40px;">
+                              </div>
+                           </section>
+                           <section class="col col-md-4 col-xs-4">
+                              <div class="input">
+                                 <label class="control-label">Can you significantly influence the decision making of this company?</label>
+                                 <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" style="margin-top: 20px;">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
+                           <section class="col col-md-4 col-xs-4">
+                              <div class="input">
+                                 <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
+                                 <select id="d5ques4" name="d5ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
+                        </div>
+                        <div class = "appenddiv5 " id="appenddiv5"></div>
+                        <div class="adddiv5section2">
+                           <input type="button" id = "adddiv5" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
+                           <input type="button" id= "remvdiv5" class="btn btn-primary remvdiv5" value="-" onclick="removehtml(this.id);">
+                           <input type="hidden" class="appendd5" plancntr="1">
+                        </div>
+                        <div class="col-md-12" style="padding-bottom: 10px;">
+                           <label >Are you Interested in ?</label>
+                        </div>
+                        <div id = "div6" class="col-md-12" style="padding-bottom: 20px;">
+                           <label  class="col-md-12">i.Firm</label>
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Relative</label>
+                                 <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox5" required="" style="margin-top:60px;">
+                                    <option value="1">HUF</option>
+                                    <option value="2">Spouse</option>
+                                    <option value="3">Father</option>
+                                    <option value="4">Mother</option>
+                                    <option value="5">Brother</option>
+                                    <option value="6">Sister</option>
+                                    <option value="7">Son</option>
+                                    <option value="8">Daughter</option>
+                                    <option value="9">Son's Wife</option>
+                                    <option value="10">Daughter's Husband</option>
+                                    <option value="11">Others</option>
+                                 </select>
+                              </div>
+                           </section>
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Firm Name</label>
+                                 <input type="text" class="form-control inputbox5" id="d6ques2" name="d6ques2[]" style="margin-top: 60px;">
+                              </div>
+                           </section>
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Nature of Interest</label>
+                                 <input type="text" class="form-control inputbox5" id="d6ques3" name="d6ques3[]" style="margin-top: 60px;">
+                              </div>
+                           </section>
+                           <section class="col col-md-3 col-xs-3">
+                              <div class="input">
+                                 <label class="control-label">Can you significantly influence the decision making of this company?</label>
+                                 <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox5" required="" style="margin-top:40px;">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
+                           <section class="col col-md-3 col-xs-3">
+                              <div class="input">
+                                 <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
+                                 <select id="d6ques5" name="d6ques5[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
+                        </div>
+                        <div class = "appenddiv6 " id="appenddiv6"></div>
+                        <div class="adddiv6section2"  style="padding-bottom: 10px;">
+                           <input type="button" id ="adddiv6" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
+                           <input type="button" id= "remvdiv6" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+                           <input type="hidden" class="appendd6" plancntr="1">
+                        </div>
+                        <div id = "div7" class="col-md-12" style="padding-bottom: 20px;">
+                           <label  class="col-md-12">ii.Private/Public Company</label>
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Relative</label>
+                                 <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox5" required="" style="margin-top:60px;">
+                                    <option value="1">HUF</option>
+                                    <option value="2">Spouse</option>
+                                    <option value="3">Father</option>
+                                    <option value="4">Mother</option>
+                                    <option value="5">Brother</option>
+                                    <option value="6">Sister</option>
+                                    <option value="7">Son</option>
+                                    <option value="8">Daughter</option>
+                                    <option value="9">Son's Wife</option>
+                                    <option value="10">Daughter's Husband</option>
+                                    <option value="11">Others</option>
+                                 </select>
+                              </div>
+                           </section>
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Company Name</label>
+                                 <input type="text" class="form-control inputbox5" id="d7ques2" name="d7ques2[]" style="margin-top: 60px;">
+                              </div>
+                           </section>
+                           <section class="col col-md-2 col-xs-2">
+                              <div class="input">
+                                 <label class="control-label">Nature of Interest</label>
+                                 <input type="text" class="form-control inputbox5" id="d7ques3" name="d7ques3[]" style="margin-top: 60px;">
+                              </div>
+                           </section>
+                           <section class="col col-md-3 col-xs-3">
+                              <div class="input">
+                                 <label class="control-label">Can you significantly influence the decision making of this company?</label>
+                                 <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox5" required="" style="margin-top:40px;">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
+                           <section class="col col-md-3 col-xs-3">
+                              <div class="input">
+                                 <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
+                                 <select id="d7ques5" name="d7ques5[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                           </section>
+                        </div>
+                        <div class = "appenddiv7 " id="appenddiv7"></div>
+                        <div class="adddiv7section2"  style="padding-bottom: 10px;">
+                           <input type="button" id = "adddiv7" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
+                           <input type="button" id = "remvdiv7" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+                           <input type="hidden" class="appendd7" plancntr="1">
+                        </div>
+                        <div class="col-md-12"> 
+                           <button type="submit" class="btn btn-primary ">Submit</button>
+                        </div>
+                     </form>
+                     <div class="clearelement"></div>
                   </div>
+<<<<<<< HEAD
                   </td>
                   </tr>
                   </tr>
@@ -402,125 +604,34 @@
                <td> 
                <div class="input">
                <input type="text" class="form-control inputbox4" id="d6ques2" name="d6ques2[]" >
+=======
+>>>>>>> 4f9ee087f88feb90bb5081c087e6f5f131f2adb9
                </div>
-               </td>
-
-               <td>
-               <div class="input">
-               <select id="d6ques3" name="d6ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
-               <option value="">Select Option</option>
-               <option value="yes">Yes</option>
-               <option value="No">No</option>
-               </select>
-               </div></td>
-               <td> 
-               <div class="input">
-               <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-               <option value="">Select Option</option>
-               <option value="yes">Yes</option>
-               <option value="No">No</option>
-               </select>
+            </div>
+           <!--  <div class="table-responsive table_wraper tradeplanview">
+               <div class="cssnumrws">
+                  <span>Show</span>
+                  <select id="noofrows" name="noofrows" class="noofrows">
+                     <option value="10">10</option>
+                     <option value="25">25</option>
+                     <option value="50">50</option>
+                     <option value="100">100</option>
+                  </select>
+                  <span>Entries</span>
                </div>
-               </td>
-               <tr>
-               <td colspan="5" >
-               <div class = "appenddiv6 " id="appenddiv6"></div>
-               <div class="adddiv6section2" style="float: right;">
-               <input type="button" id ="adddiv6" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
-               <input type="button" id= "remvdiv6" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
-               <input type="hidden" class="appendd6" plancntr="1">
-               </div>
-               </td>
-               </tr>
-               </tr>
+               <table class="table datatable-responsive" border="1" class="templatetbl" id="datableabhi" dtausi = "">
+                  <thead>
+                     <tr>
+                        <th>SR.NO.</th>
+                        <th>User Name</th>
+                        <th>Status</th>
+                        <th>View</th>
+                     </tr>
+                  </thead>
+                  <tbody class="viewdeclaration">
+                  </tbody>
                </table>
-
-              <!-- table 6 end -->
-              
-            
-            <!-- table 7  start -->
-             <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
-              
-
-               <tr>
-               <td colspan="5">
-               <div class="col-md-12">
-              <label  class="col-md-12">ii.Private/Public Company</label>
-               </div>
-               </td>
-               </tr>
-
-               <tr>
-               <td>  <label class="control-label">Relative Name</label></td>
-               <td><label class="control-label">Company Name</label></td>
-               <td><label class="control-label">Nature of interest</label></td>
-               <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
-               <td>
-               <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
-               </td>
-               </tr>
-
-               <tr>
-               <td> 
-               <div class="input">
-               <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
-               <option value="1">HUF</option>
-               <option value="2">Spouse</option>
-               <option value="3">Father</option>
-               <option value="4">Mother</option>
-               <option value="5">Brother</option>
-               <option value="6">Sister</option>
-               <option value="7">Son</option>
-               <option value="8">Daughter</option>
-               <option value="9">Son's Wife</option>
-               <option value="10">Daughter's Husband</option>
-               <option value="11">Others</option>
-               </select>
-               </td>
-               <td> 
-               <div class="input">
-               <input type="text" class="form-control inputbox4" id="d7ques2" name="d7ques2[]" >
-               </div>
-               </td>
-
-               <td> 
-               <div class="input">
-               <input type="text" class="form-control inputbox4" id="d7ques2" name="d7ques2[]" >
-               </div>
-               </td>
-
-               <td>
-               <div class="input">
-               <select id="d7ques3" name="d7ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
-               <option value="">Select Option</option>
-               <option value="yes">Yes</option>
-               <option value="No">No</option>
-               </select>
-               </div></td>
-               <td> 
-               <div class="input">
-               <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-               <option value="">Select Option</option>
-               <option value="yes">Yes</option>
-               <option value="No">No</option>
-               </select>
-               </div>
-               </td>
-               <tr>
-               <td colspan="5" >
-                <div class = "appenddiv7 " id="appenddiv7"></div>
-               <div class="adddiv7section2"  style="float: right;">
-               <input type="button" id = "adddiv7" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
-               <input type="button" id = "remvdiv7" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
-               <input type="hidden" class="appendd7" plancntr="1">
-               </div>
-               </td>
-               </tr>
-               </tr>
-               </table>
-
-
-
+            </div> -->
             <div class="panel panel-white">
                <div class="paginationmn"></div>
                <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
