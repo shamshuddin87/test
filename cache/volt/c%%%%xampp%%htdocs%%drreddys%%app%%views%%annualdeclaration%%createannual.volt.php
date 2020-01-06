@@ -22,8 +22,8 @@
                         <div class="col-md-12" style="padding-bottom: 20px;">
                            <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
                            <select id="section1" name="section1" class="form_fields form-control col-md-7 col-xs-12" required="">
-                              <option value="1">Yes</option>
-                              <option value="0">No</option>
+                              <option value="yes">Yes</option>
+                              <option value="No">No</option>
                            </select>
                         </div>
                         <div id = "div1" class="" style="padding-bottom: 20px;">
@@ -37,8 +37,8 @@
                               <div class="input">
                                  <label class="control-label">Can you significantly influence the decision making of this company?</label>
                                  <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12" required="required">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
@@ -46,8 +46,8 @@
                               <div class="input">
                                  <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
                                  <select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12" required="required">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
@@ -81,8 +81,8 @@
                               <div class="input">
                                  <label class="control-label">Can you significantly influence the decision making of this company?</label>
                                  <select id="d2ques3" name="d2ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" style="margin-top:20px; ">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
@@ -90,8 +90,8 @@
                               <div class="input">
                                  <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
                                  <select id="d2ques4" name="d2ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
@@ -122,8 +122,8 @@
                               <div class="input">
                                  <label class="control-label">Can you significantly influence the decision making of this company?</label>
                                  <select id="d3ques3" name="d3ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" style="margin-top:20px;">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
@@ -131,8 +131,8 @@
                               <div class="input">
                                  <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
                                  <select id="d3ques4" name="d3ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
@@ -163,8 +163,8 @@
                               <div class="input">
                                  <label class="control-label">Can you significantly influence the decision making of this company?</label>
                                  <select id="d4ques3" name="d4ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" style="margin-top:20px;">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
@@ -172,8 +172,8 @@
                               <div class="input">
                                  <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
                                  <select id="d4ques4" name="d4ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
@@ -188,8 +188,8 @@
                         <div class="col-md-12" style="padding-bottom: 20px;">
                            <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
                            <select id="section2" name="section2" class="form_fields form-control col-md-7 col-xs-12" required="">
-                              <option value="1">Yes</option>
-                              <option value="0">No</option>
+                              <option value="yes">Yes</option>
+                              <option value="No">No</option>
                            </select>
                         </div>
                         <div id = "div5" class="col-md-12" style="padding-bottom: 20px;">
@@ -221,8 +221,8 @@
                               <div class="input">
                                  <label class="control-label">Can you significantly influence the decision making of this company?</label>
                                  <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" style="margin-top: 20px;">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
@@ -230,8 +230,8 @@
                               <div class="input">
                                  <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
                                  <select id="d5ques4" name="d5ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
@@ -281,8 +281,8 @@
                               <div class="input">
                                  <label class="control-label">Can you significantly influence the decision making of this company?</label>
                                  <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox5" required="" style="margin-top:40px;">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
@@ -290,8 +290,8 @@
                               <div class="input">
                                  <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
                                  <select id="d6ques5" name="d6ques5[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
@@ -338,8 +338,8 @@
                               <div class="input">
                                  <label class="control-label">Can you significantly influence the decision making of this company?</label>
                                  <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox5" required="" style="margin-top:40px;">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
@@ -347,8 +347,8 @@
                               <div class="input">
                                  <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
                                  <select id="d7ques5" name="d7ques5[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="No">No</option>
                                  </select>
                               </div>
                            </section>
