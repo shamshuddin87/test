@@ -945,6 +945,37 @@ public function getallrelative($uid,$usergroup)
 
   }
 
+  public function relatives_info($uid)
+  {
+    
+
+      $connection = $this->dbtrd;
+      $myarr=array();
+      $time = time();
+      $query="SELECT * FROM relative_info WHERE user_id='".$uid."'";
+
+      try{
+           $exeget = $connection->query($query);
+           $getnum = trim($exeget->numRows());
+          if($getnum>0)
+          {
+              while($row = $exeget->fetch())
+              { $getlist[] = $row; }
+           }
+          else
+          {  $getlist = array(); }
+      }
+
+     
+      catch (Exception $e)
+      {   $getlist = array(); }
+      //print_r($getlist);exit;
+
+      return $getlist;
+
+
+  }
+
 
   public function upannualselfcompany($uid,$company,$decision,$transaction,$unique,$id)
     {
