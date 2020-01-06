@@ -35,7 +35,7 @@ else
 {addhtmlnxt+='<td><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'"><i class="fa fa-close"></i></button></td>';}}
 addhtmlnxt+='</tr>';}}
 else
-{addhtmlnxt+='<td colspan="13" style="text-align:center;">Data Not Found..!!!</td>';}
+{addhtmlnxt+='<tr><td colspan="13" style="text-align:center;">Data Not Found..!!!</td></tr>';}
 website(".viewreqtable").html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
 {}});}

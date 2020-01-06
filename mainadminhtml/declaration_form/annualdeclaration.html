@@ -51,138 +51,178 @@
          <p style="text-align: center;"><b>Questionnaire</b></p>
          <div><br></div>
          <h2> A. Details of Self </h2>
-         <table width="100%" border="1" style="border-collapse:collapse;">
-            <thead>
-               <tr>
-                  <th>Sr.No</th>
-                  <th style="width:50%">Question</th>
-                  <th>Disclosure</th>
-               </tr>
-            </thead>
-            <tbody class="annexture1" appendrow='1'>
-               <tr class="counter">
-                  <td><b>1.</b></td>
-                  <td id="ques1">Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)</td>
-                  <td id="ans1"> </td>
-               </tr>
-               <tr class="counter">
-                  <td><b>2.</b></td>
-                  <td id="ques2">Can you significantly influence the decision making of the companies disclosed by you in question # 1?</td>
-                  <td id="ans2"></td>
-               </tr>
-               <tr class="counter">
-                  <td><b>3.</b></td>
-                  <td id="ques3">Are you interested:
-                     i.  In a firm - as a partner or otherwise,
-                     ii. In a private/public company - as a director or member,
-                     iii.  In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives). 
-                     (mention names and capacity in which you are interested)
-                  </td>
-                  <td id="ans3"></td>
-               </tr>
-               <tr class="counter">
-                  <td><b>4.</b></td>
-                  <td id="ques4">Can you significantly influence the decision making of the firm(s) or company(s) disclosed by you in question # 3?</td>
-                  <td id="ans4"></td>
-               </tr>
-               <tr class="counter">
-                  <td><b>5.</b></td>
-                  <td id="ques5">Do the firm(s) or company(s) disclosed by you in question # 1 and 3 have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</td>
-                  <td id="ans5"></td>
-               </tr>
-            </tbody>
-         </table>
+         <input type="text" id="uniqueid" value = "" style="display:none;">
+
+         <div class="col-md-12" style="padding-bottom: 20px;">
+               
+                  <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
+                 
+               </div>
+               <div id = "div1" class="col-md-12" style="padding-bottom: 20px;">
+                  <section class="col col-md-12 col-xs-12">
+                     <div class="input">
+                       
+                         <table width="100%" border="1" style="border-collapse:collapse;">
+                           <thead>
+                            <tr>
+                           <th>Company Name</th> 
+                           <th>Can you significantly influence the decision making of this company?</th>  
+                            <th>Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</th>                                                
+                           </tr>
+                           </thead>
+                           <tbody class="selfcompany" appendrow='1'>
+                              
+                           </tbody>
+                           </table>
+                        
+                     </div>
+                  </section>
+                 
+                  
+               </div>
+              
+               <div class="col-md-12" style="padding-bottom: 10px;">
+                  <label >Are you Interested in ?</label>
+               </div>
+               <div id = "div2" class="col-md-12" style="padding-bottom: 20px;">
+                  <label  class="col-md-12">i.Firm</label>
+                   <section class="col col-md-12 col-xs-12">
+                           <table width="100%" border="1" style="border-collapse:collapse;">
+                           <thead>
+                            <tr>
+                           <th>Firm Name</th> 
+                            <th>Nature of Interest</th> 
+                           <th>Can you significantly influence the decision making of this company?</th>  
+                            <th>Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</th>                                                
+                           </tr>
+                           </thead>
+                           <tbody class="selffirm" appendrow='1'>
+                              
+                           </tbody>
+                           </table>
+                        </section>
+               
+               </div>
+              
+               <div id = "div3" class="col-md-12" style="padding-bottom: 20px;">
+                  <label  class="col-md-12">ii.Private/Public Company</label>
+                   <section class="col col-md-12 col-xs-12">
+                         <table width="100%" border="1" style="border-collapse:collapse;">
+                           <thead>
+                            <tr>
+                           <th>Company Name</th> 
+                            <th>Nature of Interest</th> 
+                           <th>Can you significantly influence the decision making of this company?</th>  
+                            <th>Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</th>                                                
+                           </tr>
+                           </thead>
+                           <tbody class="selfpubpri" appendrow='1'>
+                              
+                           </tbody>
+                           </table>
+                        </section>
+
+                  
+               </div>
+              
+               <div id = "div4" class="col-md-12" style="padding-bottom: 20px;">
+                  <label  class="col-md-12">iii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
+                   <section class="col col-md-12 col-xs-12">
+                  <table width="100%" border="1" style="border-collapse:collapse;">
+                           <thead>
+                            <tr>
+                           <th>Company Name</th> 
+                            <th>Nature of Interest</th> 
+                           <th>Can you significantly influence the decision making of this company?</th>  
+                            <th>Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</th>                                                
+                           </tr>
+                           </thead>
+                           <tbody class="selfpubshare" appendrow='1'>
+                              
+                           </tbody>
+                           </table>
+                        </section>
+                  
+               </div>
+              
+        
         <pagebreak></pagebreak>
          <h2> B. Details of the family </h2>
-         <table width="100%" border="1" style="border-collapse:collapse;">
-            <thead>
-               <tr>
-                  <th>Sr.No</th>
-                  <th style="width:50%">Question</th>
-                  <th>Disclosure</th>
-               </tr>
-            </thead>
-            <tbody class="annexture1" appendrow='1'>
-               <tr class="counter">
-                  <td><b>1.</b></td>
-                  <td id="ques6">
-                     a)  What are the names of your family members? (Please indicate the names against the relationship below)
-                     <ul style="list-style-type: circle;">
-                        <li> Spouse</li>
-                        <li> Father (including step-father)</li>
-                        <li> Mother (including step-mother)</li>
-                        <li> Son(s) (including step-son)</li>
-                        <li> Son’s Wife</li>
-                        <li> Daughter(s)</li>
-                        <li> Daughter’s Husband</li>
-                        <li>Brother(s) (including step-brother)</li>
-                        <li> Sister(s) (including step-sister)</li>
-                        <li> Any other relative who can influence you or you may be influenced by</li>
-                     </ul>
-                        b)  Are you a member of a Hindu Undivided Family (HUF)?
-                           If yes, please mention name of HUF and list down names of other members of the HUF.
-                     
-                  </td>
-                  <td id="ans6">
-                      a)  What are the names of your family members? (Please indicate the names against the relationship below)
-                    <div id = "rel1"></div>
-                    <div id = "rel2"> </div>
-                    <div id = "rel3"></div>
-                    <div id = "rel4"></div>
-                    <div id = "rel5"> </div>
-                    <div id = "rel6"> </div>
-                    <div id = "rel7"> </div>
-                    <div id = "rel8"></div>
-                    <div id = "rel9"> </div>
-                    <div id = "rel10"></div>
-                    <div id = "rel10"></div>
-<!--
-                     <ul style="list-style: none;">
-                        <li id = "rel1"> </li>
-                        <li id = "rel2"> </li>
-                        <li id = "rel3"></li>
-                        <li id = "rel4"></li>
-                        <li id = "rel5"> </li>
-                        <li id = "rel6"> </li>
-                        <li id = "rel7"> </li>
-                        <li id = "rel8"></li>
-                        <li id = "rel9"> </li>
-                        <li id = "rel10"></li>
-                     </ul>
--->
-                  </td>
-               </tr>
-               <tr class="counter">
-                  <td><b>2.</b></td>
-                  <td id="ques7">In which companies are your relatives, as disclosed above, holding controlling interest i.e. 20% or more of the paid up share capital? (please mention names)</td>
-                  <td id="ans7"></td>
-               </tr>
-               <tr class="counter">
-                  <td><b>3.</b></td>
-                  <td id="ques8">Can your relatives as disclosed by you in question # 7 significantly influence the decision making of the companies disclosed in question # 8?</td>
-                  <td id="ans8"></td>
-               </tr>
-               <tr class="counter">
-                  <td><b>4.</b></td>
-                  <td id="ques9">Are your relatives disclosed by you in question # 7 interested:
-                     i.  In a firm - as a partner or otherwise,
-                     ii. In a public company - by virtue of holding more than 2% of its paid up share capital.
-                     (mention names and capacity in which they are interested)
-                  </td>
-                  <td id="ans9"></td>
-               </tr>
-               <tr class="counter">
-                  <td><b>5.</b></td>
-                  <td id="ques10">Can your relatives as disclosed by you in question # 7 significantly influence the decision making of the firms or companies disclosed in question # 11?</td>
-                  <td id="ans10"></td>
-               </tr>
-               <tr class="counter">
-                  <td><b>7.</b></td>
-                  <td id="ques11">Do your relatives, the firm(s) or company(s) disclosed in question # 8 and 10, have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any other group company/subsidiary?</td>
-                  <td id="ans11"></td>
-               </tr>
-            </tbody>
-         </table>
+           <div class="col-md-12" style="padding-bottom: 20px;">
+                  <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
+                 
+               </div>
+               <div id = "div5" class="col-md-12" style="padding-bottom: 20px;">
+                  <section class="col col-md-12 col-xs-12">
+                     <div class="input">
+                        <table width="100%" border="1" style="border-collapse:collapse;">
+                           <thead>
+                            <tr>
+                           <th>Relative Name</th> 
+                           <th>CompanyName</th> 
+                           
+                           <th>Can you significantly influence the decision making of this company?</th>  
+                            <th>Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</th>                                                
+                           </tr>
+                           </thead>
+                           <tbody class="relative" appendrow='1'>
+                              
+                           </tbody>
+                           </table>
+                  </section>
+                 
+               </div>
+              
+               <div class="col-md-12" style="padding-bottom: 10px;">
+                  <label >Are you Interested in ?</label>
+               </div>
+               <div id = "div6" class="col-md-12" style="padding-bottom: 20px;">
+                  <label  class="col-md-12">i.Firm</label>
+                   <section class="col col-md-12 col-xs-12">
+                     <table width="100%" border="1" style="border-collapse:collapse;">
+                         <thead>
+                         <tr>
+                           <th>Relative Name</th> 
+                           <th>Firm Name</th> 
+                            <th>Nature of Interest</th> 
+                           <th>Can you significantly influence the decision making of this company?</th>  
+                            <th>Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</th>                                                
+                           </tr>
+                           </thead>
+                           <tbody class="relativefirm" appendrow='1'>
+                              
+                           </tbody>
+                           </table>
+                        </section>
+                        </div>
+
+               
+                 
+               <div id = "div7" class="col-md-12" style="padding-bottom: 20px;">
+                  <label  class="col-md-12">ii.Private/Public Company</label>
+                   <section class="col col-md-12 col-xs-12">
+                   <table width="100%" border="1" style="border-collapse:collapse;">
+                           <thead>
+                            <tr>
+                           <th>Relative Name</th> 
+                           <th>Company Name</th> 
+                            <th>Interest</th> 
+                           
+                           <th>Can you significantly influence the decision making of this company?</th>  
+                            <th>Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</th>                                                
+                           </tr>
+                           </thead>
+                           <tbody class="relativepubpri" appendrow='1'>
+                              
+                           </tbody>
+                           </table>
+                        </section>
+                 
+                 
+               </div>
+               
+             
+        
       </ol>
       <div><br></div>
       <div><br></div>

@@ -142,6 +142,7 @@ class Tradingplancommon extends Component
     }
 /****************** fetch security type end ******************/
 
+
 /****************** insert trading plan start ******************/
     public function inserttradingplan($getuserid,$user_group_id,$requestfor,$relative,$cmpnme,$frmdate,$todate,$sectype,$datetype,$spficdate,$daterngfrm,$daterngto,$noofsec,$valueofsecurity,$uniqid,$apprvrid)
     {
@@ -149,6 +150,7 @@ class Tradingplancommon extends Component
      $time = time();   
      for($i = 0;$i<sizeof($sectype);$i++)
      {
+       
         if($requestfor==1){$relative = '';}else{$relative = $relative;}
         if($datetype[$i]==2)
          {
