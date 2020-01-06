@@ -12,6 +12,7 @@
 <!-- My messages -->
 <div class="mainelementfom">
    <div>
+       <?php print_r($relativesinfo);exit; ?>
       <h1 class="h1_heading text-center">Annual Declaration Form
       </h1>
    </div>
@@ -291,8 +292,11 @@
 
                <tr>
                <td> 
+
                <div class="input">
+
                <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
+
                <option value="1">HUF</option>
                <option value="2">Spouse</option>
                <option value="3">Father</option>

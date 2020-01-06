@@ -1018,6 +1018,7 @@ class AnnualdeclarationController extends ControllerBase
         $uid = $this->session->loginauthspuserfront['id'];
         $usergroup = $this->session->loginauthspuserfront['user_group_id'];
         $relatives_info = $this->annualdeclarationcommon->relatives_info($uid);
+       
 
 
         $this->view->$relativesinfo = $relatives_info;
