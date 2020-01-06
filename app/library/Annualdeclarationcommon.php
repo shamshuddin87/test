@@ -740,6 +740,7 @@ public function getallrelative($uid,$usergroup)
       $myarr=array();
       $time = time();
       $query="SELECT * FROM annual_self_company WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
+      //print_r($query);exit; 
       try{
            $exeget = $connection->query($query);
            $getnum = trim($exeget->numRows());

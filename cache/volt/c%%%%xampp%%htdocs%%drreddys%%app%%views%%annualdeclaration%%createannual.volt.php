@@ -24,7 +24,7 @@
                   <tr>
                      <td colspan="4">
                         <div class="col-md-12" >
-                           <label >1. &nbsp;&nbsp; Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
+                           <label >1.Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
                            <input type="radio" id= "showsec1" name="showsec1" value="Yes"  onclick="showsection(this.id)">Yes
                            <input type="radio" id= "hidesec1" name="showsec1" value="No" onclick="showsection(this.id)">No
                         </div>
@@ -86,20 +86,21 @@
                <!-- table 2 start -->
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                   <tr>
-                     <td colspan="4">
+                     <td colspan="5">
                         <div class="col-md-12" >
                            <label >2. Are you Interested in ?</label>
                         </div>
                      </td>
                   </tr>
                   <tr>
-                     <td colspan="4">
+                     <td colspan="5">
                         <div class="col-md-12">
                            <label >i. Firm </label>
                         </div>
                      </td>
                   </tr>
                   <tr>
+                     <td style="border-right: 1px solid #fff"></td>
                      <td>  <label class="control-label">Firm Name</label></td>
                      <td>  <label class="control-label">Nature of Interest</label></td>
                      <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
@@ -107,7 +108,9 @@
                         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                      </td>
                   </tr>
+
                   <tr>
+                     <td style="border-right: 1px solid #fff"></td>
                      <td>
                         <div class="input">
                            <input type="text" class="form-control inputbox4" id="d2ques1" name="d2ques1[]" >
@@ -137,10 +140,10 @@
                         </div>
                      </td>
                   <tr>
-                     <td colspan="4" style="text-align: right;">
+                     <td colspan="5" style="">
                         <div class = "appenddiv2" id="appenddiv2">
                         </div>
-                        <div class="adddiv2section1 col-md-12"  style="padding-bottom: 10px;">
+                        <div class="adddiv2section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
                            <input type="button" id ="adddiv2" class="btn btn-primary "  value="+" onclick="addhtml(this.id);">
                            <input type="button" id = "remvdiv2" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                            <input type="hidden" class="appendd2" plancntr="1">
@@ -153,21 +156,23 @@
                <!-- table 3 start-->
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                   <tr>
-                     <td colspan="4">
+                     <td colspan="5">
                         <div class="col-md-12">
                            <label >ii. Private/Public Company</label>
                         </div>
                      </td>
                   </tr>
                   <tr>
-                     <td>  <label class="control-label">Company Name</label></td>
-                     <td>  <label class="control-label">Nature of Interest</label></td>
-                     <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
+                     <td style="border-right: 1px solid #fff"></td>
+                     <td><label class="control-label">Company Name</label></td>
+                     <td><label class="control-label">Nature of Interest</label></td>
+                     <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                      <td>
                         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                      </td>
                   </tr>
                   <tr>
+                     <td style="border-right: 1px solid #fff"></td>
                      <td>
                         <div class="input">
                            <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" >
@@ -195,7 +200,7 @@
                      </div>
                      </td>
                   <tr>
-                  <td colspan="4" >
+                  <td colspan="5" >
                   <div class = "appenddiv3 " id="appenddiv3" ></div>
                   <div class="adddiv3section1 col-md-12"  style="text-align: right;">
                   <input type="button" id = "adddiv3" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
@@ -210,13 +215,14 @@
                <!-- table 4 start-->
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                <tr>
-               <td colspan="4">
+               <td colspan="5">
                <div class="col-md-12">
                <label>iii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
                </div>
                </td>
                </tr>
                <tr>
+                <td style="border-right: 1px solid #fff"></td>  
                <td>  <label class="control-label">Company Name</label></td>
                <td>  <label class="control-label">Nature of Interest</label></td>
                <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
@@ -225,6 +231,7 @@
                </td>
                </tr>
                <tr>
+               <td style="border-right: 1px solid #fff"></td>
                <td> 
                <div class="input">
                <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" >
@@ -253,9 +260,9 @@
                </div>
                </td>
                <tr>
-               <td colspan="4" style="text-align: right;">
+               <td colspan="5" style="">
                <div class = "appenddiv4 " id="appenddiv4"></div>
-               <div class="adddiv4section1 col-md-12"  style="padding-bottom: 10px;">
+               <div class="adddiv4section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
                <input type="button" id ="adddiv4" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
                <input type="button" id = "remvdiv4" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                <input type="hidden" class="appendd4" plancntr="1">
@@ -282,6 +289,7 @@
                 
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;display: none;" width="100%"  id="test1">
                <tr>
+                  <td style="border-right: 1px solid #fff"></td>
                <td>  <label class="control-label">Relative Name</label></td>
                <td><label class="control-label">Company Name</label></td>
                <td>    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
@@ -291,12 +299,14 @@
                </tr>
 
                <tr>
+                  <td style="border-right: 1px solid #fff"></td>
                <td> 
 
                <div class="input">
 
                <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
                <?php for($i=0;$i < count($relativesinfo); $i++){?>
+               <option value="">Select Option</option>
                <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
                <?php } ?>
                
@@ -325,7 +335,7 @@
                </div>
                </td>
                <tr>
-               <td colspan="4" >
+               <td colspan="5" >
                <div class = "appenddiv5 " id="appenddiv5"></div>
                <div class="adddiv5section2" style="float: right;">
                <input type="button" id = "adddiv5" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
@@ -342,7 +352,7 @@
                <!-- table 6 start --> 
                 <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                <tr>
-               <td colspan="5">
+               <td colspan="6">
                <div class="col-md-12">
                <label >4. Are you Interested in ?</label>
               
@@ -351,7 +361,7 @@
                </tr>
 
                <tr>
-               <td colspan="5">
+               <td colspan="6">
                <div class="col-md-12">
                <label >i. Firm</label>
                </div>
@@ -359,6 +369,7 @@
                </tr>
 
                <tr>
+               <td style="border-right: 1px solid #fff"></td>   
                <td>  <label class="control-label">Relative Name</label></td>
                <td><label class="control-label">Firm Name</label></td>
                <td><label class="control-label">Nature of interest</label></td>
@@ -369,10 +380,12 @@
                </tr>
 
                <tr>
+               <td style="border-right: 1px solid #fff"></td>   
                <td> 
                <div class="input">
                <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
               <?php for($i=0;$i < count($relativesinfo); $i++){?>
+               <option value="">Select Option</option>
                <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
                <?php } ?>
                
@@ -408,7 +421,7 @@
                </div>
                </td>
                <tr>
-               <td colspan="5" >
+               <td colspan="6" >
                <div class = "appenddiv6 " id="appenddiv6"></div>
                <div class="adddiv6section2" style="float: right;">
                <input type="button" id ="adddiv6" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
@@ -428,7 +441,7 @@
               
 
                <tr>
-               <td colspan="5">
+               <td colspan="6">
                <div class="col-md-12">
               <label  class="col-md-12">ii.Private/Public Company</label>
                </div>
@@ -436,6 +449,7 @@
                </tr>
 
                <tr>
+               <td style="border-right: 1px solid #fff"></td>   
                <td>  <label class="control-label">Relative Name</label></td>
                <td><label class="control-label">Company Name</label></td>
                <td><label class="control-label">Nature of interest</label></td>
@@ -446,10 +460,12 @@
                </tr>
 
                <tr>
+               <td style="border-right: 1px solid #fff"></td>
                <td> 
                <div class="input">
                <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
               <?php for($i=0;$i < count($relativesinfo); $i++){?>
+               <option value="">Select Option</option>
                <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
                <?php } ?>
                
@@ -485,7 +501,7 @@
                </div>
                </td>
                <tr>
-               <td colspan="5" >
+               <td colspan="6" >
                 <div class = "appenddiv7 " id="appenddiv7"></div>
                <div class="adddiv7section2"  style="float: right;">
                <input type="button" id = "adddiv7" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
@@ -496,6 +512,11 @@
                </tr>
                </tr>
                </table>
+
+                <div class="col-md-12" style="margin-top: 20px;"> 
+                  <button type="submit" class="btn btn-primary ">Submit</button>
+               </div>
+            </form>     
 
 
 
@@ -508,7 +529,9 @@
                <a href="javascript:;" class="preloder"></a>
             </div>
             <div class="clearelement"></div>
+
          </div>
+
          <!-- /main content -->
       </div>
    </div>

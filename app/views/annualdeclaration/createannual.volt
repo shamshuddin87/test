@@ -306,6 +306,7 @@
 
                <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
                <?php for($i=0;$i < count($relativesinfo); $i++){?>
+               <option value="">Select Option</option>
                <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
                <?php } ?>
                
@@ -384,6 +385,7 @@
                <div class="input">
                <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
               <?php for($i=0;$i < count($relativesinfo); $i++){?>
+               <option value="">Select Option</option>
                <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
                <?php } ?>
                
@@ -463,6 +465,7 @@
                <div class="input">
                <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
               <?php for($i=0;$i < count($relativesinfo); $i++){?>
+               <option value="">Select Option</option>
                <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
                <?php } ?>
                
@@ -510,6 +513,11 @@
                </tr>
                </table>
 
+                <div class="col-md-12" style="margin-top: 20px;"> 
+                  <button type="submit" class="btn btn-primary ">Submit</button>
+               </div>
+            </form>     
+
 
 
             <div class="panel panel-white">
@@ -521,7 +529,9 @@
                <a href="javascript:;" class="preloder"></a>
             </div>
             <div class="clearelement"></div>
+
          </div>
+
          <!-- /main content -->
       </div>
    </div>

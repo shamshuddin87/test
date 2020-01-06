@@ -1040,7 +1040,7 @@ class AnnualdeclarationController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $getres =$this->annualdeclarationcommon->relatives_info($getuserid);
-                
+
                 if($getres)
                 {
                     $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres,'user_group_id'=>$user_group_id);
@@ -1075,13 +1075,15 @@ class AnnualdeclarationController extends ControllerBase
         $usergroup = $this->session->loginauthspuserfront['user_group_id'];
 
         $this->view->$uid;
-         $uniqueid = $this->request->getPost('uniqueid');
-        // $uniqueid = '5e0ec764808fc';
+         $uniqueid = $_GET['id'];
+         //print_r($uniqueid);exit;
+        //$uniqueid = '5e0ec764808fc';
 
-        $relatives = $this->annualdeclarationcommon->get_relatives($uid,$usergroup);
-         $this->view->relatives = $relatives;
+       $relatives_info = $this->annualdeclarationcommon->relatives_info($uid);
+           $this->view->relativesinfo = $relatives_info;
 
         $getresponse1 = $this->annualdeclarationcommon->annual_self_company($uid,$usergroup,$uniqueid);
+
         $this->view->selfcompany = $getresponse1;
         $getresponse2 = $this->annualdeclarationcommon->annual_self_firm($uid,$usergroup,$uniqueid);
         $this->view->selffirm = $getresponse2;
