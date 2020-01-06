@@ -438,10 +438,20 @@ function removehtml(clicked)
 function showsection(id){
 
 var id = id;
-//alert(id);
-if(id == 'showsec1'){
-alert("hello");
-website('#test').show();
+
+var x = document.getElementById("test");
+var y = document.getElementById("test1");
+ if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+
+  if (y.style.display === "none") {
+    y.style.display = "block";
+  } else {
+    y.style.display = "none";
+  }
 
 
 }
@@ -817,14 +827,3 @@ website('body').on('click','.formpdf', function(e)
 });
 
 
-
-function numberOnly() 
-{
-            var charCode = event.keyCode;
-    
-            if ((charCode > 47 && charCode < 58) || charCode == 46)
-
-                return true;
-            else
-                return false;
-}

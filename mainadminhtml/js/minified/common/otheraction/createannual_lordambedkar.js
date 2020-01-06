@@ -35,7 +35,8 @@ else
 {website('.appenddiv7 #row'+count).remove();website('.appendd7').attr('plancntr',parseInt(count)-1);}
 else
 {return false;}}}
-function showsection(id){var id=id;if(id=='showsec1'){alert("hello");website('#test').show();}
+function showsection(id){var id=id;var x=document.getElementById("test");var y=document.getElementById("test1");if(x.style.display==="none"){x.style.display="block";}else{x.style.display="none";}
+if(y.style.display==="none"){y.style.display="block";}else{y.style.display="none";}}
 function annualmodal(uniqueid){var uniqueid=uniqueid;website.ajax({type:"POST",url:'annualdeclaration/getfilecontent',dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
@@ -98,7 +99,4 @@ website('#insertannual').ajaxForm({dataType:"json",beforeSend:function()
 else
 {}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
-{}});});function numberOnly()
-{var charCode=event.keyCode;if((charCode>47&&charCode<58)||charCode==46)
-return true;else
-return false;};
+{}});});;

@@ -25,11 +25,11 @@
                         <div class="col-md-12" >
                            <label >1. &nbsp;&nbsp; Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
                            <input type="radio" id= "showsec1" name="showsec1" value="Yes"  onclick="showsection(this.id)">Yes
-                           <input type="radio" id= "hidesec1" name="showsec1" value="No">No
+                           <input type="radio" id= "hidesec1" name="showsec1" value="No" onclick="showsection(this.id)">No
                         </div>
                      </td>
                   </tr>
-                  <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;display: none;" width="100%"  id="test">
+                  <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; display: none;" width="100%"  id="test">
                   <tr >
                      <td style="border-right: 1px solid #fff"></td>
                      <td><label class="control-label">Company Name</label></td>
@@ -273,13 +273,13 @@
                <td colspan="4">
                <div class="col-md-12">
                <label >3. Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
-               <input type="radio" id = "showsec2" name = "showsec2" value="Yes" checked onclick="showsection(this.id);"> Yes</input>
-               <input type="radio"  id = "hidesec2" name="showsec2"   value="No">No </input>
+               <input type="radio" id = "showsec2" name = "showsec2" value="Yes" onclick="showsection(this.id);"> Yes</input>
+               <input type="radio"  id = "hidesec2" name="showsec2"   value="No"  onclick="showsection(this.id)">No </input>
                </div>
                </td>
                </tr>
                 
-               <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%" style="" id="test1">
+               <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;display: none;" width="100%"  id="test1">
                <tr>
                <td>  <label class="control-label">Relative Name</label></td>
                <td><label class="control-label">Company Name</label></td>
