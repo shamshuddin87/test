@@ -11,8 +11,55 @@ website(document).ready(function()
 
 
 function addhtml(clicked)
- {
+{
 
+
+   website.ajax({
+      url:'annualdeclaration/fetchrelative',
+      //data:formdata,
+      method:'POST',
+      //contentType:'json',
+      contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+      //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+      dataType:"json",
+      cache:false,
+      //async:true, /*Cross domain checking*/
+      beforeSend: function()
+      {   },
+      uploadProgress: function(event, position, total, percentComplete)
+      {   },
+      success: function(response, textStatus, jqXHR)
+      {
+        var rel = response.resdta;
+        
+        console.log(rel);
+          
+        
+        //       appendsectype += '<option value="">Select Security</option>';   
+        //       website.each(response.resdta, function (index, value) {
+
+        //         appendsectype += '<option value='+value['id']+'>'+value['security_type']+'</option>';             
+        //       });
+        // addhtmlnxt+='<section class="col col-md-3 col-xs-3"><div class="input"><label class="control-label">Type Of Security</label><select id="sectype" name="sectype[]" class="form_fields form-control col-md-7 col-xs-12" required>'+appendsectype+'</select></div></section>';
+        // addhtmlnxt += '<section class="col col-md-3 col-xs-3"><div class="input"><label class="control-label">Date Type</label><select id="datetype" name="datetype[]" class="form_fields form-control col-md-7 col-xs-12" required><option value="">Select Date Type</option><option value="1">Specific Date</option><option value="2">Date Range</option></select></div></section>';
+        // addhtmlnxt += '<section class="col col-md-3 col-xs-3" id="specfdte"><div class="input"><label class="control-label">Specific Date</label><input type="text" class="form-control bootdatepick" id="spficdate"  name="spficdate[]" readonly></div></section>';
+        // addhtmlnxt += '<section class="col col-md-3 col-xs-3" id="dtrngfrm"><div class="input"><label class="control-label">Date Range From</label><input type="text" class="form-control bootdatepick" id="daterngfrm"  name="daterngfrm[]" readonly></div></section>';
+        // addhtmlnxt += '<section class="col col-md-3 col-xs-3" id="dterngto"><div class="input"><label class="control-label">Date Range To</label><input type="text" class="form-control bootdatepick" id="daterngto"  name="daterngto[]" readonly></div></section>';
+        // addhtmlnxt += '<section class="col col-md-3 col-xs-3"><div class="input"><label class="control-label">No.of Securities</label><input type="text" class="form-control" id="noofsec"  name="noofsec[]" onkeypress="return numberOnly()"></div></section>';
+        // addhtmlnxt += '<section class="col col-md-3 col-xs-3"><div class="input"><label class="control-label">Value of Securities</label><input type="text" class="form-control" id="valueofsecurity"  name="valueofsecurity[]" onkeypress="return numberOnly()"></div></section>';
+        // addhtmlnxt += '</div>';
+
+        // website('.num').attr('value',getlastid);
+        // website('.appendtradingplan').append(addhtmlnxt);
+        // website('.row'+getlastid+' #specfdte').hide();
+        // website('.row'+getlastid+' #dtrngfrm').hide();
+        // website('.row'+getlastid+' #dterngto').hide();
+        // website('.appendtrade').attr('plancntr',getlastid);
+        // loaddatetype();
+        // loaddatepick();
+        // numberOnly();
+              
+ 
 
  var id = clicked;
  //alert(id);
@@ -330,6 +377,13 @@ function addhtml(clicked)
       
       }
 
+      },
+        complete: function(response)
+        {},
+        error: function(jqXHR, textStatus, errorThrown)
+        {}
+    });
+
 }
 
 function removehtml(clicked)
@@ -457,7 +511,65 @@ var y = document.getElementById("test1");
 }
 
  
-   
+  function onload(){
+  
+    website.ajax({
+      url:'annualdeclaration/fetchrelative',
+      //data:formdata,
+      method:'POST',
+      //contentType:'json',
+      contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+      //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+      dataType:"json",
+      cache:false,
+      //async:true, /*Cross domain checking*/
+      beforeSend: function()
+      {   },
+      uploadProgress: function(event, position, total, percentComplete)
+      {   },
+      success: function(response, textStatus, jqXHR)
+      {
+        var rel = response.resdta;
+        
+        return rel;return false;
+          
+        var getlastid = website('.appendtrade').attr('plancntr');
+        getlastid = ++getlastid;
+        var addhtmlnxt='';
+        //addhtmlnxt += getlastid+'.';
+        addhtmlnxt += '<div class="row'+getlastid+' formelementmain" id="row'+getlastid+'" >';
+        var appendsectype = '';
+              appendsectype += '<option value="">Select Security</option>';   
+              website.each(response.resdta, function (index, value) {
+
+                appendsectype += '<option value='+value['id']+'>'+value['security_type']+'</option>';             
+              });
+        addhtmlnxt+='<section class="col col-md-3 col-xs-3"><div class="input"><label class="control-label">Type Of Security</label><select id="sectype" name="sectype[]" class="form_fields form-control col-md-7 col-xs-12" required>'+appendsectype+'</select></div></section>';
+        addhtmlnxt += '<section class="col col-md-3 col-xs-3"><div class="input"><label class="control-label">Date Type</label><select id="datetype" name="datetype[]" class="form_fields form-control col-md-7 col-xs-12" required><option value="">Select Date Type</option><option value="1">Specific Date</option><option value="2">Date Range</option></select></div></section>';
+        addhtmlnxt += '<section class="col col-md-3 col-xs-3" id="specfdte"><div class="input"><label class="control-label">Specific Date</label><input type="text" class="form-control bootdatepick" id="spficdate"  name="spficdate[]" readonly></div></section>';
+        addhtmlnxt += '<section class="col col-md-3 col-xs-3" id="dtrngfrm"><div class="input"><label class="control-label">Date Range From</label><input type="text" class="form-control bootdatepick" id="daterngfrm"  name="daterngfrm[]" readonly></div></section>';
+        addhtmlnxt += '<section class="col col-md-3 col-xs-3" id="dterngto"><div class="input"><label class="control-label">Date Range To</label><input type="text" class="form-control bootdatepick" id="daterngto"  name="daterngto[]" readonly></div></section>';
+        addhtmlnxt += '<section class="col col-md-3 col-xs-3"><div class="input"><label class="control-label">No.of Securities</label><input type="text" class="form-control" id="noofsec"  name="noofsec[]" onkeypress="return numberOnly()"></div></section>';
+        addhtmlnxt += '<section class="col col-md-3 col-xs-3"><div class="input"><label class="control-label">Value of Securities</label><input type="text" class="form-control" id="valueofsecurity"  name="valueofsecurity[]" onkeypress="return numberOnly()"></div></section>';
+        addhtmlnxt += '</div>';
+
+        website('.num').attr('value',getlastid);
+        website('.appendtradingplan').append(addhtmlnxt);
+        website('.row'+getlastid+' #specfdte').hide();
+        website('.row'+getlastid+' #dtrngfrm').hide();
+        website('.row'+getlastid+' #dterngto').hide();
+        website('.appendtrade').attr('plancntr',getlastid);
+        loaddatetype();
+        loaddatepick();
+        numberOnly();
+              },
+        complete: function(response)
+        {},
+        error: function(jqXHR, textStatus, errorThrown)
+        {}
+    });
+  }
+
  
   function annualmodal(uniqueid){
 

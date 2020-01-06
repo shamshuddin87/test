@@ -1018,13 +1018,54 @@ class AnnualdeclarationController extends ControllerBase
         $uid = $this->session->loginauthspuserfront['id'];
         $usergroup = $this->session->loginauthspuserfront['user_group_id'];
         $relatives_info = $this->annualdeclarationcommon->relatives_info($uid);
+
+
+
+        $this->view->relativesinfo = $relatives_info;
+
        
 
+    }
 
-        $this->view->$relativesinfo = $relatives_info;
+     public function fetchrelativeAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
 
-       
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $getres =$this->annualdeclarationcommon->relatives_info($getuserid);
+                
+                if($getres)
+                {
+                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres,'user_group_id'=>$user_group_id);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "Record Not Added..!!");
+                    $this->response->setJsonContent($data);
+                }
+                
 
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
     }
 
 

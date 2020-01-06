@@ -12,7 +12,7 @@
 <!-- My messages -->
 <div class="mainelementfom">
    <div>
-       <?php print_r($relativesinfo);exit; ?>
+
       <h1 class="h1_heading text-center">Annual Declaration Form
       </h1>
    </div>
@@ -296,18 +296,10 @@
                <div class="input">
 
                <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
-
-               <option value="1">HUF</option>
-               <option value="2">Spouse</option>
-               <option value="3">Father</option>
-               <option value="4">Mother</option>
-               <option value="5">Brother</option>
-               <option value="6">Sister</option>
-               <option value="7">Son</option>
-               <option value="8">Daughter</option>
-               <option value="9">Son's Wife</option>
-               <option value="10">Daughter's Husband</option>
-               <option value="11">Others</option>
+               <?php for($i=0;$i < count($relativesinfo); $i++){?>
+               <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
+               <?php } ?>
+               
                </select>
                </td>
                <td> 
@@ -380,17 +372,10 @@
                <td> 
                <div class="input">
                <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
-               <option value="1">HUF</option>
-               <option value="2">Spouse</option>
-               <option value="3">Father</option>
-               <option value="4">Mother</option>
-               <option value="5">Brother</option>
-               <option value="6">Sister</option>
-               <option value="7">Son</option>
-               <option value="8">Daughter</option>
-               <option value="9">Son's Wife</option>
-               <option value="10">Daughter's Husband</option>
-               <option value="11">Others</option>
+              <?php for($i=0;$i < count($relativesinfo); $i++){?>
+               <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
+               <?php } ?>
+               
                </select>
                </td>
                <td> 
@@ -464,17 +449,10 @@
                <td> 
                <div class="input">
                <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
-               <option value="1">HUF</option>
-               <option value="2">Spouse</option>
-               <option value="3">Father</option>
-               <option value="4">Mother</option>
-               <option value="5">Brother</option>
-               <option value="6">Sister</option>
-               <option value="7">Son</option>
-               <option value="8">Daughter</option>
-               <option value="9">Son's Wife</option>
-               <option value="10">Daughter's Husband</option>
-               <option value="11">Others</option>
+              <?php for($i=0;$i < count($relativesinfo); $i++){?>
+               <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
+               <?php } ?>
+               
                </select>
                </td>
                <td> 
