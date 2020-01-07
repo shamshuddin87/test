@@ -40,7 +40,7 @@
                         </div>
                      </td>
                   </tr>
-                   <?php if($selfcompany){
+                   <?php 
                   for($i=0; $i < count($selfcompany); $i++){
                   ?>
                   <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; " width="100%"  id="test">
@@ -51,7 +51,7 @@
                      <td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
                   </tr>
                   <tr>
-                     <td style="border-right: 1px solid #f7f7f7"></td>
+                     <td style="border-right: 1px solid #fff"></td>
                      <td>
                         <div id = "div1" class="" >
                            <section class="">
@@ -69,14 +69,18 @@
                      <td>
                         <section class="">
                            <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" >
-                               <option value="">Select Option</option>
-                              <?php if($selfcompany[$i]['decision']  == Yes){ ?>
+                           <option value="">Select Option</option>
+                           <?php if($selfcompany[$i]['decision']  == Yes){ ?>
                            <option value="Yes" selected>Yes</option>
                            <option value="No">No</option>
                           <?php }elseif($selfcompany[$i]['decision']  == No){ ?>
                            <option value="Yes" >Yes</option>
                            <option value="No" selected>No</option>
+                         <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No" selected>No</option>
                          <?php } ?>
+
                            </select>
                         </section>
                      </td>
@@ -90,13 +94,16 @@
                         <?php }elseif($selfcompany[$i]['transaction']  == No){ ?>
                            <option value="Yes" >Yes</option>
                            <option value="No" selected>No</option>
+                          <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No" selected>No</option>
                          <?php } ?>
                            </select>
                         </section>
                      </td>
                   </tr>
                   <tr>
-                  <?php }} ?>
+                  <?php } ?>
                      <td colspan="4" >
                         <div class = "appenddiv1 " id="appenddiv1">
                         </div>
@@ -121,7 +128,7 @@
                      <td style="border-right: 1px solid #f7f7f7; color: #000; font-weight: bold;  padding-right: 0px">2.</td>
                   
                      <td colspan="5">
-                        <div class="" >
+                        <div class="col-md-12" >
                            <label >Are you Interested in ?</label>
                         </div>
                      </td>
@@ -139,7 +146,7 @@
                 for($i=0; $i < count($selffirm); $i++){
                   ?>
                   <tr>
-                     <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
+                     <td style="border-right: 1px solid #f7f7f7"></td>
                      <td><label class="control-label">Firm Name</label></td>
                      <td><label class="control-label">Nature of Interest</label></td>
                      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
@@ -149,7 +156,7 @@
                   </tr>
 
                   <tr>
-                     <td style="border-right: 1px solid #f7f7f7"></td>
+                     <td style="border-right: 1px solid #fff"></td>
                      <td>
                         <div class="input">
                           <input type="text" class="form-control inputbox3" id="d2id" name="d2id[]" value="<?php echo $selffirm[$i]['id']?>" style= "display: none;">
@@ -212,8 +219,8 @@
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                   <tr>
                      <td colspan="5">
-                        <div class="">
-                           <label style="padding-left: 30px;">ii. Private/Public Company</label>
+                        <div class="col-md-12">
+                           <label >ii. Private/Public Company</label>
                         </div>
                      </td>
                   </tr>
@@ -221,7 +228,7 @@
                   for($i=0; $i < count($selfpublic); $i++){
                    ?>
                   <tr>
-                     <td style="border-right: 1px solid #f7f7f7"></td>
+                     <td style="border-right: 1px solid #fff"></td>
                      <td><label class="control-label">Company Name</label></td>
                      <td><label class="control-label">Nature of Interest</label></td>
                      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
@@ -230,7 +237,7 @@
                      </td>
                   </tr>
                   <tr>
-                     <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
+                     <td style="border-right: 1px solid #fff"></td>
                      <td>
                         <div class="input">
                            <input type="text" class="form-control inputbox3" id="d3id" name="d3id[]" value="<?php echo $selfpublic[$i]['id']?>" style= "display: none;">
@@ -292,8 +299,8 @@
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                <tr>
                <td colspan="5">
-               <div class="">
-               <label style="padding-left: 30px;">iii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
+               <div class="col-md-12">
+               <label>iii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
                </div>
                </td>
                </tr>
@@ -301,7 +308,7 @@
                for($i=0; $i < count($selfpubshare); $i++){
                ?>
                <tr>
-                <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
+                <td style="border-right: 1px solid #fff"></td>  
                <td>  <label class="control-label">Company Name</label></td>
                <td>  <label class="control-label">Nature of Interest</label></td>
                <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
@@ -310,7 +317,7 @@
                </td>
                </tr>
                <tr>
-               <td style="border-right: 1px solid #f7f7f7"></td>
+               <td style="border-right: 1px solid #fff"></td>
                <td> 
                <div class="input">
                <input type="text" class="form-control inputbox3" id="d4id" name="d4id[]" value="<?php echo $selfpubshare[$i]['id']?>" style= "display: none;">
@@ -372,10 +379,9 @@
               
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                <tr>
-               <td style="border-right: 1px solid #f7f7f7; color: #000; font-weight: bold;  padding-right: 0px">3.</td>
                <td colspan="4">
-               <div class="">
-               <label > Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
+               <div class="col-md-12">
+               <label >3. Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
               <?php if($relativecompany){?>
                <input type="radio" id= "showsec1" name="showsec1" value="Yes" checked="checked" onclick="showsection(this.id)">Yes
                <?php } else { ?>
@@ -390,7 +396,7 @@
                 ?>
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;" width="100%"  id="test1">
                <tr>
-                  <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
+                  <td style="border-right: 1px solid #fff"></td>
                <td>  <label class="control-label">Relative Name</label></td>
                <td><label class="control-label">Company Name</label></td>
                <td>    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
@@ -400,7 +406,7 @@
                </tr>
 
                <tr>
-                  <td style="border-right: 1px solid #f7f7f7"></td>
+                  <td style="border-right: 1px solid #fff"></td>
                <td> 
 
                <div class="input">
@@ -478,10 +484,9 @@
               
                 <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                <tr>
-               <td style="border-right: 1px solid #f7f7f7; color: #000; font-weight: bold;  padding-right: 0px">4.</td>
                <td colspan="6">
-               <div class="">
-               <label > Are you Interested in ?</label>
+               <div class="col-md-12">
+               <label >4. Are you Interested in ?</label>
               
                </div>
                </td>
@@ -489,8 +494,8 @@
 
                <tr>
                <td colspan="6">
-               <div class="">
-               <label style="padding-left: 30px;" >i. Firm</label>
+               <div class="col-md-12">
+               <label >i. Firm</label>
                </div>
                </td>
                </tr>
@@ -499,9 +504,9 @@
                for($i=0; $i < count($relativefirm); $i++){
                ?>
                <tr>
-               <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>   
-               <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
-               <td style="width: 20%"><label class="control-label">Firm Name</label></td>
+               <td style="border-right: 1px solid #fff"></td>   
+               <td>  <label class="control-label">Relative Name</label></td>
+               <td><label class="control-label">Firm Name</label></td>
                <td><label class="control-label">Nature of interest</label></td>
                <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                <td>
@@ -510,7 +515,7 @@
                </tr>
 
                <tr>
-               <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>   
+               <td style="border-right: 1px solid #fff"></td>   
                <td> 
                <div class="input">
 
@@ -598,7 +603,7 @@
                <tr>
                <td colspan="6">
                <div class="col-md-12">
-              <label  style="padding-left: 19px;" class="">ii.Private/Public Company</label>
+              <label  class="col-md-12">ii.Private/Public Company</label>
                </div>
                </td>
                </tr>
@@ -607,9 +612,9 @@
                for($i=0; $i < count($relativepublic); $i++){
             ?>
                <tr>
-               <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>   
-               <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
-               <td style="width: 20%"><label class="control-label">Company Name</label></td>
+               <td style="border-right: 1px solid #fff"></td>   
+               <td>  <label class="control-label">Relative Name</label></td>
+               <td><label class="control-label">Company Name</label></td>
                <td><label class="control-label">Nature of interest</label></td>
                <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                <td>
@@ -618,7 +623,7 @@
                </tr>
 
                <tr>
-               <td style="border-right: 1px solid #f7f7f7"></td>
+               <td style="border-right: 1px solid #fff"></td>
                <td> 
                <div class="input">
                <input type="text" class="form-control inputbox3" id="d7id" name="d7id[]" value="<?php echo $relativepublic[$i]['id']?>" style= "display: none;">
@@ -693,7 +698,7 @@
                </table>
                
 
-                <div class="col-md-12 text-right" style="margin-top: 20px;"> 
+                <div class="col-md-12" style="margin-top: 20px;"> 
                   <button type="submit" class="btn btn-primary ">Submit</button>
                </div>
             </form>     

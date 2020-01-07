@@ -123,7 +123,7 @@ function addhtml(clicked)
           addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Company Name</label>';
+          addhtmlnxt += '<td style="width: 22%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
             addhtmlnxt += '<td><label class="control-label">Nature of Interest</label>';
           addhtmlnxt += '</td>';
@@ -167,7 +167,7 @@ function addhtml(clicked)
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Company Name</label>';
+          addhtmlnxt += '<td style="width: 22%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
             addhtmlnxt += '<td><label class="control-label">Nature of Interest</label>';
           addhtmlnxt += '</td>';
@@ -212,8 +212,8 @@ function addhtml(clicked)
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Relative Name</label>';
-          addhtmlnxt += '</td>';
+          addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
+          addhtmlnxt += '</td style="width: 22%">';
             addhtmlnxt += '<td><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
           addhtmlnxt += '<td><label class="control-label">Can this relative significantly influence the decision making of this company?</label>';
@@ -268,9 +268,9 @@ function addhtml(clicked)
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Relative Name</label>';
+          addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
           addhtmlnxt += '</td>';
-            addhtmlnxt += '<td><label class="control-label">Firm Name</label>';
+            addhtmlnxt += '<td style="width: 22%"><label class="control-label">Firm Name</label>';
           addhtmlnxt += '</td>';
 
            addhtmlnxt += '<td><label class="control-label">Nature of interest</label>';
