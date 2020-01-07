@@ -793,12 +793,12 @@ function getpdfdata(uniqueid)
       uploadProgress: function(event, position, total, percentComplete)
       {  website('.preloder_wraper').fadeIn(); },
       success: function(response, textStatus, jqXHR)
-      {
+      { 
         if(response.logged===true)
         {  
          
-           //console.log(response['uniqueid']);
-          new PNotify({title: 'Record Added Successfully',
+          // console.log(response['uniqueid']);
+          new PNotify({ title: 'Record Added Successfully',
             text: response.message,
             type: 'university',
             hide: true,

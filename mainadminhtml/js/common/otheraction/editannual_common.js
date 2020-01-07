@@ -501,14 +501,11 @@ function removehtml(clicked)
       {  website('.preloder_wraper').fadeIn(); },
       success: function(response, textStatus, jqXHR)
       {
-        console.log(response);return false;
-        if(response.logged ==true)
+        //console.log(response);return false;
+        if(response.logged == true)
         {  
-          
-         
-           //console.log(response['uniqueid']);
 
-           new PNotify({ title: 'Record UpdatedSuccessfully',
+           new PNotify({ title: 'Record Updated Successfully',
             text: response.message,
             type: 'university',
             hide: true,
@@ -516,6 +513,7 @@ function removehtml(clicked)
             addclass: 'dark ',
 
           });
+           
             window.location.reload();
          
         }else{
