@@ -308,8 +308,9 @@
                <div class="input">
 
                <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
-               <?php for($i=0;$i < count($relativesinfo); $i++){?>
                <option value="">Select Option</option>
+               <?php for($i=0;$i < count($relativesinfo); $i++){?>
+              
                <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
                <?php } ?>
                
@@ -388,8 +389,9 @@
                <td> 
                <div class="input">
                <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
+                   <option value="">Select Option</option>
               <?php for($i=0;$i < count($relativesinfo); $i++){?>
-               <option value="">Select Option</option>
+              
                <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
                <?php } ?>
                
@@ -468,8 +470,9 @@
                <td> 
                <div class="input">
                <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
+                    <option value="">Select Option</option>
               <?php for($i=0;$i < count($relativesinfo); $i++){?>
-               <option value="">Select Option</option>
+             
                <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
                <?php } ?>
                
