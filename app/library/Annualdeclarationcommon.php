@@ -1323,11 +1323,11 @@ public function upannualrelativefirm($uid,$relative,$company,$interest,$decision
 
           if($getnum>0)
                 {
-                   echo $queryupdate;
+                   //echo $queryupdate;
                    $exegetqry = $connection->query($queryupdate);
                 }
                 else
-                {   echo $queryinsert;
+                {   //echo $queryinsert;
                     $exegetqry = $connection->query($queryinsert);
                 }
 

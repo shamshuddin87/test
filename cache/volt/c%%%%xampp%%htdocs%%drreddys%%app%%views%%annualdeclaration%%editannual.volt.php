@@ -67,7 +67,7 @@
                      </td>
                      <td>
                         <section class="">
-                           <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" >
+                           <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >
                                <option value="">Select Option</option>
                               <?php if($selfcompany[$i]['decision']  == Yes){ ?>
                            <option value="Yes" selected>Yes</option>
@@ -81,7 +81,7 @@
                      </td>
                      <td>
                         <section class="">
-                           <select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" >
+                           <select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >
                               <option value="">Select Option</option>
                                <?php if($selfcompany[$i]['transaction']  == Yes){ ?>
                            <option value="Yes" selected>Yes</option>
@@ -138,9 +138,9 @@
                      <td style="border-right: 1px solid #fff"></td>
                      <td>  <label class="control-label">Firm Name</label></td>
                      <td>  <label class="control-label">Nature of Interest</label></td>
-                     <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
+                     <td>    <label class="control-label">Can you significantly influence the decision making of this firm?</label></td>
                      <td>
-                        <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+                        <label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                      </td>
                   </tr>
 
@@ -160,7 +160,7 @@
                      </td>
                      <td>
                         <div class="input">
-                           <select id="d2ques3" name="d2ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
+                           <select id="d2ques3" name="d2ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" >
                               <option value="">Select Option</option>
                              <?php if($selffirm[$i]['decision']  == Yes){ ?>
                            <option value="Yes" selected>Yes</option>
@@ -174,7 +174,7 @@
                      </td>
                      <td>
                         <div class="input">
-                           <select id="d2ques4" name="d2ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+                           <select id="d2ques4" name="d2ques4[]" class="form_fields form-control col-md-7 col-xs-12" >
                             <option value="">Select Option</option>
                             <?php if($selffirm[$i]['transaction']  == Yes){ ?>
                             <option value="Yes" selected>Yes</option>
@@ -240,7 +240,7 @@
                      </td>
                      <td>
                      <div class="input">
-                     <select id="d3ques3" name="d3ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
+                     <select id="d3ques3" name="d3ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" >
                      <option value="">Select Option</option>
                      <?php if($selfpublic[$i]['decision']  == Yes){ ?>
                      <option value="Yes" selected>Yes</option>
@@ -253,7 +253,7 @@
                      </div></td>
                      <td> 
                      <div class="input">
-                     <select id="d3ques4" name="d3ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+                     <select id="d3ques4" name="d3ques4[]" class="form_fields form-control col-md-7 col-xs-12" >
                      <option value="">Select Option</option>
                      <?php if($selfpublic[$i]['transaction']  == Yes){ ?>
                      <option value="Yes" selected>Yes</option>
@@ -320,7 +320,7 @@
                </td>
                <td>
                <div class="input">
-               <select id="d4ques3" name="d4ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
+               <select id="d4ques3" name="d4ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" >
                <option value="">Select Option</option>
                <?php if($selfpubshare[$i]['decision']  == Yes){ ?>
                <option value="Yes" selected>Yes</option>
@@ -334,7 +334,7 @@
                </td>
                <td> 
                <div class="input">
-               <select id="d4ques4" name="d4ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+               <select id="d4ques4" name="d4ques4[]" class="form_fields form-control col-md-7 col-xs-12" >
                <option value="">Select Option</option>
                <?php if($selfpubshare[$i]['transaction']  == Yes){ ?>
                <option value="Yes" selected>Yes</option>
@@ -426,7 +426,7 @@
                </td>
                <td>
                <div class="input">
-               <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
+               <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" >
                <option value="">Select Option</option>
                <?php if($relativecompany[$i]['decision']  == Yes){ ?>
                            <option value="Yes" selected>Yes</option>
@@ -439,7 +439,7 @@
                </div></td>
                <td> 
                <div class="input">
-               <select id="d5ques4" name="d5ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+               <select id="d5ques4" name="d5ques4[]" class="form_fields form-control col-md-7 col-xs-12" >
                <option value="">Select Option</option>
                <?php if($relativecompany[$i]['transaction']  == Yes){ ?>
                            <option value="Yes" selected>Yes</option>
@@ -497,9 +497,9 @@
                <td>  <label class="control-label">Relative Name</label></td>
                <td><label class="control-label">Firm Name</label></td>
                <td><label class="control-label">Nature of interest</label></td>
-               <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
+               <td> <label class="control-label">Can this relative significantly influence the decision making of this firm?</label></td>
                <td>
-               <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+               <label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                </td>
                </tr>
 
@@ -542,7 +542,7 @@
 
                <td>
                <div class="input">
-               <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
+               <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" >
                <option value="">Select Option</option>
                <?php if($relativefirm[$i]['decision']  == Yes){ ?>
                <option value="Yes" selected>Yes</option>
@@ -555,7 +555,7 @@
                </div></td>
                <td> 
                <div class="input">
-               <select id="d6ques5" name="d6ques5[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+               <select id="d6ques5" name="d6ques5[]" class="form_fields form-control col-md-7 col-xs-12" >
                <option value="">Select Option</option>
                <?php if($relativefirm[$i]['transaction']  == Yes){ ?>
                <option value="Yes" selected>Yes</option>
@@ -647,7 +647,7 @@
 
                <td>
                <div class="input">
-               <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
+               <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" >
                <option value="">Select Option</option>
               <?php if($relativepublic[$i]['decision']  == Yes){ ?>
                            <option value="Yes" selected>Yes</option>
@@ -660,7 +660,7 @@
                </div></td>
                <td> 
                <div class="input">
-               <select id="d7ques5" name="d7ques5[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+               <select id="d7ques5" name="d7ques5[]" class="form_fields form-control col-md-7 col-xs-12" >
                <option value="">Select Option</option>
                 <?php if($relativepublic[$i]['transaction']  == Yes){ ?>
                            <option value="Yes" selected>Yes</option>

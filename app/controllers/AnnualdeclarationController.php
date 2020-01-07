@@ -988,8 +988,10 @@ class AnnualdeclarationController extends ControllerBase
            
 
                         if($getres1 || $getres2 || $getres3 || $getres4 || $getres5  || $getres6 || $getres7)
-                        {  
+                        { 
+
                             $data = array("logged" => true,'message' => 'Record Updated' );
+                            
                             $this->response->setJsonContent($data);
                         }
                         else
@@ -998,6 +1000,7 @@ class AnnualdeclarationController extends ControllerBase
                             $this->response->setJsonContent($data);
                         } 
                     }
+
 
                       $this->response->send();
 
@@ -1079,7 +1082,7 @@ class AnnualdeclarationController extends ControllerBase
          $uniqueid = $_GET['id'];
          //print_r($uniqueid);exit;
         //$uniqueid = '5e0ec764808fc';
-            $this->view->uniqueid  = $uniqueid;
+        $this->view->uniqueid  = $uniqueid;
 
        $relatives_info = $this->annualdeclarationcommon->relatives_info($uid);
            $this->view->relativesinfo = $relatives_info;
