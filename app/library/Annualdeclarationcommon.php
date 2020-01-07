@@ -1007,7 +1007,7 @@ public function getallrelative($uid,$usergroup)
                            
          
          
-          $exedel = $connection->query($querydelete);
+         // $exedel = $connection->query($querydelete);
           //print_r($exedel);exit;
           //$getnum = trim($exedel->numRows());
          // echo $check;exit;

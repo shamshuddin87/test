@@ -993,6 +993,7 @@ class AnnualdeclarationController extends ControllerBase
                         { 
 
                             $data = array("logged" => true,'message' => 'Record Updated' );
+                            //print_r($data);exit;
 
                             $this->response->setJsonContent($data);
                         }
@@ -1002,6 +1003,7 @@ class AnnualdeclarationController extends ControllerBase
                             $this->response->setJsonContent($data);
                         } 
                     }
+
 
 
                       $this->response->send();

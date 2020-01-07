@@ -320,9 +320,9 @@ function addhtml(clicked)
        addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Relative Name</label>';
+          addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
           addhtmlnxt += '</td>';
-            addhtmlnxt += '<td><label class="control-label">Company Name</label>';
+            addhtmlnxt += '<td style="width: 20%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
 
            addhtmlnxt += '<td><label class="control-label">Nature of interest</label>';
@@ -502,28 +502,24 @@ function removehtml(clicked)
       success: function(response, textStatus, jqXHR)
       {
         console.log(response);return false;
-        if(response.logged===true)
+        if(response.logged ==true)
         {  
           
          
            //console.log(response['uniqueid']);
-          new PNotify({title: 'Record Updated Successfully',
+
+           new PNotify({ title: 'Record UpdatedSuccessfully',
             text: response.message,
             type: 'university',
             hide: true,
             styling: 'bootstrap3',
             addclass: 'dark ',
-          });
-           window.location.reload();
 
-      
+          });
+            window.location.reload();
          
-           
-         
-           
-            
         }else{
-          new PNotify({title: 'Record Not Added',
+           new PNotify({title: 'Record Not Updated Successfully',
             text: response.message,
             type: 'university',
             hide: true,
