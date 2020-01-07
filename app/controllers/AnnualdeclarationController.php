@@ -845,7 +845,7 @@ class AnnualdeclarationController extends ControllerBase
                 $d7ques4 = $this->request->getPost('d7ques4');
                 $d7ques5 = $this->request->getPost('d7ques5');
 
-                 $uniqid = uniqid();
+                $uniqid = uniqid();
                
                
                
@@ -949,6 +949,7 @@ class AnnualdeclarationController extends ControllerBase
                 $d7ques5 = $this->request->getPost('d7ques5');
 
                 $uniqueid = $this->request->getPost('uniqueid');
+                 //print_r($uniqueid);exit;
                 //$uniqueid = '5e0ec764808fc';
                 
                 //ids of individual divs
@@ -1078,6 +1079,7 @@ class AnnualdeclarationController extends ControllerBase
          $uniqueid = $_GET['id'];
          //print_r($uniqueid);exit;
         //$uniqueid = '5e0ec764808fc';
+            $this->view->uniqueid  = $uniqueid;
 
        $relatives_info = $this->annualdeclarationcommon->relatives_info($uid);
            $this->view->relativesinfo = $relatives_info;
@@ -1097,8 +1099,9 @@ class AnnualdeclarationController extends ControllerBase
         $getresponse6 = $this->annualdeclarationcommon->annual_relative_firm($uid,$usergroup,$uniqueid);
         //print_r($getresponse6);exit;
         $this->view->relativefirm = $getresponse6;
+
         $getresponse7 = $this->annualdeclarationcommon->annual_relative_pubpri($uid,$usergroup,$uniqueid);
-         $this->view->relativepublic = $getresponse7;      
+        $this->view->relativepublic = $getresponse7;      
 
        
 

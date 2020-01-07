@@ -2,7 +2,7 @@
    $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
    $gtselctedcmp = $this->session->cmpconmemberdoc;
    $condeptsess = $this->session->contractdepartment;
-   //echo "company is ";print_r($planuniqueid);exit;
+   //echo "company is ";print_r($uniqueid);exit;
    ?>
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
@@ -25,11 +25,12 @@
                      <td colspan="4">
                         <div class="col-md-12" >
                            <label >1.Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
+
                            
                                  <?php if($selfcompany){?>
-                                  <input type="radio" id= "showsec1" name="showsec1" value="Yes" checked="checked" onclick="showsection(this.id)">Yes
+                                  <input type="radio"  name="showsec1" value="Yes" checked="checked">Yes
                                  <?php } else { ?>
-                                <input type="radio" id= "hidesec1" name="showsec1" value="No" checked = "checked" onclick="showsection(this.id)">No
+                                <input type="radio"  name="showsec1" value="No" checked = "checked" onclick="showsection(this.id)">No
                                  <?php } ?>
 
                              
@@ -38,7 +39,10 @@
                         </div>
                      </td>
                   </tr>
-                  <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; display: none;" width="100%"  id="test">
+                   <?php if($selfcompany){
+                  for($i=0; $i < count($selfcompany); $i++){
+                  ?>
+                  <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; " width="100%"  id="test">
                   <tr >
                      <td style="border-right: 1px solid #fff"></td>
                      <td><label class="control-label">Company Name</label></td>
@@ -51,7 +55,12 @@
                         <div id = "div1" class="" >
                            <section class="">
                               <div class="input">
-                                 <input type="text" class="form-control inputbox3" id="d1ques1" name="d1ques1[]" style="" required="required">
+
+                                  <input type="text" class="form-control inputbox3" id="uniqueid" name="uniqueid" value="<?php echo $uniqueid ?>" style= "display: none;">
+
+                                 <input type="text" class="form-control inputbox3" id="d1id" name="d1id[]" value="<?php echo $selfcompany[$i]['id']?>" style= "display: none;">
+
+                           <input type="text" class="form-control inputbox3" id="d1ques1" name="d1ques1[]" value="<?php echo $selfcompany[$i]['company']?>"  required="required">
                               </div>
                            </section>
                         </div>
@@ -59,9 +68,14 @@
                      <td>
                         <section class="">
                            <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" >
-                              <option value="">Select Option</option>
-                              <option value="yes">Yes</option>
-                              <option value="No">No</option>
+                               <option value="">Select Option</option>
+                              <?php if($selfcompany[$i]['decision']  == Yes){ ?>
+                           <option value="Yes" selected>Yes</option>
+                           <option value="No">No</option>
+                          <?php }elseif($selfcompany[$i]['decision']  == No){ ?>
+                           <option value="Yes" >Yes</option>
+                           <option value="No" selected>No</option>
+                         <?php } ?>
                            </select>
                         </section>
                      </td>
@@ -69,13 +83,19 @@
                         <section class="">
                            <select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" >
                               <option value="">Select Option</option>
-                              <option value="yes">Yes</option>
-                              <option value="No">No</option>
+                               <?php if($selfcompany[$i]['transaction']  == Yes){ ?>
+                           <option value="Yes" selected>Yes</option>
+                           <option value="No">No</option>
+                        <?php }elseif($selfcompany[$i]['transaction']  == No){ ?>
+                           <option value="Yes" >Yes</option>
+                           <option value="No" selected>No</option>
+                         <?php } ?>
                            </select>
                         </section>
                      </td>
                   </tr>
                   <tr>
+                  <?php }} ?>
                      <td colspan="4" >
                         <div class = "appenddiv1 " id="appenddiv1">
                         </div>
@@ -87,11 +107,14 @@
                      </td>
                   </tr>
                 </table>
+              
 
 
                </table>
                <!-- table 1 end -->
+
                <!-- table 2 start -->
+               
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                   <tr>
                      <td colspan="5">
@@ -100,6 +123,7 @@
                         </div>
                      </td>
                   </tr>
+              
                   <tr>
                      <td colspan="5">
                         <div class="col-md-12">
@@ -107,6 +131,9 @@
                         </div>
                      </td>
                   </tr>
+                   <?php if($selffirm){
+                for($i=0; $i < count($selffirm); $i++){
+                  ?>
                   <tr>
                      <td style="border-right: 1px solid #fff"></td>
                      <td>  <label class="control-label">Firm Name</label></td>
@@ -121,33 +148,46 @@
                      <td style="border-right: 1px solid #fff"></td>
                      <td>
                         <div class="input">
-                           <input type="text" class="form-control inputbox4" id="d2ques1" name="d2ques1[]" >
+                          <input type="text" class="form-control inputbox3" id="d2id" name="d2id[]" value="<?php echo $selffirm[$i]['id']?>" style= "display: none;">
+
+                        <input type="text" class="form-control inputbox4" value="<?php echo $selffirm[$i]['firm']?>" id="d2ques1" name="d2ques1[]" >
                         </div>
                      </td>
                      <td>
                         <div class="input">
-                           <input type="text" class="form-control inputbox4" id="d2ques2" name="d2ques2[]">
+                           <input type="text" class="form-control inputbox4" id="d2ques2" name="d2ques2[]" value="<?php echo $selffirm[$i]['interest']?>">
                         </div>
                      </td>
                      <td>
                         <div class="input">
                            <select id="d2ques3" name="d2ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
                               <option value="">Select Option</option>
-                              <option value="yes">Yes</option>
-                              <option value="No">No</option>
+                             <?php if($selffirm[$i]['decision']  == Yes){ ?>
+                           <option value="Yes" selected>Yes</option>
+                           <option value="No">No</option>
+                         <?php }elseif($selffirm[$i]['decision']  == No){ ?>
+                           <option value="Yes" >Yes</option>
+                           <option value="No" selected>No</option>
+                         <?php } ?>
                            </select>
                         </div>
                      </td>
                      <td>
                         <div class="input">
                            <select id="d2ques4" name="d2ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
-                              <option value="">Select Option</option>
-                              <option value="yes">Yes</option>
-                              <option value="No">No</option>
+                            <option value="">Select Option</option>
+                            <?php if($selffirm[$i]['transaction']  == Yes){ ?>
+                            <option value="Yes" selected>Yes</option>
+                           <option value="No">No</option>
+                           <?php }elseif($selffirm[$i]['transaction']  == No){ ?>
+                           <option value="Yes" >Yes</option>
+                           <option value="No" selected>No</option>
+                           <?php } ?>
                            </select>
                         </div>
                      </td>
                   <tr>
+                  <?php }} ?>
                      <td colspan="5" style="">
                         <div class = "appenddiv2" id="appenddiv2">
                         </div>
@@ -160,8 +200,11 @@
                   </tr>
                   </tr>
                </table>
+              
                <!-- table 2 end -->
+
                <!-- table 3 start-->
+              
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                   <tr>
                      <td colspan="5">
@@ -170,6 +213,9 @@
                         </div>
                      </td>
                   </tr>
+                   <?php if($selfpublic){
+                  for($i=0; $i < count($selfpublic); $i++){
+                   ?>
                   <tr>
                      <td style="border-right: 1px solid #fff"></td>
                      <td><label class="control-label">Company Name</label></td>
@@ -183,31 +229,47 @@
                      <td style="border-right: 1px solid #fff"></td>
                      <td>
                         <div class="input">
-                           <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" >
+                           <input type="text" class="form-control inputbox3" id="d3id" name="d3id[]" value="<?php echo $selfpublic[$i]['id']?>" style= "display: none;">
+
+                        <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" value="<?php echo $selfpublic[$i]['company']?>" >
                      </td>
                      <td> 
                      <div class="input">
-                     <input type="text" class="form-control inputbox4" id="d3ques2" name="d3ques2[]" >
+                    <input type="text" class="form-control inputbox4" id="d3ques2" name="d3ques2[]" value="<?php echo $selfpublic[$i]['interest']?>" >
                      </div>
                      </td>
                      <td>
                      <div class="input">
                      <select id="d3ques3" name="d3ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
                      <option value="">Select Option</option>
-                     <option value="yes">Yes</option>
+                     <?php if($selfpublic[$i]['decision']  == Yes){ ?>
+                     <option value="Yes" selected>Yes</option>
                      <option value="No">No</option>
+                      <?php }elseif($selfpublic[$i]['decision']  == No){ ?>
+                     <option value="Yes" >Yes</option>
+                     <option value="No" selected>No</option>
+                     <?php } ?>
                      </select>
                      </div></td>
                      <td> 
                      <div class="input">
                      <select id="d3ques4" name="d3ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
                      <option value="">Select Option</option>
-                     <option value="yes">Yes</option>
+                     <?php if($selfpublic[$i]['transaction']  == Yes){ ?>
+                     <option value="Yes" selected>Yes</option>
                      <option value="No">No</option>
+                     <?php }elseif($selfpublic[$i]['transaction']  == No){ ?>
+                     <option value="Yes" >Yes</option>
+                     <option value="No" selected>No</option>
+                     <?php } ?>
                      </select>
                      </div>
                      </td>
-                  <tr>
+                       
+                 
+                  </tr>
+                   <?php }} ?>
+                   <tr>
                   <td colspan="5" >
                   <div class = "appenddiv3 " id="appenddiv3" ></div>
                   <div class="adddiv3section1 col-md-12"  style="text-align: right;">
@@ -217,10 +279,12 @@
                   </div>
                   </td>
                   </tr>
-                  </tr>
                </table>
+             
                <!-- table 3 end-->
+
                <!-- table 4 start-->
+              
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                <tr>
                <td colspan="5">
@@ -229,6 +293,9 @@
                </div>
                </td>
                </tr>
+                <?php if($selfpubshare){
+               for($i=0; $i < count($selfpubshare); $i++){
+               ?>
                <tr>
                 <td style="border-right: 1px solid #fff"></td>  
                <td>  <label class="control-label">Company Name</label></td>
@@ -242,19 +309,26 @@
                <td style="border-right: 1px solid #fff"></td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" >
+               <input type="text" class="form-control inputbox3" id="d4id" name="d4id[]" value="<?php echo $selfpubshare[$i]['id']?>" style= "display: none;">
+
+               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]"  value="<?php echo $selfpubshare[$i]['company']?>" >
                </td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" >
+               <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]"  value="<?php echo $selfpubshare[$i]['interest']?>">
                </div>
                </td>
                <td>
                <div class="input">
                <select id="d4ques3" name="d4ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
+               <?php if($selfpubshare[$i]['decision']  == Yes){ ?>
+               <option value="Yes" selected>Yes</option>
                <option value="No">No</option>
+               <?php }elseif($selfpubshare[$i]['decision']  == No){ ?>
+               <option value="Yes" >Yes</option>
+               <option value="No" selected>No</option>
+               <?php } ?>
                </select>
                </div>
                </td>
@@ -262,11 +336,17 @@
                <div class="input">
                <select id="d4ques4" name="d4ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
-               <option value="No">No</option>
+               <?php if($selfpubshare[$i]['transaction']  == Yes){ ?>
+               <option value="Yes" selected>Yes</option>
+                <option value="No">No</option>
+               <?php }elseif($selfpubshare[$i]['transaction']  == No){ ?>
+                <option value="Yes" >Yes</option>
+               <option value="No" selected>No</option>
+               <?php } ?>
                </select>
                </div>
                </td>
+                <?php }} ?>
                <tr>
                <td colspan="5" style="">
                <div class = "appenddiv4 " id="appenddiv4"></div>
@@ -278,24 +358,32 @@
                </td>
                </tr>
                </table>
+
                <!-- table 4 end-->
 
 
                <!-- Section 2 start-->
 
                <!-- table 5 start-->
+              
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                <tr>
                <td colspan="4">
                <div class="col-md-12">
                <label >3. Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
-               <input type="radio" id = "showsec2" name = "showsec2" value="Yes" onclick="showsection(this.id);"> Yes</input>
-               <input type="radio"  id = "hidesec2" name="showsec2"   value="No"  onclick="showsection(this.id)">No </input>
+              <?php if($relativecompany){?>
+               <input type="radio" id= "showsec1" name="showsec1" value="Yes" checked="checked" onclick="showsection(this.id)">Yes
+               <?php } else { ?>
+               <input type="radio" id= "hidesec1" name="showsec1" value="No" checked = "checked" onclick="showsection(this.id)">No
+               <?php } ?>
                </div>
                </td>
                </tr>
-                
-               <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;display: none;" width="100%"  id="test1">
+                  <?php 
+                if($relativecompany){
+               for($i=0; $i < count($relativecompany); $i++){
+                ?>
+               <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;" width="100%"  id="test1">
                <tr>
                   <td style="border-right: 1px solid #fff"></td>
                <td>  <label class="control-label">Relative Name</label></td>
@@ -311,37 +399,59 @@
                <td> 
 
                <div class="input">
+               <input type="text" class="form-control inputbox3" id="d5id" name="d5id[]" value="<?php echo $relativecompany[$i]['id']?>" style= "display: none;">
 
                <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
-               <?php for($i=0;$i < count($relativesinfo); $i++){?>
                <option value="">Select Option</option>
-               <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
-               <?php } ?>
+               <?php for($j=0; $j < count($relativesinfo); $j++){
+                   if($relativecompany[$i]['relative'] == $relativesinfo[$j]['name']){?>
+             
+               
+                     ?>
+                  <option value="<?php echo $relativesinfo[$j]['name']?>" selected><?php  echo $relativesinfo[$j]['name']?></option>
+                   <?php } else { ?>
+                          
+                  <option value=<?php echo $relativesinfo[$j]['name']?>><?php  echo $relativesinfo[$j]['name']?></option>
+              
+
+               <?php } }?>
                
                </select>
+
                </td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d5ques2" name="d5ques2[]" >
+               <input type="text" class="form-control inputbox4" id="d5ques2" name="d5ques2[]" value="<?php echo $relativecompany[$i]['company']?>">
                </div>
                </td>
                <td>
                <div class="input">
                <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
-               <option value="No">No</option>
+               <?php if($relativecompany[$i]['decision']  == Yes){ ?>
+                           <option value="Yes" selected>Yes</option>
+                          <option value="No">No</option>
+                          <?php }elseif($relativecompany[$i]['decision']  == No){ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No" selected>No</option>
+                          <?php } ?>
                </select>
                </div></td>
                <td> 
                <div class="input">
                <select id="d5ques4" name="d5ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
-               <option value="No">No</option>
+               <?php if($relativecompany[$i]['transaction']  == Yes){ ?>
+                           <option value="Yes" selected>Yes</option>
+                           <option value="No">No</option>
+                           <?php }elseif($relativecompany[$i]['transaction']  == No){ ?>
+                           <option value="Yes" >Yes</option>
+                           <option value="No" selected>No</option>
+                         <?php } ?>
                </select>
                </div>
                </td>
+                <?php }} ?>
                <tr>
                <td colspan="5" >
                <div class = "appenddiv5 " id="appenddiv5"></div>
@@ -354,10 +464,13 @@
                </tr>
                </tr>
             </table>
+             
                </table>
+              
                <!-- table 5 end -->
 
                <!-- table 6 start --> 
+              
                 <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                <tr>
                <td colspan="6">
@@ -375,7 +488,10 @@
                </div>
                </td>
                </tr>
-
+               
+               <?php if($relativefirm){
+               for($i=0; $i < count($relativefirm); $i++){
+               ?>
                <tr>
                <td style="border-right: 1px solid #fff"></td>   
                <td>  <label class="control-label">Relative Name</label></td>
@@ -391,43 +507,66 @@
                <td style="border-right: 1px solid #fff"></td>   
                <td> 
                <div class="input">
+
+               <input type="text" class="form-control inputbox3" id="d6id" name="d6id[]" value="<?php echo $relativefirm[$i]['id']?>" style= "display: none;">
+
                <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
-              <?php for($i=0;$i < count($relativesinfo); $i++){?>
+              
                <option value="">Select Option</option>
-               <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
-               <?php } ?>
+               <?php for($j=0; $j < count($relativesinfo); $j++){
+                   if($relativefirm[$i]['relative'] == $relativesinfo[$j]['name']){?>
+             
+               
+                     ?>
+                  <option value="<?php echo $relativesinfo[$j]['name']?>" selected><?php  echo $relativesinfo[$j]['name']?></option>
+                   <?php } else { ?>
+                          
+                  <option value=<?php echo $relativesinfo[$j]['name']?>><?php  echo $relativesinfo[$j]['name']?></option>
+              
+
+               <?php } }?>
                
                </select>
                </td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d6ques2" name="d6ques2[]" >
+              <input type="text" class="form-control inputbox5" id="d6ques2" name="d6ques2[]" value="<?php echo $relativefirm[$i]['firm']?>" >
                </div>
                </td>
 
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d6ques2" name="d6ques2[]" >
+               <input type="text" class="form-control inputbox5" id="d6ques3" name="d6ques3[]" value="<?php echo $relativefirm[$i]['interest']?>" >
                </div>
                </td>
 
                <td>
                <div class="input">
-               <select id="d6ques3" name="d6ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
+               <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
+               <?php if($relativefirm[$i]['decision']  == Yes){ ?>
+               <option value="Yes" selected>Yes</option>
                <option value="No">No</option>
+               <?php }elseif($relativefirm[$i]['decision']  == No){ ?>
+               <option value="Yes" >Yes</option>
+               <option value="No" selected>No</option>
+               <?php } ?>
                </select>
                </div></td>
                <td> 
                <div class="input">
-               <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+               <select id="d6ques5" name="d6ques5[]" class="form_fields form-control col-md-7 col-xs-12" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
+               <?php if($relativefirm[$i]['transaction']  == Yes){ ?>
+               <option value="Yes" selected>Yes</option>
                <option value="No">No</option>
+               <?php }elseif($relativefirm[$i]['transaction']  == No){ ?>
+                <option value="Yes" >Yes</option>
+               <option value="No" selected>No</option>
                </select>
                </div>
                </td>
+                <?php }} ?>
                <tr>
                <td colspan="6" >
                <div class = "appenddiv6 " id="appenddiv6"></div>
@@ -440,11 +579,13 @@
                </tr>
                </tr>
                </table>
+           
+
 
               <!-- table 6 end -->
               
             
-            <!-- table 7  start -->
+           
              <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
               
 
@@ -455,7 +596,10 @@
                </div>
                </td>
                </tr>
-
+                 <!-- table 7  start -->
+            <?php if($relativepublic){
+               for($i=0; $i < count($relativepublic); $i++){
+            ?>
                <tr>
                <td style="border-right: 1px solid #fff"></td>   
                <td>  <label class="control-label">Relative Name</label></td>
@@ -471,43 +615,64 @@
                <td style="border-right: 1px solid #fff"></td>
                <td> 
                <div class="input">
+               <input type="text" class="form-control inputbox3" id="d7id" name="d7id[]" value="<?php echo $relativepublic[$i]['id']?>" style= "display: none;">
+
                <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
-              <?php for($i=0;$i < count($relativesinfo); $i++){?>
-               <option value="">Select Option</option>
-               <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
-               <?php } ?>
+              <?php for($j=0; $j < count($relativesinfo); $j++){
+               if($relativepublic[$i]['relative'] == $relativesinfo[$j]['name']){?>
+             
+               
+               ?>
+                  <option value="<?php echo $relativesinfo[$j]['name']?>" selected><?php  echo $relativesinfo[$j]['name']?></option>
+                   <?php } else { ?>
+                          
+                  <option value=<?php echo $relativesinfo[$j]['name']?>><?php  echo $relativesinfo[$j]['name']?></option>
+              
+
+               <?php } }?>
                
                </select>
                </td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d7ques2" name="d7ques2[]" >
+                 <input type="text" class="form-control inputbox5" id="d7ques2" name="d7ques2[]" value="<?php echo $relativepublic[$i]['company']?>" >
                </div>
                </td>
 
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d7ques2" name="d7ques2[]" >
+                <input type="text" class="form-control inputbox5" id="d7ques3" name="d7ques3[]" value="<?php echo $relativepublic[$i]['interest']?>">
                </div>
                </td>
 
                <td>
                <div class="input">
-               <select id="d7ques3" name="d7ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
+               <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
-               <option value="No">No</option>
+              <?php if($relativepublic[$i]['decision']  == Yes){ ?>
+                           <option value="Yes" selected>Yes</option>
+                          <option value="No">No</option>
+                          <?php }elseif($relativepublic[$i]['decision']  == No){ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No" selected>No</option>
+                          <?php } ?>
                </select>
                </div></td>
                <td> 
                <div class="input">
-               <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
+               <select id="d7ques5" name="d7ques5[]" class="form_fields form-control col-md-7 col-xs-12" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
-               <option value="No">No</option>
+                <?php if($relativepublic[$i]['transaction']  == Yes){ ?>
+                           <option value="Yes" selected>Yes</option>
+                           <option value="No">No</option>
+                           <?php }elseif($relativepublic[$i]['transaction']  == No){ ?>
+                           <option value="Yes" >Yes</option>
+                           <option value="No" selected>No</option>
+                         <?php } }?>
                </select>
                </div>
                </td>
+                 <?php }} ?>
                <tr>
                <td colspan="6" >
                 <div class = "appenddiv7 " id="appenddiv7"></div>
@@ -520,6 +685,7 @@
                </tr>
                </tr>
                </table>
+               
 
                 <div class="col-md-12" style="margin-top: 20px;"> 
                   <button type="submit" class="btn btn-primary ">Submit</button>
