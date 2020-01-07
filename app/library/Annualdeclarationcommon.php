@@ -987,8 +987,8 @@ public function getallrelative($uid,$usergroup)
     {
       
       $count = count($company);
-
-
+  
+      
       for($i = 0; $i < $count; $i++)
       {
          
@@ -1003,17 +1003,17 @@ public function getallrelative($uid,$usergroup)
          
          
          
-         //echo $queryinsert;
+         // echo $check;exit;
           $exe = $connection->query($check);
           $getnum = trim($exe->numRows());
 
           if($getnum>0)
                 {
-                   echo $queryupdate;
+                   echo "update";exit;
                    $exegetqry = $connection->query($queryupdate);
                 }
                 else
-                {   echo $queryinsert;
+                {   
                     $exegetqry = $connection->query($queryinsert);
                 }
 
@@ -1072,11 +1072,11 @@ public function upannualselffirm($uid,$company,$interest,$decision,$transaction,
 
           if($getnum>0)
                 {
-                   echo $queryupdate;
+                   //echo $queryupdate;
                    $exegetqry = $connection->query($queryupdate);
                 }
                 else
-                {   echo $queryinsert;
+                {   //echo $queryinsert;
                     $exegetqry = $connection->query($queryinsert);
                 }
 

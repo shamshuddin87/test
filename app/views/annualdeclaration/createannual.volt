@@ -52,7 +52,7 @@
                         <section class="">
                            <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" >
                               <option value="">Select Option</option>
-                              <option value="yes">Yes</option>
+                              <option value="Yes">Yes</option>
                               <option value="No">No</option>
                            </select>
                         </section>
@@ -61,7 +61,7 @@
                         <section class="">
                            <select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" >
                               <option value="">Select Option</option>
-                              <option value="yes">Yes</option>
+                              <option value="Yes">Yes</option>
                               <option value="No">No</option>
                            </select>
                         </section>
@@ -125,7 +125,7 @@
                         <div class="input">
                            <select id="d2ques3" name="d2ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
                               <option value="">Select Option</option>
-                              <option value="yes">Yes</option>
+                              <option value="Yes">Yes</option>
                               <option value="No">No</option>
                            </select>
                         </div>
@@ -134,7 +134,7 @@
                         <div class="input">
                            <select id="d2ques4" name="d2ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
                               <option value="">Select Option</option>
-                              <option value="yes">Yes</option>
+                              <option value="Yes">Yes</option>
                               <option value="No">No</option>
                            </select>
                         </div>
@@ -186,7 +186,7 @@
                      <div class="input">
                      <select id="d3ques3" name="d3ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
                      <option value="">Select Option</option>
-                     <option value="yes">Yes</option>
+                     <option value="Yes">Yes</option>
                      <option value="No">No</option>
                      </select>
                      </div></td>
@@ -194,7 +194,7 @@
                      <div class="input">
                      <select id="d3ques4" name="d3ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
                      <option value="">Select Option</option>
-                     <option value="yes">Yes</option>
+                     <option value="Yes">Yes</option>
                      <option value="No">No</option>
                      </select>
                      </div>
@@ -245,7 +245,7 @@
                <div class="input">
                <select id="d4ques3" name="d4ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
+               <option value="Yes">Yes</option>
                <option value="No">No</option>
                </select>
                </div>
@@ -254,7 +254,7 @@
                <div class="input">
                <select id="d4ques4" name="d4ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
+               <option value="Yes">Yes</option>
                <option value="No">No</option>
                </select>
                </div>
@@ -321,7 +321,7 @@
                <div class="input">
                <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
+               <option value="Yes">Yes</option>
                <option value="No">No</option>
                </select>
                </div></td>
@@ -329,7 +329,7 @@
                <div class="input">
                <select id="d5ques4" name="d5ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
+               <option value="Yes">Yes</option>
                <option value="No">No</option>
                </select>
                </div>
@@ -407,7 +407,7 @@
                <div class="input">
                <select id="d6ques3" name="d6ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
+               <option value="Yes">Yes</option>
                <option value="No">No</option>
                </select>
                </div></td>
@@ -415,7 +415,7 @@
                <div class="input">
                <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
+               <option value="Yes">Yes</option>
                <option value="No">No</option>
                </select>
                </div>
@@ -487,7 +487,7 @@
                <div class="input">
                <select id="d7ques3" name="d7ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
+               <option value="Yes">Yes</option>
                <option value="No">No</option>
                </select>
                </div></td>
@@ -495,7 +495,7 @@
                <div class="input">
                <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12" required="">
                <option value="">Select Option</option>
-               <option value="yes">Yes</option>
+               <option value="Yes">Yes</option>
                <option value="No">No</option>
                </select>
                </div>
