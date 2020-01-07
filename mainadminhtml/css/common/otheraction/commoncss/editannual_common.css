@@ -8,6 +8,11 @@
     float: left;
     width: 100%;
 }
+
+td, th {
+    padding: 9px 7px;
+}
+
 /*################ Pagination Start ######################*/
 .paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
 .paginationmn .pagination ul li.inactive,
@@ -48,7 +53,7 @@ color:#bababa; border:1px solid #bababa; cursor: default;}
     cursor: pointer;
 }
 
-.inputbox3 , .selectbox4 {
+/*.inputbox3 , .selectbox4 {
 
     margin-top : 20px !important;
 }
@@ -56,8 +61,8 @@ color:#bababa; border:1px solid #bababa; cursor: default;}
 .inputbox4 , .selectbox5 {
 
     margin-top :40px !important;
-}
+}*/
 
-.inputbox5 {
+/*.inputbox5 {
     margin-top: 60px !important;
-}
+}*/
