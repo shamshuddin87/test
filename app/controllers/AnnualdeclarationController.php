@@ -1023,6 +1023,7 @@ class AnnualdeclarationController extends ControllerBase
 
         public function createannualAction()
     {
+       
         $uid = $this->session->loginauthspuserfront['id'];
         $usergroup = $this->session->loginauthspuserfront['user_group_id'];
         $relatives_info = $this->annualdeclarationcommon->relatives_info($uid);

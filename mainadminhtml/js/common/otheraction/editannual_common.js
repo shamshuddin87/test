@@ -512,8 +512,9 @@ function removehtml(clicked)
             styling: 'bootstrap3',
             addclass: 'dark ',
 
-          });
+          });\
            
+
             window.location.reload();
          
         }else{
