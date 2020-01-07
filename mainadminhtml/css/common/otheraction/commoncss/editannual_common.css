@@ -13,6 +13,10 @@ td, th {
     padding: 9px 7px;
 }
 
+.adddiv1section1.col-md-12 {
+    margin-top: 10px;
+}
+
 /*################ Pagination Start ######################*/
 .paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
 .paginationmn .pagination ul li.inactive,
