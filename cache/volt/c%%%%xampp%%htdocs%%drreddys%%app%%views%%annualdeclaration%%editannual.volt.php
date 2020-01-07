@@ -22,9 +22,10 @@
             <form action="annualdeclaration/updateannual" id="updateannual" method="post" autocomplete="off">
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                   <tr>
+                     <td style="border-right: 1px solid #f7f7f7; color: #000; font-weight: bold;  padding-right: 0px">1.</td>
                      <td colspan="4">
-                        <div class="col-md-12" >
-                           <label >1.Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
+                        <div class="">
+                           <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
 
                            
                                  <?php if($selfcompany){?>
@@ -44,8 +45,8 @@
                   ?>
                   <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; " width="100%"  id="test">
                   <tr >
-                     <td style="border-right: 1px solid #fff"></td>
-                     <td><label class="control-label">Company Name</label></td>
+                     <td style="border-right: 1px solid #f7f7f7; width: 2.5%" ></td>
+                     <td style="width: 22%"><label class="control-label">Company Name</label></td>
                      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                      <td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
                   </tr>
@@ -117,17 +118,20 @@
                
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                   <tr>
+                     <td style="border-right: 1px solid #f7f7f7; color: #000; font-weight: bold;  padding-right: 0px">2.</td>
+                  
                      <td colspan="5">
                         <div class="col-md-12" >
-                           <label >2. Are you Interested in ?</label>
+                           <label >Are you Interested in ?</label>
                         </div>
                      </td>
                   </tr>
               
                   <tr>
+
                      <td colspan="5">
-                        <div class="col-md-12">
-                           <label >i. Firm </label>
+                        <div class="">
+                           <label style="padding-left: 30px;">i. Firm </label>
                         </div>
                      </td>
                   </tr>
@@ -135,10 +139,10 @@
                 for($i=0; $i < count($selffirm); $i++){
                   ?>
                   <tr>
-                     <td style="border-right: 1px solid #fff"></td>
-                     <td>  <label class="control-label">Firm Name</label></td>
-                     <td>  <label class="control-label">Nature of Interest</label></td>
-                     <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
+                     <td style="border-right: 1px solid #f7f7f7"></td>
+                     <td><label class="control-label">Firm Name</label></td>
+                     <td><label class="control-label">Nature of Interest</label></td>
+                     <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                      <td>
                         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                      </td>
