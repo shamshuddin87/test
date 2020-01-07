@@ -10,6 +10,7 @@
 <div class="row">
 <div class="content">
 <!-- My messages -->
+
 <div class="mainelementfom">
    <div>
 
@@ -34,14 +35,14 @@
                                 <input type="radio"  name="showsec1" value="No" checked = "checked" onclick="showsection(this.id)">No
                                  <?php } ?>
 
-                             
-                          
-                           
                         </div>
                      </td>
                   </tr>
-                   <?php if($selfcompany){
+
+                   <?php 
                   for($i=0; $i < count($selfcompany); $i++){
+
+
                   ?>
                   <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; " width="100%"  id="test">
                   <tr >
@@ -69,14 +70,18 @@
                      <td>
                         <section class="">
                            <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" required="" >
-                               <option value="">Select Option</option>
-                              <?php if($selfcompany[$i]['decision']  == Yes){ ?>
+                           <option value="">Select Option</option>
+                           <?php if($selfcompany[$i]['decision']  == Yes){ ?>
                            <option value="Yes" selected>Yes</option>
                            <option value="No">No</option>
                           <?php }elseif($selfcompany[$i]['decision']  == No){ ?>
                            <option value="Yes" >Yes</option>
                            <option value="No" selected>No</option>
+                         <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No" selected>No</option>
                          <?php } ?>
+
                            </select>
                         </section>
                      </td>
@@ -90,13 +95,16 @@
                         <?php }elseif($selfcompany[$i]['transaction']  == No){ ?>
                            <option value="Yes" >Yes</option>
                            <option value="No" selected>No</option>
+                         <<?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No" selected>No</option>
                          <?php } ?>
                            </select>
                         </section>
                      </td>
                   </tr>
                   <tr>
-                  <?php }} ?>
+                  <?php } ?>
                      <td colspan="4" >
                         <div class = "appenddiv1 " id="appenddiv1">
                         </div>

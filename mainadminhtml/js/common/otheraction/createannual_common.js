@@ -46,8 +46,8 @@ function addhtml(clicked)
          addhtmlnxt += '<div class="row'+getlastid+' append_row3"  id="row'+getlastid+'" >';
           addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Company Name</label>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7"></td>';
+          addhtmlnxt += '<td style="width: 22%"><label class="control-label">Company Name</label>';
             addhtmlnxt += '</td>';
           addhtmlnxt += '<td><label class="control-label">Can you significantly influence the decision making of this company?</label>';
             addhtmlnxt += '</td>';
@@ -82,7 +82,7 @@ function addhtml(clicked)
           addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Firm Name</label>';
+          addhtmlnxt += '<td style="width: 22%"><label class="control-label">Firm Name</label>';
           addhtmlnxt += '</td>';
             addhtmlnxt += '<td><label class="control-label">Nature of Interest</label>';
           addhtmlnxt += '</td>';
