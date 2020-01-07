@@ -1009,7 +1009,7 @@ public function getallrelative($uid,$usergroup)
 
           if($getnum>0)
                 {
-                   echo "update";exit;
+                   //echo "update";exit;
                    $exegetqry = $connection->query($queryupdate);
                 }
                 else
@@ -1135,11 +1135,11 @@ public function upannualselfpubprivate($uid,$company,$interest,$decision,$transa
 
           if($getnum>0)
                 {
-                   echo $queryupdate;
+                  // echo $queryupdate;
                    $exegetqry = $connection->query($queryupdate);
                 }
                 else
-                {   echo $queryinsert;
+                {   //echo $queryinsert;
                     $exegetqry = $connection->query($queryinsert);
                 }
 
@@ -1197,11 +1197,11 @@ public function upannualselfpubshare($uid,$company,$interest,$decision,$transact
 
           if($getnum>0)
                 {
-                   echo $queryupdate;
+                   //echo $queryupdate;
                    $exegetqry = $connection->query($queryupdate);
                 }
                 else
-                {   echo $queryinsert;
+                {   //echo $queryinsert;
                     $exegetqry = $connection->query($queryinsert);
                 }
 
@@ -1260,11 +1260,11 @@ public function upannualrelativecompany($uid,$relative,$company,$decision,$trans
 
           if($getnum>0)
                 {
-                   echo $queryupdate;
+                   //echo $queryupdate;
                    $exegetqry = $connection->query($queryupdate);
                 }
                 else
-                {   echo $queryinsert;
+                {   //echo $queryinsert;
                     $exegetqry = $connection->query($queryinsert);
                 }
 
