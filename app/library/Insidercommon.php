@@ -150,7 +150,7 @@ class Insidercommon extends Component
                 {
                     $row = $exessa->fetch();
                     
-                    $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$row['user_id'],$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate']);
+                    $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$row['user_id'],$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode']);
                     
                     if($data)
                     {
@@ -196,7 +196,7 @@ class Insidercommon extends Component
                 // print_r($lastid);exit;     
                
                
-                $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$lastid,$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate']);
+                $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$lastid,$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode']);
                
                
                 if($data)
@@ -252,7 +252,7 @@ class Insidercommon extends Component
             fullname = '".$updatemas['fullname']."', 
             firstname= '".$updatemas['firstname']."', lastname= '".$updatemas['lastname']."',
             mobile = '".$updatemas['mobile']."', designation = '".$updatemas['designation']."',
-            reminderdays = '".$updatemas['reminderdays']."', access = '".$updatemas['accrgt']."',
+            reminderdays = '".$updatemas['reminderdays']."',employeecode='".$updatemas['employeecode']."', access = '".$updatemas['accrgt']."',
             deptaccess = '".$updatemas['deptaccessid']."', cmpaccess = '".$updatemas['cmpnyaccessid']."',
             approvid='".$updatemas['approvername']."', dpdate='".$updatemas['dpdate']."',
             date_added = NOW(), date_modified=NOW(), timeago='".$time."'
