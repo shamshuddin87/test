@@ -61,6 +61,7 @@ class UsermasterController extends ControllerBase
 
                 $deptaccessid = $this->request->getPost('deptaccess','trim');
                 $approvername=$this->request->getPost('approvernm','trim');
+                $employeecode = $this->request->getPost('employeecode','trim');
                  // print_r($approvername);exit;
               
                         
@@ -72,6 +73,11 @@ class UsermasterController extends ControllerBase
                 else if(empty($lastname))
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Your Last Name');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($employeecode))
+                {
+                    $data = array("logged" => false,'message' => 'Please Provide Your Employee Code');
                     $this->response->setJsonContent($data);
                 }
                   else if(empty($dpdate))
@@ -151,6 +157,7 @@ class UsermasterController extends ControllerBase
                     $insertmas['cmpnyaccessid'] = $cmpnyaccessid;
                     $insertmas['approvername'] = $approvername;
                     $insertmas['dpdate']= $dpdate;
+                    $insertmas['employeecode']= $employeecode;
                     //print_r($insertmas);exit;
 
                     $insermresponse = $this->insidercommon->insertmasterlist($insertmas);     
@@ -226,6 +233,7 @@ class UsermasterController extends ControllerBase
                 //  print_r($typeofusr); exit;
 
                 $deptaccessid = $this->request->getPost('deptaccess','trim');
+                $employeecode = $this->request->getPost('empcode','trim');
                 $approvername=$this->request->getPost('approveid','trim');
               
                 if(empty($firstname))
@@ -307,6 +315,7 @@ class UsermasterController extends ControllerBase
                     $updatemas['mlistid'] = $mlistid;
                     $updatemas['approvername'] = $approvername;
                     $updatemas['dpdate']=$dpdate;
+                    $updatemas['employeecode']= $employeecode;
                     //print_r($updatemas);exit;
 
                     $chkresponse = $this->insidercommon->updatemasterlist($updatemas);

@@ -4,7 +4,7 @@ use Phalcon\Mvc\User\Component;
 class Commonquerycommon extends Component
 {
     
-    public function commoninsertlogic($getuserid,$cin,$user_group_id,$last_id,$fullname,$firstname,$lastname,$email,$mobile,$gender,$designation,$reminderdays,$pwdemail,$accrgt,$deptaccessid,$approvid,$dpdate)
+    public function commoninsertlogic($getuserid,$cin,$user_group_id,$last_id,$fullname,$firstname,$lastname,$email,$mobile,$gender,$designation,$reminderdays,$pwdemail,$accrgt,$deptaccessid,$approvid,$dpdate,$empcode)
     {
         // $connection = $this->db;
         $connectiondbtrd = $this->dbtrd;
@@ -13,12 +13,12 @@ class Commonquerycommon extends Component
         $queryinsertml = "INSERT INTO `it_memberlist`
             (`user_id`,`master_group_id`,
             `wr_id`,`fullname`,`firstname`,`lastname`,
-            `email`,`mobile`,`gender_id`,`designation`,
+            `email`,`mobile`,`gender_id`,`employeecode`,`designation`,
             `reminderdays`,`access`,`deptaccess`,`cmpaccess`,`dpdate`,
             `date_added`,`date_modified`,`timeago`,`approvid`,`status`)
             VALUES ('".$getuserid."','".$user_group_id."',
             '".$last_id."','".$fullname."','".$firstname."','".$lastname."',
-            '".$email."','".$mobile."','".$gender."','".$designation."',
+            '".$email."','".$mobile."','".$gender."','".$empcode."','".$designation."',
             '".$reminderdays."','".$accrgt."','".$deptaccessid."','".$cin."','".$dpdate."',
             NOW(),NOW(),'".$time."','".$approvid."',1) ";
          // print_r($queryinsertml); exit;

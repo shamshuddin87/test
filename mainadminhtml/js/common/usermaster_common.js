@@ -244,7 +244,7 @@ function getuserlistonload()
                     var companyname=response.data[i].companyname?response.data[i].companyname:'NONE';
                     var departmentname=response.data[i].department?response.data[i].department:'NONE'
                     // var  reminderdays=response.data[i].reminderdays?response.data[i].reminderdays:'NONE';
-
+                    var employeecode=response.data[i].employeecode?response.data[i].employeecode:'';
                     //console.log(response.data.length); return false;
                     //------------------------- Table Fields Insertion START ------------------------
                     //var created = response.data[i].date_added.split(' ')[0];
@@ -252,6 +252,7 @@ function getuserlistonload()
                     var j=i+1;
                     addhtmlnxt += '<tr class="counter" tempid="'+response.data[i].id+'" >';
                     addhtmlnxt += '<td width="15%">'+j+'</td>';
+                    addhtmlnxt += '<td width="10%">'+employeecode+'</td>';
                     addhtmlnxt += '<td width="15%">'+fullname+'</td>';
                     addhtmlnxt += '<td width="15%">'+email+'</td>';
                     // addhtmlnxt += '<td width="15%">'+mobile+'</td>';
@@ -408,10 +409,12 @@ website('body').on('click','.dbeditme',function(e){
                        // var reminderdays=response.data[i].reminderdays?response.data[i].reminderdays:'';
                        var approveid=response.data[i].approvid?response.data[i].approvid:'';
                        var approver=response.data[i].approver?response.data[i].approver:'';
+                       var employeecode=response.data[i].employeecode?response.data[i].employeecode:'';
                           website('#Mymodaledit #mlistid').val(response.data[i].id)
                           website('#Mymodaledit #firstname').val(firstname);
                           website('#Mymodaledit #lastname').val(lastname);
                           website('#Mymodaledit #email').val(email);
+                          website('#Mymodaledit #empcode').val(employeecode);
                           // website('#Mymodaledit #mobile').val(mobile);
                           website('#Mymodaledit #designation').val(designation);
                           // website('#Mymodaledit #reminderdays').val(reminderdays);
