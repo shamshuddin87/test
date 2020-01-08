@@ -39,7 +39,7 @@ color:#bababa; border:1px solid #bababa; cursor: default;}
 .inputbox5 { margin-top: 60px !important;}
 
 .typography.form_pad {
-    background: #fff;
+  /*  background: #fff;*/
     padding: 19px 12px;
     box-shadow: 2px 3px 5px #ccc;
     margin: 10px 0;
