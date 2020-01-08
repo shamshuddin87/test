@@ -845,7 +845,7 @@ class AnnualdeclarationController extends ControllerBase
                 $d7ques4 = $this->request->getPost('d7ques4');
                 $d7ques5 = $this->request->getPost('d7ques5');
 
-                 $uniqid = uniqid();
+                $uniqid = uniqid();
                
                
                
@@ -916,6 +916,7 @@ class AnnualdeclarationController extends ControllerBase
                 $d1ques3 = $this->request->getPost('d1ques3');
 
 
+
                 $d2ques1 = $this->request->getPost('d2ques1');
                 $d2ques2 = $this->request->getPost('d2ques2');
                 $d2ques3 = $this->request->getPost('d2ques3');
@@ -949,6 +950,7 @@ class AnnualdeclarationController extends ControllerBase
                 $d7ques5 = $this->request->getPost('d7ques5');
 
                 $uniqueid = $this->request->getPost('uniqueid');
+                 //print_r($uniqueid);exit;
                 //$uniqueid = '5e0ec764808fc';
                 
                 //ids of individual divs
@@ -959,6 +961,7 @@ class AnnualdeclarationController extends ControllerBase
                  $d5id = $this->request->getPost('d5id');
                  $d6id = $this->request->getPost('d6id');
                  $d7id = $this->request->getPost('d7id');
+                 //print_r($d1id);exit;
 
 
 
@@ -987,8 +990,11 @@ class AnnualdeclarationController extends ControllerBase
            
 
                         if($getres1 || $getres2 || $getres3 || $getres4 || $getres5  || $getres6 || $getres7)
-                        {  
-                            $data = array("logged" => true,'message' => 'Record Updated' );
+                        { 
+
+                            $data = array("logged" => true,'message' => 'Record Updated','uniqueid' => $uniqueid );
+                            //print_r($data);exit;
+
                             $this->response->setJsonContent($data);
                         }
                         else
@@ -997,6 +1003,8 @@ class AnnualdeclarationController extends ControllerBase
                             $this->response->setJsonContent($data);
                         } 
                     }
+
+
 
                       $this->response->send();
 
@@ -1015,16 +1023,58 @@ class AnnualdeclarationController extends ControllerBase
 
         public function createannualAction()
     {
+       
         $uid = $this->session->loginauthspuserfront['id'];
         $usergroup = $this->session->loginauthspuserfront['user_group_id'];
         $relatives_info = $this->annualdeclarationcommon->relatives_info($uid);
+
+
+
+        $this->view->relativesinfo = $relatives_info;
+
        
 
+    }
 
-        $this->view->$relativesinfo = $relatives_info;
+     public function fetchrelativeAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
 
-       
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $getres =$this->annualdeclarationcommon->relatives_info($getuserid);
 
+                if($getres)
+                {
+                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres,'user_group_id'=>$user_group_id);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "Record Not Added..!!");
+                    $this->response->setJsonContent($data);
+                }
+                
+
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
     }
 
 
@@ -1034,13 +1084,16 @@ class AnnualdeclarationController extends ControllerBase
         $usergroup = $this->session->loginauthspuserfront['user_group_id'];
 
         $this->view->$uid;
-         $uniqueid = $this->request->getPost('uniqueid');
-        // $uniqueid = '5e0ec764808fc';
+         $uniqueid = $_GET['id'];
+         //print_r($uniqueid);exit;
+        //$uniqueid = '5e0ec764808fc';
+        $this->view->uniqueid  = $uniqueid;
 
-        $relatives = $this->annualdeclarationcommon->get_relatives($uid,$usergroup);
-         $this->view->relatives = $relatives;
+       $relatives_info = $this->annualdeclarationcommon->relatives_info($uid);
+           $this->view->relativesinfo = $relatives_info;
 
         $getresponse1 = $this->annualdeclarationcommon->annual_self_company($uid,$usergroup,$uniqueid);
+
         $this->view->selfcompany = $getresponse1;
         $getresponse2 = $this->annualdeclarationcommon->annual_self_firm($uid,$usergroup,$uniqueid);
         $this->view->selffirm = $getresponse2;
@@ -1054,8 +1107,9 @@ class AnnualdeclarationController extends ControllerBase
         $getresponse6 = $this->annualdeclarationcommon->annual_relative_firm($uid,$usergroup,$uniqueid);
         //print_r($getresponse6);exit;
         $this->view->relativefirm = $getresponse6;
+
         $getresponse7 = $this->annualdeclarationcommon->annual_relative_pubpri($uid,$usergroup,$uniqueid);
-         $this->view->relativepublic = $getresponse7;      
+        $this->view->relativepublic = $getresponse7;      
 
        
 

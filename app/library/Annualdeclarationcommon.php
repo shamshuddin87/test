@@ -740,6 +740,7 @@ public function getallrelative($uid,$usergroup)
       $myarr=array();
       $time = time();
       $query="SELECT * FROM annual_self_company WHERE user_id='".$uid."' && uniqueid= '".$uniqueid."'";
+      //print_r($query);exit; 
       try{
            $exeget = $connection->query($query);
            $getnum = trim($exeget->numRows());
@@ -986,11 +987,16 @@ public function getallrelative($uid,$usergroup)
     {
       
       $count = count($company);
-
-
+      
+      $delid = implode(',', $id);
+      //print_r($delid);exit;
+      
       for($i = 0; $i < $count; $i++)
       {
-         
+       
+         // $querydelete = "DELETE FROM `annual_self_company` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
+        // print_r($querydelete);exit;
+
          $check = "SELECT * from annual_self_company WHERE user_id='".$uid."' && uniqueid= '".$unique."' && id= '".$id[$i]."' ";  
 
          $queryupdate =  "UPDATE `annual_self_company` SET `company` = '".$company[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = '".$id[$i]."'";
@@ -1001,18 +1007,20 @@ public function getallrelative($uid,$usergroup)
                            
          
          
-         
-         //echo $queryinsert;
+         // $exedel = $connection->query($querydelete);
+          //print_r($exedel);exit;
+          //$getnum = trim($exedel->numRows());
+         // echo $check;exit;
           $exe = $connection->query($check);
           $getnum = trim($exe->numRows());
 
           if($getnum>0)
                 {
-                   echo $queryupdate;
+                   //echo "update";exit;
                    $exegetqry = $connection->query($queryupdate);
                 }
                 else
-                {   echo $queryinsert;
+                {   
                     $exegetqry = $connection->query($queryinsert);
                 }
 
@@ -1048,6 +1056,7 @@ public function upannualselffirm($uid,$company,$interest,$decision,$transaction,
     {
       
       $count = count($company);
+      $delid = implode(',', $id);
 
 
       for($i = 0; $i < $count; $i++)
@@ -1071,11 +1080,11 @@ public function upannualselffirm($uid,$company,$interest,$decision,$transaction,
 
           if($getnum>0)
                 {
-                   echo $queryupdate;
+                   //echo $queryupdate;
                    $exegetqry = $connection->query($queryupdate);
                 }
                 else
-                {   echo $queryinsert;
+                {   //echo $queryinsert;
                     $exegetqry = $connection->query($queryinsert);
                 }
 
@@ -1111,6 +1120,7 @@ public function upannualselfpubprivate($uid,$company,$interest,$decision,$transa
     {
       
       $count = count($company);
+      $delid = implode(',', $id);
 
 
       for($i = 0; $i < $count; $i++)
@@ -1134,11 +1144,11 @@ public function upannualselfpubprivate($uid,$company,$interest,$decision,$transa
 
           if($getnum>0)
                 {
-                   echo $queryupdate;
+                  // echo $queryupdate;
                    $exegetqry = $connection->query($queryupdate);
                 }
                 else
-                {   echo $queryinsert;
+                {   //echo $queryinsert;
                     $exegetqry = $connection->query($queryinsert);
                 }
 
@@ -1173,6 +1183,7 @@ public function upannualselfpubshare($uid,$company,$interest,$decision,$transact
     {
       
       $count = count($company);
+      $delid = implode(',', $id);
 
 
       for($i = 0; $i < $count; $i++)
@@ -1196,11 +1207,11 @@ public function upannualselfpubshare($uid,$company,$interest,$decision,$transact
 
           if($getnum>0)
                 {
-                   echo $queryupdate;
+                   //echo $queryupdate;
                    $exegetqry = $connection->query($queryupdate);
                 }
                 else
-                {   echo $queryinsert;
+                {   //echo $queryinsert;
                     $exegetqry = $connection->query($queryinsert);
                 }
 
@@ -1236,6 +1247,7 @@ public function upannualrelativecompany($uid,$relative,$company,$decision,$trans
     {
       
       $count = count($company);
+      $delid = implode(',', $id);
 
 
       for($i = 0; $i < $count; $i++)
@@ -1259,11 +1271,11 @@ public function upannualrelativecompany($uid,$relative,$company,$decision,$trans
 
           if($getnum>0)
                 {
-                   echo $queryupdate;
+                   //echo $queryupdate;
                    $exegetqry = $connection->query($queryupdate);
                 }
                 else
-                {   echo $queryinsert;
+                {   //echo $queryinsert;
                     $exegetqry = $connection->query($queryinsert);
                 }
 
@@ -1299,6 +1311,7 @@ public function upannualrelativefirm($uid,$relative,$company,$interest,$decision
     {
       
       $count = count($company);
+      $delid = implode(',', $id);
 
 
       for($i = 0; $i < $count; $i++)
@@ -1322,11 +1335,11 @@ public function upannualrelativefirm($uid,$relative,$company,$interest,$decision
 
           if($getnum>0)
                 {
-                   echo $queryupdate;
+                   //echo $queryupdate;
                    $exegetqry = $connection->query($queryupdate);
                 }
                 else
-                {   echo $queryinsert;
+                {   //echo $queryinsert;
                     $exegetqry = $connection->query($queryinsert);
                 }
 
@@ -1362,6 +1375,7 @@ public function upannualrelativepublicshare($uid,$relative,$company,$interest,$d
     {
       
       $count = count($company);
+      $delid = implode(',', $id);
 
 
       for($i = 0; $i < $count; $i++)

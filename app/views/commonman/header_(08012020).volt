@@ -93,16 +93,11 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
              </ul> 
             </li> -->
           
-              
-             
-             <?php if($gettypm['user_group_id']=='2'){ ?>
-              <li>
+             <li>
                <a href="companymodule"><i class="fa fa-file-excel-o" ></i>Listed Company Module</a>
-             </li>
-
+             </li> 
              
-              <?php if($gettypm['user_group_id']=='2'){ ?>
-               <li>
+              <li>
                <a href="approvelperinfo"><i class="fa fa-eye"></i>View Personal Info</a>
              </li>   
              
@@ -113,7 +108,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
                <li>
                  <a href="exceptionreq/exception_req"><i class="fa fa-eye"></i>View Exception request</a>
                 </li> 
-
+              
               <li>
                   <a class="click_board click_board3" href="javascript:;"><i class="glyphicon glyphicon-cog"></i>Admin Module<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
@@ -130,8 +125,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
                     
              </ul> 
             </li>
-            <?php  } ?>
-            <?php  } ?>
+            
 
 
               
@@ -153,7 +147,6 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
             
              </ul> 
             </li>
-            <?php if($gettypm['user_group_id']!='2'){ ?>
              <li>
             <a class="click_board click_board3" ><i class="fa fa-line-chart fa-5x"></i> Holding Summary<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu"> 
@@ -166,20 +159,17 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
                     </li> 
                 </ul> 
         </li>
-      <?php  } ?>
+      
             <li>
                <a href="blackoutperiod"><i class="fa fa-ban fa-5x" id="cmp_mst"></i>Trading Window</a>
              </li>
-             <?php if($gettypm['user_group_id']!='2'){ ?>
              <li>
                <a href="tradingplan"><i class="fa fa-edit fa-5x" id="cmp_mst"></i>Trading Plan</a>
              </li> 
-            <?php  } ?>
-              <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='2') {?>
             <li>
                <a href="tradingplan/planreqstview"><i class="fa fa-eye" id="cmp_mst"></i>View Trade Plan</a>
              </li>
-            <?php } ?>
+           
 
         <?php } ?>
 
@@ -265,7 +255,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
   
             </ul> 
          </li> -->
-   <!--       <li><a class="click_board click_board3" href="javascript:;"><i class="fa fa-share-alt"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a>
+         <li><a class="click_board click_board3" href="javascript:;"><i class="fa fa-share-alt"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
              <li>
                   <a href="sensitiveinformation/recipient"><i class="" id="cmp_mst"></i>Connected Person</a>
@@ -293,7 +283,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
              </li> 
          <li>
                <a href="tradingplan"><i class="fa fa-edit fa-5x" id="cmp_mst"></i>Trading Plan</a>
-             </li> --> 
+             </li> 
          
        
          
@@ -307,11 +297,11 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
          
           
    
-         <!-- <?php if($gettypm['user_group_id']=='14'){  ?>
+         <?php if($gettypm['user_group_id']=='14'){  ?>
             <li>
                <a href="tradingplan/planreqstview"><i class="fa fa-eye" id="cmp_mst"></i>View Trade Plan</a>
              </li>
-         <?php }  ?> -->
+         <?php }  ?>
 
          <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'){  ?>
          <li>
