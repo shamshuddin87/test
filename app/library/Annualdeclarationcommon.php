@@ -987,11 +987,16 @@ public function getallrelative($uid,$usergroup)
     {
       
       $count = count($company);
-  
+      
+      $delid = implode(',', $id);
+      //print_r($delid);exit;
       
       for($i = 0; $i < $count; $i++)
       {
-         
+       
+         // $querydelete = "DELETE FROM `annual_self_company` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
+        // print_r($querydelete);exit;
+
          $check = "SELECT * from annual_self_company WHERE user_id='".$uid."' && uniqueid= '".$unique."' && id= '".$id[$i]."' ";  
 
          $queryupdate =  "UPDATE `annual_self_company` SET `company` = '".$company[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = '".$id[$i]."'";
@@ -1002,7 +1007,9 @@ public function getallrelative($uid,$usergroup)
                            
          
          
-         
+         // $exedel = $connection->query($querydelete);
+          //print_r($exedel);exit;
+          //$getnum = trim($exedel->numRows());
          // echo $check;exit;
           $exe = $connection->query($check);
           $getnum = trim($exe->numRows());
@@ -1049,6 +1056,7 @@ public function upannualselffirm($uid,$company,$interest,$decision,$transaction,
     {
       
       $count = count($company);
+      $delid = implode(',', $id);
 
 
       for($i = 0; $i < $count; $i++)
@@ -1112,6 +1120,7 @@ public function upannualselfpubprivate($uid,$company,$interest,$decision,$transa
     {
       
       $count = count($company);
+      $delid = implode(',', $id);
 
 
       for($i = 0; $i < $count; $i++)
@@ -1174,6 +1183,7 @@ public function upannualselfpubshare($uid,$company,$interest,$decision,$transact
     {
       
       $count = count($company);
+      $delid = implode(',', $id);
 
 
       for($i = 0; $i < $count; $i++)
@@ -1237,6 +1247,7 @@ public function upannualrelativecompany($uid,$relative,$company,$decision,$trans
     {
       
       $count = count($company);
+      $delid = implode(',', $id);
 
 
       for($i = 0; $i < $count; $i++)
@@ -1300,6 +1311,7 @@ public function upannualrelativefirm($uid,$relative,$company,$interest,$decision
     {
       
       $count = count($company);
+      $delid = implode(',', $id);
 
 
       for($i = 0; $i < $count; $i++)
@@ -1363,6 +1375,7 @@ public function upannualrelativepublicshare($uid,$relative,$company,$interest,$d
     {
       
       $count = count($company);
+      $delid = implode(',', $id);
 
 
       for($i = 0; $i < $count; $i++)

@@ -44,8 +44,8 @@ function addhtml(clicked)
          addhtmlnxt += '<div class="row'+getlastid+' append_row3"  id="row'+getlastid+'" >';
           addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Company Name</label>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7"></td>';
+          addhtmlnxt += '<td style="width: 22%"><label class="control-label">Company Name</label>';
             addhtmlnxt += '</td>';
           addhtmlnxt += '<td><label class="control-label">Can you significantly influence the decision making of this company?</label>';
             addhtmlnxt += '</td>';
@@ -80,7 +80,7 @@ function addhtml(clicked)
           addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Firm Name</label>';
+          addhtmlnxt += '<td style="width: 22%"><label class="control-label">Firm Name</label>';
           addhtmlnxt += '</td>';
             addhtmlnxt += '<td><label class="control-label">Nature of Interest</label>';
           addhtmlnxt += '</td>';
@@ -121,7 +121,7 @@ function addhtml(clicked)
           addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Company Name</label>';
+          addhtmlnxt += '<td style="width: 22%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
             addhtmlnxt += '<td><label class="control-label">Nature of Interest</label>';
           addhtmlnxt += '</td>';
@@ -165,7 +165,7 @@ function addhtml(clicked)
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Company Name</label>';
+          addhtmlnxt += '<td style="width: 22%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
             addhtmlnxt += '<td><label class="control-label">Nature of Interest</label>';
           addhtmlnxt += '</td>';
@@ -210,8 +210,8 @@ function addhtml(clicked)
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Relative Name</label>';
-          addhtmlnxt += '</td>';
+          addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
+          addhtmlnxt += '</td style="width: 22%">';
             addhtmlnxt += '<td><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
           addhtmlnxt += '<td><label class="control-label">Can this relative significantly influence the decision making of this company?</label>';
@@ -266,9 +266,9 @@ function addhtml(clicked)
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Relative Name</label>';
+          addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
           addhtmlnxt += '</td>';
-            addhtmlnxt += '<td><label class="control-label">Firm Name</label>';
+            addhtmlnxt += '<td style="width: 22%"><label class="control-label">Firm Name</label>';
           addhtmlnxt += '</td>';
 
            addhtmlnxt += '<td><label class="control-label">Nature of interest</label>';
@@ -320,9 +320,9 @@ function addhtml(clicked)
        addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
-          addhtmlnxt += '<td><label class="control-label">Relative Name</label>';
+          addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
           addhtmlnxt += '</td>';
-            addhtmlnxt += '<td><label class="control-label">Company Name</label>';
+            addhtmlnxt += '<td style="width: 20%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
 
            addhtmlnxt += '<td><label class="control-label">Nature of interest</label>';
@@ -388,10 +388,10 @@ function removehtml(clicked)
         
         var count = website('.appendd1').attr('plancntr');
 
-        if(count != 1)
+        if(count != 0)
         {
-
-              website('.appenddiv1 #row'+count).remove();
+             //alert(count);
+              website('#row'+count).remove();
               website('.appendd1').attr('plancntr',parseInt(count)-1);
              
         }
@@ -403,9 +403,9 @@ function removehtml(clicked)
     }else if(rmid == 'remvdiv2'){
 
         var count = website('.appendd2').attr('plancntr');
-        if(count != 1)
-        {
-              website('.appenddiv2 #row'+count).remove();
+        if(count != 0)
+        { 
+              website('#row'+count).remove();
               website('.appendd2').attr('plancntr',parseInt(count)-1);
         }
         else
@@ -501,29 +501,24 @@ function removehtml(clicked)
       {  website('.preloder_wraper').fadeIn(); },
       success: function(response, textStatus, jqXHR)
       {
-        console.log(response);return false;
-        if(response.logged===true)
+        //console.log(response);return false;
+        if(response.logged == true)
         {  
-          
-         
-           //console.log(response['uniqueid']);
-          new PNotify({title: 'Record Updated Successfully',
+
+           new PNotify({ title: 'Record Updated Successfully',
             text: response.message,
             type: 'university',
             hide: true,
             styling: 'bootstrap3',
             addclass: 'dark ',
-          });
-           window.location.reload();
 
-      
-         
+          });\
            
+
+            window.location.reload();
          
-           
-            
         }else{
-          new PNotify({title: 'Record Not Added',
+           new PNotify({title: 'Record Not Updated Successfully',
             text: response.message,
             type: 'university',
             hide: true,

@@ -916,6 +916,7 @@ class AnnualdeclarationController extends ControllerBase
                 $d1ques3 = $this->request->getPost('d1ques3');
 
 
+
                 $d2ques1 = $this->request->getPost('d2ques1');
                 $d2ques2 = $this->request->getPost('d2ques2');
                 $d2ques3 = $this->request->getPost('d2ques3');
@@ -960,6 +961,7 @@ class AnnualdeclarationController extends ControllerBase
                  $d5id = $this->request->getPost('d5id');
                  $d6id = $this->request->getPost('d6id');
                  $d7id = $this->request->getPost('d7id');
+                 //print_r($d1id);exit;
 
 
 
@@ -991,7 +993,8 @@ class AnnualdeclarationController extends ControllerBase
                         { 
 
                             $data = array("logged" => true,'message' => 'Record Updated' );
-                            
+                            //print_r($data);exit;
+
                             $this->response->setJsonContent($data);
                         }
                         else
@@ -1000,6 +1003,7 @@ class AnnualdeclarationController extends ControllerBase
                             $this->response->setJsonContent($data);
                         } 
                     }
+
 
 
                       $this->response->send();
@@ -1019,6 +1023,7 @@ class AnnualdeclarationController extends ControllerBase
 
         public function createannualAction()
     {
+       
         $uid = $this->session->loginauthspuserfront['id'];
         $usergroup = $this->session->loginauthspuserfront['user_group_id'];
         $relatives_info = $this->annualdeclarationcommon->relatives_info($uid);
