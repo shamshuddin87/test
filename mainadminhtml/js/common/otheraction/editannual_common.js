@@ -409,7 +409,8 @@ function annualmodal(uniqueid){
               //console.log(response); return false;
               if(response.logged===true)
               {
-                
+                 
+
                   website('.modalform').html(response.pdf_content);
 
 
@@ -830,7 +831,8 @@ function removehtml(clicked)
 
            // window.location.reload();
          
-        }else{
+        }else
+        {
            new PNotify({title: 'Record Not Updated Successfully',
             text: response.message,
             type: 'university',
