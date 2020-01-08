@@ -32,7 +32,7 @@ class UsermasterController extends ControllerBase
         $getuserid = $this->session->loginauthspuserfront['id'];
         $cin = $this->session->memberdoccin;
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];   
-        
+        $todate = date('d-m-Y');
         if($this->request->isPost() == true)
         {
             if($this->request->isAjax() == true)
@@ -64,7 +64,7 @@ class UsermasterController extends ControllerBase
                 $employeecode = $this->request->getPost('employeecode','trim');
                  // print_r($approvername);exit;
               
-                        
+                $dupliempcode = $this->commonquerycommon->checkifduplidata($getuserid,$employeecode,'');          
                 if(empty($firstname))
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Your First Name');
@@ -80,9 +80,19 @@ class UsermasterController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Your Employee Code');
                     $this->response->setJsonContent($data);
                 }
-                  else if(empty($dpdate))
+                else if($dupliempcode)
+                {
+                    $data = array("logged" => false,'message' => 'Employee Code Already Exist..!!');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($dpdate))
                 {
                     $data = array("logged" => false,'message' => 'Please Select Date Of Becoming Designated Person ');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($dpdate) > strtotime($todate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of becoming DP should be in past');
                     $this->response->setJsonContent($data);
                 }
                 else if($firstnamecheck==true)
@@ -119,6 +129,16 @@ class UsermasterController extends ControllerBase
                 else if(!isset($deptaccessid))
                 {
                     $data = array("logged" => false,'message' => 'Please Select Atleast 1 Department');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($approvername))
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Approver');
+                    $this->response->setJsonContent($data);
+                }
+                else if($dupliempcode)
+                {
+                    $data = array("logged" => false,'message' => 'Employee Code Already Exist..!!');
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -196,7 +216,7 @@ class UsermasterController extends ControllerBase
         $getuserid = $this->session->loginauthspuserfront['id'];
         $cin = $this->session->memberdoccin;
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];   
-        
+        $todate = date('d-m-Y');
         if($this->request->isPost() == true)
         {
             if($this->request->isAjax() == true)
@@ -234,6 +254,8 @@ class UsermasterController extends ControllerBase
 
                 $deptaccessid = $this->request->getPost('deptaccess','trim');
                 $employeecode = $this->request->getPost('empcode','trim');
+                $userid = $this->request->getPost('userid','trim');
+                $dupliempcode = $this->commonquerycommon->checkifduplidata($getuserid,$employeecode,$userid);
                 $approvername=$this->request->getPost('approveid','trim');
               
                 if(empty($firstname))
@@ -249,6 +271,11 @@ class UsermasterController extends ControllerBase
                  else if(empty($dpdate))
                 {
                     $data = array("logged" => false,'message' => 'PleaseSelect Date Of Becoming Designated Person');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($dpdate) > strtotime($todate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of becoming DP should be in past');
                     $this->response->setJsonContent($data);
                 }
                 else if($typeofusr=='')
@@ -285,6 +312,16 @@ class UsermasterController extends ControllerBase
                 else if(!isset($deptaccessid))
                 {
                     $data = array("logged" => false,'message' => 'Please Select Atleast 1 Department');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($approvername))
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Approver');
+                    $this->response->setJsonContent($data);
+                }
+                else if($dupliempcode)
+                {
+                    $data = array("logged" => false,'message' => 'Employee Code Already Exist..!!');
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -330,8 +367,8 @@ class UsermasterController extends ControllerBase
                         $data = array("logged" => false,'message' => 'Record Not Updated');
                         $this->response->setJsonContent($data);
                     } 
-                    $this->response->send();  
                 }
+                $this->response->send(); 
             }
             else
             {
