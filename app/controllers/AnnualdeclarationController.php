@@ -992,7 +992,7 @@ class AnnualdeclarationController extends ControllerBase
                         if($getres1 || $getres2 || $getres3 || $getres4 || $getres5  || $getres6 || $getres7)
                         { 
 
-                            $data = array("logged" => true,'message' => 'Record Updated' );
+                            $data = array("logged" => true,'message' => 'Record Updated','uniqueid' => $uniqueid );
                             //print_r($data);exit;
 
                             $this->response->setJsonContent($data);

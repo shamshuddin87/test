@@ -370,7 +370,7 @@ function addhtml(clicked)
        var addhtmlnxt='';
       
       }
-       },
+      },
         complete: function(response)
         {},
         error: function(jqXHR, textStatus, errorThrown)
@@ -508,14 +508,12 @@ if(id == 'showsec1'){
 }
 
 
-
-
 }
 
  
    
  
-  function annualmodal(uniqueid){
+function annualmodal(uniqueid){
 
    // website('#Mymodaldeclara').modal('show');
     
@@ -559,219 +557,219 @@ if(id == 'showsec1'){
           {
               
           }
-  });
-  }
+});
+}
 
 
 
 
 
 
-function getpdfdata(uniqueid)
-{
-  
+      function getpdfdata(uniqueid)
+      {
+        
 
-    var formData = {uniqueid:uniqueid};
-    website.ajax({
-          url:'annualdeclaration/fetchannualdeclaration',
-           data: formData,
-          //data:formdata,
-          method:'POST',
-          //contentType:'json',
-          contentType:'application/x-www-form-urlencoded; charset=UTF-8',
-          //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
-          dataType:"json",
-          cache:false,
-          //async:true, /*Cross domain checking*/
-          beforeSend: function()
-          {  website('.preloder_wraper').fadeIn();  },
-          uploadProgress: function(event, position, total, percentComplete)
-          {   },
-          success: function(response, textStatus, jqXHR)
-          { 
-              if(response.logged==true)
-              {
-                   var addhtmlnxt='';
-                   var addhtmlnxt1='';
-                   var addhtmlnxt2='';
-                   var addhtmlnxt3='';
-                   var addhtmlnxt4='';
-                   var addhtmlnxt5='';
-                   var addhtmlnxt6='';
-
-                  
-                  
-                 
-                  
-
-                    if(response !=0)
-                   {
-
-
-                     website("#uniqueid").val(uniqueid);
-                    if(response.selfcompany)
-                    
-                        if(response.selfcompany != 0)
-                        { 
-
-                           for(var i=0;i<response.selfcompany.length;i++)
-                          {
-                            
-                          addhtmlnxt += '<tr class="counter">';
-                          addhtmlnxt += '<td width="25%">'+response.selfcompany[i]['company']+'</td>';
-                          addhtmlnxt += '<td width="25%">'+response.selfcompany[i]['decision']+'</td>';
-                          addhtmlnxt += '<td width="25%">'+response.selfcompany[i]['transaction']+'</td>';
-                          addhtmlnxt += '</tr>';     
-                         
-                         }
-                        }
-
-                         if(response.selffirm != 0)
-                        { 
-
-                           for(var i=0;i<response.selffirm.length;i++)
-                          {
-                            
-                          addhtmlnxt1 += '<tr class="counter">';
-                          addhtmlnxt1 += '<td width="25%">'+response.selffirm[i]['firm']+'</td>';
-                           addhtmlnxt1 += '<td width="25%">'+response.selffirm[i]['interest']+'</td>';
-                          addhtmlnxt1 += '<td width="25%">'+response.selffirm[i]['decision']+'</td>';
-                          addhtmlnxt1 += '<td width="25%">'+response.selffirm[i]['transaction']+'</td>'
-                          
-                          addhtmlnxt += '</tr>';     
-                         
-                         }
-                        }
-
-                        if(response.selfpubpri != 0)
-                        { 
-
-                           for(var i=0;i<response.selfpubpri.length;i++)
-                          {
-                            
-                          addhtmlnxt2 += '<tr class="counter">';
-                          addhtmlnxt2 += '<td width="25%">'+response.selfpubpri[i]['company']+'</td>';
-                           addhtmlnxt2 += '<td width="25%">'+response.selfpubpri[i]['interest']+'</td>';
-                          addhtmlnxt2 += '<td width="25%">'+response.selfpubpri[i]['decision']+'</td>';
-                          addhtmlnxt2 += '<td width="25%">'+response.selfpubpri[i]['transaction']+'</td>'
-                          
-                          addhtmlnxt += '</tr>';     
-                         
-                         }
-                        }
-
-                        if(response.selfpubshare != 0)
-                        { 
-
-                           for(var i=0;i<response.selfpubshare.length;i++)
-                          {
-                            
-                          addhtmlnxt3 += '<tr class="counter">';
-                          addhtmlnxt3 += '<td width="25%">'+response.selfpubshare[i]['company']+'</td>';
-                           addhtmlnxt3 += '<td width="25%">'+response.selfpubshare[i]['interest']+'</td>';
-                          addhtmlnxt3 += '<td width="25%">'+response.selfpubshare[i]['decision']+'</td>';
-                          addhtmlnxt3 += '<td width="25%">'+response.selfpubshare[i]['transaction']+'</td>'
-                          
-                          addhtmlnxt += '</tr>';     
-                         
-                         }
-                        }
-
-
-                        if(response.relative != 0)
-                        { 
-
-                           for(var i=0;i<response.relative.length;i++)
-                          {
-                            
-                          addhtmlnxt4 += '<tr class="counter">';
-                          addhtmlnxt4 += '<td width="25%">'+response.relative[i]['relative']+'</td>';
-                           addhtmlnxt4 += '<td width="25%">'+response.relative[i]['company']+'</td>';
-                          addhtmlnxt4 += '<td width="25%">'+response.relative[i]['decision']+'</td>';
-                          addhtmlnxt4 += '<td width="25%">'+response.relative[i]['transaction']+'</td>'
-                          
-                          addhtmlnxt += '</tr>';     
-                         
-                         }
-                        }
-
-
-                        if(response.relativefirm != 0)
-                        { 
-
-                           for(var i=0;i<response.relativefirm.length;i++)
-                          {
-                            
-                          addhtmlnxt5 += '<tr class="counter">';
-                          addhtmlnxt5 += '<td width="25%">'+response.relativefirm[i]['relative']+'</td>';
-                           addhtmlnxt5 += '<td width="25%">'+response.relativefirm[i]['firm']+'</td>';
-                             addhtmlnxt5 += '<td width="25%">'+response.relativefirm[i]['interest']+'</td>';
-
-                          addhtmlnxt5 += '<td width="25%">'+response.relativefirm[i]['decision']+'</td>';
-                          addhtmlnxt5 += '<td width="25%">'+response.relativefirm[i]['transaction']+'</td>'
-                          
-                          addhtmlnxt += '</tr>';     
-                         
-                         }
-                        }
-
-                         if(response.relativepubpri != 0)
-                        { 
-
-                           for(var i=0;i<response.relativepubpri.length;i++)
-                          {
-                            
-                          addhtmlnxt6 += '<tr class="counter">';
-                          addhtmlnxt6 += '<td width="25%">'+response.relativepubpri[i]['relative']+'</td>';
-                           addhtmlnxt6 += '<td width="25%">'+response.relativepubpri[i]['company']+'</td>';
-                             addhtmlnxt6 += '<td width="25%">'+response.relativepubpri[i]['interest']+'</td>';
-
-                          addhtmlnxt6 += '<td width="25%">'+response.relativepubpri[i]['decision']+'</td>';
-                          addhtmlnxt6 += '<td width="25%">'+response.relativepubpri[i]['transaction']+'</td>'
-                          
-                          addhtmlnxt += '</tr>';     
-                         
-                         }
-                        }
-                        website('.selfcompany').html(addhtmlnxt); 
-                        website('.selffirm').html(addhtmlnxt1); 
-                        website('.selfpubpri').html(addhtmlnxt2); 
-                        website('.selfpubshare').html(addhtmlnxt3); 
-                        website('.relative').html(addhtmlnxt4); 
-                        website('.relativefirm').html(addhtmlnxt5); 
-                       website('.relativepubpri').html(addhtmlnxt6); 
+          var formData = {uniqueid:uniqueid};
+          website.ajax({
+                url:'annualdeclaration/fetchannualdeclaration',
+                 data: formData,
+                //data:formdata,
+                method:'POST',
+                //contentType:'json',
+                contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+                //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+                dataType:"json",
+                cache:false,
+                //async:true, /*Cross domain checking*/
+                beforeSend: function()
+                {  website('.preloder_wraper').fadeIn();  },
+                uploadProgress: function(event, position, total, percentComplete)
+                {   },
+                success: function(response, textStatus, jqXHR)
+                { 
+                    if(response.logged==true)
+                    {
+                         var addhtmlnxt='';
+                         var addhtmlnxt1='';
+                         var addhtmlnxt2='';
+                         var addhtmlnxt3='';
+                         var addhtmlnxt4='';
+                         var addhtmlnxt5='';
+                         var addhtmlnxt6='';
 
                         
+                        
                        
-                                  
-              }
-                   
+                        
 
-                
+                          if(response !=0)
+                         {
+
+
+                           website("#uniqueid").val(uniqueid);
+                          if(response.selfcompany)
+                          
+                              if(response.selfcompany != 0)
+                              { 
+
+                                 for(var i=0;i<response.selfcompany.length;i++)
+                                {
+                                  
+                                addhtmlnxt += '<tr class="counter">';
+                                addhtmlnxt += '<td width="25%">'+response.selfcompany[i]['company']+'</td>';
+                                addhtmlnxt += '<td width="25%">'+response.selfcompany[i]['decision']+'</td>';
+                                addhtmlnxt += '<td width="25%">'+response.selfcompany[i]['transaction']+'</td>';
+                                addhtmlnxt += '</tr>';     
+                               
+                               }
+                              }
+
+                               if(response.selffirm != 0)
+                              { 
+
+                                 for(var i=0;i<response.selffirm.length;i++)
+                                {
+                                  
+                                addhtmlnxt1 += '<tr class="counter">';
+                                addhtmlnxt1 += '<td width="25%">'+response.selffirm[i]['firm']+'</td>';
+                                 addhtmlnxt1 += '<td width="25%">'+response.selffirm[i]['interest']+'</td>';
+                                addhtmlnxt1 += '<td width="25%">'+response.selffirm[i]['decision']+'</td>';
+                                addhtmlnxt1 += '<td width="25%">'+response.selffirm[i]['transaction']+'</td>'
+                                
+                                addhtmlnxt += '</tr>';     
+                               
+                               }
+                              }
+
+                              if(response.selfpubpri != 0)
+                              { 
+
+                                 for(var i=0;i<response.selfpubpri.length;i++)
+                                {
+                                  
+                                addhtmlnxt2 += '<tr class="counter">';
+                                addhtmlnxt2 += '<td width="25%">'+response.selfpubpri[i]['company']+'</td>';
+                                 addhtmlnxt2 += '<td width="25%">'+response.selfpubpri[i]['interest']+'</td>';
+                                addhtmlnxt2 += '<td width="25%">'+response.selfpubpri[i]['decision']+'</td>';
+                                addhtmlnxt2 += '<td width="25%">'+response.selfpubpri[i]['transaction']+'</td>'
+                                
+                                addhtmlnxt += '</tr>';     
+                               
+                               }
+                              }
+
+                              if(response.selfpubshare != 0)
+                              { 
+
+                                 for(var i=0;i<response.selfpubshare.length;i++)
+                                {
+                                  
+                                addhtmlnxt3 += '<tr class="counter">';
+                                addhtmlnxt3 += '<td width="25%">'+response.selfpubshare[i]['company']+'</td>';
+                                 addhtmlnxt3 += '<td width="25%">'+response.selfpubshare[i]['interest']+'</td>';
+                                addhtmlnxt3 += '<td width="25%">'+response.selfpubshare[i]['decision']+'</td>';
+                                addhtmlnxt3 += '<td width="25%">'+response.selfpubshare[i]['transaction']+'</td>'
+                                
+                                addhtmlnxt += '</tr>';     
+                               
+                               }
+                              }
+
+
+                              if(response.relative != 0)
+                              { 
+
+                                 for(var i=0;i<response.relative.length;i++)
+                                {
+                                  
+                                addhtmlnxt4 += '<tr class="counter">';
+                                addhtmlnxt4 += '<td width="25%">'+response.relative[i]['relative']+'</td>';
+                                 addhtmlnxt4 += '<td width="25%">'+response.relative[i]['company']+'</td>';
+                                addhtmlnxt4 += '<td width="25%">'+response.relative[i]['decision']+'</td>';
+                                addhtmlnxt4 += '<td width="25%">'+response.relative[i]['transaction']+'</td>'
+                                
+                                addhtmlnxt += '</tr>';     
+                               
+                               }
+                              }
+
+
+                              if(response.relativefirm != 0)
+                              { 
+
+                                 for(var i=0;i<response.relativefirm.length;i++)
+                                {
+                                  
+                                addhtmlnxt5 += '<tr class="counter">';
+                                addhtmlnxt5 += '<td width="25%">'+response.relativefirm[i]['relative']+'</td>';
+                                 addhtmlnxt5 += '<td width="25%">'+response.relativefirm[i]['firm']+'</td>';
+                                   addhtmlnxt5 += '<td width="25%">'+response.relativefirm[i]['interest']+'</td>';
+
+                                addhtmlnxt5 += '<td width="25%">'+response.relativefirm[i]['decision']+'</td>';
+                                addhtmlnxt5 += '<td width="25%">'+response.relativefirm[i]['transaction']+'</td>'
+                                
+                                addhtmlnxt += '</tr>';     
+                               
+                               }
+                              }
+
+                               if(response.relativepubpri != 0)
+                              { 
+
+                                 for(var i=0;i<response.relativepubpri.length;i++)
+                                {
+                                  
+                                addhtmlnxt6 += '<tr class="counter">';
+                                addhtmlnxt6 += '<td width="25%">'+response.relativepubpri[i]['relative']+'</td>';
+                                 addhtmlnxt6 += '<td width="25%">'+response.relativepubpri[i]['company']+'</td>';
+                                   addhtmlnxt6 += '<td width="25%">'+response.relativepubpri[i]['interest']+'</td>';
+
+                                addhtmlnxt6 += '<td width="25%">'+response.relativepubpri[i]['decision']+'</td>';
+                                addhtmlnxt6 += '<td width="25%">'+response.relativepubpri[i]['transaction']+'</td>'
+                                
+                                addhtmlnxt += '</tr>';     
+                               
+                               }
+                              }
+                              website('.selfcompany').html(addhtmlnxt); 
+                              website('.selffirm').html(addhtmlnxt1); 
+                              website('.selfpubpri').html(addhtmlnxt2); 
+                              website('.selfpubshare').html(addhtmlnxt3); 
+                              website('.relative').html(addhtmlnxt4); 
+                              website('.relativefirm').html(addhtmlnxt5); 
+                             website('.relativepubpri').html(addhtmlnxt6); 
+
+                              
+                             
+                                        
+                    }
+                         
+
+                      
+                         
+                         
+                          website('#Mymodaldeclara').modal('show');
+                    }
+                    else
+                    {
+                            new PNotify({title: 'Alert',
+                                text: "Please Fill All The Data In Software..!!!",
+                                type: 'university',
+                                hide: true,
+                                styling: 'bootstrap3',
+                                addclass: 'dark ',
+                                });
+                    }
                    
-                   
-                    website('#Mymodaldeclara').modal('show');
-              }
-              else
-              {
-                      new PNotify({title: 'Alert',
-                          text: "Please Fill All The Data In Software..!!!",
-                          type: 'university',
-                          hide: true,
-                          styling: 'bootstrap3',
-                          addclass: 'dark ',
-                          });
-              }
-             
-          },
-          complete: function(response) 
-          {
-               website('.preloder_wraper').fadeOut();
-           },
-          error: function(jqXHR, textStatus, errorThrown)
-          {   }
-        });
-}
+                },
+                complete: function(response) 
+                {
+                     website('.preloder_wraper').fadeOut();
+                 },
+                error: function(jqXHR, textStatus, errorThrown)
+                {   }
+              });
+      }
 
 
 
