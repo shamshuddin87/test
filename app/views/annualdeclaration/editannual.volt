@@ -128,7 +128,7 @@
                      <td style="border-right: 1px solid #f7f7f7; color: #000; font-weight: bold;  padding-right: 0px">2.</td>
                   
                      <td colspan="5">
-                        <div class="col-md-12" >
+                        <div class="" >
                            <label >Are you Interested in ?</label>
                         </div>
                      </td>
@@ -138,7 +138,7 @@
 
                      <td colspan="5">
                         <div class="">
-                           <label style="padding-left: 30px;">i. Firm </label>
+                           <label style="padding-left: 25px;">i. Firm </label>
                         </div>
                      </td>
                   </tr>
@@ -146,9 +146,9 @@
                 for($i=0; $i < count($selffirm); $i++){
                   ?>
                   <tr>
-                     <td style="border-right: 1px solid #f7f7f7"></td>
+                     <td style="border-right: 1px solid #f7f7f7;width: 2.5%;"></td>
                      <td style="width: 22%"><label class="control-label">Firm Name</label></td>
-                     <td><label class="control-label">Nature of Interest</label></td>
+                     <td style="width: 15%"><label class="control-label">Nature of Interest</label></td>
                      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                      <td>
                         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -218,7 +218,7 @@
               
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                   <tr>
-                     <td colspan="5">
+                     <td colspan="5" style="padding-left: 22px;">
                         <div class="col-md-12">
                            <label >ii. Private/Public Company</label>
                         </div>
@@ -228,9 +228,9 @@
                   for($i=0; $i < count($selfpublic); $i++){
                    ?>
                   <tr>
-                     <td style="border-right: 1px solid #f7f7f7"></td>
+                     <td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>
                      <td style="width: 22%"><label class="control-label">Company Name</label></td>
-                     <td><label class="control-label">Nature of Interest</label></td>
+                     <td style="width: 15%"><label class="control-label">Nature of Interest</label></td>
                      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                      <td>
                         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -298,7 +298,7 @@
               
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                <tr>
-               <td colspan="5">
+               <td colspan="5" style="padding-left: 22px;">
                <div class="col-md-12">
                <label>iii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
                </div>
@@ -308,9 +308,9 @@
                for($i=0; $i < count($selfpubshare); $i++){
                ?>
                <tr>
-                <td style="border-right: 1px solid #f7f7f7"></td>  
+                <td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>  
                <td style="width: 22%">  <label class="control-label">Company Name</label></td>
-               <td>  <label class="control-label">Nature of Interest</label></td>
+               <td style="width: 15%">  <label class="control-label">Nature of Interest</label></td>
                <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                <td>
                <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -509,7 +509,7 @@
               <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>    
                <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
                <td style="width: 20%"><label class="control-label">Firm Name</label></td>
-               <td><label class="control-label">Nature of interest</label></td>
+               <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
                <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                <td>
                <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -603,7 +603,7 @@
               
 
                <tr>
-               <td colspan="6">
+               <td colspan="6" style="padding-left: 20px;">
                <div class="">
              <label  style="padding-left: 19px;" class="">ii.Private/Public Company</label>
                </div>
@@ -614,10 +614,10 @@
                for($i=0; $i < count($relativepublic); $i++){
             ?>
                <tr>
-               <td style="border-right: 1px solid #f7f7f7"></td>   
+               <td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>   
                <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
                <td style="width: 20%"><label class="control-label">Company Name</label></td>
-               <td><label class="control-label">Nature of interest</label></td>
+               <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
                <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                <td>
                <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 

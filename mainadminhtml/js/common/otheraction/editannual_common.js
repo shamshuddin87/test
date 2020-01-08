@@ -79,10 +79,10 @@ function addhtml(clicked)
           addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
           addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.0%;"></td>';
           addhtmlnxt += '<td style="width: 22%"><label class="control-label">Firm Name</label>';
           addhtmlnxt += '</td>';
-            addhtmlnxt += '<td><label class="control-label">Nature of Interest</label>';
+            addhtmlnxt += '<td style="width: 15%"><label class="control-label">Nature of Interest</label>';
           addhtmlnxt += '</td>';
           addhtmlnxt += '<td><label class="control-label">Can you significantly influence the decision making of this firm?</label>';
             addhtmlnxt +='</td>';
@@ -120,10 +120,10 @@ function addhtml(clicked)
          addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
           addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.0%"></td>';
           addhtmlnxt += '<td style="width: 22%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
-            addhtmlnxt += '<td><label class="control-label">Nature of Interest</label>';
+            addhtmlnxt += '<td style="width: 15%"><label class="control-label">Nature of Interest</label>';
           addhtmlnxt += '</td>';
           addhtmlnxt += '<td><label class="control-label">Can you significantly influence the decision making of this company?</label>';
             addhtmlnxt +='</td>';
@@ -164,10 +164,10 @@ function addhtml(clicked)
          addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.0%"></td>';
           addhtmlnxt += '<td style="width: 22%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
-            addhtmlnxt += '<td><label class="control-label">Nature of Interest</label>';
+            addhtmlnxt += '<td style="width: 15%"><label class="control-label">Nature of Interest</label>';
           addhtmlnxt += '</td>';
           addhtmlnxt += '<td><label class="control-label">Can you significantly influence the decision making of this company?</label>';
             addhtmlnxt +='</td>';
@@ -209,10 +209,10 @@ function addhtml(clicked)
          addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.0%"></td>';
           addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
-          addhtmlnxt += '</td style="width: 22%">';
-            addhtmlnxt += '<td><label class="control-label">Company Name</label>';
+          addhtmlnxt += '</td >';
+            addhtmlnxt += '<td style="width: 22%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
           addhtmlnxt += '<td><label class="control-label">Can this relative significantly influence the decision making of this company?</label>';
             addhtmlnxt +='</td>';
@@ -265,13 +265,13 @@ function addhtml(clicked)
         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.0%"></td>';
           addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
           addhtmlnxt += '</td>';
-            addhtmlnxt += '<td style="width: 22%"><label class="control-label">Firm Name</label>';
+            addhtmlnxt += '<td style="width: 20%"><label class="control-label">Firm Name</label>';
           addhtmlnxt += '</td>';
 
-           addhtmlnxt += '<td><label class="control-label">Nature of interest</label>';
+           addhtmlnxt += '<td style="width: 15%"><label class="control-label">Nature of interest</label>';
           addhtmlnxt += '</td>';
           addhtmlnxt += '<td><label class="control-label">Can this relative significantly influence the decision making of this firm?</label>';
             addhtmlnxt +='</td>';
@@ -319,13 +319,13 @@ function addhtml(clicked)
         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
        addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #fff"></td>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.0%"></td>';
           addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
           addhtmlnxt += '</td>';
             addhtmlnxt += '<td style="width: 20%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
 
-           addhtmlnxt += '<td><label class="control-label">Nature of interest</label>';
+           addhtmlnxt += '<td style="width: 15%"><label class="control-label">Nature of interest</label>';
           addhtmlnxt += '</td>';
           addhtmlnxt += '<td><label class="control-label">Can this relative significantly influence the decision making of this company?</label>';
             addhtmlnxt +='</td>';
@@ -368,6 +368,7 @@ function addhtml(clicked)
        var addhtmlnxt='';
       
       }
+
        },
         complete: function(response)
         {},
@@ -376,6 +377,7 @@ function addhtml(clicked)
     });
 
 }
+
 
 function removehtml(clicked)
  {
@@ -476,10 +478,6 @@ function removehtml(clicked)
         {
              return false;
         }
-    }else{
-
-     return false;
-
     }
 
 
@@ -512,8 +510,8 @@ function removehtml(clicked)
             styling: 'bootstrap3',
             addclass: 'dark ',
 
-          });\
-           
+          });
+
 
             window.location.reload();
          

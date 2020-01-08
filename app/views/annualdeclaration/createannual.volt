@@ -34,7 +34,7 @@
                   <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; display: none;" width="100%"  id="test">
                   <tr >
                      <td style="border-right: 1px solid #f7f7f7; width: 2.5%;"></td>
-                     <td style="width: 22%"><label class="control-label">Company Name</label></td>
+                     <td style="width: 22%;"><label class="control-label">Company Name</label></td>
                      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                      <td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
                   </tr>
@@ -72,7 +72,8 @@
                      <td colspan="4" >
                         <div class = "appenddiv1 " id="appenddiv1">
                         </div>
-                        <div class="adddiv1section1 col-md-12" style="text-align: right;">
+                        <div class="adddiv1section1 col-md-12" style="text-align: right; padding: 10px 0;
+">
                            <input type="button" id = "adddiv1" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
                            <input type="button" id = "remvdiv1" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                            <input type="hidden" class="appendd1" plancntr="1">
@@ -104,7 +105,7 @@
                   <tr>
                      <td style="border-right: 1px solid #f7f7f7; width: 2.5%;"></td>
                      <td style="width: 22%">  <label class="control-label">Firm Name</label></td>
-                     <td>  <label class="control-label">Nature of Interest</label></td>
+                     <td style="width: 16%">  <label class="control-label">Nature of Interest</label></td>
                      <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                      <td>
                         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -167,7 +168,7 @@
                   <tr>
                      <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
                      <td style="width: 22%"><label class="control-label">Company Name</label></td>
-                     <td><label class="control-label">Nature of Interest</label></td>
+                     <td style="width: 16%"><label class="control-label">Nature of Interest</label></td>
                      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                      <td>
                         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -226,7 +227,7 @@
                <tr>
                 <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
                <td style="width: 22%">  <label class="control-label">Company Name</label></td>
-               <td>  <label class="control-label">Nature of Interest</label></td>
+               <td style="width: 16%">  <label class="control-label">Nature of Interest</label></td>
                <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                <td>
                <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -292,7 +293,7 @@
                 
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;display: none;" width="100%"  id="test1">
                <tr>
-                  <td style="border-right: 1px solid #f7f7f7"></td>
+                  <td style="border-right: 1px solid #f7f7f7;width: 2.4%;"></td>
                <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
                <td style="width: 22%"><label class="control-label">Company Name</label></td>
                <td>    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
@@ -376,8 +377,8 @@
                <tr>
                <td style="border-right: 1px solid #f7f7f7"></td>   
                <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
-               <td style="width: 22%"><label class="control-label">Firm Name</label></td>
-               <td><label class="control-label">Nature of interest</label></td>
+               <td style="width: 20%"><label class="control-label">Firm Name</label></td>
+               <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
                <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                <td>
                <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -457,8 +458,8 @@
                <tr>
                <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>   
                <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
-               <td style="width: 22%"><label class="control-label">Company Name</label></td>
-               <td><label class="control-label">Nature of interest</label></td>
+               <td style="width: 20%"><label class="control-label">Company Name</label></td>
+               <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
                <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                <td>
                <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
