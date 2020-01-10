@@ -605,8 +605,8 @@ function annualmodal(uniqueid){
                           if(response !=0)
                          {
 
-
-                           website("#uniqueid").val(uniqueid);
+                          //alert(uniqueid);
+                          website("#uniqueid").val(uniqueid);
                           if(response.selfcompany)
                           
                               if(response.selfcompany != 0)
@@ -834,6 +834,7 @@ website('body').on('click','.formpdf', function(e)
 {
     var htmldata = website('#Mymodaldeclara .modalform').html();
     var uniqueid = website('#uniqueid').val();
+    //alert(uniqueid);
    
     var annualyear=website('#annualyear').val();
     

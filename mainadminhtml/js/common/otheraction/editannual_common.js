@@ -41,7 +41,7 @@ function addhtml(clicked)
          var addhtmlnxt='';
 
         
-         addhtmlnxt += '<div class="row'+getlastid+' append_row3"  id="row'+getlastid+'" >';
+         addhtmlnxt += '<div class="row'+getlastid+' append_row3"  id="t1row'+getlastid+'" >';
           addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7"></td>';
@@ -76,7 +76,7 @@ function addhtml(clicked)
 
          getlastid = ++getlastid;
          var addhtmlnxt='';
-          addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
+          addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="t2row'+getlastid+'" >';
           addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.0%;"></td>';
@@ -117,7 +117,7 @@ function addhtml(clicked)
          getlastid = ++getlastid;
          var addhtmlnxt='';
        
-         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
+         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="t3row'+getlastid+'" >';
           addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.0%"></td>';
@@ -161,7 +161,7 @@ function addhtml(clicked)
          getlastid = ++getlastid;
          var addhtmlnxt='';
        
-         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
+         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="t4row'+getlastid+'" >';
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.0%"></td>';
@@ -206,7 +206,7 @@ function addhtml(clicked)
          getlastid = ++getlastid;
          var addhtmlnxt='';
        
-         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
+         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="t5row'+getlastid+'" >';
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.0%"></td>';
@@ -262,7 +262,7 @@ function addhtml(clicked)
          getlastid = ++getlastid;
          var addhtmlnxt='';
        
-        addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
+        addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="t6row'+getlastid+'" >';
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.0%"></td>';
@@ -316,7 +316,7 @@ function addhtml(clicked)
          getlastid = ++getlastid;
          var addhtmlnxt='';
        
-        addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
+        addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="t7row'+getlastid+'" >';
        addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.0%"></td>';
@@ -705,8 +705,8 @@ function removehtml(clicked)
 
         if(count != 0)
         {
-             //alert(count);
-              website('#row'+count).remove();
+                //alert(count);
+              website('#t1row'+count).remove();
               website('.appendd1').attr('plancntr',parseInt(count)-1);
              
         }
@@ -720,7 +720,7 @@ function removehtml(clicked)
         var count = website('.appendd2').attr('plancntr');
         if(count != 0)
         { 
-              website('#row'+count).remove();
+              website('#t2row'+count).remove();
               website('.appendd2').attr('plancntr',parseInt(count)-1);
         }
         else
@@ -731,9 +731,9 @@ function removehtml(clicked)
 
 
        var count = website('.appendd3').attr('plancntr');
-        if(count != 1)
+        if(count != 0)
         {
-              website('.appenddiv3 #row'+count).remove();
+              website('#t3row'+count).remove();
               website('.appendd3').attr('plancntr',parseInt(count)-1);
         }
         else
@@ -744,9 +744,9 @@ function removehtml(clicked)
 
 
        var count = website('.appendd4').attr('plancntr');
-        if(count != 1)
+        if(count != 0)
         {
-              website('.appenddiv4 #row'+count).remove();
+              website('#t4row'+count).remove();
               website('.appendd4').attr('plancntr',parseInt(count)-1);
         }
         else
@@ -756,9 +756,9 @@ function removehtml(clicked)
     }else if(rmid == 'remvdiv5'){
 
       var count = website('.appendd5').attr('plancntr');
-        if(count != 1)
+        if(count != 0)
         {
-              website('.appenddiv5 #row'+count).remove();
+              website('#t5row'+count).remove();
               website('.appendd5').attr('plancntr',parseInt(count)-1);
         }
         else
@@ -768,9 +768,10 @@ function removehtml(clicked)
     }else if(rmid == 'remvdiv6'){
 
       var count = website('.appendd6').attr('plancntr');
-        if(count != 1)
+        if(count != 0)
         {
-              website('.appenddiv6 #row'+count).remove();
+
+              website('#t6row'+count).remove();
               website('.appendd6').attr('plancntr',parseInt(count)-1);
         }
         else
@@ -782,9 +783,9 @@ function removehtml(clicked)
 
 
       var count = website('.appendd7').attr('plancntr');
-        if(count != 1)
+        if(count != 0)
         {
-              website('.appenddiv7 #row'+count).remove();
+              website('#t7row'+count).remove();
               website('.appendd7').attr('plancntr',parseInt(count)-1);
         }
         else

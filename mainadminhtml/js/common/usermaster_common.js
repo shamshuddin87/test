@@ -399,18 +399,19 @@ website('body').on('click','.dbeditme',function(e){
                 for(var i = 0; i < response.data.length; i++) 
                 {   
                        
-                        // console.log(response.data[i]);
+                        //console.log(response.data[i]);
                        var  firstname = response.data[i].firstname?response.data[i].firstname:'';
                        var lastname = response.data[i].lastname ?response.data[i].lastname:'';
                        var dpdate=response.data[i].dpdate ?response.data[i].dpdate:'';
-                       var email=response.data[i].dpdate?response.data[i].email:'';
+                       var email=response.data[i].email?response.data[i].email:'';
                        // var  mobile=response.data[i].mobile?response.data[i].mobile:''
                        var designation=response.data[i].designation?response.data[i].designation:'';
                        // var reminderdays=response.data[i].reminderdays?response.data[i].reminderdays:'';
                        var approveid=response.data[i].approvid?response.data[i].approvid:'';
                        var approver=response.data[i].approver?response.data[i].approver:'';
                        var employeecode=response.data[i].employeecode?response.data[i].employeecode:'';
-                          website('#Mymodaledit #mlistid').val(response.data[i].id)
+                          website('#Mymodaledit #mlistid').val(response.data[i].id);
+                          website('#Mymodaledit #userid').val(response.data[i].wr_id);
                           website('#Mymodaledit #firstname').val(firstname);
                           website('#Mymodaledit #lastname').val(lastname);
                           website('#Mymodaledit #email').val(email);
@@ -428,7 +429,7 @@ website('body').on('click','.dbeditme',function(e){
 
                               var approveuser='';
                               approveuser = approver.split(',');
-                              console.log(approveuser.length);
+//                              console.log(approveuser.length);
 
                               if (approveuser!= '')
                                { 

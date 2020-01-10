@@ -2,7 +2,7 @@
    $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
    $gtselctedcmp = $this->session->cmpconmemberdoc;
    $condeptsess = $this->session->contractdepartment;
-   //echo "company is ";print_r($planuniqueid);exit;
+   //echo "company is ";print_r($uniqueid);exit;
    ?>
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
@@ -106,9 +106,9 @@
                      <td style="border-right: 1px solid #f7f7f7; width: 2.5%;"></td>
                      <td style="width: 22%">  <label class="control-label">Firm Name</label></td>
                      <td style="width: 16%">  <label class="control-label">Nature of Interest</label></td>
-                     <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
+                     <td>    <label class="control-label">Can you significantly influence the decision making of this firm?</label></td>
                      <td>
-                        <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+                        <label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                      </td>
                   </tr>
 
@@ -379,9 +379,9 @@
                <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
                <td style="width: 20%"><label class="control-label">Firm Name</label></td>
                <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
-               <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
+               <td> <label class="control-label">Can this relative significantly influence the decision making of this firm?</label></td>
                <td>
-               <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+               <label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                </td>
                </tr>
 
@@ -450,7 +450,7 @@
                <tr>
                <td colspan="6">
                <div class="">
-              <label  style="padding-left: 27px;" class="">ii. Private/Public Company</label>
+              <label  style="padding-left: 27px;" class="">ii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
                </div>
                </td>
                </tr>
@@ -557,12 +557,16 @@
                <option value="2024">2024</option>
                <option value="2025">2025</option>
             </select>
+
+          
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <div id="downloadpdf" style="float: right;"></div>
             <div class="in_box">
                <button type="button" class="btn btn-primary formpdf floatright">Generate PDF</button>
+               <input type="text" id = "uniqueid" name="uniqueid" value = "" style="display: none;">
             </div>
             <div class="modalform">
+
                <!---------------------------------INITIAL DECLARATION FORM--------------------------------------------------->
                <!----------------------------------------------------------------------------------------------------------->
             </div>

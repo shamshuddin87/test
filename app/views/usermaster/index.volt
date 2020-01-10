@@ -101,7 +101,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                         <section class="col col-md-4 ">
                             <label class="control-label">Employee Code*</label>
                             <div class="input">
-                                <input type="text" id="employeecode" name="employeecode" required="required" class="form_fields form-control col-md-7 col-xs-12" onkeypress="return isAlphaNumeric_space(event,this);">
+                                <input type="text" id="employeecode" name="employeecode" required="required" class="form_fields form-control col-md-7 col-xs-12" maxlength="9" pattern="[A-Za-z0-9]{9}" title="Please Enter 9 digit code" onkeypress="return isAlphaNumeric(event,this);">
                             </div>
                         </section>
                         <div class="clearelement"></div>
@@ -272,6 +272,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                
                 <input type="hidden" name="mlistid" class="mlistid" id="mlistid" value="">
                 <input type="hidden" name="masterid" id="masterid" value="">
+                <input type="hidden" name="userid" id="userid" value="">
                 <!--  <input type="hidden" name="mruid" class="mruid" id="mruid" value=""> -->
                
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -298,7 +299,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="control-label form-group col-md-12">
                                 <span class="floatleft"><label>Employee Code *</label></span>
-                                <input type="text" class="form-control" id="empcode" name="empcode" onkeypress="return isAlphaNumeric_space(event,this);" required>
+                                <input type="text" class="form-control" id="empcode" name="empcode" onkeypress="return isAlphaNumeric(event,this);" maxlength="9" pattern="[A-Za-z0-9]{9}" title="Please Enter 9 digit code" required>
                         </div>
                         </div>
                        <div class="control-label form-group col-md-6">

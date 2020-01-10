@@ -2,7 +2,7 @@
    $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
    $gtselctedcmp = $this->session->cmpconmemberdoc;
    $condeptsess = $this->session->contractdepartment;
-   //echo "company is ";print_r($uniqueid);exit;
+   //echo "company is ";print_r($selfcompany);exit;
    ?>
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
@@ -78,7 +78,7 @@
                            <option value="No" selected>No</option>
                          <?php }else{ ?>
                           <option value="Yes" >Yes</option>
-                          <option value="No" selected>No</option>
+                          <option value="No">No</option>
                          <?php } ?>
 
                            </select>
@@ -96,7 +96,8 @@
                            <option value="No" selected>No</option>
                           <?php }else{ ?>
                           <option value="Yes" >Yes</option>
-                          <option value="No" selected>No</option>
+                          <option value="No" >No</option>
+                         
                          <?php } ?>
                            </select>
                         </section>
@@ -149,9 +150,9 @@
                      <td style="border-right: 1px solid #f7f7f7;width: 2.5%;"></td>
                      <td style="width: 22%"><label class="control-label">Firm Name</label></td>
                      <td style="width: 15%"><label class="control-label">Nature of Interest</label></td>
-                     <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
+                     <td><label class="control-label">Can you significantly influence the decision making of this firm?</label></td>
                      <td>
-                        <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+                        <label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                      </td>
                   </tr>
 
@@ -179,6 +180,9 @@
                          <?php }elseif($selffirm[$i]['decision']  == No){ ?>
                            <option value="Yes" >Yes</option>
                            <option value="No" selected>No</option>
+                         <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No">No</option>
                          <?php } ?>
                            </select>
                         </div>
@@ -193,7 +197,10 @@
                            <?php }elseif($selffirm[$i]['transaction']  == No){ ?>
                            <option value="Yes" >Yes</option>
                            <option value="No" selected>No</option>
-                           <?php } ?>
+                           <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No">No</option>
+                         <?php } ?>
                            </select>
                         </div>
                      </td>
@@ -259,7 +266,10 @@
                       <?php }elseif($selfpublic[$i]['decision']  == No){ ?>
                      <option value="Yes" >Yes</option>
                      <option value="No" selected>No</option>
-                     <?php } ?>
+                     <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No">No</option>
+                         <?php } ?>
                      </select>
                      </div></td>
                      <td> 
@@ -272,7 +282,10 @@
                      <?php }elseif($selfpublic[$i]['transaction']  == No){ ?>
                      <option value="Yes" >Yes</option>
                      <option value="No" selected>No</option>
-                     <?php } ?>
+                     <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No">No</option>
+                         <?php } ?>
                      </select>
                      </div>
                      </td>
@@ -339,7 +352,10 @@
                <?php }elseif($selfpubshare[$i]['decision']  == No){ ?>
                <option value="Yes" >Yes</option>
                <option value="No" selected>No</option>
-               <?php } ?>
+               <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No">No</option>
+                         <?php } ?>
                </select>
                </div>
                </td>
@@ -353,7 +369,10 @@
                <?php }elseif($selfpubshare[$i]['transaction']  == No){ ?>
                 <option value="Yes" >Yes</option>
                <option value="No" selected>No</option>
-               <?php } ?>
+              <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No">No</option>
+                         <?php } ?>
                </select>
                </div>
                </td>
@@ -387,7 +406,8 @@
                <input type="radio" id= "showsec1" name="showsec1" value="Yes" checked="checked" onclick="showsection(this.id)">Yes
                <?php } else { ?>
                <input type="radio" id= "hidesec1" name="showsec1" value="No" checked = "checked" onclick="showsection(this.id)">No
-               <?php } ?>
+               
+                         <?php } ?>
                </div>
                </td>
                </tr>
@@ -446,7 +466,10 @@
                           <?php }elseif($relativecompany[$i]['decision']  == No){ ?>
                           <option value="Yes" >Yes</option>
                           <option value="No" selected>No</option>
-                          <?php } ?>
+                          <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No">No</option>
+                         <?php } ?>
                </select>
                </div></td>
                <td> 
@@ -459,6 +482,9 @@
                            <?php }elseif($relativecompany[$i]['transaction']  == No){ ?>
                            <option value="Yes" >Yes</option>
                            <option value="No" selected>No</option>
+                         <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No">No</option>
                          <?php } ?>
                </select>
                </div>
@@ -510,9 +536,9 @@
                <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
                <td style="width: 20%"><label class="control-label">Firm Name</label></td>
                <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
-               <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
+               <td> <label class="control-label">Can this relative significantly influence the decision making of this firm?</label></td>
                <td>
-               <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+               <label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                </td>
                </tr>
 
@@ -563,7 +589,10 @@
                <?php }elseif($relativefirm[$i]['decision']  == No){ ?>
                <option value="Yes" >Yes</option>
                <option value="No" selected>No</option>
-               <?php } ?>
+               <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No">No</option>
+                         <?php } ?>
                </select>
                </div></td>
                <td> 
@@ -579,6 +608,10 @@
                </select>
                </div>
                </td>
+                <?php }else{ ?>
+
+                <option value="Yes" >Yes</option>
+               <option value="No" >No</option>
                 <?php }} ?>
                <tr>
                <td colspan="6" >
@@ -605,7 +638,7 @@
                <tr>
                <td colspan="6" style="padding-left: 20px;">
                <div class="">
-             <label  style="padding-left: 19px;" class="">ii.Private/Public Company</label>
+             <label  style="padding-left: 19px;" class="">ii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
                </div>
                </td>
                </tr>
@@ -631,6 +664,7 @@
                <input type="text" class="form-control inputbox3" id="d7id" name="d7id[]" value="<?php echo $relativepublic[$i]['id']?>" style= "display: none;">
 
                <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
+                <option value="">Select Option</option>
               <?php for($j=0; $j < count($relativesinfo); $j++){
                if($relativepublic[$i]['relative'] == $relativesinfo[$j]['name']){?>
              
@@ -668,7 +702,10 @@
                           <?php }elseif($relativepublic[$i]['decision']  == No){ ?>
                           <option value="Yes" >Yes</option>
                           <option value="No" selected>No</option>
-                          <?php } ?>
+                           <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No">No</option>
+                         <?php } ?>
                </select>
                </div></td>
                <td> 
@@ -681,7 +718,11 @@
                            <?php }elseif($relativepublic[$i]['transaction']  == No){ ?>
                            <option value="Yes" >Yes</option>
                            <option value="No" selected>No</option>
-                         <?php } }?>
+                            <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No">No</option>
+                        
+                         <?php }} ?>
                </select>
                </div>
                </td>
