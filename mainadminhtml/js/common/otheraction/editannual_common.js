@@ -798,6 +798,38 @@ function removehtml(clicked)
 }
 
 
+
+
+
+function showsection(id){
+
+var id = id;
+
+var x = document.getElementById("test");
+var y = document.getElementById("test1");
+ 
+if(id == 'showsec1'){
+
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+} else if(id == 'showsec2'){
+
+
+  if (y.style.display === "none") {
+    y.style.display = "block";
+  } else {
+    y.style.display = "none";
+  }
+
+}
+
+
+}
+
+
  website('#updateannual').ajaxForm({
 
     

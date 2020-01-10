@@ -28,11 +28,10 @@
                            <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
 
                            
-                                 <?php if($selfcompany){?>
-                                  <input type="radio"  name="showsec1" value="Yes" checked="checked">Yes
-                                 <?php } else { ?>
-                                <input type="radio"  name="showsec1" value="No" checked = "checked" onclick="showsection(this.id)">No
-                                 <?php } ?>
+                                 
+                            <input type="radio" id= "showsec1" name="showsec1" value="Yes"  onclick="showsection(this.id)">Yes
+                           <input type="radio" id= "showsec1" name="showsec1" value="No" onclick="showsection(this.id)">No
+                                 
 
                              
                           
@@ -42,6 +41,8 @@
                   </tr>
                    <?php 
                   for($i=0; $i < count($selfcompany); $i++){
+                  if($selfcompany[$i]['company'] != ''){
+                   
                   ?>
                   <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; " width="100%"  id="test">
                   <tr >
@@ -104,7 +105,71 @@
                      </td>
                   </tr>
                   <tr>
-                  <?php } ?>
+                  <?php }else{ 
+                   ?>
+                    <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;display: none; " width="100%"  id="test">
+                  <tr >
+                     <td style="border-right: 1px solid #f7f7f7; width: 2.5%" ></td>
+                     <td style="width: 22%"><label class="control-label">Company Name</label></td>
+                     <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
+                     <td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+                  </tr>
+                  <tr>
+                     <td style="border-right: 1px solid #f7f7f7"></td>
+                     <td>
+                        <div id = "div1" class="" >
+                           <section class="">
+                              <div class="input">
+
+                                  <input type="text" class="form-control inputbox3" id="uniqueid" name="uniqueid" value="<?php echo $uniqueid ?>" style= "display: none;">
+
+                                 <input type="text" class="form-control inputbox3" id="d1id" name="d1id[]" value="<?php echo $selfcompany[$i]['id']?>" style= "display: none;">
+
+                           <input type="text" class="form-control inputbox3" id="d1ques1" name="d1ques1[]" value="<?php echo $selfcompany[$i]['company']?>"  >
+                              </div>
+                           </section>
+                        </div>
+                     </td>
+                     <td>
+                        <section class="">
+                           <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >
+                           <option value="">Select Option</option>
+                           <?php if($selfcompany[$i]['decision']  == Yes){ ?>
+                           <option value="Yes" selected>Yes</option>
+                           <option value="No">No</option>
+                          <?php }elseif($selfcompany[$i]['decision']  == No){ ?>
+                           <option value="Yes" >Yes</option>
+                           <option value="No" selected>No</option>
+                         <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No">No</option>
+                         <?php } ?>
+
+                           </select>
+                        </section>
+                     </td>
+                     <td>
+                        <section class="">
+                           <select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >
+                              <option value="">Select Option</option>
+                               <?php if($selfcompany[$i]['transaction']  == Yes){ ?>
+                           <option value="Yes" selected>Yes</option>
+                           <option value="No">No</option>
+                        <?php }elseif($selfcompany[$i]['transaction']  == No){ ?>
+                           <option value="Yes" >Yes</option>
+                           <option value="No" selected>No</option>
+                          <?php }else{ ?>
+                          <option value="Yes" >Yes</option>
+                          <option value="No" >No</option>
+                         
+                         <?php } ?>
+                           </select>
+                        </section>
+                     </td>
+                  </tr>
+                  <tr>
+                 <?php }} ?>
+
                      <td colspan="4" >
                         <div class = "appenddiv1 " id="appenddiv1">
                         </div>
@@ -402,18 +467,15 @@
                <td colspan="4">
                <div class="">
                <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
-              <?php if($relativecompany){?>
-               <input type="radio" id= "showsec1" name="showsec1" value="Yes" checked="checked" onclick="showsection(this.id)">Yes
-               <?php } else { ?>
-               <input type="radio" id= "hidesec1" name="showsec1" value="No" checked = "checked" onclick="showsection(this.id)">No
-               
-                         <?php } ?>
+              <input type="radio" id= "showsec2" name="showsec1" value="Yes"  onclick="showsection(this.id)">Yes
+              <input type="radio" id= "showsec2" name="showsec1" value="No" onclick="showsection(this.id)">No
                </div>
                </td>
                </tr>
                   <?php 
-                if($relativecompany){
+               
                for($i=0; $i < count($relativecompany); $i++){
+                 if($relativecompany){
                 ?>
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;" width="100%"  id="test1">
                <tr>

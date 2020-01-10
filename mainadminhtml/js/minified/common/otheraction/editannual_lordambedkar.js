@@ -96,6 +96,7 @@ else
 {website('#t7row'+count).remove();website('.appendd7').attr('plancntr',parseInt(count)-1);}
 else
 {return false;}}}
+function showsection(id){var id=id;var x=document.getElementById("test");var y=document.getElementById("test1");if(id=='showsec1'){if(x.style.display==="none"){x.style.display="block";}else{x.style.display="none";}}else if(id=='showsec2'){if(y.style.display==="none"){y.style.display="block";}else{y.style.display="none";}}}
 website('#updateannual').ajaxForm({dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
