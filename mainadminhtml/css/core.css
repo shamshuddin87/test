@@ -210,11 +210,12 @@ body.nav-sm .menu_section h3 {
 body.nav-md .container.body .col-md-3.left_col {
     width: 230px;
     padding: 0;
-    position: absolute;
+    position: fixed;
     display: flex;
     z-index: 999;
+    overflow: scroll;
+    height: 100%;
 }
-
 body .container.body .right_col {
     *background: #F7F7F7;
 }
