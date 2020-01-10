@@ -536,6 +536,34 @@ class Commonquerycommon extends Component
             return false;
         }
      }
+    
+     /*----- START check if there duplicate emp code ----*/
+    public function checkifduplidata($getuserid,$empcode,$userid)
+    {
+        $connection = $this->dbtrd;
+        $sqlquery = "SELECT * FROM `it_memberlist`
+                    WHERE `user_id` = '".$getuserid."' AND `employeecode`='".$empcode."' AND `wr_id`!='".$userid."'";
+        //echo $sqlquery;exit;
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+               return true;
+            }
+            else
+            {   
+                return false; 
+            }
+        }
+        catch (Exception $e)
+        {   
+            return false;
+        }
+        
+    }
+    /*----- END check if there duplicate emp code ----*/
 }
 
 
