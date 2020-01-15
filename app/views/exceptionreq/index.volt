@@ -226,7 +226,7 @@ else{
 </div>
 <!--------------------------------------------Table For Created Request------------------------------------------------>
  <div class="">
-  <h3>Your Exception Requests</h3>
+  <h3 class="h1_heading text-center">Your Exception Requests</h3>
   <div class="cssnumrws">
    <span>Show</span>
      <select id="noofrows" name="noofrows" class="noofrows">

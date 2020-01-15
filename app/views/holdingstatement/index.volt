@@ -20,7 +20,7 @@ $condeptsess = $this->session->contractdepartment;
         <div class="formcss">                           
             <div class="typography form_pad">
                 <div class="formelementmain"> 
-                    <h3 class="h1_heading text-center" style="text-align:left;">Upload Monthly Demat/Trade Details</h3>
+                    <h3 class="upload" style="text-align:left;">Upload Monthly Demat/Trade Details</h3>
                     <form id="insertholdingstatement" action="holdingstatement/insertholdingstatement" method="post" enctype="multipart/form-data" autocomplete="off" > 
                         
                         <section class="col col-md-4 col-xs-4">

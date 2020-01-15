@@ -1,5 +1,5 @@
 .formelementmain {
-    padding: 30px 0;
+    padding: 15px 0;
     background: #fff;
     border-radius: 4px;
     box-shadow: 2px 2px 5px #cccc;
@@ -26,6 +26,11 @@ input[type="radio"], input[type="checkbox"] {
     margin: 4px 5px 0;
     margin-top: 1px 9;
     line-height: normal;
+}
+h3.upload {
+    font-size: 19px;
+    padding: 5px 9px;
+    color: #000;
 }
 
 .header-search-wrapper {

@@ -33,6 +33,7 @@ form#uploadtrade {
   width: 0;
   height: 0;
 }
+.form-control { height: 31px; }
 #searchcmp ul { padding-left: 0px; }
 #searchcmp .topul {
     cursor: pointer;
