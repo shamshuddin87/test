@@ -18,13 +18,16 @@
     padding: 12px 0px;
 }
 
+
 input#date1, input#date2, input#desdate1 , input#desdate2 {
     padding: 4px 10px;
     border-radius: 3px;
     border: none;
     border: 1px solid #ccc;
 }
-
+.srcfac {
+    padding: 18px 0;
+}
 input#srch {
     padding: 4px;
     border-radius: 3px;

@@ -24,7 +24,7 @@ input#date1, input#date2, input#desdate1 , input#desdate2 {
     border: none;
     border: 1px solid #ccc;
 }
-
+.form-control { height: 30px; }
 input#srch {
     padding: 4px;
     border-radius: 3px;

@@ -17,7 +17,7 @@ $current_year =  date("Y");
     <h1 class="h1_heading text-center" style="text-align: center;">Confirmation of Trade</h1>
 <div class="table-responsive design_info itntfr" id="annualdisc" itntfr="annualdisc" >
         
-        <div class="cssnumrws">
+        <div class="cssnumrws col-md-12">
            <span>Show</span>
             <select id="noofrows" name="noofrows" class="noofrows">
                <option value="10">10</option><option value="25">25</option>

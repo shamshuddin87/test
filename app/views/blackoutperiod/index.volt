@@ -30,7 +30,7 @@ $condeptsess = $this->session->contractdepartment;
                             <label class="control-label">Search for company master*</label>
                             <div class="header-search-wrapper  floatnone find_box_company">
                           <i class="fa fa-search"></i>
-                          <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft" placeholder="Select Company" id="search-box" autocomplete="off"/>
+                          <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft col-md-12" placeholder="Select Company" id="search-box" autocomplete="off"/>
                           <div id="live-search-header-wrapper" class="">
                             <ul class="live-searchul"></ul>
                           </div>

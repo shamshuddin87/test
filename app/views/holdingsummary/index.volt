@@ -117,7 +117,7 @@ $condeptsess = $this->session->contractdepartment;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add Company</h4>
+        <h4 class="modal-title col-md-6">Add Company</h4>
       </div>
         <div class="modal-body">
             <form action="holdingsummary/insertholdingsummry" autocomplete="off" id="insertholdingsummry" class="nishana" method="post" enctype="multipart/form-data">
@@ -157,14 +157,14 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                         </section>
                 
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-12 col-xs-12">
                             <div class="input">
                                 <label class="control-label">No. Of Shares</label>
                                 <input type="text" id="noofshares" name="noofshares" class="form_fields form-control col-md-7 col-xs-12" required>
                             </div>
                         </section>
                 
-                       <section class="col col-md-6 col-xs-6">
+                       <section class="col col-md-12 col-xs-12">
                         <div class="input">
                             <label class="control-label">Type Of Security</label>
                             <select id="sectype" name="sectype" class="form_fields form-control col-md-7 col-xs-12" required>

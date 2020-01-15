@@ -62,7 +62,7 @@ th.sorting, th.sorting_asc {  color: #fff;}
 .form_pad {padding: 25px;}
 .form_heading{ text-decoration: underline;  padding: 5px; font-weight: 700; font-size: 13px; font-family: 'Gotham Rounded';text-align: center;}
 .form_fields{ border-radius: 3px; line-height: 30px;width: 100%;  /*margin: 0px 0px 20px 0px;*/outline: none; border: 1px solid #ddd;}
-label.control-label {padding: 5px 0; color: #000;}
+label.control-label {padding: 5px 0; color: #000; display: block;}
 .note{color:#000; padding: 12px 0;} 
 .genderlbltxt{padding-right: 15px;padding-left: 5px;}
 .gensec{margin-top: 25px;}

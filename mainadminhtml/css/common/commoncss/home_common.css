@@ -107,15 +107,21 @@ ul.nav_child_menu {
 button.viewmore {
     /* text-align: right; */
     float: right;
-    background: #0073bb;
+    /*background: #0073bb;*/
+    background: #523680;
     color: #fff;
     padding: 5px 7px;
     border: none;
     border-radius: 3px;
+    margin-bottom: 20px;
     box-shadow: 2px 2px 3px #ccc;
 }
 
-.table th {background: #17395b; color:#fff;}
+i.fa.fa-arrow-circle-right {
+    color: #7c6cad;
+}
+
+.table th {/*background: #17395b;*/ background:#7c6cad; color:#fff;}
 tr:nth-child(even) {  background-color: #dddddd;}
 
 .x_panel {

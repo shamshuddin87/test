@@ -13,6 +13,9 @@
     padding: 15px;
     margin-top: 20px;
 }
+.floatright.text-right {
+    float: right;
+}
 
 tbody.appendrow {
     background: #fff;
@@ -21,7 +24,7 @@ tbody.appendrow {
 .control-label.btnsubmitme.cntrol_tab_one {
     float: left;
    
-    margin-top: 20px;
+/*    margin-top: 20px;*/
 }
 
 input[type="radio"], input[type="checkbox"] {
