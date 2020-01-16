@@ -117,7 +117,7 @@ $upsiid = $this->session->upsitypeid;
                         </section>   
 					    <section class="col col-md-12 col-xs-12"></section>
                         <div class="appendfile" filecntr='1'>
-                        <section class="col col-md-12 col-xs-12">
+                        <section class="col col-md-12 col-xs-12 box_border">
                         <section class="col col-md-1 col-xs-1">
                           <div class="input">
                         <label class="control-label">Sr No.</label><br>

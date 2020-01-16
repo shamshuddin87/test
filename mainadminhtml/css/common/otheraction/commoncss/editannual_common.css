@@ -13,7 +13,8 @@ td, th {
     padding: 9px 7px;
 }
 
-.adddiv1section1.col-md-12 {
+.adddiv1section1.col-md-12, .adddiv2section1.col-md-12, .adddiv3section1.col-md-12,.adddiv4section1.col-md-12,.adddiv5section1.col-md-12,.adddiv6section1.col-md-12,
+.adddiv5section2, .adddiv7section2 {
     margin-top: 10px;
 }
 

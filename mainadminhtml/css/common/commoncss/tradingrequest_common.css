@@ -7,7 +7,7 @@ input#fileToUpload {
     padding: 5px;
 }
 .trailreq th ,.trailreq td { padding:10px;color: #000;   border: 1px solid #ddd;}
-.trailreq th { color: #000;  background: #17395b; color: #fff;}
+.trailreq th { color: #000;  background: #7c6cad; color: #fff;}
 
 .trailreq tr:nth-child(even){background-color: #f2f2f2;}
 
