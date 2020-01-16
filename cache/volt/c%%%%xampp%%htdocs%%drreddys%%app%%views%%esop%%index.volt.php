@@ -15,39 +15,38 @@ $condeptsess = $this->session->contractdepartment;
 <div class="mainelementfom">
      
 
-    <h2 class="h1_heading text-center">RTA Reconcilation</h2>
+    <h1 class="h1_heading text-center">ESOP</h1>
     <div class="containergrid">       
         <div class="formcss">                           
             <div class="typography form_pad">
                 <div class="formelementmain"> 
                     
-                    <form id="insertreconcilation" action="reconcilation/insertreconcilation" method="post" enctype="multipart/form-data" autocomplete="off" > 
-                    <section class="col col-md-6 col-xs-6">
-                        <label class="control-label">Date of RTA Data</label>
-                        <div class="input">
-                        <input type="text" name="statemnttil" id="statemnttil" class="form-control bootdatepick" required readonly>   
-                        </div>
-                    </section>
+                    <form id="insertesop" action="esop/insertesop" method="post" enctype="multipart/form-data" autocomplete="off" > 
                         
                     <section class="col col-md-6 col-xs-6">
                     <div class="input">
                     <label class="control-label">Upload File</label>
                         <div class="choose_files">
-                            <input type="file" name="reconcilationfile" id="reconcilationfile" >
+                            <input type="file" name="esopfile" id="esopfile" >
                         </div>
                         <div class="updatefile">
                         <div class="sample_down floatleft">
-                           <a href="samplefile\RTAReconcilation\RTAReconcilation.xlsx" download><p class="sample">
-                            Download Sample Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i></p></a>
+                           <a href="samplefile\ESOP\ESOP.xlsx" download>
+                            <p class="sample">
+                            Download Sample Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                            </p>
+                           </a>
                         </div>
                         <div class="clearelement"></div> 
                       </div>
                     </div>
+                    
                     </section>
+                      <div class="col-md-6 submit_b">
+                        <input type="submit" value="Submit" class="btn btn-primary insrtesop">
+                      </div>   
                         
-                    <section class="col col-md-12 runreport text-right">
-                        <input type="submit" value="Run Report" class="btn btn-primary runreport">
-                    </section>
+                    
                     <div class="clearelement"></div>
                         
                     </form>
@@ -69,10 +68,6 @@ $condeptsess = $this->session->contractdepartment;
                 <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>
-<!--
-                           
--->
-                            <th>Date Of RTA Data</th>
                             <th>Date Of Upload</th>
                             <th>Time</th>
                             <th>Action</th>
