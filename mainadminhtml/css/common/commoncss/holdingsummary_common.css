@@ -3,7 +3,7 @@ tbody.appendrow { background: #fff;}
 .control-label.btnsubmitme.cntrol_tab_one { float: leftmargin-top: 20px;}
 input[type="radio"], input[type="checkbox"] { margin: 4px 5px 0; margin-top: 1px 9; line-height: normal;}
 .header-search-wrapper {  width: 100%; *height: 40px; display: block; position: relative; max-width: 500px;}
-button.btn.btn-default.btn-default-one { background: #1A82C3; color: #fff !important;}
+button.btn.btn-default.btn-default-one { background: #522c8f; color: #fff !important;}
 .header-search-wrapper .fa-search { position: absolute; font-size: 18px; top: 10px; left: 10px; line-height: normal; -webkit-transition: color 200ms ease; transition: color 200ms ease; height: auto;}
 #search-box.header-search-input, #search-box1.header-search-input1 {display: block;padding: 7.5px 7px 7.5px 40px;width: 100%;
 background: rgba(255,255,255,0.3);-webkit-transition: all 200ms ease;transition: all 200ms ease; border: none; font-size: 16px; appearance: textfield; font-weight: 400; outline: none; margin: 0px auto; max-width: 500px; border: 1px solid #73879c;
@@ -78,8 +78,11 @@ div#live-search-header-wrapper { height: 100px; overflow: scroll;}
 i.fa.fa-edit.faicon.floatleft.editrestrictedemp {margin: 0 7px; font-size: 16px;cursor: pointer;}
 i.fa.fa-trash-o.faicon.floatleft.deleterestrictedemp {margin: 0 7px;font-size: 16px;cursor: pointer;}
 .opening { float: right; }
-button.btn.openingblnc { background: #17395b;color: white;}
+button.btn.openingblnc { background: #522c8f;color: white;}
 .bg_white {background: #fff;box-shadow: 2px 3px 5px #ccc;padding: 10px 5px;}
+.control-label.btnsubmitme.cntrol_tab_one.col-md-12.col-xs-12 {
+    margin: 20px 0;
+}
 
 /*################ Pagination Start ######################*/
 .paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}

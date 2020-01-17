@@ -1,5 +1,5 @@
 .containergrid.formcss {
-    background: #fff;
+    background: #fff; padding: 10px; box-shadow: 0px 2px 8px 3px #ccc;
 }
 .formelementmain {
     padding: 30px 0;

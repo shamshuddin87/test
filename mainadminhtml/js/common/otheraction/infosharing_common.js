@@ -1001,7 +1001,7 @@ website('body').on('click','.btnaddfile',function()
     
     var addhtmlnxt='';
     addhtmlnxt += '<div id="row-'+getlastid+'">';
-    addhtmlnxt += '<section class="col col-md-12 col-xs-12">';
+    addhtmlnxt += '<section class="col col-md-12 col-xs-12 box_border">';
     addhtmlnxt += '<section class="col col-md-1 col-xs-1"><div class="input"><label class="control-label">Sr No.</label><br><label>'+getlastid+'.</label></div></section>';
     addhtmlnxt += '<section class="col col-md-3 col-xs-3"><div class="input">';
     addhtmlnxt += '<label class="control-label">Attach Data Shared</label><div class="choose_files">';

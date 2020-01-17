@@ -102,7 +102,7 @@
                   <input type="button" value="Add" name="" id="addmobile" class="mobile_add">
                     </div>                     
                   -->
-               <div class="col-md-12"> 
+               <div class="col-md-12 "> 
                   <input class="btn btn-primary" type="submit" value="Submit">
                </div>
             </form>
@@ -495,7 +495,11 @@
                   <label>Address</label>
                   <textarea id="materialaddress" placeholder="Write address.." style="height:100px"></textarea>
                </div>
-               <button type="button" class="btn btn-primary" id="savemfr">Submit</button>
+
+               <div class="col-md-12 text-right">
+                 <button type="button" class="btn btn-primary" id="savemfr">Submit</button>
+               </div>
+
             </div>
             <!---------------------------------------------------------------------------------------------->
             <!----TABLE OF INSERTED DATA------------------------------------------------------------------>
@@ -520,7 +524,9 @@
                <div class="trdinti">
                   <h4 class="tradedetails">Trade Intimation Details</h4>
                </div>
+               <div class="text-right">
                <button type="button" class="btn btn-danger" id="trdeintimatn">Trade Intimation</button> 
+            </div>
             </div>
             <table class="table table-inverse" id="datableabhi">
                <thead>
@@ -673,7 +679,7 @@
                               <input type="text" id="shres" name="shres" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
                            </div>
                         </section>
-                        <section class="col col-md-6 col-xs-6" id="dateoftrans">
+                        <section class="col col-md-12 col-xs-12" id="dateoftrans">
                            <div class="input">
                               <label class="control-label">Date Of Transaction</label> 
                               <input type="text" name="transdate" id="transdate" class="form-control bootdatepick" required readonly>

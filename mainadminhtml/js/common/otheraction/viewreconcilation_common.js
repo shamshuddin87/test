@@ -119,7 +119,7 @@ function getdataonload()
                         addhtmlnxt += '<td width="15%"></td>';
                         addhtmlnxt += '<td width="15%"></td>';
                         addhtmlnxt += '<td width="15%"></td>';
-                        addhtmlnxt += '<td width="30%"><input type="submit" value="Error Message" class="showerror" title="error message"></td>';
+                        addhtmlnxt += '<td width="30%"><input type="submit" value="Error! Message" class="showerror" title="error message"></td>';
                         addhtmlnxt += '</tr>';
                     }
                 }

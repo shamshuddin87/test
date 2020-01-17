@@ -51,6 +51,6 @@ input.showerror {
     background: #f10202;
     color: #fff;
     border: none;
-    padding: 4px;
+    padding: 4px; font-size: 11px;
     border-radius: 4px;
 }

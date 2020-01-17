@@ -1,5 +1,5 @@
 .trailreq th ,.trailreq td { padding:10px;color: #000;   border: 1px solid #ddd;}
-.trailreq th { color: #000;  background: #17395b; color: #fff;}
+.trailreq th { color: #000;  background: #7c6cad; color: #fff;}
 table#datable {background: #fff;}
 .control-label.form-group {float: right; padding: 0 10px;}
 .trailreq tr:nth-child(even){background-color: #f2f2f2;}
@@ -14,7 +14,9 @@ height: 100%; /* Full height */
 overflow: auto; /* Enable scroll if needed */
  background-color: rgb(0,0,0); /* Fallback color */
  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}   
+}  
+
+.form-control { height: 33px; } 
 /* The Close Button */
 .close { color: #000; float: right; font-size: 28px; font-weight: bold;}
 .close:hover,
@@ -55,6 +57,6 @@ font-size: 14px;color: #5d6677;font-weight: bold;background-color: #f2f2f2; widt
 /* start: status filter */
 .makeitresponsive { float: left; width: 100%;}
 .cssfilter { width: 25%;   float: right;}
-.approve_button { float: left; padding-top: 27px;}
+.approve_button { float: right; padding-top: 32px;}
 .panel { padding:12px; }
 /* end: status filter */

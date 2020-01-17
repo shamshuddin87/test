@@ -321,7 +321,7 @@ div#live-search-header-wrapper {
 i.fa.fa-edit.faicon.floatleft.editrestrictedemp {margin: 0 7px; font-size: 16px;cursor: pointer;}
 i.fa.fa-trash-o.faicon.floatleft.deleterestrictedemp {margin: 0 7px;font-size: 16px;cursor: pointer;}
 .opening { float: right; }
-button.btn.openingblnc { background: #17395b;color: white;}
+button.btn.openingblnc { background: #522c8f; color: white;}
 .bg_white {background: #fff;box-shadow: 2px 3px 5px #ccc;padding: 10px 5px;}
 
 /*################ Pagination Start ######################*/

@@ -1,5 +1,5 @@
 .pending_status {
-    width: 48%;
+   /* width: 48%;*/
     float: left;
 }
 
@@ -26,6 +26,7 @@
     float: left;
     padding-top: 15px;
 }
+.form-control { height: 30px; }
 .srcfac .btn { padding: 4px 12px; }
 
 .design_info h3 {
