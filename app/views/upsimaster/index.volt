@@ -223,11 +223,11 @@ $uid = $this->session->loginauthspuserfront['id'];
                     </div>
                 </section>
             
-                <section class="col col-md-6 col-xs-6">
+                <section class="col col-md-12 col-xs-12">
                     <input type="hidden" id="cmpprojdes" name="cmpprojdes">
                     <div class="input">
                     <label class="control-label">UPSI Description</label>
-                        <textarea name="projdesc" id="projdesc" class="projdesc" style="margin: 0px;width: 475px;height: 73px;"></textarea>
+                        <textarea name="projdesc" id="projdesc" class="projdesc" style="margin: 0px;width: 100%;height: 73px;"></textarea>
                     </div>
                 </section>
 

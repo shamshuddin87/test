@@ -20,7 +20,7 @@ body.nav-md .container.body .right_col.right_col {min-height: 700px;    height: 
 textarea.width_100 {
     width: 100%;
 }
-.step_1 { float: left; width: 100%; position: relative; margin:10px 0;}
+.step_1 { float: left; width: 100%; position: relative; margin:25px 0;}
 
 .step_1 .sec:before {
     content: "";

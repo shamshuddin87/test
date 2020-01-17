@@ -17,89 +17,34 @@ table.dataTable thead>tr>td.sorting_asc,
  table.dataTable thead>tr>td.sorting_desc, 
  table.dataTable thead>tr>td.sorting { padding-right:23px; }
 
-.panel.panel-primary {
-    border: none;
-}
+.panel.panel-primary { border: none;}
 
-div#datableabhi_wrapper {
-    padding: 20px;
-    box-shadow: 0px 1px 12px 4px #ccc;
-}
-
-input[type="search"] {
-    border: none;
-    border: 1px solid #ccc;
-    padding: 5px;
-}
-.list_co {
-    float: left;
-    width: 98%;
-    padding: 14px;
-}
-
-.choose_files {
-    border: 1px solid #ccc;
-    padding: 9px;
-    cursor: pointer;
-}
-
+.btn-success {background: #522c8f; border: 1px solid #522c8f;}
+div#datableabhi_wrapper { padding: 20px; box-shadow: 0px 1px 12px 4px #ccc;}
+input[type="search"] {border: none; border: 1px solid #ccc; padding: 5px;}
+.list_co {float: left; width: 98%; padding: 14px;}
+.choose_files { border: 1px solid #ccc; padding: 9px;cursor: pointer;}
 .table th { color:#fff; }
-
-th.sorting, th.sorting_asc {
-    color: #fff;
-}
-
-.table th {
-    background: #17395b;
-}
-.h1_heading {
-    /* font-family: 'Gotham Rounded'; */
-    color: #000;  padding-bottom: 15px; text-align: center;
-}
-
-
-.horizontal_line {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right,rgba(0,0,0,0),rgb(0,0,0),rgba(0,0,0,0));
-}
-
-.liti_color1{background-color: #f47721;}
-.liti_color2{background-color: #1ca0de;}
-.liti_color3{background-color: #6cbc35;}
-.liti_color4{background-color: #e74c3c;}
-.liti_color5{background-color: #00a78e;}
+th.sorting, th.sorting_asc { color: #fff;}
+.h1_heading {/* font-family: 'Gotham Rounded'; */color: #000;  padding-bottom: 15px; text-align: center;}
+.horizontal_line { border: 0; height: 1px; background-image: linear-gradient(to right,rgba(0,0,0,0),rgb(0,0,0),rgba(0,0,0,0));}
 
 .panel-title{color:#73879c!important;}
 .panel-title:hover{color:black!important;}
 
-.mainboxcss{
-    width: 270px;
-    height: 275px;
-    margin: 10px;
-    padding: 4px 0px 0px 0px;
-    border-radius: 100%; 
-}
+.mainboxcss{ width: 270px; height: 275px; margin: 10px; padding: 4px 0px 0px 0px;border-radius: 100%; }
 .pad_p a p:hover,
 .pad_p a p:focus,
 .anchortagch:hover,
-.anchortagch:focus{
-  color:#fff !important;
-}
-
+.anchortagch:focus{color:#fff !important;}
 .pad_p a p:hover{
   transform: scale(1.2);
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-   
+  -ms-transform: scale(1.2);  
 }
-.heading_center{
-    text-shadow: 0px 2px 1px rgba(34, 34, 34, 0.51);    
-}
-.floatright {
-    float: right;
-}
+.heading_center{ text-shadow: 0px 2px 1px rgba(34, 34, 34, 0.51);    }
+.floatright {float: right;}
 /*----------------------- General CSS END ------------------------------*/
 
 /*----------------------- Form CSS Start ------------------------------*/
@@ -122,17 +67,8 @@ th.sorting, th.sorting_asc {
     -webkit-transition: opacity 0.8s,-webkit-transform 0.8s;
     box-shadow: 0 0 20px rgba(0,0,0,.3);
 }
-.form_pad {
-   padding: 25px;
-}
-.form_heading{
-    text-decoration: underline;
-    padding: 5px;
-    font-weight: 700;
-    font-size: 13px;
-    font-family: 'Gotham Rounded';
-    text-align: center;
-}
+.form_pad { padding: 25px;}
+.form_heading{text-decoration: underline;padding: 5px; font-weight: 700; font-size: 13px; font-family: 'Gotham Rounded'; text-align: center;}
 .form_fields{
     border-radius: 3px;
     line-height: 30px;
@@ -1381,9 +1317,9 @@ span#tot_contract {
     padding-bottom: 5px;
 }
 
-.lstc {
+/*.lstc {
     margin-left: 35%;
-}
+}*/
 input#lcmp {
     width: 50%;
 }
@@ -1449,6 +1385,6 @@ th.sorting, th.sorting_asc {
     color: #fff;
 }
 
-.table th {
+/*.table th {
     background: #17395b;
-}
+}*/

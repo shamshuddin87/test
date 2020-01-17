@@ -36,9 +36,9 @@ th.sorting, th.sorting_asc {
     color: #fff;
 }
 
-.table th {
+/*.table th {
     background: #17395b;
-}
+}*/
 .h1_heading {
     /* font-family: 'Gotham Rounded'; */
     color: #000;  padding-bottom: 15px; text-align: center;
@@ -330,6 +330,6 @@ th.sorting, th.sorting_asc {
     color: #fff;
 }
 
-.table th {
+/*.table th {
     background: #17395b;
-}
+}*/

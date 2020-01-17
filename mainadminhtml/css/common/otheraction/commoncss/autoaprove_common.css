@@ -15,7 +15,7 @@ div#datableabhi_wrapper { padding: 20px;  box-shadow: 0px 1px 12px 4px #ccc;}
 input[type="search"] {border: none;border: 1px solid #ccc;padding: 5px;}
 .table th { color:#fff; }
 th.sorting, th.sorting_asc {color: #fff;}
-.table th {  background: #17395b;}
+/*.table th {  background: #17395b;}*/
 .h1_heading { /* font-family: 'Gotham Rounded'; */  color: #000;  padding-bottom: 15px; text-align: center;}
 .horizontal_line { border: 0; height: 1px; background-image: linear-gradient(to right,rgba(0,0,0,0),rgb(0,0,0),rgba(0,0,0,0));}
 .panel-title{color:#73879c!important;}
@@ -148,4 +148,5 @@ input.gotobtn { padding: 2px 6px 2px 6px; border: 1px solid #5d6677;}
 .floatleft { float: left;}
 /*################ Pagination End ######################*/
 th.sorting, th.sorting_asc { color: #fff;}
-.table th {background: #17395b;}
+/*.table th {background: #17395b;}
+*/

@@ -172,19 +172,6 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                             </div>
                         </section>
 
-                        <section class="col col-md-4 ">
-                            <label class="control-label">Department Access *</label>
-                            <div class="input">
-                                <select id="deptaccess" name="deptaccess[]" class="form_fields form-control col-md-7 col-xs-12" multiple>
-                                    <!-- <option value="" >Select Department</option> -->
-                                    <?php foreach ($deptlist as $kc => $vc) { ?> 
-                                    <option value="<?php echo $vc['id'];?>" cmplink="<?php echo $vc['companyid'];?>" disabled>
-                                        <?php echo $vc['deptname'];?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </section>
-
                         <section class="col col-md-4 col-xs-12">
                             <div class="mainelem company_product">
                                 <label class="control-label">Approver Name*</label>
@@ -211,6 +198,21 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                             </div>
                             <div id="appendapp" style="text-align: left;"></div>
                         </section>
+
+                        <section class="col col-md-4 ">
+                            <label class="control-label">Department Access *</label>
+                            <div class="input">
+                                <select id="deptaccess" name="deptaccess[]" class="form_fields form-control col-md-7 col-xs-12" multiple>
+                                    <!-- <option value="" >Select Department</option> -->
+                                    <?php foreach ($deptlist as $kc => $vc) { ?> 
+                                    <option value="<?php echo $vc['id'];?>" cmplink="<?php echo $vc['companyid'];?>" disabled>
+                                        <?php echo $vc['deptname'];?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </section>
+
+                        
                         
                         <!--<section class="col col-md-4 ">
                             <label class="control-label">Reminder Days *</label>
@@ -297,7 +299,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                         <input type="text" class="form-control" id="mobile" name="mobile" onkeypress="return numbersonly(event,this);" maxlength="10" required>
                     </div> -->
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="control-label form-group col-md-12">
+                        <div class="control-label form-group">
                                 <span class="floatleft"><label>Employee Code *</label></span>
                                 <input type="text" class="form-control" id="empcode" name="empcode" onkeypress="return isAlphaNumeric(event,this);" maxlength="9" pattern="[A-Za-z0-9]{9}" title="Please Enter 9 digit code" required>
                         </div>
@@ -382,12 +384,12 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                     </div>-->
                     
                 </div>
-                <div class="control-label form-group btnsubmitme">
+                <div class="control-label form-group btnsubmitme col-md-12">
                     <button type="submit" class="btn btn-primary updatemlistid floatleft">Submit</button>
 
-                     <div class="floatright">
+                    <!--  <div class="floatright">
                          <button type="button" class="btn btn-default btn-default-one" data-dismiss="modal">Close</button>
-                     </div>
+                     </div> -->
                 </div>
           </form>
       </div>

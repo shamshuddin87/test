@@ -269,7 +269,7 @@ class Elements extends Component
         for ($i = $start_loop; $i <= $end_loop; $i++) {
 
             if ($cur_page == $i)
-                $msg .= "<li p='$i' style='color:#fff;background-color:#5d6677;' class='active'>{$i}</li>";
+                $msg .= "<li p='$i' style='color:#fff;background-color:#522c8f;' class='active'>{$i}</li>";
             else
                 $msg .= "<li p='$i' class='active'>{$i}</li>";
         }

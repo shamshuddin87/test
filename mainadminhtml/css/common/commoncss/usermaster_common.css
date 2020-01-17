@@ -45,7 +45,7 @@ label {padding: 6px 0;}
 div#datablerushi_wrapper { padding: 20px; box-shadow: 0px 1px 12px 4px #ccc;}
 input[type="search"] {  border: none; border: 1px solid #ccc; padding: 5px;}
 th.sorting, th.sorting_asc {  color: #fff; font-weight: normal !important;}
-.table th {  background: #17395b;}
+/*.table th {  background: #17395b;}*/
 .h1_heading {  padding-bottom: 15px;}
 .table th {   color: #fff;}
 .panel-title{color:#333!important;}
@@ -75,7 +75,7 @@ font-weight: normal;font-family: 'robotomedium';}
 .faicon{cursor: pointer;font-size: 18px;float: none; text-align: center;padding-bottom: 10px; margin-right: 5px;}
 .faicon:hover,.faicon:focus,.faicon:active{color:black;}
 .btnsubmitme{ clear: both;}
-.btnsubmitme .btn-primary{ margin: 0 auto; display: block;background: #1A82C3; border:none;    }
+.btnsubmitme .btn-primary{ margin: 0 auto; display: block;background: #522c8f; border:none;    }
 .btnsubmitme .btn-primary:hover { background: #376ebf; }
 .btnsubmitme .vwlogh {margin-left: 10px;}
 .mar_0{margin:0px;}
@@ -114,6 +114,11 @@ a:hover { text-decoration: none;}
 table{ *border: 1px solid #ddd;     border-collapse: collapse;}
  thead td, th{  border-bottom:1px solid #ddd;padding:8px;   color:#555; font-size: 14px; font-family: 'robotomedium'; font-weight: normal;}
  tbody tr > td{padding:8px;  color:#696969; font-size:13px; }
+ i.fa.fa-search {
+    position: absolute;
+    top: 5px;
+    left: 0px;
+}
  /* tbody tr{
        border-top:1px solid #ddd;  
     } */   
@@ -146,7 +151,8 @@ table{ *border: 1px solid #ddd;     border-collapse: collapse;}
 #datablerushii .faicon{padding: 10px 4px !important;}
 .itemhover .fa-archive{font-size: 6em;}
 #insertmasterlist .col.col-md-4 {margin: 10px 0;}
-.control-label {font-weight: bold; font-size: 14px; color: #333; font-family: 'robotoregular';
+.form-group label { font-weight: normal; }
+.control-label {/*font-weight: bold;*/ font-size: 14px; color: #333; font-family: 'robotoregular';
 padding-bottom: 5px; text-align: right;}
 .company_asses {width:50%; margin:0 auto; display:block;text-align: right;}
 .company_asses .contractexcelbtn {padding: 5px 30px; background: #0747A6; border: none;}
@@ -269,7 +275,7 @@ input.gotobtn { padding: 2px 6px 2px 6px; border: 1px solid #5d6677;}
 /* #live-search-header-wrapper{height: 100px;} */
 #Mymodaledit #live-search-header-wrapper{height: 100px;}
 /*************** End of Search box css ext **********/
-ul.live-searchul {background: #f2f2f2;position: relative; width: 94%; top: 22px; z-index: 999;}
+ul.live-searchul {background: #f2f2f2;position: relative; width: 100%; top: 36px; z-index: 999;}
 #appapnd i.fa.fa-close.ser_cross.closeedit , #appendapp i.fa.fa-close.ser_cross.closeuser { text-align: right;position: absolute;right: 32px;background: #ccc; padding: 5px; border-radius: 5px; color: #480000;}
 input { line-height: normal !important;}
 .append_div {padding: 12px 0; float: left; width: 100%;}

@@ -5,7 +5,11 @@ body.nav-md .container.body .right_col.right_col {min-height: 700px;    height: 
 .lodranchor{cursor: pointer;}.panel.panel-primary { border: none;}
 div#datableabhi_wrapper { padding: 20px;box-shadow: 0px 1px 12px 4px #ccc;}
 input[type="search"] {border: none;border: 1px solid #ccc;padding: 5px;}
-.table th { color:#fff;   background: #17395b;}
+.table th { color:#fff;   background: #7c6cad;}
+.btn-success {
+    background: #522c8f;
+    border: 1px solid #522c8f;
+}
 th.sorting, th.sorting_asc {color: #fff;}
 .h1_heading {color: #000;  padding-bottom: 15px; text-align: center;}
 .horizontal_line {border: 0;height: 1px;background-image: linear-gradient(to right,rgba(0,0,0,0),rgb(0,0,0),rgba(0,0,0,0));}
