@@ -997,9 +997,9 @@ public function getallrelative($uid,$usergroup)
          // $querydelete = "DELETE FROM `annual_self_company` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
         // print_r($querydelete);exit;
 
-         $check = "SELECT * from annual_self_company WHERE user_id='".$uid."' && uniqueid= '".$unique."' && id= '".$id[$i]."' ";  
+        $check = "SELECT * from annual_self_company WHERE user_id='".$uid."' && uniqueid= '".$unique."' && id= '".$id[$i]."' ";  
 
-         $queryupdate =  "UPDATE `annual_self_company` SET `company` = '".$company[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = '".$id[$i]."'";
+        $queryupdate =  "UPDATE `annual_self_company` SET `company` = '".$company[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = '".$id[$i]."'";
 
          $queryinsert = "INSERT INTO `annual_self_company`
             (`user_id`,`company`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
@@ -1057,7 +1057,8 @@ public function upannualselffirm($uid,$company,$interest,$decision,$transaction,
       
       $count = count($company);
       $delid = implode(',', $id);
-
+     
+      //print_r($id);exit;
 
       for($i = 0; $i < $count; $i++)
       {
