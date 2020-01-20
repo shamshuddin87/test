@@ -14,7 +14,7 @@ label { display: block;}
 .title {text-align: center;color: #000;}
 .list_co { float: left;width: 100%;margin-bottom: 8px;}
 
-button#noofdmat {
+button#noofdmat ,button.btn.btn-primary.relhtml {
     margin-left: 10px;
     padding: 7px 25px;
     border-radius: 3px; color: #fff;
