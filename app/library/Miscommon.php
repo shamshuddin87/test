@@ -1285,7 +1285,14 @@ class Miscommon extends Component
        $time = time();
        $getmasterid = $this->tradingrequestcommon->getmasterid($userid);
        try{
-             $query="SELECT *,ups.`date_added` as dtadd,ups.`id` as uppid FROM `upsimaster` ups  LEFT JOIN  `it_memberlist` it ON ups.`user_id`=it.`wr_id` WHERE  ups.`projectowner` IN(".$userid.") ".$rslmt;
+            if($user_group_id == 2 || $user_group_id == 14)
+            {
+                   $query="SELECT *,ups.`date_added` as dtadd,ups.`id` as uppid FROM `upsimaster` ups  LEFT JOIN  `it_memberlist` it ON ups.`user_id`=it.`wr_id`  ".$rslmt;
+            }
+            else
+            {
+               $query="SELECT *,ups.`date_added` as dtadd,ups.`id` as uppid FROM `upsimaster` ups  LEFT JOIN  `it_memberlist` it ON ups.`user_id`=it.`wr_id` WHERE  ups.`projectowner` IN(".$userid.") ".$rslmt;
+            }
              //print_r($query);exit;
              $exeget = $connection->query($query);
              $getnum = trim($exeget->numRows());

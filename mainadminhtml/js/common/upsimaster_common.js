@@ -85,7 +85,7 @@ function getallupsietails()
                         dpusers = response.data[i]['connecteddps'];
                         dpusers = dpusers.split(",");
                     }
-                    if(response.usergrp == '14' || response.userid == response.data[i]['projectowner'])
+                    if(response.usergrp == '14' || response.usergrp == '2' || response.userid == response.data[i]['projectowner'])
                     {
                         htmlelements+='<i class="fa fa-edit upedit" upsiid="'+response.data[i][0]+'" ></i>';
                     }

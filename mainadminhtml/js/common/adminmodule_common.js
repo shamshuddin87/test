@@ -1,3 +1,21 @@
+website('body').on('change','#noofrows', function(e) 
+{
+  getuserlistonload();
+});
+
+website('body').on('click','.paginationmn li', function(e) 
+{
+    var rscrntpg = website(this).attr('p');
+    website('.panel.panel-white #pagenum').val(rscrntpg);
+    getuserlistonload();
+});
+
+website('body').on('click','.go_button', function(e) 
+{
+    var rscrntpg = website('.gotobtn').val();
+    website('.panel.panel-white #pagenum').val(rscrntpg);
+    getuserlistonload();
+});
 getuserlistonload();
 function getuserlistonload()
 {

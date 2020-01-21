@@ -257,11 +257,12 @@ class Tradingplancommon extends Component
         $connection = $this->dbtrd;
         try
         {
+            
             $queryselect = "SELECT * FROM `blackoutperiod_cmp` 
-                            WHERE '".$frmdate."' BETWEEN datefrom AND dateto 
-                            OR '".$todate."' BETWEEN datefrom AND dateto 
-                            OR datefrom >= '".$frmdate."' AND dateto <= '".$todate."' 
-                            OR dateto <= '".$frmdate."' AND datefrom >= '".$todate."'  ";
+                    WHERE (STR_TO_DATE('".$frmdate."','%d-%m-%Y') BETWEEN STR_TO_DATE(datefrom,'%d-%m-%Y') AND STR_TO_DATE(dateto,'%d-%m-%Y') 
+                    OR STR_TO_DATE('".$todate."','%d-%m-%Y') BETWEEN STR_TO_DATE(datefrom,'%d-%m-%Y') AND STR_TO_DATE(dateto,'%d-%m-%Y') 
+                    OR STR_TO_DATE(datefrom,'%d-%m-%Y') >= STR_TO_DATE('".$frmdate."','%d-%m-%Y') AND STR_TO_DATE(dateto,'%d-%m-%Y') <= STR_TO_DATE('".$todate."','%d-%m-%Y') 
+                    OR STR_TO_DATE(dateto,'%d-%m-%Y') <= STR_TO_DATE('".$frmdate."','%d-%m-%Y') AND STR_TO_DATE(datefrom,'%d-%m-%Y') >= STR_TO_DATE('".$todate."','%d-%m-%Y')) AND `companyid` = '".$cmpnme."'";
             //echo $queryselect;exit;
             $exeget = $connection->query($queryselect);
             $getnum = trim($exeget->numRows());
@@ -270,14 +271,7 @@ class Tradingplancommon extends Component
                 {
                     while($row = $exeget->fetch())
                     {
-                        if($row['companyid'] == $cmpnme)
-                        {
-                            $getlist[] = $row;
-                        }
-                        else
-                        {
-                            $getlist = array();
-                        }
+                        $getlist[] = $row;
                     }
                    // echo '<pre>';print_r($getlist);exit;
 
