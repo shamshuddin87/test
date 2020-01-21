@@ -210,9 +210,9 @@ class TradingrequestController extends ControllerBase
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
-                else if($checkval==1)
+                else if($checkval['status']=='false')
                 {
-                    $data = array("logged" => false,'message' => 'You Are Doing Different Trade Before Six Months Transaction');
+                    $data = array("logged" => false,'message' => $checkval['mg']);
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }

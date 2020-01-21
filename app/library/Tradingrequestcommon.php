@@ -1208,13 +1208,12 @@ class Tradingrequestcommon extends Component
 
         public function checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans)
         {
-
             $connection = $this->dbtrd;
             //echo "wait here ";exit;
             $mydate=date('d-m-Y');
             $getlist = array();
             $queryget = "SELECT * FROM `personal_request` WHERE user_id='".$uid."' AND id_of_company='".$idofcmp."' order by id desc limit 1";
-
+            //echo $queryget;exit;
             try
             {
                 $exeget = $connection->query($queryget);
@@ -1223,47 +1222,46 @@ class Tradingrequestcommon extends Component
                 if($getnum>0)
                 {
                     $row = $exeget->fetch();
-
-                    $queryget = "SELECT * FROM `trading_status` WHERE req_id = '".$row['id']."' order by id desc limit 1";
+                    // $queryget = "SELECT * FROM `trading_status` WHERE req_id = '".$row['id']."'  order by id desc limit 1";
+                    $queryget = "SELECT ts.* FROM `trading_status` ts LEFT JOIN `personal_request` pr ON pr.`id`=ts.`req_id` WHERE ts.`req_id` = '".$row['id']."' AND pr.`trading_status` IS NOT NULL order by id desc limit 1";
+                    //echo $queryget;exit;
                     $exege = $connection->query($queryget);
                     $getm= trim($exege->numRows());
                     if($getm>0)
                     {
                         $row2 = $exege->fetch();
-
                         $start_date = strtotime($row2['date_of_transaction']); 
 
                         $end_date = strtotime($mydate); 
                         $diffdays=($end_date - $start_date)/60/60/24; 
-                        // print_r($row);exit;
                         if($diffdays<=182 && $row['type_of_transaction']!=$typeoftrans)
                         {
-                            return true;
+                            $results = array('status'=>'false', 'mg'=>'You Are Doing Different Trade Before Six Months Transaction');
                         }
                         else
                         {
-                            return false;
+                             $results = array('status'=>'true', 'mg'=>'You can create request');
                         }
 
                     }
                     else
                     {
-                        return true;
+                        $results = array('status'=>'false', 'mg'=>'Please Complete Your Latest Transaction');
                     }
 
                 }
                 else
                 {
-                    return false;
+                    $results = array('status'=>'true', 'mg'=>'You can create request');
                 }
             }
             catch (Exception $e)
             {
-                $getlist = array();
+                $results = array('status'=>'false', 'mg'=>'Exception');
             //$connection->close();
             }
-            //echo '<pre>';print_r($getlist);exit;
-            return $getlist;
+            //echo '<pre>';print_r($results);exit;
+            return $results;
 
         }
     
