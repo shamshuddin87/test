@@ -127,8 +127,8 @@
 
 <div class="relativesform" style="display: none;">
   <div class="acc">
-    
-     <section class="col col-md-4 col-xs-4">
+    <div class="input-group col-md-12"> 
+     <section class="col col-md-6 col-xs-6">
         <label class="control-label">Select Name Of Relatives</label>
           <div class="input">
             <select id="relinfo" name="relinfo" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -140,17 +140,22 @@
                       </div>
                         </section>
 
-                       <section class="col col-md-4 col-xs-4">
+                       <section class="col col-md-3 col-xs-3">
                       <label class="control-label">No Of Demat Accounts</label>
                      <div class="input">
                    <input type="text" id="reldematno" name="reldematno" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
                             </div>
+
                   </section>
-                 <section class="col col-md-4 col-xs-4">
-                 <div class="input">
-                     <button type="button" class="btn btn-primary relhtml">Go</button>
-                   </div>
-            </section>
+
+                  <section class="col col-md-2 col-xs-2">
+                          <div class="input">
+                           <button type="button" class="btn btn-primary relhtml">Go</button>
+                          </div>
+                        </section>
+
+                 
+     </div>       
             <div class="relfieldapnd"></div>
  <!-------------------------append table---------------------------------->
     <!----TABLE OF INSERTED DATA------------------------------------------------------------------>
