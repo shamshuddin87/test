@@ -27,13 +27,11 @@ Class Email extends Phalcon\Mvc\User\Component {
         $mail->Username = $this->hosemail;
         $mail->Password = $this->pwdemail;
         $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody Password');
-        //$mail->addBCC("sd7@consultlane.com","Rushikesh Salunke");
+        $mail->addReplyTo('simply@consultlane.com', 'Volody Password');
+        $mail->addBCC("sd7@consultlane.com","Rushikesh Salunke");
         $mail->addAddress($to, $name);
         $mail->Subject = $subject;
         $mail->msgHTML($body);
-        //Read an HTML message body from an external file, convert referenced images to embedded,
-        //convert HTML into a basic plain-text alternative body
         $mail->AltBody = 'To view the message, please use an HTML compatible email viewer!';
 
         if ($mail->Send()) {
@@ -60,7 +58,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         $mail->Username = $this->hosemail;
         $mail->Password = $this->pwdemail;
         $mail->setFrom($this->hosemail, 'Volody BoardAPP');
-        //$mail->addBCC("sd7@consultlane.com","Rushikesh Salunke ");
+        $mail->addBCC("sd7@consultlane.com","Rushikesh Salunke ");
         $mail->addAddress($to, $name);
         $mail->Subject = $subject;
         //Read an HTML message body from an external file, convert referenced images to embedded,
@@ -69,6 +67,9 @@ Class Email extends Phalcon\Mvc\User\Component {
         //Replace the plain text body with one created manually
         $comment = 'Notification';
         $mail->msgHTML($body);
+        //$mail->Body ="Event Triggered now - ".$department." Eventid- ".$eventid;
+        //echo '<pre>'; print_r($mail); exit;
+        
         // ---------------- Add Attachment Start ----------------
         //$mail->addAttachment($attachment);
         // ---------------- Add Attachment End ----------------
@@ -85,23 +86,63 @@ Class Email extends Phalcon\Mvc\User\Component {
         //echo $gethtml; exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        /*//Set who the message is to be sent from
+        $mail->setFrom($this->fromemaili, $this->frometitle);
+        //Set an alternative reply-to address
+        $mail->addReplyTo($this->fromemailii, $this->frometitle_contact);
+        $mail->addBCC("","");
+        //Set who the message is to be sent to
+        $mail->addAddress($to, $name);
+        //Set the subject line
+        $mail->Subject = $subject;
+        //Read an HTML message body from an external file, convert referenced images to embedded,
+        $mail->msgHTML($body);
+        //Replace the plain text body with one created manually
+        $mail->AltBody = 'To view the message, please use an HTML compatible email viewer!';*/
+
+       //$mail = new PHPMailer;
+        //Tell PHPMailer to use SMTP
         $mail->isSMTP();
+        //Enable SMTP debugging
+        // 0 = off (for production use)
+        // 1 = client messages
+        // 2 = client and server messages
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        // use
+        // $mail->Host = gethostbyname('smtp.gmail.com');
+        // if your network does not support SMTP over IPv6
+        //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, $name);
+        //Set the subject line
         $mail->Subject = 'Welcome to Volody';
+        //Read an HTML message body from an external file, convert referenced images to embedded,
+        //convert HTML into a basic plain-text alternative body
         $mail->msgHTML($gethtml);
+        //Replace the plain text body with one created manually
+
+        //Attach an image file
+        //$mail->addAttachment('images/phpmailer_mini.png');
+        //send the message, check for errors
 
         if ($mail->Send()) {
             $get = array('logged'=>true,'message'=>'sent');
@@ -123,32 +164,47 @@ Class Email extends Phalcon\Mvc\User\Component {
 /* --------------------- AllNew Start --------------------- */
     public function sendrequestapproval($mailids,$userids,$filepath,$summdoc,$emailcontent)
     {
+        //echo "reached";print_r($summdoc);exit;
+
         $subject = 'Received Contract For Approval';
         $to =$mailids;
+       // $to="mitkarinaresh25@gmail.com";
         $gethtml = $this->htmlelements->sendforapproval($subject,$userids,$emailcontent);
         //echo $gethtml; exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
         
         $mail->msgHTML($gethtml);
         $mail->addAttachment(''.$filepath.'');
-        $mail->addAttachment(''.$summdoc.'');
+         $mail->addAttachment(''.$summdoc.'');
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
 
@@ -160,40 +216,57 @@ Class Email extends Phalcon\Mvc\User\Component {
             $get = array('logged'=>false,'message'=>'nosent');
         }
 
+        //$mail->ClearAddresses();
+        //$mail->ClearAttachments();
         //echo '<pre>'; print_r($get); exit;
         return $get;
     }
     
     
-    public function sendrequestapprovallegal($mailids,$userids,$filepath,$emailcontent)
+       public function sendrequestapprovallegal($mailids,$userids,$filepath,$emailcontent)
     {
         //echo "reached";print_r($summdoc);exit;
 
         $subject = 'Received Contract For Approval';
         $to =$mailids;
+       // $to="mitkarinaresh25@gmail.com";
         $gethtml = $this->htmlelements->sendforapprovallegal($subject,$userids,$emailcontent);
         //echo $gethtml; exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
         
         $mail->msgHTML($gethtml);
         $mail->addAttachment(''.$filepath.'');
+//         $mail->addAttachment(''.$summdoc.'');
+        // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
 
         if ($mail->Send()) {
@@ -203,6 +276,9 @@ Class Email extends Phalcon\Mvc\User\Component {
             //echo $mail->ErrorInfo; exit;
             $get = array('logged'=>false,'message'=>'nosent');
         }
+
+        //$mail->ClearAddresses();
+        //$mail->ClearAttachments();
         //echo '<pre>'; print_r($get); exit;
         return $get;
     }
@@ -216,28 +292,44 @@ Class Email extends Phalcon\Mvc\User\Component {
 
         $subject = 'Received New Contract Request';
         $to =$mailids;
+       // $to="mitkarinaresh25@gmail.com";
         $gethtml = $this->htmlelements->sendforlegalapproval($subject,$emailcontent);
         //echo $gethtml; exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
         
         $mail->msgHTML($gethtml);
+        //$mail->addAttachment(''.$filepath.'');
+         //$mail->addAttachment(''.$summdoc.'');
+        // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
 
         if ($mail->Send()) {
@@ -247,6 +339,9 @@ Class Email extends Phalcon\Mvc\User\Component {
             //echo $mail->ErrorInfo; exit;
             $get = array('logged'=>false,'message'=>'nosent');
         }
+
+        //$mail->ClearAddresses();
+        //$mail->ClearAttachments();
         //echo '<pre>'; print_r($get); exit;
         return $get;
     }
@@ -257,30 +352,47 @@ Class Email extends Phalcon\Mvc\User\Component {
 /* --------------------- AllNew Start --------------------- */
     public function sendmsgwithmail($mailids,$agreementname,$messagenote,$requestername)
     {
+        //echo "reached";print_r($mailids);exit;
         $subject = 'You Received a New Message';
         $to =$mailids;
+       // $to="mitkarinaresh25@gmail.com";
         $gethtml = $this->htmlelements->sendmsgwithmail($subject,$agreementname,$messagenote,$requestername);
         //echo $gethtml; exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
-        $mail->addAddress($to, 'Volody');\
+        $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
         
         $mail->msgHTML($gethtml);
+        //$mail->addAttachment(''.$filepath.'');
+         //$mail->addAttachment(''.$summdoc.'');
+        // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
 
         if ($mail->Send()) {
@@ -290,6 +402,9 @@ Class Email extends Phalcon\Mvc\User\Component {
             //echo $mail->ErrorInfo; exit;
             $get = array('logged'=>false,'message'=>'nosent');
         }
+
+        //$mail->ClearAddresses();
+        //$mail->ClearAttachments();
         //echo '<pre>'; print_r($get); exit;
         return $get;
     }
@@ -304,23 +419,64 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->mailcomprestriction($username,$getcompdata,$periodfrom,$periodto);
         //print_r($gethtml);exit;
         $mail = new PHPMailer();
+        /*//Set who the message is to be sent from
+        $mail->setFrom($this->fromemaili, $this->frometitle);
+        //Set an alternative reply-to address
+        $mail->addReplyTo($this->fromemailii, $this->frometitle_contact);
+        $mail->addBCC("","");
+        //Set who the message is to be sent to
+        $mail->addAddress($to, $name);
+        //Set the subject line
+        $mail->Subject = $subject;
+        //Read an HTML message body from an external file, convert referenced images to embedded,
+        $mail->msgHTML($body);
+        //Replace the plain text body with one created manually
+        $mail->AltBody = 'To view the message, please use an HTML compatible email viewer!';*/
+
+       //$mail = new PHPMailer;
+        //Tell PHPMailer to use SMTP
         $mail->isSMTP();
+        //Enable SMTP debugging
+        // 0 = off (for production use)
+        // 1 = client messages
+        // 2 = client and server messages
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        // use
+        // $mail->Host = gethostbyname('smtp.gmail.com');
+        // if your network does not support SMTP over IPv6
+        //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
        // $mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($emailid, 'Volody');
+        //Set the subject line
         $mail->Subject = 'Restricted Company';
+        //Read an HTML message body from an external file, convert referenced images to embedded,
+        //convert HTML into a basic plain-text alternative body
+    
         $mail->msgHTML($gethtml);
+        //Replace the plain text body with one created manually
+
+        //Attach an image file
+        //$mail->addAttachment('images/phpmailer_mini.png');
+        //send the message, check for errors
 
         if ($mail->Send()) {
             $get = array('logged'=>true,'message'=>'sent');
@@ -329,6 +485,9 @@ Class Email extends Phalcon\Mvc\User\Component {
             //echo $mail->ErrorInfo; exit;
             $get = array('logged'=>false,'message'=>'nosent');
         }
+
+        //$mail->ClearAddresses();
+        //$mail->ClearAttachments();
         //echo '<pre>'; print_r($get); exit;
         return $get;
  
@@ -342,23 +501,64 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->mailemprestriction($username,$getcompdata,$periodfrom,$periodto);
         //print_r($gethtml);exit;
         $mail = new PHPMailer();
+        /*//Set who the message is to be sent from
+        $mail->setFrom($this->fromemaili, $this->frometitle);
+        //Set an alternative reply-to address
+        $mail->addReplyTo($this->fromemailii, $this->frometitle_contact);
+        $mail->addBCC("","");
+        //Set who the message is to be sent to
+        $mail->addAddress($to, $name);
+        //Set the subject line
+        $mail->Subject = $subject;
+        //Read an HTML message body from an external file, convert referenced images to embedded,
+        $mail->msgHTML($body);
+        //Replace the plain text body with one created manually
+        $mail->AltBody = 'To view the message, please use an HTML compatible email viewer!';*/
+
+       //$mail = new PHPMailer;
+        //Tell PHPMailer to use SMTP
         $mail->isSMTP();
+        //Enable SMTP debugging
+        // 0 = off (for production use)
+        // 1 = client messages
+        // 2 = client and server messages
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        // use
+        // $mail->Host = gethostbyname('smtp.gmail.com');
+        // if your network does not support SMTP over IPv6
+        //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
        // $mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($emailid, 'Volody');
+        //Set the subject line
         $mail->Subject = 'Employee Restriction';
+        //Read an HTML message body from an external file, convert referenced images to embedded,
+        //convert HTML into a basic plain-text alternative body
+    
         $mail->msgHTML($gethtml);
+        //Replace the plain text body with one created manually
+
+        //Attach an image file
+        //$mail->addAttachment('images/phpmailer_mini.png');
+        //send the message, check for errors
 
         if ($mail->Send()) {
             $get = array('logged'=>true,'message'=>'sent');
@@ -367,6 +567,9 @@ Class Email extends Phalcon\Mvc\User\Component {
             //echo $mail->ErrorInfo; exit;
             $get = array('logged'=>false,'message'=>'nosent');
         }
+
+        //$mail->ClearAddresses();
+        //$mail->ClearAttachments();
         //echo '<pre>'; print_r($get); exit;
         return $get;
  
@@ -381,24 +584,38 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->sendmailrqstapprvl($subject,$emaildata);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
+        //send the message, check for errors
 
         if ($mail->Send()) {
             $get = array('logged'=>true,'message'=>'sent');
@@ -421,22 +638,35 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->sendmailackapprvl($subject,$emaildata);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -462,22 +692,35 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->sendmailexcbrqstapprvl($subject,$emaildata);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -503,22 +746,35 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->sendexcmailackapprvl($subject,$emaildata);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -544,22 +800,35 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->sendmailaftrfinlsub($subject,$emaildata);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -585,22 +854,35 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->sendmailtrdepln($subject,$emaildata);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -626,22 +908,35 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->sendtorqstrofack($subject,$emaildata);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -668,22 +963,35 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->mailsenttousr($username);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -709,22 +1017,35 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->hldngmailsenttousr($username);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -746,26 +1067,40 @@ Class Email extends Phalcon\Mvc\User\Component {
     {
         $subject = 'Transaction Pending to be Completed';
         $to =$data['email'];
+//        echo $to;exit;
         $gethtml = $this->htmlelements->mailtonotdonetrdrqst($data);
         //print_r($gethtml);exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -782,30 +1117,44 @@ Class Email extends Phalcon\Mvc\User\Component {
     }
     /******** sent mail of empty holding stmnt end ********/
     
-         /******** send mail for form b start ********/
+        /******** send mail for form b start ********/
     public function mailformbapprvlrqst($emaildata,$email)
     {
         $subject = 'Received Form B Request For Approval';
         $to =$email;
+        //echo $to;exit;
         $gethtml = $this->htmlelements->mailformbapprvlrqst($subject,$emaildata);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -820,7 +1169,6 @@ Class Email extends Phalcon\Mvc\User\Component {
 
         return $get;
     }
-    
     public function mailformbackrqst($emaildata)
     {
         $subject = 'Your request is approved';
@@ -829,22 +1177,35 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->mailformbackrqst($subject,$emaildata);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -870,24 +1231,39 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->mailformcapprvlrqst($subject,$emaildata);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
+        //send the message, check for errors
+
         if ($mail->Send()) {
             $get = array('logged'=>true,'message'=>'sent');
         }
@@ -898,8 +1274,7 @@ Class Email extends Phalcon\Mvc\User\Component {
 
         return $get;
     }
-    
-    public function mailformcackrqst($emaildata)
+     public function mailformcackrqst($emaildata)
     {
         $subject = 'Your request is approved';
         $to =$emaildata['email'];
@@ -907,22 +1282,35 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->mailformcackrqst($subject,$emaildata);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -948,22 +1336,35 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->mailformdapprvlrqst($subject,$emaildata);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -983,25 +1384,39 @@ Class Email extends Phalcon\Mvc\User\Component {
     {
         $subject = 'Your request is approved';
         $to =$emaildata['email'];
+        //echo $to;exit;
         $gethtml = $this->htmlelements->mailformdackrqst($subject,$emaildata);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -1022,26 +1437,40 @@ Class Email extends Phalcon\Mvc\User\Component {
     {
         $subject = 'Trading Window';
         $to =$emailid;
+        //echo $to;exit;
         //$gethtml = $this->htmlelements->mailformdackrqst($subject,$emaildata);
         $gethtml = $emailcontent;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
@@ -1058,33 +1487,50 @@ Class Email extends Phalcon\Mvc\User\Component {
     }
     /******** send mail for trading window end ********/
 
-    public function sendmailforpersinfo($mailids,$fullname)
+
+
+       public function sendmailforpersinfo($mailids,$fullname)
     {
         //echo "reached";print_r($summdoc);exit;
 
         $subject = 'Approve personal information';
         $to =$mailids;
+       // $to="mitkarinaresh25@gmail.com";
         $gethtml = $this->htmlelements->sendmailforpersinfo($subject,$fullname);
         //echo $gethtml; exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
+      
 
         if ($mail->Send()) {
             return true;
@@ -1097,34 +1543,56 @@ Class Email extends Phalcon\Mvc\User\Component {
        
     }
 
+
     //--------------------------------------AUTO MAIL TO USER-----------------------------------//
-    public function sendautomailtouser($mailid,$myarry)
+
+
+
+
+     public function sendautomailtouser($mailid,$myarry)
     {
         //echo "reached";print_r($summdoc);exit;
       
         $subject = 'Received Reminder For Trading Date..';
         $to =$mailid;
+       // $to="mitkarinaresh25@gmail.com";
         $gethtml = $this->htmlelements->automailtouser($myarry);
         //echo $gethtml; exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
-        //$mail->addCC('sd3@consultlane.com','Naresh Mitkari');
+        $mail->addCC('sd3@consultlane.com','Naresh Mitkari');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
+        // $mail->addAttachment(''.$filepath.'');
+        //  $mail->addAttachment(''.$summdoc.'');
+        // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
 
         if ($mail->Send()) {
@@ -1134,35 +1602,58 @@ Class Email extends Phalcon\Mvc\User\Component {
             //echo $mail->ErrorInfo; exit;
             $get = array('logged'=>false);
         }
+
+        //$mail->ClearAddresses();
+        //$mail->ClearAttachments();
         //echo '<pre>'; print_r($get); exit;
         return $get;
     }
     
 
-    public function sendautomailtoapprover($mailid,$myarry)
+      public function sendautomailtoapprover($mailid,$myarry)
     {
+        //echo "reached";print_r($summdoc);exit;
       
         $subject = 'You Have Recived Reminder For Pending Trading Request';
         $to =$mailid;
+       // $to="mitkarinaresh25@gmail.com";
         $gethtml = $this->htmlelements->automailtoapprover($myarry);
         //echo $gethtml; exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
-        $mail->isSMTP();
-        $mail->SMTPDebug = 2;
-        $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
-        $mail->Port = 587;
-        $mail->SMTPSecure = 'tls';
-        $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
         
+        $mail->isSMTP();
+        
+        $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
+        $mail->Debugoutput = 'html';
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
+        $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
+        $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
+        $mail->SMTPAuth = true;
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
+        //add cc
+        $mail->addCC('sd3@consultlane.com','Naresh Mitkari');
+        //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
+        // $mail->addAttachment(''.$filepath.'');
+        //  $mail->addAttachment(''.$summdoc.'');
+        // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
 
         if ($mail->Send()) {
@@ -1172,13 +1663,17 @@ Class Email extends Phalcon\Mvc\User\Component {
             //echo $mail->ErrorInfo; exit;
             $get = array('logged'=>false);
         }
+
+        //$mail->ClearAddresses();
+        //$mail->ClearAttachments();
         //echo '<pre>'; print_r($get); exit;
         return $get;
     }
 
 
-    public function sendpdfmailappr($mailids,$getfile,$getname)
+     public function sendpdfmailappr($mailids,$getfile,$getname)
     {
+         // echo "reached";print_r($mailids);exit;
         $subject = 'Initial Declaration';
         $to =$mailids;
         $gethtml = $this->htmlelements->initialdeclaration($getname);
@@ -1186,24 +1681,39 @@ Class Email extends Phalcon\Mvc\User\Component {
         // echo $gethtml; exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         $mail->addAttachment($getfile[0]['pdfpath']);
+        
+        // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
 
         if ($mail->Send()) {
@@ -1215,10 +1725,13 @@ Class Email extends Phalcon\Mvc\User\Component {
           return false;
         }
 
+       
     }
 
-    public function sendpdfmailapprannual($mailids,$getfile,$getname)
+
+       public function sendpdfmailapprannual($mailids,$getfile,$getname)
     {
+         // echo "reached";print_r($mailids);exit;
         $subject = 'Annual Declaration';
         $to =$mailids;
         $gethtml = $this->htmlelements->initialdeclarationannual($getname);
@@ -1226,24 +1739,39 @@ Class Email extends Phalcon\Mvc\User\Component {
         // echo $gethtml; exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         $mail->isSMTP();
+        
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+        
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($to, 'Volody');
+        //Set the subject line
         $mail->Subject = $subject;
+        
         $mail->msgHTML($gethtml);
         $mail->addAttachment($getfile[0]['pdfpath']);
+        
+        // $mail->addAttachment(''.$summdoc.'');
         //send the message, check for errors
 
         if ($mail->Send()) {
@@ -1264,24 +1792,44 @@ Class Email extends Phalcon\Mvc\User\Component {
         $gethtml = $this->htmlelements->mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$pstartdate,$today);
         //print_r($gethtml);exit;
         $mail = new PHPMailer();
+        //Tell PHPMailer to use SMTP
         $mail->isSMTP();
+        //Enable SMTP debugging
+        // 0 = off (for production use)
+        // 1 = client messages
+        // 2 = client and server messages
         $mail->SMTPDebug = 2;
+        //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
-        $mail->Host = $this->Hostname;
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
         $mail->Port = 587;
+        //Set the encryption system to use - ssl (deprecated) or tls
         $mail->SMTPSecure = 'tls';
+        //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
-        $mail->Username = $this->hosemail;
-        $mail->Password = $this->pwdemail;
-        $mail->setFrom($this->hosemail, 'Volody');
-        $mail->addReplyTo($this->hosemail, 'Volody');
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = "simply@consultlane.com";
+        //Password to use for SMTP authentication
+        $mail->Password = "Revenue!@#";
+        //Set who the message is to be sent from
+        $mail->setFrom('simply@consultlane.com', 'Volody');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('simply@consultlane.com', 'Volody');
         //add cc
-        //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+       // $mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
-        $mail->addAddress($to, 'Volody');
+        $mail->addAddress($emailid, 'Volody');
+        //Set the subject line
         $mail->Subject = 'Trading Window Closure';
+        //Read an HTML message body from an external file, convert referenced images to embedded,
+        //convert HTML into a basic plain-text alternative body
+    
         $mail->msgHTML($gethtml);
         //Replace the plain text body with one created manually
+
+        //Attach an image file
+        //$mail->addAttachment('images/phpmailer_mini.png');
         //send the message, check for errors
 
         if ($mail->Send()) {
@@ -1291,6 +1839,9 @@ Class Email extends Phalcon\Mvc\User\Component {
             //echo $mail->ErrorInfo; exit;
             $get = array('logged'=>false,'message'=>'nosent');
         }
+
+        //$mail->ClearAddresses();
+        //$mail->ClearAttachments();
         //echo '<pre>'; print_r($get); exit;
         return $get;
  
