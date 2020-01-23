@@ -1,0 +1,23 @@
+.acc { box-shadow: 0px 1px 12px 4px #ccc; background: #fff;
+float: left;width: 80%; height: 100%;margin-top: 12px;padding: 80px;margin-left: 87px;}
+.selfacc{margin:10px;}
+.acc h3 { color: #000;}
+.relfieldapnd { float: left;margin: 39px 0;}
+button.btn.btn-primary.relhtml { margin-top: 22px; color: #fff;}
+.relac, { margin: 10px 0;}
+.acc h4 { color: #000;}
+.appendaccfield {margin-bottom: 20px;}
+button.btn.personal.active { background: #522c8f; color: #fff;}
+button.btn.relatives.active {background: #522c8f; color: #fff;}
+label { display: block;}
+.list_co label {padding: 10px 0; float: left;}
+.title {text-align: center;color: #000;}
+.list_co { float: left;width: 100%;margin-bottom: 8px;}
+
+button#noofdmat ,button.btn.btn-primary.relhtml {
+    margin-left: 10px;
+    padding: 7px 25px;
+    border-radius: 3px; color: #fff;
+}
+
+.btn { border:1px solid #4a2880 !important; }

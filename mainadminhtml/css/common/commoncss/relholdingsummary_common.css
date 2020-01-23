@@ -31,9 +31,9 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 button.btn.btn-default.btn-default-one {
-    background: #1A82C3;
+    background: #522c8f;
     color: #fff !important;
-}
+}   
 .header-search-wrapper .fa-search {
     position: absolute;
     font-size: 18px;

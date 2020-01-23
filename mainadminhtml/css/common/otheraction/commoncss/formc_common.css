@@ -81,9 +81,15 @@ button.formcpdf, button.down_load {
 
 .btn-primary {
     color: #fff;
-    background-color: #1A82C3;
-    border-color: #1A82C3;
+    background-color: #522c8f;
+    border-color: #522c8f;
     margin-left: 10px;
+}
+button.btn.btn-default.btn-default-one {
+    color: #fff !important;
+    margin-top: 20px;
+    float: right;
+    background: #522c8f;
 }
 
 .formcbtn {
@@ -121,8 +127,8 @@ input.btn.btn-primary.updateformbbtn {
     float: right;
 }
 button.btn.btn-primary.previous {
-    background: #17395b;
-    border: #17395b;
+    background: #522c8f;
+    border: #522c8f;
 }
 /*################ Pagination Start ######################*/
 .paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}

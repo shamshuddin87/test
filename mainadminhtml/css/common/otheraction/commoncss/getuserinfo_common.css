@@ -37,7 +37,7 @@ button.add_button {
 
 .insert {margin-top: 29px;}
 input[type=submit] {
-  background-color: #1A82C3;
+  background-color: #522c8f;
   color: white;
   padding: 8px 20px;
   border: none;
@@ -62,7 +62,7 @@ input[type=submit] {
 }
 
 input#upaddmobile {
-    background: #2a3f54;
+    background: #522c8f;
     border: none;
     padding: 8px 17px;
     border-radius: 4px;

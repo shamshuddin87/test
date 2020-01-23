@@ -83,7 +83,14 @@ button.formbpdf, button.down_load {
     color: #fff;
     background-color: #522c8f;
     border-color: #522c8f;
-    margin:10px 10px;  
+/*    margin:10px 10px; */ 
+}
+
+button.btn.btn-default.btn-default-one {
+    color: #fff !important;
+    margin-top: 20px;
+    float: right;
+    background: #522c8f;
 }
 
 .formabtn {
