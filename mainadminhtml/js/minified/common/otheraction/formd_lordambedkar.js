@@ -22,16 +22,16 @@ var company=response.resdta[i].company_name?response.resdta[i].company_name:''
 var designation=response.resdta[i].designation?response.resdta[i].designation:''
 var draft=response.resdta[i].draft?response.resdta[i].draft:''
 var final=response.resdta[i].final?response.resdta[i].final:''
-addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';if(response.user_group_id=='14')
+addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';if(response.user_group_id=='7')
 {addhtmlnxt+='<td width="20%">'+senddate+'</td>';}
 else
 {addhtmlnxt+='<td width="20%">'+date_added+'</td>';}
 addhtmlnxt+='<td width="15%">'+company+'</td>';addhtmlnxt+='<td width="15%">'+designation+'</td>';if(response.resdta[i].send_status==0)
-{if(response.user_group_id=='14')
+{if(response.user_group_id=='7')
 {addhtmlnxt+='<td width="15%"><i class="fa fa-paper-plane" id="sendforaprvformd" formdid="'+response.resdta[i].id+'" pdfurl ="'+draft+'"></i></td>';}}
 else
 {addhtmlnxt+='<td width="15%"><i class="fa fa-check" aria-hidden="true"></i></td>';}
-addhtmlnxt+='<td width="15%"><i class="fa fa-file-pdf-o" id="previewd" doc_id=3 formdid="'+response.resdta[i].id+'"></i></td>';if(response.user_group_id=='14')
+addhtmlnxt+='<td width="15%"><i class="fa fa-file-pdf-o" id="previewd" doc_id=3 formdid="'+response.resdta[i].id+'"></i></td>';if(response.user_group_id=='7')
 {if(response.resdta[i].final)
 {addhtmlnxt+='<td width="15%"><a href="'+response.resdta[i].final+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';}
 else
