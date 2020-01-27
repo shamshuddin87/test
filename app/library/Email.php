@@ -277,7 +277,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
-        $mail->addAddress($to, 'Volody');\
+        $mail->addAddress($to, 'Volody');
         $mail->Subject = $subject;
         
         $mail->msgHTML($gethtml);
