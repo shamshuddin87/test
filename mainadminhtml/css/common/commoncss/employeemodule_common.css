@@ -1,3 +1,8 @@
+.top_space {
+    margin: 26px 0 0 0;
+    float: left;
+}
+
 .tooltip_c {
   display: inline;
   position: relative;
