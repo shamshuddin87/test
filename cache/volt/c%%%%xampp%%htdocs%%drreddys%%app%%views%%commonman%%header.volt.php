@@ -9,12 +9,12 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
 ?>
 
        
-<div class="col-md-3 left_col">
+<div class="col-md-3 left_col" id="#style-1">
 <div class="left_col scroll-view">
    
     <div class="navbar nav_title nav_bg" style="border: 0;">
       <a href="https://www.volody.com/user/home" class="site_title">
-        <i><img src="img/logo_responsive.png"></i>
+        <i class="responsive"><img src="img/logo_responsive.png"></i>
         <span><img src="img/logo.png" alt=""></span>
       </a>
     </div>

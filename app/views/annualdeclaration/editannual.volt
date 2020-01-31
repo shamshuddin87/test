@@ -31,18 +31,21 @@
          </td>
       </tr>
    </table>
+   
    <?php 
+      $k = 1;
       for($i=0; $i < count($selfcompany); $i++){
       if($selfcompany[$i]['company'] != ''){
        
       ?>
-   <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; " width="100%"  id="test">
+   <table border="1" id="t1row<?php echo $k ?>"  style="border-collapse: collapse; border: 1px solid #ccc; " width="100%"  id="test">
    <tr >
       <td style="border-right: 1px solid #f7f7f7; width: 2.5%" ></td>
       <td style="width: 22%"><label class="control-label">Company Name</label></td>
       <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
       <td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
    </tr>
+
    <tr>
       <td style="border-right: 1px solid #f7f7f7"></td>
       <td>
@@ -149,23 +152,25 @@
                </section>
             </td>
          </tr>
-         <?php }} ?>
-         <tr>
+         <?php } $k++; } ?>
+        <!--  <tr>
             <td colspan="4" >
-               <div class="adddiv1section1 col-md-12" style="text-align: right;">
+               
+            </td>
+         </tr> -->
+      </table>
+      <div class="adddiv1section1 col-md-12" style="text-align: right;">
                   <input type="button" id = "adddiv1" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
                   <input type="button" id = "remvdiv1" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
-                  <input type="hidden" class="appendd1" plancntr="1">
-               </div>
-            </td>
-         </tr>
-      </table>
+                  <input type="hidden" class="appendd1" plancntr="<?php echo count($selfcompany); ?>">
+      </div>
+
       <div class = "appenddiv1 " id="appenddiv1">
       </div>
       <!-- table 1 end -->
 
       <!-- table 2 start -->
-      <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+      <table border="1"   style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
          <tr>
             <td style="border-right: 1px solid #f7f7f7; color: #000; font-weight: bold;  padding-right: 0px" width="27px">2.</td>
             <td colspan="5">
@@ -183,9 +188,10 @@
          </tr>
       </table>
       <?php if($selffirm){
+           $k = 1;
          for($i=0; $i < count($selffirm); $i++){
-         ?>
-      <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+      ?>
+      <table border="1" id="t2row<?php echo $k ?>" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
          <tr>
             <td style="border-right: 1px solid #f7f7f7;width: 2.5%;"></td>
             <td style="width: 22%"><label class="control-label">Firm Name</label></td>
@@ -242,8 +248,11 @@
                   </select>
                </div>
             </td>
-         <tr>
-            <?php }} ?>
+       
+         </tr>
+         <?php $k++; }  } ?>
+          <!--  <tr>
+           
             <td colspan="5" style="">
                <div class="adddiv2section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
                   <input type="button" id ="adddiv2" class="btn btn-primary "  value="+" onclick="addhtml(this.id);">
@@ -251,9 +260,14 @@
                   <input type="hidden" class="appendd2" plancntr="1">
                </div>
             </td>
-         </tr>
-         </tr>
+         </tr> -->
+         
       </table>
+      <div class="adddiv2section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+                  <input type="button" id ="adddiv2" class="btn btn-primary "  value="+" onclick="addhtml(this.id);">
+                  <input type="button" id = "remvdiv2" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+                  <input type="hidden" class="appendd2" plancntr="<?php echo count($selffirm); ?>">
+      </div>
       <div class = "appenddiv2" id="appenddiv2">
       </div>
       <!-- table 2 end -->
@@ -268,9 +282,10 @@
          </tr>
       </table>
       <?php if($selfpublic){
+           $k = 1;
          for($i=0; $i < count($selfpublic); $i++){
          ?>
-      <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+      <table border="1"  id="t3row<?php echo $k ?>" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
          <tr>
             <td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>
             <td style="width: 22%"><label class="control-label">Company Name</label></td>
@@ -327,8 +342,8 @@
                </div>
             </td>
          </tr>
-         <?php }} ?>
-         <tr>
+         <?php $k++;}} ?>
+        <!--  <tr>
             <td colspan="5" >
                <div class="adddiv3section1 col-md-12"  style="text-align: right;">
                   <input type="button" id = "adddiv3" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
@@ -336,12 +351,18 @@
                   <input type="hidden" class="appendd3" plancntr="1">
                </div>
             </td>
-         </tr>
+         </tr> -->
       </table>
+       <div class="adddiv3section1 col-md-12"  style="text-align: right;">
+                  <input type="button" id = "adddiv3" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
+                  <input type="button" id = "remvdiv3" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+                  <input type="hidden" class="appendd3" plancntr="<?php echo count($selfpublic); ?>">
+      </div>
       <div class = "appenddiv3 " id="appenddiv3" ></div>
       <!-- table 3 end-->
+
       <!-- table 4 start-->
-      <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+      <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
          <tr>
             <td colspan="5" style="padding-left: 22px;">
                <div class="col-md-12">
@@ -351,9 +372,10 @@
          </tr>
       </table>
       <?php if($selfpubshare){
+           $k = 1;
          for($i=0; $i < count($selfpubshare); $i++){
-         ?>
-      <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+      ?>
+      <table border="1"  id="t4row<?php echo $k ?>" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
          <tr>
             <td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>
             <td style="width: 22%">  <label class="control-label">Company Name</label></td>
@@ -367,81 +389,158 @@
             <td style="border-right: 1px solid #f7f7f7"></td>
             <td>
                <div class="input">
-                  <input type="text" class="form-control inputbox3" id="d4id" name="d4id[]" value="<?php echo $selfpubshare[$i]['id']?>" style= "display: none;">
-                  <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]"  value="<?php echo $selfpubshare[$i]['company']?>" >
-            </td>
-            <td> 
-            <div class="input">
-            <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]"  value="<?php echo $selfpubshare[$i]['interest']?>">
-            </div>
+               <input type="text" class="form-control inputbox3" id="d4id" name="d4id[]" value="<?php echo $selfpubshare[$i]['id']?>" style= "display: none;">
+               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]"  value="<?php echo $selfpubshare[$i]['company']?>" >
             </td>
             <td>
-            <div class="input">
-            <select id="d4ques3" name="d4ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" >
-            <option value="">Select Option</option>
-            <?php if($selfpubshare[$i]['decision']  == Yes){ ?>
-            <option value="Yes" selected>Yes</option>
-            <option value="No">No</option>
-            <?php }elseif($selfpubshare[$i]['decision']  == No){ ?>
-            <option value="Yes" >Yes</option>
-            <option value="No" selected>No</option>
-            <?php }else{ ?>
-            <option value="Yes" >Yes</option>
-            <option value="No">No</option>
-            <?php } ?>
-            </select>
-            </div>
+               <div class="input">
+                  <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]"  value="<?php echo $selfpubshare[$i]['interest']?>">
+               </div>
             </td>
-            <td> 
-            <div class="input">
-            <select id="d4ques4" name="d4ques4[]" class="form_fields form-control col-md-7 col-xs-12" >
-            <option value="">Select Option</option>
-            <?php if($selfpubshare[$i]['transaction']  == Yes){ ?>
-            <option value="Yes" selected>Yes</option>
-            <option value="No">No</option>
-            <?php }elseif($selfpubshare[$i]['transaction']  == No){ ?>
-            <option value="Yes" >Yes</option>
-            <option value="No" selected>No</option>
-            <?php }else{ ?>
-            <option value="Yes" >Yes</option>
-            <option value="No">No</option>
-            <?php } ?>
-            </select>
-            </div>
+            <td>
+               <div class="input">
+                  <select id="d4ques3" name="d4ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" >
+                     <option value="">Select Option</option>
+                     <?php if($selfpubshare[$i]['decision']  == Yes){ ?>
+                     <option value="Yes" selected>Yes</option>
+                     <option value="No">No</option>
+                     <?php }elseif($selfpubshare[$i]['decision']  == No){ ?>
+                     <option value="Yes" >Yes</option>
+                     <option value="No" selected>No</option>
+                     <?php }else{ ?>
+                     <option value="Yes" >Yes</option>
+                     <option value="No">No</option>
+                     <?php } ?>
+                  </select>
+               </div>
             </td>
-            <?php }} ?>
+            <td>
+               <div class="input">
+                  <select id="d4ques4" name="d4ques4[]" class="form_fields form-control col-md-7 col-xs-12" >
+                     <option value="">Select Option</option>
+                     <?php if($selfpubshare[$i]['transaction']  == Yes){ ?>
+                     <option value="Yes" selected>Yes</option>
+                     <option value="No">No</option>
+                     <?php }elseif($selfpubshare[$i]['transaction']  == No){ ?>
+                     <option value="Yes" >Yes</option>
+                     <option value="No" selected>No</option>
+                     <?php }else{ ?>
+                     <option value="Yes" >Yes</option>
+                     <option value="No">No</option>
+                     <?php } ?>
+                  </select>
+               </div>
+            </td>
+         </tr>
+            <?php $k++; }} ?>
+        <!--  <tr>
+            <td colspan="5" style="">
+               <div class = "appenddiv4 " id="appenddiv4"></div>
+               <div class="adddiv4section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+                  <input type="button" id ="adddiv4" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
+                  <input type="button" id = "remvdiv4" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+                  <input type="hidden" class="appendd4" plancntr="1">
+               </div>
+            </td>
+         </tr> -->
+      </table>
+       <div class="adddiv4section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+                  <input type="button" id ="adddiv4" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
+                  <input type="button" id = "remvdiv4" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+                  <input type="hidden" class="appendd4" plancntr="<?php echo count($selfpubshare); ?>">
+      </div>
+      <div class = "appenddiv4 " id="appenddiv4"></div>
+      <!-- table 4 end-->
+
+      <!-- Section 2 start-->
+
+      <!-- table 5 start-->
+      <table border="1"    style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
          <tr>
-         <td colspan="5" style="">
-         <div class = "appenddiv4 " id="appenddiv4"></div>
-         <div class="adddiv4section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
-         <input type="button" id ="adddiv4" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
-         <input type="button" id = "remvdiv4" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
-         <input type="hidden" class="appendd4" plancntr="1">
-         </div>
-         </td>
+            <td style="border-right: 1px solid #f7f7f7; color: #000; font-weight: bold;  padding-right: 0px">3.</td>
+            <td colspan="4">
+               <div class="">
+                  <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
+                  <input type="radio" id= "showsec2" name="showsec1" value="Yes"  onclick="showsection(this.id)">Yes
+                  <input type="radio" id= "showsec2" name="showsec1" value="No" onclick="showsection(this.id)">No
+               </div>
+            </td>
          </tr>
       </table>
-      <!-- table 4 end-->
-      <!-- Section 2 start-->
-      <!-- table 5 start-->
-      <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
-      <tr>
-      <td style="border-right: 1px solid #f7f7f7; color: #000; font-weight: bold;  padding-right: 0px">3.</td>
-      <td colspan="4">
-      <div class="">
-      <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
-      <input type="radio" id= "showsec2" name="showsec1" value="Yes"  onclick="showsection(this.id)">Yes
-      <input type="radio" id= "showsec2" name="showsec1" value="No" onclick="showsection(this.id)">No
-      </div>
-      </td>
-      </tr>
-      </table>
       <?php 
-      for($i=0; $i < count($relativecompany); $i++){
-      if($relativecompany[$i]['relative'] != ''){
-       
-      ?>
-      <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;" width="100%"  id="test1">
+         $k = 1;
+         for($i=0; $i < count($relativecompany); $i++){
+         if($relativecompany != ''){
+           
+          
+         ?>
+   <table border="1" id="t5row<?php echo $k ?>"  style="border-collapse: collapse; border: 1px solid #ccc;" width="100%"  id="test1">
+   <tr>
+      <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
+      <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
+      <td style="width: 22%"><label class="control-label">Company Name</label></td>
+      <td>    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
+      <td>
+         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+      </td>
+   </tr>
+   <tr>
+      <td style="border-right: 1px solid #f7f7f7"></td>
+      <td>
+         <div class="input">
+            <input type="text" class="form-control inputbox3" id="d5id" name="d5id[]" value="<?php echo $relativecompany[$i]['id']?>" style= "display: none;">
+            <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
+               <option value="">Select Option</option>
+               <?php for($j=0; $j < count($relativesinfo); $j++){
+                  if($relativecompany[$i]['relative'] == $relativesinfo[$j]['name']){?>
+               ?>
+               <option value="<?php echo $relativesinfo[$j]['name']?>" selected><?php  echo $relativesinfo[$j]['name']?></option>
+               <?php } else { ?>
+               <option value=<?php echo $relativesinfo[$j]['name']?>><?php  echo $relativesinfo[$j]['name']?></option>
+               <?php } }?>
+            </select>
+      </td>
+      <td> 
+      <div class="input">
+      <input type="text" class="form-control inputbox4" id="d5ques2" name="d5ques2[]" value="<?php echo $relativecompany[$i]['company']?>">
+      </div>
+      </td>
+      <td>
+      <div class="input">
+      <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" >
+      <option value="">Select Option</option>
+      <?php if($relativecompany[$i]['decision']  == Yes){ ?>
+      <option value="Yes" selected>Yes</option>
+      <option value="No">No</option>
+      <?php }elseif($relativecompany[$i]['decision']  == No){ ?>
+      <option value="Yes" >Yes</option>
+      <option value="No" selected>No</option>
+      <?php }else{ ?>
+      <option value="Yes" >Yes</option>
+      <option value="No">No</option>
+      <?php } ?>
+      </select>
+      </div></td>
+      <td> 
+      <div class="input">
+      <select id="d5ques4" name="d5ques4[]" class="form_fields form-control col-md-7 col-xs-12" >
+      <option value="">Select Option</option>
+      <?php if($relativecompany[$i]['transaction']  == Yes){ ?>
+      <option value="Yes" selected>Yes</option>
+      <option value="No">No</option>
+      <?php }elseif($relativecompany[$i]['transaction']  == No){ ?>
+      <option value="Yes" >Yes</option>
+      <option value="No" selected>No</option>
+      <?php }else{ ?>
+      <option value="Yes" >Yes</option>
+      <option value="No">No</option>
+      <?php } ?>
+      </select>
+      </div>
+      </td>
+      <?php } else { 
+        ?>
+      <table  border="1" style="border-collapse: collapse; border: 1px solid #ccc;display: none;" width="100%"  id="test1" >
       <tr>
       <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
       <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
@@ -505,75 +604,11 @@
       </select>
       </div>
       </td>
-      <?php }else { ?>
-       
-      <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;display: none;" width="100%"  id="test1" >
-      <tr>
-      <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
-      <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
-      <td style="width: 22%"><label class="control-label">Company Name</label></td>
-      <td>    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
-      <td>
-      <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
-      </td>
       </tr>
-      <tr>
-      <td style="border-right: 1px solid #f7f7f7"></td>
-      <td> 
-      <div class="input">
-      <input type="text" class="form-control inputbox3" id="d5id" name="d5id[]" value="<?php echo $relativecompany[$i]['id']?>" style= "display: none;">
-      <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
-      <option value="">Select Option</option>
-      <?php for($j=0; $j < count($relativesinfo); $j++){
-         if($relativecompany[$i]['relative'] == $relativesinfo[$j]['name']){?>
-      ?>
-      <option value="<?php echo $relativesinfo[$j]['name']?>" selected><?php  echo $relativesinfo[$j]['name']?></option>
-      <?php } else { ?>
-      <option value=<?php echo $relativesinfo[$j]['name']?>><?php  echo $relativesinfo[$j]['name']?></option>
-      <?php } }?>
-      </select>
-      </td>
-      <td> 
-      <div class="input">
-      <input type="text" class="form-control inputbox4" id="d5ques2" name="d5ques2[]" value="<?php echo $relativecompany[$i]['company']?>">
-      </div>
-      </td>
-      <td>
-      <div class="input">
-      <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" >
-      <option value="">Select Option</option>
-      <?php if($relativecompany[$i]['decision']  == Yes){ ?>
-      <option value="Yes" selected>Yes</option>
-      <option value="No">No</option>
-      <?php }elseif($relativecompany[$i]['decision']  == No){ ?>
-      <option value="Yes" >Yes</option>
-      <option value="No" selected>No</option>
-      <?php }else{ ?>
-      <option value="Yes" >Yes</option>
-      <option value="No">No</option>
-      <?php } ?>
-      </select>
-      </div></td>
-      <td> 
-      <div class="input">
-      <select id="d5ques4" name="d5ques4[]" class="form_fields form-control col-md-7 col-xs-12" >
-      <option value="">Select Option</option>
-      <?php if($relativecompany[$i]['transaction']  == Yes){ ?>
-      <option value="Yes" selected>Yes</option>
-      <option value="No">No</option>
-      <?php }elseif($relativecompany[$i]['transaction']  == No){ ?>
-      <option value="Yes" >Yes</option>
-      <option value="No" selected>No</option>
-      <?php }else{ ?>
-      <option value="Yes" >Yes</option>
-      <option value="No">No</option>
-      <?php } ?>
-      </select>
-      </div>
-      </td>
-
-      <?php }} ?>
-      <tr>
+      <?php  } $k++; } ?>
+      
+     
+      <!-- <tr>
       <td colspan="5" >
       <div class="adddiv5section2" style="float: right;">
       <input type="button" id = "adddiv5" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
@@ -581,13 +616,19 @@
       <input type="hidden" class="appendd5" plancntr="1">
       </div>
       </td>
-      </tr>
-      </tr>
+      </tr> -->
       </table>
+
+      <div class="adddiv5section2" style="float: right;">
+      <input type="button" id = "adddiv5" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
+      <input type="button" id= "remvdiv5" class="btn btn-primary remvdiv5" value="-" onclick="removehtml(this.id);">
+      <input type="hidden" class="appendd5" plancntr="<?php echo count($relativecompany);?>">
+      </div>
       <div class = "appenddiv5 " id="appenddiv5"></div>
       <!-- table 5 end -->
+
       <!-- table 6 start --> 
-      <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+      <table border="1"   style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
       <tr>
       <td style="border-right: 1px solid #f7f7f7; color: #000; font-weight: bold;  padding-right: 0px" width="27px">4.</td>
       <td colspan="6">
@@ -604,10 +645,13 @@
       </td>
       </tr>
       </table>
-      <?php if($relativefirm){
+
+      <?php  
+      if($relativefirm){ 
+        $k = 1;   
          for($i=0; $i < count($relativefirm); $i++){
          ?>
-      <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+      <table border="1" id="t6row<?php echo $k ?>"  style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
       <tr>
       <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>    
       <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
@@ -659,7 +703,8 @@
       <option value="No">No</option>
       <?php } ?>
       </select>
-      </div></td>
+      </div>
+      </td>
       <td> 
       <div class="input">
       <select id="d6ques5" name="d6ques5[]" class="form_fields form-control col-md-7 col-xs-12" >
@@ -670,14 +715,18 @@
       <?php }elseif($relativefirm[$i]['transaction']  == No){ ?>
       <option value="Yes" >Yes</option>
       <option value="No" selected>No</option>
+       <?php }else{ ?>
+      <option value="Yes" >Yes</option>
+      <option value="No" >No</option>
+      <?php } ?>
       </select>
       </div>
       </td>
-      <?php }else{ ?>
-      <option value="Yes" >Yes</option>
-      <option value="No" >No</option>
-      <?php }} ?>
-      <tr>
+     
+     
+      </tr>
+      <?php  $k++; }} ?>
+      <!--  <tr>
       <td colspan="6" >
       <div class="adddiv6section2" style="float: right;">
       <input type="button" id ="adddiv6" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
@@ -685,14 +734,19 @@
       <input type="hidden" class="appendd6" plancntr="1">
       </div>
       </td>
-      </tr>
-      </tr>
+      </tr> -->
       </table>
+      <div class="adddiv6section2" style="float: right;">
+      <input type="button" id ="adddiv6" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
+      <input type="button" id= "remvdiv6" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+      <input type="hidden" class="appendd6" plancntr="<?php echo  count($relativefirm); ?>">
+      </div>
       <div class = "appenddiv6 " id="appenddiv6"></div>
       <!-- table 6 end -->
+
       <!-- table 7  start -->
-      <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
-      <tr>
+      <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+      <tr> 
       <td colspan="6" style="padding-left: 20px;">
       <div class="">
       <label  style="padding-left: 19px;" class="">ii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
@@ -700,10 +754,14 @@
       </td>
       </tr>
       </table>
-      <?php if($relativepublic){
+
+      <?php 
+         if($relativepublic){
+          $k = 1;    
          for($i=0; $i < count($relativepublic); $i++){
+
          ?>
-      <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+      <table border="1"   id="t7row<?php echo $k ?>"  style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
       <tr>
       <td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>   
       <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
@@ -769,12 +827,15 @@
       <?php }else{ ?>
       <option value="Yes" >Yes</option>
       <option value="No">No</option>
-      <?php }} ?>
+      <?php } ?>
       </select>
       </div>
       </td>
-      <?php }} ?>
-      <tr>
+    
+        <?php  $k++; }} ?>
+      </tr>
+
+      <!--  <tr>
       <td colspan="6" >
       <div class="adddiv7section2"  style="float: right;">
       <input type="button" id = "adddiv7" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
@@ -782,9 +843,15 @@
       <input type="hidden" class="appendd7" plancntr="1">
       </div>
       </td>
-      </tr>
-      </tr>
+      </tr> -->
       </table>
+
+       <div class="adddiv7section2"  style="float: right;">
+      <input type="button" id = "adddiv7" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
+      <input type="button" id = "remvdiv7" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+      <input type="hidden" class="appendd7" plancntr="<?php echo count($relativepublic); ?>">
+      </div>
+
       <div class = "appenddiv7 " id="appenddiv7"></div>
       <div class="col-md-12 text-right" style="margin-top: 20px;"> 
       <button type="submit" class="btn btn-primary ">Submit</button>
@@ -817,7 +884,7 @@
 <option value="2024">2024</option>
 <option value="2025">2025</option>
 </select>
-<button type="button" class="close" data-dismiss="modal">&times;</button>
+<button type="button" class="close" onclick="javascript:window.location.reload()" data-dismiss="modal">&times;</button>
 <div id="downloadpdf" style="float: right;"></div>
 <div class="in_box">
 <button type="button" class="btn btn-primary formpdf floatright">Generate PDF</button>
