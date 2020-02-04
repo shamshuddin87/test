@@ -42,8 +42,8 @@ class Sensitiveinformationcommon extends Component
     {
         $connection = $this->dbtrd; 
         $time = time();
-           $queryinsert = "INSERT INTO `sensitiveinfo_recipient`(`user_id`,`user_group_id`,`category`,`othercategory`,`nameofentity`, `name`, `identityno`, `phoneno`, `mobileno`, `designation`, `email`, `filepath`,`agreemntfile`,`date_added`, `date_modified`,`timeago`)
-         VALUES ('".$getuserid."','".$user_group_id."','".$category."','".$othercate."','".$entity."','".$name."','".$identitynum."','".$phonenum."','".$mobilenum."','".$designation."','".$email."','".$filepath."','".$agreemntfilepath."',NOW(),NOW(),'".$time."')"; 
+           $queryinsert = 'INSERT INTO `sensitiveinfo_recipient`(`user_id`,`user_group_id`,`category`,`othercategory`,`nameofentity`, `name`, `identityno`, `phoneno`, `mobileno`, `designation`, `email`, `filepath`,`agreemntfile`,`date_added`, `date_modified`,`timeago`)
+         VALUES ("'.$getuserid.'","'.$user_group_id.'","'.$category.'","'.$othercate.'","'.$entity.'","'.$name.'","'.$identitynum.'","'.$phonenum.'","'.$mobilenum.'","'.$designation.'","'.$email.'","'.$filepath.'","'.$agreemntfilepath.'",NOW(),NOW(),"'.$time.'")'; 
         //print_r($queryinsert);exit;
         try
         {
@@ -147,14 +147,14 @@ class Sensitiveinformationcommon extends Component
         $time = time();
         //print_r($frmdta['startdate']);exit;
         
-        $insertml =  "UPDATE `sensitiveinfo_recipient` SET  
-        `category`='".$category."',`othercategory`='".$othrcategory."',
-        `nameofentity`='".$entity."', `name`='".$name."',
-        `identityno`='".$identitynum."', `phoneno`='".$phonenum."', `mobileno`='".$mobilenum."',
-        `designation`='".$designation."', `email`='".$email."', 
-        `filepath`='".$filepath."', `agreemntfile`='".$agreemntfilepath."',
-        `date_modified`=NOW(),`timeago`='".$time."' 
-        WHERE `id`='".$id."' ";       
+        $insertml =  'UPDATE `sensitiveinfo_recipient` SET  
+        `category`="'.$category.'",`othercategory`="'.$othrcategory.'",
+        `nameofentity`="'.$entity.'", `name`="'.$name.'",
+        `identityno`="'.$identitynum.'", `phoneno`="'.$phonenum.'", `mobileno`="'.$mobilenum.'",
+        `designation`="'.$designation.'", `email`="'.$email.'", 
+        `filepath`="'.$filepath.'", `agreemntfile`="'.$agreemntfilepath.'",
+        `date_modified`=NOW(),`timeago`="'.$time.'" 
+        WHERE `id`="'.$id.'"';       
         //echo $insertml; exit;
         
         try

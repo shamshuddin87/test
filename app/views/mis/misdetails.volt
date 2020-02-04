@@ -260,6 +260,11 @@ $condeptsess = $this->session->contractdepartment;
             <div class="paginationmn" id="acc6"></div>
             <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
         </div>
+        <div class="clearelement"></div>
+        <div class="preloder_wraper">
+            <a href="javascript:;" class="preloder"></a>
+        </div>
+        <div class="clearelement"></div>
     </div>
     
 
