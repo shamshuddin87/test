@@ -97,6 +97,19 @@
                   <input type="text" id="mobno" name="mobno" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
                   <span id="mobileappend"></span>
                </div>
+                <div class="col-md-12 col-xs-12"> 
+                <div class="col-md-4 col-xs-12 "> 
+                  <label for="age">Holdings In Shares*</label>
+                  <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
+                  <span id="mobileappend"></span>
+               </div>
+                
+                <div class="col-md-4 col-xs-12 "> 
+                  <label for="age">Holdings In ADRs*</label>
+                  <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
+                  <span id="mobileappend"></span>
+               </div>
+                </div>
                <!--
                   <div class="col-md-6 col-xs-12 "> 
                   <input type="button" value="Add" name="" id="addmobile" class="mobile_add">
@@ -344,6 +357,18 @@
                         <label class="control-label">Upload Identity Proof</label>
                         <input type="file" name="file[]" id="file" >
                      </div>
+                      
+                    <div class="col-md-12 col-md-12"> 
+                        <div class="col-md-4 top_space "> 
+                          <label for="age">Holdings In Shares*</label>
+                          <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
+                       </div>
+
+                        <div class="col-md-4 top_space "> 
+                          <label for="age">Holdings In ADRs*</label>
+                          <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
+                       </div>
+                    </div>
                      <div class="col-md-12">
                         <input class="btn btn-primary" type="submit" name="submit" value="Submit" id="relsub">
                      </div>
@@ -370,6 +395,8 @@
                         <th>Date</th>
                         <th>Qualification</th>
                         <th>File</th>
+                        <th>Holding in Shares</th>
+                        <th>Holding in ADRs</th>
                         <th>Action</th>
                      </tr>
                   </thead>
@@ -459,6 +486,17 @@
                               <label class="control-label">Upload Identity Proof</label>
                               <input type="file" name="file" id="file" >
                            </div>
+                            <div class="col-md-12">
+                            <div class="col-md-6">
+                              <label for="age">Holdings In Shares*</label>
+                              <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
+                           </div>
+
+                            <div class="col-md-6">
+                              <label for="age">Holdings In ADRs*</label>
+                              <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
+                           </div>
+                            </div>
                            <div class="col-md-12"> 
                               <input type="submit" value="Update">
                            </div>

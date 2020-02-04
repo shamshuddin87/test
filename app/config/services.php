@@ -435,7 +435,10 @@ $di->set('sebiDir', function () use ($config) {
     $homethemedir = $config->imgdir->sebiDir;
     return $homethemedir;
 });
-
+$di->set('upsiconnectedDPDir', function () use ($config) {
+    $homethemedir = $config->imgdir->upsiconnectedDPDir;
+    return $homethemedir;
+});
 
 /*###################### Important Directory URL End #####################################################*/
 

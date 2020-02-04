@@ -353,4 +353,40 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         return $genfile;
 
     }
+    
+    public function FetchconnectedDP($getuserid,$user_group_id,$excelfilenamepath)
+    {
+        
+        $connection = $this->dbtrd;
+        $username = array();
+        $emailid = array();
+        $time= time();
+        $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+        $objPHPExcel->setActiveSheetIndex(0);
+        $worksheet = $objPHPExcel->getActiveSheet(0);
+
+        try
+        {
+            foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
+            {
+                $highestRow = $worksheet->getHighestRow();
+                 for ($row=2; $row<=$highestRow;$row++)
+                 {
+                    $username[]  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $emailid[]  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                     //echo $rtaholding;exit;
+                }
+                $ConnctdDpArray = array('username'=>$username,'emailid'=>$emailid);
+                //print_r($ConnctdDpArray);exit;
+                $getres = $this->upsicommon->Fetchusersid($getuserid,$user_group_id,$ConnctdDpArray);
+                 //print_r($getres);exit;
+            }
+        }
+        catch (Exception $e)
+        {
+            $getres = array();
+            $connection->close();
+        }
+        return $getres;
+    }
 }

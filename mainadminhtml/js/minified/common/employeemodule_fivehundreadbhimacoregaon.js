@@ -74,11 +74,11 @@ website('body').on('click','.addrelinfo',function(e){var myform=website(this).at
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {var j=1;var myhtml='';for(var i=0;i<response.data.length;i++)
-{var education=response.data[i].education?response.data[i].education:'';myhtml+='<tr>';myhtml+='<td>'+j+'</td>';myhtml+='<td>'+response.data[i].name+'</td>';myhtml+='<td>'+response.data[i].pan+'</td>';myhtml+='<td>'+response.data[i].aadhar+'</td>';myhtml+='<td>'+response.data[i].dob+'</td>';myhtml+='<td>'+education+'</td>';if(response.data[i].filepath)
+{var education=response.data[i].education?response.data[i].education:'';var sharehldng=response.data[i].sharehldng?response.data[i].sharehldng:'';var adrshldng=response.data[i].adrshldng?response.data[i].adrshldng:'';myhtml+='<tr>';myhtml+='<td>'+j+'</td>';myhtml+='<td>'+response.data[i].name+'</td>';myhtml+='<td>'+response.data[i].pan+'</td>';myhtml+='<td>'+response.data[i].aadhar+'</td>';myhtml+='<td>'+response.data[i].dob+'</td>';myhtml+='<td>'+education+'</td>';if(response.data[i].filepath)
 {myhtml+='<td><a href="'+response.data[i].filepath+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';}
 else
 {myhtml+='<td></td>';}
-myhtml+='<td><i class="fa fa-edit editrel" releditid="'+response.data[i].id+'" style=""></i><i class="fa fa-trash delrel"  reldelid="'+response.data[i].id+'" style=""></i></td>';myhtml+='</tr>';j++;}}
+myhtml+='<td>'+sharehldng+'</td>';myhtml+='<td>'+adrshldng+'</td>';myhtml+='<td><i class="fa fa-edit editrel" releditid="'+response.data[i].id+'" style=""></i><i class="fa fa-trash delrel"  reldelid="'+response.data[i].id+'" style=""></i></td>';myhtml+='</tr>';j++;}}
 else
 {myhtml+='<tr>';myhtml+='<td colspan="7" style="text-align:center;">Data Not Found..!!</td>';myhtml+='</tr>';}
 website('.reldetails').html(myhtml);},});}
@@ -93,8 +93,8 @@ else{new PNotify({title:'Alert',text:response.message,type:'university',hide:tru
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged==true)
-{var name=response.data.name?response.data.name:"None";var pan=response.data.pan?response.data.pan:"None";var aadhar=response.data.aadhar?response.data.aadhar:"None";var dob=response.data.dob?response.data.dob:"None";var sex=response.data.sex?response.data.sex:"None";var relationship=response.data.relationship?response.data.relationship:"None";var education=response.data.education?response.data.education:'';var id=response.data.id?response.data.id:"None";var relationship=response.data.relationship?response.data.relationship:"None";var address=response.data.address?response.data.address:"None";var filepath=response.data.filepath
-jQuery("#reledit input[value='"+sex+"']").attr('checked',true);website('#reledit #name').val(name);website('#reledit #releditid').val(id);website('#reledit #relationship').val(relationship);website('#reledit #pan').val(pan);website('#reledit #aadhar').val(aadhar);website('#reledit #dob').val(dob);website('#reledit #relationship').val(relationship);website('#reledit #address').val(address);website('#reledit #eduqulfcn').val(education);website('#reledit #filepath').val(filepath);website('#reledit').modal('show');}
+{var name=response.data.name?response.data.name:"";var pan=response.data.pan?response.data.pan:"";var aadhar=response.data.aadhar?response.data.aadhar:"";var dob=response.data.dob?response.data.dob:"";var sex=response.data.sex?response.data.sex:"";var relationship=response.data.relationship?response.data.relationship:"";var education=response.data.education?response.data.education:'';var id=response.data.id?response.data.id:"";var relationship=response.data.relationship?response.data.relationship:"";var address=response.data.address?response.data.address:"";var sharehldng=response.data.sharehldng?response.data.sharehldng:"";var adrshldng=response.data.adrshldng?response.data.adrshldng:"";var filepath=response.data.filepath
+jQuery("#reledit input[value='"+sex+"']").attr('checked',true);website('#reledit #name').val(name);website('#reledit #releditid').val(id);website('#reledit #relationship').val(relationship);website('#reledit #pan').val(pan);website('#reledit #aadhar').val(aadhar);website('#reledit #dob').val(dob);website('#reledit #relationship').val(relationship);website('#reledit #address').val(address);website('#reledit #eduqulfcn').val(education);website('#reledit #filepath').val(filepath);website('#reledit #shareholdng').val(sharehldng);website('#reledit #adrsholdng').val(adrshldng);website('#reledit').modal('show');}
 else{}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});});website('#uprel').ajaxForm({dataType:"json",beforeSend:function()
