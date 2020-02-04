@@ -71,15 +71,14 @@ class MisController extends ControllerBase
 
     public function misdetailsAction()
     {
-        $this->view->$userid =base64_decode($_GET["userid"]);
+        $this->view->$userid = base64_decode($_GET["userid"]);
         $this->view->getuserinfo =$this->miscommon->useriformation(base64_decode($_GET["userid"]));
-        $this->view->relativeinfo =$this->miscommon->getrelativedata(base64_decode($_GET["userid"]));
+        $this->view->relativeinfo =$this->miscommon->getrelativedata(base64_decode($_GET["userid"]),"");
         $this->view->accountinfo= $this->miscommon->getaccnoinfo(base64_decode($_GET["userid"]));
         $this->view->relativeaccount= $this->miscommon->getrelinfo(base64_decode($_GET["userid"]));
         $this->view->mfrdata= $this->miscommon->getmfrdataformis(base64_decode($_GET["userid"]));
         
-
-        //print_r($this->view->mfrdata);exit;       
+        //print_r(base64_decode($_GET["userid"]));exit;       
     }
     
     public function mis_recipientAction()
@@ -1394,6 +1393,62 @@ class MisController extends ControllerBase
                 //print_r($getres);exit;
                 $genfile = $this->phpimportexpogen->fetchArchiveSharedInfoexcel($getuserid,$user_group_id,$getres);
                 //print_r($genfile);exit;
+                if(!empty($genfile))
+                {
+                    $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "File Not Generated..!!");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+           
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+        
+    }
+
+
+    public function fetchDesigntdPersonMISAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $userid = base64_decode($this->request->getQuery("userid"));
+                echo "<pre>"; print_r(base64_decode($_GET['userid']));exit;
+                $getuserinfo =$this->miscommon->useriformation($userid);
+                $relativeinfo =$this->miscommon->getrelativedata($userid,"");
+                $accountinfo= $this->miscommon->getaccnoinfo($userid);
+                $relativeaccount= $this->miscommon->getrelinfo($userid);
+                $mfrdata= $this->miscommon->getmfrdataformis($userid);
+                $getres = $this->miscommon->fetchallupsitypes($getuserid,$user_group_id,'');
+                
+                $gethtml=$this->miscommon->allupsihtml($getres);
+                $genfile =$this->dompdfgen->getpdf($gethtml,"upsitypeclassify","upsi","misrecip");
+              
+                
+              
+                 // print_r($genfile);exit;
+
                 if(!empty($genfile))
                 {
                     $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
