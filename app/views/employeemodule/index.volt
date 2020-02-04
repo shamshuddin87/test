@@ -35,6 +35,11 @@
    </div>
    <div class="col-md-12 col-xs-12">
       <div class="row personaldetails" style="display: block;">
+                <div class="tablitiledesc text-center">
+                    <div class="note">
+                        (<strong>Note : </strong>Please fill information on all the 3 tabs.)
+                    </div>
+            </div>
          <!-------------------------------------------------------------------------------------------->
          <h3>Insert Personal Details</h3>
          <div class="insert">
@@ -58,18 +63,112 @@
                <!-- <div class="col-md-12"> -->
                <!-- <label for="fname">Full Name:</label> -->
                <input type="hidden" id="fname" name="fname" placeholder="Your name.." value="<?php echo($userdetails[0]['fullname']) ?>">
+               <?php if(!empty($personaldetails)){ ?>
+                <input type="hidden" id="rqid" name="rqid" placeholder="" value="<?php echo($personaldetails['id']) ?>">
                <!-- </div> -->
+               <div class="col-md-4 col-xs-12">
+                  <label for="pan">PAN*</label>
+                  <input type="text" id="pan" name="pan" value="<?php echo($personaldetails['pan']) ?>" placeholder="pan" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
+               </div>
+               <div class="col-md-4 col-xs-12">
+                    <div class="tooltip_div">
+                     <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                   </div>
+                  <label for="legal_idntfr" style="display: inline;">Any other legal identifier (only for overseas employees)</label>
+                  <input type="text" id="legal_idntfr" name="legal_idntfr" value="<?php echo($personaldetails['legal_identifier']) ?>" placeholder="Nature of identifier" >
+               </div>
+               <div class="col-md-4 col-xs-12">
+                  <label for="legal_idntfctn_no">Any other legal identification number (only for overseas employees)</label>
+                  <input type="text" id="legal_idntfctn_no" value="<?php echo($personaldetails['legal_identification_no']) ?>" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
+               </div>
+               <div class="col-md-4 col-xs-12">
+                  <label for="aadhar">Aadhaar</label>
+                  <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<?php echo($personaldetails['aadhar']) ?>" maxlength="12" pattern="[0-9]{12}">
+               </div>
+               <div class="col-md-4 col-xs-12">
+                  <label for="Dob">Dob*</label>
+                  <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="bootdatepick" placeholder="dob">
+               </div>
+                
+               <div class="col-md-12 col-xs-12"> 
+                   <div class="col-md-4 col-xs-12"> 
+                        <label class="gender" for="sex">Gender*</label>
+                        <?php if($personaldetails['sex'] == 'Male'){?>
+                        <input type="radio" id="sex" name="sex" value="Male" checked/>Male
+                        <input type="radio" id="sex" name="sex"  value="Female"/>Female
+                        <input type="radio" id="sex" name="sex"  value="Other"/>Other
+                       <?php } elseif($personaldetails['sex'] == 'Female'){?>
+                        <input type="radio" id="sex" name="sex" value="Male" />Male
+                        <input type="radio" id="sex" name="sex"  value="Female" checked />Female
+                        <input type="radio" id="sex" name="sex"  value="Other"/>Other
+                         <?php } elseif($personaldetails['sex'] == 'Other'){?>
+                        <input type="radio" id="sex" name="sex" value="Male" />Male
+                        <input type="radio" id="sex" name="sex"  value="Female"  />Female
+                        <input type="radio" id="sex" name="sex"  value="Other" checked />Other
+                          <?php } else {?>
+                        <input type="radio" id="sex" name="sex" value="Male" checked />Male
+                        <input type="radio" id="sex" name="sex"  value="Female"  />Female
+                        <input type="radio" id="sex" name="sex"  value="Other" checked />Other
+                        <?php }?>
+                   </div>
+                   <div class="col-md-4 col-xs-12">
+                       <div class="tooltip_div">
+                           <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+                        </div>
+                      <label for="age">Educational Qualification*</label>
+                      <input type="text" id="eduqulfcn" name="eduqulfcn" value="<?php echo($personaldetails['education']) ?>" placeholder="Educational Qualification">
+                   </div>
+                   <div class="col-md-4 col-xs-12">
+                      <label for="age">Institute From Which Acquired*</label>
+                      <input type="text" id="institute" name="institute" value="<?php echo($personaldetails['institute']) ?>" placeholder="Institute From Which Acquired">
+                   </div>
+              </div>
+                
+               <div class="col-md-4 col-xs-12"> 
+                  <label for="subject">Address*</label>
+                  <textarea id="address" name="address" value="<?php echo($personaldetails['address']) ?>" placeholder="Write address.." style="height:50px"><?php echo($personaldetails['address']) ?></textarea>
+               </div>
+               <div class="col-md-4 col-xs-12">
+                  <label class="control-label">Upload Identity Proof</label>
+                   <?php if(!empty($personaldetails['filepath'])){ ?>
+                   <a href="<?php echo ($personaldetails['filepath']); ?>" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a>
+                   <?php } ?>
+                  <div class="choose_files">
+                     <input type="file" name="hldngfile" id="hldngfile" >
+                  </div>
+               </div>
+               <div class="col-md-4 col-xs-12 "> 
+                  <label for="age">Mobile No*</label>
+                  <input type="text" id="mobno" name="mobno" value="<?php echo($personaldetails['mobileno']) ?>" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
+                  <span id="mobileappend"></span>
+               </div>
+                <div class="col-md-12 col-xs-12"> 
+                <div class="col-md-4 col-xs-12 "> 
+                  <label for="age">Holdings In Shares*</label>  
+                  <input type="text" id="shareholdng" name="shareholdng" value="<?php echo($personaldetails['sharehldng']) ?>" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                </div>
+                
+                <div class="col-md-4 col-xs-12 "> 
+                  <label for="age">Holdings In ADRs*</label>
+                  <input type="text" id="adrsholdng" name="adrsholdng" value="<?php echo($personaldetails['adrshldng']) ?>" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+               </div>
+                </div>
+                <?php } else { ?>
+                <input type="hidden" id="rqid" name="rqid" placeholder="" value="">
                <div class="col-md-4 col-xs-12">
                   <label for="pan">PAN*</label>
                   <input type="text" id="pan" name="pan" placeholder="pan" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
                </div>
                <div class="col-md-4 col-xs-12">
-                  <label for="legal_idntfr">Any other legal identifier (only for overseas employees)</label>
-                  <input type="text" id="legal_idntfr" name="legal_idntfr" placeholder="Nature of identifier">
+                   <div class="tooltip_div">
+                     <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                   </div>
+                  <label for="legal_idntfr" style="display: inline;">Any other legal identifier (only for overseas employees)</label>
+                  <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of identifier" >
                </div>
                <div class="col-md-4 col-xs-12">
                   <label for="legal_idntfctn_no">Any other legal identification number (only for overseas employees)</label>
-                  <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no">
+                  <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
                </div>
                <div class="col-md-4 col-xs-12">
                   <label for="aadhar">Aadhaar</label>
@@ -79,20 +178,27 @@
                   <label for="Dob">Dob*</label>
                   <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="dob">
                </div>
-               <div class="col-md-4 col-xs-12"> 
-                  <label class="gender" for="sex">Gender*</label>
-                  <input type="radio" id="sex" name="sex" value="Male" checked/>Male
-                  <input type="radio" id="sex" name="sex"  value="Female"/>Female
-                  <input type="radio" id="sex" name="sex"  value="Other"/>Other
-               </div>
-               <div class="col-md-4 col-xs-12">
-                  <label for="age">Educational Qualification*</label>
-                  <input type="text" id="eduqulfcn" name="eduqulfcn" placeholder="Educational Qualification">
-               </div>
-               <div class="col-md-4 col-xs-12">
-                  <label for="age">Institute From Which Acquired*</label>
-                  <input type="text" id="institute" name="institute" placeholder="Institute From Which Acquired">
-               </div>
+                
+               <div class="col-md-12 col-xs-12"> 
+                   <div class="col-md-4 col-xs-12"> 
+                        <label class="gender" for="sex">Gender*</label>
+                        <input type="radio" id="sex" name="sex" value="Male" checked/>Male
+                        <input type="radio" id="sex" name="sex"  value="Female"/>Female
+                        <input type="radio" id="sex" name="sex"  value="Other"/>Other
+                   </div>
+                   <div class="col-md-4 col-xs-12">
+                       <div class="tooltip_div">
+                           <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+                        </div>
+                      <label for="age">Educational Qualification*</label>
+                      <input type="text" id="eduqulfcn" name="eduqulfcn"  placeholder="Educational Qualification">
+                   </div>
+                   <div class="col-md-4 col-xs-12">
+                      <label for="age">Institute From Which Acquired*</label>
+                      <input type="text" id="institute" name="institute"  placeholder="Institute From Which Acquired">
+                   </div>
+                </div>
+                
                <div class="col-md-4 col-xs-12"> 
                   <label for="subject">Address*</label>
                   <textarea id="address" name="address" placeholder="Write address.." style="height:50px"></textarea>
@@ -105,28 +211,21 @@
                </div>
                <div class="col-md-4 col-xs-12 "> 
                   <label for="age">Mobile No*</label>
-                  <input type="hidden" id="mobileno" name="mobileno" value="">
                   <input type="text" id="mobno" name="mobno" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
                   <span id="mobileappend"></span>
                </div>
                 <div class="col-md-12 col-xs-12"> 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Holdings In Shares*</label>
-                  <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
-                  <span id="mobileappend"></span>
-               </div>
+                  <label for="age">Holdings In Shares*</label>  
+                  <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                </div>
                 
                 <div class="col-md-4 col-xs-12 "> 
                   <label for="age">Holdings In ADRs*</label>
-                  <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
-                  <span id="mobileappend"></span>
+                  <input type="text" id="adrsholdng" name="adrsholdng"  placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
                </div>
                 </div>
-               <!--
-                  <div class="col-md-6 col-xs-12 "> 
-                  <input type="button" value="Add" name="" id="addmobile" class="mobile_add">
-                    </div>                     
-                  -->
+                <?php } ?>
                <div class="col-md-12 "> 
                   <input class="btn btn-primary" type="submit" value="Submit">
                </div>
@@ -190,7 +289,13 @@
                   </div>
                </div>
             </div>
+             <div class="tablitiledesc text-center">
+                    <div class="note">
+                        (<strong>Note : </strong>Once your personal information is filled please send 'Declaration form' to the Compliance Officer. <a href="initialdeclaration">Click here.</a>)
+                    </div>
+            </div>
             <div class="clearelement"></div>
+<!--
             <div class="table_data table-responsive">
                <table class="table table-inverse" id="datableabhi">
                   <thead>
@@ -213,6 +318,7 @@
                   <tbody class="perdetail" appendrow='1'></tbody>
                </table>
             </div>
+-->
             <!------------------------------------MODAL BOX FOR EDIT------------------------------------------>
             <div id="mydataedit" class="modal fade" role="dialog">
                <div class="modal-dialog">
@@ -237,7 +343,7 @@
 
                            <div class="col-md-6">
                               <label for="legal_idntfctn_no">Any other legal identification number (only for overseas employees)</label>
-                              <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no">
+                              <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
                            </div>
 
 
@@ -331,23 +437,8 @@
             <div class="appndnew">
                <form action ="employeemodule/relationdata" class="chklength" id="getdata_1" method="post" enctype="multipart/form-data" autocomplete="off">
                   <div class="input-group col-md-12 col-xs-12 col-sm-12">
-                     <div class="col-md-4 top_space">
-                        <label>Full Name*</label>
-                        <input  class="" placeholder="Full Name"  class="fname" id="fname" name="fname" type="text" />
-                     </div>
-                     <div class="col-md-4 top_space">
-                        <label>PAN*</label>
-                        <input  class=" panval" placeholder="PAN" class="pan" id="pan"  name="pan" type="text" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10" />
-                     </div>
-                     <div class="col-md-4 top_space"> 
-                        <label>Aadhaar</label>
-                        <input  class=" aadhar" placeholder="Aadhaar" id="aadhar"  name="aadhar" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}" />
-                     </div>
-                     <div class="col-md-4 top_space">
-                        <label>Date Of Birth*</label>
-                        <input type="text"  id="1_dob" name="dob" class="bootdatepick" placeholder="Date Of Birth">
-                     </div>
-                     <div class="col-md-4 top_space">
+                    <div class="col-md-12 col-md-12">
+                      <div class="col-md-4 top_space">
                         <label>Relationship*</label >
                         <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
                            <option value="1">HUF</option>
@@ -362,11 +453,57 @@
                            <option value="10">Daughter's Husband</option>
                            <option value="11">Others</option>
                         </select>
+                     </div>  
+                     <div class="col-md-4 top_space">
+                        <label>Nature of Dependency*</label >
+                        <select id="depnature" name="depnature[]" class="form_fields form-control col-md-7 col-xs-12" required="" multiple size="2">
+                           <option value="1">Financially Dependent</option>
+                           <option value="2">Consult in trading for securities</option>
+                           <option value="3">Non-dependent</option>
+                        </select>
+                     </div>  
+                     <div class="col-md-4 top_space">
+                        <label>Full Name*</label>
+                        <input  class="" placeholder="Full Name"  class="fname" id="fname" name="fname" type="text" />
+                     </div>
+                      </div>
+                    <div class="col-md-12 col-md-12">
+                     <div class="col-md-4 top_space">
+                           <div class="tooltip_div">
+                             <a href="javascript:void(0);" data="In case no PAN number available with dependents, please enter 00000000" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                           </div>
+                        <label>PAN*</label>
+                        <input  class=" panval" placeholder="PAN" class="pan" id="pan"  name="pan" type="text" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10" />
+                     </div>
+                     <div class="col-md-4 top_space">
+                        <div class="tooltip_div">
+                             <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                           </div>
+                        <label for="legal_idntfr" style="display: inline;">Any other legal identifier (only for overseas employees)</label>
+                        <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of identifier">
+                    </div>
+                     <div class="col-md-4 top_space">
+                        <label for="legal_idntfctn_no">Any other legal identification number (only for overseas employees)</label>
+                        <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
+                    </div>
+                    </div>
+                      
+                    <div class="col-md-12 col-md-12">
+                     <div class="col-md-4 top_space"> 
+                        <label>Aadhaar</label>
+                        <input  class=" aadhar" placeholder="Aadhaar" id="aadhar"  name="aadhar" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}" />
+                     </div>
+                     <div class="col-md-4 top_space">
+                        <label>Date Of Birth*</label>
+                        <input type="text"  id="1_dob" name="dob" class="bootdatepick" placeholder="Date Of Birth">
                      </div>
                      <div class="col-md-4 top_space">
                         <label>Educational Qualification</label>
                         <input type="text" id="eduqulfcn" name="eduqulfcn" placeholder="Educational Qualification">
                      </div>
+                    </div>
+                      
+                    <div class="col-md-12 col-md-12">
                      <div class="col-md-4 top_space"> 
                         <label for="sex">Gender*</label>
                         <input type="radio" id="1_sex" name="sex" value="Male" checked/>Male
@@ -381,18 +518,19 @@
                         <label class="control-label">Upload Identity Proof</label>
                         <input type="file" name="file[]" id="file" >
                      </div>
+                    </div>
                       
-                    <div class="col-md-12 col-md-12"> 
-                        <div class="col-md-4 top_space "> 
+                    <div class="col-md-12 col-md-12">
+                     <div class="col-md-4 top_space "> 
                           <label for="age">Holdings In Shares*</label>
                           <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
                        </div>
-
-                        <div class="col-md-4 top_space "> 
+                     <div class="col-md-4 top_space "> 
                           <label for="age">Holdings In ADRs*</label>
                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
                        </div>
                     </div>
+                     
                      <div class="col-md-12">
                         <input class="btn btn-primary" type="submit" name="submit" value="Submit" id="relsub">
                      </div>
@@ -412,6 +550,7 @@
                   <thead>
                      <tr>
                         <th>Sr No</th>
+                        <th>Relationship</th>
                         <th>Name</th>
                         <th>Pan</th>
                         <th>Aadhaar</th>
@@ -458,6 +597,32 @@
                      </div>
                      <div class="modal-body show_shadow">
                         <form action="employeemodule/updaterelatives" id="uprel" method="post" autocomplete="off">
+                            <div class="col-md-6">
+                              <label for="relationship">Relationship*</label>
+                              <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
+                                 <option value="1">HUF</option>
+                                 <option value="2">Spouse</option>
+                                 <option value="3">Father</option>
+                                 <option value="4">Mother</option>
+                                 <option value="5">Brother</option>
+                                 <option value="6">Sister</option>
+                                 <option value="7">Son</option>
+                                 <option value="8">Daughter</option>
+                                 <option value="9">Son's Wife</option>
+                                 <option value="10">Daughter's Husband</option>
+                                 <option value="11">Others</option>
+                              </select>
+                           </div>
+                            
+                             <div class="col-md-6">
+                                <label>Nature of Dependency*</label >
+                                <select id="depnature" name="depnature[]" class="form_fields form-control col-md-7 col-xs-12" required="" multiple size="2">
+                                   <option value="1">Financially Dependent</option>
+                                   <option value="2">Consult in trading for securities</option>
+                                   <option value="3">Non-dependent</option>
+                                </select>
+                             </div>  
+                            
                            <div class="col-md-6">
                               <input type="hidden" name="releditid" id="releditid" value="">
                               <input type="hidden" name="filepath" id="filepath" value="">
@@ -469,6 +634,17 @@
                               <label for="pan">PAN*</label>
                               <input type="text" id="pan" name="pan" placeholder="PAN" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
                            </div>
+                             <div class="col-md-6">
+                                <div class="tooltip_div">
+                                     <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                   </div>
+                                <label for="legal_idntfr" style="display: inline;">Any other legal identifier (only for overseas employees)</label>
+                                <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of identifier">
+                            </div>
+                             <div class="col-md-6">
+                                <label for="legal_idntfctn_no">Any other legal identification number (only for overseas employees)</label>
+                                <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
+                            </div>
                            <div class="col-md-6">
                               <label for="aadhar">Aadhaar</label>
                               <input type="text" id="aadhar" name="aadhar" placeholder="Aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
@@ -483,21 +659,7 @@
                               <input type="radio" id="sex" name="sex"  value="Female"/>Female
                               <input type="radio" id="sex" name="sex"  value="Other"/>Other
                            </div>
-                           <div class="col-md-12">
-                              <label for="relationship">Relationship*</label>
-                              <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
-                                 <option value="1">HUF</option>
-                                 <option value="2">Spouse</option>
-                                 <option value="3">Father</option>
-                                 <option value="4">Mother</option>
-                                 <option value="5">Brother</option>
-                                 <option value="7">Son</option>
-                                 <option value="8">Daughter</option>
-                                 <option value="9">Son's Wife</option>
-                                 <option value="10">Daughter's Husband</option>
-                                 <option value="11">Others</option>
-                              </select>
-                           </div>
+                           
                            <div class="col-md-12"> 
                               <label for="subject">Address*</label>
                               <textarea id="address" name="address" placeholder="Write address.." style="height:100px"></textarea>
@@ -582,6 +744,7 @@
                   <td></td>
                <tr>
             </table>
+<!--
             <div class="trdebtn">
                <div class="trdinti">
                   <h4 class="tradedetails">Trade Intimation Details</h4>
@@ -608,6 +771,7 @@
                   <td></td>
                <tr>
             </table>
+-->
          </div>
          <div id="mfrdelmodal" class="modal fade" role="dialog">
             <div class="modal-dialog">
