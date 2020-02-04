@@ -572,6 +572,8 @@ website.ajax({
                 for(var i=0;i<response.data.length;i++)
                 {
                     var education=response.data[i].education?response.data[i].education:'';
+                    var sharehldng=response.data[i].sharehldng?response.data[i].sharehldng:'';
+                    var adrshldng=response.data[i].adrshldng?response.data[i].adrshldng:'';
                    myhtml+='<tr>';
                    myhtml+='<td>'+j+'</td>';
                    myhtml+='<td>'+response.data[i].name+'</td>';
@@ -588,8 +590,8 @@ website.ajax({
                     {
                         myhtml+='<td></td>';
                     }
-
-
+                    myhtml+='<td>'+sharehldng+'</td>';
+                    myhtml+='<td>'+adrshldng+'</td>';
                    myhtml+='<td><i class="fa fa-edit editrel" releditid="'+response.data[i].id+'" style=""></i><i class="fa fa-trash delrel"  reldelid="'+response.data[i].id+'" style=""></i></td>';
                    myhtml+='</tr>';
                    j++;
@@ -686,16 +688,18 @@ website('body').on('click','.editrel',function()
         {
            if(response.logged==true)
            {
-               var name=response.data.name?response.data.name:"None"; 
-               var pan=response.data.pan?response.data.pan:"None";
-               var aadhar=response.data.aadhar?response.data.aadhar:"None";
-               var dob=response.data.dob?response.data.dob:"None";
-               var sex=response.data.sex?response.data.sex:"None";
-               var relationship=response.data.relationship?response.data.relationship:"None";
+               var name=response.data.name?response.data.name:""; 
+               var pan=response.data.pan?response.data.pan:"";
+               var aadhar=response.data.aadhar?response.data.aadhar:"";
+               var dob=response.data.dob?response.data.dob:"";
+               var sex=response.data.sex?response.data.sex:"";
+               var relationship=response.data.relationship?response.data.relationship:"";
                var education=response.data.education?response.data.education:'';
-               var id=response.data.id?response.data.id:"None";
-               var relationship=response.data.relationship?response.data.relationship:"None";        
-               var address=response.data.address?response.data.address:"None";
+               var id=response.data.id?response.data.id:"";
+               var relationship=response.data.relationship?response.data.relationship:"";        
+               var address=response.data.address?response.data.address:"";
+               var sharehldng=response.data.sharehldng?response.data.sharehldng:"";
+               var adrshldng=response.data.adrshldng?response.data.adrshldng:"";
                var filepath=response.data.filepath
                jQuery("#reledit input[value='"+sex+"']").attr('checked', true);
                 website('#reledit #name').val(name);
@@ -709,6 +713,8 @@ website('body').on('click','.editrel',function()
                 website('#reledit #address').val(address);
                 website('#reledit #eduqulfcn').val(education);
                 website('#reledit #filepath').val(filepath);
+                website('#reledit #shareholdng').val(sharehldng);
+                website('#reledit #adrsholdng').val(adrshldng);
                 website('#reledit').modal('show');
            }  
            else{

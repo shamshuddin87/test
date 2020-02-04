@@ -151,9 +151,9 @@ class Employeemodulecommon extends Component
             $newDate = date("d-m-Y", strtotime($originalDate));
 
              $query="INSERT INTO `relative_info`
-             (`user_id`,`user_group_id`,`name`,`pan`,`aadhar`,`relationship`,`dob`,`sex`,`address`,`education`,`filepath`,`date_added`,`date_modified`,`timeago`)
+             (`user_id`,`user_group_id`,`name`,`pan`,`aadhar`,`relationship`,`dob`,`sex`,`address`,`education`,`filepath`,`sharehldng`,`adrshldng`,`date_added`,`date_modified`,`timeago`)
                 VALUES 
-                ('".$userid."','".$user_group_id."','".$data['fname']."','".$data['pan']."','".$data['aadhar']."','".$data['relationship']."','".$newDate."','".$data['sex']."','".$data['address']."','".$data['eduqulfcn']."','".$filepath."',NOW(),NOW(),'".$time."')";
+                ('".$userid."','".$user_group_id."','".$data['fname']."','".$data['pan']."','".$data['aadhar']."','".$data['relationship']."','".$newDate."','".$data['sex']."','".$data['address']."','".$data['eduqulfcn']."','".$filepath."','".$data['shareholdng']."','".$data['adrsholdng']."',NOW(),NOW(),'".$time."')";
 
               // echo $query;exit;
                $exeget = $connection->query($query);
@@ -267,7 +267,7 @@ class Employeemodulecommon extends Component
               $originalDate = $data['dob'];
               $newDate = date("d-m-Y", strtotime($originalDate));
 
-             $qry = "UPDATE relative_info SET name ='".$data['name']."',pan ='".$data['pan']."',aadhar ='".$data['aadhar']."',dob ='".$newDate."',sex ='".$data['sex']."',address ='".$data['address']."',relationship ='".$data['relationship']."',education ='".$data['eduqulfcn']."',filepath ='".$filepath."',date_modified=NOW(),timeago='".$time."' WHERE id='".$releditid."' ";
+             $qry = "UPDATE relative_info SET name ='".$data['name']."',pan ='".$data['pan']."',aadhar ='".$data['aadhar']."',dob ='".$newDate."',sex ='".$data['sex']."',address ='".$data['address']."',relationship ='".$data['relationship']."',education ='".$data['eduqulfcn']."',filepath ='".$filepath."',sharehldng ='".$data['shareholdng']."',adrshldng ='".$data['adrsholdng']."',date_modified=NOW(),timeago='".$time."' WHERE id='".$releditid."' ";
              // echo $qry;exit;
              $exeget = $connection->query($qry);
              

@@ -44,8 +44,8 @@ class Upsicommon extends Component
         $userids = $ownerid;
         
         //print_r($data);exit;
-        $sqlquery = "INSERT INTO `upsimaster`(`user_id`,`user_group_id`,`upsitype`,`projstartdate`,`projectowner`,`projdescriptn`,`date_added`,`date_modified`,`timeago`) 
-        VALUES ('".$getuserid."','".$usergroup."','".$data['upname']."','".$data['pstartdte']."','".$data['ownerid']."','".$data['projdesc']."',NOW(),NOW(),'".$time."')"; 
+        $sqlquery = 'INSERT INTO `upsimaster`(`user_id`,`user_group_id`,`upsitype`,`projstartdate`,`projectowner`,`projdescriptn`,`date_added`,`date_modified`,`timeago`) 
+        VALUES ("'.$getuserid.'","'.$usergroup.'","'.$data['upname'].'","'.$data['pstartdte'].'","'.$data['ownerid'].'","'.$data['projdesc'].'",NOW(),NOW(),"'.$time.'")'; 
 
         //echo $sqlquery; exit;
         try
@@ -127,7 +127,7 @@ class Upsicommon extends Component
         return $getlist;
     }
 
-    public function updateupsi($getuserid,$usergroup,$updatedata)
+    public function updateupsi($getuserid,$usergroup,$updatedata,$exceldpids)
     {
         //print_r($updatedata);exit;
         $connection = $this->dbtrd;
@@ -136,6 +136,7 @@ class Upsicommon extends Component
         $time=time();
         $toalldps = 0;
         $connctdps = '';
+        $excelcondps = '';
         if(array_key_exists("upalldps", $updatedata))
         {
 //            $cmpname = $this->insidercommon->getcompanydetailofuser($getuserid);
@@ -152,15 +153,27 @@ class Upsicommon extends Component
             $connctdps = implode(',',$connectdps);
             $toalldps = 1;
         }
-        else
+        else if(array_key_exists("connectdps", $updatedata))
         {
-           if(array_key_exists("connectdps", $updatedata))
-           {
-                $connctdps = implode(',',$updatedata['connectdps']);
-           } 
+            $connctdps = implode(',',$updatedata['connectdps']);
         }
-        $sqlquery = "UPDATE `upsimaster` SET  `upsitype`='".$updatedata['upname']."',`toalldps`='".$toalldps."',`projstartdate`='".$updatedata['pstartdte']."',`enddate`='".$updatedata['enddate']."',`projectowner`='".$updatedata['ownerid']."',`projdescriptn`='".$updatedata['projdesc']."',`connecteddps`='".$connctdps."',`date_modified`=NOW(),`timeago`='".$time."'
-         WHERE `id`='".$updatedata['editid']."'"; 
+        if(!empty($exceldpids))
+        {
+            $excelcondps = implode(',',$exceldpids);
+        }
+       
+        //print_r($connctdps);exit;
+        if(!empty($connctdps) && !empty($excelcondps))
+        {
+            $connctdps.= ','.$excelcondps;
+        }
+        else if(!$connctdps && !empty($excelcondps))
+        {
+            $connctdps = $excelcondps;
+        }
+        //print_r($connctdps);exit;
+        $sqlquery = 'UPDATE `upsimaster` SET  `upsitype`="'.$updatedata['upname'].'",`toalldps`="'.$toalldps.'",`projstartdate`="'.$updatedata['pstartdte'].'",`enddate`="'.$updatedata['enddate'].'",`projectowner`="'.$updatedata['ownerid'].'",`projdescriptn`="'.$updatedata['projdesc'].'",`connecteddps`="'.$connctdps.'",`date_modified`=NOW(),`timeago`="'.$time.'"
+         WHERE `id`="'.$updatedata['editid'].'"'; 
         //echo $sqlquery;exit; `companyid`='".$updatedata['cmpid']."',
         try
         {
@@ -493,5 +506,32 @@ class Upsicommon extends Component
 
     }
 
+    public function Fetchusersid($getuserid,$user_group_id,$EmailData)
+    {
+        $connection = $this->dbtrd;
+        $emailid = implode("','",$EmailData['emailid']);
+        //print_r($emailid);exit;
+        $sqlquery = "SELECT * FROM `it_memberlist` WHERE `email` IN ('".$emailid."') AND `status`=1 ";
+        //echo $sqlquery;exit;
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row['wr_id'];                     
+                }
+             //echo '<pre>';print_r($getlist);exit;
+            }
+            else
+            {   $getlist = array(); }
+        }
+        catch (Exception $e)
+        {   $getlist = array(); }
+        //echo '<pre>';print_r($getlist);exit;
+        return $getlist;
+    }
   
 }

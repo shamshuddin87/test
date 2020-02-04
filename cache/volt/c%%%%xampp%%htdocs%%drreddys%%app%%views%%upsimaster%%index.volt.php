@@ -306,8 +306,30 @@ $uid = $this->session->loginauthspuserfront['id'];
                 <input type="hidden" id="cmpconnectdps" name="cmpconnectdps">
                 <div class="connectedp"></div>
                 </div>
-
+                   
+                  
                </div> 
+                
+                    <!-- ExcelUpload start -->                
+                <div class="excluplod">
+<!--                    <form action="usermaster/insertuserdetailviaexcel" id="insertuserdetailviaexcel" method="post" enctype="multipart/form-data">-->
+                        <div class="boxshadow col-md-6 col-md-offset-3"> 
+                            <label class="labelcss">Connected Dp Names For UPSI</label>
+                            <div class="choose_files">
+                                <input type="file" name="connecteddps" id="connecteddps" >
+                            </div>
+                            <div class="updatefile">
+                                <div class="sample_down floatleft">
+                                   <a href="samplefile\UPSI\connected_dp.xlsx" download><p class="sample">
+                                    Download Sample Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i></p></a>
+                                </div>
+                                <div class="clearelement"></div> 
+                            </div> 
+                            <div id="message" class="message"></div>    
+                        </div>  
+<!--                    </form>                 -->
+                </div>                 
+                <!-- ExcelUpload End --> 
 <!--
                  <section class="col col-md-8 col-xs-8" id="connectedpmodal">
                      

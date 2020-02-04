@@ -385,6 +385,7 @@ class EmployeemoduleController extends ControllerBase
                 $sex   = $this->request->getPost('sex','trim');
                 $address   = $this->request->getPost('address','trim');
                 $file   = $this->request->getPost('file','trim');
+                $file   = $this->request->getPost('file','trim');
                 if(empty($fname))
                 {
                     $data = array("logged" => false,'message' => 'Please Enter First Name!!');
