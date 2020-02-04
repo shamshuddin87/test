@@ -58,12 +58,12 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                         </section>
                         
-                        <section class="col col-md-4 col-xs-12">
+                 <!--        <section class="col col-md-4 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Phone Number</label>
                                 <input type="text" id="phonenum" name="phonenum"  maxlength="11" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                             </div>
-                        </section>
+                        </section> -->
                         
                         <section class="col col-md-4 col-xs-12">
                             <div class="input">
@@ -229,12 +229,12 @@ $condeptsess = $this->session->contractdepartment;
                         </div>
                     </section>
                         
-                    <section class="col col-md-6 col-xs-12">
+         <!--            <section class="col col-md-6 col-xs-12">
                         <div class="input">
                             <label class="control-label">Phone Number</label>
                             <input type="text" id="phonenum" name="phonenum"  maxlength="11" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                         </div>
-                    </section>
+                    </section> -->
                 
                     <section class="col col-md-6 col-xs-12">
                             <div class="input">

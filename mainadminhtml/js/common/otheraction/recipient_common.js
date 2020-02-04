@@ -275,6 +275,7 @@ var id = website(this).attr('aprvllistid');
                    var html = '<section class="col col-md-6 col-xs-6"><div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
                    website('#Mymodaledit .employeecateedit').html(html);
                    website("#Mymodaledit #empcategory").val(response.data['0'].othercategory);
+                   website("#Mymodaledit #entity").attr("readonly",true);
             }
             else
             {
@@ -435,6 +436,8 @@ website('body').on('change','#category',function(){
         website('#insertrecipient .employeecate').css('display','block');
         var html = '<section class="col col-md-4 col-xs-12"><div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
         website('#insertrecipient .employeecate').html(html);
+        website('#insertrecipient #entity').val("Dr Reddy's Laboratories Ltd.");
+        website('#insertrecipient #entity').attr("readonly",true);
     }
     else
     {
@@ -460,6 +463,8 @@ website('body').on('change','#Mymodaledit #category',function(){
         website('#Mymodaledit .employeecateedit').css('display','block');
         var html = '<section class="col col-md-8 col-xs-8"><div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
         website('#Mymodaledit .employeecateedit').html(html);
+        website('#Mymodaledit #entity').val("Dr Reddy's Laboratories Ltd.");
+        website('#Mymodaledit #entity').attr("readonly",true);
     }
     else
     {

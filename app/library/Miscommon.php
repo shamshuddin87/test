@@ -1360,6 +1360,281 @@ class Miscommon extends Component
    
        return $html;
     }
+
+
+    public function allDesgntdPersnHtml($getuserinfo,$relativeinfo,$accountinfo,$relativeaccount,$mfrdata,$getres,$result)
+    {
+        $myhtml1 = '';$myhtml2 = '';$myhtml3 = '';$myhtml4 = '';$myhtml5 = '';$myhtml6 = '';$myhtml7 = '';
+        //print_r($result);exit;
+        if(sizeof($getuserinfo) > 0)
+        {
+            for($i=0; $i < sizeof($getuserinfo); $i++)
+            {
+               // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml1.="<tr>";
+                $myhtml1.="<td>".$j."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['name']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['pan']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['aadhar']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['dob']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['address']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['sex']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['education']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['institute']."</td>";
+                $myhtml1.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml1.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+        }
+       
+        if(sizeof($relativeinfo) > 0)
+        {
+            for($i=0; $i < sizeof($relativeinfo); $i++)
+            {
+           // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml2.="<tr>";
+                $myhtml2.="<td>".$j."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['name']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['pan']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['aadhar']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['dob']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['relationshipname']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['address']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['sex']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['education']."</td>";
+                $myhtml2.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml2.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+        }
+
+
+        if(sizeof($accountinfo) > 0)
+        {
+            for($i=0; $i < sizeof($accountinfo); $i++)
+            {
+           // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml3.="<tr>";
+                $myhtml3.="<td>".$j."</td>";
+                $myhtml3.="<td>".$accountinfo[$i]['accountno']."</td>";
+                $myhtml3.="<td>".$accountinfo[$i]['usname']."</td>";
+                $myhtml3.="<td>".$accountinfo[$i]['clearing_house']."</td>";
+                $myhtml3.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml3.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+        }
+
+        if(sizeof($relativeaccount) > 0)
+        {
+            for($i=0; $i < sizeof($relativeaccount); $i++)
+            {
+           // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml4.="<tr>";
+                $myhtml4.="<td>".$j."</td>";
+                $myhtml4.="<td>".$relativeaccount[$i]['accountno']."</td>";
+                $myhtml4.="<td>".$relativeaccount[$i]['name']."</td>";
+                $myhtml4.="<td>".$relativeaccount[$i]['clearing_house']."</td>";
+                $myhtml4.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml4.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+        }
+
+        if(sizeof($mfrdata) > 0)
+        {
+            for($i=0; $i < sizeof($mfrdata); $i++)
+            {
+           // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml5.="<tr>";
+                $myhtml5.="<td>".$j."</td>";
+                $myhtml5.="<td>".$mfrdata[$i]['related_party']."</td>";
+                $myhtml5.="<td>".$mfrdata[$i]['pan']."</td>";
+                $myhtml5.="<td>".$mfrdata[$i]['relationship']."</td>";
+                $myhtml5.="<td>".$mfrdata[$i]['address']."</td>";
+                $myhtml5.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml5.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+        }
+
+        if(sizeof($result) > 0)
+        {
+            for($i=0; $i < sizeof($result); $i++)
+            {
+           // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml6.="<tr>";
+                $myhtml6.="<td>".$j."</td>";
+                $myhtml6.="<td>".$result[$i]['company_name']."</td>";
+                $myhtml6.="<td>".$result[$i]['security_type']."</td>";
+                $myhtml6.="<td>".$result[$i]['no_of_share']."</td>";
+                $myhtml6.="<td>".$result[$i]['date_of_transaction']."</td>";
+                $myhtml6.="<td>".$result[$i]['transaction']."</td>";
+                $myhtml6.="<td>".$result[$i]['demat_acc_no']."</td>";
+                $myhtml6.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml6.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+        }
+
+        if(sizeof($getres) > 0)
+        {
+            for($i=0; $i < sizeof($getres); $i++)
+            {
+                // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml7.="<tr>";
+                $myhtml7.="<td>".$j."</td>";
+                $myhtml7.="<td>".$getres[$i]['relname']."</td>";
+                $myhtml7.="<td>".$getres[$i]['relationship']."</td>";
+                $myhtml7.="<td>".$getres[$i]['company_name']."</td>";
+                $myhtml7.="<td>".$getres[$i]['security_type']."</td>";
+                $myhtml7.="<td>".$getres[$i]['no_of_share']."</td>";
+                $myhtml7.="<td>".$getres[$i]['date_of_transaction']."</td>";
+                $myhtml7.="<td>".$getres[$i]['transaction']."</td>";
+                $myhtml7.="<td>".$getres[$i]['demat_acc_no']."</td>";
+                $myhtml7.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml7.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+        }
+
+        
+       // print_r($myhtml1);exit;
+
+      $html="<!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+      </head>
+      <body>
+         <h3 style='text-align:center;'>Designated Person Information</h3>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Name</th> 
+                <th>Pan</th>
+                <th>Aadhar</th>
+                <th>Dob</th>  
+                <th>Address</th>  
+                <th>Gender</th>    
+                <th>Education</th>                                                
+                <th>Institution</th>
+            </tr>
+         ".$myhtml1."
+         </table>
+         <br>
+         <h3 style='text-align:center;'>Designated Person's Relative Information</h3>
+         <br>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Name</th> 
+                <th>Pan</th>
+                <th>Aadhar</th>
+                <th>Dob</th> 
+                <th>Relationship</th> 
+                <th>Address</th>  
+                <th>Gender</th>    
+                <th>Education</th>   
+            </tr>
+         ".$myhtml2."
+         </table>
+         <br>
+         <h3 style='text-align:center;'>Designated Person's Demat Accounts</h3>
+         <br>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Account No</th> 
+                <th>Designated Person Name</th>
+                <th>Clearing House</th> 
+            </tr>
+         ".$myhtml3."
+         </table>
+         <br>
+         <h3 style='text-align:center;'>Designated Person's Relative Demat Accounts</h3>
+         <br>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Account No</th> 
+                <th>Designated Person Name</th>
+                <th>Clearing House</th> 
+            </tr>
+         ".$myhtml4."
+         </table>
+         <br>
+         <h3 style='text-align:center;'>Designated Person's Material Financial Relationship</h3>
+         <br>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Name Of Related Party</th> 
+                <th>Identity Number</th> 
+                <th>Nature Of Relationship</th>
+                <th>Address</th> 
+            </tr>
+         ".$myhtml5."
+         </table>
+         <br>
+         <h3 style='text-align:center;'>Designated Person's Holding MIS</h3>
+         <br>
+         <table>
+            <tr>
+               <th>Sr No</th>
+                <th>Name Of Company</th> 
+                <th>Type Of Security</th> 
+                <th>No Of Securities</th> 
+                <th>Transaction Date</th>
+                <th>Transaction Type</th>
+                <th>Demat Account No</th>
+            </tr>
+         ".$myhtml6."
+         </table>
+         <br>
+         <h3 style='text-align:center;'>Designated Person's Relatives Holding MIS</h3>
+         <br>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Name Of Relative</th> 
+                <th>Relationship</th> 
+                <th>Name Of Company</th> 
+                <th>No Of Securities</th> 
+                <th>No of Share</th> 
+                <th>Transaction Date</th>
+                <th>Transaction Type</th>
+                <th>Demat Account No</th>
+            </tr>
+         ".$myhtml7."
+         </table>
+        </body>
+      </html>";
+       // print_r($html); exit;
+       return $html;
+    }
+    
     
 
 }
