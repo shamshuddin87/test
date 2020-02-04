@@ -188,3 +188,14 @@ input.gotobtn { padding: 2px 6px 2px 6px; border: 1px solid #5d6677;}
 /*################ Pagination End ######################*/
 
 
+input#srch {
+    padding: 4px;
+    border-radius: 3px;
+    border: none;
+    border: 1px solid #ccc;
+}
+
+.top_margin {
+    float: right;
+    margin: 34px 24px 10px 10px;
+}

@@ -17,7 +17,7 @@ class Employeemodulecommon extends Component
              $getnum = trim($exeget->numRows());
            if($getnum>0)
            {
-              $myarr['message']='Information Allready Exist Please Edit Information';
+              $myarr['message']='Information Already Exist Please Edit Information';
               $myarr['status']=false;
               return $myarr;
             }
@@ -26,8 +26,8 @@ class Employeemodulecommon extends Component
               
                $originalDate = $personal['dob'];
                $newDate = date("d-m-Y", strtotime($originalDate));
-               $queryinsertml = "INSERT INTO `personal_info`(`userid`,`user_group_id`,`name`,`pan`,`aadhar`,`dob`,`sex`,`address`,`education`,`institute`,`mobileno`,`filepath`,`date_added`,`date_modified`,`timeago`)
-                VALUES ('".$userid."','".$user_group_id."','".$personal['fname']."','".$personal['pan']."','".$personal['aadhar']."','".$newDate."','".$personal['sex']."','".$personal['address']."','".$personal['eduqulfcn']."','".$personal['institute']."','".$personal['mobno']."','".$filepath."',NOW(),NOW(),'".$time."')";
+               $queryinsertml = "INSERT INTO `personal_info`(`userid`,`user_group_id`,`name`,`pan`,`legal_identifier`,`legal_identification_no`,`aadhar`,`dob`,`sex`,`address`,`education`,`institute`,`mobileno`,`filepath`,`date_added`,`date_modified`,`timeago`)
+                VALUES ('".$userid."','".$user_group_id."','".$personal['fname']."','".$personal['pan']."','".$personal['legal_idntfr']."','".$personal['legal_idntfctn_no']."','".$personal['aadhar']."','".$newDate."','".$personal['sex']."','".$personal['address']."','".$personal['eduqulfcn']."','".$personal['institute']."','".$personal['mobno']."','".$filepath."',NOW(),NOW(),'".$time."')";
                  // print_r($queryinsertml);exit;
                 $exeml = $connection->query($queryinsertml);
            
@@ -91,7 +91,7 @@ class Employeemodulecommon extends Component
               $originalDate = $data['dob'];
               $newDate = date("d-m-Y", strtotime($originalDate));
 
-             $qry = "UPDATE personal_info SET pan ='".$data['pan']."',aadhar ='".$data['aadhar']."',dob ='".$newDate."',sex ='".$data['sex']."',address ='".$data['address']."',mobileno='".$data['upmobno']."',education ='".$data['eduqulfcn']."',institute ='".$data['institute']."',filepath ='".$filepath."',date_modified=NOW(),`timeago`='".$time."' WHERE id='".$id."' ";
+             $qry = "UPDATE personal_info SET pan ='".$data['pan']."',legal_identifier ='".$data['legal_idntfr']."',legal_identification_no ='".$data['legal_idntfctn_no']."',aadhar ='".$data['aadhar']."',dob ='".$newDate."',sex ='".$data['sex']."',address ='".$data['address']."',mobileno='".$data['upmobno']."',education ='".$data['eduqulfcn']."',institute ='".$data['institute']."',filepath ='".$filepath."',date_modified=NOW(),`timeago`='".$time."' WHERE id='".$id."' ";
              // print_r($qry);exit;
              $exeget = $connection->query($qry);
            

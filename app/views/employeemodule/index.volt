@@ -39,6 +39,10 @@
          <h3>Insert Personal Details</h3>
          <div class="insert">
             <div class="col-md-4 col-xs-12">
+               <label for="fn">Employee ID*</label>
+               <input type="text"  value="<?php echo($userdetails[0]['employeecode']) ?>" readonly="readonly"/>
+            </div>
+            <div class="col-md-4 col-xs-12">
                <label for="fn">First Name*</label>
                <input type="text"  value="<?php echo($userdetails[0]['firstname']) ?>" readonly="readonly"/>
             </div>
@@ -58,6 +62,14 @@
                <div class="col-md-4 col-xs-12">
                   <label for="pan">PAN*</label>
                   <input type="text" id="pan" name="pan" placeholder="pan" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
+               </div>
+               <div class="col-md-4 col-xs-12">
+                  <label for="legal_idntfr">Any other legal identifier (only for overseas employees)</label>
+                  <input type="text" id="legal_idntfr" name="legal_idntfr" placeholder="Nature of identifier">
+               </div>
+               <div class="col-md-4 col-xs-12">
+                  <label for="legal_idntfctn_no">Any other legal identification number (only for overseas employees)</label>
+                  <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no">
                </div>
                <div class="col-md-4 col-xs-12">
                   <label for="aadhar">Aadhaar</label>
@@ -217,6 +229,18 @@
                               <label for="pan">PAN*</label>
                               <input type="text" id="pan" name="pan" placeholder="pan" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
                            </div>
+
+                           <div class="col-md-6">
+                              <label for="legal_idntfr">Any other legal identifier (only for overseas employees)</label>
+                              <input type="text" id="legal_idntfr" name="legal_idntfr" placeholder="Nature of identifier">
+                           </div>
+
+                           <div class="col-md-6">
+                              <label for="legal_idntfctn_no">Any other legal identification number (only for overseas employees)</label>
+                              <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no">
+                           </div>
+
+
                            <div class="col-md-6">
                               <label for="aadhar">Aadhaar</label>
                               <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">

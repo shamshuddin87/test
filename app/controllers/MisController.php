@@ -121,21 +121,30 @@ class MisController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 // ------- Pagination Start -------
-                    $noofrows = $this->request->getPost('noofrows','trim');
-                    $pagenum = $this->request->getPost('pagenum','trim');
-                    //echo $pagenum.'*'.$noofrows; exit;
-                    $rsstrt = ($pagenum-1) * $noofrows;
-                    //echo $rsstrt; exit;
+                $noofrows = $this->request->getPost('noofrows','trim');
+                $pagenum = $this->request->getPost('pagenum','trim');
+                $searchby = $this->request->getPost('search');
+                //echo $pagenum.'*'.$noofrows; exit;
+                $rsstrt = ($pagenum-1) * $noofrows;
+                //echo $rsstrt; exit;
                 // ------- Pagination End -------
                 
                 // ------------ Queries Start ------------
-                    $rslmt = ' LIMIT '.$rsstrt.','.$noofrows;
-                    $orderby = 'ORDER BY `wr_id` DESC';
-                    //echo $query; exit;
+                $rslmt = ' LIMIT '.$rsstrt.','.$noofrows;
+                $orderby = ' ORDER BY `wr_id` DESC';
+                //echo $searchby; exit;
 
+                if($searchby !== '')
+                {
+                    $mainqry = ' AND `fullname` LIKE "%'.$searchby.'%"';
+                }
+                else
+                {
                     $mainqry = '';
-                    $fnlqry = $mainqry.$orderby.$rslmt;
-                    //echo $sqlfltr1; exit;
+                }
+
+                $fnlqry = $mainqry.$orderby.$rslmt;
+                //echo $sqlfltr1; exit;
                 // ------------ Queries End ------------
                                 
                 $getdata = $this->miscommon->fetchsubuser($getuserid,$user_group_id,$fnlqry);
@@ -289,7 +298,7 @@ class MisController extends ControllerBase
             $addhtmlnxt .= '<td width="25%">'.$usrdata['fullname'].'</td>';
             $addhtmlnxt .= '<td width="25%">'.$sum1.'</td>';
             $addhtmlnxt .= '<td width="25%">'.$sum2.'</td>';
-            $addhtmlnxt .= '<td width="25%">'.$sum3.'</td>';
+            //$addhtmlnxt .= '<td width="25%">'.$sum3.'</td>';
             $addhtmlnxt .= '</tr>';
             
         }        

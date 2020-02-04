@@ -106,6 +106,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
             foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
             {
                 $highestRow = $worksheet->getHighestRow();
+                //echo '<pre>'; print_r($highestRow);exit;
                  for ($row=2; $row<=$highestRow;$row++)
                  {
                     $emp_name  = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
@@ -113,8 +114,8 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                     $emp_shares  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
                     $emp_almtdate  = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
                     $emp_almtdate  = PHPExcel_Style_NumberFormat::toFormattedString($emp_almtdate, "DD-MM-YYYY");
-                    $emp_cmpnme  = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
-                    $esopdata = array('empname'=>$emp_name,'emppan'=>$emp_pan,'empshares'=>$emp_shares,'almtdte'=>$emp_almtdate,'cmpname'=>$emp_cmpnme);
+                    //$emp_cmpnme  = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+                    $esopdata = array('empname'=>$emp_name,'emppan'=>$emp_pan,'empshares'=>$emp_shares,'almtdte'=>$emp_almtdate);
                   
                     $getstatus = $this->esopcommon->insertesop($getuserid,$user_group_id,$esopdata,$uniqueid);
                 }
