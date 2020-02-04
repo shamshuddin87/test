@@ -189,10 +189,25 @@ website('body').on('click','#dtrangedes', function(e)
 });
 
 website('.genfile').on('click', function(e) {
-  
-     website.ajax({
+    var userId = website("#userid").val();
+    var noofrows = website('#personmis #noofrows').val(); 
+    var pagenum = website('#personmis #pagenum').val();
+    //console.log(noofrows+'*'+pagenum);return false;
+
+    var noofrows1 = website('#relativemis #noofrows').val(); 
+    var pagenum1 = website('#relativemis #pagenum').val();
+    
+    var startdate = website('#date1').val();
+    var enddate = website('#date2').val();
+
+    var startdesdate = website('#desdate1').val();
+    var enddesdate = website('#desdate2').val();
+
+    var formdata = {userId:userId,noofrows:noofrows,pagenum:pagenum,startdate:startdate,enddate:enddate,startdesdate:startdesdate,enddesdate:enddesdate,noofrows1:noofrows1,pagenum1:pagenum1};
+    // alert(request);return false;
+    website.ajax({
         url:'mis/fetchDesigntdPersonMIS',
-        //data:formdata,
+        data:formdata,
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',

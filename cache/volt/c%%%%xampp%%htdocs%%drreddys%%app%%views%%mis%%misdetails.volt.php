@@ -14,7 +14,7 @@ $condeptsess = $this->session->contractdepartment;
 <!-- My messages -->
 <div class="mainelementfom">
 
-<div style="float:right;">
+<div class="pdfExport">
     <button type="button" class="btn btn-primary genfile pdf_bg">Export PDF</button>
     <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
 </div> 

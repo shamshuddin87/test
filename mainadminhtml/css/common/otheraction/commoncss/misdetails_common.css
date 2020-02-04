@@ -68,3 +68,7 @@ input.gotobtn { padding: 2px 6px 2px 6px; border: 1px solid #5d6677;}
 
 
 .exportcss {background:#0747A6; text-decoration: none;color: #fff;font-family: 'robotoregular'; font-size: 14px;padding: 8px 20px; border-radius: 5px;box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);}
+
+.pdfExport {
+    text-align: right;
+}

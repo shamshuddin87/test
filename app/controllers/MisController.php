@@ -1433,22 +1433,78 @@ class MisController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
-                $userid = base64_decode($this->request->getQuery("userid"));
-                echo "<pre>"; print_r(base64_decode($_GET['userid']));exit;
-                $getuserinfo =$this->miscommon->useriformation($userid);
-                $relativeinfo =$this->miscommon->getrelativedata($userid,"");
-                $accountinfo= $this->miscommon->getaccnoinfo($userid);
-                $relativeaccount= $this->miscommon->getrelinfo($userid);
-                $mfrdata= $this->miscommon->getmfrdataformis($userid);
-                $getres = $this->miscommon->fetchallupsitypes($getuserid,$user_group_id,'');
-                
-                $gethtml=$this->miscommon->allupsihtml($getres);
-                $genfile =$this->dompdfgen->getpdf($gethtml,"upsitypeclassify","upsi","misrecip");
-              
-                
-              
-                 // print_r($genfile);exit;
+                $userid = $this->request->getPost('userId');
 
+                $noofrows = $this->request->getPost('noofrows');
+                $pagenum = $this->request->getPost('pagenum');
+
+                $noofrows1 = $this->request->getPost('noofrows1');
+                $pagenum1 = $this->request->getPost('pagenum1');
+                // print_r($noofrows);exit;
+                $startdate = $this->request->getPost('startdate');
+                $enddate = $this->request->getPost('enddate');
+
+                $startdesdate = $this->request->getPost('startdesdate');
+                $enddesdate = $this->request->getPost('enddesdate');
+
+
+                /*####### Fetch Holding MIS Start #######*/
+                if($startdate=='' && $enddate=='')
+                {
+                    $mainquery = '';
+                    $getres = $this->miscommon->getholingmis($userid,$user_group_id,$mainquery);
+                    $rsstrt = ($pagenum-1) * $noofrows;
+                    $rslmt =' LIMIT '.$rsstrt.','.$noofrows;
+                }
+                else
+                {
+                    $mainquery = "   AND (`ts`.`date_of_transaction`>='".$startdate."'  AND  `ts`.`date_of_transaction`<='".$enddate."')";
+                    $getres = $this->miscommon->getholingmis($userid,$user_group_id,$mainquery);
+                    $rsstrt = ($pagenum-1) * $noofrows;
+
+                    $rslmt =" AND (`ts`.`date_of_transaction`>='".$startdate."'  AND  `ts`.`date_of_transaction`<='".$enddate."')".'  LIMIT '.$rsstrt.','.$noofrows;
+                }
+
+                $rscnt=count($getres);
+                $rspgs = ceil($rscnt/$noofrows);
+                $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                $result = $this->miscommon->getholingmis($userid,$user_group_id,$rslmt);
+                /*####### Fetch Holding MIS End #######*/     
+
+                /*####### Fetch Relative Holding MIS Start #######*/  
+                if($startdesdate == '' && $enddesdate == '')
+                {  
+                    $mainquery = '';
+                    $getres = $this->miscommon->getrelativegmis($userid,$user_group_id,$mainquery);
+                    $rsstrt = ($pagenum-1) * $noofrows;
+                    $rslmt =' LIMIT '.$rsstrt.','.$noofrows;
+                }
+                else
+                {
+                   $mainquery = "   AND (`ts`.`date_of_transaction`>='".$startdate."'  AND  `ts`.`date_of_transaction`<='".$enddate."')";
+                   $getres = $this->miscommon->getrelativegmis($userid,$user_group_id,$mainquery);
+                   $rsstrt = ($pagenum-1) * $noofrows;
+                   $rslmt =" AND (`ts`.`date_of_transaction`>='".$startdate."'  AND  `ts`.`date_of_transaction`<='".$enddate."')".'  LIMIT '.$rsstrt.','.$noofrows;
+                }
+                $rscnt=count($getres);
+                $rspgs = ceil($rscnt/$noofrows);
+                $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                // print_r($pgnhtml);exit;
+                $getres = $this->miscommon->getrelativegmis($userid,$user_group_id,$rslmt);
+                /*####### Fetch Relative Holding MIS Start #######*/ 
+
+
+                $getuserinfo = $this->miscommon->useriformation($userid);
+                $relativeinfo = $this->miscommon->getrelativedata($userid,"");
+                $accountinfo = $this->miscommon->getaccnoinfo($userid);
+                $relativeaccount = $this->miscommon->getrelinfo($userid);
+                $mfrdata = $this->miscommon->getmfrdataformis($userid);
+                //print_r($getuserinfo);exit;
+                $gethtml=$this->miscommon->allDesgntdPersnHtml($getuserinfo,$relativeinfo,$accountinfo,$relativeaccount,$mfrdata,$getres,$result);
+                $genfile =$this->dompdfgen->getpdf($gethtml,"misdesgntdpersn","mis","mispersnlinfo");
+                //print_r($genfile);exit;
                 if(!empty($genfile))
                 {
                     $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);

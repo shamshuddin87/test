@@ -39,7 +39,7 @@ website('.accdetails6').html(htmlelements);website('#acc6').html(response.pgnhtm
 {}});}
 website('body').on('click','#dtrange',function(e)
 {getholdingmis();});website('body').on('click','#dtrangedes',function(e)
-{relativeholdingmis();});website('.genfile').on('click',function(e){website.ajax({url:'mis/fetchDesigntdPersonMIS',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{relativeholdingmis();});website('.genfile').on('click',function(e){var userId=website("#userid").val();var noofrows=website('#personmis #noofrows').val();var pagenum=website('#personmis #pagenum').val();var noofrows1=website('#relativemis #noofrows').val();var pagenum1=website('#relativemis #pagenum').val();var startdate=website('#date1').val();var enddate=website('#date2').val();var startdesdate=website('#desdate1').val();var enddesdate=website('#desdate2').val();var formdata={userId:userId,noofrows:noofrows,pagenum:pagenum,startdate:startdate,enddate:enddate,startdesdate:startdesdate,enddesdate:enddesdate,noofrows1:noofrows1,pagenum1:pagenum1};website.ajax({url:'mis/fetchDesigntdPersonMIS',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
 {if(response.logged==true)
