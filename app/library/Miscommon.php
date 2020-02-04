@@ -221,7 +221,7 @@ class Miscommon extends Component
         }
         else
         {
-        	$query="SELECT * FROM it_memberlist WHERE FIND_IN_SET('".$getuserid."',`approvid`) OR `wr_id`= '".$getuserid."' ".$ext;
+        	$query="SELECT * FROM it_memberlist WHERE (FIND_IN_SET('".$getuserid."',`approvid`) OR `wr_id`= '".$getuserid."') ".$ext;
         }
         //print_r($query); exit;
        

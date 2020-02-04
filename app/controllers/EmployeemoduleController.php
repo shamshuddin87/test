@@ -51,6 +51,8 @@ class EmployeemoduleController extends ControllerBase
                 $institute = $this->request->getPost('institute','trim');
                 $mobile=$this->request->getPost('mobno');
                 $file   = $this->request->getPost('hldngfile','trim');
+                $legal_idntfr = $this->request->getPost('legal_idntfr','trim');
+                $legal_idntfctn_no = $this->request->getPost('legal_idntfctn_no','trim');
                
                 if(empty($pan))
                 {
@@ -181,6 +183,8 @@ class EmployeemoduleController extends ControllerBase
                 $upmobileno=$this->request->getPost('upmobno');
                 $prefilepath = $this->request->getPost('filepath','trim');
                 $file   = $this->request->getPost('hldngfile','trim');
+                $legal_idntfr = $this->request->getPost('legal_idntfr','trim');
+                $legal_idntfctn_no = $this->request->getPost('legal_idntfctn_no','trim');
 
                 if(empty($pan))
                 {
