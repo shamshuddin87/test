@@ -64,6 +64,15 @@ a.tooltip_c {
     color: #034383;
 }
 
+a#tooltip_edu {
+    text-align: right;
+    float: right;
+    font-size: 16px;
+/*    margin-right: 50px;*/
+    font-size: 16px;
+    color: #034383;
+}
+
 
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
@@ -402,4 +411,8 @@ button.add_button2 {
 }
 .preloder_wraper{
     z-index: 1111;
+}
+.note {
+    color: #000;
+    padding: 12px 0;
 }

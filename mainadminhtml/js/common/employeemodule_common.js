@@ -576,6 +576,7 @@ website.ajax({
                     var adrshldng=response.data[i].adrshldng?response.data[i].adrshldng:'';
                    myhtml+='<tr>';
                    myhtml+='<td>'+j+'</td>';
+                   myhtml+='<td>'+response.data[i].relationshipname+'</td>';
                    myhtml+='<td>'+response.data[i].name+'</td>';
                    myhtml+='<td>'+response.data[i].pan+'</td>';
                    myhtml+='<td>'+response.data[i].aadhar+'</td>';
@@ -601,7 +602,7 @@ website.ajax({
              else
              {
                     myhtml+='<tr>';
-                    myhtml+='<td colspan="7" style="text-align:center;">Data Not Found..!!</td>';
+                    myhtml+='<td colspan="11" style="text-align:center;">Data Not Found..!!</td>';
                     myhtml+='</tr>';
          
              }
@@ -700,6 +701,9 @@ website('body').on('click','.editrel',function()
                var address=response.data.address?response.data.address:"";
                var sharehldng=response.data.sharehldng?response.data.sharehldng:"";
                var adrshldng=response.data.adrshldng?response.data.adrshldng:"";
+               var legal_idntfr=response.data.legal_identifier?response.data.legal_identifier:"";
+               var legal_idntfctn_no=response.data.legal_identification_no?response.data.legal_identification_no:"";
+               var dependantnature=response.data.dependency_nature?response.data.dependency_nature:"";
                var filepath=response.data.filepath
                jQuery("#reledit input[value='"+sex+"']").attr('checked', true);
                 website('#reledit #name').val(name);
@@ -715,6 +719,13 @@ website('body').on('click','.editrel',function()
                 website('#reledit #filepath').val(filepath);
                 website('#reledit #shareholdng').val(sharehldng);
                 website('#reledit #adrsholdng').val(adrshldng);
+                website('#reledit #legal_idntfr').val(legal_idntfr);
+                website('#reledit #legal_idntfctn_no').val(legal_idntfctn_no);
+               dependantnature = dependantnature.split(",");
+               website.each(dependantnature, function( key, value ) {
+                   website('#reledit #depnature option[value="' + value + '"]').attr('selected','selected');
+                 
+               });
                 website('#reledit').modal('show');
            }  
            else{
@@ -2239,3 +2250,158 @@ website("body").on("click","#pastbtnsub",function(e){
         {   }
    });
  });
+
+
+getpastempdata();
+function getpastempdata()
+{
+    var noofrows = website('#noofrows').val(); 
+    var pagenum = website('#pagenum').val();
+    var persnid = website('#personid').val();
+    var formdata = {persnid:persnid,noofrows:noofrows,pagenum:pagenum}
+    website.ajax({
+      url:'employeemodule/fetchpastemployer',
+      data:formdata,
+      method:'POST',
+      //contentType:'json',
+      contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+      //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+      dataType:"json",
+      cache:false,
+      //async:true, /*Cross domain checking*/
+      beforeSend: function()
+      {   },
+      uploadProgress: function(event, position, total, percentComplete)
+      {   },
+      success: function(response, textStatus, jqXHR)
+      {
+          if(response.logged === true)
+          { //console.log(response);return false;
+                     var htmlele='';
+                      for(var i=0;i < response.resdta.length;i++)
+                      {
+                        response.resdta
+                         var emp_name=response.resdta[i].emp_name?response.resdta[i].emp_name:''; 
+                         var emp_desigtn=response.resdta[i].emp_desigtn?response.resdta[i].emp_desigtn:'';
+                         var startdate=response.resdta[i].startdate?response.resdta[i].startdate:'';
+                         var enddate=response.resdta[i].enddate?response.resdta[i].enddate:'';
+                         htmlele+=  '<div class="box_css">'+
+                         '<div class="col-md-12 text-right"><i class="fa fa-trash deletepastemp" id ="'+response.resdta[i].id+'"  aria-hidden="true" onclick="deleteemp(this.id);"></i></div>'+
+                        
+                         '<section class="col col-md-6 col-xs-6">'+
+                                                '<div class="input">'+
+                                                    '<label class="control-label">Name of employer*</label>'+
+                                                     '<input type="text" id="empid_'+i+'" name="empid" class="form_fields form-control col-md-7 col-xs-12 empnm"  value= "'+response.resdta[i].id+'"  empid ="'+response.resdta[i].id+'"  style = "display:none;">'+
+               
+                                                    '<input type="text" id="empname_'+i+'" name="empname" class="form_fields form-control col-md-7 col-xs-12 empnm" value= "'+emp_name+'" empname= "'+emp_name+'" required>'+
+                                                '</div>'+
+                                            '</section>'+
+                                            
+                                             '<section class="col col-md-6 col-xs-6">'+
+                                                '<div class="input">'+
+                                                    '<label class="control-label">Designation Served*</label>'+
+                                                    '<input type="text" id="designtn_'+i+'" name="designtn" class="form_fields form-control col-md-7 col-xs-12 desig" value= "'+emp_desigtn+'" emp_desigtn= "'+emp_desigtn+'" required>'+
+                                                '</div>'+
+                                           '</section>'+
+                                        
+                                            
+                                        '<section class="col col-md-6 col-xs-6">'+
+                                        '<div class="input">'+
+                                            '<label class="control-label">Start Date of Employment*</label>'+ 
+                                            '<input type="text" name="strtdte" id="strtdte_'+i+'" class="form-control bootdatepick sde" value= "'+startdate+'"  startdate= "'+startdate+'"  required readonly>'+
+                                        '</div>'+
+                                        '</section>'+
+                                            
+                                        '<section class="col col-md-6 col-xs-6">'+
+                                        '<div class="input">'+
+                                        '<label class="control-label">End Date of employent*</label>'+  
+                                            '<input type="text" name="enddte" id="enddte_'+i+'" class="form-control bootdatepick ede" value= "'+enddate+'"  enddate= "'+enddate+'" required readonly>'+
+                                        '</div>'+
+                                        '</section></div>';
+                   
+                     
+                               
+                      }
+                     
+
+
+                      htmlele+=  '<section class="col col-md-12 col-xs-12 company_asses" id="pstbtn">'
+                      htmlele+= '<input type="button" value="Update" class="btn btn-primary contractexcelbtn" id="pastupdate">'+
+                                        '</section>';
+
+                      website('#addnoofforms').html(htmlele);
+                      datepicker();
+                                 
+          }
+          else
+           {
+               website('.paginationmn').html(response.pgnhtml);
+           }
+      },
+      complete: function(response)
+      {  website('.preloder_wraper').fadeOut(); },
+      error: function(jqXHR, textStatus, errorThrown)
+      {   }
+    });
+}
+
+function deleteemp(id){
+
+
+var delid = id ;
+var formdata = {id:delid}
+    website.ajax({
+      url:'employeemodule/deleteempdetail',
+      data:formdata,
+      method:'POST',
+      //contentType:'json',
+      contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+      //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+      dataType:"json",
+      cache:false,
+      //async:true, /*Cross domain checking*/
+      beforeSend: function()
+      {   },
+      uploadProgress: function(event, position, total, percentComplete)
+      {   },
+      success: function(response, textStatus, jqXHR)
+      {
+           if(response.logged==true){
+                 
+                  new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                });
+                   
+                   window.location.reload();
+            } 
+            else{
+                    new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                });
+            }    
+      },
+      complete: function(response)
+      {  website('.preloder_wraper').fadeOut(); },
+      error: function(jqXHR, textStatus, errorThrown)
+      {   }
+    });
+}
+
+function IsAlphaNumeric(e) 
+{
+   var regex = new RegExp("^[a-zA-Z0-9 ]+$");
+    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    if (!regex.test(key)) {
+       event.preventDefault();
+       return false;
+    }
+}
+
