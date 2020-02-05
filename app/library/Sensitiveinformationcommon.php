@@ -669,6 +669,45 @@ class Sensitiveinformationcommon extends Component
 		
 		return $getlist; 
     }
+
+
+    /* ---------- Search for user masters start ---------- */
+    public function userdetails($getuserid,$user_group_id,$getsearchkywo)
+    {
+        $connection = $this->dbtrd;
+
+        $queryget = "SELECT itm.`*`,pinfo.`pan` 
+                FROM `it_memberlist` itm
+                LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = itm.`wr_id`
+                WHERE `fullname` LIKE '%{$getsearchkywo}%' AND `status`= 1";
+        // echo $queryget;exit;
+        try
+        {
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;
+                }   
+                //echo '<pre>';print_r($getlist);exit;
+            }
+            else
+            {
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
+    /* ---------- Search for user masters End ---------- */
     
     
 }

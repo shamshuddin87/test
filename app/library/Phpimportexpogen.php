@@ -390,4 +390,38 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         }
         return $getres;
     }
+
+    public function insertholding($getuserid,$user_group_id,$excelfilenamepath,$dtofhldng,$uniqueid,$typeofhldng)
+    {
+        
+        $connection = $this->dbtrd;
+        $time= time();
+        $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+        $objPHPExcel->setActiveSheetIndex(0);
+        $worksheet = $objPHPExcel->getActiveSheet(0);
+
+        try
+        {
+            foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
+            {
+                $highestRow = $worksheet->getHighestRow();
+                 for ($row=2; $row<=$highestRow;$row++)
+                 {
+                    $panno  = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    $rtaholding  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                     //echo $rtaholding;exit;
+                    $holdingArray = array('panno'=>$panno,'holding'=>$rtaholding);
+                  
+                    $getstatus = $this->uploadholdingcommon->insertholding($getuserid,$user_group_id,$holdingArray,$dtofhldng,$uniqueid,$typeofhldng);
+                }
+                
+            }
+           return true;
+        }
+        catch (Exception $e)
+        {
+            return false;
+            $connection->close();
+        }
+    }
 }

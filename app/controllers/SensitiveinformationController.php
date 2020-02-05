@@ -1314,5 +1314,64 @@ class SensitiveinformationController extends ControllerBase
         }
     }
     /* ----------- SET SESSION of UpsiTypeID end -----------*/
+
+    /* ---------- Search for user masters start ---------- */
+    public function fetchUsersAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $searchvallist = $this->request->getPost('search');
+                //echo  $searchvallist;exit;
+                $searchlist = $this->filter->sanitize($searchvallist, "trim");
+                $searchlist = $this->filter->sanitize($searchvallist, "string");
+                if(preg_match("/[A-Za-z]+/", $searchlist))
+                {
+                    $getsearchkywo = $searchlist;
+                    $limit = 10;
+                    //echo $getsearchkywo;exit;
+                    $userlist = array();
+                    
+                    $userlist = $this->sensitiveinformationcommon->userdetails($getuserid,$user_group_id,$getsearchkywo);  
+                    
+                    $getcount = count($userlist);
+                    //print_r($userlist); exit;
+
+                    if(!empty($userlist))
+                    {
+                        $data = array("logged" => true,'message' => 'Found!!!' ,'data'=> $userlist,'count'=> $getcount);
+                        //echo '<pre>'; print_r($data); exit;
+                        $this->response->setJsonContent($data);
+                    }
+                    else
+                    {
+                        $data = array("logged" => false,'message' => 'No Result Found !!!');
+                        $this->response->setJsonContent($data);
+                    }
+                }
+            
+
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+    /* ---------- Search for user masters End ---------- */
     
 }

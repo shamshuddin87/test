@@ -43,12 +43,13 @@ $condeptsess = $this->session->contractdepartment;
                                 <input type="text" id="entity" name="entity" class="form_fields form-control col-md-7 col-xs-12">
                             </div>
                         </section>
-                        
+
                         <section class="col col-md-4 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Name Of The Recipient*</label>
-                                <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12"  required>
+                                <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" placeholder="Search..." required>
                             </div>
+                            <div id="searchuser"></div>
                         </section>
                         
                         <section class="col col-md-4 col-xs-12">
@@ -124,7 +125,7 @@ $condeptsess = $this->session->contractdepartment;
                             <th>Name of entity</th>
                             <th>Name</th>
                             <th>Identity No.</th> 
-                            <th>Phone Number</th> 
+                            <!-- <th>Phone Number</th> --> 
                             <th>Mobile Number</th> 
                             <th>Designation</th> 
                             <th>Email ID</th> 
@@ -218,8 +219,9 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="col col-md-4 col-xs-12">
                         <div class="input">
                             <label class="control-label">Name Of The Recipient*</label>
-                            <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" required>
+                            <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" placeholder="Search..."  required>
                         </div>
+                        <div id="searchuser"></div>
                     </section>
                         
                     <section class="col col-md-12 col-xs-12">

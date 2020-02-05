@@ -305,6 +305,9 @@ $di->set('declarationformcommon', function () {
 $di->set('reconcilationcommon', function () {
     return new Reconcilationcommon();
 });
+$di->set('uploadholdingcommon', function () {
+    return new Uploadholdingcommon();
+});
 $di->set('esopcommon', function () {
     return new Esopcommon();
 });
@@ -425,6 +428,10 @@ $di->set('myinfiDir', function () use ($config) {
 });
 $di->set('reconcilationDir', function () use ($config) {
     $homethemedir = $config->imgdir->reconcilationDir;
+    return $homethemedir;
+});
+$di->set('holdingDir', function () use ($config) {
+    $homethemedir = $config->imgdir->holdingDir;
     return $homethemedir;
 });
 $di->set('esopDir', function () use ($config) {
