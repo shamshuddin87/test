@@ -30,7 +30,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                           <thead>
                             <tr>
                                 <th>Sr No</th>
-                                <th>Employee Code</th>
+                                <th>Employee ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                <!--  <th>Mobile</th> -->

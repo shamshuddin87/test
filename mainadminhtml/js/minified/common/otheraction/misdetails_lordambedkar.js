@@ -39,4 +39,12 @@ website('.accdetails6').html(htmlelements);website('#acc6').html(response.pgnhtm
 {}});}
 website('body').on('click','#dtrange',function(e)
 {getholdingmis();});website('body').on('click','#dtrangedes',function(e)
-{relativeholdingmis();});;
+{relativeholdingmis();});website('.genfile').on('click',function(e){var userId=website("#userid").val();var noofrows=website('#personmis #noofrows').val();var pagenum=website('#personmis #pagenum').val();var noofrows1=website('#relativemis #noofrows').val();var pagenum1=website('#relativemis #pagenum').val();var startdate=website('#date1').val();var enddate=website('#date2').val();var startdesdate=website('#desdate1').val();var enddesdate=website('#desdate2').val();var formdata={userId:userId,noofrows:noofrows,pagenum:pagenum,startdate:startdate,enddate:enddate,startdesdate:startdesdate,enddesdate:enddesdate,noofrows1:noofrows1,pagenum1:pagenum1};website.ajax({url:'mis/fetchDesigntdPersonMIS',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response)
+{if(response.logged==true)
+{website('.dwnldExcel').fadeIn();website('.dwnldExcel').attr('href',response.genfile);new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+else
+{new PNotify({title:response.message,text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function(response)
+{}});});;

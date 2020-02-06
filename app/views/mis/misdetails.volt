@@ -13,21 +13,31 @@ $condeptsess = $this->session->contractdepartment;
 
 <!-- My messages -->
 <div class="mainelementfom">
+
+<div class="pdfExport">
+    <button type="button" class="btn btn-primary genfile pdf_bg">Export PDF</button>
+    <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
+</div> 
+
 <input type="hidden" name="userid" id="userid" value="<?php print_r(base64_decode($_GET["userid"])); ?>">   
 <div class="table-responsive design_info">
  <h3 style="text-align: center;">Designated Person Information</h3>
    <table class="table table-inverse" id="datableabhi">
      <thead>
        <tr>
-         <th>Sr No</th>
-         <th>Name</th> 
+          <th>Sr No</th>
+          <th>Name</th> 
           <th>Pan</th>
+          <th>Any other legal identifier</th>
+          <th>Any other legal identification number </th>
           <th>Aadhar</th>
           <th>Dob</th>  
           <th>Address</th>  
           <th>Gender</th>    
           <th>Education</th>                                                
           <th>Institution</th>                                                
+          <th>Holdings In Shares</th>                                                
+          <th>Holdings In ADRs</th>                                                
         </tr>
      </thead>
    <tbody class="accdetails1" appendrow='1'>
@@ -35,12 +45,17 @@ $condeptsess = $this->session->contractdepartment;
           <tr><td>1</td>
           <td> <?php print_r($getuserinfo[0]['name']); ?></td>
           <td> <?php print_r($getuserinfo[0]['pan']); ?></td>
+          <td> <?php print_r($getuserinfo[0]['legal_identifier']); ?></td>
+          <td> <?php print_r($getuserinfo[0]['legal_identification_no']); ?></td>
           <td> <?php print_r($getuserinfo[0]['aadhar']); ?></td>
           <td> <?php print_r($getuserinfo[0]['dob']); ?></td>
           <td> <?php print_r($getuserinfo[0]['address']); ?></td>
           <td> <?php print_r($getuserinfo[0]['sex']); ?></td>
           <td> <?php print_r($getuserinfo[0]['education']); ?></td>
-          <td> <?php print_r($getuserinfo[0]['institute']); ?></td><tr>
+          <td> <?php print_r($getuserinfo[0]['institute']); ?></td>
+          <td> <?php print_r($getuserinfo[0]['sharehldng']); ?></td>
+          <td> <?php print_r($getuserinfo[0]['adrshldng']); ?></td>
+       <tr>
        <?php }else{?>
          <tr><td colspan="8" style="text-align: center;">Data Not Found</td>
         <?php  } ?>
@@ -58,12 +73,16 @@ $condeptsess = $this->session->contractdepartment;
          <th>Sr No</th>
          <th>Name</th> 
           <th>Pan</th>
+          <th>Any other legal identifier</th>
+          <th>Any other legal identification number </th>
           <th>Aadhar</th>
           <th>Dob</th> 
           <th>Relationship</th> 
           <th>Address</th>  
           <th>Gender</th>    
-          <th>Education</th>                                                
+          <th>Education</th>
+          <th>Holdings In Shares</th>                                                
+          <th>Holdings In ADRs</th>
         </tr>
      </thead>
    <tbody class="accdetails2" appendrow='1'>
@@ -73,12 +92,17 @@ $condeptsess = $this->session->contractdepartment;
            <tr><td> <?php  print_r($i+1); ?></td>
           <td> <?php print_r($relativeinfo[$i]['name']); ?></td>
           <td> <?php print_r($relativeinfo[$i]['pan']); ?></td>
+          <td> <?php print_r($relativeinfo[$i]['legal_identifier']); ?></td>
+          <td> <?php print_r($relativeinfo[$i]['legal_identification_no']); ?></td>
           <td> <?php print_r($relativeinfo[$i]['aadhar']); ?></td>
           <td> <?php print_r($relativeinfo[$i]['dob']); ?></td>
           <td> <?php print_r($relativeinfo[$i]['relationshipname']); ?></td>
           <td> <?php print_r($relativeinfo[$i]['address']); ?></td>
           <td> <?php print_r($relativeinfo[$i]['sex']); ?></td>
-          <td> <?php print_r($relativeinfo[$i]['education']); ?></td><tr>
+          <td> <?php print_r($relativeinfo[$i]['education']); ?></td>
+          <td> <?php print_r($relativeinfo[$i]['sharehldng']); ?></td>
+          <td> <?php print_r($relativeinfo[$i]['adrshldng']); ?></td>
+       <tr>
        <?php } }else{?>
          <tr><td colspan="8" style="text-align: center;">Data Not Found</td>
         <?php  } ?>
@@ -254,6 +278,11 @@ $condeptsess = $this->session->contractdepartment;
             <div class="paginationmn" id="acc6"></div>
             <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
         </div>
+        <div class="clearelement"></div>
+        <div class="preloder_wraper">
+            <a href="javascript:;" class="preloder"></a>
+        </div>
+        <div class="clearelement"></div>
     </div>
     
 

@@ -23,8 +23,8 @@ $condeptsess = $this->session->contractdepartment;
             <div class="typography form_pad">
                 <div class="formelementmain">                      
                     <form id="insertblackoutperiod" action="blackoutperiod/insertblackoutperiod" method="post" enctype="multipart/form-data" autocomplete="off"> 
-                        <input type="hidden" name="compid" class="compid" id="compid" value="">
-                        <section class="col col-md-6 col-xs-6">
+                        <input type="hidden" name="compid" class="compid" id="compid" value="1">
+                        <!-- <section class="col col-md-6 col-xs-6">
                             <div class="input">
                           <div class="mainelem company_product">
                             <label class="control-label">Search for company master*</label>
@@ -48,12 +48,12 @@ $condeptsess = $this->session->contractdepartment;
                         </div>
                        </div>
                             </div>
-                        </section>
+                        </section> -->
 
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">Name Of Company*</label>
-                                <input type="text" id="cmpname" name="cmpname" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required readonly>
+                                <input type="text" id="cmpname" name="cmpname" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="Dr Reddy's Laboratories Ltd" readonly>
                             </div>
                         </section>
                     

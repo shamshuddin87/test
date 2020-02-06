@@ -18,15 +18,26 @@ website('body').on('click','.go_button', function(e)
     getMisData();
 });
 
+website("#srch").on("keyup", function() {
+    var search=website('#srch').val();
+    var pagenum = website('#pagenum').val();
+    website('#srch').attr('status','0');
+    if(pagenum!=1)
+    {
+        website('#pagenum').val(1);
+    }
+    getMisData();
+});
+
 getMisData();
 function getMisData()
 {
     var noofrows = website('#noofrows').val(); 
     var pagenum = website('#pagenum').val();
-
+    var search = website('#srch').val();
     website.ajax({
         url:'mis/getMisAllusers',
-        data:{noofrows:noofrows,pagenum:pagenum},
+        data:{noofrows:noofrows,pagenum:pagenum,search:search},
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -47,6 +58,14 @@ function getMisData()
                 website('#noofusers').html(frnhtml);
                 
                 website('.appendrow').html(response.mishtml);           
+            }
+            else
+            {
+                //alert(response.count)
+                var frnhtml='<span>Total no of Designated Person</span> <h1 style="color:#bd0111;">'+response.count+'</h1>';
+                website('#noofusers').html(frnhtml);
+                
+                website('.appendrow').html('<tr><td colspan="4">No data found...!!!</td></tr>'); 
             }
             website('#mis1').html(response.pgnhtml);
         },

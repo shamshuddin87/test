@@ -38,6 +38,9 @@ $condeptsess = $this->session->contractdepartment;
          </select> 
       
         <span>Entries</span>
+            <div class="top_margin">
+                <input type="text" placeholder="Search By User Name" id="srch" status="0">
+            </div>
         </div> 
        
 
@@ -52,8 +55,8 @@ $condeptsess = $this->session->contractdepartment;
                 <tr>  
                     <th></th>
                     <th>Equity</th>
-                    <th>Preference</th>
-                    <th>Debenture</th>
+                    <th>ADRs</th>
+                    <!-- <th>Debenture</th> -->
                 </tr>
               </thead>
             <tbody class="appendrow" appendrow='1'></tbody>

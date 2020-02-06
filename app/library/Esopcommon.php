@@ -9,11 +9,11 @@ class Esopcommon extends Component
       if($esopdata['almtdte'])
       {
           $allotmentdate = date('d-m-Y', strtotime($esopdata['almtdte']));
-          $queryinsert = "INSERT INTO `esop`(`user_id`,`user_group_id`,`uniqueid`,`emp_name`,`emp_pan`,`emp_shares`,`altmntdate`,`cmp_name`,`date_added`, `date_modified`,`timeago`)VALUES ('".$getuserid."','".$user_group_id."','".$uniqueid."','".$esopdata['empname']."','".$esopdata['emppan']."','".$esopdata['empshares']."','".$allotmentdate."','".$esopdata['cmpname']."',NOW(),NOW(),'".$time."')";
+          $queryinsert = "INSERT INTO `esop`(`user_id`,`user_group_id`,`uniqueid`,`emp_name`,`emp_pan`,`emp_shares`,`altmntdate`,`date_added`, `date_modified`,`timeago`) VALUES ('".$getuserid."','".$user_group_id."','".$uniqueid."','".$esopdata['empname']."','".$esopdata['emppan']."','".$esopdata['empshares']."','".$allotmentdate."',NOW(),NOW(),'".$time."')";
       }
       else
       {
-          $queryinsert = "INSERT INTO `esop`(`user_id`,`user_group_id`,`uniqueid`,`emp_name`,`emp_pan`,`emp_shares`,`altmntdate`,`cmp_name`,`date_added`, `date_modified`,`timeago`)VALUES ('".$getuserid."','".$user_group_id."','".$uniqueid."','".$esopdata['empname']."','".$esopdata['emppan']."','".$esopdata['empshares']."',NULL,'".$esopdata['cmpname']."',NOW(),NOW(),'".$time."')";
+          $queryinsert = "INSERT INTO `esop`(`user_id`,`user_group_id`,`uniqueid`,`emp_name`,`emp_pan`,`emp_shares`,`altmntdate`,`cmp_name`,`date_added`, `date_modified`,`timeago`) VALUES ('".$getuserid."','".$user_group_id."','".$uniqueid."','".$esopdata['empname']."','".$esopdata['emppan']."','".$esopdata['empshares']."',NULL,NOW(),NOW(),'".$time."')";
       }
       //echo $queryinsert;exit;
       $exeml = $connection->query($queryinsert);

@@ -1,5 +1,8 @@
 
-getuserlistonload();function getuserlistonload()
+website('body').on('change','#noofrows',function(e)
+{getuserlistonload();});website('body').on('click','.paginationmn li',function(e)
+{var rscrntpg=website(this).attr('p');website('.panel.panel-white #pagenum').val(rscrntpg);getuserlistonload();});website('body').on('click','.go_button',function(e)
+{var rscrntpg=website('.gotobtn').val();website('.panel.panel-white #pagenum').val(rscrntpg);getuserlistonload();});getuserlistonload();function getuserlistonload()
 {var noofrows=website('#noofrows').val();var pagenum=website('#pagenum').val();var formdata={noofrows:noofrows,pagenum:pagenum};website.ajax({url:'adminmodule/fetchuser',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)

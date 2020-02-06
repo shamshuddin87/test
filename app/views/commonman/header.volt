@@ -44,6 +44,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
              <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='7') {?>
               <li>
                   <a href="home"><i class="fa fa-single fa-home" id="home_icon"></i>Home</a>
+                  <!-- <a href="employeemodule"><i class="fa fa-single fa-home" id="home_icon"></i>Home</a> -->
               </li>
             
              <?php  } ?>
@@ -193,7 +194,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
                    <li><a href="mis/mis_recipient"><i class="fa fa-building"></i> Connected Person</a></li>
                    <li><a href="mis/mis_infosharing"><i class="fa fa-group"></i> UPSI Sharing</a></li> -->
 
-                   <li><a href="mis"><i class=""></i> Master MIS</a></li>
+                   <li><a href="mis"><i class=""></i> MIS of designated persons</a></li>
                    <li><a href="mis/mis_recipient"><i class=""></i> Connected Person</a></li>
                    <li><a href="mis/upsitypeclassify"><i class=""></i> UPSI Sharing</a></li>
                    <li><a href="mis/mis_annualdiscsr"><i class=""></i>Annual Disclosures</a></li>
@@ -362,6 +363,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
          
          <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='2') {?>
             <li><a href="sharecapital"><i class="fa fa-line-chart fa-5x" id="excelup"></i>Share Capital</a></li> 
+            <li><a href="uploadholding"><i class="fa fa-line-chart fa-5x" id="excelup"></i>Upload Holding</a></li> 
          <?php }  ?>
         <!----------------------------------------------------------------------------------------------->
 

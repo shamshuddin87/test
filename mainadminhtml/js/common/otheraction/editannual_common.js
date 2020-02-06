@@ -41,8 +41,8 @@ function addhtml(clicked)
          var addhtmlnxt='';
 
         
-         addhtmlnxt += '<div class="row'+getlastid+' append_row3"  id="t1row'+getlastid+'" >';
-          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
+         addhtmlnxt += '<div class="row'+getlastid+' append_row3" id="t1row'+getlastid+'"   >';
+          addhtmlnxt += '<table  style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7"></td>';
           addhtmlnxt += '<td style="width: 22%"><label class="control-label">Company Name</label>';
@@ -292,9 +292,9 @@ function addhtml(clicked)
               });
          //addhtmlnxt += '<td><div class="input">  <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select>  </div></td> ';
          addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d6ques2" name="d6ques2[]" ></div></td>';
-          addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d6ques2" name="d6ques2[]" ></div></td>';
-          addhtmlnxt+='<td> <div class="input"> <select id="d6ques3" name="d6ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
-          addhtmlnxt+=' <td><div class="input">   <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
+          addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d6ques3" name="d6ques3[]" ></div></td>';
+          addhtmlnxt+='<td> <div class="input"> <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
+          addhtmlnxt+=' <td><div class="input">   <select id="d6ques5" name="d6ques5[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt +='</table>';
         
@@ -346,9 +346,9 @@ function addhtml(clicked)
               });
          //addhtmlnxt += '<td><div class="input">  <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select>  </div></td> ';
          addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d7ques2" name="d7ques2[]" ></div></td>';
-          addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d7ques2" name="d7ques2[]" ></div></td>';
-          addhtmlnxt+='<td> <div class="input"> <select id="d7ques3" name="d7ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
-          addhtmlnxt+=' <td><div class="input">   <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
+          addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d7ques3" name="d7ques3[]" ></div></td>';
+          addhtmlnxt+='<td> <div class="input"> <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
+          addhtmlnxt+=' <td><div class="input">   <select id="d7ques5" name="d7ques5[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt +='</table>';
       

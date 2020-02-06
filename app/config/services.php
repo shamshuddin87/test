@@ -305,6 +305,9 @@ $di->set('declarationformcommon', function () {
 $di->set('reconcilationcommon', function () {
     return new Reconcilationcommon();
 });
+$di->set('uploadholdingcommon', function () {
+    return new Uploadholdingcommon();
+});
 $di->set('esopcommon', function () {
     return new Esopcommon();
 });
@@ -427,6 +430,10 @@ $di->set('reconcilationDir', function () use ($config) {
     $homethemedir = $config->imgdir->reconcilationDir;
     return $homethemedir;
 });
+$di->set('holdingDir', function () use ($config) {
+    $homethemedir = $config->imgdir->holdingDir;
+    return $homethemedir;
+});
 $di->set('esopDir', function () use ($config) {
     $homethemedir = $config->imgdir->esopDir;
     return $homethemedir;
@@ -435,7 +442,10 @@ $di->set('sebiDir', function () use ($config) {
     $homethemedir = $config->imgdir->sebiDir;
     return $homethemedir;
 });
-
+$di->set('upsiconnectedDPDir', function () use ($config) {
+    $homethemedir = $config->imgdir->upsiconnectedDPDir;
+    return $homethemedir;
+});
 
 /*###################### Important Directory URL End #####################################################*/
 
