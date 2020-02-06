@@ -311,6 +311,33 @@ class Uploadholdingcommon extends Component
         return $panusrlist;
         
     }
+
+    public function updatePersnlinfo($panno,$rtaholding,$typeofhldng)
+    {
+        $connection = $this->dbtrd;
+        $time = time();
+        
+        if($typeofhldng == 'Shareholding')
+        {
+            $table_field = "sharehldng";
+        }
+        else if($typeofhldng == 'ADRs holding')
+        {
+            $table_field = "adrshldng";
+        }
+
+        $queryinsert = "UPDATE `personal_info` SET `".$table_field."` = '".$rtaholding."' WHERE `pan`= '".$panno."'  ";
+        //echo $queryinsert;exit;
+        $exeml = $connection->query($queryinsert);
+        if($exeml)
+        {
+             return true;
+        }
+        else
+        {
+             return false;
+        }
+    }
 }
 
 

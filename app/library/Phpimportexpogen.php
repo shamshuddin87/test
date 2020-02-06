@@ -413,6 +413,8 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                     $holdingArray = array('panno'=>$panno,'holding'=>$rtaholding);
                   
                     $getstatus = $this->uploadholdingcommon->insertholding($getuserid,$user_group_id,$holdingArray,$dtofhldng,$uniqueid,$typeofhldng);
+
+                    $update_personalinfo = $this->uploadholdingcommon->updatePersnlinfo($panno,$rtaholding,$typeofhldng);
                 }
                 
             }

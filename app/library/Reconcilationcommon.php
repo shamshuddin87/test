@@ -6,9 +6,9 @@ class Reconcilationcommon extends Component
   {
       $connection = $this->dbtrd;
       $time = time();
-      $queryinsert = "INSERT INTO `reconcilation`
+      $queryinsert = 'INSERT INTO `reconcilation`
         (`user_id`,`user_group_id`,`uniqueid`,`panno`,`script`,`holding`,`dateofreconcilition`,`date_added`, `date_modified`,`timeago`)
-         VALUES ('".$getuserid."','".$user_group_id."','".$uniqueid."','".$reconciArray['panno']."','".$reconciArray['company']."','".$reconciArray['holding']."','".$stmnttill."',NOW(),NOW(),'".$time."')";
+         VALUES ("'.$getuserid.'","'.$user_group_id.'","'.$uniqueid.'","'.$reconciArray['panno'].'","'.$reconciArray['company'].'","'.$reconciArray['holding'].'","'.$stmnttill.'",NOW(),NOW(),"'.$time.'")';
       //echo $queryinsert;exit;
       $exeml = $connection->query($queryinsert);
         if($exeml)
