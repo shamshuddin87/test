@@ -19,7 +19,7 @@ addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';if(r
 {var category=response.resdta[i].othercategory?response.resdta[i].othercategory:'';}
 else
 {var category=response.resdta[i].categoryname?response.resdta[i].categoryname:'';}
-addhtmlnxt+='<td>'+category+'</td>';addhtmlnxt+='<td>'+response.resdta[i].nameofentity+'</td>';addhtmlnxt+='<td>'+response.resdta[i].name+'</td>';addhtmlnxt+='<td>'+response.resdta[i].identityno+'</td>';addhtmlnxt+='<td>'+response.resdta[i].phoneno+'</td>';addhtmlnxt+='<td>'+mobileno+'</td>';addhtmlnxt+='<td>'+response.resdta[i].designation+'</td>';addhtmlnxt+='<td>'+email+'</td>';if(response.resdta[i].filepath)
+addhtmlnxt+='<td>'+category+'</td>';addhtmlnxt+='<td>'+response.resdta[i].nameofentity+'</td>';addhtmlnxt+='<td>'+response.resdta[i].name+'</td>';addhtmlnxt+='<td>'+response.resdta[i].identityno+'</td>';addhtmlnxt+='<td>'+mobileno+'</td>';addhtmlnxt+='<td>'+response.resdta[i].designation+'</td>';addhtmlnxt+='<td>'+email+'</td>';if(response.resdta[i].filepath)
 {addhtmlnxt+='<td><a href="'+response.resdta[i].filepath+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';}
 else
 {addhtmlnxt+='<td></td>';}
@@ -87,16 +87,51 @@ else
 {new PNotify({title:'Record Not Deleted',text:'Record Not Updated',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('#myModalyesno .mainprogressbarforall').fadeOut();},error:function()
 {}});});website('body').on('change','#category',function(){var id=website(this).val();if(id==16)
-{website('#insertrecipient .employeecate').css('display','none');website('#insertrecipient .othercate').css('display','block');var html='<section class="col col-md-4 col-xs-12"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';website('#insertrecipient .othercate').html(html);}
+{website('#insertrecipient .employeecate').css('display','none');website('#insertrecipient .othercate').css('display','block');var html='<section class="col col-md-4 col-xs-12"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';website('#insertrecipient .othercate').html(html);website('#insertrecipient #entity').val("");website('#insertrecipient #entity').attr("readonly",false);}
 else if(id==14)
 {website('#insertrecipient .othercate').css('display','none');website('#insertrecipient .employeecate').css('display','block');var html='<section class="col col-md-4 col-xs-12"><div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';website('#insertrecipient .employeecate').html(html);website('#insertrecipient #entity').val("Dr Reddy's Laboratories Ltd.");website('#insertrecipient #entity').attr("readonly",true);}
 else
-{website('#insertrecipient .othercate').css('display','none');website('#insertrecipient .employeecate').css('display','none');website('#insertrecipient #othercategory').removeAttr('required');website('#insertrecipient #empcategory').removeAttr('required');}});website('body').on('change','#Mymodaledit #category',function(){var id=website(this).val();if(id==16)
-{website('#Mymodaledit .employeecateedit').css('display','none');website('#Mymodaledit .othercateedit').css('display','block');var html='<section class="col col-md-8 col-xs-8"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';website('#Mymodaledit .othercateedit').html(html);}
+{website('#insertrecipient .othercate').css('display','none');website('#insertrecipient .employeecate').css('display','none');website('#insertrecipient #othercategory').removeAttr('required');website('#insertrecipient #empcategory').removeAttr('required');website('#insertrecipient #entity').val("");website('#insertrecipient #entity').attr("readonly",false);}});website('body').on('change','#Mymodaledit #category',function(){var id=website(this).val();if(id==16)
+{website('#Mymodaledit .employeecateedit').css('display','none');website('#Mymodaledit .othercateedit').css('display','block');var html='<section class="col col-md-8 col-xs-8"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';website('#Mymodaledit .othercateedit').html(html);website('#Mymodaledit #entity').val("");website('#Mymodaledit #entity').attr("readonly",false);}
 else if(id==14)
 {website('#Mymodaledit .othercateedit').css('display','none');website('#Mymodaledit .employeecateedit').css('display','block');var html='<section class="col col-md-8 col-xs-8"><div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';website('#Mymodaledit .employeecateedit').html(html);website('#Mymodaledit #entity').val("Dr Reddy's Laboratories Ltd.");website('#Mymodaledit #entity').attr("readonly",true);}
 else
-{website('#Mymodaledit .othercateedit').css('display','none');website('#Mymodaledit .employeecateedit').css('display','none');website('#Mymodaledit #othercategory').removeAttr('required');website('#Mymodaledit #empcategory').removeAttr('required');}});function numberalphOnly()
+{website('#Mymodaledit .othercateedit').css('display','none');website('#Mymodaledit .employeecateedit').css('display','none');website('#Mymodaledit #othercategory').removeAttr('required');website('#Mymodaledit #empcategory').removeAttr('required');website('#Mymodaledit #entity').val("");website('#Mymodaledit #entity').attr("readonly",false);}});onkeysearchuser();function onkeysearchuser(){website('#insertrecipient #searchuser').css("display","none");website("#name").keyup(function(){var search=website('#insertrecipient #name').val();var addhtml='';website('#insertrecipient #searchuser').html("");var formdata={search:search};if(search=='')
+{website('#insertrecipient #searchuser').css("display","none");}
+else
+{website.ajax({url:'sensitiveinformation/fetchUsers',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{addhtml+='<ul>';if(response.logged==true)
+{website('#insertrecipient #searchuser').css("display","block");for(var i=0;i<response.data.length;i++)
+{addhtml+='<li wruid="'+response.data[i].wr_id+'" name="'+response.data[i].fullname+'" pan="'+response.data[i].pan+'" class="topul validatorsid">'+response.data[i].fullname+'</li>';}}
+else
+{addhtml+='<li> Result Not Found..!!</li>';}
+addhtml+='</ul>';website('#insertrecipient #searchuser').html(addhtml);},complete:function(response)
+{},error:function(jqXHR,textStatus,errorThrown)
+{}});}});}
+website("body").on("click",".topul",function(e){var id=website(this).attr('wruid');var name=website(this).attr('name');var pan=website(this).attr('pan');if(pan&&pan!=="null")
+{website('#insertrecipient #identitynum').val(pan);website('#insertrecipient #identitynum').attr('readonly',true);}
+else
+{website('#insertrecipient #identitynum').val("");website('#insertrecipient #identitynum').attr('readonly',false);}
+website('#insertrecipient #name').val(name);website('#insertrecipient #searchuser').css("display","none");});onkeysearchusermodal();function onkeysearchusermodal(){website('#Mymodaledit #searchuser').css("display","none");website("#Mymodaledit #name").keyup(function(){var search=website('#Mymodaledit #name').val();var addhtml='';website('#Mymodaledit #searchuser').html("");var formdata={search:search};if(search==''){website('#Mymodaledit #searchuser').css("display","none");}
+else
+{website.ajax({url:'sensitiveinformation/fetchUsers',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{addhtml+='<ul>';if(response.logged==true)
+{website('#Mymodaledit #searchuser').css("display","block");for(var i=0;i<response.data.length;i++)
+{addhtml+='<li  wruid="'+response.data[i].wr_id+'" class="myupmodal"  name="'+response.data[i].fullname+'" pan="'+response.data[i].pan+'">'+response.data[i].fullname+'</li>';}}
+else
+{addhtml+='<li> Result Not Found..!!</li>';}
+addhtml+='</ul>';website('#Mymodaledit #searchuser').html(addhtml);},complete:function(response)
+{},error:function(jqXHR,textStatus,errorThrown)
+{}});}});}
+website("body").on("click",".myupmodal",function(e){var id=website(this).attr('wruid');var name=website(this).attr('name');var pan=website(this).attr('pan');if(pan&&pan!=="null")
+{website('#Mymodaledit #identitynum').val(pan);website('#Mymodaledit #identitynum').attr('readonly',true);}
+else
+{website('#Mymodaledit #identitynum').val("");website('#Mymodaledit #identitynum').attr('readonly',false);}
+website('#Mymodaledit #name').val(name);website('#Mymodaledit #searchuser').css("display","none");});function numberalphOnly()
 {var charCode=event.keyCode;if((charCode>47&&charCode<58)||charCode==32||(charCode>64&&charCode<91)||(charCode>96&&charCode<123)||charCode==8||charCode==44||charCode==40||charCode==41||charCode==46||charCode==47)
 return true;else
 return false;}

@@ -1113,8 +1113,8 @@ class MisController extends ControllerBase
                     $getres = $this->miscommon->fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
                     //print_r($getres);exit;
                     $rsstrt = ($pagenum-1) * $noofrows;
-                    $rslmt = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id` LIMIT '.$rsstrt.','.$noofrows;
-                    $rscnt=count($getres);
+                    $rslmt = $mainquery.' LIMIT '.$rsstrt.','.$noofrows;
+                    $rscnt = count($getres);
                     $rspgs = ceil($rscnt/$noofrows);
                     $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
                     $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
@@ -1140,8 +1140,6 @@ class MisController extends ControllerBase
                     $getresult = $this->miscommon->fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$rslmt);
                     //print_r($getresult);exit;
                 }
-                
-                
                 
                 if($getresult)
                 {
@@ -1480,6 +1478,71 @@ class MisController extends ControllerBase
         }
         
     }
-    
-    
-   }
+
+
+    public function exportAnnualDisclsrAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $filterby = '';
+                $annualyr = $this->request->getPost('annualyr');
+                $noofrows = $this->request->getPost('noofrows');
+                $pagenum = $this->request->getPost('pagenum');
+                $searchby = $this->request->getPost('search');
+                $filterstatus = $this->request->getPost('filterstatus');
+                
+                if($filterstatus == '')
+                {
+                    $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id`';
+                    $getres = $this->miscommon->fetchallannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
+                    //print_r($getres);exit;
+                }
+                else if($filterstatus == 'pending')
+                {
+                    $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id`';
+                 
+                    $getres = $this->miscommon->fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);                    
+                }
+                else if($filterstatus == 'sent_for_approval') 
+                {
+                    $filterby = ' AND (anualdecl.annualyear='.$annualyr.' OR anualdecl.annualyear IS NULL) AND anualdecl.send_status= 1';
+                    $mainquery = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ';
+                    $getres = $this->miscommon->fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
+                }
+                
+                //print_r($getres);exit;
+                $genfile = $this->phpimportexpogen->exportAnnualDisclsr($getuserid,$user_group_id,$getres,$annualyr);
+                
+                if(file_exists($genfile))
+                {
+                    $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "File Not Generated..!!");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+}

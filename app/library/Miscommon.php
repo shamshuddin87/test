@@ -3,7 +3,7 @@ use Phalcon\Mvc\User\Component;
 class Miscommon extends Component
 {
     
-     //############### fetching holding summary start ###############
+    //############### fetching holding summary start ###############
     public function fetchholdingsummary($getuserid,$user_group_id,$userid)
     {
         $connection = $this->dbtrd;
@@ -1161,6 +1161,7 @@ class Miscommon extends Component
                     FROM `it_memberlist` memb
                     LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
                     WHERE memb.wr_id IN (".$grpusrs['ulstring'].") AND (anualdecl.annualyear='".$annualyr."') AND anualdecl.send_status= 1";
+                    //echo $queryget;exit;
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
 
@@ -1201,7 +1202,7 @@ class Miscommon extends Component
             {
                 $getlist = array();
             }
-                //print_r($getlist);exit;
+            //print_r($getlist);exit;
             
         }
         catch (Exception $e)
@@ -1213,7 +1214,7 @@ class Miscommon extends Component
         return $getlist;
     }
 
-      public function fetchallannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
+    public function fetchallannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
     {
         $connection = $this->dbtrd;
         $getlist = array();
@@ -1269,9 +1270,9 @@ class Miscommon extends Component
                     $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
                     FROM `it_memberlist` memb
                     LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
-                    WHERE memb.wr_id = '".$row['wr_id']."' AND (anualdecl.annualyear='".$annualyr."' OR anualdecl.annualyear IS NULL )".$query;
+                    WHERE memb.wr_id = '".$row['wr_id']."'".$query;
                     ;
-                     //echo $queryanual;
+                    // echo $queryanual;
                     $exeanual = $connection->query($queryanual);
                     $getnumanual = trim($exeanual->numRows());
                     if($getnumanual>0)
