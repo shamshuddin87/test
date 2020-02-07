@@ -308,6 +308,9 @@ $di->set('reconcilationcommon', function () {
 $di->set('uploadholdingcommon', function () {
     return new Uploadholdingcommon();
 });
+$di->set('continuousdisclosurecommon', function () {
+    return new Continuousdisclosurecommon();
+});
 $di->set('esopcommon', function () {
     return new Esopcommon();
 });

@@ -216,7 +216,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
                
                <li><a href="portfolio"><i class=""></i>Demat Accounts</a></li>
                
-               <li><a href="#"><i class=""></i>Continous Disclosure</a></li>
+               <li><a href="continuousdisclosure"><i class=""></i>Continuous Disclosure</a></li>
 
                <!-- <li><a href="tradingrequest"><i class=""></i>Request</a></li> -->
 
