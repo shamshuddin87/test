@@ -121,7 +121,7 @@
                      </td>
                      <td>
                         <div class="input">
-                           <input type="text" class="form-control inputbox4" id="d2ques2" name="d2ques2[]">
+                           <input type="text" class="form-control inputbox4" id="d2ques2" name="d2ques2[]" value="Partner" readonly="readonly">
                         </div>
                      </td>
                      <td>
@@ -159,7 +159,7 @@
                <!-- table 3 start-->
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                   <tr>
-                     <td colspan="5">
+                     <td colspan="6">
                         <div class="">
                            <label style="padding-left: 27px;">ii. Private/Public Company</label>
                         </div>
@@ -167,8 +167,9 @@
                   </tr>
                   <tr>
                      <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
-                     <td style="width: 22%"><label class="control-label">Company Name</label></td>
+                     <td style="width: 22%"><label class="control-label">Company Name.(Please mention full and correct name of the entity clearly specifying if it is a private company or not)</label></td>
                      <td style="width: 16%"><label class="control-label">Nature of Interest</label></td>
+                     <td ><label class="control-label">No. of Shares held</label></td>
                      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                      <td>
                         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -179,12 +180,19 @@
                      <td>
                         <div class="input">
                            <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" >
+                         </div>
                      </td>
                      <td> 
                      <div class="input">
-                     <input type="text" class="form-control inputbox4" id="d3ques2" name="d3ques2[]" >
+                    <select class="form-control inputbox4" id="d3ques2" name="d3ques2[]" >
+                       <option value="">Select Option</option>
+                       <option value="1">Member</option>
+                       <option value="2">Director</option>
+                       <option value="3">Member And Director</option>
+                    </select>
                      </div>
                      </td>
+                      <td><input type="text" class="form-control inputbox4" id="d3ques5" name="d3ques5[]" ></td>
                      <td>
                      <div class="input">
                      <select id="d3ques3" name="d3ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4">
@@ -203,7 +211,7 @@
                      </div>
                      </td>
                   <tr>
-                  <td colspan="5" >
+                  <td colspan="6" >
                   <div class = "appenddiv3 " id="appenddiv3" ></div>
                   <div class="adddiv3section1 col-md-12"  style="text-align: right;">
                   <input type="button" id = "adddiv3" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
@@ -215,7 +223,7 @@
                   </tr>
                </table>
                <!-- table 3 end-->
-               <!-- table 4 start-->
+               <!-- table 5 start-->
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                <tr>
                <td colspan="5">
@@ -227,7 +235,7 @@
                <tr>
                 <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
                <td style="width: 22%">  <label class="control-label">Company Name</label></td>
-               <td style="width: 16%">  <label class="control-label">Nature of Interest</label></td>
+               <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative(%)</label></td>
                <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                <td>
                <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -238,10 +246,11 @@
                <td> 
                <div class="input">
                <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" >
+                   </div>
                </td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" >
+               <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" value="holding above 2% shares" readonly="readonly">
                </div>
                </td>
                <td>
@@ -273,7 +282,60 @@
                </td>
                </tr>
                </table>
-               <!-- table 4 end-->
+               <!-- table 5 end-->
+          
+                <!-- table 6 start-->
+                <div class="">
+               <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
+                <input type="radio" id = "showsec3" name = "showsec3" value="Yes" onclick="showsection(this.id);"> Yes
+               <input type="radio"  id = "hidesec3" name="showsec3"   value="No"  onclick="hidesection(this.id)">No
+               </div>
+               <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; display: none;" width="100%" id="test2">
+               
+               <tr>
+                <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
+               <td style="width: 22%">  <label class="control-label">Company Name</label></td>
+               <td style="width: 16%">  <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
+               <td>    <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+               </tr>
+               <tr>
+               <td style="border-right: 1px solid #f7f7f7"></td>
+               <td> 
+               <div class="input">
+               <input type="text" class="form-control inputbox4" id="d8ques1" name="d8ques1[]" >
+                   </div>
+               </td>
+               <td>
+               <div class="input">
+               <select id="d8ques2" name="d8ques2[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4">
+               <option value="">Select Option</option>
+               <option value="Yes">Yes</option>
+               <option value="No">No</option>
+               </select>
+               </div>
+               </td>
+               <td> 
+               <div class="input">
+               <select id="d8ques3" name="d8ques3[]" class="form_fields form-control col-md-7 col-xs-12">
+               <option value="">Select Option</option>
+               <option value="Yes">Yes</option>
+               <option value="No">No</option>
+               </select>
+               </div>
+               </td>
+               <tr>
+               <td colspan="5" style="">
+               <div class = "appenddiv8 " id="appenddiv8"></div>
+               <div class="adddiv8section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+               <input type="button" id ="adddiv8" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
+               <input type="button" id = "remvdiv8" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+               <input type="hidden" class="appendd8" plancntr="1">
+               </div>
+               </td>
+               </tr>
+                   </div>
+               </table>
+               <!-- table 6 end-->
 
 
                <!-- Section 2 start-->
@@ -285,8 +347,8 @@
                <td colspan="4">
                <div class="">
                <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
-               <input type="radio" id = "showsec2" name = "showsec2" value="Yes" onclick="showsection(this.id);"> Yes</input>
-               <input type="radio"  id = "hidesec2" name="showsec2"   value="No"  onclick="showsection(this.id)">No </input>
+               <input type="radio" id = "showsec2" name = "showsec2" value="Yes" onclick="showsection(this.id);"> Yes
+               <input type="radio"  id = "hidesec2" name="showsec2"   value="No"  onclick="showsection(this.id)">No 
                </div>
                </td>
                </tr>
@@ -312,7 +374,7 @@
                <option value="">Select Option</option>
                <?php for($i=0;$i < count($relativesinfo); $i++){?>
               
-               <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
+               <option value="<?php echo $relativesinfo[$i]['id'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
                <?php } ?>
                
                </select>
@@ -393,7 +455,7 @@
                    <option value="">Select Option</option>
               <?php for($i=0;$i < count($relativesinfo); $i++){?>
               
-               <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
+               <option value="<?php echo $relativesinfo[$i]['id'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
                <?php } ?>
                
                </select>
@@ -406,13 +468,13 @@
 
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d6ques2" name="d6ques2[]" >
+               <input type="text" class="form-control inputbox4" id="d6ques3" name="d6ques3[]" value="Partner" readonly="readonly">
                </div>
                </td>
 
                <td>
                <div class="input">
-               <select id="d6ques3" name="d6ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4">
+               <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4">
                <option value="">Select Option</option>
                <option value="Yes">Yes</option>
                <option value="No">No</option>
@@ -420,7 +482,7 @@
                </div></td>
                <td> 
                <div class="input">
-               <select id="d6ques4" name="d6ques4[]" class="form_fields form-control col-md-7 col-xs-12">
+               <select id="d6ques5" name="d6ques5[]" class="form_fields form-control col-md-7 col-xs-12">
                <option value="">Select Option</option>
                <option value="Yes">Yes</option>
                <option value="No">No</option>
@@ -448,7 +510,7 @@
               
 
                <tr>
-               <td colspan="6">
+               <td colspan="7">
                <div class="">
               <label  style="padding-left: 27px;" class="">ii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
                </div>
@@ -460,6 +522,7 @@
                <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
                <td style="width: 20%"><label class="control-label">Company Name</label></td>
                <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
+                <td ><label class="control-label">No. of Shares held</label></td>
                <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                <td>
                <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -474,7 +537,7 @@
                     <option value="">Select Option</option>
               <?php for($i=0;$i < count($relativesinfo); $i++){?>
              
-               <option value="<?php echo $relativesinfo[$i]['name'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
+               <option value="<?php echo $relativesinfo[$i]['id'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
                <?php } ?>
                
                </select>
@@ -485,12 +548,17 @@
                </div>
                </td>
 
-               <td> 
-               <div class="input">
-               <input type="text" class="form-control inputbox4" id="d7ques2" name="d7ques2[]" >
-               </div>
-               </td>
-
+                <td> 
+                     <div class="input">
+                    <select class="form-control inputbox4" id="d7ques6" name="d7ques6[]" >
+                       <option value="">Select Option</option>
+                       <option value="1">Member</option>
+                       <option value="2">Director</option>
+                       <option value="3">Member And Director</option>
+                    </select>
+                     </div>
+                </td>
+                   <td><input type="text" class="form-control inputbox4" id="d7ques5" name="d7ques5[]" ></td>
                <td>
                <div class="input">
                <select id="d7ques3" name="d7ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4">
@@ -509,7 +577,7 @@
                </div>
                </td>
                <tr>
-               <td colspan="6" >
+               <td colspan="7" >
                 <div class = "appenddiv7 " id="appenddiv7"></div>
                <div class="adddiv7section2"  style="float: right;">
                <input type="button" id = "adddiv7" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
@@ -520,7 +588,146 @@
                </tr>
                </tr>
                </table>
+    
+                <!-- table 8 start-->
+               <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+               <tr>
+                   <td colspan="6">
+                   <div class="">
+                   <label style="padding-left: 27px;">iii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
+                   </div>
+                   </td>
+               </tr>
+               <tr>
+                   <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
+                   <td style="width: 22%">  <label class="control-label">Relative Name</label></td>
+                   <td style="width: 22%">  <label class="control-label">Company Name</label></td>
+                   <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative(%)</label></td>
+                   <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
+                   <td>
+                   <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+                   </td>
+               </tr>
+               <tr>
+                   <td style="border-right: 1px solid #f7f7f7"></td>
+                    <td> 
+                   <div class="input">
+                   <select id="d9ques1" name="d9ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
+                       <option value="">Select Option</option>
+                  <?php for($i=0;$i < count($relativesinfo); $i++){?>
 
+                   <option value="<?php echo $relativesinfo[$i]['id'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
+                   <?php } ?>
+
+                   </select>
+                    </div>
+                   </td>
+                   <td> 
+                   <div class="input">
+                   <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" >
+                       </div>
+                   </td>
+                   <td> 
+                   <div class="input">
+                   <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" value="holding above 2% shares" readonly="readonly">
+                   </div>
+                   </td>
+                   <td>
+                   <div class="input">
+                   <select id="d9ques4" name="d9ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4">
+                   <option value="">Select Option</option>
+                   <option value="Yes">Yes</option>
+                   <option value="No">No</option>
+                   </select>
+                   </div>
+                   </td>
+                   <td> 
+                   <div class="input">
+                   <select id="d9ques5" name="d9ques5[]" class="form_fields form-control col-md-7 col-xs-12">
+                   <option value="">Select Option</option>
+                   <option value="Yes">Yes</option>
+                   <option value="No">No</option>
+                   </select>
+                   </div>
+                   </td>
+               </tr>
+               <tr>
+                   <td colspan="6" style="">
+                   <div class = "appenddiv9 " id="appenddiv9"></div>
+                   <div class="adddiv9section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+                   <input type="button" id ="adddiv9" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
+                   <input type="button" id = "remvdiv9" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+                   <input type="hidden" class="appendd9" plancntr="1">
+                   </div>
+                   </td>
+               </tr>
+               </table>
+               <!-- table 8 end-->
+                <!-- table 9 start-->
+                <div class="">
+               <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
+                <input type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes
+               <input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No
+               </div>
+               <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; display: none;" width="100%" id="test3">
+               
+               <tr>
+                <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
+                <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
+               <td style="width: 22%">  <label class="control-label">Company Name</label></td>
+               <td style="width: 16%">  <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
+               <td>    <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+               </tr>
+               <tr>
+               <td style="border-right: 1px solid #f7f7f7"></td>
+                <td> 
+                   <div class="input">
+                   <select id="d10ques1" name="d10ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
+                       <option value="">Select Option</option>
+                  <?php for($i=0;$i < count($relativesinfo); $i++){?>
+
+                   <option value="<?php echo $relativesinfo[$i]['id'] ?>"><?php echo $relativesinfo[$i]['name'] ?></option>
+                   <?php } ?>
+
+                   </select>
+                    </div>
+                </td>
+               <td> 
+               <div class="input">
+               <input type="text" class="form-control inputbox4" id="d10ques2" name="d10ques2[]" >
+                   </div>
+               </td>
+               <td>
+               <div class="input">
+               <select id="d10ques3" name="d10ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4">
+               <option value="">Select Option</option>
+               <option value="Yes">Yes</option>
+               <option value="No">No</option>
+               </select>
+               </div>
+               </td>
+               <td> 
+               <div class="input">
+               <select id="d10ques4" name="d10ques4[]" class="form_fields form-control col-md-7 col-xs-12">
+               <option value="">Select Option</option>
+               <option value="Yes">Yes</option>
+               <option value="No">No</option>
+               </select>
+               </div>
+               </td>
+               <tr>
+               <td colspan="5" style="">
+               <div class = "appenddiv10 " id="appenddiv10"></div>
+               <div class="adddiv10section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+               <input type="button" id ="adddiv10" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
+               <input type="button" id = "remvdiv10" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+               <input type="hidden" class="appendd10" plancntr="1">
+               </div>
+               </td>
+               </tr>
+                   </div>
+               </table>
+               <!-- table 9 end-->
                 <div class="col-md-12 text-right" style="margin-top: 20px;"> 
                   <button type="submit" class="btn btn-primary ">Submit</button>
                </div>
@@ -549,13 +756,16 @@
    <div class="modal-dialog">
       <div class="modal-content" style="width:950px;">
          <div class="modal-header">
-            <select id="annualyear" name="annualyear">
-               <option value="2020">2020</option>
-               <option value="2021">2021</option>
-               <option value="2022">2022</option>
-               <option value="2023">2023</option>
-               <option value="2024">2024</option>
-               <option value="2025">2025</option>
+             <?php 
+                $current_year = date('Y'); 
+                $earliest_year = 2025; 
+                $latest_year = 2020; ?>
+                <select id="annualyear" name="annualyear">
+               <?php foreach ( range( $latest_year, $earliest_year ) as $i ) {?>
+                <option value="<?php echo $i; ?>"
+                <?php  if($i == $current_year){ ?> selected="selected" <?php } ?> ><?php echo $i;?></option>
+                <?php } ?>
+             ?> 
             </select>
 
           

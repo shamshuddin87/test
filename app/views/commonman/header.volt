@@ -44,7 +44,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
              <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='7') {?>
               <li>
                   <!-- <a href="home"><i class="fa fa-single fa-home" id="home_icon"></i>Home</a> -->
-                  <a href="employeemodule"><i class="fa fa-single fa-home" id="home_icon"></i>Home</a>
+                  <a href="home"><i class="fa fa-single fa-home" id="home_icon"></i>Home</a>
               </li>
             
              <?php  } ?>

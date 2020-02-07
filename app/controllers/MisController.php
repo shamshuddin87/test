@@ -195,7 +195,7 @@ class MisController extends ControllerBase
             $getprefereence = $this->miscommon->fetchprefereence($usrdata['wr_id'],$getres['companyid']);
             //echo '$getprefereence-----<pre>'; print_r($getprefereence); exit;
             
-            $getdebenure = $this->miscommon->fetchdebenure($usrdata['wr_id'],$getres['companyid']);
+            //$getdebenure = $this->miscommon->fetchdebenure($usrdata['wr_id'],$getres['companyid']);
             //echo '$getdebenure-----<pre>'; print_r($getdebenure); exit;
             
             
@@ -211,84 +211,33 @@ class MisController extends ControllerBase
                 $othercloseequity = array();    $othercloseprefer = array();    $otherclosedebtr = array();
                 
                 // ----- Equity Start -----
-                    if(!empty($getequity[$kyres]))
-                    {
-                        $opnblnceq = $resdata['equityshare'];
-                        $buyeq = $getequity[$kyres]['buyequity'];
-                        $selleq = $getequity[$kyres]['sellequity'];
-                        $totaleq = $buyeq - $selleq;
-                        $closblnceq = $opnblnceq + $totaleq;
-
-                        $equityclosblnc[$kyres] = $closblnceq;
-                    }
-                    else
-                    {
-                        $opnblnceq = $resdata['equityshare'];
-                        $totaleq = 0;                        
-                        $closblnceq = $opnblnceq + $totaleq;
-
-                        $equityclosblnc[$kyres] = $closblnceq;
-                    }
+               
                 //echo '$equityclosblnc-----<pre>'; print_r($equityclosblnc); exit;
                 // ----- Equity End -----
                 
                 // ----- Preference Start -----
-                    if(!empty($getprefereence[$kyres]))
-                    {
-                        $opnblncpref = $resdata['prefershare'];
-                        $buypref = $getprefereence[$kyres]['buyprefer'];
-                        $sellpref = $getprefereence[$kyres]['sellprefer'];
-                        $totalpref = $buypref - $sellpref;
-                        $closblncpref = $opnblncpref + $totalpref;
-
-                        $preferclosblnc[$kyres] = $closblncpref;
-                    }
-                    else
-                    {
-                        $opnblncpref = $resdata['prefershare'];
-                        $totalpref = 0;
-                        $closblncpref = $opnblncpref + $totalpref;
-
-                        $preferclosblnc[$kyres] = $closblncpref;
-                    }
+               
                 // ----- Preference End -----
                 
 
                 // ----- Debenture Start -----
-                    if(!empty($getdebenure[$kyres]))
-                    {
-                        $opnblncdeb = $resdata['debntrshare'];
-                        $buydeb = $getdebenure[$kyres]['buydebtr'];
-                        $selldeb = $getdebenure[$kyres]['selldebtr'];;
-                        $totaldeb = $buydeb - $selldeb;
-                        $closblncdeb = $opnblncdeb + $totaldeb;
-
-                        $debntrclosblnc[$kyres] = $closblncdeb;
-                    }
-                    else
-                    {
-                        $opnblncdeb = $resdata['debntrshare'];
-                        $totaldeb = 0;
-                        $closblncdeb = $opnblncdeb + $totaldeb;
-                        
-                        $debntrclosblnc[$kyres] = $closblncdeb;
-                    }
+        
                 // ----- Debenture End -----
                 
                 if(!empty($getequity))
                 { 
-                    $sum1 = $sum1 + $equityclosblnc[$kyres] + $resdata['esop'];
+                    $sum1 = $getequity;
                 }
                 
                 if(!empty($getprefereence))
                 {
-                    $sum2 = $sum2 + $preferclosblnc[$kyres];
+                    $sum2 = $getprefereence;
                 }                
                 
-                if(!empty($getdebenure))
-                { 
-                    $sum3 = $sum3 + $debntrclosblnc[$kyres];
-                }
+//                if(!empty($getdebenure))
+//                { 
+//                    $sum3 = $sum3 + $debntrclosblnc[$kyres];
+//                }
                 
             }
             /* --------------- html process End --------------- */
