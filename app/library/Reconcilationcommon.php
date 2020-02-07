@@ -64,9 +64,10 @@ class Reconcilationcommon extends Component
         try
         {
             
-            $queryselect = "SELECT re.*,pinfo.`userid` AS personusername ,rinfo.`name` as relativename,rinfo.`relationship`,rinfo.`user_id` AS relativeusername FROM reconcilation re
+            $queryselect = "SELECT re.*,pinfo.`userid` AS personusername ,rinfo.`name` as relativename,rel.`relationshipname` AS relationship,rinfo.`user_id` AS relativeusername FROM reconcilation re
                             LEFT JOIN `personal_info` pinfo ON pinfo.`pan` = re.`panno`
-                            LEFT JOIN `relative_info` rinfo ON rinfo.`pan` = re.`panno` 
+                            LEFT JOIN `relative_info` rinfo ON rinfo.`pan` = re.`panno`
+                            LEFT JOIN `relationship` rel ON rel.`id` = rinfo.`relationship`
                             WHERE re.`uniqueid`= '".$uniqueid."' ".$query;
             //echo $queryselect;exit;
             $exeget = $connection->query($queryselect);
@@ -137,7 +138,7 @@ class Reconcilationcommon extends Component
                 {
                     while($row = $exeget->fetch())
                     {
-                        $queryselectcmp = " SELECT * FROM `listedcmpmodule` WHERE `company_name` = '".$row['script']."' ";
+                        $queryselectcmp = ' SELECT * FROM `listedcmpmodule` WHERE `company_name` = "'.$row['script'].'" ';
                         $exegetcmp = $connection->query($queryselectcmp);
                         $getnumcmp = trim($exegetcmp->numRows());
                         if($getnumcmp>0)
@@ -273,7 +274,7 @@ class Reconcilationcommon extends Component
         {
                 $querygetpanper = " SELECT pinfo.pan AS panno,memb.fullname AS username FROM `personal_info` pinfo LEFT JOIN `it_memberlist` memb ON pinfo.`userid` = memb.`wr_id` ";
 
-                $querygetpanrel = "SELECT rinfo.pan AS panno,rinfo.name AS relativename,rinfo.relationship AS relationship,memb.fullname AS username FROM `relative_info` rinfo LEFT JOIN `it_memberlist` memb ON rinfo.`user_id` = memb.`wr_id`  ";
+                $querygetpanrel = "SELECT rinfo.pan AS panno,rinfo.name AS relativename,rel.`relationshipname` AS relationship,memb.fullname AS username FROM `relative_info` rinfo LEFT JOIN `it_memberlist` memb ON rinfo.`user_id` = memb.`wr_id` LEFT JOIN `relationship` rel ON rel.`id` = rinfo.`relationship` ";
                 $exegetpanper = $connection->query($querygetpanper);
                 $exegetpanrel = $connection->query($querygetpanrel);
                 $getpanper = trim($exegetpanper->numRows());

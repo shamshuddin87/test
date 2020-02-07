@@ -39,7 +39,7 @@
        
       ?>
    <table border="1" id="t1row<?php echo $k ?>"  style="border-collapse: collapse; border: 1px solid #ccc; " width="100%"  id="test">
-   <tr >
+   <tr>
       <td style="border-right: 1px solid #f7f7f7; width: 2.5%" ></td>
       <td style="width: 22%"><label class="control-label">Company Name</label></td>
       <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>

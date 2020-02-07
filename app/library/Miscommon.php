@@ -50,52 +50,65 @@ class Miscommon extends Component
      {
         $connection = $this->dbtrd;
         $compid = explode(',',$compid);
-        $getlist = array();
-        for($i=0;$i<sizeof($compid);$i++)
-        {
-            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
-                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
-                        WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='1' AND pr.`relative_id` = ''";
-            //echo $queryget;exit;
-            try
-            { 
-               $exeget = $connection->query($queryget);
-                $getnum = trim($exeget->numRows());
-                   $buyequity = 0;$sellequity = 0;
-                    
-                if($getnum>0)
-                {
-                    while($row = $exeget->fetch())
-                    {
-                          if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
-                            {
-                               $buyequity =  $buyequity + $row['no_of_share'];
-                            }
-                            else if($row['type_of_transaction']=='2')
-                            {
-                                $sellequity =  $sellequity + $row['no_of_share'];
-                            }
-                            else{ }
-                            $row2 = array('buyequity'=>$buyequity,'sellequity'=>$sellequity);
-                            $finalrw = array_merge($row,$row2);
-                   }
-                     $getlistt[] = array_push($getlist, $finalrw);
-                   
-               }
-                
-               else
-               {
-                    $finalrw = array();
-                   array_push($getlist, $finalrw);
-               }
-            }
-            catch (Exception $e)
-            {
-                $getlist = array();
-            }
-              
-        }
+        $getlist = '';
+//        for($i=0;$i<sizeof($compid);$i++)
+//        {
+//            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
+//                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
+//                        WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='1' AND pr.`relative_id` = ''";
+//            //echo $queryget;exit;
+//            try
+//            { 
+//               $exeget = $connection->query($queryget);
+//                $getnum = trim($exeget->numRows());
+//                   $buyequity = 0;$sellequity = 0;
+//                    
+//                if($getnum>0)
+//                {
+//                    while($row = $exeget->fetch())
+//                    {
+//                          if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
+//                            {
+//                               $buyequity =  $buyequity + $row['no_of_share'];
+//                            }
+//                            else if($row['type_of_transaction']=='2')
+//                            {
+//                                $sellequity =  $sellequity + $row['no_of_share'];
+//                            }
+//                            else{ }
+//                            $row2 = array('buyequity'=>$buyequity,'sellequity'=>$sellequity);
+//                            $finalrw = array_merge($row,$row2);
+//                   }
+//                     $getlistt[] = array_push($getlist, $finalrw);
+//                   
+//               }
+//                
+//               else
+//               {
+//                    $finalrw = array();
+//                   array_push($getlist, $finalrw);
+//               }
+//            }
+//            catch (Exception $e)
+//            {
+//                $getlist = array();
+//            }
+//              
+//        }
         //print_r($getlist);exit;
+        $queryget = "SELECT * FROM `personal_info` 
+                        WHERE `userid` = '".$userid."'";
+        $exeget = $connection->query($queryget);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            $row = $exeget->fetch();
+            $getlist = $row['sharehldng'];
+        }
+        else
+        {
+            $getlist = 0;
+        }
         return $getlist; 
     }
     
@@ -103,53 +116,66 @@ class Miscommon extends Component
      {
         $connection = $this->dbtrd;
         $compid = explode(',',$compid);
-         $getlist = array();
-        for($i=0;$i<sizeof($compid);$i++)
+         $getlist = '';
+//        for($i=0;$i<sizeof($compid);$i++)
+//        {
+//            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
+//                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
+//                        WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='2' AND pr.`relative_id` = ''";
+//            //echo $queryget;exit;
+//            try
+//            { 
+//               $exeget = $connection->query($queryget);
+//                $getnum = trim($exeget->numRows());
+//                   $buyprefer = 0;$sellprefer = 0;
+//                    
+//                if($getnum>0)
+//                {
+//                 
+//                    while($row = $exeget->fetch())
+//                    {
+//
+//                        if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
+//                        {
+//                           $buyprefer =  $buyprefer + $row['no_of_share'];
+//                        }
+//                        else if($row['type_of_transaction']=='2')
+//                        {
+//                            $sellprefer =  $sellprefer + $row['no_of_share'];
+//                        }
+//                        else{ }
+//                        $row2 = array('buyprefer'=>$buyprefer,'sellprefer'=>$sellprefer);
+//                        $finalrw = array_merge($row,$row2);
+//                         
+//                    }
+//                     $getlistt[] = array_push($getlist, $finalrw);
+//                   
+//               }
+//                
+//               else
+//               {
+//                    $finalrw = array();
+//                   array_push($getlist, $finalrw);
+//               }
+//            }
+//            catch (Exception $e)
+//            {
+//                $getlist = array();
+//            }
+//              
+//        }
+         $queryget = "SELECT * FROM `personal_info` 
+                        WHERE `userid` = '".$userid."'";
+        $exeget = $connection->query($queryget);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
         {
-            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
-                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
-                        WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='2' AND pr.`relative_id` = ''";
-            //echo $queryget;exit;
-            try
-            { 
-               $exeget = $connection->query($queryget);
-                $getnum = trim($exeget->numRows());
-                   $buyprefer = 0;$sellprefer = 0;
-                    
-                if($getnum>0)
-                {
-                 
-                    while($row = $exeget->fetch())
-                    {
-
-                        if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
-                        {
-                           $buyprefer =  $buyprefer + $row['no_of_share'];
-                        }
-                        else if($row['type_of_transaction']=='2')
-                        {
-                            $sellprefer =  $sellprefer + $row['no_of_share'];
-                        }
-                        else{ }
-                        $row2 = array('buyprefer'=>$buyprefer,'sellprefer'=>$sellprefer);
-                        $finalrw = array_merge($row,$row2);
-                         
-                    }
-                     $getlistt[] = array_push($getlist, $finalrw);
-                   
-               }
-                
-               else
-               {
-                    $finalrw = array();
-                   array_push($getlist, $finalrw);
-               }
-            }
-            catch (Exception $e)
-            {
-                $getlist = array();
-            }
-              
+            $row = $exeget->fetch();
+            $getlist = $row['adrshldng'];
+        }
+        else
+        {
+            $getlist = 0;
         }
         return $getlist; 
     }
@@ -1377,12 +1403,16 @@ class Miscommon extends Component
                 $myhtml1.="<td>".$j."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['name']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['pan']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['legal_identifier']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['legal_identification_no']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['aadhar']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['dob']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['address']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['sex']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['education']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['institute']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['sharehldng']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['adrshldng']."</td>";
                 $myhtml1.="</tr>";
             }
         }
@@ -1401,12 +1431,16 @@ class Miscommon extends Component
                 $myhtml2.="<td>".$j."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['name']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['pan']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['legal_identifier']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['legal_identification_no']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['aadhar']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['dob']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['relationshipname']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['address']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['sex']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['education']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['sharehldng']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['adrshldng']."</td>";
                 $myhtml2.="</tr>";
             }
         }
@@ -1535,12 +1569,16 @@ class Miscommon extends Component
                 <th>Sr No</th>
                 <th>Name</th> 
                 <th>Pan</th>
+                <th>Any other legal identifier</th>
+                <th>Any other legal identification number</th>
                 <th>Aadhar</th>
                 <th>Dob</th>  
                 <th>Address</th>  
                 <th>Gender</th>    
                 <th>Education</th>                                                
                 <th>Institution</th>
+                <th>Holdings In Shares</th>
+                <th>Holdings In ADRs</th>
             </tr>
          ".$myhtml1."
          </table>
@@ -1552,12 +1590,16 @@ class Miscommon extends Component
                 <th>Sr No</th>
                 <th>Name</th> 
                 <th>Pan</th>
+                <th>Any other legal identifier</th>
+                <th>Any other legal identification number</th>
                 <th>Aadhar</th>
                 <th>Dob</th> 
                 <th>Relationship</th> 
                 <th>Address</th>  
                 <th>Gender</th>    
                 <th>Education</th>   
+                <th>Holdings In Shares</th>   
+                <th>Holdings In ADRs</th>   
             </tr>
          ".$myhtml2."
          </table>

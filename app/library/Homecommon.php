@@ -148,52 +148,70 @@ class Homecommon extends Component
      {
         $connection = $this->dbtrd;
         $compid = explode(',',$compid);
-        $getlist = array();
-        for($i=0;$i<sizeof($compid);$i++)
-        {
-            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
-                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
-                        WHERE ts.`user_id` ='".$getuserid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='1' AND pr.`relative_id` = ''";
-            //echo $queryget;exit;
-            try
-            { 
-               $exeget = $connection->query($queryget);
-                $getnum = trim($exeget->numRows());
-                   $buyequity = 0;$sellequity = 0;
-                    
-                if($getnum>0)
-                {
-                    while($row = $exeget->fetch())
-                    {
-                          if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
-                            {
-                               $buyequity =  $buyequity + $row['no_of_share'];
-                            }
-                            else if($row['type_of_transaction']=='2')
-                            {
-                                $sellequity =  $sellequity + $row['no_of_share'];
-                            }
-                            else{ }
-                            $row2 = array('buyequity'=>$buyequity,'sellequity'=>$sellequity);
-                            $finalrw = array_merge($row,$row2);
-                   }
-                     $getlistt[] = array_push($getlist, $finalrw);
-                   
-               }
-                
-               else
-               {
-                    $finalrw = array();
-                   array_push($getlist, $finalrw);
-               }
-            }
-            catch (Exception $e)
-            {
-                $getlist = array();
-            }
-              
-        }
+        $getlist = '';
+//        for($i=0;$i<sizeof($compid);$i++)
+//        {
+//            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
+//                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
+//                        WHERE ts.`user_id` ='".$getuserid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='1' AND pr.`relative_id` = ''";
+//            //echo $queryget;exit;
+//            try
+//            { 
+//               $exeget = $connection->query($queryget);
+//                $getnum = trim($exeget->numRows());
+//                   $buyequity = 0;$sellequity = 0;
+//                    
+//                if($getnum>0)
+//                {
+//                    while($row = $exeget->fetch())
+//                    {
+//                          if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
+//                            {
+//                               $buyequity =  $buyequity + $row['no_of_share'];
+//                            }
+//                            else if($row['type_of_transaction']=='2')
+//                            {
+//                                $sellequity =  $sellequity + $row['no_of_share'];
+//                            }
+//                            else{ }
+//                            $row2 = array('buyequity'=>$buyequity,'sellequity'=>$sellequity);
+//                            $finalrw = array_merge($row,$row2);
+//                   }
+//                     $getlistt[] = array_push($getlist, $finalrw);
+//                   
+//               }
+//                
+//               else
+//               {
+//                    $finalrw = array();
+//                   array_push($getlist, $finalrw);
+//               }
+//            }
+//            catch (Exception $e)
+//            {
+//                $getlist = array();
+//            }
+//              
+//        }
         //print_r($getlist);exit;
+         $queryget = "SELECT * FROM `personal_info` 
+                        WHERE `userid` = '".$getuserid."'";
+         //echo $queryget;exit;
+        $exeget = $connection->query($queryget);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            $row = $exeget->fetch();
+            $getlist = $row['sharehldng'];
+            if(empty($getlist))
+            {
+                $getlist = 0;
+            }
+        }
+        else
+        {
+            $getlist = 0;
+        }
         return $getlist; 
     }
     
@@ -201,53 +219,70 @@ class Homecommon extends Component
      {
         $connection = $this->dbtrd;
         $compid = explode(',',$compid);
-         $getlist = array();
-        for($i=0;$i<sizeof($compid);$i++)
+        $getlist = '';
+//        for($i=0;$i<sizeof($compid);$i++)
+//        {
+//            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
+//                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
+//                        WHERE ts.`user_id` ='".$getuserid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='2' AND pr.`relative_id` = ''";
+//            //echo $queryget;exit;
+//            try
+//            { 
+//               $exeget = $connection->query($queryget);
+//                $getnum = trim($exeget->numRows());
+//                   $buyprefer = 0;$sellprefer = 0;
+//                    
+//                if($getnum>0)
+//                {
+//                 
+//                    while($row = $exeget->fetch())
+//                    {
+//
+//                        if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
+//                        {
+//                           $buyprefer =  $buyprefer + $row['no_of_share'];
+//                        }
+//                        else if($row['type_of_transaction']=='2')
+//                        {
+//                            $sellprefer =  $sellprefer + $row['no_of_share'];
+//                        }
+//                        else{ }
+//                        $row2 = array('buyprefer'=>$buyprefer,'sellprefer'=>$sellprefer);
+//                        $finalrw = array_merge($row,$row2);
+//                         
+//                    }
+//                     $getlistt[] = array_push($getlist, $finalrw);
+//                   
+//               }
+//                
+//               else
+//               {
+//                    $finalrw = array();
+//                   array_push($getlist, $finalrw);
+//               }
+//            }
+//            catch (Exception $e)
+//            {
+//                $getlist = array();
+//            }
+//              
+//        }
+         $queryget = "SELECT * FROM `personal_info` 
+                        WHERE `userid` = '".$getuserid."'";
+        $exeget = $connection->query($queryget);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
         {
-            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
-                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
-                        WHERE ts.`user_id` ='".$getuserid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='2' AND pr.`relative_id` = ''";
-            //echo $queryget;exit;
-            try
-            { 
-               $exeget = $connection->query($queryget);
-                $getnum = trim($exeget->numRows());
-                   $buyprefer = 0;$sellprefer = 0;
-                    
-                if($getnum>0)
-                {
-                 
-                    while($row = $exeget->fetch())
-                    {
-
-                        if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
-                        {
-                           $buyprefer =  $buyprefer + $row['no_of_share'];
-                        }
-                        else if($row['type_of_transaction']=='2')
-                        {
-                            $sellprefer =  $sellprefer + $row['no_of_share'];
-                        }
-                        else{ }
-                        $row2 = array('buyprefer'=>$buyprefer,'sellprefer'=>$sellprefer);
-                        $finalrw = array_merge($row,$row2);
-                         
-                    }
-                     $getlistt[] = array_push($getlist, $finalrw);
-                   
-               }
-                
-               else
-               {
-                    $finalrw = array();
-                   array_push($getlist, $finalrw);
-               }
-            }
-            catch (Exception $e)
+            $row = $exeget->fetch();
+            $getlist = $row['adrshldng'];
+            if(empty($getlist))
             {
-                $getlist = array();
+                $getlist = 0;
             }
-              
+        }
+        else
+        {
+            $getlist = 0;
         }
         return $getlist; 
     }
@@ -309,8 +344,25 @@ class Homecommon extends Component
     }
     //############### fetching holding summary end ###############
     
-    
-    
+    public function fetchcmpname($getuserid,$compid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = '';
+        $queryget = "SELECT * FROM `listedcmpmodule` 
+                        WHERE `id` = '1'";
+        $exeget = $connection->query($queryget);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            $row = $exeget->fetch();
+            $getlist = $row['company_name'];
+        }
+        else
+        {
+            $getlist = '';
+        }
+        return $getlist; 
+    }
     
     
     

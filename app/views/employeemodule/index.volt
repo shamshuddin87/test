@@ -132,6 +132,7 @@
                   <label class="control-label">Upload Identity Proof</label>
                    <?php if(!empty($personaldetails['filepath'])){ ?>
                    <a href="<?php echo ($personaldetails['filepath']); ?>" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a>
+                   <input type="hidden" name="updtfile" id="updtfile" value="<?php echo ($personaldetails['filepath']); ?>">
                    <?php } ?>
                   <div class="choose_files">
                      <input type="file" name="hldngfile" id="hldngfile" >

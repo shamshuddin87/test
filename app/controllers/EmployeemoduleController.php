@@ -135,6 +135,10 @@ class EmployeemoduleController extends ControllerBase
                     $check =  $this->employeemodulecommon->checkpersonalinfo($uid,$usergroup);
                     if($check == true)
                     {
+                        if(empty($filepath))
+                        {
+                            $filepath = $this->request->getPost('updtfile','trim');
+                        }
                         $result = $this->employeemodulecommon->updatemydetails($uid,$rqid,$usergroup,$data,$filepath);
                     }
                     else
