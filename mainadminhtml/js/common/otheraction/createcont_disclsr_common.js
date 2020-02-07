@@ -1,13 +1,11 @@
 website(document).ready(function()
 {
    loadnoofsec();
-
-  
-    
 });
 
 function addhtml(clicked)
 {
+
     website.ajax({
       url:'annualdeclaration/fetchrelative',
       //data:formdata,
