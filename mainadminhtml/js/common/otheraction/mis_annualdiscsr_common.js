@@ -71,13 +71,13 @@ function getannualdisclsr()
         {   },
         success: function(response, textStatus, jqXHR) 
         {
-            var htmlelements='';
             if(response.logged==true)
             {
-                // console.log(response.data);return false;
+                var htmlelements='';
+                //console.log(response.data);return false;
                 for(var i=0;i<response.data.length;i++)
                 {
-                    if(filterstatus =='pending')
+                    if(filterstatus == 'pending')
                     {
                         var j=i+1;
                         var sent_date = response.data[i].sent_date?response.data[i].sent_date:'';
@@ -87,15 +87,16 @@ function getannualdisclsr()
                         // htmlelements+='<td width="10%">'+response.data[i].employeecode+'</td>';
                         htmlelements+='<td width="10%">'+annualyr+'</td>';
                         htmlelements+='<td width="10%"></td>';
-                        if(response.data[i].pdfpath!=null)
+                        if(response.data[i].pdfpath!==null && annualyr == response.data[i].annualyear)
                         {
-                               htmlelements+= htmlelements+='<td width="10%"><a target="_blank" href="'+response.data[i].pdfpath+'" class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a></td>';
+                            htmlelements+='<td width="10%"><a target="_blank" href="'+response.data[i].pdfpath+'" class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a></td>';
                         }
                         else
                         {
                             htmlelements+='<td width="10%"></td>';
                         }
-                       
+                        htmlelements+='</tr>';
+                        //console.log(htmlelements);return false;
                     }
                     else if(filterstatus =='sent_for_approval')
                     {
@@ -115,6 +116,7 @@ function getannualdisclsr()
                         {
                             htmlelements+='<td width="10%"></td>';
                         }
+                        htmlelements+='</tr>';
                     }
                     else if(filterstatus =='')
                     {
@@ -127,7 +129,7 @@ function getannualdisclsr()
                         // htmlelements+='<td width="10%">'+response.data[i].employeecode+'</td>';
                         htmlelements+='<td width="10%">'+annualyr+'</td>';
                         
-                         if(response.data[i].pdfpath!=null)
+                         if(response.data[i].pdfpath!=null && annualyr == response.data[i].annualyear)
                          {
                             htmlelements+='<td width="10%">'+sent_date+'</td>';
                             htmlelements+='<td width="10%"><a target="_blank" href="'+response.data[i].pdfpath+'" class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a></td>';
@@ -137,8 +139,8 @@ function getannualdisclsr()
                              htmlelements+='<td width="10%"></td>';
                              htmlelements+='<td width="10%"></td>';
                          }
+                         htmlelements+='</tr>';
                     }
-                    
                 }
             }
             else
@@ -146,7 +148,7 @@ function getannualdisclsr()
                 htmlelements+='<tr>';
                 htmlelements+='<td colspan="8" style="text-align: center;">Data Not Found..!!</td></tr>';
             }
-
+            //console.log(htmlelements);return false;
             //console.log(response.pgnhtml); return false;
             website('.accdetails7').html(htmlelements);
             website('#acc7').html(response.pgnhtml);
@@ -158,7 +160,7 @@ function getannualdisclsr()
     });
 }
 
- website("#srch").on("keyup", function() {
+website("#srch").on("keyup", function() {
     var search=website('#srch').val();
     var pagenum = website('#pagenum').val();
     website('#srch').attr('status','0');
@@ -167,6 +169,64 @@ function getannualdisclsr()
         website('#pagenum').val(1);
     }
     getannualdisclsr();
-    
+});
+
+
+website('.genfile').on('click', function(e) {
+    // alert(request);return false;
+    var noofrows = website('#noofrows').val(); 
+    var pagenum = website('#pagenum').val();
+    var annualyr = website('#annualyear').val();
+    var filterstatus = website('#filterstatus').val();
+    var search = website('#srch').val();
+    var formdata = {noofrows:noofrows,pagenum:pagenum,annualyr:annualyr,filterstatus:filterstatus,search:search};
+    website.ajax({
+        url:'mis/exportAnnualDisclsr',
+        data:formdata,
+        method:'POST',
+        //contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, /*Cross domain checking*/
+        beforeSend: function() 
+        {   
+            website('.preloder_wraper').fadeIn();
+            // website('.dwnldExcel').fadeOut();   
+        },
+        uploadProgress: function(event, position, total, percentComplete) 
+        {   },
+        success:function(response)
+        {
+            if(response.logged==true)
+            {
+                website('.dwnldExcel').fadeIn();
+                website('.dwnldExcel').attr('href',response.genfile);
+                new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                });
+            }
+            else
+            {
+                new PNotify({title: response.message,
+                   text: response.message,
+                   type: 'university',
+                   hide: true,
+                   styling: 'bootstrap3',
+                   addclass: 'dark ',
+                }); 
+                  
+            }
+        },
+        complete: function(response) 
+        {  website('.preloder_wraper').fadeOut();  },
+        error:function(response)
+        {   }
+    });
 });
 

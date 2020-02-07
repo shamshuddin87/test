@@ -229,8 +229,6 @@ class UpsimasterController extends ControllerBase
                         $this->response->setJsonContent($data);
                     }
                 }
-                
-                
                 $this->response->send();
             }
             else

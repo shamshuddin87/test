@@ -276,28 +276,28 @@ public function getallrelative($uid,$usergroup)
             }
     }
 
-     public function getallsavedpdf($uid,$usergroup)
-  {
-      $connection = $this->dbtrd;
-      $myarr=array();
-      $time = time();
-      $query="SELECT * FROM annual_initial_declaration WHERE user_id='".$uid."'";
-      try{
-           $exeget = $connection->query($query);
-           $getnum = trim($exeget->numRows());
-          if($getnum>0)
-          {
-              while($row = $exeget->fetch())
-              { $getlist[] = $row; }
-           }
-          else
-          {  $getlist = array(); }
-      }
-      catch (Exception $e)
-      {   $getlist = array(); }
-      return $getlist;
+    public function getallsavedpdf($uid,$usergroup)
+    {
+          $connection = $this->dbtrd;
+          $myarr=array();
+          $time = time();
+          $query="SELECT * FROM annual_initial_declaration WHERE user_id='".$uid."'";
+          try{
+               $exeget = $connection->query($query);
+               $getnum = trim($exeget->numRows());
+              if($getnum>0)
+              {
+                  while($row = $exeget->fetch())
+                  { $getlist[] = $row; }
+               }
+              else
+              {  $getlist = array(); }
+          }
+          catch (Exception $e)
+          {   $getlist = array(); }
+          return $getlist;
 
-  }
+    }
 
 
    public function delreqpdf($uid,$usergroup,$delid)

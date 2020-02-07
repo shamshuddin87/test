@@ -157,8 +157,36 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                     <option value="14">Approver</option>
                                 </select>
                             </div>
-                        </section>                        
+                        </section>  
+
+                        <section class="col col-md-4">
+                            <label class="control-label">L+1 First Name</label>
+                            <div class="input">
+                                <input type="text" id="l1firstname" name="l1firstname" class="form_fields form-control col-md-7 col-xs-12" onkeypress="return isAlphaNumeric_space(event,this);">
+                            </div>
+                        </section> 
+
+                        <section class="col col-md-4">
+                            <label class="control-label">L+1 Last Name</label>
+                            <div class="input">
+                                <input type="text" id="l1lastname" name="l1lastname" class="form_fields form-control col-md-7 col-xs-12" onkeypress="return isAlphaNumeric_space(event,this);">
+                            </div>
+                        </section>    
+
+                        <section class="col col-md-4">
+                            <label class="control-label">L+1 Email</label>
+                            <div class="input">
+                                <input type="email" id="l1email" name="l1email" class="form_fields form-control col-md-7 col-xs-12">
+                            </div>
+                        </section>                  
                         
+                        <section class="col col-md-4">
+                            <label class="control-label">L+1 Employee ID</label>
+                            <div class="input">
+                                <input type="text" id="l1empid" name="l1empid" class="form_fields form-control col-md-7 col-xs-12">
+                            </div>
+                        </section>
+
                         <div class="clearelement"></div>  
                         <section class="col col-md-4">
                             <label class="control-label">Company Access *</label>
@@ -325,6 +353,26 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                 <option value="14">Approver</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div class="control-label form-group col-md-6">
+                        <span class="floatleft"><label>L+1 First Name</label></span>
+                        <input type="text" class="form-control" id="l1firstname" name="l1firstname" onkeypress="return isAlphaNumeric_space(event,this);">
+                    </div>
+
+                    <div class="control-label form-group col-md-6">
+                        <span class="floatleft"><label>L+1 Last Name</label></span>
+                        <input type="text" class="form-control" id="l1lastname" name="l1lastname" onkeypress="return isAlphaNumeric_space(event,this);">
+                    </div>
+
+                    <div class="control-label form-group col-md-6">
+                        <span class="floatleft"><label>L+1 Email</label></span>
+                            <input type="email" class="form-control" id="l1email" name="l1email">
+                    </div>
+
+                    <div class="control-label form-group col-md-6">
+                        <span class="floatleft"><label>L+1 Employee ID</label></span>
+                        <input type="text" class="form-control" id="l1empid" name="l1empid">
                     </div>
                    
                     <div class="clearelement"></div>

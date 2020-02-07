@@ -25,7 +25,7 @@ $current_year =  date("Y");
                         <section class="col col-md-12 col-xs-12">
                             <label class="control-label">Select Year</label>
                             <select class="annualyear" id="annualyear">
-                                <?php for ($i=1 ; $i <7 ; $i++) { ?>
+                                <?php for ($i = 0 ; $i < 6 ; $i++) { ?>
                                 <option value="<?php echo($current_year + $i);  ?>"> <?php echo($current_year + $i);  ?>
                                 </option>
                                 <?php
@@ -48,6 +48,10 @@ $current_year =  date("Y");
                 <option value="50">50</option><option value="100">100</option>
              </select> 
         <span>Entries</span>
+        <div style="float:right;">
+            <button type="button" class="btn btn-primary genfile excel_bg">Export Excel</button>
+            <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
+        </div>
          <div class="top_margin"><input type="text" placeholder="Search By Name" id="srch" status="0"></div>
         <div class="cssfilter">               
             <div class="control-label form-group">
