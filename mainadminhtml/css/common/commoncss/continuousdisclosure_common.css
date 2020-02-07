@@ -14,3 +14,5 @@ input#holdingfile { padding: 9px; border: 1px solid #ccc; width: 100%;}
 .mainelementfom { margin-top: 90px;}
 .formcss {margin-top: 25px;}
 .table_wraper { background: #fff; padding: 10px; box-shadow: 2px 5px 3px #ccc;}
+
+.formelementmain section.col.col-md-6.col-xs-6 {margin: 9px 0px;}
