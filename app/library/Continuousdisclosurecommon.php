@@ -706,15 +706,17 @@ public function getallrelative($uid,$usergroup)
      //print_r($transaction);echo "hello";exit;
 
      for($i = 0; $i< sizeof($relative);$i++)
-     {              
-          $queryinsert = "INSERT INTO `continuous_relative_publicprivate`
-            (`user_id`,`relative`,`company`,`interest`,`decision`,`transaction`,`noofshare`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-             VALUES ('".$getuserid."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$noofshare[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
-         
-         
-         //echo $queryinsert;
-         $exe = $connection->query($queryinsert);
+     {    
+        if(!empty($relative[$i]))
+        {
+              $queryinsert = "INSERT INTO `continuous_relative_publicprivate`
+                (`user_id`,`relative`,`company`,`interest`,`decision`,`transaction`,`noofshare`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
+                 VALUES ('".$getuserid."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$noofshare[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
 
+
+             //echo $queryinsert;
+             $exe = $connection->query($queryinsert);
+         }
      }
         //echo 'here';exit;
          
@@ -767,20 +769,23 @@ public function getallrelative($uid,$usergroup)
     {
          $connection = $this->dbtrd;
          $time = time();   
-         // print_r($interest);echo "hello";exit;
+          //print_r($relative);echo "hello";exit;
+             for($i = 0; $i< sizeof($relative);$i++)
+             {     
+                 if(!empty($relative[$i]))
+                 {
+                     
+                  $queryinsert = "INSERT INTO `continuous_relative_publicshare`
+                    (`user_id`,`user_group_id`,`relative`,`company`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
+                     VALUES ('".$getuserid."','".$user_group_id."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
 
-         for($i = 0; $i< sizeof($relative);$i++)
-         {              
-              $queryinsert = "INSERT INTO `continuous_relative_publicshare`
-                (`user_id`,`user_group_id`,`relative`,`company`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-                 VALUES ('".$getuserid."','".$user_group_id."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
 
+                 //echo $queryinsert;exit;
+                 $exe = $connection->query($queryinsert);
+                 }
 
-             //echo $queryinsert;exit;
-             $exe = $connection->query($queryinsert);
-
-         }
-            //echo 'here';exit;
+             }
+           // echo 'here';exit;
 
                 //echo $queryinsert;
             try
@@ -802,15 +807,17 @@ public function getallrelative($uid,$usergroup)
          // print_r($interest);echo "hello";exit;
 
          for($i = 0; $i< sizeof($relative);$i++)
-         {              
-              $queryinsert = "INSERT INTO `continuous_relative_holdinginterest`
-                (`user_id`,`user_group_id`,`relative`,`cmpname`,`isdecisionmaking`,`isfincltrans`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-                 VALUES ('".$getuserid."','".$user_group_id."','".$relative[$i]."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+         {       
+            if(!empty($relative[$i]))
+            {
+                  $queryinsert = "INSERT INTO `continuous_relative_holdinginterest`
+                    (`user_id`,`user_group_id`,`relative`,`cmpname`,`isdecisionmaking`,`isfincltrans`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
+                     VALUES ('".$getuserid."','".$user_group_id."','".$relative[$i]."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
 
 
-             //echo $queryinsert;
-             $exe = $connection->query($queryinsert);
-
+                 //echo $queryinsert;
+                 $exe = $connection->query($queryinsert);
+             }
          }
             //echo 'here';exit;
 
@@ -1615,7 +1622,12 @@ public function upannualrelativepublicshare($uid,$relative,$company,$decision,$t
     {
       
       $count = count($company);
-      $delid = implode(',', $id);
+       if($count!=0)
+       {
+           $delid = implode(',', $id);
+       }
+          
+      
       //$delid = $id;
 
 
