@@ -405,7 +405,7 @@ public function getallrelative($uid,$usergroup)
                   $status=$this->emailer->sendpdfmailapprannual($mail[$i]['email'],$getfile,$getname);
                   if($status==true)
                   {
-                    $status= $this->annualdeclarationcommon->updateinitialdeclaration($reqid);
+                    $status= $this->continuousdisclosurecommon->updateinitialdeclaration($reqid);
                     $flag=true;
                   }
                 
@@ -814,7 +814,7 @@ public function getallrelative($uid,$usergroup)
          }
             //echo 'here';exit;
 
-                //echo $queryinsert;
+            //echo $queryinsert;
             try
             {
                 return true;
@@ -1149,7 +1149,7 @@ public function getallrelative($uid,$usergroup)
       $myarr=array();
       $time = time();
       $query="SELECT * FROM relative_info WHERE user_id='".$uid."'";
-
+      //echo $query; exit;
       try{
            $exeget = $connection->query($query);
            $getnum = trim($exeget->numRows());

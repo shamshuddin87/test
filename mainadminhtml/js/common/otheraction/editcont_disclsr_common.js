@@ -12,7 +12,7 @@ function addhtml(clicked)
  {
 
     website.ajax({
-      url:'annualdeclaration/fetchrelative',
+      url:'continuousdisclosure/fetchrelative',
       //data:formdata,
       method:'POST',
       //contentType:'json',
@@ -389,7 +389,7 @@ function annualmodal(uniqueid){
 
     website.ajax({
           type:"POST",
-          url:'annualdeclaration/getfilecontent',
+          url:'continuousdisclosure/getfilecontent',
 
          
          
@@ -440,7 +440,7 @@ function annualmodal(uniqueid){
 
           var formData = {uniqueid:uniqueid};
           website.ajax({
-                url:'annualdeclaration/fetchannualdeclaration',
+                url:'continuousdisclosure/fetchannualdeclaration',
                  data: formData,
                 //data:formdata,
                 method:'POST',
@@ -649,7 +649,7 @@ website('body').on('click','.formpdf', function(e)
     var formData = {htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid};
     website.ajax({
         type:"POST",
-        url:'annualdeclaration/generateformbPDF',
+        url:'continuousdisclosure/generateformbPDF',
         data: formData,
         //contentType: "application/json; charset=utf-8",
         dataType:"json",

@@ -307,7 +307,7 @@ class ContinuousdisclosureController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
-                $pdf_content = file_get_contents("declaration_form/annualdeclaration.html");
+                $pdf_content = file_get_contents("declaration_form/continuousdisclosure.html");
                 // print_r($pdf_content);exit;
                 if(!empty($pdf_content))
                 {
@@ -868,7 +868,7 @@ class ContinuousdisclosureController extends ControllerBase
                
                 //print_r($company);print_r($decision);
 
-                if($d1ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '')
+                if($d1ques1 != '' || $d2ques1 != '' || $d3ques1 != '' || $d4ques1 != '' || $d5ques1 != '' || $d6ques1 != '' || $d7ques1 != '')
                 {
                         //echo 'in flag 1';exit;
                     $getres1 = $this->continuousdisclosurecommon->inannualselfcompany($getuserid,$d1ques1,$d1ques2,$d1ques3,$uniqid);
