@@ -191,6 +191,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
                    <li><a href="mis/mis_recipient"><i class=""></i> Connected Person</a></li>
                    <li><a href="mis/upsitypeclassify"><i class=""></i> UPSI Sharing</a></li>
                    <li><a href="mis/mis_annualdiscsr"><i class=""></i>Annual Disclosures</a></li>
+                   <li><a href="mis/mis_contdisclsr"><i class=""></i>Continuous Disclosures</a></li>
                    <!-- <li><a href="mis/mis_initialdiscsr"><i class=""></i>Initial Disclosures</a></li>
                    <li><a href="mis/mis_formc"><i class=""></i>Form C</a></li>
                    <li><a href="mis/mis_confirmtrade"><i class=""></i>Confirmation of Trade</a></li>

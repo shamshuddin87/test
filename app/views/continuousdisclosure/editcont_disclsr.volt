@@ -12,13 +12,13 @@
 <!-- My messages -->
 <div class="mainelementfom">
 <div>
-   <h1 class="h1_heading text-center">Update Annual Declaration Form
+   <h1 class="h1_heading text-center">Update Continuous Disclosure Form
    </h1>
 </div>
 <div class="containergrid">
 <div class="formcss">
 <div class="typography form_pad">
-<form action="annualdeclaration/updateannual" id="updateannual" method="post" autocomplete="off">
+<form action="continuousdisclosure/updateannual" id="updateannual" method="post" autocomplete="off">
    <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
       <tr>
          <td style="border-right: 1px solid #f7f7f7; color: #000; font-weight: bold;  padding-right: 0px">1.</td>

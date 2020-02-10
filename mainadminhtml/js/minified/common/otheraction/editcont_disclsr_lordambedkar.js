@@ -1,7 +1,7 @@
 
 website(document).ready(function()
 {});function addhtml(clicked)
-{website.ajax({url:'annualdeclaration/fetchrelative',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{website.ajax({url:'continuousdisclosure/fetchrelative',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {var id=clicked;if(id=='adddiv1'){var getlastid=website('.appendd1').attr('plancntr');getlastid=++getlastid;var addhtmlnxt='';addhtmlnxt+='<div class="row'+getlastid+' append_row3" id="t1row'+getlastid+'"   >';addhtmlnxt+='<table  style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';addhtmlnxt+='<tr>';addhtmlnxt+=' <td style="border-right: 1px solid #f7f7f7"></td>';addhtmlnxt+='<td style="width: 22%"><label class="control-label">Company Name</label>';addhtmlnxt+='</td>';addhtmlnxt+='<td><label class="control-label">Can you significantly influence the decision making of this company?</label>';addhtmlnxt+='</td>';addhtmlnxt+='<td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';addhtmlnxt+='</td>';addhtmlnxt+='</tr>';addhtmlnxt+='<tr>';addhtmlnxt+=' <td style="border-right: 1px solid #fff"></td>';addhtmlnxt+='<td><div class="input" > <input type="text" class="form-control inputbox3" id="d1ques1" name="d1ques1[]" >  </div>';addhtmlnxt+='</td>';addhtmlnxt+=' <td><div class="input"><select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12"  > <option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></section></td>';addhtmlnxt+='<td><div class="input"><select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12"  ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></section></td>';addhtmlnxt+='</tr>';addhtmlnxt+='</table>';addhtmlnxt+='</div>';website('.appenddiv1').append(addhtmlnxt);website('.appendd1').attr('plancntr',getlastid);}
@@ -16,7 +16,7 @@ else if(id=='adddiv7')
 else{var addhtmlnxt='';}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});}
-function annualmodal(uniqueid){var uniqueid=uniqueid;website.ajax({type:"POST",url:'annualdeclaration/getfilecontent',dataType:"json",beforeSend:function()
+function annualmodal(uniqueid){var uniqueid=uniqueid;website.ajax({type:"POST",url:'continuousdisclosure/getfilecontent',dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
 {if(response.logged===true)
@@ -24,7 +24,7 @@ function annualmodal(uniqueid){var uniqueid=uniqueid;website.ajax({type:"POST",u
 {website('.preloder_wraper').fadeOut();},error:function()
 {}});}
 function getpdfdata(uniqueid)
-{var formData={uniqueid:uniqueid};website.ajax({url:'annualdeclaration/fetchannualdeclaration',data:formData,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{var formData={uniqueid:uniqueid};website.ajax({url:'continuousdisclosure/fetchannualdeclaration',data:formData,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged==true)
@@ -64,7 +64,7 @@ else
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
 {}});}
 website('body').on('click','.formpdf',function(e)
-{var htmldata=website('#Mymodaldeclara .modalform').html();var uniqueid=website('#uniqueid').val();var annualyear=website('#annualyear').val();var formData={htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid};website.ajax({type:"POST",url:'annualdeclaration/generateformbPDF',data:formData,dataType:"json",beforeSend:function()
+{var htmldata=website('#Mymodaldeclara .modalform').html();var uniqueid=website('#uniqueid').val();var annualyear=website('#annualyear').val();var formData={htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid};website.ajax({type:"POST",url:'continuousdisclosure/generateformbPDF',data:formData,dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
 {if(response.logged===true)

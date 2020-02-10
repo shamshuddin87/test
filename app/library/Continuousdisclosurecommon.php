@@ -242,23 +242,23 @@ public function getallrelative($uid,$usergroup)
             $time = time();
             try
             {
-                $querysel = "SELECT * FROM `continuous_initial_declaration` WHERE `user_id` ='".$uid."' AND `annualyear`='".$annualyear."'";
+                // $querysel = "SELECT * FROM `continuous_initial_declaration` WHERE `user_id` ='".$uid."' AND `annualyear`='".$annualyear."'";
                 
                 $queryin = "INSERT INTO `continuous_initial_declaration` (user_id, user_group_id,send_status, pdfpath,annualyear,uniqueid,date_added,date_modified,timeago) 
                 VALUES   ('".$uid."','".$usergroup."',0,'".$pdfpath."','".$annualyear."','".$uniqueid."',NOW(),NOW(),'".$time."')"; 
                 
-                $queryup = "UPDATE `continuous_initial_declaration` SET `send_status` = 0,`sent_date` = NULL,`pdfpath` = '".$pdfpath."',`uniqueid` = '".$uniqueid."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `annualyear`='".$annualyear."'";
+                // $queryup = "UPDATE `continuous_initial_declaration` SET `send_status` = 0,`sent_date` = NULL,`pdfpath` = '".$pdfpath."',`uniqueid` = '".$uniqueid."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `annualyear`='".$annualyear."'";
                 // echo $queryup; exit;
-                $exeget = $connection->query($querysel);
-                $getnum = trim($exeget->numRows());
-                if($getnum>0)
-                {
-                    $exegetqry = $connection->query($queryup);
-                }
-                else
-                {  
+                // $exeget = $connection->query($querysel);
+                // $getnum = trim($exeget->numRows());
+                // if($getnum>0)
+                // {
+                //     $exegetqry = $connection->query($queryup);
+                // }
+                // else
+                // {  
                     $exegetqry = $connection->query($queryin);
-                }
+                // }
 
                 if($exegetqry)
                 {
@@ -405,7 +405,7 @@ public function getallrelative($uid,$usergroup)
                   $status=$this->emailer->sendpdfmailapprannual($mail[$i]['email'],$getfile,$getname);
                   if($status==true)
                   {
-                    $status= $this->annualdeclarationcommon->updateinitialdeclaration($reqid);
+                    $status= $this->continuousdisclosurecommon->updateinitialdeclaration($reqid);
                     $flag=true;
                   }
                 
@@ -814,7 +814,7 @@ public function getallrelative($uid,$usergroup)
          }
             //echo 'here';exit;
 
-                //echo $queryinsert;
+            //echo $queryinsert;
             try
             {
                 return true;
@@ -1149,7 +1149,7 @@ public function getallrelative($uid,$usergroup)
       $myarr=array();
       $time = time();
       $query="SELECT * FROM relative_info WHERE user_id='".$uid."'";
-
+      //echo $query; exit;
       try{
            $exeget = $connection->query($query);
            $getnum = trim($exeget->numRows());
