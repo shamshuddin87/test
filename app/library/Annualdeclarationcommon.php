@@ -1622,7 +1622,7 @@ public function upannualselfholdingintrst($uid,$user_group_id,$company,$decision
       for($i = 0; $i < $count; $i++)
       {
 
-        $querydelete = "DELETE FROM `annual_self_holdinginterest` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
+        $querydelete = "DELETE FROM `continuous_self_holdinginterest` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
           $exedel = $connection->query($querydelete);
         // print_r($querydelete);exit;
          
@@ -1632,13 +1632,13 @@ public function upannualselfholdingintrst($uid,$user_group_id,$company,$decision
         if(array_key_exists($i,$id))
         {
 
-         $queryupdate =  "UPDATE `annual_self_holdinginterest` SET `cmpname` = '".$company[$i]."',`isdecisionmaking` = '".$decision[$i]."',`isfincltrans` = '".$transaction[$i]."',`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
+         $queryupdate =  "UPDATE `continuous_self_holdinginterest` SET `cmpname` = '".$company[$i]."',`isdecisionmaking` = '".$decision[$i]."',`isfincltrans` = '".$transaction[$i]."',`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
           $exegetqry = $connection->query($queryupdate);
         }
         else
         {
          
-          $queryinsert = "INSERT INTO `annual_self_holdinginterest`
+          $queryinsert = "INSERT INTO `continuous_self_holdinginterest`
                 (`user_id`,`user_group_id`,`cmpname`,`isdecisionmaking`,`isfincltrans`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
                  VALUES ('".$uid."','".$user_group_id."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
               $exegetqry = $connection->query($queryinsert);
@@ -1687,7 +1687,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
       for($i = 0; $i < $count; $i++)
       {
 
-        $querydelete = "DELETE FROM `annual_relative_publicshare` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
+        $querydelete = "DELETE FROM `continuous_relative_publicshare` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
           $exedel = $connection->query($querydelete);
         // print_r($querydelete);exit;
          
@@ -1697,13 +1697,13 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
         if(array_key_exists($i,$id))
         {
 
-         $queryupdate =  "UPDATE `annual_relative_publicshare` SET `company` = '".$company[$i]."',`relative` = '".$relative[$i]."',`interest` = '".$interest[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
+         $queryupdate =  "UPDATE `continuous_relative_publicshare` SET `company` = '".$company[$i]."',`relative` = '".$relative[$i]."',`interest` = '".$interest[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
           $exegetqry = $connection->query($queryupdate);
         }
         else
         {
          
-          $queryinsert = "INSERT INTO `annual_relative_publicshare`
+          $queryinsert = "INSERT INTO `continuous_relative_publicshare`
                 (`user_id`,`user_group_id`,`relative`,`company`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
                  VALUES ('".$uid."','".$user_group_id."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
               $exegetqry = $connection->query($queryinsert);
@@ -1752,7 +1752,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
       for($i = 0; $i < $count; $i++)
       {
 
-        $querydelete = "DELETE FROM `annual_relative_holdinginterest` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
+        $querydelete = "DELETE FROM `continuous_self_holdinginterest` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
           $exedel = $connection->query($querydelete);
         // print_r($querydelete);exit;
          
@@ -1762,7 +1762,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
         if(array_key_exists($i,$id))
         {
 
-         $queryupdate =  "UPDATE `annual_relative_holdinginterest` SET `cmpname` = '".$company[$i]."',`relative` = '".$relative[$i]."',`isdecisionmaking` = '".$decision[$i]."',`isfincltrans` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
+         $queryupdate =  "UPDATE `continuous_self_holdinginterest` SET `cmpname` = '".$company[$i]."',`relative` = '".$relative[$i]."',`isdecisionmaking` = '".$decision[$i]."',`isfincltrans` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
             //echo $queryupdate;
           $exegetqry = $connection->query($queryupdate);
             
@@ -1770,7 +1770,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
         else
         {
          
-          $queryinsert = "INSERT INTO `annual_relative_holdinginterest`
+          $queryinsert = "INSERT INTO `continuous_self_holdinginterest`
                 (`user_id`,`user_group_id`,`relative`,`cmpname`,`isdecisionmaking`,`isfincltrans`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
                  VALUES ('".$uid."','".$user_group_id."','".$relative[$i]."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
               $exegetqry = $connection->query($queryinsert);
