@@ -177,4 +177,6 @@ else
 {website('#d7ques5').attr('readonly','readonly');website('#d7ques5').val('');}});website("#appenddiv7 #d7ques6").change(function(){var value=website(this).val();var rownum=website(this).attr('rownum');if(value==1||value==3)
 {website('#'+rownum+' #d7ques5').removeAttr('readonly','readonly');}
 else
-{website('#'+rownum+' #d7ques5').attr('readonly','readonly');website('#'+rownum+' #d7ques5').val('');}});};
+{website('#'+rownum+' #d7ques5').attr('readonly','readonly');website('#'+rownum+' #d7ques5').val('');}});}
+website('body').on('click','#submituserdata',function(e)
+{var pdfdata=website("div #belowleveluserdet").html();website('.modalform').html(pdfdata);website('#Mymodaldeclara').modal('show');});;

@@ -1802,4 +1802,199 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
     
     /******************  Annual Update End ******************/
 
+    
+    public function FetchUserLevel($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = '';
+        $query="SELECT * FROM `it_memberlist` WHERE `wr_id`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist = $row; 
+            }
+        }
+        else
+        {  $getlist = ''; }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = ''; }
+
+        return $getlist;
+    }
+    
+    public function FetchPersonalDetail($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = '';
+        $query="SELECT * FROM `personal_info` 
+        WHERE `userid`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist = $row; 
+            }
+        }
+        else
+        {  $getlist = ''; }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = ''; }
+
+        return $getlist;
+    }
+    
+    public function FetchEmpDetail($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `pastemployer` 
+        WHERE `user_id`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist[] = $row; 
+            }
+        }
+        else
+        {  $getlist = array(); }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = array(); }
+
+        return $getlist;
+    }
+    
+    public function FetchDematDetail($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `user_demat_accounts` 
+        WHERE `user_id`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist[] = $row; 
+            }
+        }
+        else
+        {  $getlist = array(); }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = array();}
+
+        return $getlist;
+    }
+    
+    public function FetchMfrDetail($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `mfr`
+        WHERE `user_id`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist[] = $row; 
+            }
+        }
+        else
+        {  $getlist = array(); }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = array(); }
+
+        return $getlist;
+    }
+    
+    public function FetchRelativeDetail($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `relative_info`
+        WHERE `user_id`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist[] = $row; 
+            }
+        }
+        else
+        {  $getlist = array(); }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = array(); }
+
+        return $getlist;
+    }
+    
+    public function FetchRelDematDetail($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `relative_demat_accounts`
+        WHERE `parent_user_id`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist[] = $row; 
+            }
+        }
+        else
+        {  $getlist = array(); }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = array(); }
+
+        return $getlist;
+    }
 }

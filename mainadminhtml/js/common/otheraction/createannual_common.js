@@ -1231,5 +1231,11 @@ function loadnoofsec()
     });
 }
 
-
+website('body').on('click','#submituserdata', function(e)
+{
+    var pdfdata = website( "div #belowleveluserdet" ).html();
+    //console.log(pdfdata);
+    website('.modalform').html(pdfdata);
+    website('#Mymodaldeclara').modal('show');
+});
 
