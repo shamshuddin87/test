@@ -63,6 +63,11 @@ class MisController extends ControllerBase
     {
 
     }
+
+    public function mis_contdisclsrAction()
+    {
+
+    }
     
     public function upsitypeclassifyAction()
     {
@@ -1529,6 +1534,101 @@ class MisController extends ControllerBase
                 else
                 {
                     $data = array("logged" => false,'message' => "File Not Generated..!!");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+
+
+    // ************ Get MIS Continuous Disclosure START ************
+    public function pendingcontdisclsrAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $filterby = '';
+                $annualyr = $this->request->getPost('annualyr');
+                $noofrows = $this->request->getPost('noofrows');
+                $pagenum = $this->request->getPost('pagenum');
+                $searchby = $this->request->getPost('search');
+                $filterstatus = $this->request->getPost('filterstatus');
+                
+                if($filterstatus == '')
+                {
+                    $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
+                    $getres = $this->miscommon->fetchallannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
+                    //print_r($getres);exit;
+                    $rsstrt = ($pagenum-1) * $noofrows;
+                    $rslmt = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) LIMIT '.$rsstrt.','.$noofrows;
+                    $rscnt=count($getres);
+                    $rspgs = ceil($rscnt/$noofrows);
+                    $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                    $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                    //print_r($getres);exit;
+
+                    $getresult = $this->miscommon->fetchallannualdisclsr($getuserid,$user_group_id,$annualyr,$rslmt);
+                }
+                else if($filterstatus == 'pending')
+                {
+                    $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id`';
+                    $getres = $this->miscommon->fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
+                    //print_r($getres);exit;
+                    $rsstrt = ($pagenum-1) * $noofrows;
+                    $rslmt = $mainquery.' LIMIT '.$rsstrt.','.$noofrows;
+                    $rscnt = count($getres);
+                    $rspgs = ceil($rscnt/$noofrows);
+                    $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                    $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                    //print_r($getres);exit;
+
+                    $getresult = $this->miscommon->fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$rslmt);
+                }
+                else if($filterstatus == 'sent_for_approval') 
+                {
+                    $filterby = ' AND (anualdecl.annualyear='.$annualyr.' OR anualdecl.annualyear IS NULL) AND anualdecl.send_status= 1';
+                    $mainquery = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ';
+                    $getres = $this->miscommon->fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
+                    /* start pagination */
+                    //print_r($getres);exit;
+                    $rsstrt = ($pagenum-1) * $noofrows;
+                    $rslmt = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") LIMIT '.$rsstrt.','.$noofrows;
+                    $rscnt=count($getres);
+                    $rspgs = ceil($rscnt/$noofrows);
+                    $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                    $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                    //print_r($getres);exit;
+
+                    $getresult = $this->miscommon->fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$rslmt);
+                    //print_r($getresult);exit;
+                }
+                
+                if($getresult)
+                {
+                    $data = array("logged" => true,'message' => 'Record Added','data' => $getresult,'user_group_id'=>$user_group_id,"pgnhtml"=>$pgnhtml);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "Record Not Added..!!","pgnhtml"=>$pgnhtml);
                     $this->response->setJsonContent($data);
                 }
                 $this->response->send();
