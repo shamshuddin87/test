@@ -22,7 +22,7 @@ $current_year =  date("Y");
                        
                         <div class="clearelement"></div>        
                       
-                        <section class="col col-md-12 col-xs-12">
+                      <!--   <section class="col col-md-12 col-xs-12">
                             <label class="control-label">Select Year</label>
                             <select class="annualyear" id="annualyear">
                                 <?php for ($i = 0 ; $i < 6 ; $i++) { ?>
@@ -32,7 +32,7 @@ $current_year =  date("Y");
                                 }
                             ?>
                                 </select>
-                        </section>
+                        </section> -->
 
 
                         <div class="clearelement"></div>                   
@@ -48,6 +48,25 @@ $current_year =  date("Y");
                 <option value="50">50</option><option value="100">100</option>
              </select> 
         <span>Entries</span>
+
+        <div class="new_table">     
+            <section>
+                <label class="past_label"><strong>From Date</strong></label>
+                <div class="past_input">
+                    <input type="text" name="from_date" id="from_date" class="mostwanted bootdatepick" maxlength="100" readonly placeholder="From Date">
+                </div>                        
+            </section>
+            <section>
+                <label class="past_label"><strong>To Date</strong></label>
+                <div class="past_input">
+                    <input type="text" name="to_date" id="to_date" class="mostwanted bootdatepick" maxlength="100" readonly placeholder="To Date">
+                </div>
+            </section>
+            <div class="past_search">
+                 <button type="button" class="btncss searchbtn">Search Now</button>
+            </div> 
+        </div>
+
         <div style="float:right;">
             <button type="button" class="btn btn-primary genfile excel_bg">Export Excel</button>
             <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
@@ -70,8 +89,8 @@ $current_year =  date("Y");
                     <th>Sr No.</th> 
                     <th>Name</th> 
                     <!-- <th>Employee ID</th>  -->
-                    <th>Year</th>
-                    <th>Due for receipt</th>
+                    <th>Date of Submission</th>
+                    <!-- <th>Due for receipt</th> -->
                     <th>File</th>
                 </tr>
              </thead>
