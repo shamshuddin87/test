@@ -121,16 +121,16 @@ else
 {website('#t7row'+count).remove();website('.appendd7').attr('plancntr',parseInt(count)-1);}
 else
 {return false;}}
-else if(rmid=='remvdiv8'){var count=website('.appendd8').attr('plancntr');if(count!=0)
-{website('.appenddiv8 #row'+count).remove();website('.appendd8').attr('plancntr',parseInt(count)-1);}
+else if(rmid=='remvdiv8'){var count=website('.appendd8').attr('plancntr');console.log(count);if(count!=0)
+{website('#t8row'+count).remove();website('.appendd8').attr('plancntr',parseInt(count)-1);}
 else
 {return false;}}
 else if(rmid=='remvdiv9'){var count=website('.appendd9').attr('plancntr');if(count!=0)
-{website('.appenddiv9 #row'+count).remove();website('.appendd9').attr('plancntr',parseInt(count)-1);}
+{website('#t9row'+count).remove();website('.appendd9').attr('plancntr',parseInt(count)-1);}
 else
 {return false;}}
-else if(rmid=='remvdiv10'){var count=website('.appendd10').attr('plancntr');if(count!=0)
-{website('.appenddiv10 #row'+count).remove();website('.appendd10').attr('plancntr',parseInt(count)-1);}
+else if(rmid=='remvdiv10'){var count=website('.appendd10').attr('plancntr');console.log(count);if(count!=0)
+{website('#t10row'+count).remove();website('.appendd10').attr('plancntr',parseInt(count)-1);}
 else
 {return false;}}}
 function showsection(id){var id=id;var x=document.querySelector('[class="test"]');var y=document.querySelector('[class="test1"]');var selfhldng=document.querySelector('[class="test2"]');var reltvhldng=document.querySelector('[class="test3"]');console.log(reltvhldng);if(id=='showsec1')
