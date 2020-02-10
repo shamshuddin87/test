@@ -51,7 +51,7 @@ website(document).ready(function()
 function getallmydata()
 {
     website.ajax({
-          url:'annualdeclaration/fetchinitialdeclaration',
+          url:'continuousdisclosure/fetchinitialdeclaration',
           //data:formdata,
           method:'POST',
           //contentType:'json',
@@ -256,7 +256,7 @@ function getdataonload()
 
    website.ajax({
         type:"POST",
-        url:'annualdeclaration/getallsavedpdf',
+        url:'continuousdisclosure/getallsavedpdf',
         
         //contentType: "application/json; charset=utf-8",
         dataType:"json",
@@ -326,7 +326,7 @@ website('body').on('click','#sendreq',function(){
  
  var reqid= website('#reqid').val();
 website.ajax({
-                  url:'annualdeclaration/sendrequest',
+                  url:'continuousdisclosure/sendrequest',
                   data:{reqid:reqid},
                   method:'POST',
                   contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -392,7 +392,7 @@ website('body').on('click','#deletereq',function(){
  
  var delid= website('#deleteid').val();
 website.ajax({
-                  url:'annualdeclaration/deletepdfreq',
+                  url:'continuousdisclosure/deletepdfreq',
                   data:{delid:delid},
                   method:'POST',
                   contentType:'application/x-www-form-urlencoded; charset=UTF-8',

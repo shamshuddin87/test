@@ -40,16 +40,16 @@ class ContinuousdisclosureController extends ControllerBase
             if($this->request->isAjax() == true)
             {   
 
-                $getresponse = $this->annualdeclarationcommon->getalldata($uid,$usergroup);
-                $getresponse2 = $this->annualdeclarationcommon->fetchpersonlinfo($uid,$usergroup);
+                $getresponse = $this->continuousdisclosurecommon->getalldata($uid,$usergroup);
+                $getresponse2 = $this->continuousdisclosurecommon->fetchpersonlinfo($uid,$usergroup);
 
-                $getresponse3 = $this->annualdeclarationcommon->getpastemployee($uid,$usergroup);
-                $clrhouse = $this->annualdeclarationcommon->getdespdemat($uid,$usergroup);
-                $getallrelative = $this->annualdeclarationcommon->getallrelative($uid,$usergroup);
+                $getresponse3 = $this->continuousdisclosurecommon->getpastemployee($uid,$usergroup);
+                $clrhouse = $this->continuousdisclosurecommon->getdespdemat($uid,$usergroup);
+                $getallrelative = $this->continuousdisclosurecommon->getallrelative($uid,$usergroup);
                 // print_r($getallrelative);exit;
                 $getres = $this->relholdingsummarycommon->fetchallholdingsummary($uid,$usergroup);
                 //print_r($getres);exit; 
-                // $noofshares = $this->annualdeclarationcommon->noofsharesheld($uid,$usergroup);
+                // $noofshares = $this->continuousdisclosurecommon->noofsharesheld($uid,$usergroup);
                 $result = $this->relholdingsummarycommon->fetchholdingsummary($uid,$usergroup,0,25);
 
                     end($result);
@@ -59,8 +59,8 @@ class ContinuousdisclosureController extends ControllerBase
                 $getdebenure = $this->relholdingsummarycommon->fetchdebenure($uid,$getres['companyid'],0,25);
                 $allclosebal=$this->generatemisrelative($result,$getequity,$getprefereence,$getdebenure);
                 //print_r($allclosebal);exit;
-                $desigtotalshares = $this->annualdeclarationcommon->desigpershareheld($uid,$usergroup);
-                $getemployeecode = $this->annualdeclarationcommon->getemployeecode($uid,$usergroup);
+                $desigtotalshares = $this->continuousdisclosurecommon->desigpershareheld($uid,$usergroup);
+                $getemployeecode = $this->continuousdisclosurecommon->getemployeecode($uid,$usergroup);
                 $desimisheldshare=$this->generatemisheldshare($uid,$usergroup);
                 if(isset($desimisheldshare))
                 {
@@ -208,16 +208,16 @@ class ContinuousdisclosureController extends ControllerBase
                 $uniqueid = $this->request->getPost('uniqueid');
                 //$uniqueid = '5e0ec764808fc';
 
-                $getresponse1 = $this->annualdeclarationcommon->annual_self_company($uid,$usergroup,$uniqueid);
-                $getresponse2 = $this->annualdeclarationcommon->annual_self_firm($uid,$usergroup,$uniqueid);
-                 $getresponse3 = $this->annualdeclarationcommon->annual_self_pubpri($uid,$usergroup,$uniqueid);
-                $getresponse4 = $this->annualdeclarationcommon->annual_self_pubshare($uid,$usergroup,$uniqueid);
-                $getresponse5 = $this->annualdeclarationcommon->annual_relative($uid,$usergroup,$uniqueid);
-                $getresponse6 = $this->annualdeclarationcommon->annual_relative_firm($uid,$usergroup,$uniqueid);
-                $getresponse7 = $this->annualdeclarationcommon->annual_relative_pubpri($uid,$usergroup,$uniqueid);
-                $getresponse8 = $this->annualdeclarationcommon->annual_self_holdcontrl($uid,$usergroup,$uniqueid);
-                $getresponse9 = $this->annualdeclarationcommon->annual_relative_pubshare($uid,$usergroup,$uniqueid);
-                $getresponse10 = $this->annualdeclarationcommon->annual_relative_holdcontrl($uid,$usergroup,$uniqueid);
+                $getresponse1 = $this->continuousdisclosurecommon->annual_self_company($uid,$usergroup,$uniqueid);
+                $getresponse2 = $this->continuousdisclosurecommon->annual_self_firm($uid,$usergroup,$uniqueid);
+                 $getresponse3 = $this->continuousdisclosurecommon->annual_self_pubpri($uid,$usergroup,$uniqueid);
+                $getresponse4 = $this->continuousdisclosurecommon->annual_self_pubshare($uid,$usergroup,$uniqueid);
+                $getresponse5 = $this->continuousdisclosurecommon->annual_relative($uid,$usergroup,$uniqueid);
+                $getresponse6 = $this->continuousdisclosurecommon->annual_relative_firm($uid,$usergroup,$uniqueid);
+                $getresponse7 = $this->continuousdisclosurecommon->annual_relative_pubpri($uid,$usergroup,$uniqueid);
+                $getresponse8 = $this->continuousdisclosurecommon->annual_self_holdcontrl($uid,$usergroup,$uniqueid);
+                $getresponse9 = $this->continuousdisclosurecommon->annual_relative_pubshare($uid,$usergroup,$uniqueid);
+                $getresponse10 = $this->continuousdisclosurecommon->annual_relative_holdcontrl($uid,$usergroup,$uniqueid);
                 
                 if(!empty($getresponse1 || $getresponse2 || $getresponse3 || $getresponse4 || $getresponse5 || $getresponse6 || $getresponse7 || $getresponse8 || $getrespons9 || $getresponse10))
                 {
@@ -272,7 +272,7 @@ class ContinuousdisclosureController extends ControllerBase
                 // print_r($pdfpath);exit;
                 if(!empty($pdfpath))
                 {
-                      $savedata = $this->annualdeclarationcommon->saveinitialdeclare($uid,$user_group_id,$pdfpath,$annualyear,$uniqueid);
+                      $savedata = $this->continuousdisclosurecommon->saveinitialdeclare($uid,$user_group_id,$pdfpath,$annualyear,$uniqueid);
                       $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdfpath"=>$pdfpath);
                       $this->response->setJsonContent($data);
                 }
@@ -345,7 +345,7 @@ class ContinuousdisclosureController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
-               $data = $this->annualdeclarationcommon->getallsavedpdf($uid,$user_group_id);
+               $data = $this->continuousdisclosurecommon->getallsavedpdf($uid,$user_group_id);
                  //print_r($data);exit;
                 if(!empty($data))
                 {
@@ -383,7 +383,7 @@ class ContinuousdisclosureController extends ControllerBase
             if($this->request->isAjax() == true)
             {   
                 $delid=$this->request->getPost('delid','trim');  
-                $result = $this->annualdeclarationcommon->delreqpdf($uid,$usergroup,$delid);
+                $result = $this->continuousdisclosurecommon->delreqpdf($uid,$usergroup,$delid);
 
                 if($result==true)
                 {
@@ -533,8 +533,8 @@ class ContinuousdisclosureController extends ControllerBase
             {   
                 $reqid=$this->request->getPost('reqid','trim');  
                 $getuserapprove = $this->insidercommon->fetchiddata($usergroup,'it_memberlist','wr_id',$uid);
-                $getfile= $this->annualdeclarationcommon->getreqfile($reqid);
-                $sendmail= $this->annualdeclarationcommon->sendmailtoapprover($reqid,$getuserapprove['approvid'],$getuserapprove['fullname'],$getfile);
+                $getfile= $this->continuousdisclosurecommon->getreqfile($reqid);
+                $sendmail= $this->continuousdisclosurecommon->sendmailtoapprover($reqid,$getuserapprove['approvid'],$getuserapprove['fullname'],$getfile);
                 // print_r($getfile[0]['pdfpath']);exit;
                 if($sendmail==true)
                 {
@@ -660,7 +660,7 @@ class ContinuousdisclosureController extends ControllerBase
                 $noofrows = $this->request->getPost('noofrows','trim');  
                 $pagenum = $this->request->getPost('pagenum','trim'); 
                 $getmasterid = $this->tradingrequestcommon->getmasterid($uid);
-                $getres = $this->annualdeclarationcommon->fetchannualformdata($getmasterid['user_id'],'');
+                $getres = $this->continuousdisclosurecommon->fetchannualformdata($getmasterid['user_id'],'');
                 
                  /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
@@ -670,7 +670,7 @@ class ContinuousdisclosureController extends ControllerBase
                 $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
                 $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
                 
-                $allusrdclrnform = $this->annualdeclarationcommon->fetchannualformdata($getmasterid['user_id'],$rslmt);
+                $allusrdclrnform = $this->continuousdisclosurecommon->fetchannualformdata($getmasterid['user_id'],$rslmt);
                 //print_r($allusrdclrnform);exit;
                 if(!empty($allusrdclrnform))
                 {
@@ -760,7 +760,7 @@ class ContinuousdisclosureController extends ControllerBase
             {
                 $noofrows = $this->request->getPost('noofrows','trim');  
                 $pagenum = $this->request->getPost('pagenum','trim'); 
-                $getres = $this->annualdeclarationcommon->fetchannualformuserwise($userid,'');
+                $getres = $this->continuousdisclosurecommon->fetchannualformuserwise($userid,'');
                 
                  /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
@@ -770,7 +770,7 @@ class ContinuousdisclosureController extends ControllerBase
                 $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
                 $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
                 
-                $allusrdclrnform = $this->annualdeclarationcommon->fetchannualformuserwise($userid,$rslmt);
+                $allusrdclrnform = $this->continuousdisclosurecommon->fetchannualformuserwise($userid,$rslmt);
                 //print_r($allusrdclrnform);exit;
                 if(!empty($allusrdclrnform))
                 {
@@ -871,27 +871,27 @@ class ContinuousdisclosureController extends ControllerBase
                 if($d1ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '')
                 {
                         //echo 'in flag 1';exit;
-                    $getres1 = $this->annualdeclarationcommon->inannualselfcompany($getuserid,$d1ques1,$d1ques2,$d1ques3,$uniqid);
+                    $getres1 = $this->continuousdisclosurecommon->inannualselfcompany($getuserid,$d1ques1,$d1ques2,$d1ques3,$uniqid);
                      
-                    $getres2 = $this->annualdeclarationcommon->inannualselffirm($getuserid,$d2ques1,$d2ques2,$d2ques3,$d2ques4,$uniqid);
+                    $getres2 = $this->continuousdisclosurecommon->inannualselffirm($getuserid,$d2ques1,$d2ques2,$d2ques3,$d2ques4,$uniqid);
 
-                    $getres3 = $this->annualdeclarationcommon->inannualselfpubprivate($getuserid,$d3ques1,$d3ques2,$d3ques3,$d3ques4,$d3ques5,$uniqid);
+                    $getres3 = $this->continuousdisclosurecommon->inannualselfpubprivate($getuserid,$d3ques1,$d3ques2,$d3ques3,$d3ques4,$d3ques5,$uniqid);
 
-                    $getres4 = $this->annualdeclarationcommon->inannualselfpubshare($getuserid,$d4ques1,$d4ques2,$d4ques3,$d4ques4,$uniqid);
+                    $getres4 = $this->continuousdisclosurecommon->inannualselfpubshare($getuserid,$d4ques1,$d4ques2,$d4ques3,$d4ques4,$uniqid);
 
-                     $getres5 = $this->annualdeclarationcommon->inannualrelativecompany($getuserid,$d5ques1,$d5ques2,$d5ques3,$d5ques4,$uniqid);
+                     $getres5 = $this->continuousdisclosurecommon->inannualrelativecompany($getuserid,$d5ques1,$d5ques2,$d5ques3,$d5ques4,$uniqid);
 
-                    $getres6 = $this->annualdeclarationcommon->inannualrelativefirm($getuserid,$d6ques1,$d6ques2,$d6ques3,$d6ques4,$d6ques5,$uniqid);
+                    $getres6 = $this->continuousdisclosurecommon->inannualrelativefirm($getuserid,$d6ques1,$d6ques2,$d6ques3,$d6ques4,$d6ques5,$uniqid);
 
-                    $getres7 = $this->annualdeclarationcommon->inannualrelativepublicshare($getuserid,$d7ques1,$d7ques2,$d7ques3,$d7ques4,$d7ques5,$d7ques6,$uniqid);
+                    $getres7 = $this->continuousdisclosurecommon->inannualrelativepublicshare($getuserid,$d7ques1,$d7ques2,$d7ques3,$d7ques4,$d7ques5,$d7ques6,$uniqid);
                     /*  ------   Self holding controlling*/
-                    $getres8 = $this->annualdeclarationcommon->inannualselfholdingintrst($getuserid,$user_group_id,$d8ques1,$d8ques2,$d8ques3,$uniqid);
+                    $getres8 = $this->continuousdisclosurecommon->inannualselfholdingintrst($getuserid,$user_group_id,$d8ques1,$d8ques2,$d8ques3,$uniqid);
                     
                     /*  ------   relative public companysharecapital*/
-                    $getres9 = $this->annualdeclarationcommon->inannualrelativepubshare($getuserid,$user_group_id,$d9ques1,$d9ques2,$d9ques3,$d9ques4,$d9ques5,$uniqid);
+                    $getres9 = $this->continuousdisclosurecommon->inannualrelativepubshare($getuserid,$user_group_id,$d9ques1,$d9ques2,$d9ques3,$d9ques4,$d9ques5,$uniqid);
                     
                     /*  ------   relative holding controlling*/
-                    $getres10 = $this->annualdeclarationcommon->inannualrelativeholdingintrst($getuserid,$user_group_id,$d10ques1,$d10ques2,$d10ques3,$d10ques4,$uniqid);
+                    $getres10 = $this->continuousdisclosurecommon->inannualrelativeholdingintrst($getuserid,$user_group_id,$d10ques1,$d10ques2,$d10ques3,$d10ques4,$uniqid);
 
                     
                         if($getres1 || $getres2 || $getres3 || $getres4 || $getres5  || $getres6 || $getres7 || $getres8 || $getres9 || $getres10)
@@ -996,21 +996,21 @@ class ContinuousdisclosureController extends ControllerBase
                  if($d1ques1 != '' || $d2ques1 != '' || $d3ques1 != '' || $d4ques1 != '' || $d5ques1 != '' || $d6ques1 != '' || $d7ques1 != '')
                     {
                         
-                    $getres1 = $this->annualdeclarationcommon->upannualselfcompany($getuserid,$d1ques1,$d1ques2,$d1ques3,$uniqueid,$d1id);
+                    $getres1 = $this->continuousdisclosurecommon->upannualselfcompany($getuserid,$d1ques1,$d1ques2,$d1ques3,$uniqueid,$d1id);
 
                     //print_r($getres1);exit;
                   
-                     $getres2 = $this->annualdeclarationcommon->upannualselffirm($getuserid,$d2ques1,$d2ques2,$d2ques3,$d2ques4,$uniqueid,$d2id);
+                     $getres2 = $this->continuousdisclosurecommon->upannualselffirm($getuserid,$d2ques1,$d2ques2,$d2ques3,$d2ques4,$uniqueid,$d2id);
 
-                     $getres3 = $this->annualdeclarationcommon->upannualselfpubprivate($getuserid,$d3ques1,$d3ques2,$d3ques3,$d3ques4,$uniqueid,$d3id);
+                     $getres3 = $this->continuousdisclosurecommon->upannualselfpubprivate($getuserid,$d3ques1,$d3ques2,$d3ques3,$d3ques4,$uniqueid,$d3id);
 
-                    $getres4 = $this->annualdeclarationcommon->upannualselfpubshare($getuserid,$d4ques1,$d4ques2,$d4ques3,$d4ques4,$uniqueid,$d4id);
+                    $getres4 = $this->continuousdisclosurecommon->upannualselfpubshare($getuserid,$d4ques1,$d4ques2,$d4ques3,$d4ques4,$uniqueid,$d4id);
 
-                      $getres5 = $this->annualdeclarationcommon->upannualrelativecompany($getuserid,$d5ques1,$d5ques2,$d5ques3,$d5ques4,$uniqueid,$d5id);
+                      $getres5 = $this->continuousdisclosurecommon->upannualrelativecompany($getuserid,$d5ques1,$d5ques2,$d5ques3,$d5ques4,$uniqueid,$d5id);
 
-                     $getres6 = $this->annualdeclarationcommon->upannualrelativefirm($getuserid,$d6ques1,$d6ques2,$d6ques3,$d6ques4,$d6ques5,$uniqueid,$d6id);
+                     $getres6 = $this->continuousdisclosurecommon->upannualrelativefirm($getuserid,$d6ques1,$d6ques2,$d6ques3,$d6ques4,$d6ques5,$uniqueid,$d6id);
 
-                     $getres7 = $this->annualdeclarationcommon->upannualrelativepublicshare($getuserid,$d7ques1,$d7ques2,$d7ques3,$d7ques4,$d7ques5,$uniqueid,$d7id);
+                     $getres7 = $this->continuousdisclosurecommon->upannualrelativepublicshare($getuserid,$d7ques1,$d7ques2,$d7ques3,$d7ques4,$d7ques5,$uniqueid,$d7id);
 
            
 
@@ -1050,7 +1050,7 @@ class ContinuousdisclosureController extends ControllerBase
     {
         $uid = $this->session->loginauthspuserfront['id'];
         $usergroup = $this->session->loginauthspuserfront['user_group_id'];
-        $relatives_info = $this->annualdeclarationcommon->relatives_info($uid);
+        $relatives_info = $this->continuousdisclosurecommon->relatives_info($uid);
         $this->view->relativesinfo = $relatives_info;
     }
 
@@ -1066,7 +1066,7 @@ class ContinuousdisclosureController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
-                $getres =$this->annualdeclarationcommon->relatives_info($getuserid);
+                $getres =$this->continuousdisclosurecommon->relatives_info($getuserid);
 
                 if($getres)
                 {
@@ -1107,26 +1107,26 @@ class ContinuousdisclosureController extends ControllerBase
         //$uniqueid = '5e0ec764808fc';
         $this->view->uniqueid  = $uniqueid;
 
-       $relatives_info = $this->annualdeclarationcommon->relatives_info($uid);
+       $relatives_info = $this->continuousdisclosurecommon->relatives_info($uid);
            $this->view->relativesinfo = $relatives_info;
 
-        $getresponse1 = $this->annualdeclarationcommon->annual_self_company($uid,$usergroup,$uniqueid);
+        $getresponse1 = $this->continuousdisclosurecommon->annual_self_company($uid,$usergroup,$uniqueid);
 
         $this->view->selfcompany = $getresponse1;
-        $getresponse2 = $this->annualdeclarationcommon->annual_self_firm($uid,$usergroup,$uniqueid);
+        $getresponse2 = $this->continuousdisclosurecommon->annual_self_firm($uid,$usergroup,$uniqueid);
         $this->view->selffirm = $getresponse2;
-        $getresponse3 = $this->annualdeclarationcommon->annual_self_pubpri($uid,$usergroup,$uniqueid);
+        $getresponse3 = $this->continuousdisclosurecommon->annual_self_pubpri($uid,$usergroup,$uniqueid);
         $this->view->selfpublic = $getresponse3;
-        $getresponse4 = $this->annualdeclarationcommon->annual_self_pubshare($uid,$usergroup,$uniqueid);
+        $getresponse4 = $this->continuousdisclosurecommon->annual_self_pubshare($uid,$usergroup,$uniqueid);
         $this->view->selfpubshare = $getresponse4;
-        $getresponse5 = $this->annualdeclarationcommon->annual_relative($uid,$usergroup,$uniqueid);
+        $getresponse5 = $this->continuousdisclosurecommon->annual_relative($uid,$usergroup,$uniqueid);
 
          $this->view->relativecompany = $getresponse5;
-        $getresponse6 = $this->annualdeclarationcommon->annual_relative_firm($uid,$usergroup,$uniqueid);
+        $getresponse6 = $this->continuousdisclosurecommon->annual_relative_firm($uid,$usergroup,$uniqueid);
         //print_r($getresponse6);exit;
         $this->view->relativefirm = $getresponse6;
 
-        $getresponse7 = $this->annualdeclarationcommon->annual_relative_pubpri($uid,$usergroup,$uniqueid);
+        $getresponse7 = $this->continuousdisclosurecommon->annual_relative_pubpri($uid,$usergroup,$uniqueid);
         $this->view->relativepublic = $getresponse7;      
     }
    

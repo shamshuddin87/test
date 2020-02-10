@@ -1,7 +1,7 @@
 
 website(document).ready(function()
 {var addhtmlnxt='';addhtmlnxt+='<tr class="counter">';addhtmlnxt+='<td width="25%">'+""+'</td>';addhtmlnxt+='<td width="25%">'+""+'</td>';addhtmlnxt+='</tr>';website('.dpgradu').html(addhtmlnxt);website('.mfr').html(addhtmlnxt);});function getallmydata()
-{website.ajax({url:'annualdeclaration/fetchinitialdeclaration',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{website.ajax({url:'continuousdisclosure/fetchinitialdeclaration',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged==true)
@@ -44,7 +44,7 @@ else
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
 {}})}
 getdataonload();function getdataonload()
-{website.ajax({type:"POST",url:'annualdeclaration/getallsavedpdf',dataType:"json",beforeSend:function()
+{website.ajax({type:"POST",url:'continuousdisclosure/getallsavedpdf',dataType:"json",beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
 {var addhtmlnxt='';if(response.logged==true)
@@ -59,14 +59,14 @@ else
 website('.allpdf').html(addhtmlnxt);},complete:function(response)
 {},error:function()
 {}});}
-website('body').on('click','.sendpdf',function(){var reqid=website(this).attr("reqid");website('#reqid').val(reqid);website('#sendmod').modal('show');});website('body').on('click','#sendreq',function(){var reqid=website('#reqid').val();website.ajax({url:'annualdeclaration/sendrequest',data:{reqid:reqid},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+website('body').on('click','.sendpdf',function(){var reqid=website(this).attr("reqid");website('#reqid').val(reqid);website('#sendmod').modal('show');});website('body').on('click','#sendreq',function(){var reqid=website('#reqid').val();website.ajax({url:'continuousdisclosure/sendrequest',data:{reqid:reqid},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged==true)
 {website('#sendmod').modal('hide');new PNotify({title:'Alert',text:"Mail Sent Successfilly..!!!",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});getdataonload();}
 else{new PNotify({title:'Alert',text:"Mail Not Sent..!!! ",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
-{}});});website('body').on('click','.delfile',function(){var delid=website(this).attr("delid");website('#deleteid').val(delid);website('#delmod').modal('show');});website('body').on('click','#deletereq',function(){var delid=website('#deleteid').val();website.ajax({url:'annualdeclaration/deletepdfreq',data:{delid:delid},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{}});});website('body').on('click','.delfile',function(){var delid=website(this).attr("delid");website('#deleteid').val(delid);website('#delmod').modal('show');});website('body').on('click','#deletereq',function(){var delid=website('#deleteid').val();website.ajax({url:'continuousdisclosure/deletepdfreq',data:{delid:delid},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged==true)
