@@ -1,7 +1,15 @@
 <?php
+   $uid = trim($this->session->loginauthspuserfront['id']);
    $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
    $gtselctedcmp = $this->session->cmpconmemberdoc;
    $condeptsess = $this->session->contractdepartment;
+   $userlevel = $this->annualdeclarationcommon->FetchUserLevel($uid);
+   $personaldetail = $this->annualdeclarationcommon->FetchPersonalDetail($uid);
+   $empdetail = $this->annualdeclarationcommon->FetchEmpDetail($uid);
+   $dematdetail = $this->annualdeclarationcommon->FetchDematDetail($uid);
+   $mfrdetail = $this->annualdeclarationcommon->FetchMfrDetail($uid);
+   $reldetail = $this->annualdeclarationcommon->FetchRelativeDetail($uid);
+   $relDematdetail = $this->annualdeclarationcommon->FetchRelDematDetail($uid);
    //echo "company is ";print_r($uniqueid);exit;
    ?>
 <!-- Main content -->
@@ -13,12 +21,233 @@
 <div class="mainelementfom">
    <div>
 
-      <h1 class="h1_heading text-center">Continuous Disclosure Form
+      <h1 class="h1_heading text-center">Annual Declaration Form
       </h1>
    </div>
+    <?php if($userlevel['role_id']<5){ ?> 
+    <div class="containergrid">
+      <div class="formcss">
+          <div id="belowleveluserdet">
+         <h1 class="h1_heading" style="font-weight: normal;">A.Details Of Self</h1>
+         <h2 class="text-center">i.Personal Details</h2>
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+            <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+                <th>Email ID</th>
+                <th>PAN</th>
+                <th>Other Identification no.</th>
+                <th>Nature of Identification no.</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>Educational Qualification</th>
+                <th>Institute from which qualification was acquired</th>
+                <th>Residential Address</th>
+                <th>Mobile no.</th>
+                <th>No. of shares</th>
+                <th>No. of ADRs</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+             <?php if(!empty($userlevel)){ ?> 
+                 <td><?php echo $userlevel['employeecode'];?></td>
+                 <td><?php echo $personaldetail['name'];?></td>
+                 <td><?php echo $userlevel['email'];?></td>
+                 <td><?php echo $personaldetail['pan'];?></td>
+                 <td><?php echo $personaldetail['legal_identifier'];?></td>
+                 <td><?php echo $personaldetail['legal_identification_no'];?></td>
+                 <td><?php echo $personaldetail['dob'];?></td>
+                 <td><?php echo $personaldetail['sex'];?></td>
+                 <td><?php echo $personaldetail['education'];?></td>
+                 <td><?php echo $personaldetail['institute'];?></td>
+                 <td><?php echo $personaldetail['address'];?></td>
+                 <td><?php echo $personaldetail['mobileno'];?></td>
+                 <td><?php echo $personaldetail['sharehldng'];?></td>
+                 <td><?php echo $personaldetail['adrshldng'];?></td>
+               <?php } else{?>
+                <td colspan ="14">No Data Found..</td>
+               <?php  } ?>
+             
+            </tr>
+            </tbody>
+        </table>
+          
+          
+          <h2 class="text-center">ii.Past Employer Details</h2>
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+            <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Name of Employer</th>
+                <th>Designation Served</th>
+                <th>Start Date of Employment</th>
+                <th>End Date of Employment</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                
+             <?php if(!empty($empdetail)){ for($i=0;$i<sizeof($empdetail);$i++){ $j = $i;$j++;?>
+                <tr>
+                 <td><?php echo $j;?></td>
+                 <td><?php echo $empdetail[$i]['emp_name'];?></td>
+                 <td><?php echo $empdetail[$i]['emp_desigtn'];?></td>
+                 <td><?php echo $empdetail[$i]['startdate'];?></td>
+                 <td><?php echo $empdetail[$i]['enddate'];?></td>
+                    </tr>
+               <?php } } else { ?>
+                <tr>
+                <td colspan ="14">No Data Found..</td>
+                </tr>
+               <?php  } ?>
+            </tbody>
+        </table>
+          
+        <h2 class="text-center">iii.Material Financial Relationship</h2>
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
+            <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Name of Related Party</th>
+                <th>PAN / or any other Identification no. available</th>
+                <th>Nature of Relationship</th>
+                <th>Address of Related Party</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+             <?php if(!empty($mfrdetail)){ for($i=0;$i<sizeof($mfrdetail);$i++){ $j = $i;$j++; ?> 
+                <tr>
+                 <td><?php echo $j;?></td>
+                 <td><?php echo $mfrdetail[$i]['related_party'];?></td>
+                 <td><?php echo $mfrdetail[$i]['pan'];?></td>
+                 <td><?php echo $mfrdetail[$i]['relationship'];?></td>
+                 <td><?php echo $mfrdetail[$i]['address'];?></td>
+                </tr>
+               <?php }} else  { ?>
+                <tr>
+                <td colspan ="14">No Data Found..</td>
+                </tr>
+               <?php  } ?>
+            </tbody>
+        </table>
+          
+           <h2 class="text-center">iv.Demat Account Details</h2>
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+            <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Demat Account No.</th>
+                <th>Name of Depository Participant</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+             <?php if(!empty($dematdetail)){ for($i=0;$i<sizeof($dematdetail);$i++){ $j = $i;$j++; ?> 
+                <tr>
+                 <td><?php echo $j;?></td>
+                 <td><?php echo $dematdetail[$i]['accountno'];?></td>
+                 <td><?php echo $dematdetail[$i]['depository_participient'];?></td>
+                </tr>
+               <?php } } else { ?>
+                <tr>
+                <td colspan ="14">No Data Found..</td>
+                </tr>
+               <?php  } ?>
+            </tbody>
+        </table>
+          <div><br></div>
+          
+          <h1 class="h1_heading" style="font-weight: normal;">B.Details of Relatives</h1>
+          
+                  <h2 class="text-center">i.List of Relatives</h2>
+        <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+            <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Name of Relative</th>
+                <th>Relationship with Relative</th>
+                <th>Type of Dependency</th>
+                <th>PAN of Relative</th>
+                <th>Other Identification no.</th>
+                <th>Nature of Identification no.</th>
+                <th>Aadhar of Relative</th>
+                <th>Date of Birth of Relative</th>
+                <th>Residential Address</th>
+                <th>Qualification</th>
+                <th>Institute / University from which Qualification Acquired</th>
+                <th>No. of Shares</th>
+                <th>No. of ADRs</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+             <?php if(!empty($reldetail)){ for($i=0;$i<sizeof($reldetail);$i++){ $j = $i;$j++; $deptype = '';?> 
+                <tr>
+                 <td><?php echo $j;?></td>
+                 <td><?php echo $reldetail[$i]['name'];?></td>
+                 <td><?php echo $reldetail[$i]['relationshipname'];?></td>
+                 <?php if(!empty($reldetail[$i]['dependency_nature'])) { $deptype = implode(',',$reldetail[$i]['dependency_nature']); } ?>
+                 <td><?php echo $deptype;?></td>
+                 <td><?php echo $reldetail[$i]['pan'];?></td>
+                 <td><?php echo $reldetail[$i]['legal_identifier'];?></td>
+                 <td><?php echo $reldetail[$i]['legal_identification_no'];?></td>
+                 <td><?php echo $reldetail[$i]['aadhar'];?></td>
+                 <td><?php echo $reldetail[$i]['dob'];?></td>
+                 <td><?php echo $reldetail[$i]['address'];?></td>
+                 <td><?php echo $reldetail[$i]['education'];?></td>
+                 <td><?php echo $reldetail[$i]['education'];?></td>
+                 <td><?php echo $reldetail[$i]['sharehldng'];?></td>
+                 <td><?php echo $reldetail[$i]['adrshldng'];?></td>
+                </tr>
+               <?php } } else { ?>
+                <tr>
+                <td colspan ="14">No Data Found..</td>
+                </tr>
+               <?php  } ?>
+            </tbody>
+        </table>
+          
+                     <h2 class="text-center">ii.Demat Account Details</h2>
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
+            <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Demat Account No.</th>
+                <th>Name of Depository Participant</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+             <?php if(!empty($relDematdetail)){ for($i=0;$i<sizeof($relDematdetail);$i++){ $j = $i;$j++; ?> 
+                <tr>
+                 <td><?php echo $j;?></td>
+                 <td><?php echo $relDematdetail[$i]['accountno'];?></td>
+                 <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
+                </tr>
+               <?php } } else { ?>
+                <tr>
+                <td colspan ="14">No Data Found..</td>
+                </tr>
+               <?php  } ?>
+            </tbody>
+        </table>
+          </div>
+          <div class="col-md-12 text-right" style="margin-top: 20px;"> 
+                  <button type="submit" class="btn btn-primary " id="submituserdata">Submit</button>
+            </div>
+        </div>
+    </div>
+    
+    <?php } else { ?>
    <div class="containergrid">
       <div class="formcss">
          <div class="typography form_pad">
+             
+             
+              
             <form action="continuousdisclosure/insertannual" id="insertannual" method="post" autocomplete="off">
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
                   <tr>
@@ -27,7 +256,7 @@
                         <div class="">
                            <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
                            <input type="radio" id= "showsec1" name="showsec1" value="Yes"  onclick="showsection(this.id)">Yes
-                           <input type="radio" id= "hidesec1" name="showsec1" value="No" onclick="showsection(this.id)">No
+                           <input type="radio" id= "hidesec1" name="showsec1" value="No" onclick="hidesection(this.id)">No
                         </div>
                      </td>
                   </tr>
@@ -285,11 +514,17 @@
                <!-- table 5 end-->
           
                 <!-- table 6 start-->
+                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+                <tr>
+                <td colspan="6">
                 <div class="">
                <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
                 <input type="radio" id = "showsec3" name = "showsec3" value="Yes" onclick="showsection(this.id);"> Yes
                <input type="radio"  id = "hidesec3" name="showsec3"   value="No"  onclick="hidesection(this.id)">No
                </div>
+                </td>
+                </tr>
+                </table>
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; display: none;" width="100%" id="test2">
                
                <tr>
@@ -333,7 +568,6 @@
                </div>
                </td>
                </tr>
-                   </div>
                </table>
                <!-- table 6 end-->
 
@@ -348,7 +582,7 @@
                <div class="">
                <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
                <input type="radio" id = "showsec2" name = "showsec2" value="Yes" onclick="showsection(this.id);"> Yes
-               <input type="radio"  id = "hidesec2" name="showsec2"   value="No"  onclick="showsection(this.id)">No 
+               <input type="radio"  id = "hidesec2" name="showsec2"   value="No"  onclick="hidesection(this.id)">No 
                </div>
                </td>
                </tr>
@@ -378,6 +612,7 @@
                <?php } ?>
                
                </select>
+               </div>
                </td>
                <td> 
                <div class="input">
@@ -664,11 +899,17 @@
                </table>
                <!-- table 8 end-->
                 <!-- table 9 start-->
-                <div class="">
-               <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
-                <input type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes
-               <input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No
-               </div>
+                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+                <tr>
+                <td colspan="6">
+                    <div class="">
+                    <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
+                    <input type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes
+                   <input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No
+                   </div>
+                </td>
+                </tr>
+                </table>
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; display: none;" width="100%" id="test3">
                
                <tr>
@@ -732,7 +973,7 @@
                   <button type="submit" class="btn btn-primary ">Submit</button>
                </div>
             </form>     
-
+            
 
 
             <div class="panel panel-white">
@@ -751,6 +992,7 @@
       </div>
    </div>
 </div>
+<?php } ?>
 <!-- ########################################## PageContent End ########################################## --> 
 <div id="Mymodaldeclara" class="modal  fade" role="dialog" style="overflow-y: auto;left:-22%; ">
    <div class="modal-dialog">
