@@ -1178,14 +1178,16 @@ function removehtml(clicked)
              return false;
         }
     }
+     
      else if(rmid == 'remvdiv8'){
 
 
 
       var count = website('.appendd8').attr('plancntr');
+         console.log(count);
         if(count != 0)
         {
-              website('.appenddiv8 #row'+count).remove();
+              website('#t8row'+count).remove();
               website('.appendd8').attr('plancntr',parseInt(count)-1);
         }
         else
@@ -1201,7 +1203,7 @@ function removehtml(clicked)
       var count = website('.appendd9').attr('plancntr');
         if(count != 0)
         {
-              website('.appenddiv9 #row'+count).remove();
+              website('#t9row'+count).remove();
               website('.appendd9').attr('plancntr',parseInt(count)-1);
         }
         else
@@ -1217,7 +1219,7 @@ function removehtml(clicked)
       var count = website('.appendd10').attr('plancntr');
         if(count != 0)
         {
-              website('.appenddiv10 #row'+count).remove();
+              website('#t10row'+count).remove();
               website('.appendd10').attr('plancntr',parseInt(count)-1);
         }
         else

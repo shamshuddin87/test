@@ -992,7 +992,7 @@
          for($i=0; $i < count($relativepubshare); $i++){
 
          ?>
-        <table border="1"   id="t8row<?php echo $k ?>"  style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+        <table border="1"   id="t9row<?php echo $k ?>"  style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
        <tr>
            <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
            <td style="width: 22%">  <label class="control-label">Relative Name</label></td>
@@ -1007,11 +1007,11 @@
            <td style="border-right: 1px solid #f7f7f7"></td>
             <td> 
               <div class="input">
-              <input type="text" class="form-control inputbox3" id="d9id" name="d9id[]" value="<?php echo $relativefirm[$i]['id']?>" style= "display: none;">
+              <input type="text" class="form-control inputbox3" id="d9id" name="d9id[]" value="<?php echo $relativepubshare[$i]['id']?>" style= "display: none;">
               <select id="d9ques1" name="d9ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
               <option value="">Select Option</option>
               <?php for($j=0; $j < count($relativesinfo); $j++){
-                 if($relativefirm[$i]['relid'] == $relativesinfo[$j]['id']){?>
+                 if($relativepubshare[$i]['relid'] == $relativesinfo[$j]['id']){?>
               ?>
               <option value="<?php echo $relativesinfo[$j]['id']?>" selected><?php  echo $relativesinfo[$j]['name']?></option>
               <?php } else { ?>
@@ -1073,7 +1073,7 @@
            <div class="adddiv9section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
            <input type="button" id ="adddiv9" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
            <input type="button" id = "remvdiv9" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
-           <input type="hidden" class="appendd9" plancntr="1">
+           <input type="hidden" class="appendd9" plancntr="<?php echo count($relativepubshare); ?>">
            </div>
        
        <!-- table 8 end-->
@@ -1094,7 +1094,7 @@
           for($i=0; $i < count($realtiveholdcntrl); $i++){
           if($realtiveholdcntrl[$i]['cmpname'] != ''){ ?>
        
-       <table border="1" id="test3 t10row<?php echo $k ?>" class="test3" style="border-collapse: collapse; border: 1px solid #ccc;display:block;" width="100%">
+       <table border="1" id="t10row<?php echo $k ?>" class="test3" style="border-collapse: collapse; border: 1px solid #ccc;display:block;" width="100%">
 
        <tr>
         <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
@@ -1161,9 +1161,10 @@
         </div>
        </td>
         </tr>
+       </table>
            <?php }else{?>
               
-              <table border="1" id="test3 t10row<?php echo $k ?>" class="test3" style="border-collapse: collapse; border: 1px solid #ccc;display:block;" width="100%">
+              <table border="1" id="t10row<?php echo $k ?>" class="test3" style="border-collapse: collapse; border: 1px solid #ccc;display:block;" width="100%">
 
        <tr>
         <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
@@ -1238,7 +1239,7 @@
        <div class="adddiv10section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
        <input type="button" id ="adddiv10" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
        <input type="button" id = "remvdiv10" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
-       <input type="hidden" class="appendd10" plancntr="1">
+       <input type="hidden" class="appendd10" plancntr="<?php echo count($realtiveholdcntrl); ?>">
        </div>
        <!-- table 9 end-->
       
