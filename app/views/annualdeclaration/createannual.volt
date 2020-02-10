@@ -27,7 +27,7 @@
                         <div class="">
                            <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
                            <input type="radio" id= "showsec1" name="showsec1" value="Yes"  onclick="showsection(this.id)">Yes
-                           <input type="radio" id= "hidesec1" name="showsec1" value="No" onclick="showsection(this.id)">No
+                           <input type="radio" id= "hidesec1" name="showsec1" value="No" onclick="hidesection(this.id)">No
                         </div>
                      </td>
                   </tr>
@@ -285,11 +285,17 @@
                <!-- table 5 end-->
           
                 <!-- table 6 start-->
+                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+                <tr>
+                <td colspan="6">
                 <div class="">
                <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
                 <input type="radio" id = "showsec3" name = "showsec3" value="Yes" onclick="showsection(this.id);"> Yes
                <input type="radio"  id = "hidesec3" name="showsec3"   value="No"  onclick="hidesection(this.id)">No
                </div>
+                </td>
+                </tr>
+                </table>
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; display: none;" width="100%" id="test2">
                
                <tr>
@@ -333,7 +339,6 @@
                </div>
                </td>
                </tr>
-                   </div>
                </table>
                <!-- table 6 end-->
 
@@ -348,7 +353,7 @@
                <div class="">
                <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
                <input type="radio" id = "showsec2" name = "showsec2" value="Yes" onclick="showsection(this.id);"> Yes
-               <input type="radio"  id = "hidesec2" name="showsec2"   value="No"  onclick="showsection(this.id)">No 
+               <input type="radio"  id = "hidesec2" name="showsec2"   value="No"  onclick="hidesection(this.id)">No 
                </div>
                </td>
                </tr>
@@ -378,6 +383,7 @@
                <?php } ?>
                
                </select>
+               </div>
                </td>
                <td> 
                <div class="input">
@@ -664,11 +670,17 @@
                </table>
                <!-- table 8 end-->
                 <!-- table 9 start-->
-                <div class="">
-               <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
-                <input type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes
-               <input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No
-               </div>
+                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+                <tr>
+                <td colspan="6">
+                    <div class="">
+                    <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
+                    <input type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes
+                   <input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No
+                   </div>
+                </td>
+                </tr>
+                </table>
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; display: none;" width="100%" id="test3">
                
                <tr>
