@@ -1,13 +1,11 @@
 website(document).ready(function()
 {
    loadnoofsec();
-
-  
-    
 });
 
 function addhtml(clicked)
 {
+
     website.ajax({
       url:'annualdeclaration/fetchrelative',
       //data:formdata,
@@ -281,7 +279,7 @@ function addhtml(clicked)
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;width:2.5%;"></td>';
+          addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;width:2.5%;width:2%"></td>';
 
         addhtmlnxt += '<td><div class="input"> <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >';
            addhtmlnxt +='<option value="">Select Option </option>';   
@@ -319,7 +317,7 @@ function addhtml(clicked)
         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
        addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;width:2.5%;"></td>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;width:2.5%; width:2%;"></td>';
           addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
           addhtmlnxt += '</td>';
             addhtmlnxt += '<td style="width: 20%"><label class="control-label">Company Name</label>';
@@ -375,7 +373,7 @@ function addhtml(clicked)
             addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
             addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;width:2.5%; "></td>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;width:2.5%; width:2%;"></td>';
             addhtmlnxt += '<td style="width: 22%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
 
@@ -406,7 +404,7 @@ function addhtml(clicked)
 
       }
           
-       else if(id == 'adddiv9')
+         else if(id == 'adddiv9')
        {
        var getlastid = website('.appendd9').attr('plancntr');
 
@@ -469,7 +467,7 @@ function addhtml(clicked)
             addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
             addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;width:2.0%; "></td>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;width:2.5%; width:2%;"></td>';
            addhtmlnxt += '<td style="width: 20%">  <label class="control-label">Relative Name</label></td>';
             addhtmlnxt += '<td style="width: 22%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
@@ -677,99 +675,51 @@ var x = document.getElementById("test");
 var y = document.getElementById("test1");
 var selfhldng = document.getElementById("test2");
 var reltvhldng = document.getElementById("test3");
+    
+if(id == 'showsec1'){
 
-if(id == 'showsec1')
-{
-    if (x.style.display === "none") 
-    {
-        x.style.display = "block";
-    } 
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+} else if(id == 'showsec2'){
+
+
+  if (y.style.display === "none") {
+    y.style.display = "block";
+  } else {
+    y.style.display = "none";
+  }
+
 }
-    
-else if(id == 'showsec2')
-{
-    if (y.style.display === "none") 
-    {
-        y.style.display = "block";
-    } 
+else if(id == 'showsec3'){
+if (selfhldng.style.display === "none") {
+    selfhldng.style.display = "block";
+  } 
+
 }
-    
-else if(id == 'showsec3')
-{
-    if (selfhldng.style.display === "none") 
-    {
-        selfhldng.style.display = "block";
-    } 
+    else if(id == 'showsec4'){
+if (reltvhldng.style.display === "none") {
+    reltvhldng.style.display = "block";
+  } 
+
 }
-    
-else if(id == 'showsec4')
-{
-    if (reltvhldng.style.display === "none") 
-    {
-        reltvhldng.style.display = "block";
-    } 
-}
-    
-//if(id == 'showsec1'){
-//
-//  if (x.style.display === "none") {
-//    x.style.display = "block";
-//  } else {
-//    x.style.display = "none";
-//  }
-//} else if(id == 'showsec2'){
-//
-//
-//  if (y.style.display === "none") {
-//    y.style.display = "block";
-//  } else {
-//    y.style.display = "none";
-//  }
-//
-//}
-//else if(id == 'showsec3'){
-//if (selfhldng.style.display === "none") {
-//    selfhldng.style.display = "block";
-//  } 
-//
-//}
-//    else if(id == 'showsec4'){
-//if (reltvhldng.style.display === "none") {
-//    reltvhldng.style.display = "block";
-//  } 
-//
-//}
 
 }
 
 function hidesection(id)
 {
-    var x = document.getElementById("test");
-    var y = document.getElementById("test1");
     var selfhldng = document.getElementById("test2");
     var reltvhldng = document.getElementById("test3");
-    if(id == 'hidesec1')
-    {
-        if (x.style.display === "block") 
-        {
-            x.style.display = "none";
-        } 
-    }
-    else if(id == 'hidesec2')
-    {
-        if (y.style.display === "block") 
-        {
-            y.style.display = "none";
-        } 
-    }
-    else if(id == 'hidesec3')
+    if(id == 'hidesec3')
     {
         if (selfhldng.style.display === "block") 
         {
             selfhldng.style.display = "none";
         } 
     }
-    else if(id == 'hidesec4')
+    if(id == 'hidesec4')
     {
         if (reltvhldng.style.display === "block") 
         {

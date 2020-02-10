@@ -592,14 +592,14 @@ var setContentHeight = function () {
 	$RIGHT_COL.css('min-height', contentHeight);
 };
 
-
+/*
 $SIDEBAR_MENU.find('a').on('click', function(ev) {
-      console.log('clicked - sidebar_menu');
-        var $li = $(this).parent();
+      //console.log('clicked - sidebar_menu');
+        var $li = website(this).parent();
 
         if ($li.is('.active')) {
             $li.removeClass('active active-sm');
-            $('ul:first', $li).slideUp(function() {
+            website('ul:first', $li).slideUp(function() {
                 setContentHeight();
             });
         } else {
@@ -617,12 +617,12 @@ $SIDEBAR_MENU.find('a').on('click', function(ev) {
             }
             $li.addClass('active');
 
-            $('ul:first', $li).slideDown(function() {
+            website('ul:first', $li).slideDown(function() {
                 setContentHeight();
             });
         }
     });
-
+*/
 
 
 // ------------- SideBar End -------------

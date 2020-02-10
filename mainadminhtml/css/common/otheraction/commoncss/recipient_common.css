@@ -52,7 +52,7 @@ div#live-search-header-wrapper {  height: 100px;  overflow: scroll;}
 i.fa.fa-edit.faicon.floatleft.editrestrictedemp {margin: 0 7px; font-size: 16px;cursor: pointer;}
 i.fa.fa-trash-o.faicon.floatleft.deleterestrictedemp {margin: 0 7px;font-size: 16px;cursor: pointer;}
 button.btn.btn-default.btn-default-one {   background: #1A82C3;  background: #522c8f; color: #fff !important; }
-input#upload, input#uploadagrm {   border: 1px solid #ccc;  padding: 6px; width: 100%; }
+input#upload, input#uploadagrm {   border: 1px solid #ccc;  padding: 8px; width: 100%; }
 
 #searchuser ul { padding-left: 0px; }
 #searchuser .topul {

@@ -194,9 +194,9 @@ $uid = $this->session->loginauthspuserfront['id'];
         <div class="step_1">
                         <i class="sec">1</i> <p>Change UPSI Details</p>
                 <section class="col col-md-12 col-xs-12">
-                    <div class="input">
-                        <input type="checkbox" id="upalldps" name="upalldps"><label class="control-label"><!-- If UPSI relates to all DPs or specific DPs.* --></label>
-                    </div>
+                  <!--   <div class="input">
+                        <input type="checkbox" id="upalldps" name="upalldps"><label class="control-label">If UPSI relates to all DPs or specific DPs.*</label>
+                    </div> -->
                 </section>
                       
                 <section class="col col-md-6 col-xs-6">
