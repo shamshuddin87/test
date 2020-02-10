@@ -162,8 +162,8 @@
           
           <h1 class="h1_heading" style="font-weight: normal;">B.Details of Relatives</h1>
           
-                  <h2 class="text-center">i.Demat Account Details</h2>
-        <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+                  <h2 class="text-center">i.List of Relatives</h2>
+         <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
@@ -184,12 +184,13 @@
             </thead>
             <tbody>
             
-             <?php if(!empty($reldetail)){ for($i=0;$i<sizeof($reldetail);$i++){ $j = $i;$j++; ?> 
+             <?php if(!empty($reldetail)){ for($i=0;$i<sizeof($reldetail);$i++){ $j = $i;$j++; $deptype = '';?> 
                 <tr>
                  <td><?php echo $j;?></td>
                  <td><?php echo $reldetail[$i]['name'];?></td>
-                 <td><?php echo $reldetail[$i]['relationship'];?></td>
-                 <td><?php echo $reldetail[$i]['dependency_nature'];?></td>
+                 <td><?php echo $reldetail[$i]['relationshipname'];?></td>
+                 <?php if(!empty($reldetail[$i]['dependency_nature'])) { $deptype = implode(',',$reldetail[$i]['dependency_nature']); } ?>
+                 <td><?php echo $deptype;?></td>
                  <td><?php echo $reldetail[$i]['pan'];?></td>
                  <td><?php echo $reldetail[$i]['legal_identifier'];?></td>
                  <td><?php echo $reldetail[$i]['legal_identification_no'];?></td>

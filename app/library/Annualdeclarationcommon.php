@@ -1946,8 +1946,9 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
     {
         $connection = $this->dbtrd;
         $getlist = array();
-        $query="SELECT * FROM `relative_info`
-        WHERE `user_id`='".$uid."'";
+        $query="SELECT rinfo.*,rel.`relationshipname` FROM `relative_info` rinfo
+        LEFT JOIN `relationship` rel ON rinfo.`relationship` = rel.`id`
+        WHERE rinfo.`user_id`='".$uid."'";
         //print_r($query);exit; 
         try{
         $exeget = $connection->query($query);
@@ -1956,6 +1957,21 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
         {
             while($row = $exeget->fetch())
             { 
+                if(!empty($row['dependency_nature']))
+                {
+                    $querysql = "SELECT * FROM `nature_of_dependency` WHERE `id` IN (".$row['dependency_nature'].")";
+                    $exegetsql = $connection->query($querysql);
+                    $getnumsql = trim($exegetsql->numRows());
+                    if($getnumsql>0)
+                    {
+                       while($rowz = $exegetsql->fetch())
+                       { 
+                           $depnature[] = $rowz['dependency_nature'];
+                       }
+                        $row['dependency_nature'] = $depnature;
+                    }
+                }
+                
                 $getlist[] = $row; 
             }
         }
@@ -1966,7 +1982,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
 
         catch (Exception $e)
         {   $getlist = array(); }
-
+        //print_r($getlist);exit;
         return $getlist;
     }
     
