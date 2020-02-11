@@ -267,12 +267,13 @@ class AnnualdeclarationController extends ControllerBase
                // $uniqueid = '5e0ec764808fc';
 
                 $annualyear = $this->request->getPost('annualyear');
+                $sendtype = $this->request->getPost('sendtype');
                 // print_r($pdf_content);exit;
                 $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','annualdeclaration','annualdeclarationpdf');
                 // print_r($pdfpath);exit;
                 if(!empty($pdfpath))
                 {
-                      $savedata = $this->annualdeclarationcommon->saveinitialdeclare($uid,$user_group_id,$pdfpath,$annualyear,$uniqueid);
+                      $savedata = $this->annualdeclarationcommon->saveinitialdeclare($uid,$user_group_id,$pdfpath,$annualyear,$uniqueid,$sendtype);
                       $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdfpath"=>$pdfpath);
                       $this->response->setJsonContent($data);
                 }

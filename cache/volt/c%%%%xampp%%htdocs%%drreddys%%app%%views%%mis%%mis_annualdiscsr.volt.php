@@ -14,7 +14,7 @@ $current_year =  date("Y");
 
 <!-- My messages -->
 <div class="mainelementfom "> 
-    <h1 class="h1_heading text-center" style="text-align: center;">Continuous Disclosures</h1>
+    <h1 class="h1_heading text-center" style="text-align: center;">Annual Disclosures</h1>
     <div class="formcss">                           
                 <div class="typography form_pad">
                     
@@ -22,7 +22,7 @@ $current_year =  date("Y");
                        
                         <div class="clearelement"></div>        
                       
-                      <!--   <section class="col col-md-12 col-xs-12">
+                        <section class="col col-md-12 col-xs-12">
                             <label class="control-label">Select Year</label>
                             <select class="annualyear" id="annualyear">
                                 <?php for ($i = 0 ; $i < 6 ; $i++) { ?>
@@ -32,7 +32,7 @@ $current_year =  date("Y");
                                 }
                             ?>
                                 </select>
-                        </section> -->
+                        </section>
 
 
                         <div class="clearelement"></div>                   
@@ -40,41 +40,20 @@ $current_year =  date("Y");
                 </div>                       
                 </div>
 <div class="table-responsive design_info itntfr" id="annualdisc" itntfr="annualdisc" >
-
-
-        <div class="new_table row"> 
-        <section class="col col-xs-3"></section>    
-            <section class="col col-xs-2">
-                <label class="past_label"><strong>From Date</strong></label>
-                <div class="past_input">
-                    <input type="text" name="from_date" id="from_date" class="form-control mostwanted bootdatepick" maxlength="100" readonly placeholder="From Date">
-                </div>                        
-            </section>
-            <section class="col col-xs-2">
-                <label class="past_label"><strong>To Date</strong></label>
-                <div class="past_input">
-                    <input type="text" name="to_date" id="to_date" class="form-control mostwanted bootdatepick" maxlength="100" readonly placeholder="To Date">
-                </div>
-            </section>
-            <div class="past_search col col-xs-2">
-                 <button type="button" style="margin: 20px 20px 0 20px;" class="btncss btn searchbtn btn-primary">Search Now</button>
-            </div> 
-        </div>
         
-        <div class="cssnumrws showentry">
+        <div class="cssnumrws">
            <span>Show</span>
             <select id="noofrows" name="noofrows" class="noofrows">
                <option value="10">10</option><option value="25">25</option>
                 <option value="50">50</option><option value="100">100</option>
              </select> 
         <span>Entries</span>
-
+        <div style="float:right;">
+            <button type="button" class="btn btn-primary genfile excel_bg">Export Excel</button>
+            <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
         </div>
-
-
-        <div class="otherfilter">
-            
-        <div class="statusfilter">               
+         <div class="top_margin"><input type="text" placeholder="Search By Name" id="srch" status="0"></div>
+        <div class="cssfilter">               
             <div class="control-label form-group">
                 <label>Status Filter</label>
                 <select id="filterstatus" name="filterstatus" class="form-control">
@@ -83,15 +62,6 @@ $current_year =  date("Y");
                     <option value="sent_for_approval">Sent for approval</option>
                 </select>
             </div>
-        </div> 
-
-         <div class="searhbyname">
-            <input type="text" placeholder="Search By Name" class="form-control " id="srch" status="0">
-        </div>
-
-        <div class="excelanddownloadbtn">
-            <button type="button" class="btn btn-primary genfile excel_bg">Export Excel</button>
-            <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
         </div>
         </div>
         <table class="table table-inverse" id="datableabhi7">
@@ -100,8 +70,8 @@ $current_year =  date("Y");
                     <th>Sr No.</th> 
                     <th>Name</th> 
                     <!-- <th>Employee ID</th>  -->
-                    <th>Date of Submission</th>
-                    <!-- <th>Due for receipt</th> -->
+                    <th>Year</th>
+                    <th>Due for receipt</th>
                     <th>File</th>
                 </tr>
              </thead>

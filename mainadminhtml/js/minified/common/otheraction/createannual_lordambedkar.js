@@ -156,11 +156,13 @@ website('#insertannual').ajaxForm({dataType:"json",beforeSend:function()
 {new PNotify({title:'Record Added Successfully',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});annualmodal(response['uniqueid']);}else{new PNotify({title:'Record Not Added',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
 {}});website('body').on('click','.formpdf',function(e)
-{var htmldata=website('#Mymodaldeclara .modalform').html();var uniqueid=website('#uniqueid').val();var annualyear=website('#annualyear').val();var formData={htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid};website.ajax({type:"POST",url:'annualdeclaration/generateformbPDF',data:formData,dataType:"json",beforeSend:function()
+{website('#sendtoco').modal('show');});website('body').on('click','.sendtype',function(e)
+{var sendtype=website(this).val();var htmldata=website('#Mymodaldeclara .modalform').html();var uniqueid=website('#uniqueid').val();var annualyear=website('#annualyear').val();var formData={htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid,sendtype:sendtype};website.ajax({type:"POST",url:'annualdeclaration/generateformbPDF',data:formData,dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
 {if(response.logged===true)
-{website('#Mymodaldeclara .formpdf').css('display','none');website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');}
+{website('#sendtoco').modal('hide');website('#Mymodaldeclara .formpdf').css('display','none');website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');if(sendtype=='no')
+{window.location.href="annualdeclaration";}}
 else
 {}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
