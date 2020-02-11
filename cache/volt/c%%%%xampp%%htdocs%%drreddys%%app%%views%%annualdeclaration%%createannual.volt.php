@@ -1051,3 +1051,23 @@
       </div>
    </div>
 </div>
+
+<div id="sendtoco" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="modal-body show_shadow">
+            <div class="text-center modal_heading">
+               <div class="clearelement"></div>
+               Do you want to send the form to Compliance Officer.
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-primary sendtype" name="sendtype" id="" value="yes" tempid="">Yes</button>
+            <button type="button" class="btn btn-primary sendtype" name="sendtype" id="" value="no" tempid="">No</button>
+         </div>
+      </div>
+   </div>
+</div>
