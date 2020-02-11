@@ -240,7 +240,12 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                             </div>
                         </section>
 
-                        
+                        <section class="col col-md-4">
+                            <label class="control-label">Role ID*</label>
+                            <div class="input">
+                                <input type="text" id="roleid" name="roleid" class="form_fields form-control col-md-7 col-xs-12" onkeypress="return isAlphaNumeric_space(event,this);" required="required">
+                            </div>
+                        </section>
                         
                         <!--<section class="col col-md-4 ">
                             <label class="control-label">Reminder Days *</label>
@@ -410,6 +415,11 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                         </div>
                         <div id="myeditlist"></div>
                         <div id="appapnd" style="text-align: left;"></div>
+                    </div>
+
+                    <div class="control-label form-group col-md-6">
+                        <span class="floatleft"><label>Role Id*</label></span>
+                        <input type="text" class="form-control" id="roleid" name="roleid" onkeypress="return isAlphaNumeric_space(event,this);" required="required">
                     </div>
                     
                     <!--<div class="control-label form-group col-lg-6">
