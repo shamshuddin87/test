@@ -63,6 +63,11 @@ class MisController extends ControllerBase
     {
 
     }
+
+    public function mis_contdisclsrAction()
+    {
+
+    }
     
     public function upsitypeclassifyAction()
     {
@@ -1530,6 +1535,215 @@ class MisController extends ControllerBase
                 {
                     $data = array("logged" => false,'message' => "File Not Generated..!!");
                     $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+
+
+    // ************ Get MIS Continuous Disclosure START ************
+    public function pendingcontdisclsrAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $filterby = '';
+                //$annualyr = $this->request->getPost('annualyr');
+                $noofrows = $this->request->getPost('noofrows');
+                $pagenum = $this->request->getPost('pagenum');
+                $searchby = $this->request->getPost('search');
+                $filterstatus = $this->request->getPost('filterstatus');
+                $from_date=$this->request->getPost('from_date');
+                $to_date=$this->request->getPost('to_date');
+
+                if($from_date != '' && $to_date == '')
+                {
+                    $data = array("logged" => false,'message' => "Kindly select to date.");
+                    $this->response->setJsonContent($data);
+                }
+                else if($from_date == '' && $to_date != '')
+                {
+                    $data = array("logged" => false,'message' => "Kindly select from date.");
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    if($from_date != '' && $to_date != '')
+                    {
+                        $qrydtfltr = " AND (STR_TO_DATE(anualdecl.`date_added`,'%Y-%m-%d') Between STR_TO_DATE('".$from_date."','%d-%m-%Y') AND STR_TO_DATE('".$to_date."','%d-%m-%Y')) ";
+                    } 
+                    else 
+                    {
+                        $qrydtfltr = '';
+                    }
+
+                    if($filterstatus == '')
+                    {
+
+                        $mainquery = $qrydtfltr.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
+                        $getres = $this->miscommon->fetchallcontdisclsr($getuserid,$user_group_id,$mainquery);
+                        //print_r($getres);exit;
+                        $rsstrt = ($pagenum-1) * $noofrows;
+                        $rslmt = $mainquery.' LIMIT '.$rsstrt.','.$noofrows;
+                        $rscnt=count($getres);
+                        $rspgs = ceil($rscnt/$noofrows);
+                        $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                        $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                        //print_r($getres);exit;
+
+                        $getresult = $this->miscommon->fetchallcontdisclsr($getuserid,$user_group_id,$rslmt);
+                    }
+                    else if($filterstatus == 'pending')
+                    {
+                        $mainquery = $qrydtfltr.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) ';
+                        $getres = $this->miscommon->fetchpendigcontdisclsr($getuserid,$user_group_id,$mainquery);
+                        //print_r($getres);exit;
+                        $rsstrt = ($pagenum-1) * $noofrows;
+                        $rslmt = $mainquery.' LIMIT '.$rsstrt.','.$noofrows;
+                        $rscnt = count($getres);
+                        $rspgs = ceil($rscnt/$noofrows);
+                        $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                        $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                        //print_r($getres);exit;
+
+                        $getresult = $this->miscommon->fetchpendigcontdisclsr($getuserid,$user_group_id,$rslmt);
+                    }
+                    else if($filterstatus == 'sent_for_approval') 
+                    {
+                        $filterby = $qrydtfltr.' AND anualdecl.`send_status`= 1';
+                        $mainquery = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ';
+                        $getres = $this->miscommon->fetchmiscontdisclsr($getuserid,$user_group_id,$mainquery);
+                        /* start pagination */
+                        //print_r($getres);exit;
+                        $rsstrt = ($pagenum-1) * $noofrows;
+                        $rslmt = $mainquery.' LIMIT '.$rsstrt.','.$noofrows;
+                        $rscnt=count($getres);
+                        $rspgs = ceil($rscnt/$noofrows);
+                        $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                        $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                        //print_r($getres);exit;
+
+                        $getresult = $this->miscommon->fetchmiscontdisclsr($getuserid,$user_group_id,$rslmt);
+                        //print_r($getresult);exit;
+                    }
+                    //print_r($getresult);exit;
+                    if($getresult)
+                    {
+                        $data = array("logged" => true,'message' => 'Record Added','data' => $getresult,'user_group_id'=>$user_group_id,"pgnhtml"=>$pgnhtml);
+                        $this->response->setJsonContent($data);
+                    }
+                    else
+                    {
+                        $data = array("logged" => false,'message' => "No data found..!!","pgnhtml"=>$pgnhtml);
+                        $this->response->setJsonContent($data);
+                    }
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+
+
+    public function exportContDisclsrAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $filterby = '';
+                //$annualyr = $this->request->getPost('annualyr');
+                $noofrows = $this->request->getPost('noofrows');
+                $pagenum = $this->request->getPost('pagenum');
+                $searchby = $this->request->getPost('search');
+                $filterstatus = $this->request->getPost('filterstatus');
+                $from_date=$this->request->getPost('from_date');
+                $to_date=$this->request->getPost('to_date');
+
+                if($from_date != '' && $to_date == '')
+                {
+                    $data = array("logged" => false,'message' => "Kindly select to date.");
+                    $this->response->setJsonContent($data);
+                }
+                else if($from_date == '' && $to_date != '')
+                {
+                    $data = array("logged" => false,'message' => "Kindly select from date.");
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    if($from_date != '' && $to_date != '')
+                    {
+                        $qrydtfltr = " AND (STR_TO_DATE(anualdecl.`date_added`,'%Y-%m-%d') Between STR_TO_DATE('".$from_date."','%d-%m-%Y') AND STR_TO_DATE('".$to_date."','%d-%m-%Y')) ";
+                    } 
+                    else 
+                    {
+                        $qrydtfltr = '';
+                    }
+                
+                    if($filterstatus == '')
+                    {
+                        $mainquery = $qrydtfltr.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
+                        $getres = $this->miscommon->fetchallcontdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
+                    }
+                    else if($filterstatus == 'pending')
+                    {
+                        $mainquery = $qrydtfltr.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) ';
+                        $getres = $this->miscommon->fetchpendigcontdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
+                    }
+                    else if($filterstatus == 'sent_for_approval') 
+                    {
+                        $filterby = $qrydtfltr.' AND (anualdecl.`annualyear`='.$annualyr.') AND anualdecl.`send_status`= 1';
+                        $mainquery = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ';
+                        $getres = $this->miscommon->fetchmiscontdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
+                    }
+                
+                    //print_r($getres);exit;
+                    $genfile = $this->phpimportexpogen->exportContDisclsr($getuserid,$user_group_id,$getres,$annualyr);
+                    
+                    if(file_exists($genfile))
+                    {
+                        $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
+                        $this->response->setJsonContent($data);
+                    }
+                    else
+                    {
+                        $data = array("logged" => false,'message' => "File Not Generated..!!");
+                        $this->response->setJsonContent($data);
+                    }
                 }
                 $this->response->send();
             }

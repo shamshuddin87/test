@@ -1149,7 +1149,7 @@ class Miscommon extends Component
         return $getlist;
     }
 
-     public function fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
+    public function fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
     {
         $connection = $this->dbtrd;
         $getlist = array();
@@ -1252,7 +1252,7 @@ class Miscommon extends Component
     }
 
 
-      public function fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
+    public function fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
     {
         $connection = $this->dbtrd;
         $getlist = array();
@@ -1676,6 +1676,168 @@ class Miscommon extends Component
       </html>";
        // print_r($html); exit;
        return $html;
+    }
+
+
+    public function fetchallcontdisclsr($getuserid,$user_group_id,$query)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        try
+         {
+            $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+            $queryget = "SELECT  anualdecl.`date_added`,anualdecl.`annualyear`,memb.`fullname`,anualdecl.`sent_date`,anualdecl.`pdfpath` 
+            FROM `continuous_initial_declaration` anualdecl 
+            LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = anualdecl.`user_id`
+            WHERE memb.`wr_id` IN (".$grpusrs['ulstring'].")".$query;
+            //echo "this";echo $queryget;  exit;
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+            //echo "this";echo $getnum;  exit;
+            if($getnum>0)
+            {
+                //echo 'IN IF'; //exit;
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;
+                }
+                //echo '<pre>';print_r($getlist);exit;
+                
+            }else{
+                //echo 'IN else'; //exit;
+                $getlist = array();
+            }
+            //exit;
+            //echo '<pre>';print_r($getlist);exit;
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
+
+
+    public function fetchpendigcontdisclsr($getuserid,$user_group_id,$query)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $userid = array();
+        try
+         {
+            $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+            // $queryget = "SELECT memb.*
+            //         FROM `it_memberlist` memb
+            //         LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
+            //         WHERE memb.wr_id IN (".$grpusrs['ulstring'].") AND (anualdecl.annualyear='".$annualyr."') AND anualdecl.send_status= 1";
+            //         //echo $queryget;exit;
+            // $exeget = $connection->query($queryget);
+            // $getnum = trim($exeget->numRows());
+
+            // if($getnum>0)
+            // {
+            //     while($row = $exeget->fetch())
+            //     {
+            //         $userid[] = $row['wr_id'];
+            //     }
+            // }
+            // $grpusers = explode(',',$grpusrs['ulstring']);
+            // if(!empty($userid))
+            // {
+            //     $pendusrs = array_diff($grpusers, $userid);
+            //     $pendingusers = implode(',',$pendusrs);
+            // }
+            // else
+            // {
+            //     $pendingusers = $grpusrs['ulstring'];
+            // }
+            
+            $queryanual = "SELECT anualdecl.`date_added`,anualdecl.`annualyear`,memb.`fullname`,anualdecl.`sent_date`,anualdecl.`pdfpath`,anualdecl.`send_status`
+            FROM `continuous_initial_declaration` anualdecl 
+            LEFT JOIN `it_memberlist` memb ON memb.`wr_id`=anualdecl.`user_id`
+            WHERE memb.`wr_id` IN(".$grpusrs['ulstring'].") AND anualdecl.`send_status`= 0".$query;
+            ;
+            //echo $queryanual;exit;
+            $exeanual = $connection->query($queryanual);
+            $getnumanual = trim($exeanual->numRows());
+            if($getnumanual>0)
+            {
+                while($rowanual = $exeanual->fetch())
+                {
+                    $getlist[]=$rowanual;
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }
+            //print_r($getlist);exit;
+            
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
+
+
+    public function fetchmiscontdisclsr($getuserid,$user_group_id,$query)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        try
+         {
+            $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+            // $queryget = "SELECT * FROM `it_memberlist` WHERE `status`='1' AND wr_id IN (".$grpusrs['ulstring'].")";
+            // $exeget = $connection->query($queryget);
+            // $getnum = trim($exeget->numRows());
+
+            // if($getnum>0)
+            // {
+            //     while($row = $exeget->fetch())
+            //     {
+                    $queryanual = "SELECT anualdecl.`date_added`,anualdecl.`annualyear`,memb.`fullname`,anualdecl.`sent_date`,anualdecl.`pdfpath`,anualdecl.`send_status`
+                    FROM `continuous_initial_declaration` anualdecl 
+                    LEFT JOIN `it_memberlist` memb ON memb.`wr_id`=anualdecl.`user_id`
+                    WHERE memb.`wr_id` IN (".$grpusrs['ulstring'].")".$query;
+                    ;
+                    //echo $queryanual;exit;
+                    $exeanual = $connection->query($queryanual);
+                    $getnumanual = trim($exeanual->numRows());
+                    if($getnumanual>0)
+                    {
+                        while($rowanual = $exeanual->fetch())
+                        {
+                            // if($rowanual['annualyear']==$annualyr)
+                            // {
+                                $getlist[]=$rowanual;
+                            // }
+                            // else
+                            // {
+                            //     $rowanual['annualyear']='';
+                            //     $rowanual['pdfpath']='';
+                            //     $rowanual['sent_date']='';
+                            //     $getlist[]=$rowanual;
+                            // }
+                        }
+                    }
+                // }
+                //echo '<pre>';print_r($getlist);exit;
+                
+            // }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
     }
     
     

@@ -1013,7 +1013,7 @@ class AnnualdeclarationController extends ControllerBase
                 //print_r($company);print_r($decision);
 
 
-                 if($d1ques1 != '' || $d2ques1 != '' || $d3ques1 != '' || $d4ques1 != '' || $d5ques1 != '' || $d6ques1 != '' || $d7ques1 != '')
+                 if($d1ques1 != '' || $d2ques1 != '' || $d3ques1 != '' || $d4ques1 != '' || $d5ques1 != '' || $d6ques1 != '' || $d7ques1 != '' || $d8ques1 != '' || $d9ques1 != '' || $d10ques1 != '')
                     {
                         
                     $getres1 = $this->annualdeclarationcommon->upannualselfcompany($getuserid,$d1ques1,$d1ques2,$d1ques3,$uniqueid,$d1id);

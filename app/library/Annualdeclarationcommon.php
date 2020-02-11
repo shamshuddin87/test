@@ -1622,7 +1622,7 @@ public function upannualselfholdingintrst($uid,$user_group_id,$company,$decision
       for($i = 0; $i < $count; $i++)
       {
 
-        $querydelete = "DELETE FROM `annual_self_holdinginterest` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
+        $querydelete = "DELETE FROM `continuous_self_holdinginterest` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
           $exedel = $connection->query($querydelete);
         // print_r($querydelete);exit;
          
@@ -1632,13 +1632,13 @@ public function upannualselfholdingintrst($uid,$user_group_id,$company,$decision
         if(array_key_exists($i,$id))
         {
 
-         $queryupdate =  "UPDATE `annual_self_holdinginterest` SET `cmpname` = '".$company[$i]."',`isdecisionmaking` = '".$decision[$i]."',`isfincltrans` = '".$transaction[$i]."',`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
+         $queryupdate =  "UPDATE `continuous_self_holdinginterest` SET `cmpname` = '".$company[$i]."',`isdecisionmaking` = '".$decision[$i]."',`isfincltrans` = '".$transaction[$i]."',`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
           $exegetqry = $connection->query($queryupdate);
         }
         else
         {
          
-          $queryinsert = "INSERT INTO `annual_self_holdinginterest`
+          $queryinsert = "INSERT INTO `continuous_self_holdinginterest`
                 (`user_id`,`user_group_id`,`cmpname`,`isdecisionmaking`,`isfincltrans`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
                  VALUES ('".$uid."','".$user_group_id."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
               $exegetqry = $connection->query($queryinsert);
@@ -1687,7 +1687,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
       for($i = 0; $i < $count; $i++)
       {
 
-        $querydelete = "DELETE FROM `annual_relative_publicshare` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
+        $querydelete = "DELETE FROM `continuous_relative_publicshare` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
           $exedel = $connection->query($querydelete);
         // print_r($querydelete);exit;
          
@@ -1697,13 +1697,13 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
         if(array_key_exists($i,$id))
         {
 
-         $queryupdate =  "UPDATE `annual_relative_publicshare` SET `company` = '".$company[$i]."',`relative` = '".$relative[$i]."',`interest` = '".$interest[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
+         $queryupdate =  "UPDATE `continuous_relative_publicshare` SET `company` = '".$company[$i]."',`relative` = '".$relative[$i]."',`interest` = '".$interest[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
           $exegetqry = $connection->query($queryupdate);
         }
         else
         {
          
-          $queryinsert = "INSERT INTO `annual_relative_publicshare`
+          $queryinsert = "INSERT INTO `continuous_relative_publicshare`
                 (`user_id`,`user_group_id`,`relative`,`company`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
                  VALUES ('".$uid."','".$user_group_id."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
               $exegetqry = $connection->query($queryinsert);
@@ -1752,7 +1752,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
       for($i = 0; $i < $count; $i++)
       {
 
-        $querydelete = "DELETE FROM `annual_relative_holdinginterest` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
+        $querydelete = "DELETE FROM `continuous_self_holdinginterest` WHERE uniqueid = '".$unique."'  AND id NOT IN(".$delid.") ";
           $exedel = $connection->query($querydelete);
         // print_r($querydelete);exit;
          
@@ -1762,7 +1762,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
         if(array_key_exists($i,$id))
         {
 
-         $queryupdate =  "UPDATE `annual_relative_holdinginterest` SET `cmpname` = '".$company[$i]."',`relative` = '".$relative[$i]."',`isdecisionmaking` = '".$decision[$i]."',`isfincltrans` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
+         $queryupdate =  "UPDATE `continuous_self_holdinginterest` SET `cmpname` = '".$company[$i]."',`relative` = '".$relative[$i]."',`isdecisionmaking` = '".$decision[$i]."',`isfincltrans` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
             //echo $queryupdate;
           $exegetqry = $connection->query($queryupdate);
             
@@ -1770,7 +1770,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
         else
         {
          
-          $queryinsert = "INSERT INTO `annual_relative_holdinginterest`
+          $queryinsert = "INSERT INTO `continuous_self_holdinginterest`
                 (`user_id`,`user_group_id`,`relative`,`cmpname`,`isdecisionmaking`,`isfincltrans`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
                  VALUES ('".$uid."','".$user_group_id."','".$relative[$i]."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
               $exegetqry = $connection->query($queryinsert);
@@ -1802,4 +1802,215 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
     
     /******************  Annual Update End ******************/
 
+    
+    public function FetchUserLevel($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = '';
+        $query="SELECT * FROM `it_memberlist` WHERE `wr_id`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist = $row; 
+            }
+        }
+        else
+        {  $getlist = ''; }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = ''; }
+
+        return $getlist;
+    }
+    
+    public function FetchPersonalDetail($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = '';
+        $query="SELECT * FROM `personal_info` 
+        WHERE `userid`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist = $row; 
+            }
+        }
+        else
+        {  $getlist = ''; }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = ''; }
+
+        return $getlist;
+    }
+    
+    public function FetchEmpDetail($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `pastemployer` 
+        WHERE `user_id`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist[] = $row; 
+            }
+        }
+        else
+        {  $getlist = array(); }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = array(); }
+
+        return $getlist;
+    }
+    
+    public function FetchDematDetail($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `user_demat_accounts` 
+        WHERE `user_id`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist[] = $row; 
+            }
+        }
+        else
+        {  $getlist = array(); }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = array();}
+
+        return $getlist;
+    }
+    
+    public function FetchMfrDetail($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `mfr`
+        WHERE `user_id`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist[] = $row; 
+            }
+        }
+        else
+        {  $getlist = array(); }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = array(); }
+
+        return $getlist;
+    }
+    
+    public function FetchRelativeDetail($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT rinfo.*,rel.`relationshipname` FROM `relative_info` rinfo
+        LEFT JOIN `relationship` rel ON rinfo.`relationship` = rel.`id`
+        WHERE rinfo.`user_id`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                if(!empty($row['dependency_nature']))
+                {
+                    $querysql = "SELECT * FROM `nature_of_dependency` WHERE `id` IN (".$row['dependency_nature'].")";
+                    $exegetsql = $connection->query($querysql);
+                    $getnumsql = trim($exegetsql->numRows());
+                    if($getnumsql>0)
+                    {
+                       while($rowz = $exegetsql->fetch())
+                       { 
+                           $depnature[] = $rowz['dependency_nature'];
+                       }
+                        $row['dependency_nature'] = $depnature;
+                    }
+                }
+                
+                $getlist[] = $row; 
+            }
+        }
+        else
+        {  $getlist = array(); }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = array(); }
+        //print_r($getlist);exit;
+        return $getlist;
+    }
+    
+    public function FetchRelDematDetail($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `relative_demat_accounts`
+        WHERE `parent_user_id`='".$uid."'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist[] = $row; 
+            }
+        }
+        else
+        {  $getlist = array(); }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = array(); }
+
+        return $getlist;
+    }
 }

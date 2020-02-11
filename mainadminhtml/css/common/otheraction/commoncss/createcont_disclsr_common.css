@@ -65,3 +65,64 @@ tr,td {
     padding: 8px;
 
 }
+
+.tooltip_c {
+  display: inline;
+  position: relative;
+}
+/*.tooltip_c:hover:after{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background:red;
+  border-radius: 8px;
+  color: #fff;
+  content: attr(title);
+  margin: -82px auto 0;
+  font-size: 16px;
+  padding: 13px;
+  width: 220px;
+}*/
+label.gender {
+    display: block;
+}
+.tooltip_c:hover:after {
+    -webkit-justify-content: center;
+    justify-content: center;
+    background: white;
+    border-radius: 8px;
+    color: #fff;
+    content: attr(data);
+    margin: -82px auto 0;
+    font-size: 14px;
+    padding: 13px;
+    width: 600px;
+    position: absolute;
+    right: 0px;
+    z-index: 999;
+    color: #000;
+    border: 1px solid #ccc;
+    text-align: justify;
+    top: 110px;
+    box-shadow: 2px 1px 8px #ccc;
+}
+.tooltip_c:hover:before {
+    border: solid;
+    border-color: #a0a0a0 transparent;
+    border-width: 12px 9px 0 9px;
+    content: "";
+    left: 45%;
+    bottom: -7px;
+    position: absolute;
+    transform: rotate(180deg);
+    z-index: 99;
+}
+a.tooltip_c {
+    text-align: right;
+    float: right;
+    font-size: 16px;
+    margin-right: 50px;
+    font-size: 16px;
+    color: #034383;
+}

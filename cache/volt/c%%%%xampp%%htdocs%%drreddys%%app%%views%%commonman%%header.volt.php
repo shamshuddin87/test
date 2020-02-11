@@ -4,6 +4,7 @@ $getuserid=$this->session->loginauthspuserfront['id'];
 $gettypm = $this->session->loginauthspuserfront;
 $gettermscond =$this->termsandconditionscommon->getalluserfiles($getuserid);
 $notification =$this->notificationcommon->getallnotification($getuserid);
+$userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
  // print_r($gettermscond[0]['filetitle']);
  // print_r($notification);exit;
 ?>
@@ -191,6 +192,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
                    <li><a href="mis/mis_recipient"><i class=""></i> Connected Person</a></li>
                    <li><a href="mis/upsitypeclassify"><i class=""></i> UPSI Sharing</a></li>
                    <li><a href="mis/mis_annualdiscsr"><i class=""></i>Annual Disclosures</a></li>
+                   <li><a href="mis/mis_contdisclsr"><i class=""></i>Continuous Disclosures</a></li>
                    <!-- <li><a href="mis/mis_initialdiscsr"><i class=""></i>Initial Disclosures</a></li>
                    <li><a href="mis/mis_formc"><i class=""></i>Form C</a></li>
                    <li><a href="mis/mis_confirmtrade"><i class=""></i>Confirmation of Trade</a></li>
@@ -244,7 +246,11 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
                 
                <!--  <li><a href="declarationform"><i class=""></i>Declaration Form</a></li>    
                 <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li> -->
-                <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>   
+                 <?php if($userlevel['role_id']<5){ ?>
+                    <li><a href="annualdeclaration"><i class=""></i>Self Declaration</a></li>
+                   <?php } else { ?> 
+                   <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>
+                   <?php } ?> 
             </ul> 
         </li>
          
