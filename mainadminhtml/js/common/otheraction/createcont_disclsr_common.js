@@ -1114,59 +1114,6 @@ website('#insertannual').ajaxForm({
   //});
 });
 
-website('body').on('click','.formpdf', function(e)
-{
-    var htmldata = website('#Mymodaldeclara .modalform').html();
-    var uniqueid = website('#uniqueid').val();
-    //alert(uniqueid);
-   
-    var annualyear=website('#annualyear').val();
-    
-    // var formbid = website('#modaldocument #formbid').val();
-    var formData = {htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid};
-    website.ajax({
-        type:"POST",
-        url:'continuousdisclosure/generateformbPDF',
-        data: formData,
-        //contentType: "application/json; charset=utf-8",
-        dataType:"json",
-        beforeSend: function()
-        {
-             website('.preloder_wraper').fadeIn();
-            // website('#modaldocument .downloadpdf .pdfln').html('');
-            // website('#modaldocument .trailpdfdownload').addClass('disabled');
-        },
-        uploadProgress: function(event, position, total, percentComplete)
-        {
-            
-        },
-        success: function(response) 
-        {
-            // console.log(response.pdfpath); 
-            if(response.logged===true)
-            {
-              website('#Mymodaldeclara .formpdf').css('display','none');
-              website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');
-             
-
-              
-            }
-            else
-            {
-
-            }
-        },
-        complete: function(response)
-        {
-            website('.preloder_wraper').fadeOut();
-            //window.location.reload();
-        },
-        error: function() 
-        {
-            
-        }
-    });
-});
 
 // website('body').on('click','.downloadpdf',function(e)
 // {
@@ -1214,10 +1161,10 @@ website('body').on('click','.sendtype', function(e)
               website('#sendtoco').modal('hide');  
               website('#Mymodaldeclara .formpdf').css('display','none');
               website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');
-              if(sendtype == 'no')
-              {
-                  window.location.href = "annualdeclaration";
-              }
+//              if(sendtype == 'no')
+//              {
+                  window.location.href = "continuousdisclosure";
+//              }
 
               
             }

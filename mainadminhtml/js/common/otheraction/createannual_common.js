@@ -1154,10 +1154,10 @@ website('body').on('click','.sendtype', function(e)
               website('#sendtoco').modal('hide');  
               website('#Mymodaldeclara .formpdf').css('display','none');
               website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');
-              if(sendtype == 'no')
-              {
+//              if(sendtype == 'no')
+//              {
                   window.location.href = "annualdeclaration";
-              }
+//              }
 
               
             }
