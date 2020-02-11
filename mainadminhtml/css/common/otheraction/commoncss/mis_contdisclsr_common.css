@@ -11,6 +11,7 @@
     float: left;
     padding-top: 15px;
 }
+
 .srcfac .btn { padding: 4px 12px; }
 
 .design_info h3 {
@@ -25,12 +26,12 @@ input#date1, input#date2, input#desdate1 , input#desdate2 {
     border: 1px solid #ccc;
 }
 
-input#srch {
+/*input#srch {
     padding: 4px;
     border-radius: 3px;
     border: none;
     border: 1px solid #ccc;
-}
+}*/
 .form-control { height: 30px; }
 .cssfilter {
     float: right;
@@ -92,4 +93,42 @@ input.gotobtn { padding: 2px 6px 2px 6px; border: 1px solid #5d6677;}
     padding: 8px 20px; 
     border-radius: 5px;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+
+.cssnumrws.showentry {
+    color: #000;
+    margin: 10px 0;
+    float: left;
+    width: auto;
+    padding: 15px 0;
+}
+
+.otherfilter{
+    position: relative;
+    float: right;
+    display: flex;
+    align-items: flex-end;  
+}
+
+.otherfilter .statusfilter{
+
+}
+
+.otherfilter .searhbyname{
+    margin-bottom: 15px;
+    margin: 10px;
+}
+
+.otherfilter .excelanddownloadbtn{
+    margin-bottom: 5px;
+}
+
+.new_table.row{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.cssnumrws.showentry select{
+    padding: 5px;
+    border-color: rgb(191, 190, 190);
 }

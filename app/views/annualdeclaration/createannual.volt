@@ -24,13 +24,6 @@
       <h1 class="h1_heading text-center">Annual Declaration Form
       </h1>
    </div>
-    <div class="tooltip_div">
-       <div class="create_button">
-           <a href="javascript:void(0);" data="List Of Company" class="tooltip_c"><button type="button" class="btn btn-primary ">Dr Reddy's subsidiaries</button></a>
-       </div>
-    </div>
-    
-    
     <?php if($userlevel['role_id']<5){ ?> 
     <div class="containergrid">
       <div class="formcss">
@@ -1003,7 +996,7 @@
 <!-- ########################################## PageContent End ########################################## --> 
 <div id="Mymodaldeclara" class="modal  fade" role="dialog" style="overflow-y: auto;left:-22%; ">
    <div class="modal-dialog">
-      <div class="modal-content" style="width:950px;">
+      <div class="modal-content" style="width:auto;">
          <div class="modal-header">
              <?php 
                 $current_year = date('Y'); 
@@ -1019,7 +1012,7 @@
 
           
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <div id="downloadpdf" style="float: right;"></div>
+            <div id="downloadpdf" style="float: right;    margin: 10px;"></div>
             <div class="in_box">
                <button type="button" class="btn btn-primary formpdf floatright">Generate PDF</button>
                <input type="text" id = "uniqueid" name="uniqueid" value = "" style="display: none;">
