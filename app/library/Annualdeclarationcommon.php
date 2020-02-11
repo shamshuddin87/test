@@ -235,20 +235,31 @@ public function getallrelative($uid,$usergroup)
    }
 
 
-   public function saveinitialdeclare($uid,$usergroup,$pdfpath,$annualyear,$uniqueid)
+   public function saveinitialdeclare($uid,$usergroup,$pdfpath,$annualyear,$uniqueid,$sendtype)
    {
             // print_r($usergroup);exit;
             $connection = $this->dbtrd;
             $time = time();
+            $curr_date =  date('Y-m-d h:i:s');
+            if($sendtype == 'yes')
+            {
+                $send_status = 1;
+                $sent_date = $curr_date;
+            }
+            else if($sendtype == 'no')
+            {
+                $send_status = 0;
+                $sent_date = "";
+            }
             try
             {
                 $querysel = "SELECT * FROM `annual_initial_declaration` WHERE `user_id` ='".$uid."' AND `annualyear`='".$annualyear."'";
                 
-                $queryin = "INSERT INTO `annual_initial_declaration` (user_id, user_group_id,send_status, pdfpath,annualyear,uniqueid,date_added,date_modified,timeago) 
-                VALUES   ('".$uid."','".$usergroup."',0,'".$pdfpath."','".$annualyear."','".$uniqueid."',NOW(),NOW(),'".$time."')"; 
+                $queryin = "INSERT INTO `annual_initial_declaration` (user_id, user_group_id,send_status,sent_date, pdfpath,annualyear,uniqueid,date_added,date_modified,timeago) 
+                VALUES   ('".$uid."','".$usergroup."','".$send_status."','".$sent_date."','".$pdfpath."','".$annualyear."','".$uniqueid."',NOW(),NOW(),'".$time."')"; 
                 
-                $queryup = "UPDATE `annual_initial_declaration` SET `send_status` = 0,`sent_date` = NULL,`pdfpath` = '".$pdfpath."',`uniqueid` = '".$uniqueid."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `annualyear`='".$annualyear."'";
-                // echo $queryup; exit;
+                $queryup = "UPDATE `annual_initial_declaration` SET `send_status` = '".$send_status."',`sent_date` = '".$sent_date."',`pdfpath` = '".$pdfpath."',`uniqueid` = '".$uniqueid."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `annualyear`='".$annualyear."'";
+                 //echo $queryin; exit;
                 $exeget = $connection->query($querysel);
                 $getnum = trim($exeget->numRows());
                 if($getnum>0)

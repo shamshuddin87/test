@@ -1114,8 +1114,21 @@ website('#insertannual').ajaxForm({
   //});
 });
 
+
+// website('body').on('click','.downloadpdf',function(e)
+// {
+//   alert("hello");
+//   window.location.reload();
+
+// });
 website('body').on('click','.formpdf', function(e)
 {
+    website('#sendtoco').modal('show');
+});
+
+website('body').on('click','.sendtype', function(e)
+{
+    var sendtype = website(this).val();
     var htmldata = website('#Mymodaldeclara .modalform').html();
     var uniqueid = website('#uniqueid').val();
     //alert(uniqueid);
@@ -1123,7 +1136,7 @@ website('body').on('click','.formpdf', function(e)
     var annualyear=website('#annualyear').val();
     
     // var formbid = website('#modaldocument #formbid').val();
-    var formData = {htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid};
+    var formData = {htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid,sendtype:sendtype};
     website.ajax({
         type:"POST",
         url:'continuousdisclosure/generateformbPDF',
@@ -1145,9 +1158,13 @@ website('body').on('click','.formpdf', function(e)
             // console.log(response.pdfpath); 
             if(response.logged===true)
             {
+              website('#sendtoco').modal('hide');  
               website('#Mymodaldeclara .formpdf').css('display','none');
               website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');
-             
+//              if(sendtype == 'no')
+//              {
+                  window.location.href = "continuousdisclosure";
+//              }
 
               
             }
@@ -1168,12 +1185,6 @@ website('body').on('click','.formpdf', function(e)
     });
 });
 
-// website('body').on('click','.downloadpdf',function(e)
-// {
-//   alert("hello");
-//   window.location.reload();
-
-// });
 function loadnoofsec()
 {
     website("#d3ques2").change(function() {
