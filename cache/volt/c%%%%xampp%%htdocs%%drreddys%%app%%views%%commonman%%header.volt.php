@@ -42,9 +42,9 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
         <ul class="nav side-menu">
 
             <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='7') {?>
-                <!-- <li>
+                <li>
                     <a href="home"><i class="fa fa-single fa-home" id="home_icon"></i>Home</a>
-                </li> -->
+                </li>
             <?php  } ?>
 
               <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'|| $gettypm['user_group_id']=='7'){ ?>
@@ -54,7 +54,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
                   <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> Masters <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                
-             <?php if($gettypm['user_group_id']=='2'){ ?>
+            <?php if($gettypm['user_group_id']=='2'){ ?> 
              
               <li>
                   <a href="companymaster"><i class="" id="cmp_mst"></i>Company Master</a>
@@ -94,26 +94,26 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
           
               
              
-             <?php if($gettypm['user_group_id']=='2'){ ?>
-            <!--   <li>
+             <!-- <?php if($gettypm['user_group_id']=='2'){ ?> -->
+              <li>
                <a href="companymodule"><i class="fa fa-file-excel-o" ></i>Listed Company Module</a>
-             </li> -->
+             </li>
 
              
-              <?php if($gettypm['user_group_id']=='2'){ ?>
-              <!--  <li>
+              
+               <li>
                <a href="approvelperinfo"><i class="fa fa-eye"></i>View Personal Info</a>
-             </li>    -->
+             </li>   
              
-            <!-- <li>
+            <li>
                <a href="tradingrequest/reqview"><i class="fa fa-eye" id="viewreq"></i>View request</a>
              </li>  
 
                <li>
                  <a href="exceptionreq/exception_req"><i class="fa fa-eye"></i>View Exception request</a>
-                </li>  -->
+                </li> 
 
-              <!-- <li>
+              <li>
                   <a class="click_board click_board3" href="javascript:;"><i class="glyphicon glyphicon-cog"></i>Admin Module<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                
@@ -128,11 +128,10 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
                  <li><a href="adminmodule/autoaprove"><i class=""></i>Auto Approval Shares</a></li>
                     
              </ul> 
-            </li> -->
-            <?php  } ?>
-            <?php  } ?>
+            </li>
+          <!--  <?php  } ?>
 
-            <?php if($gettypm['user_group_id'] == '7') { ?>
+            <?php if($gettypm['user_group_id'] == '7') { ?> -->
 
             <li>
                 <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a> 
@@ -146,7 +145,7 @@ $notification =$this->notificationcommon->getallnotification($getuserid);
                 </ul> 
             </li>
 
-            <?php  } ?>
+            <!-- <?php  } ?> -->
             <?php if($gettypm['user_group_id']!='2'){ ?>
         <!--     <li>
                 <a class="click_board click_board3" ><i class="fa fa-line-chart fa-5x"></i> Holding Summary<span class="fa fa-chevron-down"></span></a>
