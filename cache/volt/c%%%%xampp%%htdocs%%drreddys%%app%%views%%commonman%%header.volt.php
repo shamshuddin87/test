@@ -4,7 +4,6 @@ $getuserid=$this->session->loginauthspuserfront['id'];
 $gettypm = $this->session->loginauthspuserfront;
 $gettermscond =$this->termsandconditionscommon->getalluserfiles($getuserid);
 $notification =$this->notificationcommon->getallnotification($getuserid);
-$userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
  // print_r($gettermscond[0]['filetitle']);
  // print_r($notification);exit;
 ?>
@@ -147,8 +146,8 @@ $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
             </li>
 
             <!-- <?php  } ?> -->
-            <?php if($gettypm['user_group_id']!='2'){ ?>
-        <!--     <li>
+            <!-- <?php if($gettypm['user_group_id']!='2'){ ?> -->
+            <li>
                 <a class="click_board click_board3" ><i class="fa fa-line-chart fa-5x"></i> Holding Summary<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu"> 
                     <li>
@@ -159,21 +158,21 @@ $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
                     <a href="relholdingsummary"><i class="" id="cmp_mst"></i>Relative Holding Summary</a>
                     </li> 
                 </ul> 
-            </li> -->
-            <?php  } ?>
-          <!--   <li>
+            </li>
+          <!--   <?php  } ?> -->
+            <li>
                <a href="blackoutperiod"><i class="fa fa-ban fa-5x" id="cmp_mst"></i>Trading Window</a>
-            </li> -->
-             <?php if($gettypm['user_group_id']!='2'){ ?>
-            <!-- <li>
+            </li>
+            <!--  <?php if($gettypm['user_group_id']!='2'){ ?> -->
+            <li>
                <a href="tradingplan"><i class="fa fa-edit fa-5x" id="cmp_mst"></i>Trading Plan</a>
-            </li>  -->
-            <?php  } ?>
-              <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='2') {?>
-            <!-- <li>
+            </li> 
+            <!-- <?php  } ?> -->
+             <!--  <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='2') {?> -->
+            <li>
                <a href="tradingplan/planreqstview"><i class="fa fa-eye" id="cmp_mst"></i>View Trade Plan</a>
-             </li> -->
-            <?php } ?>
+             </li>
+          <!--   <?php } ?> -->
 
         <?php } ?>
 
@@ -192,13 +191,13 @@ $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
                    <li><a href="mis/upsitypeclassify"><i class=""></i> UPSI Sharing</a></li>
                    <li><a href="mis/mis_annualdiscsr"><i class=""></i>Annual Disclosures</a></li>
                    <li><a href="mis/mis_contdisclsr"><i class=""></i>Continuous Disclosures</a></li>
-                   <!-- <li><a href="mis/mis_initialdiscsr"><i class=""></i>Initial Disclosures</a></li>
+                   <li><a href="mis/mis_initialdiscsr"><i class=""></i>Initial Disclosures</a></li>
                    <li><a href="mis/mis_formc"><i class=""></i>Form C</a></li>
                    <li><a href="mis/mis_confirmtrade"><i class=""></i>Confirmation of Trade</a></li>
                    <li><a href="mis/mis_formpct"><i class=""></i>Form PCT</a></li>
                    <li><a href="mis/mis_nonexetrade"><i class=""></i>Non-Execution of Trade</a></li>
                    <li><a href="mis/mis_contratrd"><i class=""></i>Contra Trade</a></li>
-                   <li><a href="mis/mis_changedesprsn"><i class=""></i>Change in Designated Persons</a></li> -->
+                   <li><a href="mis/mis_changedesprsn"><i class=""></i>Change in Designated Persons</a></li>
 
             </ul> 
           </li>
@@ -207,7 +206,7 @@ $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
 
      <ul class="nav side-menu">
 
-     <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='7' || $gettypm['user_group_id']=='2') {?>
+     <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='7') {?>
             
         <li>
           <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> My Info<span class="fa fa-chevron-down"></span></a>
@@ -219,37 +218,33 @@ $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
                
                <li><a href="continuousdisclosure"><i class=""></i>Continuous Disclosure</a></li>
 
-               <!-- <li><a href="tradingrequest"><i class=""></i>Request</a></li> -->
+               <li><a href="tradingrequest"><i class=""></i>Request</a></li>
 
              <!--     <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li>  -->  
 
 
             <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2'){?>
 
-             <!-- <li><a href="tradingrequest/reqview"><i class="" id="viewreq"></i>View request</a></li>   -->
+             <li><a href="tradingrequest/reqview"><i class="" id="viewreq"></i>View request</a></li>  
                 
             <?php } ?>
                
-            <!-- <li><a href="exceptionreq"><i class=""></i>Exception Request</a></li> -->
+            <li><a href="exceptionreq"><i class=""></i>Exception Request</a></li>
                 
             <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2'){?>
-<!-- 
+
             <li><a href="exceptionreq/exception_req"><i class=""></i>View Exception request</a></li>
              <li> <a href="approvelperinfo"><i class=""></i>View Personal Info Request</a></li>
- -->
+
 
                 
             <?php } ?>
 
-               <!-- <li><a href="holdingstatement"><i class=""></i>Holding Statement</a></li> -->
+               <li><a href="holdingstatement"><i class=""></i>Holding Statement</a></li>
                 
-               <!--  <li><a href="declarationform"><i class=""></i>Declaration Form</a></li>    
-                <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li> -->
-                 <?php if($userlevel['role_id']<5){ ?>
-                    <li><a href="annualdeclaration"><i class=""></i>Self Declaration</a></li>
-                   <?php } else { ?> 
-                   <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>
-                   <?php } ?> 
+                <li><a href="declarationform"><i class=""></i>Declaration Form</a></li>    
+                <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li>
+                <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>   
             </ul> 
         </li>
          
@@ -265,7 +260,7 @@ $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
   
             </ul> 
          </li> -->
-   <!--       <li><a class="click_board click_board3" href="javascript:;"><i class="fa fa-share-alt"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a>
+         <li><a class="click_board click_board3" href="javascript:;"><i class="fa fa-share-alt"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
              <li>
                   <a href="sensitiveinformation/recipient"><i class="" id="cmp_mst"></i>Connected Person</a>
@@ -293,74 +288,74 @@ $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
              </li> 
          <li>
                <a href="tradingplan"><i class="fa fa-edit fa-5x" id="cmp_mst"></i>Trading Plan</a>
-             </li> --> 
+             </li> 
          
        
          
            <?php } ?>
 
             <?php if($gettypm['user_group_id']=='2'){  ?>
-            <!-- <li>
+            <li>
                <a href="termsandconditions"><i class="fa fa-edit" ></i>Resources</a>
-             </li>  -->
+             </li> 
            <?php }  ?>
          
           
    
-         <!-- <?php if($gettypm['user_group_id']=='14'){  ?>
+         <?php if($gettypm['user_group_id']=='14'){  ?>
             <li>
                <a href="tradingplan/planreqstview"><i class="fa fa-eye" id="cmp_mst"></i>View Trade Plan</a>
              </li>
-         <?php }  ?> -->
+         <?php }  ?>
 
          <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'){  ?>
-        <!--     <li>
+            <li>
                <a href="reconcilation"><i class="fab fa-artstation" ></i> RTA Reconciliation</a>
-            </li>  -->
+            </li> 
          
-           <!--  <li>
+            <li>
                <a href="esop"><i class="fa fa-file-excel-o" ></i>ESOP</a>
-            </li> -->
+            </li>
          
          <?php }  ?>
          
          <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='7'){  ?>
          
-            <!-- <li>
+            <li>
                 <a class="click_board click_board3" href="javascript:;"><i class="fa fa-file-pdf-o"></i>SEBI Form<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li>
                         <a href="sebi/formb"><i class="fa fa-file-pdf-o" id=""></i>FORM B</a>
-                    </li> --> 
+                    </li> 
                     <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'){  ?> 
-                        <!-- <li>
+                        <li>
                             <a href="sebi/viewformb"><i class="fa fa-eye" id=""></i>Approve FORM B Request</a>
-                        </li> -->
+                        </li>
                     <?php } ?>
-                    <!-- <li>
+                    <li>
                         <a href="sebi/transformc"><i class="fa fa-file-pdf-o" id=""></i>FORM C</a>
-                    </li> -->
+                    </li>
                      
                     <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'){  ?> 
-                        <!-- <li>
+                        <li>
                             <a href="sebi/viewformc"><i class="fa fa-eye" id=""></i>Approve FORM C Request</a>
-                        </li> -->
+                        </li>
                     <?php } ?>
-                    <!-- <li>
+                    <li>
                         <a href="sebi/transformd"><i class="fa fa-file-pdf-o" id=""></i>FORM D</a>
-                    </li>  -->
+                    </li> 
                     <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'){  ?> 
-                        <!-- <li>
+                        <li>
                             <a href="sebi/viewformd"><i class="fa fa-eye" id=""></i>Approve FORM D Request</a>
-                        </li> -->
+                        </li>
                     <?php } ?>
-                <!-- </ul> 
-            </li> -->
+                </ul> 
+            </li>
         <?php }  ?>
          
          <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='2') {?>
-        <!--     <li><a href="sharecapital"><i class="fa fa-line-chart fa-5x" id="excelup"></i>Share Capital</a></li> 
-            <li><a href="uploadholding"><i class="fa fa-line-chart fa-5x" id="excelup"></i>Upload Holding</a></li> --> 
+            <li><a href="sharecapital"><i class="fa fa-line-chart fa-5x" id="excelup"></i>Share Capital</a></li> 
+            <li><a href="uploadholding"><i class="fa fa-line-chart fa-5x" id="excelup"></i>Upload Holding</a></li> 
          <?php }  ?>
         <!----------------------------------------------------------------------------------------------->
 

@@ -147,17 +147,6 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                 </div>
                             </div>
                         </section>
-                        
-                        <section class="col col-md-4 ">
-                            <label class="control-label">Type Of User *</label>
-                            <div class="input">
-                                <select id="typeofusr" name="typeofusr" class="form_fields form-control col-md-7 col-xs-12" required>
-                                    <option value="">Select Type</option>
-                                    <option value="7">Sub User</option>
-                                    <option value="14">Approver</option>
-                                </select>
-                            </div>
-                        </section>  
 
                         <section class="col col-md-4">
                             <label class="control-label">L+1 First Name</label>
@@ -186,6 +175,17 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                 <input type="text" id="l1empid" name="l1empid" class="form_fields form-control col-md-7 col-xs-12">
                             </div>
                         </section>
+                        
+                        <section class="col col-md-4 ">
+                            <label class="control-label">Type Of User *</label>
+                            <div class="input">
+                                <select id="typeofusr" name="typeofusr" class="form_fields form-control col-md-7 col-xs-12" required>
+                                    <option value="">Select Type</option>
+                                    <option value="7">Sub User</option>
+                                    <option value="14">Approver</option>
+                                </select>
+                            </div>
+                        </section>  
 
                         <div class="clearelement"></div>  
                         <section class="col col-md-4">
@@ -344,17 +344,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                             <input type="text" id="designation" name="designation" class="form_fields form-control col-md-7 col-xs-12" required>
                         </div>
                     </div>                    
-                    <div class="control-label form-group col-md-12 typu">
-                        <span class="floatleft"><label>Type Of User *</label></span>
-                        <div class="input">
-                            <select id="typeofusr" name="typeofusr" class="form_fields form-control col-md-7 col-xs-12">
-                                <option value="">Select Type</option>
-                                <option value="7">Sub User</option>
-                                <option value="14">Approver</option>
-                            </select>
-                        </div>
-                    </div>
-
+                    
                     <div class="control-label form-group col-md-6">
                         <span class="floatleft"><label>L+1 First Name</label></span>
                         <input type="text" class="form-control" id="l1firstname" name="l1firstname" onkeypress="return isAlphaNumeric_space(event,this);">
@@ -376,6 +366,17 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                     </div>
                    
                     <div class="clearelement"></div>
+
+                    <div class="control-label form-group col-md-12 typu">
+                        <span class="floatleft"><label>Type Of User *</label></span>
+                        <div class="input">
+                            <select id="typeofusr" name="typeofusr" class="form_fields form-control col-md-7 col-xs-12">
+                                <option value="">Select Type</option>
+                                <option value="7">Sub User</option>
+                                <option value="14">Approver</option>
+                            </select>
+                        </div>
+                    </div>
                     
                     <div class="control-label form-group col-lg-6 col-xs-12">
                         <span class="floatleft"><label>Company Access *</label></span>
