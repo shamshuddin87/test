@@ -72,7 +72,7 @@
                </div>
                <div class="col-md-4 col-xs-12">
                     <div class="tooltip_div">
-                     <a href="javascript:void(0);" data=" (only for overseas employees) Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                     <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfr" style="display: inline;">Any other legal identifier</label>
                   <input type="text" id="legal_idntfr" name="legal_idntfr" value="<?php echo($personaldetails['legal_identifier']) ?>" placeholder="Nature of identifier" >
@@ -164,7 +164,7 @@
                </div>
                <div class="col-md-4 col-xs-12">
                    <div class="tooltip_div">
-                     <a href="javascript:void(0);" data="(only for overseas employees) Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                     <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
                   <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of identifier" >
