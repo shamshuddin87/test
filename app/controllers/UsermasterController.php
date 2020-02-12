@@ -66,6 +66,7 @@ class UsermasterController extends ControllerBase
                 $l1lastname = $this->request->getPost('l1lastname','trim');
                 $l1email = $this->request->getPost('l1email','trim');
                 $l1empid = $this->request->getPost('l1empid','trim');
+                $roleid = $this->request->getPost('roleid','trim');
                  // print_r($approvername);exit;l1email
               
                 $dupliempcode = $this->commonquerycommon->checkifduplidata($getuserid,$employeecode,'');          
@@ -186,6 +187,7 @@ class UsermasterController extends ControllerBase
                     $insertmas['l1lastname']= $l1lastname;
                     $insertmas['l1email']= $l1email;
                     $insertmas['l1empid']= $l1empid;
+                    $insertmas['roleid']= $roleid;
                     //print_r($insertmas);exit;
 
                     $insermresponse = $this->insidercommon->insertmasterlist($insertmas);     
@@ -253,6 +255,7 @@ class UsermasterController extends ControllerBase
                 $l1lastname=$this->request->getPost('l1lastname','trim');
                 $l1email=$this->request->getPost('l1email','trim');
                 $l1empid=$this->request->getPost('l1empid','trim');
+                $roleid=$this->request->getPost('roleid','trim');
                 
                 if($masterid==2)
                 {
@@ -369,6 +372,7 @@ class UsermasterController extends ControllerBase
                     $updatemas['l1lastname']= $l1lastname;
                     $updatemas['l1email']= $l1email;
                     $updatemas['l1empid']= $l1empid;
+                    $updatemas['roleid']= $roleid;
                     //print_r($updatemas);exit;
 
                     $chkresponse = $this->insidercommon->updatemasterlist($updatemas);

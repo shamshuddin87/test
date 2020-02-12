@@ -150,7 +150,7 @@ class Insidercommon extends Component
                 {
                     $row = $exessa->fetch();
                     
-                    $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$row['user_id'],$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid']);
+                    $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$row['user_id'],$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid']);
                     
                     if($data)
                     {
@@ -248,7 +248,7 @@ class Insidercommon extends Component
         // echo "<pre>"; print_r($time); exit;
         
         $query="UPDATE `it_memberlist` SET 
-            user_id = '".$updatemas['getuserid']."', master_group_id = '".$updatemas['typeofusr']."', 
+            user_id = '".$updatemas['getuserid']."', master_group_id = '".$updatemas['typeofusr']."', role_id = '".$updatemas['roleid']."', 
             fullname = '".$updatemas['fullname']."', 
             firstname= '".$updatemas['firstname']."', lastname= '".$updatemas['lastname']."',
             mobile = '".$updatemas['mobile']."', designation = '".$updatemas['designation']."',
