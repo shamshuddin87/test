@@ -104,7 +104,7 @@ website('body').on('click','.savefinal', function(e)
 {
     var uniqueid = website(this).attr('uniqueid');
     website('#myModalsavefinal #esopuniqid').val(uniqueid);
-  website('#myModalsavefinal').modal('show'); 
+    website('#myModalsavefinal').modal('show'); 
 });
 
 website('body').on('click','.finalsaveyes',function(e)
