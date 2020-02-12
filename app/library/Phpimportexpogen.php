@@ -373,10 +373,15 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                 $highestRow = $worksheet->getHighestRow();
                  for ($row=2; $row<=$highestRow;$row++)
                  {
-                    $username[]  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-                    $emailid[]  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $name  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $email  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
                      //echo $rtaholding;exit;
-                }
+                     if(!empty($name) && !empty($email))
+                     {
+                         $username[] = $name;
+                         $emailid[] = $email;
+                     }
+                 }
                 $ConnctdDpArray = array('username'=>$username,'emailid'=>$emailid);
                 //print_r($ConnctdDpArray);exit;
                 $getres = $this->upsicommon->Fetchusersid($getuserid,$user_group_id,$ConnctdDpArray);
