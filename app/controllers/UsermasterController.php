@@ -19,6 +19,7 @@ class UsermasterController extends ControllerBase
         $mainqry='';
         $this->view->cmplist = $this->companymastercommon->cmpdetails($uid,$usergroup,$mainqry);
         $this->view->deptlist= $this->departmentmastercommon->fetchdept($uid,$usergroup,$mainqry);
+        $this->view->rolelist = $this->commonquerycommon->rolelist();
     }
 
    public function userviewAction(){
