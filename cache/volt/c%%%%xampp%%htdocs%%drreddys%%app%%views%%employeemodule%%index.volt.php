@@ -72,12 +72,15 @@
                </div>
                <div class="col-md-4 col-xs-12">
                     <div class="tooltip_div">
-                     <a href="javascript:void(0);" data=" (only for overseas employees) Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                     <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfr" style="display: inline;">Any other legal identifier</label>
                   <input type="text" id="legal_idntfr" name="legal_idntfr" value="<?php echo($personaldetails['legal_identifier']) ?>" placeholder="Nature of identifier" >
                </div>
                <div class="col-md-4 col-xs-12">
+                    <div class="tooltip_div">
+                     <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                   </div>
                   <label for="legal_idntfctn_no">Any other legal identification number</label>
                   <input type="text" id="legal_idntfctn_no" value="<?php echo($personaldetails['legal_identification_no']) ?>" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
                </div>
@@ -164,12 +167,15 @@
                </div>
                <div class="col-md-4 col-xs-12">
                    <div class="tooltip_div">
-                     <a href="javascript:void(0);" data="(only for overseas employees) Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                     <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
                   <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of identifier" >
                </div>
                <div class="col-md-4 col-xs-12">
+                   <div class="tooltip_div">
+                     <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                   </div>
                   <label for="legal_idntfctn_no">Any other legal identification number</label>
                   <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
                </div>
@@ -345,12 +351,15 @@
                            </div>
 
                            <div class="col-md-6">
-                              <label for="legal_idntfr">Any other legal identifier (only for overseas employees)</label>
+                              <label for="legal_idntfr">Any other legal identifier</label>
                               <input type="text" id="legal_idntfr" name="legal_idntfr" placeholder="Nature of identifier">
                            </div>
 
                            <div class="col-md-6">
-                              <label for="legal_idntfctn_no">Any other legal identification number (only for overseas employees)</label>
+                               <div class="tooltip_div">
+                                 <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                               </div>
+                              <label for="legal_idntfctn_no">Any other legal identification number</label>
                               <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
                            </div>
 
@@ -491,6 +500,9 @@
                         <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of identifier">
                     </div>
                      <div class="col-md-4 top_space">
+                         <div class="tooltip_div">
+                                 <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                               </div>
                         <label for="legal_idntfctn_no">Any other legal identification number</label>
                         <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
                     </div>
@@ -641,6 +653,9 @@
                               <input type="text" id="name" name="name" placeholder="Name">
                            </div>
                            <div class="col-md-6">
+                               <div class="tooltip_div">
+                                 <a href="javascript:void(0);" data="In case no PAN number available with dependents, please enter 00000000" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                               </div>
                               <input type="hidden" name="reqid" id="reqid" value="">
                               <label for="pan">PAN*</label>
                               <input type="text" id="pan" name="pan" placeholder="PAN" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
@@ -653,6 +668,9 @@
                                 <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of identifier">
                             </div>
                              <div class="col-md-6">
+                                 <div class="tooltip_div">
+                                 <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                               </div>
                                 <label for="legal_idntfctn_no">Any other legal identification number</label>
                                 <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
                             </div>
