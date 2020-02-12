@@ -396,7 +396,8 @@ class Upsicommon extends Component
     public function fetchdpuser($dpuser)
     {
         $connection = $this->dbtrd;
-        $sqlquery = "SELECT * FROM `it_memberlist` WHERE `wr_id` IN (".$dpuser.") AND `status`=1 ";
+        $sqlquery = "SELECT * FROM `it_memberlist` WHERE `wr_id` IN (".$dpuser.") AND `status`=1 ORDER BY FIELD(`wr_id`, ".$dpuser.")";
+        //echo $sqlquery;exit;
         try
         {
             $exeget = $connection->query($sqlquery);

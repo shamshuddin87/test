@@ -111,10 +111,10 @@ class Esopcommon extends Component
                 {
                     while($rowesop = $exeesop->fetch())
                     {
-                        $queryselectcmp = " SELECT * FROM `listedcmpmodule` WHERE `company_name` = '".$rowesop['cmp_name']."' ";
+                        $queryselectcmp = ' SELECT * FROM `listedcmpmodule` WHERE `company_name` = "'.$rowesop['cmp_name'].'" ';
                         
                         $queryselectpan = " SELECT * FROM `personal_info` WHERE `pan` = '".$rowesop['emp_pan']."' ";
-                        //echo $queryselectcmp;exit;
+                        //echo $queryselectpan;exit;
                         $exegetcmp = $connection->query($queryselectcmp);
                         $getnumcmp = trim($exegetcmp->numRows());
                         
