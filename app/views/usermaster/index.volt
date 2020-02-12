@@ -241,9 +241,14 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                         </section>
 
                         <section class="col col-md-4">
-                            <label class="control-label">Role ID*</label>
+                            <label class="control-label">User Role*</label>
                             <div class="input">
-                                <input type="text" id="roleid" name="roleid" class="form_fields form-control col-md-7 col-xs-12" onkeypress="return isAlphaNumeric_space(event,this);" required="required">
+                                <select id="roleid" name="roleid" class="form_fields form-control col-md-7 col-xs-12" required>
+                                <option value="">Select User Role</option>
+                                    <?php foreach ($rolelist as $key => $value) { ?> 
+                                    <option value="<?php echo $value['role_id'];?>"><?php echo $value['role_name'];?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </section>
                         
@@ -418,8 +423,13 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                     </div>
 
                     <div class="control-label form-group col-md-6">
-                        <span class="floatleft"><label>Role Id*</label></span>
-                        <input type="text" class="form-control" id="roleid" name="roleid" onkeypress="return isAlphaNumeric_space(event,this);" required="required">
+                        <span class="floatleft"><label>User Role*</label></span>
+                        <select id="roleid" name="roleid" class="form_fields form-control col-md-7 col-xs-12" required>
+                            <option value="">Select User Role</option>
+                                <?php foreach ($rolelist as $key => $value) { ?> 
+                                    <option value="<?php echo $value['role_id'];?>"><?php echo $value['role_name'];?></option>
+                                <?php } ?>
+                        </select>
                     </div>
                     
                     <!--<div class="control-label form-group col-lg-6">

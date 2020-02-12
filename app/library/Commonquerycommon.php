@@ -564,6 +564,34 @@ class Commonquerycommon extends Component
         
     }
     /*----- END check if there duplicate emp code ----*/
+
+    public function rolelist()
+    {
+        $connection = $this->dbtrd;
+        $sqlquery = "SELECT * FROM `rolemaster`"; 
+       // print_r($sqlquery);exit;
+        
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;                     
+                }
+            // echo '<pre>';print_r($getlist);exit;
+            }
+            else
+            {   $getlist = array(); }
+        }
+        catch (Exception $e)
+        {   $getlist = array(); }
+        //echo '<pre>';print_r($getlist);exit;
+        return $getlist;
+    }
+
 }
 
 
