@@ -294,7 +294,7 @@
             </div>
              <div class="tablitiledesc text-center">
                     <div class="note">
-                        (<strong>Note : </strong>Once your personal information is filled please send 'Declaration form' to the Compliance Officer. <a href="initialdeclaration">Click here.</a>)
+                        (<strong>Note : </strong>Once your personal information is filled please send 'Declaration form' to the Compliance Officer. <a href="annualdeclaration">Click here.</a>)
                     </div>
             </div>
             <div class="clearelement"></div>
@@ -379,6 +379,9 @@
                                 
                               -->
                            <div class="col-md-6">
+                            <div class="tooltip_div">
+                                <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+                            </div>
                               <label for="age">Educational Qualification*</label>
                               <input type="text" id="eduqulfcn" name="eduqulfcn" placeholder="Educational Qualification">
                            </div>
@@ -461,7 +464,7 @@
                      </div>  
                      <div class="col-md-4 top_space">
                         <label>Nature of Dependency*</label >
-                        <select id="depnature" name="depnature[]" class="form_fields form-control col-md-7 col-xs-12" required="" multiple size="2">
+                        <select id="depnature" name="depnature[]" class="form_fields form-control col-md-7 col-xs-12" required="" multiple size="3">
                            <option value="1">Financially Dependent</option>
                            <option value="2">Consult in trading for securities</option>
                            <option value="3">Non-dependent</option>
@@ -482,7 +485,7 @@
                      </div>
                      <div class="col-md-4 top_space">
                         <div class="tooltip_div">
-                             <a href="javascript:void(0);" data="(only for overseas employees) Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                             <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                            </div>
                         <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
                         <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of identifier">
@@ -503,6 +506,9 @@
                         <input type="text"  id="1_dob" name="dob" class="bootdatepick" placeholder="Date Of Birth">
                      </div>
                      <div class="col-md-4 top_space">
+                         <div class="tooltip_div">
+                                <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+                            </div>
                         <label>Educational Qualification</label>
                         <input type="text" id="eduqulfcn" name="eduqulfcn" placeholder="Educational Qualification">
                      </div>
@@ -621,7 +627,7 @@
                             
                              <div class="col-md-6">
                                 <label>Nature of Dependency*</label >
-                                <select id="depnature" name="depnature[]" class="form_fields form-control col-md-7 col-xs-12" required="" multiple size="2">
+                                <select id="depnature" name="depnature[]" class="form_fields form-control col-md-7 col-xs-12" required="" multiple size="3">
                                    <option value="1">Financially Dependent</option>
                                    <option value="2">Consult in trading for securities</option>
                                    <option value="3">Non-dependent</option>
@@ -641,7 +647,7 @@
                            </div>
                              <div class="col-md-6">
                                 <div class="tooltip_div">
-                                     <a href="javascript:void(0);" data="(only for overseas employees) Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                     <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                    </div>
                                 <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
                                 <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of identifier">
@@ -670,6 +676,9 @@
                               <textarea id="address" name="address" placeholder="Write address.." style="height:100px"></textarea>
                            </div>
                            <div class="col-md-6">
+                              <div class="tooltip_div">
+                                <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+                              </div>
                               <label for="age">Educational Qualification</label>
                               <input type="text" id="eduqulfcn" name="eduqulfcn" placeholder="Educational Qualification">
                            </div>
