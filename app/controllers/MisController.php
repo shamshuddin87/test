@@ -1717,22 +1717,22 @@ class MisController extends ControllerBase
                     if($filterstatus == '')
                     {
                         $mainquery = $qrydtfltr.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
-                        $getres = $this->miscommon->fetchallcontdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
+                        $getres = $this->miscommon->fetchallcontdisclsr($getuserid,$user_group_id,$mainquery);
                     }
                     else if($filterstatus == 'pending')
                     {
                         $mainquery = $qrydtfltr.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) ';
-                        $getres = $this->miscommon->fetchpendigcontdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
+                        $getres = $this->miscommon->fetchpendigcontdisclsr($getuserid,$user_group_id,$mainquery);
                     }
                     else if($filterstatus == 'sent_for_approval') 
                     {
-                        $filterby = $qrydtfltr.' AND (anualdecl.`annualyear`='.$annualyr.') AND anualdecl.`send_status`= 1';
+                        $filterby = $qrydtfltr.' AND anualdecl.`send_status`= 1';
                         $mainquery = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ';
-                        $getres = $this->miscommon->fetchmiscontdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
+                        $getres = $this->miscommon->fetchmiscontdisclsr($getuserid,$user_group_id,$mainquery);
                     }
                 
                     //print_r($getres);exit;
-                    $genfile = $this->phpimportexpogen->exportContDisclsr($getuserid,$user_group_id,$getres,$annualyr);
+                    $genfile = $this->phpimportexpogen->exportContDisclsr($getuserid,$user_group_id,$getres);
                     
                     if(file_exists($genfile))
                     {
