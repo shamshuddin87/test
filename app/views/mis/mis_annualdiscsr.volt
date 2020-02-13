@@ -41,7 +41,7 @@ $current_year =  date("Y");
                 </div>
 <div class="table-responsive design_info itntfr" id="annualdisc" itntfr="annualdisc" >
         
-        <div class="cssnumrws">
+        <!-- <div class="cssnumrws">
            <span>Show</span>
             <select id="noofrows" name="noofrows" class="noofrows">
                <option value="10">10</option><option value="25">25</option>
@@ -52,7 +52,9 @@ $current_year =  date("Y");
             <button type="button" class="btn btn-primary genfile excel_bg">Export Excel</button>
             <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
         </div>
+
          <div class="top_margin"><input type="text" placeholder="Search By Name" id="srch" status="0"></div>
+
         <div class="cssfilter">               
             <div class="control-label form-group">
                 <label>Status Filter</label>
@@ -63,7 +65,42 @@ $current_year =  date("Y");
                 </select>
             </div>
         </div>
+        </div> -->
+
+         <div class="cssnumrws showentry">
+           <span>Show</span>
+            <select id="noofrows" name="noofrows" class="noofrows">
+               <option value="10">10</option><option value="25">25</option>
+                <option value="50">50</option><option value="100">100</option>
+             </select> 
+        <span>Entries</span>
+
         </div>
+
+
+        <div class="otherfilter">
+
+        <div class="cssfilter">               
+            <div class="control-label form-group">
+                <label>Status Filter</label>
+                <select id="filterstatus" name="filterstatus" class="form-control">
+                    <option value="">All</option>
+                    <option value="pending">Pending</option>
+                    <option value="sent_for_approval">Sent for approval</option>
+                </select>
+            </div>
+        </div>
+
+         <div class="searhbyname">
+            <input type="text" placeholder="Search By Name" class="form-control " id="srch" status="0">
+        </div>
+
+        <div class="excelanddownloadbtn">
+            <button type="button" class="btn btn-primary genfile excel_bg">Export Excel</button>
+            <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
+        </div>
+        </div>
+
         <table class="table table-inverse" id="datableabhi7">
              <thead>
                <tr>
