@@ -72,3 +72,118 @@ tr,td {
     content: "\e025";
     font-family:  'Glyphicons Halflings';
 }
+
+
+a.tooltip_c {
+    text-align: right;
+    float: right;
+    font-size: 16px;
+    margin-right: 50px;
+    font-size: 16px;
+    color: #034383;
+}
+.mainelementfom {
+    margin-top: 65px;
+}
+
+.h1_heading {
+    font-size: 28px;
+    font-weight: normal;
+    color: #000;
+    margin-bottom: 18px;
+    padding-left: 9px;
+}
+
+.belowleveluserdetcss
+{
+        position: relative;
+    padding: 15px;
+    border: 1px solid rgb(216, 216, 216);
+    box-shadow: 0 0 10px #00000059;
+        margin-bottom: 20px;
+}
+
+.h2_heading
+{
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.h3_heading
+{
+    color: #000;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    margin-top: 30px;
+        font-size: 16px;
+}
+
+.create_button a button
+{
+    margin: 0;
+    margin-bottom: 18px;
+    margin-top: 10px;
+}
+table.table.tablevertical
+{
+    width: fit-content;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    position: relative;
+}
+
+table.table.tablevertical thead
+{
+    display: block;
+    float: left;
+}
+
+table.table.tablevertical thead tr
+{
+    display: block;
+    border-bottom: none;
+    padding: 0;
+}
+
+table.table.tablevertical thead tr th
+{
+    display: block;
+    text-align: right;
+}
+
+table.table.tablevertical  tbody
+{
+    display: block;
+    width: auto;
+    position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.table.tablevertical  tbody tr
+{
+    display: inline-block;
+    vertical-align: top;
+    padding: 0;
+}
+
+table.table.tablevertical  tbody tr td
+{
+    display: block;
+    min-height: 1.25em;
+    text-align: left;
+    margin: 0;
+    vertical-align: top;
+}
+.modalform .belowleveluserdetcss {
+    position: relative;
+    padding: 15px;
+    border: 0px solid rgb(216,216,216);
+    box-shadow: 0 0 0px #00000000;
+    margin-bottom: 0px;
+}

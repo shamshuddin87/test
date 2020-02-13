@@ -217,6 +217,7 @@
                   <input type="text" id="mobno" name="mobno" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
                   <span id="mobileappend"></span>
                </div>
+               <div class="row">
                 <div class="col-md-12 col-xs-12"> 
                 <div class="col-md-4 col-xs-12 "> 
                   <label for="age">Holdings In Shares*</label>  
@@ -228,6 +229,7 @@
                   <input type="text" id="adrsholdng" name="adrsholdng"  placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
                </div>
                 </div>
+              </div>
                 <?php } ?>
                <div class="col-md-12 "> 
                   <input class="btn btn-primary" type="submit" value="Submit">
@@ -510,7 +512,7 @@
                       
                     <div class="col-md-12 col-md-12">
                      <div class="col-md-4 top_space"> 
-                        <label for="sex">Gender*</label>
+                        <label style="display: block;" for="sex">Gender*</label>
                         <input type="radio" id="1_sex" name="sex" value="Male" checked/>Male
                         <input type="radio" id="1_sex" name="sex"  value="Female">Female 
                         <input type="radio" id="1_sex" name="sex"  value="Other">Other 
@@ -524,7 +526,7 @@
                         <input type="file" name="file[]" id="file" >
                      </div>
                     </div>
-                      
+                      <div class="row">
                     <div class="col-md-12 col-md-12">
                      <div class="col-md-4 top_space "> 
                           <label for="age">Holdings In Shares*</label>
@@ -535,7 +537,7 @@
                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
                        </div>
                     </div>
-                     
+                     </div>
                      <div class="col-md-12">
                         <input class="btn btn-primary" type="submit" name="submit" value="Submit" id="relsub">
                      </div>
@@ -659,7 +661,7 @@
                               <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="Date Of Birth" readonly>
                            </div>
                            <div class="col-md-12"> 
-                              <label for="sex">Gender*</label>
+                               <label style="display: block;" for="sex">Gender*</label>
                               <input type="radio" id="sex" name="sex" value="Male" checked/>Male
                               <input type="radio" id="sex" name="sex"  value="Female"/>Female
                               <input type="radio" id="sex" name="sex"  value="Other"/>Other
@@ -677,6 +679,7 @@
                               <label class="control-label">Upload Identity Proof</label>
                               <input type="file" name="file" id="file" >
                            </div>
+                           <div class="row">
                             <div class="col-md-12">
                             <div class="col-md-6">
                               <label for="age">Holdings In Shares*</label>
@@ -688,6 +691,7 @@
                               <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
                            </div>
                             </div>
+                          </div>
                            <div class="col-md-12"> 
                               <input type="submit" value="Update">
                            </div>

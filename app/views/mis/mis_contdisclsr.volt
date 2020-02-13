@@ -37,7 +37,7 @@ $current_year =  date("Y");
 
                         <div class="clearelement"></div>                   
                         </div>                                
-                </div>                       
+                </div>                        
                 </div>
 <div class="table-responsive design_info itntfr" id="annualdisc" itntfr="annualdisc" >
 
