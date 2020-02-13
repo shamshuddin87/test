@@ -414,6 +414,8 @@ website('body').on('click','.dbeditme',function(e){
                        var l1lastname=response.data[i].l1lastname?response.data[i].l1lastname:'';
                        var l1email=response.data[i].l1email?response.data[i].l1email:'';
                        var l1empid=response.data[i].l1empid?response.data[i].l1empid:'';
+                       var roleid=response.data[i].role_id?response.data[i].role_id:'';
+
                           website('#Mymodaledit #mlistid').val(response.data[i].id);
                           website('#Mymodaledit #userid').val(response.data[i].wr_id);
                           website('#Mymodaledit #firstname').val(firstname);
@@ -431,6 +433,7 @@ website('body').on('click','.dbeditme',function(e){
                           website('#Mymodaledit #l1lastname').val(l1lastname);
                           website('#Mymodaledit #l1email').val(l1email);
                           website('#Mymodaledit #l1empid').val(l1empid);
+                          website('#Mymodaledit #roleid').val(roleid);
                           
 
                           // console.log(response.data[i].approver);

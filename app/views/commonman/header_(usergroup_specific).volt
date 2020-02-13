@@ -4,7 +4,6 @@ $getuserid=$this->session->loginauthspuserfront['id'];
 $gettypm = $this->session->loginauthspuserfront;
 $gettermscond =$this->termsandconditionscommon->getalluserfiles($getuserid);
 $notification =$this->notificationcommon->getallnotification($getuserid);
-$userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
  // print_r($gettermscond[0]['filetitle']);
  // print_r($notification);exit;
 ?>
@@ -245,11 +244,7 @@ $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
                 
                 <li><a href="declarationform"><i class=""></i>Declaration Form</a></li>    
                 <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li>
-                 <?php if($userlevel['role_id']<5){ ?>
-                   <li><a href="annualdeclaration"><i class=""></i>Self Declaration</a></li>
-                  <?php } else { ?>
-                  <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>
-                  <?php } ?>    
+                <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>   
             </ul> 
         </li>
          

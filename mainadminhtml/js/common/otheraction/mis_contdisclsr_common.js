@@ -61,7 +61,7 @@ function getannualdisclsr()
     var noofrows = website('#noofrows').val(); 
     var pagenum = website('#pagenum').val();
     // var annualyr = website('#annualyear').val();
-    var filterstatus = website('#filterstatus').val();
+    var filterstatus = "";
     var from_date = website('#from_date').val();
     var to_date = website('#to_date').val();
     var search = website('#srch').val();
