@@ -499,7 +499,7 @@
                   <tr>
                      <td colspan="6">
                         <div class="">
-                           <label style="padding-left: 27px;">ii. Private/Public Company</label>
+                           <label style="padding-left: 27px;">ii. Private/Public Company (Note - please disclose even if you hold 1 share in the company)</label>
                         </div>
                      </td>
                   </tr>
@@ -583,12 +583,14 @@
                <td style="border-right: 1px solid #f7f7f7"></td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" >
+               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" placeholder="Company Name">
                    </div>
                </td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" value="holding above 2% shares" readonly="readonly">
+               <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" value="Percentage of Shares alongwith relative(%)" readonly="readonly">
+               <!-- <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" value="holding above 2% shares" readonly="readonly"> -->
+               
                </div>
                </td>
                <td>
@@ -623,7 +625,7 @@
                <!-- table 5 end-->
           
                 <!-- table 6 start-->
-                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; margin-bottom: 20px;" width="100%">
                 <tr>
                 <td colspan="6">
                 <div class="">
@@ -1008,7 +1010,7 @@
                </table>
                <!-- table 8 end-->
                 <!-- table 9 start-->
-                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;margin-bottom: 20px;" width="100%">
                 <tr>
                 <td colspan="6">
                     <div class="">
@@ -1019,6 +1021,19 @@
                 </td>
                 </tr>
                 </table>
+
+
+         <div style="color: #000">
+          <p><b>The above information is true to the best of my knowledge and belief.</b></p>
+        <ul style="list-style: none;">
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">b) </span> I will keep the Corporate Secretarial team informed about any change(s) in the above declaration. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">c) </span> I have complied with the Company’s Code of Conduct to Regulate, Monitor and Report Trading. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">d) </span> I have not / will not share any unpublished price sensitive information (confidential information) regarding company’s operations with any one.  </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">e) </span> I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too. </li>
+        </ul>
+        <p><b>This is a computer generated document and does not require signature.        </b></p>
+        </div>
+
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; display: none;" width="100%" id="test3">
                
                <tr>
