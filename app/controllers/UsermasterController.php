@@ -65,7 +65,8 @@ class UsermasterController extends ControllerBase
                 $employeecode = $this->request->getPost('employeecode','trim');
                 $l1firstname = $this->request->getPost('l1firstname','trim');
                 $l1lastname = $this->request->getPost('l1lastname','trim');
-                $l1email = $this->request->getPost('l1email','trim');
+                $l1email = strtolower($this->request->getPost('l1email','trim'));
+                $l1emailcheck = $this->validationcommon->emailvalidate($l1email);
                 $l1empid = $this->request->getPost('l1empid','trim');
                 $roleid = $this->request->getPost('roleid','trim');
                  // print_r($approvername);exit;l1email
@@ -111,16 +112,15 @@ class UsermasterController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Your Lastname Contains Special Character');
                     $this->response->setJsonContent($data);
                 }
-                else if($email==false)
+                else if($l1emailcheck==false)
                 {
-                    $data = array("logged" => false,'message' => 'Your Email is not valid');
+                    $data = array("logged" => false,'message' => 'L+1 Email is not valid','fieldname'=>'emailrrormsg','actualvalue'=>$l1email);
                     $this->response->setJsonContent($data);
                 }
                 else if($emailcheck==false)
                 {
                     $data = array("logged" => false,'message' => 'Your Email is not valid','fieldname'=>'emailrrormsg','actualvalue'=>$email);
                     $this->response->setJsonContent($data);
-                    $this->response->send();
                 }
                 else if(empty($gender) || ($gender!=('1' || '2')))
                 {
@@ -254,7 +254,8 @@ class UsermasterController extends ControllerBase
                 $dpdate=$this->request->getPost('dpdate','trim');
                 $l1firstname=$this->request->getPost('l1firstname','trim');
                 $l1lastname=$this->request->getPost('l1lastname','trim');
-                $l1email=$this->request->getPost('l1email','trim');
+                $l1email = strtolower($this->request->getPost('l1email','trim'));
+                $l1emailcheck = $this->validationcommon->emailvalidate($l1email);
                 $l1empid=$this->request->getPost('l1empid','trim');
                 $roleid=$this->request->getPost('roleid','trim');
                 
@@ -318,7 +319,11 @@ class UsermasterController extends ControllerBase
                 {
                     $data = array("logged" => false,'message' => 'Your Email is not valid','fieldname'=>'emailrrormsg','actualvalue'=>$email);
                     $this->response->setJsonContent($data);
-                    $this->response->send();
+                }
+                else if($l1emailcheck==false)
+                {
+                    $data = array("logged" => false,'message' => 'Your Email is not valid','fieldname'=>'emailrrormsg','actualvalue'=>$l1email);
+                    $this->response->setJsonContent($data);
                 }
                 else if(!isset($cmpnyaccessid))
                 {

@@ -61,7 +61,7 @@ Class Dompdfgen extends Phalcon\Mvc\User\Component {
         $mpdf = new mPDF();
         $mpdf->SetProtection(array('print'));
         $mpdf->keep_table_proportions = false;
-        if($typeof=='configFormb' || $typeof=='configFormc' || $typeof=='configFormd' || $typeof=="annualdeclarationpdf") 
+        if($typeof=='configFormb' || $typeof=='configFormc' || $typeof=='configFormd' || $typeof=="annualdeclarationpdf" || $typeof=="mispersnlinfo") 
         {  
             $mpdf->AddPage('L');
         }

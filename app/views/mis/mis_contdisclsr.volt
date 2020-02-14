@@ -37,7 +37,7 @@ $current_year =  date("Y");
 
                         <div class="clearelement"></div>                   
                         </div>                                
-                </div>                       
+                </div>                        
                 </div>
 <div class="table-responsive design_info itntfr" id="annualdisc" itntfr="annualdisc" >
 
@@ -74,7 +74,7 @@ $current_year =  date("Y");
 
         <div class="otherfilter">
             
-        <div class="statusfilter">               
+        <!-- <div class="statusfilter">               
             <div class="control-label form-group">
                 <label>Status Filter</label>
                 <select id="filterstatus" name="filterstatus" class="form-control">
@@ -83,7 +83,7 @@ $current_year =  date("Y");
                     <option value="sent_for_approval">Sent for approval</option>
                 </select>
             </div>
-        </div> 
+        </div>  -->
 
          <div class="searhbyname">
             <input type="text" placeholder="Search By Name" class="form-control " id="srch" status="0">

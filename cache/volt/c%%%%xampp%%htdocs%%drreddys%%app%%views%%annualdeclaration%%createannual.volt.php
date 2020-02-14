@@ -19,18 +19,23 @@
 <div class="content">
 <!-- My messages -->
 <div class="mainelementfom">
-   <div>
+    <div class="mainheader row">
 
-      <h1 class="h1_heading text-center">Annual Declaration Form
-      </h1>
+      <div class="col col-xs-6"><h1 class="h1_heading ">Annual Declaration</h1></div>
+      <div class="tooltip_div col col-xs-6">
+       <div class="create_button">
+           <a href="javascript:void(0);" data="List Of Company" class="tooltip_c"><button type="button" class="btn btn-primary ">Dr Reddy's subsidiaries</button></a>
+       </div>
+    </div>
    </div>
     <?php if($userlevel['role_id']<5){ ?> 
     <div class="containergrid">
       <div class="formcss">
           <div id="belowleveluserdet">
-         <h1 class="h1_heading" style="font-weight: normal;">A.Details Of Self</h1>
-         <h2 class="text-center">i.Personal Details</h2>
-        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+             <div class="belowleveluserdetcss">
+          <h2 class="h2_heading">A.  Details Of Self</h2>
+         <h3 class="h3_heading">I.  Personal Details</h3>
+        <!-- <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Employee ID</th>
@@ -72,10 +77,100 @@
              
             </tr>
             </tbody>
+        </table> -->
+
+
+
+         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;  width: 600px;" class="table table-responsive table-inverse" width="100%">
+            <thead>
+            <tr>
+                <th style="width: 63px;">Sr No.</th>
+                <th >Particulars</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+              <?php if(!empty($userlevel)){ ?> 
+              <tr>
+                <td>1</td>
+                <td>Employee ID</td>
+                <td><?php echo $userlevel['employeecode'];?></td>                
+              </tr>
+               <tr>
+                <td>2</td>
+                <td>Employee Name</td>
+                <td><?php echo $personaldetail['name'];?></td>                
+              </tr>
+               <tr>
+                <td>3</td>
+                <td>Email ID</td>
+                <td><?php echo $userlevel['email'];?></td>               
+              </tr>
+               <tr>
+                <td>4</td>
+                <td>PAN (In case of Indian Nationals)</td>
+                <td><?php echo $personaldetail['pan'];?></td>               
+              </tr>
+               <tr>
+                <td>5</td>
+                <td>Other Identification no. (In case of Foreign Nationals)</td>
+                <td><?php echo $personaldetail['legal_identifier'];?></td>               
+              </tr>
+               <tr>
+                <td>6</td>
+                <td>Nature of Identification no. (In case of Foreign Nationals)</td>
+                <td><?php echo $personaldetail['legal_identification_no'];?></td>                
+              </tr>
+               <tr>
+                <td>7</td>
+                <td>DOB</td>
+                <td><?php echo $personaldetail['dob'];?></td>                
+              </tr>
+               <tr>
+                <td>8</td>
+                <td>Gender</td>
+                <td><?php echo $personaldetail['sex'];?></td>                
+              </tr>
+               <tr>
+                <td>9</td>
+                <td>Educational Qualification</td>
+                <td><?php echo $personaldetail['education'];?></td>               
+              </tr>
+               <tr>
+                <td>10</td>
+                <td>Institute from which qualification was acquired</td>
+                <td><?php echo $personaldetail['institute'];?></td>               
+              </tr>
+               <tr>
+                <td>11</td>
+                <td>Residential Address</td>
+                <td><?php echo $personaldetail['address'];?></td>              
+              </tr>
+               <tr>
+                <td>12</td>
+                <td>Mobile no.</td>
+                <td><?php echo $personaldetail['mobileno'];?></td>                
+              </tr>
+               <tr>
+                <td>13</td>
+                <td>No. of shares of Dr. Reddys held by you</td>
+                <td><?php echo $personaldetail['sharehldng'];?></td>               
+              </tr>
+               <tr>
+                <td>14</td>
+                <td>No. of ADRs of Dr. Reddys held by your</td>
+                <td><?php echo $personaldetail['adrshldng'];?></td>                
+              </tr>
+            <tr>
+               <?php } else{?>
+                <td colspan ="14">No Data Found..</td>
+               <?php  } ?>             
+            </tr>
+            </tbody>
         </table>
           
           
-          <h2 class="text-center">ii.Past Employer Details</h2>
+          <h3 class="h3_heading">II.  Past Employer Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
@@ -105,7 +200,7 @@
             </tbody>
         </table>
           
-        <h2 class="text-center">iii.Material Financial Relationship</h2>
+        <h3 class="h3_heading">III.  Material Financial Relationship</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
@@ -134,7 +229,7 @@
             </tbody>
         </table>
           
-           <h2 class="text-center">iv.Demat Account Details</h2>
+           <h3 class="h3_heading">IV.  Demat Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
@@ -158,11 +253,12 @@
                <?php  } ?>
             </tbody>
         </table>
-          <div><br></div>
+        </div>
+         <div class="belowleveluserdetcss">
           
-          <h1 class="h1_heading" style="font-weight: normal;">B.Details of Relatives</h1>
+          <h2 class="h2_heading">B. Details of Relatives</h2>
           
-                  <h2 class="text-center">i.List of Relatives</h2>
+                 <h3 class="h3_heading">I.  List of Relatives</h3>
         <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
@@ -210,7 +306,7 @@
             </tbody>
         </table>
           
-                     <h2 class="text-center">ii.Demat Account Details</h2>
+                     <h3 class="h3_heading">II.  Demat Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
@@ -234,8 +330,21 @@
                <?php  } ?>
             </tbody>
         </table>
+
+        <div style="color: #000">
+          <p><b>The above information is true to the best of my knowledge and belief.</b></p>
+        <ul style="list-style: none;">
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">b) </span> I will keep the Corporate Secretarial team informed about any change(s) in the above declaration. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">c) </span> I have complied with the Company’s Code of Conduct to Regulate, Monitor and Report Trading. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">d) </span> I have not / will not share any unpublished price sensitive information (confidential information) regarding company’s operations with any one.  </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">e) </span> I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too. </li>
+        </ul>
+        <p><b>This is a computer generated document and does not require signature.        </b></p>
+        </div>
           </div>
-          <div class="col-md-12 text-right" style="margin-top: 20px;"> 
+          </div>         
+          
+          <div class="col-md-12 text-right" style="margin: 15px 0 20px 0;"> 
                   <button type="submit" class="btn btn-primary " id="submituserdata">Submit</button>
             </div>
         </div>
@@ -255,8 +364,8 @@
                      <td colspan="4">
                         <div class="">
                            <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
-                           <input type="radio" id= "showsec1" name="showsec1" value="Yes"  onclick="showsection(this.id)">Yes
-                           <input type="radio" id= "hidesec1" name="showsec1" value="No" onclick="hidesection(this.id)">No
+                           <label><input type="radio" id= "showsec1" name="showsec1" value="Yes"  onclick="showsection(this.id)">yes</label>
+                           <label><input type="radio" id= "hidesec1" name="showsec1" value="No" onclick="hidesection(this.id)">no</label>
                         </div>
                      </td>
                   </tr>
@@ -390,7 +499,7 @@
                   <tr>
                      <td colspan="6">
                         <div class="">
-                           <label style="padding-left: 27px;">ii. Private/Public Company</label>
+                           <label style="padding-left: 27px;">ii. Private/Public Company (Note - please disclose even if you hold 1 share in the company)</label>
                         </div>
                      </td>
                   </tr>
@@ -474,12 +583,14 @@
                <td style="border-right: 1px solid #f7f7f7"></td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" >
+               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" placeholder="Company Name">
                    </div>
                </td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" value="holding above 2% shares" readonly="readonly">
+               <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" value="Percentage of Shares alongwith relative(%)" readonly="readonly">
+               <!-- <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" value="holding above 2% shares" readonly="readonly"> -->
+               
                </div>
                </td>
                <td>
@@ -514,13 +625,13 @@
                <!-- table 5 end-->
           
                 <!-- table 6 start-->
-                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; margin-bottom: 20px;" width="100%">
                 <tr>
                 <td colspan="6">
                 <div class="">
                <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
-                <input type="radio" id = "showsec3" name = "showsec3" value="Yes" onclick="showsection(this.id);"> Yes
-               <input type="radio"  id = "hidesec3" name="showsec3"   value="No"  onclick="hidesection(this.id)">No
+                <label><input type="radio" id = "showsec3" name = "showsec3" value="Yes" onclick="showsection(this.id);"> Yes</label>
+                <label><input type="radio"  id = "hidesec3" name="showsec3"   value="No"  onclick="hidesection(this.id)">No</label>
                </div>
                 </td>
                 </tr>
@@ -581,8 +692,8 @@
                <td colspan="4">
                <div class="">
                <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
-               <input type="radio" id = "showsec2" name = "showsec2" value="Yes" onclick="showsection(this.id);"> Yes
-               <input type="radio"  id = "hidesec2" name="showsec2"   value="No"  onclick="hidesection(this.id)">No 
+               <label><input type="radio" id = "showsec2" name = "showsec2" value="Yes" onclick="showsection(this.id);"> Yes</label>
+               <label><input type="radio"  id = "hidesec2" name="showsec2"   value="No"  onclick="hidesection(this.id)">No </label>
                </div>
                </td>
                </tr>
@@ -899,17 +1010,30 @@
                </table>
                <!-- table 8 end-->
                 <!-- table 9 start-->
-                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
+                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;margin-bottom: 20px;" width="100%">
                 <tr>
                 <td colspan="6">
                     <div class="">
                     <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
-                    <input type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes
-                   <input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No
+                    <label><input type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes</label>
+                    <label><input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No</label>
                    </div>
                 </td>
                 </tr>
                 </table>
+
+
+         <div style="color: #000">
+          <p><b>The above information is true to the best of my knowledge and belief.</b></p>
+        <ul style="list-style: none;">
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">b) </span> I will keep the Corporate Secretarial team informed about any change(s) in the above declaration. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">c) </span> I have complied with the Company’s Code of Conduct to Regulate, Monitor and Report Trading. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">d) </span> I have not / will not share any unpublished price sensitive information (confidential information) regarding company’s operations with any one.  </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">e) </span> I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too. </li>
+        </ul>
+        <p><b>This is a computer generated document and does not require signature.        </b></p>
+        </div>
+
                <table border="1" style="border-collapse: collapse; border: 1px solid #ccc; display: none;" width="100%" id="test3">
                
                <tr>
@@ -1012,9 +1136,9 @@
 
           
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <div id="downloadpdf" style="float: right;    margin: 10px;"></div>
+            <div id="downloadpdf" style="float: right;margin: 20px; z-index: 2; "></div>
             <div class="in_box">
-               <button type="button" class="btn btn-primary formpdf floatright">Generate PDF</button>
+               <button type="button" class="btn btn-primary formpdf floatright" style="margin: 20px; z-index: 2;">Generate PDF</button>
                <input type="text" id = "uniqueid" name="uniqueid" value = "" style="display: none;">
             </div>
             <div class="modalform">

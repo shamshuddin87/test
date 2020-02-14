@@ -1485,7 +1485,7 @@ class Miscommon extends Component
         }
         else
         {
-            $myhtml4.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+            $myhtml4.='<tr><td colspan="4" style="text-align: center;">Data Not Found</td>';
         }
 
         if(sizeof($mfrdata) > 0)

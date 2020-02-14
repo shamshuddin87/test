@@ -503,7 +503,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         return $genfile;
     }
 
-    public function exportContDisclsr($getuserid,$user_group_id,$processdata,$annualyr)
+    public function exportContDisclsr($getuserid,$user_group_id,$processdata)
     {
         //echo '<pre>'; print_r($processdata);exit;
         $connection = $this->db;
@@ -514,9 +514,10 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         $j=1;
         foreach($processdata as $tblrow)
         {
+            $formated_date = date('d-m-Y',strtotime($tblrow['date_added']));
             $nwexcl[] = array('0' => $j,
                             '1' => $tblrow['fullname'],
-                            '2'=> $annualyr,
+                            '2'=> $formated_date
                         );
             $j++;
         }

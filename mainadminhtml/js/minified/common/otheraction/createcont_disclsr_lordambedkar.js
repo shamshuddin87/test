@@ -161,8 +161,7 @@ website('#insertannual').ajaxForm({dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
 {if(response.logged===true)
-{website('#sendtoco').modal('hide');website('#Mymodaldeclara .formpdf').css('display','none');website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');if(sendtype=='no')
-{window.location.href="continuousdisclosure";}}
+{website('#sendtoco').modal('hide');website('#Mymodaldeclara .formpdf').css('display','none');website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');window.location.href="continuousdisclosure";}
 else
 {}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
