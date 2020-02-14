@@ -423,3 +423,6 @@ label {
     margin-bottom: 4px;
     font-weight: bold;
 }
+
+.btn.mfr,.btn.relatives{background: #fff;color: #000;}
+.btn.mfr:hover,.btn.relatives:hover{    background: #4a2880; color: white;}

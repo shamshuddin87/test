@@ -201,14 +201,18 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                         </section>
 
                         <section class="col col-md-4 col-xs-12">
-                            <div class="mainelem company_product">
+                            <div class="approvernamemain">
+                                <div class="mainelem company_product">
                                 <label class="control-label">Approver Name*</label>
                                 <input type="hidden" id="approvernm" name="approvernm" class="approvernm" value="">
                                 <div class="header-search-wrapper  floatnone find_box_company">
                                     <i class="fa fa-search"></i>
                                     <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft" placeholder="Select Approver" id="search-box" autocomplete="off"/>
-                                    <div id="live-search-header-wrapper" class="">
+                                    <div class="approvernameoption">
+                                        <div id="live-search-header-wrapper" class="">
                                         <ul class="live-searchul"></ul>
+                                    </div>
+                                    <div id="appendapp" style="text-align: left;"></div>
                                     </div>
                                     <div class="clearelement"></div>
                                     <div class="mainelementch">
@@ -224,7 +228,8 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                     </div>
                                 </div>
                             </div>
-                            <div id="appendapp" style="text-align: left;"></div>
+                            
+                            </div>
                         </section>
 
                         <section class="col col-md-4 ">

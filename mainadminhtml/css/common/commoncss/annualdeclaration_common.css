@@ -22,3 +22,8 @@ tr:nth-child(even) {
 .create_button {text-align: right;}
 
  
+.h1_heading {
+    color: #000;
+    padding-bottom: 15px;
+    text-align: center;
+}

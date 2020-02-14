@@ -628,8 +628,7 @@
                   <input type="button" id = "adddiv1" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
                   <input type="button" id = "remvdiv1" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd1" plancntr="<?php echo count($selfcompany); ?>">
-      </div>
--->
+      </div>-->
 
       
       
@@ -942,8 +941,8 @@
        <!-- table 6 start-->
                 <div class="">
                <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
-                <input type="radio" id = "showsec3" name = "showsec3" value="Yes" onclick="showsection(this.id);"> Yes
-               <input type="radio"  id = "hidesec3" name="showsec3"   value="No"  onclick="hidesection(this.id)">No
+               <label style="color: #000;"><input type="radio" id = "showsec3" name = "showsec3" value="Yes" onclick="showsection(this.id);"> Yes</label>
+               <label style="color: #000;"><input type="radio"  id = "hidesec3" name="showsec3"   value="No"  onclick="hidesection(this.id)">No</label>
                </div>
                 
                 <?php 
@@ -1630,8 +1629,8 @@
            <td colspan="6">
         <div class="">
        <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
-        <input type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes
-       <input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No
+      <label style="color: #000;"> <input type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes</label>
+      <label style="color: #000;"><input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No</label>
        </div>
         </td>
        </tr>

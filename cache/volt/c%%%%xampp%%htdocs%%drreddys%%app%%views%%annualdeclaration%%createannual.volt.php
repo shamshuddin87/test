@@ -739,8 +739,8 @@
                 <td colspan="6">
                 <div class="">
                <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
-                <label><input type="radio" id = "showsec3" name = "showsec3" value="Yes" onclick="showsection(this.id);"> Yes</label>
-                <label><input type="radio"  id = "hidesec3" name="showsec3"   value="No"  onclick="hidesection(this.id)">No</label>
+                <label style="color: #000;"><input type="radio" id = "showsec3" name = "showsec3" value="Yes" onclick="showsection(this.id);"> Yes</label>
+                <label style="color: #000;"><input type="radio"  id = "hidesec3" name="showsec3"   value="No"  onclick="hidesection(this.id)">No</label>
                </div>
                 </td>
                 </tr>
@@ -941,7 +941,7 @@
         </table>
                  
                  
-        <h3 class="h3_heading">V.  Related Party Details</h3>
+        <h3 class="h3_heading">III.  Related Party Details</h3>
                  
           <!-- table 6 start --> 
                 <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
@@ -1196,8 +1196,8 @@
                 <td colspan="6">
                     <div class="">
                     <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
-                    <label><input type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes</label>
-                    <label><input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No</label>
+                    <label style="color: #000;"><input type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes</label>
+                    <label style="color: #000;"><input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No</label>
                    </div>
                 </td>
                 </tr>
@@ -1276,7 +1276,7 @@
         </ul>
         <p><b>This is a computer generated document and does not require signature.        </b></p>
         </div>
-
+    </div>
           </div>
 
                <!-- table 5 start-->
@@ -1286,8 +1286,8 @@
                <td colspan="4">
                <div class="">
                <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
-               <label><input type="radio" id = "showsec2" name = "showsec2" value="Yes" onclick="showsection(this.id);"> Yes</label>
-               <label><input type="radio"  id = "hidesec2" name="showsec2"   value="No"  onclick="hidesection(this.id)">No </label>
+               <label style="color: #000;"><input type="radio" id = "showsec2" name = "showsec2" value="Yes" onclick="showsection(this.id);"> Yes</label>
+               <label style="color: #000;"><input type="radio"  id = "hidesec2" name="showsec2"   value="No"  onclick="hidesection(this.id)">No </label>
                </div>
                </td>
                </tr>

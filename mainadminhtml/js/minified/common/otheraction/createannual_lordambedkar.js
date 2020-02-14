@@ -159,7 +159,7 @@ else
 if(response.mfrdetail.length>0)
 {for(var i=0;i<response.mfrdetail.length;i++)
 {if(response.mfrdetail[i]['related_party']!='')
-{j=i;j++;mfr+='<tr class="counter">';mfr+='<td width="25%">'+j+'</td>';mfr+='<td width="25%">'+response.empdetail[i]['related_party']+'</td>';mfr+='<td width="25%">'+response.empdetail[i]['pan']+'</td>';mfr+='<td width="25%">'+response.empdetail[i]['relationship']+'</td>';mfr+='<td width="25%">'+response.empdetail[i]['address']+'</td>';mfr+='</tr>';}}}
+{j=i;j++;mfr+='<tr class="counter">';mfr+='<td width="25%">'+j+'</td>';mfr+='<td width="25%">'+response.mfrdetail[i]['related_party']+'</td>';mfr+='<td width="25%">'+response.mfrdetail[i]['pan']+'</td>';mfr+='<td width="25%">'+response.mfrdetail[i]['relationship']+'</td>';mfr+='<td width="25%">'+response.mfrdetail[i]['address']+'</td>';mfr+='</tr>';}}}
 else
 {mfr='<tr><td colspan ="5">No Data Found..</td></tr>';}
 if(response.dematdetail.length>0)
