@@ -55,46 +55,141 @@
 
          <p style="text-align: center;"><b>Questionnaire</b></p>
          <div><br></div>
-         <h2> A. Details of Self </h2>
         
+          <div id="belowleveluserdet">
+             <div class="belowleveluserdetcss">
+          <h2 class="h2_heading">A.  Details Of Self</h2>
+         <h3 class="h3_heading">I.  Personal Details</h3>
+      
 
-         <div class="col-md-12" style="padding-bottom: 20px;">
-               
-                  <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
+         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;  width: 600px;" class="table table-responsive table-inverse" width="100%">
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Employee ID</td>
+                <td class="empcode"></td>                
+              </tr>
+               <tr>
+                <td>2</td>
+                <td>Employee Name</td>
+                <td class="username"></td>                
+              </tr>
+               <tr>
+                <td>3</td>
+                <td>Email ID</td>
+                <td class="emailid"></td>               
+              </tr>
+               <tr>
+                <td>4</td>
+                <td>PAN (In case of Indian Nationals)</td>
+                <td class="pan"></td>               
+              </tr>
+               <tr>
+                <td>5</td>
+                <td>Other Identification no. (In case of Foreign Nationals)</td>
+                <td class="legalidentifier"></td>               
+              </tr>
+               <tr>
+                <td>6</td>
+                <td>Nature of Identification no. (In case of Foreign Nationals)</td>
+                <td class="legalidentityno"></td>                
+              </tr>
+               <tr>
+                <td>7</td>
+                <td>DOB</td>
+                <td class="dob"></td>                
+              </tr>
+               <tr>
+                <td>8</td>
+                <td>Gender</td>
+                <td class="gender"></td>                
+              </tr>
+               <tr>
+                <td>9</td>
+                <td>Educational Qualification</td>
+                <td class="edu"></td>               
+              </tr>
+               <tr>
+                <td>10</td>
+                <td>Institute from which qualification was acquired</td>
+                <td class="institute"></td>               
+              </tr>
+               <tr>
+                <td>11</td>
+                <td>Residential Address</td>
+                <td class="address"></td>              
+              </tr>
+               <tr>
+                <td>12</td>
+                <td>Mobile no.</td>
+                <td class="mobno"></td>                
+              </tr>
+               <tr>
+                <td>13</td>
+                <td>No. of shares of Dr. Reddys held by you</td>
+                <td class="noofshare"></td>               
+              </tr>
+               <tr>
+                <td>14</td>
+                <td>No. of ADRs of Dr. Reddys held by your</td>
+                <td class="adrsshare"></td>                
+              </tr>
+            </tbody>
+        </table>
+          
+          
+          <h3 class="h3_heading">II.  Past Employer Details</h3>
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+            <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Name of Employer</th>
+                <th>Designation Served</th>
+                <th>Start Date of Employment</th>
+                <th>End Date of Employment</th>
+            </tr>
+            </thead>
+            <tbody class="pastemp">
+            </tbody>
+        </table>
+          
+        <h3 class="h3_heading">III.  Material Financial Relationship</h3>
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
+            <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Name of Related Party</th>
+                <th>PAN / or any other Identification no. available</th>
+                <th>Nature of Relationship</th>
+                <th>Address of Related Party</th>
+            </tr>
+            </thead>
+            <tbody class="mfr">
+            
+            </tbody>
+        </table>
+          
+           <h3 class="h3_heading">IV.  Demat Account Details</h3>
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+            <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Demat Account No.</th>
+                <th>Name of Depository Participant</th>
+                <th>Name of Clearing House</th>
+            </tr>
+            </thead>
+            <tbody class="dematacc">
+            
+            </tbody>
+        </table>
                  
-               </div>
-
-<div class="test_top">
-
-               <div id = "div1" class="col-md-12" style="padding-bottom: 20px;">
-                  <section class="col col-md-12 col-xs-12">
-                     <div class="input">
-                       
-                         <table width="100%" border="1" style="border-collapse:collapse;">
-                           <thead>
-                            <tr>
-                           <th>Company Name</th> 
-                           <th>Can you significantly influence the decision making of this company?</th>  
-                            <th>Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</th>                                                
-                           </tr>
-                           </thead>
-                           <tbody class="selfcompany" appendrow='1'>
-                              
-                           </tbody>
-                           </table>
-                        
-                     </div>
-                  </section>
-                 
-                  
-               </div>
-              
+        <div class="test_top">
+            <h3 class="h3_heading">V.Related Party Details</h3>
                <div class="col-md-12" style="padding-bottom: 10px;">
-                  <label >Are you Interested in ?</label>
+                  <label >1.Are you interested in</label>
                </div>
-
-
-               <div id = "div2" class="col-md-12" style="padding-bottom: 20px;">
+            <div id = "div2" class="col-md-12" style="padding-bottom: 20px;">
                   <label  class="col-md-12">i.Firm</label>
                    <section class="col col-md-12 col-xs-12">
                            <table width="100%" border="1" style="border-collapse:collapse;">
@@ -115,7 +210,7 @@
                </div>
               
                <div id = "div3" class="col-md-12" style="padding-bottom: 20px;">
-                  <label  class="col-md-12">ii.Private/Public Company</label>
+                  <label  class="col-md-12">ii.Private/Public Company (Note - please disclose even if you hold 1 share in the company)</label>
                    <section class="col col-md-12 col-xs-12">
                          <table width="100%" border="1" style="border-collapse:collapse;">
                            <thead>
@@ -174,37 +269,54 @@
                         </section>
                   
                </div>
+        </div>
+        </div>
+               <pagebreak></pagebreak>
+         <div class="belowleveluserdetcss">
+          
+          <h2 class="h2_heading">B. Details of Relatives</h2>
+          
+                 <h3 class="h3_heading">I.  List of Relatives</h3>
+        <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+            <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Name of Relative</th>
+                <th>Relationship with Relative</th>
+                <th>Type of Dependency</th>
+                <th>PAN of Relative</th>
+                <th>Other Identification no.</th>
+                <th>Nature of Identification no.</th>
+                <th>Aadhar of Relative</th>
+                <th>Date of Birth of Relative</th>
+                <th>Residential Address</th>
+                <th>Qualification</th>
+                <th>Institute / University from which Qualification Acquired</th>
+                <th>No. of Shares</th>
+                <th>No. of ADRs</th>
+            </tr>
+            </thead>
+            <tbody class="reldetail">
+            </tbody>
+        </table>
+          
+                     <h3 class="h3_heading">II.  Demat Account Details</h3>
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
+            <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Demat Account No.</th>
+                <th>Name of Depository Participant</th>
+                <th>Name of Clearing House</th>
+            </tr>
+            </thead>
+            <tbody class="reldemat">
+            </tbody>
+        </table>
+          </div>
               
-        
-        <pagebreak></pagebreak>
-         <h2> B. Details of Relative </h2>
-           <div class="col-md-12" style="padding-bottom: 20px;">
-                  <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
-                 
-               </div>
-               <div id = "div5" class="col-md-12" style="padding-bottom: 20px;">
-                  <section class="col col-md-12 col-xs-12">
-                     <div class="input">
-                        <table width="100%" border="1" style="border-collapse:collapse;">
-                           <thead>
-                            <tr>
-                           <th>Relative Name</th> 
-                           <th>CompanyName</th> 
-                           
-                           <th>Can you significantly influence the decision making of this company?</th>  
-                            <th>Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</th>                                                
-                           </tr>
-                           </thead>
-                           <tbody class="relative" appendrow='1'>
-                              
-                           </tbody>
-                           </table>
-                  </section>
-                 
-               </div>
-              
-               <div class="col-md-12" style="padding-bottom: 10px;">
-                  <label >Are you Interested in ?</label>
+        <div class="col-md-12" style="padding-bottom: 10px;">
+                  <label >1.Is any of your relative interested in the following -</label>
                </div>
 
                <div id = "div6" class="col-md-12" style="padding-bottom: 20px;">
@@ -230,7 +342,7 @@
                
                  
                <div id = "div7" class="col-md-12" style="padding-bottom: 20px;">
-                  <label  class="col-md-12">ii.Private/Public Company</label>
+                  <label  class="col-md-12">ii.Private/Public Company. (Note - please disclose even if the relatives hold 1 share in the company)</label>
                    <section class="col col-md-12 col-xs-12">
                    <table width="100%" border="1" style="border-collapse:collapse;">
                            <thead>
@@ -293,6 +405,87 @@
                            </table>
                         </section>
                 </div>
+        <div style="color: #000">
+          <p><b>The above information is true to the best of my knowledge and belief.</b></p>
+        <ul style="list-style: none;">
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">b) </span> I will keep the Corporate Secretarial team informed about any change(s) in the above declaration. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">c) </span> I have complied with the Company’s Code of Conduct to Regulate, Monitor and Report Trading. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">d) </span> I have not / will not share any unpublished price sensitive information (confidential information) regarding company’s operations with any one.  </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">e) </span> I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too. </li>
+        </ul>
+        <p><b>This is a computer generated document and does not require signature.        </b></p>
+        </div>
+          </div>
+
+<!--
+         <div class="col-md-12" style="padding-bottom: 20px;">
+               
+                  <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
+                 
+               </div>
+-->
+
+
+
+<!--
+               <div id = "div1" class="col-md-12" style="padding-bottom: 20px;">
+                  <section class="col col-md-12 col-xs-12">
+                     <div class="input">
+                       
+                         <table width="100%" border="1" style="border-collapse:collapse;">
+                           <thead>
+                            <tr>
+                           <th>Company Name</th> 
+                           <th>Can you significantly influence the decision making of this company?</th>  
+                            <th>Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</th>                                                
+                           </tr>
+                           </thead>
+                           <tbody class="selfcompany" appendrow='1'>
+                              
+                           </tbody>
+                           </table>
+                        
+                     </div>
+                  </section>
+                 
+                  
+               </div>
+-->
+              
+
+
+               
+              
+        
+       
+<!--
+           <div class="col-md-12" style="padding-bottom: 20px;">
+                  <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
+                 
+               </div>
+               <div id = "div5" class="col-md-12" style="padding-bottom: 20px;">
+                  <section class="col col-md-12 col-xs-12">
+                     <div class="input">
+                        <table width="100%" border="1" style="border-collapse:collapse;">
+                           <thead>
+                            <tr>
+                           <th>Relative Name</th> 
+                           <th>CompanyName</th> 
+                           
+                           <th>Can you significantly influence the decision making of this company?</th>  
+                            <th>Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</th>                                                
+                           </tr>
+                           </thead>
+                           <tbody class="relative" appendrow='1'>
+                              
+                           </tbody>
+                           </table>
+                  </section>
+                 
+               </div>
+-->
+              
+               
 
         </div>       
                

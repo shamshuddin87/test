@@ -219,9 +219,17 @@ class AnnualdeclarationController extends ControllerBase
                 $getresponse9 = $this->annualdeclarationcommon->annual_relative_pubshare($uid,$usergroup,$uniqueid);
                 $getresponse10 = $this->annualdeclarationcommon->annual_relative_holdcontrl($uid,$usergroup,$uniqueid);
                 
-                if(!empty($getresponse1 || $getresponse2 || $getresponse3 || $getresponse4 || $getresponse5 || $getresponse6 || $getresponse7 || $getresponse8 || $getrespons9 || $getresponse10))
+                $userlevel = $this->annualdeclarationcommon->FetchUserLevel($uid);
+                $personaldetail = $this->annualdeclarationcommon->FetchPersonalDetail($uid);
+                $empdetail = $this->annualdeclarationcommon->FetchEmpDetail($uid);
+                $dematdetail = $this->annualdeclarationcommon->FetchDematDetail($uid);
+                $mfrdetail = $this->annualdeclarationcommon->FetchMfrDetail($uid);
+                $reldetail = $this->annualdeclarationcommon->FetchRelativeDetail($uid);
+                $relDematdetail = $this->annualdeclarationcommon->FetchRelDematDetail($uid);
+                
+                if(!empty($getresponse1 || $getresponse2 || $getresponse3 || $getresponse4 || $getresponse5 || $getresponse6 || $getresponse7 || $getresponse8 || $getresponse9 || $getresponse10))
                 {
-                    $data = array("logged" => true,"message"=>"Data Fetched Successfully","selfcompany"=>$getresponse1,"selffirm"=>$getresponse2,"selfpubpri"=>$getresponse3,"selfpubshare"=>$getresponse4,"selfholdngshare"=>$getresponse8,"relative"=>$getresponse5,"relativefirm"=>$getresponse6,"relativepubpri"=>$getresponse7,"relativepubshare"=>$getresponse9,"relativeholdngshare"=>$getresponse10);
+                    $data = array("logged" => true,"message"=>"Data Fetched Successfully","selfcompany"=>$getresponse1,"selffirm"=>$getresponse2,"selfpubpri"=>$getresponse3,"selfpubshare"=>$getresponse4,"selfholdngshare"=>$getresponse8,"relative"=>$getresponse5,"relativefirm"=>$getresponse6,"relativepubpri"=>$getresponse7,"relativepubshare"=>$getresponse9,"relativeholdngshare"=>$getresponse10,'userlevel'=>$userlevel,'personaldetail'=>$personaldetail,'empdetail'=>$empdetail,'dematdetail'=>$dematdetail,'mfrdetail'=>$mfrdetail,'reldetail'=>$reldetail,'relDematdetail'=>$relDematdetail);
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -1014,10 +1022,10 @@ class AnnualdeclarationController extends ControllerBase
                 //print_r($company);print_r($decision);
 
 
-                 if($d1ques1 != '' || $d2ques1 != '' || $d3ques1 != '' || $d4ques1 != '' || $d5ques1 != '' || $d6ques1 != '' || $d7ques1 != '' || $d8ques1 != '' || $d9ques1 != '' || $d10ques1 != '')
+                 if( $d2ques1 != '' || $d3ques1 != '' || $d4ques1 != '' ||  $d6ques1 != '' || $d7ques1 != '' || $d8ques1 != '' || $d9ques1 != '' || $d10ques1 != '')
                     {
                         
-                    $getres1 = $this->annualdeclarationcommon->upannualselfcompany($getuserid,$d1ques1,$d1ques2,$d1ques3,$uniqueid,$d1id);
+                    //$getres1 = $this->annualdeclarationcommon->upannualselfcompany($getuserid,$d1ques1,$d1ques2,$d1ques3,$uniqueid,$d1id);
 
                     //print_r($getres1);exit;
                   
@@ -1027,7 +1035,7 @@ class AnnualdeclarationController extends ControllerBase
 
                     $getres4 = $this->annualdeclarationcommon->upannualselfpubshare($getuserid,$d4ques1,$d4ques2,$d4ques3,$d4ques4,$uniqueid,$d4id);
 
-                      $getres5 = $this->annualdeclarationcommon->upannualrelativecompany($getuserid,$d5ques1,$d5ques2,$d5ques3,$d5ques4,$uniqueid,$d5id);
+                      //$getres5 = $this->annualdeclarationcommon->upannualrelativecompany($getuserid,$d5ques1,$d5ques2,$d5ques3,$d5ques4,$uniqueid,$d5id);
 
                      $getres6 = $this->annualdeclarationcommon->upannualrelativefirm($getuserid,$d6ques1,$d6ques2,$d6ques3,$d6ques4,$d6ques5,$uniqueid,$d6id);
 
@@ -1041,7 +1049,7 @@ class AnnualdeclarationController extends ControllerBase
 
            
 
-                        if($getres1 || $getres2 || $getres3 || $getres4 || $getres5  || $getres6 || $getres7 || $getres8 || $getres9 || $getres10 )
+                        if( $getres2 || $getres3 || $getres4  || $getres6 || $getres7 || $getres8 || $getres9 || $getres10 )
                         { 
 
                             $data = array("logged" => true,'message' => 'Record Updated','uniqueid' => $uniqueid );
