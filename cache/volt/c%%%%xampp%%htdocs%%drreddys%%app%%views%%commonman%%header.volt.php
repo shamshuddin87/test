@@ -161,14 +161,15 @@ $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
                 </ul> 
             </li>
           <!--   <?php  } ?> -->
-            <li>
-               <a href="blackoutperiod"><i class="fa fa-ban fa-5x" id="cmp_mst"></i>Trading Window</a>
-            </li>
-            <!--  <?php if($gettypm['user_group_id']!='2'){ ?> -->
-            <li>
-               <a href="tradingplan"><i class="fa fa-edit fa-5x" id="cmp_mst"></i>Trading Plan</a>
-            </li> 
-            <!-- <?php  } ?> -->
+           
+            <?php if($gettypm['user_group_id']=='2'){ ?> 
+                <li>
+                    <a href="blackoutperiod"><i class="fa fa-ban fa-5x" id="cmp_mst"></i>Trading Window</a>
+                </li>
+                <li>
+                   <a href="tradingplan"><i class="fa fa-edit fa-5x" id="cmp_mst"></i>Trading Plan</a>
+                </li> 
+            <?php  } ?> 
              <!--  <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='2') {?> -->
             <li>
                <a href="tradingplan/planreqstview"><i class="fa fa-eye" id="cmp_mst"></i>View Trade Plan</a>
@@ -265,18 +266,18 @@ $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
   
             </ul> 
          </li> -->
-         <li><a class="click_board click_board3" href="javascript:;"><i class="fa fa-share-alt"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-             <li>
-                  <a href="sensitiveinformation/recipient"><i class="" id="cmp_mst"></i>Connected Person</a>
-             </li> 
-              <li><a href="sensitiveinformation/upsi_infosharing"><i class=""></i>
-                <p>Information Sharing</p></a></li>
+            <li><a class="click_board click_board3" href="javascript:;"><i class="fa fa-share-alt"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li>
+                        <a href="sensitiveinformation/recipient"><i class="" id="cmp_mst"></i>Connected Person</a>
+                    </li> 
+                    <li><a href="sensitiveinformation/upsi_infosharing"><i class=""></i>
+                    <p>Information Sharing</p></a></li>
      
-             </ul> 
-          </li>
-          <li>
-            <a class="click_board click_board3" ><i class="fa fa-line-chart fa-5x"></i>Share Holding Summary<span class="fa fa-chevron-down"></span></a>
+                </ul> 
+           </li>
+            <li>
+                <a class="click_board click_board3" ><i class="fa fa-line-chart fa-5x"></i>Share Holding Summary<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu"> 
                     <li>
                     <a href="holdingsummary"><i class="" id="cmp_mst"></i>My Holding Summary</a>
@@ -286,14 +287,14 @@ $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
                     <a href="relholdingsummary"><i class="" id="cmp_mst"></i>Relative Holding Summary</a>
                     </li> 
                 </ul> 
-        </li>
+            </li>
       
-         <li>
+            <li>
                <a href="blackoutperiod"><i class="fa fa-ban fa-5x" id="cmp_mst"></i>Trading Window</a>
-             </li> 
-         <li>
+            </li> 
+            <li>
                <a href="tradingplan"><i class="fa fa-edit fa-5x" id="cmp_mst"></i>Trading Plan</a>
-             </li> 
+            </li> 
          
        
          
@@ -308,9 +309,9 @@ $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
           
    
          <?php if($gettypm['user_group_id']=='14'){  ?>
-            <li>
+          <!--   <li>
                <a href="tradingplan/planreqstview"><i class="fa fa-eye" id="cmp_mst"></i>View Trade Plan</a>
-             </li>
+             </li> -->
          <?php }  ?>
 
          <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'){  ?>

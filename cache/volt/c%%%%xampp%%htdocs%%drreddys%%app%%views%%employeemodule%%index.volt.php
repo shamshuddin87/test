@@ -75,22 +75,22 @@
                      <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfr" style="display: inline;">Any other legal identifier</label>
-                  <input type="text" id="legal_idntfr" name="legal_idntfr" value="<?php echo($personaldetails['legal_identifier']) ?>" placeholder="Nature of identifier" >
+                  <input type="text" id="legal_idntfr" name="legal_idntfr" value="<?php echo($personaldetails['legal_identifier']) ?>" placeholder="Any other legal identifier">
                </div>
                <div class="col-md-4 col-xs-12">
                     <div class="tooltip_div">
                      <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfctn_no">Any other legal identification number</label>
-                  <input type="text" id="legal_idntfctn_no" value="<?php echo($personaldetails['legal_identification_no']) ?>" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
+                  <input type="text" id="legal_idntfctn_no" value="<?php echo($personaldetails['legal_identification_no']) ?>" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
                </div>
                <div class="col-md-4 col-xs-12">
                   <label for="aadhar">Aadhaar</label>
                   <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<?php echo($personaldetails['aadhar']) ?>" maxlength="12" pattern="[0-9]{12}">
                </div>
                <div class="col-md-4 col-xs-12">
-                  <label for="Dob">Dob*</label>
-                  <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="bootdatepick" placeholder="dob">
+                  <label for="Dob">DOB*</label>
+                  <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="bootdatepick" placeholder="DOB">
                </div>
                 
                <div class="col-md-12 col-xs-12"> 
@@ -170,14 +170,14 @@
                      <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
-                  <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of identifier" >
+                  <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Any other legal identifier" >
                </div>
                <div class="col-md-4 col-xs-12">
                    <div class="tooltip_div">
                      <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfctn_no">Any other legal identification number</label>
-                  <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
+                  <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
                </div>
                <div class="col-md-4 col-xs-12">
                   <label for="aadhar">Aadhaar</label>
@@ -354,7 +354,7 @@
 
                            <div class="col-md-6">
                               <label for="legal_idntfr">Any other legal identifier</label>
-                              <input type="text" id="legal_idntfr" name="legal_idntfr" placeholder="Nature of identifier">
+                              <input type="text" id="legal_idntfr" name="legal_idntfr" placeholder="Any other legal identifier">
                            </div>
 
                            <div class="col-md-6">
@@ -362,7 +362,7 @@
                                  <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                </div>
                               <label for="legal_idntfctn_no">Any other legal identification number</label>
-                              <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
+                              <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
                            </div>
 
 
@@ -499,14 +499,14 @@
                              <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                            </div>
                         <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
-                        <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of identifier">
+                        <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Any other legal identifier">
                     </div>
                      <div class="col-md-4 top_space">
                          <div class="tooltip_div">
                                  <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                </div>
                         <label for="legal_idntfctn_no">Any other legal identification number</label>
-                        <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
+                        <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);"  placeholder="Any other legal identification number">
                     </div>
                     </div>
                       
@@ -516,8 +516,8 @@
                         <input  class=" aadhar" placeholder="Aadhaar" id="aadhar"  name="aadhar" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}" />
                      </div>
                      <div class="col-md-4 top_space">
-                        <label>Date Of Birth*</label>
-                        <input type="text"  id="1_dob" name="dob" class="bootdatepick" placeholder="Date Of Birth">
+                        <label>DOB*</label>
+                        <input type="text"  id="1_dob" name="dob" class="bootdatepick" placeholder="DOB">
                      </div>
                      <div class="col-md-4 top_space">
                          <div class="tooltip_div">
@@ -667,22 +667,22 @@
                                      <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                    </div>
                                 <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
-                                <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of identifier">
+                                <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Any other legal identifier">
                             </div>
                              <div class="col-md-6">
                                  <div class="tooltip_div">
                                  <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                </div>
                                 <label for="legal_idntfctn_no">Any other legal identification number</label>
-                                <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);">
+                                <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
                             </div>
                            <div class="col-md-6">
                               <label for="aadhar">Aadhaar</label>
                               <input type="text" id="aadhar" name="aadhar" placeholder="Aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
                            </div>
                            <div class="col-md-6">
-                              <label for="Dob">Date Of Birth*</label>
-                              <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="Date Of Birth" readonly>
+                              <label for="Dob">DOB*</label>
+                              <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="DOB" readonly>
                            </div>
                            <div class="col-md-12"> 
                                <label style="display: block;" for="sex">Gender*</label>
