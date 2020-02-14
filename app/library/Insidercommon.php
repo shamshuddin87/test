@@ -196,7 +196,7 @@ class Insidercommon extends Component
                 // print_r($lastid);exit;     
                
                
-                $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$lastid,$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode']);
+                $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$lastid,$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid']);
                
                
                 if($data)

@@ -172,7 +172,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                         <section class="col col-md-4">
                             <label class="control-label">L+1 Employee ID</label>
                             <div class="input">
-                                <input type="text" id="l1empid" name="l1empid" class="form_fields form-control col-md-7 col-xs-12" pattern="[A-Za-z0-9]{9}" title="Please Enter 9 digit code" onkeypress="return isAlphaNumeric(event,this);">
+                                <input type="text" id="l1empid" name="l1empid" class="form_fields form-control col-md-7 col-xs-12" maxlength="9" pattern="[A-Za-z0-9]{9}" title="Please Enter 9 digit code" onkeypress="return isAlphaNumeric(event,this);">
                             </div>
                         </section>
                         
@@ -372,7 +372,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
 
                     <div class="control-label form-group col-md-6">
                         <span class="floatleft"><label>L+1 Employee ID</label></span>
-                        <input type="text" class="form-control" id="l1empid" name="l1empid" pattern="[A-Za-z0-9]{9}" title="Please Enter 9 digit code" onkeypress="return isAlphaNumeric(event,this);">
+                        <input type="text" class="form-control" id="l1empid" name="l1empid" maxlength="9" pattern="[A-Za-z0-9]{9}" title="Please Enter 9 digit code" onkeypress="return isAlphaNumeric(event,this);">
                     </div>
                    
                     <div class="clearelement"></div>
