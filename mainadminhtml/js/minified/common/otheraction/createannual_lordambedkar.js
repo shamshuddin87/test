@@ -95,7 +95,7 @@ function getpdfdata(uniqueid)
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged==true)
-{var addhtmlnxt='';var addhtmlnxt1='';var addhtmlnxt2='';var addhtmlnxt3='';var addhtmlnxt4='';var addhtmlnxt5='';var addhtmlnxt6='';var addhtmlnxt7='';var addhtmlnxt8='';var addhtmlnxt9='';if(response!=0)
+{var addhtmlnxt='';var addhtmlnxt1='';var addhtmlnxt2='';var addhtmlnxt3='';var addhtmlnxt4='';var addhtmlnxt5='';var addhtmlnxt6='';var addhtmlnxt7='';var addhtmlnxt8='';var addhtmlnxt9='';var pastemp='';var mfr='';var dematacc='';var reldetail='';var reldemat='';if(response!=0)
 {website("#uniqueid").val(uniqueid);if(response.selfcompany!=0)
 {for(var i=0;i<response.selfcompany.length;i++)
 {addhtmlnxt+='<tr class="counter">';addhtmlnxt+='<td width="25%">'+response.selfcompany[i]['company']+'</td>';addhtmlnxt+='<td width="25%">'+response.selfcompany[i]['decision']+'</td>';addhtmlnxt+='<td width="25%">'+response.selfcompany[i]['transaction']+'</td>';addhtmlnxt+='</tr>';}}
@@ -121,14 +121,17 @@ if(response.selfholdngshare!=0)
 {addhtmlnxt7+='<tr class="counter">';addhtmlnxt7+='<td width="25%">'+response.selfholdngshare[i]['cmpname']+'</td>';addhtmlnxt7+='<td width="25%">'+response.selfholdngshare[i]['isdecisionmaking']+'</td>';addhtmlnxt7+='<td width="25%">'+response.selfholdngshare[i]['isfincltrans']+'</td>';addhtmlnxt7+='</tr>';}}
 if(response.relative!=0)
 {for(var i=0;i<response.relative.length;i++)
+{if(response.relative[i]['relative']!='')
 {addhtmlnxt4+='<tr class="counter">';addhtmlnxt4+='<td width="25%">'+response.relative[i]['relative']+'</td>';addhtmlnxt4+='<td width="25%">'+response.relative[i]['company']+'</td>';addhtmlnxt4+='<td width="25%">'+response.relative[i]['decision']+'</td>';addhtmlnxt4+='<td width="25%">'+response.relative[i]['transaction']+'</td>'
-addhtmlnxt+='</tr>';}}
+addhtmlnxt+='</tr>';}}}
 if(response.relativefirm!=0)
 {for(var i=0;i<response.relativefirm.length;i++)
+{if(response.relativefirm[i]['relative']!='')
 {addhtmlnxt5+='<tr class="counter">';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['relative']+'</td>';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['firm']+'</td>';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['interest']+'</td>';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['decision']+'</td>';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['transaction']+'</td>'
-addhtmlnxt+='</tr>';}}
+addhtmlnxt+='</tr>';}}}
 if(response.relativepubpri!=0)
 {for(var i=0;i<response.relativepubpri.length;i++)
+{if(response.relativepubpri[i]['relative']!='')
 {addhtmlnxt6+='<tr class="counter">';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['relative']+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['company']+'</td>';var interst='';if(response.relativepubpri[i]['interest']==1)
 {interst='Member';}
 else if(response.relativepubpri[i]['interest']==1)
@@ -136,14 +139,50 @@ else if(response.relativepubpri[i]['interest']==1)
 else if(response.relativepubpri[i]['interest']==1)
 {interst='Member and Director';}
 addhtmlnxt6+='<td width="25%">'+interst+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['noofshare']+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['decision']+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['transaction']+'</td>'
-addhtmlnxt6+='</tr>';}}
+addhtmlnxt6+='</tr>';}}}
 if(response.relativepubshare!=0)
 {for(var i=0;i<response.relativepubshare.length;i++)
-{addhtmlnxt8+='<tr class="counter">';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['relative']+'</td>';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['company']+'</td>';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['interest']+'</td>';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['decision']+'</td>';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['transaction']+'</td>';addhtmlnxt8+='</tr>';}}
+{if(response.relativepubshare[i]['relative']!='')
+{addhtmlnxt8+='<tr class="counter">';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['relative']+'</td>';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['company']+'</td>';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['interest']+'</td>';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['decision']+'</td>';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['transaction']+'</td>';addhtmlnxt8+='</tr>';}}}
 if(response.relativeholdngshare!=0)
 {for(var i=0;i<response.relativeholdngshare.length;i++)
-{addhtmlnxt9+='<tr class="counter">';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['relative']+'</td>';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['cmpname']+'</td>';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['isdecisionmaking']+'</td>';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['isfincltrans']+'</td>';addhtmlnxt9+='</tr>';}}
-website('.selfcompany').html(addhtmlnxt);website('.selffirm').html(addhtmlnxt1);website('.selfpubpri').html(addhtmlnxt2);website('.selfpubshare').html(addhtmlnxt3);website('.selfholdcontrl').html(addhtmlnxt7);website('.relative').html(addhtmlnxt4);website('.relativefirm').html(addhtmlnxt5);website('.relativepubpri').html(addhtmlnxt6);website('.relativepubshare').html(addhtmlnxt8);website('.relativeholdngcontrl').html(addhtmlnxt9);}
+{if(response.relativeholdngshare[i]['relative']!='')
+{addhtmlnxt9+='<tr class="counter">';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['relative']+'</td>';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['cmpname']+'</td>';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['isdecisionmaking']+'</td>';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['isfincltrans']+'</td>';addhtmlnxt9+='</tr>';}}}
+if(response.userlevel)
+{website('.empcode').html(response.userlevel['employeecode']);website('.username').html(response.personaldetail['name']);website('.emailid').html(response.userlevel['email']);website('.pan').html(response.personaldetail['pan']);website('.legalidentifier').html(response.personaldetail['legal_identifier']);website('.legalidentityno').html(response.personaldetail['legal_identification_no']);website('.dob').html(response.personaldetail['dob']);website('.gender').html(response.personaldetail['sex']);website('.edu').html(response.personaldetail['education']);website('.institute').html(response.personaldetail['institute']);website('.address').html(response.personaldetail['address']);website('.mobno').html(response.personaldetail['mobileno']);website('.noofshare').html(response.personaldetail['sharehldng']);website('.adrsshare').html(response.personaldetail['adrshldng']);}
+if(response.empdetail.length>0)
+{for(var i=0;i<response.empdetail.length;i++)
+{if(response.empdetail[i]['emp_name']!='')
+{j=i;j++;pastemp+='<tr class="counter">';pastemp+='<td width="25%">'+j+'</td>';pastemp+='<td width="25%">'+response.empdetail[i]['emp_name']+'</td>';pastemp+='<td width="25%">'+response.empdetail[i]['emp_desigtn']+'</td>';pastemp+='<td width="25%">'+response.empdetail[i]['startdate']+'</td>';pastemp+='<td width="25%">'+response.empdetail[i]['enddate']+'</td>';pastemp+='</tr>';}}}
+else
+{pastemp='<tr><td colspan ="5">No Data Found..</td></tr>';}
+if(response.mfrdetail.length>0)
+{for(var i=0;i<response.mfrdetail.length;i++)
+{if(response.mfrdetail[i]['related_party']!='')
+{j=i;j++;mfr+='<tr class="counter">';mfr+='<td width="25%">'+j+'</td>';mfr+='<td width="25%">'+response.empdetail[i]['related_party']+'</td>';mfr+='<td width="25%">'+response.empdetail[i]['pan']+'</td>';mfr+='<td width="25%">'+response.empdetail[i]['relationship']+'</td>';mfr+='<td width="25%">'+response.empdetail[i]['address']+'</td>';mfr+='</tr>';}}}
+else
+{mfr='<tr><td colspan ="5">No Data Found..</td></tr>';}
+if(response.dematdetail.length>0)
+{for(var i=0;i<response.dematdetail.length;i++)
+{if(response.dematdetail[i]['accountno']!='')
+{j=i;j++;dematacc+='<tr class="counter">';dematacc+='<td width="25%">'+j+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['accountno']+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['depository_participient']+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['clearing_house']+'</td>';dematacc+='</tr>';}}}
+else
+{dematacc='<tr><td colspan ="4">No Data Found..</td></tr>';}
+if(response.reldetail.length>0)
+{var deptype='';for(var i=0;i<response.reldetail.length;i++)
+{if(response.reldetail[i]['name']!='')
+{j=i;j++;reldetail+='<tr class="counter">';reldetail+='<td>'+j+'</td>';reldetail+='<td>'+response.reldetail[i]['name']+'</td>';reldetail+='<td>'+response.reldetail[i]['relationshipname']+'</td>';if(response.reldetail[i]['dependency_nature']!='')
+{deptype=response.reldetail[i]['dependency_nature'].toString(',');}
+reldetail+='<td>'+deptype+'</td>';reldetail+='<td>'+response.reldetail[i]['pan']+'</td>';reldetail+='<td>'+response.reldetail[i]['legal_identifier']+'</td>';reldetail+='<td>'+response.reldetail[i]['legal_identification_no']+'</td>';reldetail+='<td>'+response.reldetail[i]['aadhar']+'</td>';reldetail+='<td>'+response.reldetail[i]['dob']+'</td>';reldetail+='<td>'+response.reldetail[i]['address']+'</td>';reldetail+='<td>'+response.reldetail[i]['education']+'</td>';reldetail+='<td>'+response.reldetail[i]['education']+'</td>';reldetail+='<td>'+response.reldetail[i]['sharehldng']+'</td>';reldetail+='<td>'+response.reldetail[i]['adrshldng']+'</td>';reldetail+='</tr>';}}}
+else
+{reldetail='<tr><td colspan ="14">No Data Found..</td></tr>';}
+if(response.relDematdetail.length>0)
+{for(var i=0;i<response.relDematdetail.length;i++)
+{if(response.relDematdetail[i]['accountno']!='')
+{j=i;j++;reldemat+='<tr class="counter">';reldemat+='<td>'+j+'</td>';reldemat+='<td>'+response.reldetail[i]['accountno']+'</td>';reldemat+='<td>'+response.reldetail[i]['depository_participient']+'</td>';reldemat+='<td>'+response.reldetail[i]['clearing_house']+'</td>';reldemat+='</tr>';}}}
+else
+{reldemat='<tr><td colspan ="14">No Data Found..</td></tr>';}
+website('.selfcompany').html(addhtmlnxt);website('.selffirm').html(addhtmlnxt1);website('.selfpubpri').html(addhtmlnxt2);website('.selfpubshare').html(addhtmlnxt3);website('.selfholdcontrl').html(addhtmlnxt7);website('.relative').html(addhtmlnxt4);website('.relativefirm').html(addhtmlnxt5);website('.relativepubpri').html(addhtmlnxt6);website('.relativepubshare').html(addhtmlnxt8);website('.relativeholdngcontrl').html(addhtmlnxt9);website('.pastemp').html(pastemp);website('.mfr').html(mfr);website('.dematacc').html(dematacc);website('.reldetail').html(reldetail);website('.reldemat').html(reldemat);}
 website('#Mymodaldeclara').modal('show');}
 else
 {new PNotify({title:'Alert',text:"Please Fill All The Data In Software..!!!",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
