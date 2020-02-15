@@ -510,10 +510,11 @@ class Upsicommon extends Component
     public function Fetchusersid($getuserid,$user_group_id,$EmailData)
     {
         $connection = $this->dbtrd;
-        $emailid = implode("','",$EmailData['emailid']);
+        //$emailid = implode("','",$EmailData['emailid']);
+        $emailid = $EmailData['emailid'];
         //print_r($emailid);exit;
-        $sqlquery = "SELECT * FROM `it_memberlist` WHERE `email` IN ('".$emailid."') AND `status`=1 ";
-        //echo $sqlquery;exit;
+        $sqlquery = "SELECT * FROM `it_memberlist` WHERE `email` = '".$emailid."' AND `status`=1 ";
+        //print_r($sqlquery);
         try
         {
             $exeget = $connection->query($sqlquery);
@@ -527,10 +528,10 @@ class Upsicommon extends Component
              //echo '<pre>';print_r($getlist);exit;
             }
             else
-            {   $getlist = array(); }
+            {   $getlist = false; }
         }
         catch (Exception $e)
-        {   $getlist = array(); }
+        {   $getlist = false;  }
         //echo '<pre>';print_r($getlist);exit;
         return $getlist;
     }
