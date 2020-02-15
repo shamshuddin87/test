@@ -22,11 +22,11 @@
     <div class="mainheader row">
 
       <div class="col col-xs-6"><h1 class="h1_heading ">Annual Declaration</h1></div>
-      <div class="tooltip_div col col-xs-6">
-       <div class="create_button">
-           <a href="javascript:void(0);" data="List Of Company" class="tooltip_c"><button type="button" class="btn btn-primary ">Dr Reddy's subsidiaries</button></a>
-       </div>
-    </div>
+      <div class="create_button  col col-xs-6">
+        <div class="tooltip_div">
+           <a href="javascript:void(0);" data="List Of Company" class="tooltip_c right btn btn-primary ">Dr Reddy's subsidiaries</a>
+       </div> 
+     </div>
    </div>
     <?php if($userlevel['role_id']<5){ ?> 
     <div class="containergrid">
@@ -259,7 +259,8 @@
           <h2 class="h2_heading">B. Details of Relatives</h2>
           
                  <h3 class="h3_heading">I.  List of Relatives</h3>
-        <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+        <div class="overflowXscroll">
+          <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
@@ -305,6 +306,7 @@
                <?php  } ?>
             </tbody>
         </table>
+        </div>
           
                      <h3 class="h3_heading">II.  Demat Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
@@ -607,7 +609,7 @@
                   <tr>
                      <td colspan="6">
                         <div class="">
-                           <label style="padding-left: 27px;">ii. Private/Public Company (Note - please disclose even if you hold 1 share in the company)</label>
+                           <label style="padding-left: 27px;">ii. Private/Public Company <span>(Note - please disclose even if you hold 1 share in the company)</span></label>
                         </div>
                      </td>
                   </tr>
@@ -615,7 +617,7 @@
                      <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
                      <td style="width: 22%"><label class="control-label">Company Name.(Please mention full and correct name of the entity clearly specifying if it is a private company or not)</label></td>
                      <td style="width: 16%"><label class="control-label">Nature of Interest</label></td>
-                     <td ><label class="control-label">No. of Shares held</label></td>
+                     <td style="width: 15%"><label class="control-label">No. of Shares held</label></td>
                      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                      <td>
                         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -675,14 +677,14 @@
                <tr>
                <td colspan="5">
                <div class="">
-               <label style="padding-left: 27px;">iii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
+               <label style="padding-left: 27px;">iii. In a public company - by virtue of holding more than 2% of its paid up share capital <span> (along with your relatives)</span></label>
                </div>
                </td>
                </tr>
                <tr>
                 <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
                <td style="width: 22%">  <label class="control-label">Company Name</label></td>
-               <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative(%)</label></td>
+               <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative <span>(%)</span></label></td>
                <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                <td>
                <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -868,6 +870,7 @@
           
           <h2 class="h2_heading">B. Details of Relatives</h2>
           <h3 class="h3_heading">I.  List of Relatives</h3>
+          <div class="overflowXscroll">
         <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
@@ -876,15 +879,15 @@
                 <th>Relationship with Relative</th>
                 <th>Type of Dependency</th>
                 <th>PAN of Relative</th>
-                <th>Other Identification no.</th>
-                <th>Nature of Identification no.</th>
+                <th>Other Identification no. (In case of Foreign Nationals)</th>
+                <th>Nature of Identification no. (In case of Foreign Nationals)</th>
                 <th>Aadhar of Relative</th>
                 <th>Date of Birth of Relative</th>
                 <th>Residential Address</th>
                 <th>Qualification</th>
                 <th>Institute / University from which Qualification Acquired</th>
-                <th>No. of Shares</th>
-                <th>No. of ADRs</th>
+                <th>No. of Shares of Dr. Reddy's held by the relative</th>
+                <th>No. of ADRs of Dr. Reddy's held by the relative</th>
             </tr>
             </thead>
             <tbody>
@@ -914,14 +917,16 @@
                <?php  } ?>
             </tbody>
         </table>
+      </div>
           
         <h3 class="h3_heading">II.  Demat Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Demat Account No.</th>
-                <th>Name of Depository Participant</th>
+                <th>Relative Names</th>
+                <th>Demat Account No.*</th>
+                <th>Name of Depository Participant*</th>
             </tr>
             </thead>
             <tbody>
@@ -930,6 +935,7 @@
                 <tr>
                  <td><?php echo $j;?></td>
                  <td><?php echo $relDematdetail[$i]['accountno'];?></td>
+                 <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
                  <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
                 </tr>
                <?php } } else { ?>
@@ -965,8 +971,8 @@
 
                <tr>
                <td style="border-right: 1px solid #f7f7f7"></td>   
-               <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
-               <td style="width: 20%"><label class="control-label">Firm Name</label></td>
+               <td style="width: 15%">  <label class="control-label">Relative Name</label></td>
+               <td style="width: 15%"><label class="control-label">Firm Name</label></td>
                <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
                <td> <label class="control-label">Can this relative significantly influence the decision making of this firm?</label></td>
                <td>
@@ -1038,18 +1044,18 @@
                <tr>
                <td colspan="7">
                <div class="">
-              <label  style="padding-left: 27px;" class="">ii.Private/Public Company. (Note - please disclose even if the relatives hold 1 share in the company)</label>
+              <label  style="padding-left: 27px;" class="">ii. Private/Public Company. <span>(Note - please disclose even if the relatives hold 1 share in the company)</span></label>
                </div>
                </td>
                </tr>
 
                <tr>
                <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>   
-               <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
-               <td style="width: 20%"><label class="control-label">Company Name</label></td>
+               <td style="width: 15%">  <label class="control-label">Relative Name</label></td>
+               <td style="width: 15%"><label class="control-label">Company Name. (Please mention full and correct name of the entity clearly specifying if it is a private company or not)</label></td>
                <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
-                <td ><label class="control-label">No. of Shares held</label></td>
-               <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
+                <td  style="width: 15%"><label class="control-label">No. of Shares held</label></td>
+               <td style="width: 15%"> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                <td>
                <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                </td>
@@ -1120,16 +1126,16 @@
                <tr>
                    <td colspan="6">
                    <div class="">
-                   <label style="padding-left: 27px;">iii. In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
+                   <label style="padding-left: 27px;">iii. In a public company - by virtue of holding more than 2% of its paid up share capital <span>(along with your relatives)</span></label>
                    </div>
                    </td>
                </tr>
                <tr>
                    <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
-                   <td style="width: 22%">  <label class="control-label">Relative Name</label></td>
-                   <td style="width: 22%">  <label class="control-label">Company Name</label></td>
-                   <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative(%)</label></td>
-                   <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
+                   <td style="width: 15%">  <label class="control-label">Relative Name</label></td>
+                   <td style="width: 15%">  <label class="control-label">Company Name</label></td>
+                   <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative <span>(%)</span></label></td>
+                   <td>    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                    <td>
                    <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                    </td>
@@ -1158,7 +1164,7 @@
                    <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" value="holding above 2% shares" readonly="readonly">
                    </div>
                    </td>
-                   <td>
+                   <td style="width: 15%">
                    <div class="input">
                    <select id="d9ques4" name="d9ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4">
                    <option value="">Select Option</option>
@@ -1167,7 +1173,7 @@
                    </select>
                    </div>
                    </td>
-                   <td> 
+                   <td style="width: 15%"> 
                    <div class="input">
                    <select id="d9ques5" name="d9ques5[]" class="form_fields form-control col-md-7 col-xs-12">
                    <option value="">Select Option</option>
@@ -1212,8 +1218,8 @@
                 <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
                 <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
                <td style="width: 22%">  <label class="control-label">Company Name</label></td>
-               <td style="width: 16%">  <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-               <td>    <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+               <td style="width: 16%">  <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
+               <td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
                </tr>
                <tr>
                <td style="border-right: 1px solid #f7f7f7"></td>

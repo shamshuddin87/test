@@ -72,14 +72,14 @@
                </div>
                <div class="col-md-4 col-xs-12">
                     <div class="tooltip_div">
-                     <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                     <a href="javascript:void(0);" data="Nature of Identifier (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfr" style="display: inline;">Any other legal identifier</label>
                   <input type="text" id="legal_idntfr" name="legal_idntfr" value="<?php echo($personaldetails['legal_identifier']) ?>" placeholder="Any other legal identifier">
                </div>
                <div class="col-md-4 col-xs-12">
                     <div class="tooltip_div">
-                     <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                     <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfctn_no">Any other legal identification number</label>
                   <input type="text" id="legal_idntfctn_no" value="<?php echo($personaldetails['legal_identification_no']) ?>" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
@@ -167,14 +167,14 @@
                </div>
                <div class="col-md-4 col-xs-12">
                    <div class="tooltip_div">
-                     <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                     <a href="javascript:void(0);" data="Nature of Identifier (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
                   <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Any other legal identifier" >
                </div>
                <div class="col-md-4 col-xs-12">
                    <div class="tooltip_div">
-                     <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                     <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfctn_no">Any other legal identification number</label>
                   <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
@@ -359,7 +359,7 @@
 
                            <div class="col-md-6">
                                <div class="tooltip_div">
-                                 <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                 <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                </div>
                               <label for="legal_idntfctn_no">Any other legal identification number</label>
                               <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
@@ -447,17 +447,17 @@
       </div>
       <div class="col-md-12 col-xs-12 col-sm-12">
          <div class=" row relativesform" style="display: none;">
-            <h3>Insert Relative Details</h3>
+            <h3 class="col col-xs-6" style="margin-top: 30px;">Insert Relative Details</h3>
             <!--tooltip div -->
-            <div class="tooltip_div">
+            <div class="tooltip_div col col-xs-6" style="margin-top: 30px;">
                <a href="javascript:void(0);" data="The term “immediate relative” means spouse of a person, and includes parents, siblings, and child of such person or the spouse, any of whom is either dependent financially on such person, or consults such person in taking decisions relating to trading in securities.!" class="tooltip_c">who is dependent relative <abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
             </div>
             <!--tooltip div end-->
-            <div class="appndnew">
+            <div class="col col-xs-12">
                <form action ="employeemodule/relationdata" class="chklength" id="getdata_1" method="post" enctype="multipart/form-data" autocomplete="off">
                   <div class="input-group col-md-12 col-xs-12 col-sm-12">
-                    <div class="col-md-12 col-md-12">
-                      <div class="col-md-4 top_space">
+                    <div class="row">
+                      <div class="col-md-4">
                         <label>Relationship*</label >
                         <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
                            <option value="1">HUF</option>
@@ -473,7 +473,7 @@
                            <option value="11">Others</option>
                         </select>
                      </div>  
-                     <div class="col-md-4 top_space">
+                     <div class="col-md-4">
                         <label>Nature of Dependency*</label >
                         <select id="depnature" name="depnature[]" class="form_fields form-control col-md-7 col-xs-12" required="" multiple size="3">
                            <option value="1">Financially Dependent</option>
@@ -481,45 +481,45 @@
                            <option value="3">Non-dependent</option>
                         </select>
                      </div>  
-                     <div class="col-md-4 top_space">
+                     <div class="col-md-4">
                         <label>Full Name*</label>
                         <input  class="" placeholder="Full Name"  class="fname" id="fname" name="fname" type="text" />
                      </div>
                       </div>
-                    <div class="col-md-12 col-md-12">
-                     <div class="col-md-4 top_space">
+                    <div class="row">
+                     <div class="col-md-4">
                            <div class="tooltip_div">
                              <a href="javascript:void(0);" data="In case no PAN number available with dependents, please enter 00000000" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                            </div>
                         <label>PAN*</label>
                         <input  class=" panval" placeholder="PAN" class="pan" id="pan"  name="pan" type="text" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10" />
                      </div>
-                     <div class="col-md-4 top_space">
+                     <div class="col-md-4">
                         <div class="tooltip_div">
-                             <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                             <a href="javascript:void(0);" data="Nature of Identifier (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                            </div>
                         <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
                         <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Any other legal identifier">
                     </div>
-                     <div class="col-md-4 top_space">
+                     <div class="col-md-4">
                          <div class="tooltip_div">
-                                 <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                 <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                </div>
                         <label for="legal_idntfctn_no">Any other legal identification number</label>
                         <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);"  placeholder="Any other legal identification number">
                     </div>
                     </div>
                       
-                    <div class="col-md-12 col-md-12">
-                     <div class="col-md-4 top_space"> 
+                    <div class="row">
+                     <div class="col-md-4"> 
                         <label>Aadhaar</label>
                         <input  class=" aadhar" placeholder="Aadhaar" id="aadhar"  name="aadhar" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}" />
                      </div>
-                     <div class="col-md-4 top_space">
+                     <div class="col-md-4">
                         <label>DOB*</label>
                         <input type="text"  id="1_dob" name="dob" class="bootdatepick" placeholder="DOB">
                      </div>
-                     <div class="col-md-4 top_space">
+                     <div class="col-md-4">
                          <div class="tooltip_div">
                                 <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
                             </div>
@@ -528,29 +528,29 @@
                      </div>
                     </div>
                       
-                    <div class="col-md-12 col-md-12">
-                     <div class="col-md-4 top_space"> 
+                    <div class="row">
+                     <div class="col-md-4"> 
                         <label style="display: block;" for="sex">Gender*</label>
                         <input type="radio" id="1_sex" name="sex" value="Male" checked/>Male
                         <input type="radio" id="1_sex" name="sex"  value="Female">Female 
                         <input type="radio" id="1_sex" name="sex"  value="Other">Other 
                      </div>
-                     <div class="col-md-4 top_space">
+                     <div class="col-md-4">
                         <label>Address*</label>
                         <textarea class="" placeholder="Address" id="addr"  name="address" type="text"></textarea>
                      </div>
-                     <div class="col-md-4 top_space">
+                     <div class="col-md-4">
                         <label class="control-label">Upload Identity Proof</label>
                         <input type="file" name="file[]" id="file" >
                      </div>
                     </div>
                       <div class="row">
                     <div class="col-md-12 col-md-12">
-                     <div class="col-md-4 top_space "> 
+                     <div class="col-md-4 "> 
                           <label for="age">Holdings In Shares*</label>
                           <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
                        </div>
-                     <div class="col-md-4 top_space "> 
+                     <div class="col-md-4"> 
                           <label for="age">Holdings In ADRs*</label>
                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
                        </div>
@@ -664,14 +664,14 @@
                            </div>
                              <div class="col-md-6">
                                 <div class="tooltip_div">
-                                     <a href="javascript:void(0);" data="Nature of Identifier" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                     <a href="javascript:void(0);" data="Nature of Identifier (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                    </div>
                                 <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
                                 <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Any other legal identifier">
                             </div>
                              <div class="col-md-6">
                                  <div class="tooltip_div">
-                                 <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                 <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                </div>
                                 <label for="legal_idntfctn_no">Any other legal identification number</label>
                                 <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
@@ -734,11 +734,12 @@
       </div>
       <div class="col-md-12 col-lg-12">
          <div class="row relativesform mymfr" style="display: none;">
-            <h3>Insert Financial Relationship Details</h3>
-            <div class="tooltip_div">
+           <h3 class="col col-xs-6" style="margin-top: 30px;">Insert Financial Relationship Details</h3>
+            <div class="tooltip_div col col-xs-6" style="margin-top: 30px;">
                <a href="javascript:void(0);" data="The term “material financial relationship” shall mean a relationship in which one person is a recipient of any kind of payment such as by way of a loan or gift during the immediately preceding twelve months, equivalent to at least 25% of such payer’s annual income but shall exclude relationships in which the payment is based on arm’s length transactions" class="tooltip_c">what is material financial relationship <abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
             </div>
-            <div class="input-group col-md-12">
+            <div class="col col-xs-12">
+              <div class="input-group row">
                <div class="col-md-6">
                   <label>Name of the Related party*</label>
                   <input type="text" placeholder="Name of the Related party" id="mfrname">
@@ -760,6 +761,7 @@
                  <button type="button" class="btn btn-primary" id="savemfr">Submit</button>
                </div>
 
+            </div>
             </div>
             <!---------------------------------------------------------------------------------------------->
             <!----TABLE OF INSERTED DATA------------------------------------------------------------------>

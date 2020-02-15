@@ -181,8 +181,15 @@ input#addr {padding: 37px;}
 .relativesform {width: 98%;margin: 0 auto;background: #fff;box-shadow: 2px 2px 8px #ccc;padding: 8px;margin-top: 13px;border-radius: 4px;
 }
 lable {color: #000;font-weight: bold;}
-.relativesform h3 {color: #000; padding: 0 10px;}
-.input-group {background: #fff;box-shadow: 2px 2px 3px #ccc;border-radius: 4px;padding:45px 0px;/* float: left; */}
+.relativesform h3 {
+    color: #000;
+    padding: 0 10px;
+}
+.input-group {
+    background: #fff;
+    border-radius: 4px;
+    margin-top: 29px;
+}
 .personaldetails {width: 98%;margin: 0 auto;background: #fff;box-shadow: 2px 2px 8px #ccc;
 padding: 8px;margin-top: 13px;border-radius: 4px;}
 i.fa.fa-edit.editcmp {
@@ -426,3 +433,11 @@ label {
 
 .btn.mfr,.btn.relatives{background: #fff;color: #000;}
 .btn.mfr:hover,.btn.relatives:hover{    background: #4a2880; color: white;}
+
+.input-group .form-control {
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 100%;
+    margin-bottom: 16px;
+}

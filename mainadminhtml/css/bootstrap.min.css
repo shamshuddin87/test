@@ -3356,3 +3356,47 @@
 }
 /*-------------------Material icon end here/--------------------------*/
 
+
+
+
+.tooltip_c:hover:before {
+    border: solid  !important;
+    border-color: #a0a0a0  !important;
+    border-width: 1px 0px 0px 1px  !important;
+    content: ""  !important;
+    left: 25%  !important;
+    bottom: -10px  !important;
+    position: absolute  !important;
+    transform: rotate(45deg)  !important;
+    z-index: 99  !important;
+    height: 10px  !important;
+    width: 10px  !important;
+    background: #fff  !important;
+}
+
+.tooltip_c:hover:after {
+    -webkit-justify-content: center  !important;
+    justify-content: center  !important;
+    background: white  !important;
+    border-radius: 8px  !important;
+    color: #fff  !important;
+    content: attr(data)  !important;
+    margin: -82px auto 0  !important;
+    font-size: 14px  !important;
+    padding: 13px  !important;
+    width: 320px  !important;
+    position: absolute  !important;
+    right: -15px  !important;
+    z-index: 98  !important;
+    color: #000  !important;
+    border: 1px solid #a0a0a0  !important;
+    text-align: justify  !important;
+    top: 110px  !important;
+    box-shadow: 0px 0px 10px #00000050  !important;
+}
+
+.navbar span {
+    color: #000;
+    position: static !important;
+    font-weight: 500;
+}

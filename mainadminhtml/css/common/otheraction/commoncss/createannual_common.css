@@ -40,8 +40,8 @@ color:#bababa; border:1px solid #bababa; cursor: default;}
 
 .typography.form_pad {
   /*  background: #fff;*/
-    padding: 19px 12px;
-    box-shadow: 2px 3px 5px #ccc;
+    padding: 0 10px;
+    /*box-shadow: 2px 3px 5px #ccc;*/
     margin: 10px 0;
 }
 input#d2ques1 {
@@ -101,6 +101,7 @@ a.tooltip_c {
     border: 1px solid rgb(216, 216, 216);
     box-shadow: 0 0 10px #00000059;
         margin-bottom: 20px;
+        background: #fff;
 }
 
 .h2_heading
@@ -115,7 +116,6 @@ a.tooltip_c {
 {
     color: #000;
     margin-bottom: 10px;
-    padding-left: 15px;
     margin-top: 30px;
         font-size: 16px;
 }
@@ -187,3 +187,31 @@ table.table.tablevertical  tbody tr td
     box-shadow: 0 0 0px #00000000;
     margin-bottom: 0px;
 }
+
+.overflowXscroll
+{
+    width: 100%;
+    overflow-x: auto;
+}
+
+.create_button .tooltip_c:hover:after {
+    top: 121px !important;
+}
+
+td label span {
+    line-height: normal;
+    font-style: italic;
+    color: #522c8f;
+}
+
+.nav-sm .container.body .col-md-3.left_col {
+    min-height: 100%;
+    width: 70px;
+    padding: 0;
+    position: fixed;
+    display: flex;
+    z-index: 999;
+    overflow: scroll;
+    height: 100%;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td { font-size: 13px;}
