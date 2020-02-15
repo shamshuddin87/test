@@ -188,3 +188,72 @@ website('body').on('click','#dtrangedes', function(e)
    relativeholdingmis();
 });
 
+website('.genfile').on('click', function(e) {
+    var userId = website("#userid").val();
+    var noofrows = website('#personmis #noofrows').val(); 
+    var pagenum = website('#personmis #pagenum').val();
+    //console.log(noofrows+'*'+pagenum);return false;
+
+    var noofrows1 = website('#relativemis #noofrows').val(); 
+    var pagenum1 = website('#relativemis #pagenum').val();
+    
+    var startdate = website('#date1').val();
+    var enddate = website('#date2').val();
+
+    var startdesdate = website('#desdate1').val();
+    var enddesdate = website('#desdate2').val();
+
+    var formdata = {userId:userId,noofrows:noofrows,pagenum:pagenum,startdate:startdate,enddate:enddate,startdesdate:startdesdate,enddesdate:enddesdate,noofrows1:noofrows1,pagenum1:pagenum1};
+    // alert(request);return false;
+    website.ajax({
+        url:'mis/fetchDesigntdPersonMIS',
+        data:formdata,
+        method:'POST',
+        //contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, /*Cross domain checking*/
+        beforeSend: function() 
+        {   
+             website('.preloder_wraper').fadeIn();
+            // website('.dwnldExcel').fadeOut();   
+         },
+        uploadProgress: function(event, position, total, percentComplete) 
+        {   },
+        success:function(response)
+        {
+            
+            if(response.logged==true)
+            {
+                website('.dwnldExcel').fadeIn();
+                website('.dwnldExcel').attr('href',response.genfile);
+                new PNotify({title: 'Alert',
+                text: response.message,
+                type: 'university',
+                hide: true,
+                styling: 'bootstrap3',
+                addclass: 'dark ',
+              });
+                   
+            }
+            else
+            {
+                new PNotify({title: response.message,
+                   text: response.message,
+                   type: 'university',
+                   hide: true,
+                   styling: 'bootstrap3',
+                   addclass: 'dark ',
+                 }); 
+                  
+            }
+           
+        },
+        complete: function(response) 
+        {  website('.preloder_wraper').fadeOut();  },
+        error:function(response)
+        {   }
+    });
+});

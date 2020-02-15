@@ -154,8 +154,8 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Equity Shares</th>
-                                                        <th>Preference Shares</th>
-                                                        <th>Debentures</th>
+                                                        <th>ADRs Shares</th>
+<!--                                                        <th>Debentures</th>-->
                                                     </tr>
                                                 </thead>
                                                 <tbody class ="holdingsummry">

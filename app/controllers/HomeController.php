@@ -162,13 +162,14 @@ class HomeController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $getres = $this->homecommon->fetchholdingsummary($getuserid,$user_group_id);
+                $getcmpname = $this->homecommon->fetchcmpname($getuserid,$user_group_id);
                 $getequity = $this->homecommon->fetchequity($getuserid,$getres['companyid']);
                 $getprefereence = $this->homecommon->fetchprefereence($getuserid,$getres['companyid']);
-                $getdebenure = $this->homecommon->fetchdebenure($getuserid,$getres['companyid']);
+                //$getdebenure = $this->homecommon->fetchdebenure($getuserid,$getres['companyid']);
                 //print_r($getdebenure);exit;
-                if(!empty($getres['data']))
+                if(!empty($getcmpname))
                 {
-                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres['data'],'data'=>$getres,'user_group_id'=>$user_group_id,'user_id'=>$getuserid,'equity'=>$getequity,'prefer'=>$getprefereence,'debenture'=>$getdebenure);
+                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres['data'],'data'=>$getres,'user_group_id'=>$user_group_id,'user_id'=>$getuserid,'equity'=>$getequity,'prefer'=>$getprefereence,'cmpname'=>$getcmpname);
                     $this->response->setJsonContent($data);
                 }
                 else

@@ -66,6 +66,7 @@ and getcontrolleractionname !="tradeplanview"
 and getcontrolleractionname !="planreqstview"
 and getcontrolleractionname !="planreqstapprv"
 and getcontrolleractionname !="viewreconcilation"
+and getcontrolleractionname !="viewholding"
 and getcontrolleractionname !="viewpastemployer"
 and getcontrolleractionname !="mis_recipient"
 and getcontrolleractionname !="mis_infosharing"
@@ -92,11 +93,13 @@ and getcontrolleractionname  !="mis_formc"
 and getcontrolleractionname  !="mis_formpct"
 and getcontrolleractionname  !="mis_initialdiscsr"
 and getcontrolleractionname  !="mis_annualdiscsr"
+and getcontrolleractionname  !="mis_contdisclsr"
 and getcontrolleractionname  !="upsi_infosharing"
 and getcontrolleractionname  !="upsitypeclassify"
 and getcontrolleractionname !="createannual"
 and getcontrolleractionname !="editannual"
-
+and getcontrolleractionname !="editcont_disclsr"
+and getcontrolleractionname !="createcont_disclsr"
 
 
 
@@ -134,6 +137,7 @@ or getcontrolleractionname =="tradeplanview"
 or getcontrolleractionname =="planreqstview"
 or getcontrolleractionname =="planreqstapprv"
 or getcontrolleractionname =="viewreconcilation"
+or getcontrolleractionname =="viewholding"
 or getcontrolleractionname =="viewpastemployer"
 or getcontrolleractionname =="mis_recipient"
 or getcontrolleractionname =="mis_infosharing"
@@ -159,13 +163,14 @@ or getcontrolleractionname  =="mis_confirmtrade"
 or getcontrolleractionname  =="mis_formc"
 or getcontrolleractionname  =="mis_formpct"
 or getcontrolleractionname  =="mis_initialdiscsr"
-or getcontrolleractionname =="mis_annualdiscsr"
+or getcontrolleractionname =="mis_annualdiscsr" 
+or getcontrolleractionname =="mis_contdisclsr"
 or getcontrolleractionname =="upsi_infosharing"
 or getcontrolleractionname =="upsitypeclassify"
 or getcontrolleractionname == "createannual"
 or getcontrolleractionname == "editannual"
-
-
+or getcontrolleractionname == "editcont_disclsr"
+or getcontrolleractionname == "createcont_disclsr"
 
 %}
 {% set otheractioncss = ['css/common/otheraction/',dispatcher.getActionName(),'_common', '.php?v='~timestampfile]|join('') %}
@@ -232,7 +237,7 @@ or getcontrolleractionname == "editannual"
 {{ assets.outputJs('validatejs') }}
 {% endif %}
 
-{% if getcontrollername =="organisation" or getcontrollername =="particalrecordsetting" or getcontrollername =="employeerecord" or getcontrollername =="clientrecord" or getcontrollername =="servicerecord" or getcontrollername =="taskrecord" or getcontrollername =="clientservicerelk" or getcontrollername =="taskbundle" or getcontrollername =="invoicerecord" or getcontrollername =="leadbundle" or getcontrollername =="edittaskbundle" or getcontrollername =="accountsetting" or  getcontrollername =="restrictedcompany" or getcontrollername =="employeemodule"  or getcontrollername =="portfolio" or getcontrollername =="holdingstatement" or  getcontrollername =="sensitiveinformation" or getcontrollername =="tradingrequest"  or getcontrollername =="holdingsummary" or getcontrollername =="blackoutperiod" or getcontrollername =="tradingplan" or getcontrollername =="declarationform" or getcontrollername =="exceptionreq" or getcontrollername =="reconcilation" or getcontrollername =="esop" or getcontrollername =="randomrequest" or getcontrollername =="randomexception" or getcontrollername =="sebi" or getcontrollername =="mis" or getcontrollername =="usermaster"  or getcontrollername =="approvelperinfo"  or getcontrollername =="upsimaster"%}
+{% if getcontrollername =="organisation" or getcontrollername =="particalrecordsetting" or getcontrollername =="employeerecord" or getcontrollername =="clientrecord" or getcontrollername =="servicerecord" or getcontrollername =="taskrecord" or getcontrollername =="clientservicerelk" or getcontrollername =="taskbundle" or getcontrollername =="invoicerecord" or getcontrollername =="leadbundle" or getcontrollername =="edittaskbundle" or getcontrollername =="accountsetting" or  getcontrollername =="restrictedcompany" or getcontrollername =="employeemodule"  or getcontrollername =="portfolio" or getcontrollername =="holdingstatement" or  getcontrollername =="sensitiveinformation" or getcontrollername =="tradingrequest"  or getcontrollername =="holdingsummary" or getcontrollername =="blackoutperiod" or getcontrollername =="tradingplan" or getcontrollername =="declarationform" or getcontrollername =="exceptionreq" or getcontrollername =="reconcilation" or getcontrollername =="esop" or getcontrollername =="randomrequest" or getcontrollername =="randomexception" or getcontrollername =="sebi" or getcontrollername =="mis" or getcontrollername =="usermaster"  or getcontrollername =="approvelperinfo"  or getcontrollername =="upsimaster" or getcontrollername =="uploadholding" or getcontrollername =="continuousdisclosure" %}
 {{ assets.outputJs('daterangepicker') }}
 {{ assets.outputJs('datatablemn') }}
 {% endif %}
@@ -241,7 +246,7 @@ or getcontrolleractionname == "editannual"
 {{ assets.outputJs('tableexport') }}  
 {% endif %} 
 
-{% if  getcontrollername =="home" or getcontrollername =="adminmodule" or getcontrollername =="companymaster" or getcontrollername =="upsimaster" or getcontrollername =="departmentmaster" or getcontrollername =="homepage" or getcontrollername =="meeting" or getcontrollername =="sharescreen" or getcontrollername =="companymodule" or getcontrollername =="employeemodule" or getcontrollername =="restrictedcompany" or getcontrollername =="sensitiveinformation" or getcontrollername =="holdingstatement" or getcontrollername =="holdingsummary" or getcontrollername =="blackoutperiod" or getcontrollername =="tradingplan" or getcontrollername =="declarationform" or getcontrollername =="exceptionreq"  or getcontrollername =="reconcilation" or getcontrollername =="esop" or getcontrollername =="randomrequest" or getcontrollername =="randomexception" or getcontrollername =="sebi" or  getcontrollername =="mis"  or getcontrollername =="upsimaster"%}
+{% if  getcontrollername =="home" or getcontrollername =="adminmodule" or getcontrollername =="companymaster" or getcontrollername =="upsimaster" or getcontrollername =="departmentmaster" or getcontrollername =="homepage" or getcontrollername =="meeting" or getcontrollername =="sharescreen" or getcontrollername =="companymodule" or getcontrollername =="employeemodule" or getcontrollername =="restrictedcompany" or getcontrollername =="sensitiveinformation" or getcontrollername =="holdingstatement" or getcontrollername =="holdingsummary" or getcontrollername =="blackoutperiod" or getcontrollername =="tradingplan" or getcontrollername =="declarationform" or getcontrollername =="exceptionreq"  or getcontrollername =="reconcilation" or getcontrollername =="esop" or getcontrollername =="randomrequest" or getcontrollername =="randomexception" or getcontrollername =="sebi" or  getcontrollername =="mis"  or getcontrollername =="upsimaster" or getcontrollername =="uploadholding" or getcontrollername =="continuousdisclosure" %}
 {{ assets.outputJs('highcharts') }}  
 {{ assets.outputJs('datatablemn') }}
 <script src="js/shared/jquery.cookie.js"></script>
@@ -307,6 +312,7 @@ and getcontrolleractionname !="planreqstview"
 and getcontrolleractionname !="planreqstapprv"
 and getcontrolleractionname !="exception_req"
 and getcontrolleractionname !="viewreconcilation"
+and getcontrolleractionname !="viewholding"
 and getcontrolleractionname !="viewpastemployer"
 and getcontrolleractionname !="mis_recipient"
 and getcontrolleractionname !="mis_infosharing"
@@ -332,12 +338,14 @@ and getcontrolleractionname  !="mis_confirmtrade"
 and getcontrolleractionname  !="mis_formc"
 and getcontrolleractionname  !="mis_formpct"
 and getcontrolleractionname  !="mis_initialdiscsr"
-and getcontrolleractionname  !="mis_annualdiscsr"
+and getcontrolleractionname  !="mis_annualdiscsr" 
+and getcontrolleractionname  !="mis_contdisclsr"
 and getcontrolleractionname  !="upsi_infosharing"
 and getcontrolleractionname  !="upsitypeclassify"
 and getcontrolleractionname != "createannual"
 and getcontrolleractionname != "editannual"
-
+and getcontrolleractionname != "editcont_disclsr"
+and getcontrolleractionname != "createcont_disclsr"
 %}
 <?php
 
@@ -369,6 +377,7 @@ or getcontrolleractionname =="tradeplanview"
 or getcontrolleractionname =="planreqstview"
 or getcontrolleractionname =="planreqstapprv"
 or getcontrolleractionname =="viewreconcilation"
+or getcontrolleractionname =="viewholding"
 or getcontrolleractionname =="viewpastemployer"
 or getcontrolleractionname =="mis_recipient"
 or getcontrolleractionname =="mis_infosharing"
@@ -392,11 +401,14 @@ or getcontrolleractionname  =="mis_confirmtrade"
 or getcontrolleractionname  =="mis_formc"
 or getcontrolleractionname  =="mis_formpct"
 or getcontrolleractionname  =="mis_initialdiscsr"
-or getcontrolleractionname  =="mis_annualdiscsr"
+or getcontrolleractionname  =="mis_annualdiscsr" 
+or getcontrolleractionname  =="mis_contdisclsr"
 or getcontrolleractionname  =="upsi_infosharing"
 or getcontrolleractionname  =="upsitypeclassify"
 or getcontrolleractionname == "createannual"
 or getcontrolleractionname == "editannual"
+or getcontrolleractionname == "editcont_disclsr"
+or getcontrolleractionname == "createcont_disclsr"
     
 %}
 <?php

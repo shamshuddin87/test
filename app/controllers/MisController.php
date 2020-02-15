@@ -63,6 +63,11 @@ class MisController extends ControllerBase
     {
 
     }
+
+    public function mis_contdisclsrAction()
+    {
+
+    }
     
     public function upsitypeclassifyAction()
     {
@@ -71,15 +76,14 @@ class MisController extends ControllerBase
 
     public function misdetailsAction()
     {
-        $this->view->$userid =base64_decode($_GET["userid"]);
+        $this->view->$userid = base64_decode($_GET["userid"]);
         $this->view->getuserinfo =$this->miscommon->useriformation(base64_decode($_GET["userid"]));
-        $this->view->relativeinfo =$this->miscommon->getrelativedata(base64_decode($_GET["userid"]));
+        $this->view->relativeinfo =$this->miscommon->getrelativedata(base64_decode($_GET["userid"]),"");
         $this->view->accountinfo= $this->miscommon->getaccnoinfo(base64_decode($_GET["userid"]));
         $this->view->relativeaccount= $this->miscommon->getrelinfo(base64_decode($_GET["userid"]));
         $this->view->mfrdata= $this->miscommon->getmfrdataformis(base64_decode($_GET["userid"]));
         
-
-        //print_r($this->view->mfrdata);exit;       
+        //print_r(base64_decode($_GET["userid"]));exit;       
     }
     
     public function mis_recipientAction()
@@ -121,21 +125,30 @@ class MisController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 // ------- Pagination Start -------
-                    $noofrows = $this->request->getPost('noofrows','trim');
-                    $pagenum = $this->request->getPost('pagenum','trim');
-                    //echo $pagenum.'*'.$noofrows; exit;
-                    $rsstrt = ($pagenum-1) * $noofrows;
-                    //echo $rsstrt; exit;
+                $noofrows = $this->request->getPost('noofrows','trim');
+                $pagenum = $this->request->getPost('pagenum','trim');
+                $searchby = $this->request->getPost('search');
+                //echo $pagenum.'*'.$noofrows; exit;
+                $rsstrt = ($pagenum-1) * $noofrows;
+                //echo $rsstrt; exit;
                 // ------- Pagination End -------
                 
                 // ------------ Queries Start ------------
-                    $rslmt = ' LIMIT '.$rsstrt.','.$noofrows;
-                    $orderby = 'ORDER BY `wr_id` DESC';
-                    //echo $query; exit;
+                $rslmt = ' LIMIT '.$rsstrt.','.$noofrows;
+                $orderby = ' ORDER BY `wr_id` DESC';
+                //echo $searchby; exit;
 
+                if($searchby !== '')
+                {
+                    $mainqry = ' AND `fullname` LIKE "%'.$searchby.'%"';
+                }
+                else
+                {
                     $mainqry = '';
-                    $fnlqry = $mainqry.$orderby.$rslmt;
-                    //echo $sqlfltr1; exit;
+                }
+
+                $fnlqry = $mainqry.$orderby.$rslmt;
+                //echo $sqlfltr1; exit;
                 // ------------ Queries End ------------
                                 
                 $getdata = $this->miscommon->fetchsubuser($getuserid,$user_group_id,$fnlqry);
@@ -187,7 +200,7 @@ class MisController extends ControllerBase
             $getprefereence = $this->miscommon->fetchprefereence($usrdata['wr_id'],$getres['companyid']);
             //echo '$getprefereence-----<pre>'; print_r($getprefereence); exit;
             
-            $getdebenure = $this->miscommon->fetchdebenure($usrdata['wr_id'],$getres['companyid']);
+            //$getdebenure = $this->miscommon->fetchdebenure($usrdata['wr_id'],$getres['companyid']);
             //echo '$getdebenure-----<pre>'; print_r($getdebenure); exit;
             
             
@@ -203,84 +216,33 @@ class MisController extends ControllerBase
                 $othercloseequity = array();    $othercloseprefer = array();    $otherclosedebtr = array();
                 
                 // ----- Equity Start -----
-                    if(!empty($getequity[$kyres]))
-                    {
-                        $opnblnceq = $resdata['equityshare'];
-                        $buyeq = $getequity[$kyres]['buyequity'];
-                        $selleq = $getequity[$kyres]['sellequity'];
-                        $totaleq = $buyeq - $selleq;
-                        $closblnceq = $opnblnceq + $totaleq;
-
-                        $equityclosblnc[$kyres] = $closblnceq;
-                    }
-                    else
-                    {
-                        $opnblnceq = $resdata['equityshare'];
-                        $totaleq = 0;                        
-                        $closblnceq = $opnblnceq + $totaleq;
-
-                        $equityclosblnc[$kyres] = $closblnceq;
-                    }
+               
                 //echo '$equityclosblnc-----<pre>'; print_r($equityclosblnc); exit;
                 // ----- Equity End -----
                 
                 // ----- Preference Start -----
-                    if(!empty($getprefereence[$kyres]))
-                    {
-                        $opnblncpref = $resdata['prefershare'];
-                        $buypref = $getprefereence[$kyres]['buyprefer'];
-                        $sellpref = $getprefereence[$kyres]['sellprefer'];
-                        $totalpref = $buypref - $sellpref;
-                        $closblncpref = $opnblncpref + $totalpref;
-
-                        $preferclosblnc[$kyres] = $closblncpref;
-                    }
-                    else
-                    {
-                        $opnblncpref = $resdata['prefershare'];
-                        $totalpref = 0;
-                        $closblncpref = $opnblncpref + $totalpref;
-
-                        $preferclosblnc[$kyres] = $closblncpref;
-                    }
+               
                 // ----- Preference End -----
                 
 
                 // ----- Debenture Start -----
-                    if(!empty($getdebenure[$kyres]))
-                    {
-                        $opnblncdeb = $resdata['debntrshare'];
-                        $buydeb = $getdebenure[$kyres]['buydebtr'];
-                        $selldeb = $getdebenure[$kyres]['selldebtr'];;
-                        $totaldeb = $buydeb - $selldeb;
-                        $closblncdeb = $opnblncdeb + $totaldeb;
-
-                        $debntrclosblnc[$kyres] = $closblncdeb;
-                    }
-                    else
-                    {
-                        $opnblncdeb = $resdata['debntrshare'];
-                        $totaldeb = 0;
-                        $closblncdeb = $opnblncdeb + $totaldeb;
-                        
-                        $debntrclosblnc[$kyres] = $closblncdeb;
-                    }
+        
                 // ----- Debenture End -----
                 
                 if(!empty($getequity))
                 { 
-                    $sum1 = $sum1 + $equityclosblnc[$kyres] + $resdata['esop'];
+                    $sum1 = $getequity;
                 }
                 
                 if(!empty($getprefereence))
                 {
-                    $sum2 = $sum2 + $preferclosblnc[$kyres];
+                    $sum2 = $getprefereence;
                 }                
                 
-                if(!empty($getdebenure))
-                { 
-                    $sum3 = $sum3 + $debntrclosblnc[$kyres];
-                }
+//                if(!empty($getdebenure))
+//                { 
+//                    $sum3 = $sum3 + $debntrclosblnc[$kyres];
+//                }
                 
             }
             /* --------------- html process End --------------- */
@@ -289,7 +251,7 @@ class MisController extends ControllerBase
             $addhtmlnxt .= '<td width="25%">'.$usrdata['fullname'].'</td>';
             $addhtmlnxt .= '<td width="25%">'.$sum1.'</td>';
             $addhtmlnxt .= '<td width="25%">'.$sum2.'</td>';
-            $addhtmlnxt .= '<td width="25%">'.$sum3.'</td>';
+            //$addhtmlnxt .= '<td width="25%">'.$sum3.'</td>';
             $addhtmlnxt .= '</tr>';
             
         }        
@@ -1156,8 +1118,8 @@ class MisController extends ControllerBase
                     $getres = $this->miscommon->fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
                     //print_r($getres);exit;
                     $rsstrt = ($pagenum-1) * $noofrows;
-                    $rslmt = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id` LIMIT '.$rsstrt.','.$noofrows;
-                    $rscnt=count($getres);
+                    $rslmt = $mainquery.' LIMIT '.$rsstrt.','.$noofrows;
+                    $rscnt = count($getres);
                     $rspgs = ceil($rscnt/$noofrows);
                     $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
                     $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
@@ -1183,8 +1145,6 @@ class MisController extends ControllerBase
                     $getresult = $this->miscommon->fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$rslmt);
                     //print_r($getresult);exit;
                 }
-                
-                
                 
                 if($getresult)
                 {
@@ -1411,6 +1371,392 @@ class MisController extends ControllerBase
         }
         
     }
-    
-    
-   }
+
+
+    public function fetchDesigntdPersonMISAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $userid = $this->request->getPost('userId');
+
+                $noofrows = $this->request->getPost('noofrows');
+                $pagenum = $this->request->getPost('pagenum');
+
+                $noofrows1 = $this->request->getPost('noofrows1');
+                $pagenum1 = $this->request->getPost('pagenum1');
+                // print_r($noofrows);exit;
+                $startdate = $this->request->getPost('startdate');
+                $enddate = $this->request->getPost('enddate');
+
+                $startdesdate = $this->request->getPost('startdesdate');
+                $enddesdate = $this->request->getPost('enddesdate');
+
+
+                /*####### Fetch Holding MIS Start #######*/
+                if($startdate=='' && $enddate=='')
+                {
+                    $mainquery = '';
+                    $getres = $this->miscommon->getholingmis($userid,$user_group_id,$mainquery);
+                    $rsstrt = ($pagenum-1) * $noofrows;
+                    $rslmt =' LIMIT '.$rsstrt.','.$noofrows;
+                }
+                else
+                {
+                    $mainquery = "   AND (`ts`.`date_of_transaction`>='".$startdate."'  AND  `ts`.`date_of_transaction`<='".$enddate."')";
+                    $getres = $this->miscommon->getholingmis($userid,$user_group_id,$mainquery);
+                    $rsstrt = ($pagenum-1) * $noofrows;
+
+                    $rslmt =" AND (`ts`.`date_of_transaction`>='".$startdate."'  AND  `ts`.`date_of_transaction`<='".$enddate."')".'  LIMIT '.$rsstrt.','.$noofrows;
+                }
+
+                $rscnt=count($getres);
+                $rspgs = ceil($rscnt/$noofrows);
+                $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                $result = $this->miscommon->getholingmis($userid,$user_group_id,$rslmt);
+                /*####### Fetch Holding MIS End #######*/     
+
+                /*####### Fetch Relative Holding MIS Start #######*/  
+                if($startdesdate == '' && $enddesdate == '')
+                {  
+                    $mainquery = '';
+                    $getres = $this->miscommon->getrelativegmis($userid,$user_group_id,$mainquery);
+                    $rsstrt = ($pagenum-1) * $noofrows;
+                    $rslmt =' LIMIT '.$rsstrt.','.$noofrows;
+                }
+                else
+                {
+                   $mainquery = "   AND (`ts`.`date_of_transaction`>='".$startdate."'  AND  `ts`.`date_of_transaction`<='".$enddate."')";
+                   $getres = $this->miscommon->getrelativegmis($userid,$user_group_id,$mainquery);
+                   $rsstrt = ($pagenum-1) * $noofrows;
+                   $rslmt =" AND (`ts`.`date_of_transaction`>='".$startdate."'  AND  `ts`.`date_of_transaction`<='".$enddate."')".'  LIMIT '.$rsstrt.','.$noofrows;
+                }
+                $rscnt=count($getres);
+                $rspgs = ceil($rscnt/$noofrows);
+                $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                // print_r($pgnhtml);exit;
+                $getres = $this->miscommon->getrelativegmis($userid,$user_group_id,$rslmt);
+                /*####### Fetch Relative Holding MIS Start #######*/ 
+
+
+                $getuserinfo = $this->miscommon->useriformation($userid);
+                $relativeinfo = $this->miscommon->getrelativedata($userid,"");
+                $accountinfo = $this->miscommon->getaccnoinfo($userid);
+                $relativeaccount = $this->miscommon->getrelinfo($userid);
+                $mfrdata = $this->miscommon->getmfrdataformis($userid);
+                //print_r($getuserinfo);exit;
+                $gethtml=$this->miscommon->allDesgntdPersnHtml($getuserinfo,$relativeinfo,$accountinfo,$relativeaccount,$mfrdata,$getres,$result);
+                $genfile =$this->dompdfgen->getpdf($gethtml,"misdesgntdpersn","mis","mispersnlinfo");
+                //print_r($genfile);exit;
+                if(!empty($genfile))
+                {
+                    $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "File Not Generated..!!");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+           
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+        
+    }
+
+
+    public function exportAnnualDisclsrAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $filterby = '';
+                $annualyr = $this->request->getPost('annualyr');
+                $noofrows = $this->request->getPost('noofrows');
+                $pagenum = $this->request->getPost('pagenum');
+                $searchby = $this->request->getPost('search');
+                $filterstatus = $this->request->getPost('filterstatus');
+                
+                if($filterstatus == '')
+                {
+                    $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id`';
+                    $getres = $this->miscommon->fetchallannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
+                    //print_r($getres);exit;
+                }
+                else if($filterstatus == 'pending')
+                {
+                    $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id`';
+                 
+                    $getres = $this->miscommon->fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);                    
+                }
+                else if($filterstatus == 'sent_for_approval') 
+                {
+                    $filterby = ' AND (anualdecl.annualyear='.$annualyr.' OR anualdecl.annualyear IS NULL) AND anualdecl.send_status= 1';
+                    $mainquery = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ';
+                    $getres = $this->miscommon->fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
+                }
+                
+                //print_r($getres);exit;
+                $genfile = $this->phpimportexpogen->exportAnnualDisclsr($getuserid,$user_group_id,$getres,$annualyr);
+                
+                if(file_exists($genfile))
+                {
+                    $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "File Not Generated..!!");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+
+
+    // ************ Get MIS Continuous Disclosure START ************
+    public function pendingcontdisclsrAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $filterby = '';
+                //$annualyr = $this->request->getPost('annualyr');
+                $noofrows = $this->request->getPost('noofrows');
+                $pagenum = $this->request->getPost('pagenum');
+                $searchby = $this->request->getPost('search');
+                $filterstatus = $this->request->getPost('filterstatus');
+                $from_date=$this->request->getPost('from_date');
+                $to_date=$this->request->getPost('to_date');
+
+                if($from_date != '' && $to_date == '')
+                {
+                    $data = array("logged" => false,'message' => "Kindly select to date.");
+                    $this->response->setJsonContent($data);
+                }
+                else if($from_date == '' && $to_date != '')
+                {
+                    $data = array("logged" => false,'message' => "Kindly select from date.");
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    if($from_date != '' && $to_date != '')
+                    {
+                        $qrydtfltr = " AND (STR_TO_DATE(anualdecl.`date_added`,'%Y-%m-%d') Between STR_TO_DATE('".$from_date."','%d-%m-%Y') AND STR_TO_DATE('".$to_date."','%d-%m-%Y')) ";
+                    } 
+                    else 
+                    {
+                        $qrydtfltr = '';
+                    }
+
+                    if($filterstatus == '')
+                    {
+
+                        $mainquery = $qrydtfltr.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
+                        $getres = $this->miscommon->fetchallcontdisclsr($getuserid,$user_group_id,$mainquery);
+                        //print_r($getres);exit;
+                        $rsstrt = ($pagenum-1) * $noofrows;
+                        $rslmt = $mainquery.' LIMIT '.$rsstrt.','.$noofrows;
+                        $rscnt=count($getres);
+                        $rspgs = ceil($rscnt/$noofrows);
+                        $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                        $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                        //print_r($getres);exit;
+
+                        $getresult = $this->miscommon->fetchallcontdisclsr($getuserid,$user_group_id,$rslmt);
+                    }
+                    else if($filterstatus == 'pending')
+                    {
+                        $mainquery = $qrydtfltr.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) ';
+                        $getres = $this->miscommon->fetchpendigcontdisclsr($getuserid,$user_group_id,$mainquery);
+                        //print_r($getres);exit;
+                        $rsstrt = ($pagenum-1) * $noofrows;
+                        $rslmt = $mainquery.' LIMIT '.$rsstrt.','.$noofrows;
+                        $rscnt = count($getres);
+                        $rspgs = ceil($rscnt/$noofrows);
+                        $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                        $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                        //print_r($getres);exit;
+
+                        $getresult = $this->miscommon->fetchpendigcontdisclsr($getuserid,$user_group_id,$rslmt);
+                    }
+                    else if($filterstatus == 'sent_for_approval') 
+                    {
+                        $filterby = $qrydtfltr.' AND anualdecl.`send_status`= 1';
+                        $mainquery = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ';
+                        $getres = $this->miscommon->fetchmiscontdisclsr($getuserid,$user_group_id,$mainquery);
+                        /* start pagination */
+                        //print_r($getres);exit;
+                        $rsstrt = ($pagenum-1) * $noofrows;
+                        $rslmt = $mainquery.' LIMIT '.$rsstrt.','.$noofrows;
+                        $rscnt=count($getres);
+                        $rspgs = ceil($rscnt/$noofrows);
+                        $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                        $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                        //print_r($getres);exit;
+
+                        $getresult = $this->miscommon->fetchmiscontdisclsr($getuserid,$user_group_id,$rslmt);
+                        //print_r($getresult);exit;
+                    }
+                    //print_r($getresult);exit;
+                    if($getresult)
+                    {
+                        $data = array("logged" => true,'message' => 'Record Added','data' => $getresult,'user_group_id'=>$user_group_id,"pgnhtml"=>$pgnhtml);
+                        $this->response->setJsonContent($data);
+                    }
+                    else
+                    {
+                        $data = array("logged" => false,'message' => "No data found..!!","pgnhtml"=>$pgnhtml);
+                        $this->response->setJsonContent($data);
+                    }
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+
+
+    public function exportContDisclsrAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $filterby = '';
+                //$annualyr = $this->request->getPost('annualyr');
+                $noofrows = $this->request->getPost('noofrows');
+                $pagenum = $this->request->getPost('pagenum');
+                $searchby = $this->request->getPost('search');
+                $filterstatus = $this->request->getPost('filterstatus');
+                $from_date=$this->request->getPost('from_date');
+                $to_date=$this->request->getPost('to_date');
+
+                if($from_date != '' && $to_date == '')
+                {
+                    $data = array("logged" => false,'message' => "Kindly select to date.");
+                    $this->response->setJsonContent($data);
+                }
+                else if($from_date == '' && $to_date != '')
+                {
+                    $data = array("logged" => false,'message' => "Kindly select from date.");
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    if($from_date != '' && $to_date != '')
+                    {
+                        $qrydtfltr = " AND (STR_TO_DATE(anualdecl.`date_added`,'%Y-%m-%d') Between STR_TO_DATE('".$from_date."','%d-%m-%Y') AND STR_TO_DATE('".$to_date."','%d-%m-%Y')) ";
+                    } 
+                    else 
+                    {
+                        $qrydtfltr = '';
+                    }
+                
+                    if($filterstatus == '')
+                    {
+                        $mainquery = $qrydtfltr.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
+                        $getres = $this->miscommon->fetchallcontdisclsr($getuserid,$user_group_id,$mainquery);
+                    }
+                    else if($filterstatus == 'pending')
+                    {
+                        $mainquery = $qrydtfltr.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) ';
+                        $getres = $this->miscommon->fetchpendigcontdisclsr($getuserid,$user_group_id,$mainquery);
+                    }
+                    else if($filterstatus == 'sent_for_approval') 
+                    {
+                        $filterby = $qrydtfltr.' AND anualdecl.`send_status`= 1';
+                        $mainquery = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ';
+                        $getres = $this->miscommon->fetchmiscontdisclsr($getuserid,$user_group_id,$mainquery);
+                    }
+                
+                    //print_r($getres);exit;
+                    $genfile = $this->phpimportexpogen->exportContDisclsr($getuserid,$user_group_id,$getres);
+                    
+                    if(file_exists($genfile))
+                    {
+                        $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
+                        $this->response->setJsonContent($data);
+                    }
+                    else
+                    {
+                        $data = array("logged" => false,'message' => "File Not Generated..!!");
+                        $this->response->setJsonContent($data);
+                    }
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+}

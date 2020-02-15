@@ -3,7 +3,7 @@ use Phalcon\Mvc\User\Component;
 class Miscommon extends Component
 {
     
-     //############### fetching holding summary start ###############
+    //############### fetching holding summary start ###############
     public function fetchholdingsummary($getuserid,$user_group_id,$userid)
     {
         $connection = $this->dbtrd;
@@ -50,52 +50,65 @@ class Miscommon extends Component
      {
         $connection = $this->dbtrd;
         $compid = explode(',',$compid);
-        $getlist = array();
-        for($i=0;$i<sizeof($compid);$i++)
-        {
-            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
-                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
-                        WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='1' AND pr.`relative_id` = ''";
-            //echo $queryget;exit;
-            try
-            { 
-               $exeget = $connection->query($queryget);
-                $getnum = trim($exeget->numRows());
-                   $buyequity = 0;$sellequity = 0;
-                    
-                if($getnum>0)
-                {
-                    while($row = $exeget->fetch())
-                    {
-                          if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
-                            {
-                               $buyequity =  $buyequity + $row['no_of_share'];
-                            }
-                            else if($row['type_of_transaction']=='2')
-                            {
-                                $sellequity =  $sellequity + $row['no_of_share'];
-                            }
-                            else{ }
-                            $row2 = array('buyequity'=>$buyequity,'sellequity'=>$sellequity);
-                            $finalrw = array_merge($row,$row2);
-                   }
-                     $getlistt[] = array_push($getlist, $finalrw);
-                   
-               }
-                
-               else
-               {
-                    $finalrw = array();
-                   array_push($getlist, $finalrw);
-               }
-            }
-            catch (Exception $e)
-            {
-                $getlist = array();
-            }
-              
-        }
+        $getlist = '';
+//        for($i=0;$i<sizeof($compid);$i++)
+//        {
+//            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
+//                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
+//                        WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='1' AND pr.`relative_id` = ''";
+//            //echo $queryget;exit;
+//            try
+//            { 
+//               $exeget = $connection->query($queryget);
+//                $getnum = trim($exeget->numRows());
+//                   $buyequity = 0;$sellequity = 0;
+//                    
+//                if($getnum>0)
+//                {
+//                    while($row = $exeget->fetch())
+//                    {
+//                          if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
+//                            {
+//                               $buyequity =  $buyequity + $row['no_of_share'];
+//                            }
+//                            else if($row['type_of_transaction']=='2')
+//                            {
+//                                $sellequity =  $sellequity + $row['no_of_share'];
+//                            }
+//                            else{ }
+//                            $row2 = array('buyequity'=>$buyequity,'sellequity'=>$sellequity);
+//                            $finalrw = array_merge($row,$row2);
+//                   }
+//                     $getlistt[] = array_push($getlist, $finalrw);
+//                   
+//               }
+//                
+//               else
+//               {
+//                    $finalrw = array();
+//                   array_push($getlist, $finalrw);
+//               }
+//            }
+//            catch (Exception $e)
+//            {
+//                $getlist = array();
+//            }
+//              
+//        }
         //print_r($getlist);exit;
+        $queryget = "SELECT * FROM `personal_info` 
+                        WHERE `userid` = '".$userid."'";
+        $exeget = $connection->query($queryget);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            $row = $exeget->fetch();
+            $getlist = $row['sharehldng'];
+        }
+        else
+        {
+            $getlist = 0;
+        }
         return $getlist; 
     }
     
@@ -103,53 +116,66 @@ class Miscommon extends Component
      {
         $connection = $this->dbtrd;
         $compid = explode(',',$compid);
-         $getlist = array();
-        for($i=0;$i<sizeof($compid);$i++)
+         $getlist = '';
+//        for($i=0;$i<sizeof($compid);$i++)
+//        {
+//            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
+//                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
+//                        WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='2' AND pr.`relative_id` = ''";
+//            //echo $queryget;exit;
+//            try
+//            { 
+//               $exeget = $connection->query($queryget);
+//                $getnum = trim($exeget->numRows());
+//                   $buyprefer = 0;$sellprefer = 0;
+//                    
+//                if($getnum>0)
+//                {
+//                 
+//                    while($row = $exeget->fetch())
+//                    {
+//
+//                        if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
+//                        {
+//                           $buyprefer =  $buyprefer + $row['no_of_share'];
+//                        }
+//                        else if($row['type_of_transaction']=='2')
+//                        {
+//                            $sellprefer =  $sellprefer + $row['no_of_share'];
+//                        }
+//                        else{ }
+//                        $row2 = array('buyprefer'=>$buyprefer,'sellprefer'=>$sellprefer);
+//                        $finalrw = array_merge($row,$row2);
+//                         
+//                    }
+//                     $getlistt[] = array_push($getlist, $finalrw);
+//                   
+//               }
+//                
+//               else
+//               {
+//                    $finalrw = array();
+//                   array_push($getlist, $finalrw);
+//               }
+//            }
+//            catch (Exception $e)
+//            {
+//                $getlist = array();
+//            }
+//              
+//        }
+         $queryget = "SELECT * FROM `personal_info` 
+                        WHERE `userid` = '".$userid."'";
+        $exeget = $connection->query($queryget);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
         {
-            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
-                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
-                        WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='2' AND pr.`relative_id` = ''";
-            //echo $queryget;exit;
-            try
-            { 
-               $exeget = $connection->query($queryget);
-                $getnum = trim($exeget->numRows());
-                   $buyprefer = 0;$sellprefer = 0;
-                    
-                if($getnum>0)
-                {
-                 
-                    while($row = $exeget->fetch())
-                    {
-
-                        if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
-                        {
-                           $buyprefer =  $buyprefer + $row['no_of_share'];
-                        }
-                        else if($row['type_of_transaction']=='2')
-                        {
-                            $sellprefer =  $sellprefer + $row['no_of_share'];
-                        }
-                        else{ }
-                        $row2 = array('buyprefer'=>$buyprefer,'sellprefer'=>$sellprefer);
-                        $finalrw = array_merge($row,$row2);
-                         
-                    }
-                     $getlistt[] = array_push($getlist, $finalrw);
-                   
-               }
-                
-               else
-               {
-                    $finalrw = array();
-                   array_push($getlist, $finalrw);
-               }
-            }
-            catch (Exception $e)
-            {
-                $getlist = array();
-            }
-              
+            $row = $exeget->fetch();
+            $getlist = $row['adrshldng'];
+        }
+        else
+        {
+            $getlist = 0;
         }
         return $getlist; 
     }
@@ -221,7 +247,7 @@ class Miscommon extends Component
         }
         else
         {
-        	$query="SELECT * FROM it_memberlist WHERE FIND_IN_SET('".$getuserid."',`approvid`) OR `wr_id`= '".$getuserid."' ".$ext;
+        	$query="SELECT * FROM it_memberlist WHERE (FIND_IN_SET('".$getuserid."',`approvid`) OR `wr_id`= '".$getuserid."') ".$ext;
         }
         //print_r($query); exit;
        
@@ -1123,7 +1149,7 @@ class Miscommon extends Component
         return $getlist;
     }
 
-     public function fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
+    public function fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
     {
         $connection = $this->dbtrd;
         $getlist = array();
@@ -1135,6 +1161,7 @@ class Miscommon extends Component
                     FROM `it_memberlist` memb
                     LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
                     WHERE memb.wr_id IN (".$grpusrs['ulstring'].") AND (anualdecl.annualyear='".$annualyr."') AND anualdecl.send_status= 1";
+                    //echo $queryget;exit;
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
 
@@ -1175,7 +1202,7 @@ class Miscommon extends Component
             {
                 $getlist = array();
             }
-                //print_r($getlist);exit;
+            //print_r($getlist);exit;
             
         }
         catch (Exception $e)
@@ -1187,7 +1214,7 @@ class Miscommon extends Component
         return $getlist;
     }
 
-      public function fetchallannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
+    public function fetchallannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
     {
         $connection = $this->dbtrd;
         $getlist = array();
@@ -1225,7 +1252,7 @@ class Miscommon extends Component
     }
 
 
-      public function fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
+    public function fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
     {
         $connection = $this->dbtrd;
         $getlist = array();
@@ -1243,9 +1270,9 @@ class Miscommon extends Component
                     $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
                     FROM `it_memberlist` memb
                     LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
-                    WHERE memb.wr_id = '".$row['wr_id']."' AND (anualdecl.annualyear='".$annualyr."' OR anualdecl.annualyear IS NULL )".$query;
+                    WHERE memb.wr_id = '".$row['wr_id']."'".$query;
                     ;
-                     //echo $queryanual;
+                    // echo $queryanual;
                     $exeanual = $connection->query($queryanual);
                     $getnumanual = trim($exeanual->numRows());
                     if($getnumanual>0)
@@ -1360,6 +1387,459 @@ class Miscommon extends Component
    
        return $html;
     }
+
+
+    public function allDesgntdPersnHtml($getuserinfo,$relativeinfo,$accountinfo,$relativeaccount,$mfrdata,$getres,$result)
+    {
+        $myhtml1 = '';$myhtml2 = '';$myhtml3 = '';$myhtml4 = '';$myhtml5 = '';$myhtml6 = '';$myhtml7 = '';
+        //print_r($result);exit;
+        if(sizeof($getuserinfo) > 0)
+        {
+            for($i=0; $i < sizeof($getuserinfo); $i++)
+            {
+               // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml1.="<tr>";
+                $myhtml1.="<td>".$j."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['name']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['pan']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['legal_identifier']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['legal_identification_no']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['aadhar']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['dob']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['address']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['sex']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['education']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['institute']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['sharehldng']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['adrshldng']."</td>";
+                $myhtml1.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml1.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+        }
+       
+        if(sizeof($relativeinfo) > 0)
+        {
+            for($i=0; $i < sizeof($relativeinfo); $i++)
+            {
+           // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml2.="<tr>";
+                $myhtml2.="<td>".$j."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['name']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['pan']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['legal_identifier']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['legal_identification_no']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['aadhar']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['dob']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['relationshipname']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['address']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['sex']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['education']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['sharehldng']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['adrshldng']."</td>";
+                $myhtml2.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml2.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+        }
+
+
+        if(sizeof($accountinfo) > 0)
+        {
+            for($i=0; $i < sizeof($accountinfo); $i++)
+            {
+           // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml3.="<tr>";
+                $myhtml3.="<td>".$j."</td>";
+                $myhtml3.="<td>".$accountinfo[$i]['accountno']."</td>";
+                $myhtml3.="<td>".$accountinfo[$i]['usname']."</td>";
+                $myhtml3.="<td>".$accountinfo[$i]['clearing_house']."</td>";
+                $myhtml3.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml3.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+        }
+
+        if(sizeof($relativeaccount) > 0)
+        {
+            for($i=0; $i < sizeof($relativeaccount); $i++)
+            {
+           // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml4.="<tr>";
+                $myhtml4.="<td>".$j."</td>";
+                $myhtml4.="<td>".$relativeaccount[$i]['accountno']."</td>";
+                $myhtml4.="<td>".$relativeaccount[$i]['name']."</td>";
+                $myhtml4.="<td>".$relativeaccount[$i]['clearing_house']."</td>";
+                $myhtml4.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml4.='<tr><td colspan="4" style="text-align: center;">Data Not Found</td>';
+        }
+
+        if(sizeof($mfrdata) > 0)
+        {
+            for($i=0; $i < sizeof($mfrdata); $i++)
+            {
+           // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml5.="<tr>";
+                $myhtml5.="<td>".$j."</td>";
+                $myhtml5.="<td>".$mfrdata[$i]['related_party']."</td>";
+                $myhtml5.="<td>".$mfrdata[$i]['pan']."</td>";
+                $myhtml5.="<td>".$mfrdata[$i]['relationship']."</td>";
+                $myhtml5.="<td>".$mfrdata[$i]['address']."</td>";
+                $myhtml5.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml5.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+        }
+
+        if(sizeof($result) > 0)
+        {
+            for($i=0; $i < sizeof($result); $i++)
+            {
+           // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml6.="<tr>";
+                $myhtml6.="<td>".$j."</td>";
+                $myhtml6.="<td>".$result[$i]['company_name']."</td>";
+                $myhtml6.="<td>".$result[$i]['security_type']."</td>";
+                $myhtml6.="<td>".$result[$i]['no_of_share']."</td>";
+                $myhtml6.="<td>".$result[$i]['date_of_transaction']."</td>";
+                $myhtml6.="<td>".$result[$i]['transaction']."</td>";
+                $myhtml6.="<td>".$result[$i]['demat_acc_no']."</td>";
+                $myhtml6.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml6.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+        }
+
+        if(sizeof($getres) > 0)
+        {
+            for($i=0; $i < sizeof($getres); $i++)
+            {
+                // print_r($data[$i]);exit;
+                $j=$i+1;
+                $myhtml7.="<tr>";
+                $myhtml7.="<td>".$j."</td>";
+                $myhtml7.="<td>".$getres[$i]['relname']."</td>";
+                $myhtml7.="<td>".$getres[$i]['relationship']."</td>";
+                $myhtml7.="<td>".$getres[$i]['company_name']."</td>";
+                $myhtml7.="<td>".$getres[$i]['security_type']."</td>";
+                $myhtml7.="<td>".$getres[$i]['no_of_share']."</td>";
+                $myhtml7.="<td>".$getres[$i]['date_of_transaction']."</td>";
+                $myhtml7.="<td>".$getres[$i]['transaction']."</td>";
+                $myhtml7.="<td>".$getres[$i]['demat_acc_no']."</td>";
+                $myhtml7.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml7.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+        }
+
+        
+       // print_r($myhtml1);exit;
+
+      $html="<!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+      </head>
+      <body>
+         <h3 style='text-align:center;'>Designated Person Information</h3>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Name</th> 
+                <th>Pan</th>
+                <th>Any other legal identifier</th>
+                <th>Any other legal identification number</th>
+                <th>Aadhar</th>
+                <th>Dob</th>  
+                <th>Address</th>  
+                <th>Gender</th>    
+                <th>Education</th>                                                
+                <th>Institution</th>
+                <th>Holdings In Shares</th>
+                <th>Holdings In ADRs</th>
+            </tr>
+         ".$myhtml1."
+         </table>
+         <br>
+         <h3 style='text-align:center;'>Designated Person's Relative Information</h3>
+         <br>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Name</th> 
+                <th>Pan</th>
+                <th>Any other legal identifier</th>
+                <th>Any other legal identification number</th>
+                <th>Aadhar</th>
+                <th>Dob</th> 
+                <th>Relationship</th> 
+                <th>Address</th>  
+                <th>Gender</th>    
+                <th>Education</th>   
+                <th>Holdings In Shares</th>   
+                <th>Holdings In ADRs</th>   
+            </tr>
+         ".$myhtml2."
+         </table>
+         <br>
+         <h3 style='text-align:center;'>Designated Person's Demat Accounts</h3>
+         <br>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Account No</th> 
+                <th>Designated Person Name</th>
+                <th>Clearing House</th> 
+            </tr>
+         ".$myhtml3."
+         </table>
+         <br>
+         <h3 style='text-align:center;'>Designated Person's Relative Demat Accounts</h3>
+         <br>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Account No</th> 
+                <th>Designated Person Name</th>
+                <th>Clearing House</th> 
+            </tr>
+         ".$myhtml4."
+         </table>
+         <br>
+         <h3 style='text-align:center;'>Designated Person's Material Financial Relationship</h3>
+         <br>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Name Of Related Party</th> 
+                <th>Identity Number</th> 
+                <th>Nature Of Relationship</th>
+                <th>Address</th> 
+            </tr>
+         ".$myhtml5."
+         </table>
+         <br>
+         <h3 style='text-align:center;'>Designated Person's Holding MIS</h3>
+         <br>
+         <table>
+            <tr>
+               <th>Sr No</th>
+                <th>Name Of Company</th> 
+                <th>Type Of Security</th> 
+                <th>No Of Securities</th> 
+                <th>Transaction Date</th>
+                <th>Transaction Type</th>
+                <th>Demat Account No</th>
+            </tr>
+         ".$myhtml6."
+         </table>
+         <br>
+         <h3 style='text-align:center;'>Designated Person's Relatives Holding MIS</h3>
+         <br>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Name Of Relative</th> 
+                <th>Relationship</th> 
+                <th>Name Of Company</th> 
+                <th>No Of Securities</th> 
+                <th>No of Share</th> 
+                <th>Transaction Date</th>
+                <th>Transaction Type</th>
+                <th>Demat Account No</th>
+            </tr>
+         ".$myhtml7."
+         </table>
+        </body>
+      </html>";
+       // print_r($html); exit;
+       return $html;
+    }
+
+
+    public function fetchallcontdisclsr($getuserid,$user_group_id,$query)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        try
+         {
+            $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+            $queryget = "SELECT  anualdecl.`date_added`,anualdecl.`annualyear`,memb.`fullname`,anualdecl.`sent_date`,anualdecl.`pdfpath` 
+            FROM `continuous_initial_declaration` anualdecl 
+            LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = anualdecl.`user_id`
+            WHERE memb.`wr_id` IN (".$grpusrs['ulstring'].")".$query;
+            //echo "this";echo $queryget;  exit;
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+            //echo "this";echo $getnum;  exit;
+            if($getnum>0)
+            {
+                //echo 'IN IF'; //exit;
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;
+                }
+                //echo '<pre>';print_r($getlist);exit;
+                
+            }else{
+                //echo 'IN else'; //exit;
+                $getlist = array();
+            }
+            //exit;
+            //echo '<pre>';print_r($getlist);exit;
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
+
+
+    public function fetchpendigcontdisclsr($getuserid,$user_group_id,$query)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $userid = array();
+        try
+         {
+            $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+            // $queryget = "SELECT memb.*
+            //         FROM `it_memberlist` memb
+            //         LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
+            //         WHERE memb.wr_id IN (".$grpusrs['ulstring'].") AND (anualdecl.annualyear='".$annualyr."') AND anualdecl.send_status= 1";
+            //         //echo $queryget;exit;
+            // $exeget = $connection->query($queryget);
+            // $getnum = trim($exeget->numRows());
+
+            // if($getnum>0)
+            // {
+            //     while($row = $exeget->fetch())
+            //     {
+            //         $userid[] = $row['wr_id'];
+            //     }
+            // }
+            // $grpusers = explode(',',$grpusrs['ulstring']);
+            // if(!empty($userid))
+            // {
+            //     $pendusrs = array_diff($grpusers, $userid);
+            //     $pendingusers = implode(',',$pendusrs);
+            // }
+            // else
+            // {
+            //     $pendingusers = $grpusrs['ulstring'];
+            // }
+            
+            $queryanual = "SELECT anualdecl.`date_added`,anualdecl.`annualyear`,memb.`fullname`,anualdecl.`sent_date`,anualdecl.`pdfpath`,anualdecl.`send_status`
+            FROM `continuous_initial_declaration` anualdecl 
+            LEFT JOIN `it_memberlist` memb ON memb.`wr_id`=anualdecl.`user_id`
+            WHERE memb.`wr_id` IN(".$grpusrs['ulstring'].") AND anualdecl.`send_status`= 0".$query;
+            ;
+            //echo $queryanual;exit;
+            $exeanual = $connection->query($queryanual);
+            $getnumanual = trim($exeanual->numRows());
+            if($getnumanual>0)
+            {
+                while($rowanual = $exeanual->fetch())
+                {
+                    $getlist[]=$rowanual;
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }
+            //print_r($getlist);exit;
+            
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
+
+
+    public function fetchmiscontdisclsr($getuserid,$user_group_id,$query)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        try
+         {
+            $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+            // $queryget = "SELECT * FROM `it_memberlist` WHERE `status`='1' AND wr_id IN (".$grpusrs['ulstring'].")";
+            // $exeget = $connection->query($queryget);
+            // $getnum = trim($exeget->numRows());
+
+            // if($getnum>0)
+            // {
+            //     while($row = $exeget->fetch())
+            //     {
+                    $queryanual = "SELECT anualdecl.`date_added`,anualdecl.`annualyear`,memb.`fullname`,anualdecl.`sent_date`,anualdecl.`pdfpath`,anualdecl.`send_status`
+                    FROM `continuous_initial_declaration` anualdecl 
+                    LEFT JOIN `it_memberlist` memb ON memb.`wr_id`=anualdecl.`user_id`
+                    WHERE memb.`wr_id` IN (".$grpusrs['ulstring'].")".$query;
+                    ;
+                    //echo $queryanual;exit;
+                    $exeanual = $connection->query($queryanual);
+                    $getnumanual = trim($exeanual->numRows());
+                    if($getnumanual>0)
+                    {
+                        while($rowanual = $exeanual->fetch())
+                        {
+                            // if($rowanual['annualyear']==$annualyr)
+                            // {
+                                $getlist[]=$rowanual;
+                            // }
+                            // else
+                            // {
+                            //     $rowanual['annualyear']='';
+                            //     $rowanual['pdfpath']='';
+                            //     $rowanual['sent_date']='';
+                            //     $getlist[]=$rowanual;
+                            // }
+                        }
+                    }
+                // }
+                //echo '<pre>';print_r($getlist);exit;
+                
+            // }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
+    
     
 
 }

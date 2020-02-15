@@ -9,11 +9,11 @@ class Esopcommon extends Component
       if($esopdata['almtdte'])
       {
           $allotmentdate = date('d-m-Y', strtotime($esopdata['almtdte']));
-          $queryinsert = "INSERT INTO `esop`(`user_id`,`user_group_id`,`uniqueid`,`emp_name`,`emp_pan`,`emp_shares`,`altmntdate`,`cmp_name`,`date_added`, `date_modified`,`timeago`)VALUES ('".$getuserid."','".$user_group_id."','".$uniqueid."','".$esopdata['empname']."','".$esopdata['emppan']."','".$esopdata['empshares']."','".$allotmentdate."','".$esopdata['cmpname']."',NOW(),NOW(),'".$time."')";
+          $queryinsert = "INSERT INTO `esop`(`user_id`,`user_group_id`,`uniqueid`,`emp_name`,`emp_pan`,`emp_shares`,`altmntdate`,`date_added`, `date_modified`,`timeago`) VALUES ('".$getuserid."','".$user_group_id."','".$uniqueid."','".$esopdata['empname']."','".$esopdata['emppan']."','".$esopdata['empshares']."','".$allotmentdate."',NOW(),NOW(),'".$time."')";
       }
       else
       {
-          $queryinsert = "INSERT INTO `esop`(`user_id`,`user_group_id`,`uniqueid`,`emp_name`,`emp_pan`,`emp_shares`,`altmntdate`,`cmp_name`,`date_added`, `date_modified`,`timeago`)VALUES ('".$getuserid."','".$user_group_id."','".$uniqueid."','".$esopdata['empname']."','".$esopdata['emppan']."','".$esopdata['empshares']."',NULL,'".$esopdata['cmpname']."',NOW(),NOW(),'".$time."')";
+          $queryinsert = "INSERT INTO `esop`(`user_id`,`user_group_id`,`uniqueid`,`emp_name`,`emp_pan`,`emp_shares`,`altmntdate`,`cmp_name`,`date_added`, `date_modified`,`timeago`) VALUES ('".$getuserid."','".$user_group_id."','".$uniqueid."','".$esopdata['empname']."','".$esopdata['emppan']."','".$esopdata['empshares']."',NULL,NOW(),NOW(),'".$time."')";
       }
       //echo $queryinsert;exit;
       $exeml = $connection->query($queryinsert);
@@ -111,10 +111,10 @@ class Esopcommon extends Component
                 {
                     while($rowesop = $exeesop->fetch())
                     {
-                        $queryselectcmp = " SELECT * FROM `listedcmpmodule` WHERE `company_name` = '".$rowesop['cmp_name']."' ";
+                        $queryselectcmp = ' SELECT * FROM `listedcmpmodule` WHERE `company_name` = "'.$rowesop['cmp_name'].'" ';
                         
                         $queryselectpan = " SELECT * FROM `personal_info` WHERE `pan` = '".$rowesop['emp_pan']."' ";
-                        //echo $queryselectcmp;exit;
+                        //echo $queryselectpan;exit;
                         $exegetcmp = $connection->query($queryselectcmp);
                         $getnumcmp = trim($exegetcmp->numRows());
                         

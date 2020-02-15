@@ -106,6 +106,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
             foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
             {
                 $highestRow = $worksheet->getHighestRow();
+                //echo '<pre>'; print_r($highestRow);exit;
                  for ($row=2; $row<=$highestRow;$row++)
                  {
                     $emp_name  = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
@@ -113,8 +114,8 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                     $emp_shares  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
                     $emp_almtdate  = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
                     $emp_almtdate  = PHPExcel_Style_NumberFormat::toFormattedString($emp_almtdate, "DD-MM-YYYY");
-                    $emp_cmpnme  = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
-                    $esopdata = array('empname'=>$emp_name,'emppan'=>$emp_pan,'empshares'=>$emp_shares,'almtdte'=>$emp_almtdate,'cmpname'=>$emp_cmpnme);
+                    //$emp_cmpnme  = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+                    $esopdata = array('empname'=>$emp_name,'emppan'=>$emp_pan,'empshares'=>$emp_shares,'almtdte'=>$emp_almtdate);
                   
                     $getstatus = $this->esopcommon->insertesop($getuserid,$user_group_id,$esopdata,$uniqueid);
                 }
@@ -352,5 +353,225 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         //echo '<pre>';print_r($genfile);exit;
         return $genfile;
 
+    }
+    
+    public function FetchconnectedDP($getuserid,$user_group_id,$excelfilenamepath)
+    {
+        
+        $connection = $this->dbtrd;
+        $username = array();
+        $emailid = array();
+        $time= time();
+        $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+        $objPHPExcel->setActiveSheetIndex(0);
+        $worksheet = $objPHPExcel->getActiveSheet(0);
+
+        try
+        {
+            
+            foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
+            {
+                $highestRow = $worksheet->getHighestRow();
+                 for ($row=2; $row<=$highestRow;$row++)
+                 {
+                    $name  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $email  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                     //echo $rtaholding;exit;
+                     if(!empty($name) && !empty($email))
+                     {
+                         $username[] = $name;
+                         $emailid = $email;
+                         
+                         $ConnctdDpArray = array('username'=>$username,'emailid'=>$emailid);
+                    
+                        $getres = $this->upsicommon->Fetchusersid($getuserid,$user_group_id,$ConnctdDpArray);
+                        //print_r($getres);
+                        if(!$getres)
+                        {
+                            //print_r('dasd');exit;
+                            return false;
+                        }
+                     }
+                 
+                    
+                 }
+            }
+            //die;
+        }
+        catch (Exception $e)
+        {
+            $getres = array();
+            $connection->close();
+        }
+        return $getres;
+    }
+
+    public function insertholding($getuserid,$user_group_id,$excelfilenamepath,$dtofhldng,$uniqueid,$typeofhldng)
+    {
+        
+        $connection = $this->dbtrd;
+        $time= time();
+        $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+        $objPHPExcel->setActiveSheetIndex(0);
+        $worksheet = $objPHPExcel->getActiveSheet(0);
+
+        try
+        {
+            foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
+            {
+                $highestRow = $worksheet->getHighestRow();
+                 for ($row=2; $row<=$highestRow;$row++)
+                 {
+                    $panno  = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    $rtaholding  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                     //echo $rtaholding;exit;
+                    $holdingArray = array('panno'=>$panno,'holding'=>$rtaholding);
+                  
+                    $getstatus = $this->uploadholdingcommon->insertholding($getuserid,$user_group_id,$holdingArray,$dtofhldng,$uniqueid,$typeofhldng);
+
+                    $update_personalinfo = $this->uploadholdingcommon->updatePersnlinfo($panno,$rtaholding,$typeofhldng);
+                }
+                
+            }
+           return true;
+        }
+        catch (Exception $e)
+        {
+            return false;
+            $connection->close();
+        }
+    }
+
+    public function exportAnnualDisclsr($getuserid,$user_group_id,$processdata,$annualyr)
+    {
+        //echo '<pre>'; print_r($processdata);exit;
+        $connection = $this->db;
+        $time = time();
+        
+        $excelfilenamepath = 'samplefile/MIS/annualdiscloser.xlsx';
+        $newfilepath = 'img/mis/annualdiscloser'.'_'.$time.'.xlsx';
+        $j=1;
+        foreach($processdata as $tblrow)
+        {
+            if($annualyr == $tblrow['annualyear'])
+            {
+                $sentdate = $tblrow['sent_date'];
+            }
+            else
+            {
+                $sentdate = '';
+            }
+            
+            $nwexcl[] = array('0' => $j,
+                            '1' => $tblrow['fullname'],
+                            '2'=> $annualyr,
+                            '3' => $sentdate,
+                        );
+            $j++;
+        }
+        //echo '<pre>';print_r($nwexcl);exit;
+       
+        $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+        
+        $objPHPExcel->setActiveSheetIndex(0);
+        $worksheet = $objPHPExcel->getActiveSheet();
+        $highestColumn = $worksheet->getHighestColumn();
+        $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
+        $highestRow = $worksheet->getHighestRow();
+        $worksheet = $objPHPExcel->getActiveSheet();
+               //echo "yo";exit;  
+            //echo '<pre>';print_r($nwexcl);exit;
+            if(count($nwexcl)>0)
+            {
+                $row = 2; // 1-based index
+
+                foreach($nwexcl as $rowdata)
+                {
+                    $col = 0;
+                    foreach($rowdata as $key=>$value) 
+                    {
+                        //echo $col." ".$row." ".$value.'<br>';
+                        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+                        $col++;
+                    }                    
+                    $row++;
+                }
+
+                $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+                //echo '<pre>';print_r($newfilepath);exit;
+                $objWriter->save($newfilepath);
+                //echo $newfilepath;exit;
+
+                $genfile = $newfilepath;
+            }
+            else
+            {
+                $genfile = '';
+            }
+
+        //echo '<pre>';print_r($genfile);exit;
+        return $genfile;
+    }
+
+    public function exportContDisclsr($getuserid,$user_group_id,$processdata)
+    {
+        //echo '<pre>'; print_r($processdata);exit;
+        $connection = $this->db;
+        $time = time();
+        
+        $excelfilenamepath = 'samplefile/MIS/continuousdiscloser.xlsx';
+        $newfilepath = 'img/mis/continuousdiscloser'.'_'.$time.'.xlsx';
+        $j=1;
+        foreach($processdata as $tblrow)
+        {
+            $formated_date = date('d-m-Y',strtotime($tblrow['date_added']));
+            $nwexcl[] = array('0' => $j,
+                            '1' => $tblrow['fullname'],
+                            '2'=> $formated_date
+                        );
+            $j++;
+        }
+        //echo '<pre>';print_r($nwexcl);exit;
+       
+        $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+        
+        $objPHPExcel->setActiveSheetIndex(0);
+        $worksheet = $objPHPExcel->getActiveSheet();
+        $highestColumn = $worksheet->getHighestColumn();
+        $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
+        $highestRow = $worksheet->getHighestRow();
+        $worksheet = $objPHPExcel->getActiveSheet();
+               //echo "yo";exit;  
+            //echo '<pre>';print_r($nwexcl);exit;
+            if(count($nwexcl)>0)
+            {
+                $row = 2; // 1-based index
+
+                foreach($nwexcl as $rowdata)
+                {
+                    $col = 0;
+                    foreach($rowdata as $key=>$value) 
+                    {
+                        //echo $col." ".$row." ".$value.'<br>';
+                        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+                        $col++;
+                    }                    
+                    $row++;
+                }
+
+                $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+                //echo '<pre>';print_r($newfilepath);exit;
+                $objWriter->save($newfilepath);
+                //echo $newfilepath;exit;
+
+                $genfile = $newfilepath;
+            }
+            else
+            {
+                $genfile = '';
+            }
+
+        //echo '<pre>';print_r($genfile);exit;
+        return $genfile;
     }
 }

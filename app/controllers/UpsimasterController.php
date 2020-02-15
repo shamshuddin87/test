@@ -173,23 +173,64 @@ class UpsimasterController extends ControllerBase
     {
         $this->view->disable();
         $getuserid = $this->session->loginauthspuserfront['id'];
-        $usergroup =$this->session->loginauthspuserfront['user_group_id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $firstname = $this->session->loginauthspuserfront['firstname'];
+        $lastname = $this->session->loginauthspuserfront['lastname'];
+        $timeago = time();
         if($this->request->isPost() == true)
         {
             if($this->request->isAjax() == true)
             {
                 $updatedata = $this->request->getPost();
-                //print_r($updatedata);exit;
- 
-                if(!array_key_exists("connectdps",$updatedata) && !array_key_exists("upalldps",$updatedata))
+                if((!array_key_exists("connectdps",$updatedata) && !array_key_exists("upalldps",$updatedata)) && empty($_FILES['connecteddps']))
                 {
-                    $data = array("logged" => false,'message' => 'Please Select Atleast One Connected Dp' );
+                    $data = array("logged" => false,'message' => 'Please Select Atleast One Connected Dp OR upload file' );
                     $this->response->setJsonContent($data);
                 }
                 else
                 {
-                    $result = $this->upsicommon->updateupsi($getuserid,$usergroup,$updatedata);
-                    // print_r($result);exit;
+                    //
+                    $exceldpids = array();
+                    if(!empty($_FILES['connecteddps']))
+                    {
+                        $userfile_name = $_FILES['connecteddps']['name'];
+                        //echo $userfile_name;exit;
+                        $userfile_tmp = $_FILES['connecteddps']['tmp_name'];
+                        $userfile_size = $_FILES['connecteddps']['size'];
+                        $userfile_type = $_FILES['connecteddps']['type'];
+                        $filename = basename($_FILES['connecteddps']['name']);
+                        //echo $filename;exit;
+                        $file_ext = $this->validationcommon->getfileext($filename);
+                        $upload_path = $this->upsiconnectedDPDir.'/'.$getuserid.'_'.$firstname.'_'.$lastname;
+                        if(!file_exists($upload_path)) 
+                        {
+                            mkdir($upload_path, 0777, true);
+                        }
+                        //echo $upload_path; exit;
+                        $large_imp_name = '/'.$timeago.'_'.rand();               
+                        //echo $large_imp_name."*".$file_ext;exit;
+                        $large_impfile_location = $upload_path.$large_imp_name.".".$file_ext;
+                        $uploadedornot = move_uploaded_file($userfile_tmp, $large_impfile_location);
+                        //echo 'here';exit;
+                        
+                        $exceldpids = $this->phpimportexpogen->FetchconnectedDP($getuserid,$user_group_id,$large_impfile_location);
+                        if($exceldpids)
+                        {
+                            $result = $this->upsicommon->updateupsi($getuserid,$user_group_id,$updatedata,$exceldpids);
+                        }
+                        else
+                        {
+                            $data = array("logged"=>false,"message"=>'Email id is not valid.');
+                            $this->response->setJsonContent($data);
+                            $this->response->send();
+                            exit;
+                        }
+                    }
+                    else
+                    {
+                        $result = $this->upsicommon->updateupsi($getuserid,$user_group_id,$updatedata,$exceldpids);
+                    }
+                    
                     if($result)
                     {
                         $data = array("logged"=>true,"message"=>'Data Updated successfully..!!!');
@@ -197,12 +238,10 @@ class UpsimasterController extends ControllerBase
                     }
                     else
                     {
-                        $data = array("logged"=>false,"message"=>'Data Not Updated successfully..!!!');
+                        $data = array("logged"=>false,"message"=>'Data Not Updated..!!!');
                         $this->response->setJsonContent($data);
                     }
                 }
-                
-                
                 $this->response->send();
             }
             else

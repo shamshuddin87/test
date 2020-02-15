@@ -165,180 +165,182 @@ function getallholdingsummary()
              var othercloseequity = [];var othercloseprefer = [];var otherclosedebtr = [];
              var n = 0;
             //            ------------------------ Table Fields Insertion START ------------------------
-            if(response.resdta.length>10){ n = 10;}else{n = response.resdta.length}
-             for(var i = 0; i < n; i++) 
-             {
-                addhtmlnxt += '<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';
-                addhtmlnxt += '<td width="25%">'+response.resdta[i].company_name+'</td>';
+//            if(response.resdta.length>10){ n = 10;}else{n = response.resdta.length}
+//             for(var i = 0; i < n; i++) 
+//             {
+                addhtmlnxt += '<tr class="counter"  >';
+                addhtmlnxt += '<td width="25%">'+response.cmpname+'</td>';
 
                         
-                        for(var k = 0;k<response.equity.length;k++)
-                        {
-                                if(response.equity[k] != '')
-                                {
-
-                                    if(response.equity[k].buyequity == null && response.equity[k].sellequity == null)
-                                    {
-                                        var opnblnceq = response.resdta[k].equityshare;
-                                        if(equitybuysell[k]!=0 || equitybuysell[k]!='')
-                                        {var totaleq = equitybuysell[k];}else{var totaleq = 0;}
-                                    }
-                                    else
-                                    {
-                                        var opnblnceq = response.resdta[k].equityshare;
-                                        var buyeq = response.equity[k].buyequity;
-                                        var selleq = response.equity[k].sellequity;
-                                        var totaleq = Number(buyeq) - Number(selleq);
-                                        var closblnceq = Number(opnblnceq) + Number(totaleq);
-                                        equitybuysell.push(totaleq);
-                                        equityclosblnc.push(closblnceq);
-                                    }
-
-                                }
-                                else
-                                {
-                                    var opnblnceq = response.resdta[k].equityshare;
-                                   if(equitybuysell[k])
-                                    {
-                                        if(equitybuysell[k]!=0 || equitybuysell[k]!='')
-                                        {var totaleq = equitybuysell[k];}else{var totaleq = 0;}  
-                                    }
-                                    else
-                                    {
-                                        var totaleq = 0;
-                                    }
-                                    var closblnceq = Number(opnblnceq) + Number(totaleq);
-                                    equitybuysell.push(totaleq);
-                                    equityclosblnc.push(closblnceq);
-                                }
-
-                                if(response.prefer[k] != '')
-                                {
-
-                                    if(response.prefer[k].buyprefer == null && response.prefer[k].sellprefer == null)
-                                    {
-                                        var opnblncpref = response.resdta[k].prefershare;
-                                        console.log(opnblncpref+' '+k);
-                                        if(preferbuysell[k]!=0 || preferbuysell[k]!='')
-                                        {var totalpref = preferbuysell[k];}else{var totalpref = 0;}
-                                    }
-                                    else
-                                    {
-                                        var opnblncpref = response.resdta[k].prefershare;
-                                        var buypref = response.prefer[k].buyprefer;
-                                        var sellpref = response.prefer[k].sellprefer;;
-                                        var totalpref = Number(buypref) - Number(sellpref);
-                                        var closblncpref = Number(opnblncpref) + Number(totalpref);
-                                        preferbuysell.push(totalpref);
-                                        preferclosblnc.push(closblncpref);
-                                    }
-
-                                }
-                                else
-                                {
-                                    var opnblncpref = response.resdta[k].prefershare;
-                                    if(preferbuysell[k])
-                                    {
-                                        if(preferbuysell[k]!=0 || preferbuysell[k]!='')
-                                        {var totalpref = preferbuysell[k];}else{var totalpref = 0;}  
-                                    }
-                                    else
-                                    {
-                                        var totalpref = 0;
-                                    }
-                                    var closblncpref = Number(opnblncpref) + Number(totalpref);
-                                    preferbuysell.push(totalpref);
-                                    preferclosblnc.push(closblncpref);
-                                }
-                                if(response.debenture[k] != '')
-                                {
-
-                                    if(response.debenture[k].buydebtr == null && response.debenture[k].selldebtr == null)
-                                    {
-                                        var opnblncdeb = response.resdta[k].debntrshare;
-                                        console.log(opnblncdeb+' '+k);
-                                        if(debntrbuysell[k]!=0 || debntrbuysell[k]!='')
-                                        {var totaldeb = debntrbuysell[k];}else{var totaldeb = 0;}
-                                        console.log(totaldeb);
-                                    }
-                                    else
-                                    {
-                                        var opnblncdeb = response.resdta[k].debntrshare;
-                                        var buydeb = response.debenture[k].buydebtr;
-                                        var selldeb = response.debenture[k].selldebtr;;
-                                        var totaldeb = Number(buydeb) - Number(selldeb);
-                                        var closblncdeb = Number(opnblncdeb) + Number(totaldeb);
-                                        debntrbuysell.push(totaldeb);
-                                        debntrclosblnc.push(closblncdeb);
-                                    }
-
-                                }
-                                else
-                                {
-                                    var opnblncdeb = response.resdta[k].debntrshare;
-                                    if(debntrbuysell[k])
-                                    {
-                                        if(debntrbuysell[k]!=0 || debntrbuysell[k]!='')
-                                        {var totaldeb = debntrbuysell[k];}else{var totaldeb = 0;}  
-                                    }
-                                    else
-                                    {
-                                        var totaldeb = 0;
-                                    }
-                                    var closblncdeb = Number(opnblncdeb) + Number(totaldeb);
-                                    debntrbuysell.push(totaldeb);
-                                    debntrclosblnc.push(closblncdeb);
-                                }
-
-                            }
-
-
-                    if(response.equity.length!=0)
-                    { 
-                        if(response.resdta[i].equityshare!=0)
-                        {
-                            var esop= Number(equityclosblnc[i])+Number(response.resdta[i].esop);
-                            addhtmlnxt += '<td width="25%">'+esop+'</td>'; //equity closing blnc
-                        }
-                        else
-                        {
-                            var esop= Number(equityclosblnc[i])+Number(response.resdta[i].esop);
-                            addhtmlnxt += '<td width="25%">'+esop+'</td>'; //equity closing blnc
-                        }
-
-                    }
-
-                    if(response.prefer.length!=0)
-                    {
-                        if(response.resdta[i].prefershare!=0)
-                        {
-                            addhtmlnxt += '<td width="25%">'+preferclosblnc[i]+'</td>'; //prefr closing blnc
-                        }
-                        else
-                        {
-                            addhtmlnxt += '<td width="25%">'+preferclosblnc[i]+'</td>'; //prefr closing blnc
-                        }
-
-                    }
-
-
-                    if(response.debenture.length!=0)
-                    { 
-                        if(response.resdta[i].debntrshare!=0)
-                        {
-                            addhtmlnxt += '<td width="25%">'+debntrclosblnc[i]+'</td>'; //prefr closing blnc
-                        }
-                        else
-                        {
-                            addhtmlnxt += '<td width="25%">'+debntrclosblnc[i]+'</td>'; //debtr closing blnc
-                        }
-                    }
+//                        for(var k = 0;k<response.equity.length;k++)
+//                        {
+//                                if(response.equity[k] != '')
+//                                {
+//
+//                                    if(response.equity[k].buyequity == null && response.equity[k].sellequity == null)
+//                                    {
+//                                        var opnblnceq = response.resdta[k].equityshare;
+//                                        if(equitybuysell[k]!=0 || equitybuysell[k]!='')
+//                                        {var totaleq = equitybuysell[k];}else{var totaleq = 0;}
+//                                    }
+//                                    else
+//                                    {
+//                                        var opnblnceq = response.resdta[k].equityshare;
+//                                        var buyeq = response.equity[k].buyequity;
+//                                        var selleq = response.equity[k].sellequity;
+//                                        var totaleq = Number(buyeq) - Number(selleq);
+//                                        var closblnceq = Number(opnblnceq) + Number(totaleq);
+//                                        equitybuysell.push(totaleq);
+//                                        equityclosblnc.push(closblnceq);
+//                                    }
+//
+//                                }
+//                                else
+//                                {
+//                                    var opnblnceq = response.resdta[k].equityshare;
+//                                   if(equitybuysell[k])
+//                                    {
+//                                        if(equitybuysell[k]!=0 || equitybuysell[k]!='')
+//                                        {var totaleq = equitybuysell[k];}else{var totaleq = 0;}  
+//                                    }
+//                                    else
+//                                    {
+//                                        var totaleq = 0;
+//                                    }
+//                                    var closblnceq = Number(opnblnceq) + Number(totaleq);
+//                                    equitybuysell.push(totaleq);
+//                                    equityclosblnc.push(closblnceq);
+//                                }
+//
+//                                if(response.prefer[k] != '')
+//                                {
+//
+//                                    if(response.prefer[k].buyprefer == null && response.prefer[k].sellprefer == null)
+//                                    {
+//                                        var opnblncpref = response.resdta[k].prefershare;
+//                                        console.log(opnblncpref+' '+k);
+//                                        if(preferbuysell[k]!=0 || preferbuysell[k]!='')
+//                                        {var totalpref = preferbuysell[k];}else{var totalpref = 0;}
+//                                    }
+//                                    else
+//                                    {
+//                                        var opnblncpref = response.resdta[k].prefershare;
+//                                        var buypref = response.prefer[k].buyprefer;
+//                                        var sellpref = response.prefer[k].sellprefer;;
+//                                        var totalpref = Number(buypref) - Number(sellpref);
+//                                        var closblncpref = Number(opnblncpref) + Number(totalpref);
+//                                        preferbuysell.push(totalpref);
+//                                        preferclosblnc.push(closblncpref);
+//                                    }
+//
+//                                }
+//                                else
+//                                {
+//                                    var opnblncpref = response.resdta[k].prefershare;
+//                                    if(preferbuysell[k])
+//                                    {
+//                                        if(preferbuysell[k]!=0 || preferbuysell[k]!='')
+//                                        {var totalpref = preferbuysell[k];}else{var totalpref = 0;}  
+//                                    }
+//                                    else
+//                                    {
+//                                        var totalpref = 0;
+//                                    }
+//                                    var closblncpref = Number(opnblncpref) + Number(totalpref);
+//                                    preferbuysell.push(totalpref);
+//                                    preferclosblnc.push(closblncpref);
+//                                }
+//                                if(response.debenture[k] != '')
+//                                {
+//
+//                                    if(response.debenture[k].buydebtr == null && response.debenture[k].selldebtr == null)
+//                                    {
+//                                        var opnblncdeb = response.resdta[k].debntrshare;
+//                                        console.log(opnblncdeb+' '+k);
+//                                        if(debntrbuysell[k]!=0 || debntrbuysell[k]!='')
+//                                        {var totaldeb = debntrbuysell[k];}else{var totaldeb = 0;}
+//                                        console.log(totaldeb);
+//                                    }
+//                                    else
+//                                    {
+//                                        var opnblncdeb = response.resdta[k].debntrshare;
+//                                        var buydeb = response.debenture[k].buydebtr;
+//                                        var selldeb = response.debenture[k].selldebtr;;
+//                                        var totaldeb = Number(buydeb) - Number(selldeb);
+//                                        var closblncdeb = Number(opnblncdeb) + Number(totaldeb);
+//                                        debntrbuysell.push(totaldeb);
+//                                        debntrclosblnc.push(closblncdeb);
+//                                    }
+//
+//                                }
+//                                else
+//                                {
+//                                    var opnblncdeb = response.resdta[k].debntrshare;
+//                                    if(debntrbuysell[k])
+//                                    {
+//                                        if(debntrbuysell[k]!=0 || debntrbuysell[k]!='')
+//                                        {var totaldeb = debntrbuysell[k];}else{var totaldeb = 0;}  
+//                                    }
+//                                    else
+//                                    {
+//                                        var totaldeb = 0;
+//                                    }
+//                                    var closblncdeb = Number(opnblncdeb) + Number(totaldeb);
+//                                    debntrbuysell.push(totaldeb);
+//                                    debntrclosblnc.push(closblncdeb);
+//                                }
+//
+//                            }
+//
+//
+//                    if(response.equity.length!=0)
+//                    { 
+//                        if(response.resdta[i].equityshare!=0)
+//                        {
+//                            var esop= Number(equityclosblnc[i])+Number(response.resdta[i].esop);
+//                            addhtmlnxt += '<td width="25%">'+esop+'</td>'; //equity closing blnc
+//                        }
+//                        else
+//                        {
+//                            var esop= Number(equityclosblnc[i])+Number(response.resdta[i].esop);
+//                            addhtmlnxt += '<td width="25%">'+esop+'</td>'; //equity closing blnc
+//                        }
+//
+//                    }
+//
+//                    if(response.prefer.length!=0)
+//                    {
+//                        if(response.resdta[i].prefershare!=0)
+//                        {
+//                            addhtmlnxt += '<td width="25%">'+preferclosblnc[i]+'</td>'; //prefr closing blnc
+//                        }
+//                        else
+//                        {
+//                            addhtmlnxt += '<td width="25%">'+preferclosblnc[i]+'</td>'; //prefr closing blnc
+//                        }
+//
+//                    }
+//
+//
+//                    if(response.debenture.length!=0)
+//                    { 
+//                        if(response.resdta[i].debntrshare!=0)
+//                        {
+//                            addhtmlnxt += '<td width="25%">'+debntrclosblnc[i]+'</td>'; //prefr closing blnc
+//                        }
+//                        else
+//                        {
+//                            addhtmlnxt += '<td width="25%">'+debntrclosblnc[i]+'</td>'; //debtr closing blnc
+//                        }
+//                    }
+                 addhtmlnxt += '<td width="25%">'+response.equity+'</td>';
+                 addhtmlnxt += '<td width="25%">'+response.prefer+'</td>';
                  
             addhtmlnxt += '</tr>';
            
 //            ------------------------ Table Fields Insertion END ------------------------
             
-        }
+//        }
             
             website('.holdingsummry').html(addhtmlnxt);
             //website('#holdingsummary a').attr('href',base_url+'/insidertrading/holdingsummary');

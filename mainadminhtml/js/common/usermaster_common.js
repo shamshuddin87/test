@@ -410,6 +410,12 @@ website('body').on('click','.dbeditme',function(e){
                        var approveid=response.data[i].approvid?response.data[i].approvid:'';
                        var approver=response.data[i].approver?response.data[i].approver:'';
                        var employeecode=response.data[i].employeecode?response.data[i].employeecode:'';
+                       var l1firstname=response.data[i].l1firstname?response.data[i].l1firstname:'';
+                       var l1lastname=response.data[i].l1lastname?response.data[i].l1lastname:'';
+                       var l1email=response.data[i].l1email?response.data[i].l1email:'';
+                       var l1empid=response.data[i].l1empid?response.data[i].l1empid:'';
+                       var roleid=response.data[i].role_id?response.data[i].role_id:'';
+
                           website('#Mymodaledit #mlistid').val(response.data[i].id);
                           website('#Mymodaledit #userid').val(response.data[i].wr_id);
                           website('#Mymodaledit #firstname').val(firstname);
@@ -423,6 +429,12 @@ website('body').on('click','.dbeditme',function(e){
                           website('#Mymodaledit #typeofusr').val(response.data[i].master_group_id);
                           website('#Mymodaledit #masterid').val(response.data[i].master_group_id);
                           website('#Mymodaledit #approveid').val(approveid);
+                          website('#Mymodaledit #l1firstname').val(l1firstname);
+                          website('#Mymodaledit #l1lastname').val(l1lastname);
+                          website('#Mymodaledit #l1email').val(l1email);
+                          website('#Mymodaledit #l1empid').val(l1empid);
+                          website('#Mymodaledit #roleid').val(roleid);
+                          
 
                           // console.log(response.data[i].approver);
                          

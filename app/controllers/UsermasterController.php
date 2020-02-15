@@ -19,6 +19,7 @@ class UsermasterController extends ControllerBase
         $mainqry='';
         $this->view->cmplist = $this->companymastercommon->cmpdetails($uid,$usergroup,$mainqry);
         $this->view->deptlist= $this->departmentmastercommon->fetchdept($uid,$usergroup,$mainqry);
+        $this->view->rolelist = $this->commonquerycommon->rolelist();
     }
 
    public function userviewAction(){
@@ -62,7 +63,13 @@ class UsermasterController extends ControllerBase
                 $deptaccessid = $this->request->getPost('deptaccess','trim');
                 $approvername=$this->request->getPost('approvernm','trim');
                 $employeecode = $this->request->getPost('employeecode','trim');
-                 // print_r($approvername);exit;
+                $l1firstname = $this->request->getPost('l1firstname','trim');
+                $l1lastname = $this->request->getPost('l1lastname','trim');
+                $l1email = strtolower($this->request->getPost('l1email','trim'));
+                $l1emailcheck = $this->validationcommon->emailvalidate($l1email);
+                $l1empid = $this->request->getPost('l1empid','trim');
+                $roleid = $this->request->getPost('roleid','trim');
+                 // print_r($approvername);exit;l1email
               
                 $dupliempcode = $this->commonquerycommon->checkifduplidata($getuserid,$employeecode,'');          
                 if(empty($firstname))
@@ -105,16 +112,15 @@ class UsermasterController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Your Lastname Contains Special Character');
                     $this->response->setJsonContent($data);
                 }
-                else if($email==false)
+                else if($l1emailcheck==false)
                 {
-                    $data = array("logged" => false,'message' => 'Your Email is not valid');
+                    $data = array("logged" => false,'message' => 'L+1 Email is not valid','fieldname'=>'emailrrormsg','actualvalue'=>$l1email);
                     $this->response->setJsonContent($data);
                 }
                 else if($emailcheck==false)
                 {
                     $data = array("logged" => false,'message' => 'Your Email is not valid','fieldname'=>'emailrrormsg','actualvalue'=>$email);
                     $this->response->setJsonContent($data);
-                    $this->response->send();
                 }
                 else if(empty($gender) || ($gender!=('1' || '2')))
                 {
@@ -178,6 +184,11 @@ class UsermasterController extends ControllerBase
                     $insertmas['approvername'] = $approvername;
                     $insertmas['dpdate']= $dpdate;
                     $insertmas['employeecode']= $employeecode;
+                    $insertmas['l1firstname']= $l1firstname;
+                    $insertmas['l1lastname']= $l1lastname;
+                    $insertmas['l1email']= $l1email;
+                    $insertmas['l1empid']= $l1empid;
+                    $insertmas['roleid']= $roleid;
                     //print_r($insertmas);exit;
 
                     $insermresponse = $this->insidercommon->insertmasterlist($insertmas);     
@@ -241,6 +252,12 @@ class UsermasterController extends ControllerBase
                 $cmpnyaccessid = $this->request->getPost('cmpaccnme','trim');
                 $masterid=$this->request->getPost('masterid','trim');
                 $dpdate=$this->request->getPost('dpdate','trim');
+                $l1firstname=$this->request->getPost('l1firstname','trim');
+                $l1lastname=$this->request->getPost('l1lastname','trim');
+                $l1email = strtolower($this->request->getPost('l1email','trim'));
+                $l1emailcheck = $this->validationcommon->emailvalidate($l1email);
+                $l1empid=$this->request->getPost('l1empid','trim');
+                $roleid=$this->request->getPost('roleid','trim');
                 
                 if($masterid==2)
                 {
@@ -302,7 +319,11 @@ class UsermasterController extends ControllerBase
                 {
                     $data = array("logged" => false,'message' => 'Your Email is not valid','fieldname'=>'emailrrormsg','actualvalue'=>$email);
                     $this->response->setJsonContent($data);
-                    $this->response->send();
+                }
+                else if($l1emailcheck==false)
+                {
+                    $data = array("logged" => false,'message' => 'L+1 Email is not valid','fieldname'=>'emailrrormsg','actualvalue'=>$l1email);
+                    $this->response->setJsonContent($data);
                 }
                 else if(!isset($cmpnyaccessid))
                 {
@@ -353,6 +374,11 @@ class UsermasterController extends ControllerBase
                     $updatemas['approvername'] = $approvername;
                     $updatemas['dpdate']=$dpdate;
                     $updatemas['employeecode']= $employeecode;
+                    $updatemas['l1firstname']= $l1firstname;
+                    $updatemas['l1lastname']= $l1lastname;
+                    $updatemas['l1email']= $l1email;
+                    $updatemas['l1empid']= $l1empid;
+                    $updatemas['roleid']= $roleid;
                     //print_r($updatemas);exit;
 
                     $chkresponse = $this->insidercommon->updatemasterlist($updatemas);

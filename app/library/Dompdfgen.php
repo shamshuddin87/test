@@ -28,6 +28,7 @@ Class Dompdfgen extends Phalcon\Mvc\User\Component {
         else if($typeof=="configNonReport"){$path = $this->declarationDir.'/reportingnonexe';}
         else if($typeof=="configReport"){$path = $this->declarationDir.'/reportingexe';}
         else if($typeof=="misrecip"){$path = 'img/mis';}
+        else if($typeof=="mispersnlinfo"){$path = 'img/mis';}
         else{$path='';}
 
         if($typeof=="configvcs"){$stylesheet = file_get_contents('css/pdf/pdf.css');}
@@ -42,6 +43,7 @@ Class Dompdfgen extends Phalcon\Mvc\User\Component {
         else if($typeof=="configReport"){$stylesheet = file_get_contents('css/pdf/reportingpdf.css');}
         else if($typeof=="configNonReport"){$stylesheet = file_get_contents('css/pdf/nonreportingpdf.css');}
         else if($typeof=="misrecip"){$stylesheet = file_get_contents('css/pdf/misrecip.css');}
+        else if($typeof=="mispersnlinfo"){$stylesheet = file_get_contents('css/pdf/mispersnlinfo.css');}
         else{$path='';$stylesheet='';}
         
         //echo $stylesheet; exit;
@@ -59,7 +61,7 @@ Class Dompdfgen extends Phalcon\Mvc\User\Component {
         $mpdf = new mPDF();
         $mpdf->SetProtection(array('print'));
         $mpdf->keep_table_proportions = false;
-        if($typeof=='configFormb' || $typeof=='configFormc' || $typeof=='configFormd') 
+        if($typeof=='configFormb' || $typeof=='configFormc' || $typeof=='configFormd' || $typeof=="annualdeclarationpdf" || $typeof=="mispersnlinfo") 
         {  
             $mpdf->AddPage('L');
         }

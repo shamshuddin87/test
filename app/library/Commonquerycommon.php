@@ -4,7 +4,7 @@ use Phalcon\Mvc\User\Component;
 class Commonquerycommon extends Component
 {
     
-    public function commoninsertlogic($getuserid,$cin,$user_group_id,$last_id,$fullname,$firstname,$lastname,$email,$mobile,$gender,$designation,$reminderdays,$pwdemail,$accrgt,$deptaccessid,$approvid,$dpdate,$empcode)
+    public function commoninsertlogic($getuserid,$cin,$user_group_id,$last_id,$fullname,$firstname,$lastname,$email,$mobile,$gender,$designation,$reminderdays,$pwdemail,$accrgt,$deptaccessid,$approvid,$dpdate,$empcode,$l1firstname,$l1lastname,$l1email,$l1empid,$roleid)
     {
         // $connection = $this->db;
         $connectiondbtrd = $this->dbtrd;
@@ -12,14 +12,14 @@ class Commonquerycommon extends Component
 
         $queryinsertml = "INSERT INTO `it_memberlist`
             (`user_id`,`master_group_id`,
-            `wr_id`,`fullname`,`firstname`,`lastname`,
+            `wr_id`,`role_id`,`fullname`,`firstname`,`lastname`,
             `email`,`mobile`,`gender_id`,`employeecode`,`designation`,
-            `reminderdays`,`access`,`deptaccess`,`cmpaccess`,`dpdate`,
-            `date_added`,`date_modified`,`timeago`,`approvid`,`status`)
+            `reminderdays`,`access`,`deptaccess`,`cmpaccess`,`dpdate`,`l1firstname`,
+            `l1lastname`,`l1email`,`l1empid`,`date_added`,`date_modified`,`timeago`,`approvid`,`status`)
             VALUES ('".$getuserid."','".$user_group_id."',
-            '".$last_id."','".$fullname."','".$firstname."','".$lastname."',
+            '".$last_id."','".$roleid."','".$fullname."','".$firstname."','".$lastname."',
             '".$email."','".$mobile."','".$gender."','".$empcode."','".$designation."',
-            '".$reminderdays."','".$accrgt."','".$deptaccessid."','".$cin."','".$dpdate."',
+            '".$reminderdays."','".$accrgt."','".$deptaccessid."','".$cin."','".$dpdate."','".$l1firstname."','".$l1lastname."','".$l1email."','".$l1empid."',
             NOW(),NOW(),'".$time."','".$approvid."',1) ";
          // print_r($queryinsertml); exit;
         
@@ -564,6 +564,34 @@ class Commonquerycommon extends Component
         
     }
     /*----- END check if there duplicate emp code ----*/
+
+    public function rolelist()
+    {
+        $connection = $this->dbtrd;
+        $sqlquery = "SELECT * FROM `rolemaster`"; 
+       // print_r($sqlquery);exit;
+        
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;                     
+                }
+            // echo '<pre>';print_r($getlist);exit;
+            }
+            else
+            {   $getlist = array(); }
+        }
+        catch (Exception $e)
+        {   $getlist = array(); }
+        //echo '<pre>';print_r($getlist);exit;
+        return $getlist;
+    }
+
 }
 
 
