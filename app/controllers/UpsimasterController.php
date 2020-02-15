@@ -215,9 +215,18 @@ class UpsimasterController extends ControllerBase
                         
                         $exceldpids = $this->phpimportexpogen->FetchconnectedDP($getuserid,$user_group_id,$large_impfile_location);
                     }    
-                    //print_r($exceldpids);exit;    
-                    $result = $this->upsicommon->updateupsi($getuserid,$user_group_id,$updatedata,$exceldpids);
-                    // print_r($result);exit;
+                    //print_r($exceldpids);die; 
+                    if($exceldpids)
+                    {
+                        $result = $this->upsicommon->updateupsi($getuserid,$user_group_id,$updatedata,$exceldpids);
+                    }
+                    else
+                    {
+                        $data = array("logged"=>false,"message"=>'Email id is not valid.');
+                        $this->response->setJsonContent($data);
+                        $this->response->send();
+                        exit;
+                    }
                     if($result)
                     {
                         $data = array("logged"=>true,"message"=>'Data Updated successfully..!!!');
@@ -225,7 +234,7 @@ class UpsimasterController extends ControllerBase
                     }
                     else
                     {
-                        $data = array("logged"=>false,"message"=>'Data Not Updated successfully..!!!');
+                        $data = array("logged"=>false,"message"=>'Data Not Updated..!!!');
                         $this->response->setJsonContent($data);
                     }
                 }

@@ -368,6 +368,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
 
         try
         {
+            
             foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
             {
                 $highestRow = $worksheet->getHighestRow();
@@ -379,14 +380,23 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                      if(!empty($name) && !empty($email))
                      {
                          $username[] = $name;
-                         $emailid[] = $email;
+                         $emailid = $email;
+                         
+                         $ConnctdDpArray = array('username'=>$username,'emailid'=>$emailid);
+                    
+                        $getres = $this->upsicommon->Fetchusersid($getuserid,$user_group_id,$ConnctdDpArray);
+                        //print_r($getres);
+                        if(!$getres)
+                        {
+                            //print_r('dasd');exit;
+                            return false;
+                        }
                      }
+                 
+                    
                  }
-                $ConnctdDpArray = array('username'=>$username,'emailid'=>$emailid);
-                //print_r($ConnctdDpArray);exit;
-                $getres = $this->upsicommon->Fetchusersid($getuserid,$user_group_id,$ConnctdDpArray);
-                 //print_r($getres);exit;
             }
+            //die;
         }
         catch (Exception $e)
         {
