@@ -322,7 +322,7 @@ class UsermasterController extends ControllerBase
                 }
                 else if($l1emailcheck==false)
                 {
-                    $data = array("logged" => false,'message' => 'Your Email is not valid','fieldname'=>'emailrrormsg','actualvalue'=>$l1email);
+                    $data = array("logged" => false,'message' => 'L+1 Email is not valid','fieldname'=>'emailrrormsg','actualvalue'=>$l1email);
                     $this->response->setJsonContent($data);
                 }
                 else if(!isset($cmpnyaccessid))

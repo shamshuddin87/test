@@ -37,9 +37,7 @@ website('#insertesop').ajaxForm
             styling: 'bootstrap3',
             addclass: 'dark ',
           });
-         window.location.reload();
-          getdataonload(); 
-            
+          setTimeout(function() { window.location.reload(); }, 2000);
         }
         else
         {
