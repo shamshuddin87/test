@@ -20,7 +20,7 @@
 <!-- My messages -->
 <div class="mainelementfom">
 <div>
-   <h1 class="h1_heading text-center">Update Annual Declaration Form
+   <h1 class="h1_heading ">Update Annual Declaration Form
    </h1>
 </div>
     
@@ -307,7 +307,7 @@
 <form action="annualdeclaration/updateannual" id="updateannual" method="post" autocomplete="off">
     
     <div id="belowleveluserdet">
-             <div class="belowleveluserdetcss">
+    <div class="belowleveluserdetcss">
           <h2 class="h2_heading">A.  Details Of Self</h2>
          <h3 class="h3_heading">I.  Personal Details</h3>
       
@@ -487,8 +487,8 @@
          <td colspan="4">
             <div class="">
                <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
-               <input type="radio" id= "showsec1" name="showsec1" value="Yes"  onclick="showsection(this.id)">Yes
-               <input type="radio" id= "hidesec1" name="showsec1" value="No" onclick="hidesection(this.id)">No
+               <input style="color: #000;" type="radio" id= "showsec1" name="showsec1" value="Yes"  onclick="showsection(this.id)">Yes
+               <input style="color: #000;" type="radio" id= "hidesec1" name="showsec1" value="No" onclick="hidesection(this.id)">No
             </div>
          </td>
       </tr>
@@ -942,8 +942,8 @@
        <!-- table 6 start-->
                 <div class="">
                <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
-                <input type="radio" id = "showsec3" name = "showsec3" value="Yes" onclick="showsection(this.id);"> Yes
-               <input type="radio"  id = "hidesec3" name="showsec3"   value="No"  onclick="hidesection(this.id)">No
+                <label style="color: #000;"><input type="radio" id = "showsec3" name = "showsec3" value="Yes" onclick="showsection(this.id);"> Yes</label>
+                <label style="color: #000;"><input type="radio"  id = "hidesec3" name="showsec3"   value="No"  onclick="hidesection(this.id)">No</label>
                </div>
                 
                 <?php 
@@ -1197,27 +1197,52 @@
       
       <!-- table 5 end -->
     <!-- Section 2 start-->
-             <div class="belowleveluserdetcss">
+            
+
+
+
+
+
+        <input type="text" class="form-control inputbox3" id="uniqueid" name="uniqueid" value="<?php echo $uniqueid ?>" style= "display: none;">
+      <!-- <div class="col-md-12 text-right" style="margin-top: 20px;"> 
+      <button type="submit" class="btn btn-primary ">Submit</button>
+      </div> -->
+</form>
+<div class="panel panel-white">
+<div class="paginationmn"></div>
+<input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
+</div>
+<div class="clearelement"></div>
+<div class="preloder_wraper">
+<a href="javascript:;" class="preloder"></a>
+</div>
+<div class="clearelement"></div>
+</div>
+
+
+
+ <div class="belowleveluserdetcss">
           
           <h2 class="h2_heading">B. Details of Relatives</h2>
           <h3 class="h3_heading">I.  List of Relatives</h3>
+          <div class="overflowXscroll">
         <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
-                <th>Sr No.</th>
+                 <th>Sr No.</th>
                 <th>Name of Relative</th>
                 <th>Relationship with Relative</th>
                 <th>Type of Dependency</th>
                 <th>PAN of Relative</th>
-                <th>Other Identification no.</th>
-                <th>Nature of Identification no.</th>
+                <th>Other Identification no. (In case of Foreign Nationals)</th>
+                <th>Nature of Identification no. (In case of Foreign Nationals)</th>
                 <th>Aadhar of Relative</th>
                 <th>Date of Birth of Relative</th>
                 <th>Residential Address</th>
                 <th>Qualification</th>
                 <th>Institute / University from which Qualification Acquired</th>
-                <th>No. of Shares</th>
-                <th>No. of ADRs</th>
+                <th>No. of Shares of Dr. Reddy's held by the relative</th>
+                <th>No. of ADRs of Dr. Reddy's held by the relative</th>
             </tr>
             </thead>
             <tbody>
@@ -1247,14 +1272,16 @@
                <?php  } ?>
             </tbody>
         </table>
+        </div>
           
         <h3 class="h3_heading">II.  Demat Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Demat Account No.</th>
-                <th>Name of Depository Participant</th>
+                <th>Relative Names</th>
+                <th>Demat Account No.*</th>
+                <th>Name of Depository Participant*</th>
             </tr>
             </thead>
             <tbody>
@@ -1263,6 +1290,7 @@
                 <tr>
                  <td><?php echo $j;?></td>
                  <td><?php echo $relDematdetail[$i]['accountno'];?></td>
+                 <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
                  <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
                 </tr>
                <?php } } else { ?>
@@ -1300,16 +1328,16 @@
          for($i=0; $i < count($relativefirm); $i++){
          ?>
       <table border="1" id="t6row<?php echo $k ?>"  style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
-      <tr>
-      <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>    
-      <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
-      <td style="width: 20%"><label class="control-label">Firm Name</label></td>
-      <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
-      <td> <label class="control-label">Can this relative significantly influence the decision making of this firm?</label></td>
-      <td>
-      <label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
-      </td>
-      </tr>
+       <tr>
+        <td style="border-right: 1px solid #f7f7f7"></td>   
+        <td style="width: 15%">  <label class="control-label">Relative Name</label></td>
+        <td style="width: 15%"><label class="control-label">Firm Name</label></td>
+        <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
+        <td> <label class="control-label">Can this relative significantly influence the decision making of this firm?</label></td>
+        <td>
+        <label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+        </td>
+        </tr>
       <tr>
       <td style="border-right: 1px solid #f7f7f7"></td>   
       <td> 
@@ -1398,7 +1426,7 @@
           <tr> 
               <td colspan="6" style="padding-left: 20px;">
               <div class="">
-              <label  style="padding-left: 19px;" class="">ii. Private/Public Company. (Note - please disclose even if the relatives hold 1 share in the company)</label>
+              <label  style="padding-left: 19px;" class="">ii. Private/Public Company. <span>(Note - please disclose even if the relatives hold 1 share in the company)</span></label>
               </div>
               </td>
           </tr>
@@ -1413,10 +1441,10 @@
       <table border="1"   id="t7row<?php echo $k ?>"  style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
           <tr>
               <td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>   
-              <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
-              <td style="width: 20%"><label class="control-label">Company Name</label></td>
+              <td style="width: 17%">  <label class="control-label">Relative Name</label></td>
+              <td style="width: 17%"><label class="control-label">Company Name</label></td>
               <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
-              <td ><label class="control-label">No. of Shares held</label></td>
+              <td style="width: 15%"><label class="control-label">No. of Shares held</label></td>
               <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
               <td>
               <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -1528,7 +1556,7 @@
        <tr>
            <td colspan="6">
            <div class="">
-           <label style="padding-left: 27px;">iii.In a public company - by virtue of holding more than 2% of its paid up share capital (along with your relatives)</label>
+           <label style="padding-left: 27px;">iii. In a public company - by virtue of holding more than 2% of its paid up share capital <span>(along with your relatives)</span></label>
            </div>
            </td>
        </tr>
@@ -1544,7 +1572,7 @@
            <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
            <td style="width: 22%">  <label class="control-label">Relative Name</label></td>
            <td style="width: 22%">  <label class="control-label">Company Name</label></td>
-           <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative(%)</label></td>
+           <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative<span>(%)</span></label></td>
            <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
            <td>
            <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
@@ -1630,8 +1658,8 @@
            <td colspan="6">
         <div class="">
        <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
-        <input type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes
-       <input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No
+        <label style="color: #000;"><input  type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes</label>
+        <label style="color: #000;"><input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No</label>
        </div>
         </td>
        </tr>
@@ -1644,12 +1672,12 @@
        <table border="1" id="t10row<?php echo $k ?>" class="test3" style="border-collapse: collapse; border: 1px solid #ccc;display:block;" width="100%">
 
        <tr>
-        <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
-        <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
-       <td style="width: 22%">  <label class="control-label">Company Name</label></td>
-       <td style="width: 16%">  <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-       <td>    <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
-       </tr>
+         <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
+         <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
+        <td style="width: 22%">  <label class="control-label">Company Name</label></td>
+        <td style="width: 16%">  <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
+        <td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+        </tr>
        <tr>
        <td style="border-right: 1px solid #f7f7f7"></td>
         <td> 
@@ -1799,23 +1827,15 @@
         </ul>
         <p><b>This is a computer generated document and does not require signature.        </b></p>
         </div>
-        </div><input type="text" class="form-control inputbox3" id="uniqueid" name="uniqueid" value="<?php echo $uniqueid ?>" style= "display: none;">
-      <div class="col-md-12 text-right" style="margin-top: 20px;"> 
-      <button type="submit" class="btn btn-primary ">Submit</button>
-      </div>
-</form>
-<div class="panel panel-white">
-<div class="paginationmn"></div>
-<input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
-</div>
-<div class="clearelement"></div>
-<div class="preloder_wraper">
-<a href="javascript:;" class="preloder"></a>
-</div>
-<div class="clearelement"></div>
-</div>
+        </div>
+
+
 <!-- /main content -->
 </div>
+
+<div class="col-md-12 text-right" style="margin-top: 20px;"> 
+      <button type="submit" class="btn btn-primary ">Submit</button>
+      </div>
 </div>
 </div>
     <?php } ?>
