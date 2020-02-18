@@ -296,7 +296,7 @@
           </div> 
           <div class="col-md-12 text-right" style="margin-top: 20px;"> 
                   <button type="submit" class="btn btn-primary " id="submituserdata">Submit</button>
-            </div>
+          </div>
         </div>
     </div>
     
@@ -663,8 +663,9 @@
             <td style="width: 22%"><label class="control-label">Firm Name</label></td>
             <td style="width: 15%"><label class="control-label">Nature of Interest</label></td>
             <td><label class="control-label">Can you significantly influence the decision making of this firm?</label></td>
-            <td>
+            <td style="position: relative;">
                <label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+               <button type = "button" class="deletebtn" recordid = "<?php echo $selffirm[$i]['id'] ?>"  uniqueid = "<?php echo $selffirm[$i]['uniqueid'] ?>" table ="annual_self_firm" > <i class="fa fa-trash" aria-hidden="true"></i></button> 
             </td>
          </tr>
          <tr>
@@ -759,9 +760,11 @@
             <td style="width: 15%"><label class="control-label">Nature of Interest</label></td>
             <td style="width: 15%"><label class="control-label">No. of Shares held</label></td>
             <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-            <td>
+            <td style="position: relative;">
                <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+                <button type = "button" class="deletebtn" recordid = "<?php echo $selfpublic[$i]['id'] ?>" uniqueid = "<?php echo $selfpublic[$i]['uniqueid'] ?>" table = "annual_self_publicshare" ><i class="fa fa-trash" aria-hidden="true"></i></button> 
             </td>
+
          </tr>
          <tr>
             <td style="border-right: 1px solid #f7f7f7"></td>
@@ -867,8 +870,9 @@
             <td style="width: 22%">  <label class="control-label">Company Name</label></td>
             <td style="width: 15%">  <label class="control-label">Nature of Interest</label></td>
             <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-            <td>
+            <td style="position: relative;">
                <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+                <button type = "button" class="deletebtn" recordid = "<?php echo $selfpubshare[$i]['id'] ?>" uniqueid = "<?php echo $selfpubshare[$i]['uniqueid'] ?>" table = "annual_self_publicshare" ><i class="fa fa-trash" aria-hidden="true"></i></button> 
             </td>
          </tr>
          <tr>
@@ -947,6 +951,9 @@
                </div>
                 
                 <?php 
+                  
+                  //print_r($selfholdcntrl);exit;
+
                   $k = 1;
                   for($i=0; $i < count($selfholdcntrl); $i++){
                   if($selfholdcntrl[$i]['cmpname'] != ''){?>
@@ -956,7 +963,9 @@
                     <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
                    <td style="width: 22%">  <label class="control-label">Company Name</label></td>
                    <td style="width: 16%">  <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-                   <td>    <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+                   <td style="position: relative;">    <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
+                      <button type = "button" class="deletebtn" recordid = "<?php echo $selfholdcntrl[$i]['id'] ?>" uniqueid = "<?php echo $selfholdcntrl[$i]['uniqueid'] ?>" table = "annual_self_holdinginterest" > <i class="fa fa-trash" aria-hidden="true"></i></button> 
+                   </td>
                    </tr>
                    <tr>
                    <td style="border-right: 1px solid #f7f7f7"></td>
@@ -1004,200 +1013,22 @@
                    </td>
                    <tr>
                    <td colspan="5" style="">
-                   <div class = "appenddiv8 " id="appenddiv8"></div>
-                   <div class="adddiv8section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
-                   <input type="button" id ="adddiv8" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
-                   <input type="button" id = "remvdiv8" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
-                   <input type="hidden" class="appendd8" plancntr="1">
-                   </div>
+                   
                    </td>
                    </tr>
                        </div>
                   
                 <?php } $k++; } ?>
         </table>
+        <div class = "appenddiv8 " id="appenddiv8"></div>
+                   <div class="adddiv8section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+                   <input type="button" id ="adddiv8" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
+                   <input type="button" id = "remvdiv8" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+                   <input type="hidden" class="appendd8" plancntr="1">
+                   </div>
                <!-- table 6 end-->
 
       <!-- Section 2 start-->
-
-      <!-- table 5 start-->
-<!--
-      <table border="1"    style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
-         <tr>
-            <td style="border-right: 1px solid #f7f7f7; color: #000; font-weight: bold;  padding-right: 0px">3.</td>
-            <td colspan="4">
-               <div class="">
-                  <label >Are any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company</label>
-                  <input type="radio" id= "showsec2" name="showsec1" value="Yes"  onclick="showsection(this.id)">Yes
-                  <input type="radio" id= "hidesec2" name="showsec1" value="No" onclick="hidesection(this.id)">No
-               </div>
-            </td>
-         </tr>
-      </table>
--->
-      <?php 
-         $k = 1;
-         for($i=0; $i < count($relativecompany); $i++){
-         if($relativecompany != ''){
-           
-          
-         ?>
-<!--
-   <table border="1" id="t5row<?php echo $k ?>"  style="border-collapse: collapse; border: 1px solid #ccc;display:block;" width="100%" class="test1" >
-   <tr>
-      <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
-      <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
-      <td style="width: 22%"><label class="control-label">Company Name</label></td>
-      <td>    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
-      <td>
-         <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
-      </td>
-   </tr>
-   <tr>
-      <td style="border-right: 1px solid #f7f7f7"></td>
-      <td>
-         <div class="input">
-            <input type="text" class="form-control inputbox3" id="d5id" name="d5id[]" value="<?php echo $relativecompany[$i]['id']?>" style= "display: none;">
-            <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
-               <option value="">Select Option</option>
-               <?php for($j=0; $j < count($relativesinfo); $j++){
-                  if($relativecompany[$i]['relid'] == $relativesinfo[$j]['id']){?>
-               ?>
-               <option value="<?php echo $relativesinfo[$j]['id']?>" selected><?php  echo $relativesinfo[$j]['name']?></option>
-               <?php } else { ?>
-               <option value=<?php echo $relativesinfo[$j]['id']?>><?php  echo $relativesinfo[$j]['name']?></option>
-               <?php } }?>
-            </select>
-      </td>
-      <td> 
-      <div class="input">
-      <input type="text" class="form-control inputbox4" id="d5ques2" name="d5ques2[]" value="<?php echo $relativecompany[$i]['company']?>">
-      </div>
-      </td>
-      <td>
-      <div class="input">
-      <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" >
-      <option value="">Select Option</option>
-      <?php if($relativecompany[$i]['decision']  == Yes){ ?>
-      <option value="Yes" selected>Yes</option>
-      <option value="No">No</option>
-      <?php }elseif($relativecompany[$i]['decision']  == No){ ?>
-      <option value="Yes" >Yes</option>
-      <option value="No" selected>No</option>
-      <?php }else{ ?>
-      <option value="Yes" >Yes</option>
-      <option value="No">No</option>
-      <?php } ?>
-      </select>
-      </div></td>
-      <td> 
-      <div class="input">
-      <select id="d5ques4" name="d5ques4[]" class="form_fields form-control col-md-7 col-xs-12" >
-      <option value="">Select Option</option>
-      <?php if($relativecompany[$i]['transaction']  == Yes){ ?>
-      <option value="Yes" selected>Yes</option>
-      <option value="No">No</option>
-      <?php }elseif($relativecompany[$i]['transaction']  == No){ ?>
-      <option value="Yes" >Yes</option>
-      <option value="No" selected>No</option>
-      <?php }else{ ?>
-      <option value="Yes" >Yes</option>
-      <option value="No">No</option>
-      <?php } ?>
-      </select>
-      </div>
-      </td>
-      <?php } else { 
-        ?>
-      <table  border="1" style="border-collapse: collapse; border: 1px solid #ccc;display: none;" width="100%"  id="test1" >
-      <tr>
-      <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
-      <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
-      <td style="width: 22%"><label class="control-label">Company Name</label></td>
-      <td>    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
-      <td>
-      <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
-      </td>
-      </tr>
-      <tr>
-      <td style="border-right: 1px solid #f7f7f7"></td>
-      <td> 
-      <div class="input">
-      <input type="text" class="form-control inputbox3" id="d5id" name="d5id[]" value="<?php echo $relativecompany[$i]['id']?>" style= "display: none;">
-      <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 inputbox4" >
-      <option value="">Select Option</option>
-      <?php for($j=0; $j < count($relativesinfo); $j++){
-         if($relativecompany[$i]['relid'] == $relativesinfo[$j]['id']){?>
-      ?>
-      <option value="<?php echo $relativesinfo[$j]['id']?>" selected><?php  echo $relativesinfo[$j]['name']?></option>
-      <?php } else { ?>
-      <option value=<?php echo $relativesinfo[$j]['id']?>><?php  echo $relativesinfo[$j]['name']?></option>
-      <?php } }?>
-      </select>
-      </td>
-      <td> 
-      <div class="input">
-      <input type="text" class="form-control inputbox4" id="d5ques2" name="d5ques2[]" value="<?php echo $relativecompany[$i]['company']?>">
-      </div>
-      </td>
-      <td>
-      <div class="input">
-      <select id="d5ques3" name="d5ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4" >
-      <option value="">Select Option</option>
-      <?php if($relativecompany[$i]['decision']  == Yes){ ?>
-      <option value="Yes" selected>Yes</option>
-      <option value="No">No</option>
-      <?php }elseif($relativecompany[$i]['decision']  == No){ ?>
-      <option value="Yes" >Yes</option>
-      <option value="No" selected>No</option>
-      <?php }else{ ?>
-      <option value="Yes" >Yes</option>
-      <option value="No">No</option>
-      <?php } ?>
-      </select>
-      </div></td>
-      <td> 
-      <div class="input">
-      <select id="d5ques4" name="d5ques4[]" class="form_fields form-control col-md-7 col-xs-12" >
-      <option value="">Select Option</option>
-      <?php if($relativecompany[$i]['transaction']  == Yes){ ?>
-      <option value="Yes" selected>Yes</option>
-      <option value="No">No</option>
-      <?php }elseif($relativecompany[$i]['transaction']  == No){ ?>
-      <option value="Yes" >Yes</option>
-      <option value="No" selected>No</option>
-      <?php }else{ ?>
-      <option value="Yes" >Yes</option>
-      <option value="No">No</option>
-      <?php } ?>
-      </select>
-      </div>
-      </td>
-      </tr>
-      <?php  } $k++; } ?>
-      
-     
-       <tr>
-      <td colspan="5" >
-      <div class="adddiv5section2" style="float: right;">
-      <input type="button" id = "adddiv5" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
-      <input type="button" id= "remvdiv5" class="btn btn-primary remvdiv5" value="-" onclick="removehtml(this.id);">
-      <input type="hidden" class="appendd5" plancntr="1">
-      </div>
-      </td>
-      </tr> 
-      </table>
-       <div class = "appenddiv5 " id="appenddiv5"></div>
-      <div class="adddiv5section2" style="float: right;">
-      <input type="button" id = "adddiv5" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
-      <input type="button" id= "remvdiv5" class="btn btn-primary remvdiv5" value="-" onclick="removehtml(this.id);">
-      <input type="hidden" class="appendd5" plancntr="<?php echo count($relativecompany);?>">
-      </div>
--->
-      
-      <!-- table 5 end -->
-    <!-- Section 2 start-->
-            
 
 
 
@@ -1207,7 +1038,7 @@
       <!-- <div class="col-md-12 text-right" style="margin-top: 20px;"> 
       <button type="submit" class="btn btn-primary ">Submit</button>
       </div> -->
-</form>
+
 <div class="panel panel-white">
 <div class="paginationmn"></div>
 <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
@@ -1323,6 +1154,7 @@
       </table>
 
       <?php  
+      // print_r($relativefirm);exit;
       if($relativefirm){ 
         $k = 1;   
          for($i=0; $i < count($relativefirm); $i++){
@@ -1334,8 +1166,9 @@
         <td style="width: 15%"><label class="control-label">Firm Name</label></td>
         <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
         <td> <label class="control-label">Can this relative significantly influence the decision making of this firm?</label></td>
-        <td>
-        <label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+        <td style="position: relative;">
+        <label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
+        <button type = "button" class="deletebtn" recordid = "<?php echo $relativefirm[$i]['id'] ?>" uniqueid = "<?php echo $relativefirm[$i]['uniqueid'] ?>" table = "annual_relative_firm"><i class="fa fa-trash" aria-hidden="true"></i></button> 
         </td>
         </tr>
       <tr>
@@ -1446,8 +1279,9 @@
               <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
               <td style="width: 15%"><label class="control-label">No. of Shares held</label></td>
               <td> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
-              <td>
+              <td style="position: relative;">
               <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+               <button type = "button" class="deletebtn" recordid = "<?php echo $relativepublic[$i]['id'] ?>" uniqueid = "<?php echo $relativepublic[$i]['uniqueid'] ?>" table = "annual_relative_publicprivate"><i class="fa fa-trash" aria-hidden="true"></i></button> 
               </td>
           </tr>
           <tr>
@@ -1574,8 +1408,9 @@
            <td style="width: 22%">  <label class="control-label">Company Name</label></td>
            <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative<span>(%)</span></label></td>
            <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-           <td>
+           <td style="position: relative;">
            <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+            <button type = "button" class="deletebtn" recordid = "<?php echo $relativepubshare[$i]['id'] ?>" uniqueid = "<?php echo $relativepubshare[$i]['uniqueid'] ?>" table = "annual_relative_publicshare"><i class="fa fa-trash" aria-hidden="true"></i></button> 
            </td>
        </tr>
        <tr>
@@ -1652,6 +1487,7 @@
            </div>
        
        <!-- table 8 end-->
+
         <!-- table 9 start-->
        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
        <tr>
@@ -1676,7 +1512,10 @@
          <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
         <td style="width: 22%">  <label class="control-label">Company Name</label></td>
         <td style="width: 16%">  <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
-        <td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+        <td style="position: relative;"><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
+          <button type = "button"  class="deletebtn" recordid = "<?php echo $realtiveholdcntrl[$i]['id'] ?>" uniqueid = "<?php echo $realtiveholdcntrl[$i]['uniqueid'] ?>" table ="annual_relative_holdinginterest"><i class="fa fa-trash" aria-hidden="true"></i></button> 
+        </td>
+        
         </tr>
        <tr>
        <td style="border-right: 1px solid #f7f7f7"></td>
@@ -1740,13 +1579,15 @@
            <?php }else{?>
               
               <table border="1" id="t10row<?php echo $k ?>" class="test3" style="border-collapse: collapse; border: 1px solid #ccc;display:block;" width="100%">
-
+             
        <tr>
         <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>
         <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
        <td style="width: 22%">  <label class="control-label">Company Name</label></td>
        <td style="width: 16%">  <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-       <td>    <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+       <td style="position: relative;">    <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>
+           
+       </td>
        </tr>
        <tr>
        <td style="border-right: 1px solid #f7f7f7"></td>
@@ -1839,6 +1680,7 @@
 </div>
 </div>
     <?php } ?>
+    </form>
 <!-- ########################################## PageContent End ########################################## --> 
 <div id="Mymodaldeclara" class="modal  fade" role="dialog" style="overflow-y: auto;left:-22%; ">
 <div class="modal-dialog">
@@ -1882,4 +1724,27 @@
 </div>
 </div>
 </div>
+</div>
+
+
+ <div id="myModalyesno" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Would you like to go ahead?</h4>
+            </div>
+            <div class="modal-body show_shadow">
+              <div class="text-center adminform_heading">NOTE
+                  <div class="clearelement"></div> 
+                  Deleting Will Completely Remove The Event And Its Details From The System.<br>
+                  Are You Sure You Want To Proceed.
+              </div>            
+          </div>      
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary mar_0 yesconfirm" eventsid="" commonid="">Yes</button>
+              <button type="button" class="btn btn-default btn-default-one" data-dismiss="modal">No</button>
+          </div>
+      </div>
+  </div>
 </div>

@@ -199,10 +199,23 @@ td label span {
     min-height: 100%;
     width: 70px;
     padding: 0;
-    position: fixed;
+    /*position: fixed;*/
     display: flex;
     z-index: 999;
-    overflow: scroll;
+   /* overflow: scroll;*/
     height: 100%;
 }
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td { font-size: 13px;}
+
+td button.deletebtn
+{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: none;
+    border: none;
+    color: #522c8f;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 14px;
+}

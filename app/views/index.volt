@@ -184,12 +184,20 @@ or getcontrolleractionname == "createcont_disclsr"
     
 <!-- End User Tracking Code -->
 </head>
+{% if getcontrollername == "annualdeclaration"  %}
+  <body tabindex="1" class="nav-sm loadingInProgress  <?php echo ($getcontrollername=='index' || $getcontrollername=='login') ? 'login-cover' : $getcontrollername.'_bodymncl '; ?>" >
+{% endif %}
 
 <body tabindex="1" class="nav-md loadingInProgress  <?php echo ($getcontrollername=='index' || $getcontrollername=='login') ? 'login-cover' : $getcontrollername.'_bodymncl '; ?>" ><!--bg-purple-->
+
+
+
 {% if getcontrollername != "highlight" and getcontrollername != "agendapdflink" %}
 <div class="maincontentelement container">
 
+
 <body class="nav-sm">
+
 <div class="container body">
 <div class="main_container">
 

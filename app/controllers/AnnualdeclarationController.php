@@ -946,13 +946,16 @@ class AnnualdeclarationController extends ControllerBase
                 $d1ques1 = $this->request->getPost('d1ques1');
                 $d1ques2 = $this->request->getPost('d1ques2');
                 $d1ques3 = $this->request->getPost('d1ques3');
-
+                
+               // print_r($d1ques1);exit;
 
 
                 $d2ques1 = $this->request->getPost('d2ques1');
                 $d2ques2 = $this->request->getPost('d2ques2');
                 $d2ques3 = $this->request->getPost('d2ques3');
                 $d2ques4 = $this->request->getPost('d2ques4');
+
+               // print_r($d2ques1);exit;
 
                 $d3ques1 = $this->request->getPost('d3ques1');
                 $d3ques2 = $this->request->getPost('d3ques2');
@@ -997,7 +1000,7 @@ class AnnualdeclarationController extends ControllerBase
                 $d10ques2 = $this->request->getPost('d10ques2');
                 $d10ques3 = $this->request->getPost('d10ques3');
                 $d10ques4 = $this->request->getPost('d10ques4');
-
+              
                 $uniqueid = $this->request->getPost('uniqueid');
                  //print_r($uniqueid);exit;
                 //$uniqueid = '5e0ec764808fc';
@@ -1005,6 +1008,7 @@ class AnnualdeclarationController extends ControllerBase
                 //ids of individual divs
                  $d1id = $this->request->getPost('d1id');
                  $d2id = $this->request->getPost('d2id');
+                 //print_r($d2id);exit;
                  $d3id = $this->request->getPost('d3id');
                  $d4id = $this->request->getPost('d4id');
                  $d5id = $this->request->getPost('d5id');
@@ -1024,6 +1028,8 @@ class AnnualdeclarationController extends ControllerBase
 
                  if( $d2ques1 != '' || $d3ques1 != '' || $d4ques1 != '' ||  $d6ques1 != '' || $d7ques1 != '' || $d8ques1 != '' || $d9ques1 != '' || $d10ques1 != '')
                     {
+
+                        //echo "hello";exit;
                         
                     //$getres1 = $this->annualdeclarationcommon->upannualselfcompany($getuserid,$d1ques1,$d1ques2,$d1ques3,$uniqueid,$d1id);
 
@@ -1031,9 +1037,14 @@ class AnnualdeclarationController extends ControllerBase
                   
                      $getres2 = $this->annualdeclarationcommon->upannualselffirm($getuserid,$d2ques1,$d2ques2,$d2ques3,$d2ques4,$uniqueid,$d2id);
 
-                     $getres3 = $this->annualdeclarationcommon->upannualselfpubprivate($getuserid,$d3ques1,$d3ques2,$d3ques3,$d3ques4,$uniqueid,$d3id);
 
+
+                     $getres3 = $this->annualdeclarationcommon->upannualselfpubprivate($getuserid,$d3ques1,$d3ques2,$d3ques3,$d3ques4,$uniqueid,$d3id);
+                     
                     $getres4 = $this->annualdeclarationcommon->upannualselfpubshare($getuserid,$d4ques1,$d4ques2,$d4ques3,$d4ques4,$uniqueid,$d4id);
+
+                    $getres8 = $this->annualdeclarationcommon->upannualselfholdingintrst($getuserid,$user_group_id,$d8ques1,$d8ques2,$d8ques3,$uniqueid,$d8id);
+                    
 
                       //$getres5 = $this->annualdeclarationcommon->upannualrelativecompany($getuserid,$d5ques1,$d5ques2,$d5ques3,$d5ques4,$uniqueid,$d5id);
 
@@ -1041,7 +1052,7 @@ class AnnualdeclarationController extends ControllerBase
 
                      $getres7 = $this->annualdeclarationcommon->upannualrelativepublicshare($getuserid,$d7ques1,$d7ques2,$d7ques3,$d7ques4,$d7ques5,$d7ques6,$uniqueid,$d7id);
                      
-                     $getres8 = $this->annualdeclarationcommon->upannualselfholdingintrst($getuserid,$user_group_id,$d8ques1,$d8ques2,$d8ques3,$uniqueid,$d8id);
+
                      
                      $getres9 = $this->annualdeclarationcommon->upannualrelativepubshare($getuserid,$user_group_id,$d9ques1,$d9ques2,$d9ques3,$d9ques4,$d9ques5,$uniqueid,$d9id);
                      
@@ -1174,6 +1185,58 @@ class AnnualdeclarationController extends ControllerBase
         $this->view->realtiveholdcntrl = $getresponse10; 
         //print_r($getresponse10);exit;
        
+
+    }
+
+
+
+      public function deleteannualdeclareAction()
+    {
+      
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        //$cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $cin;exit;
+        $timeago = time();
+
+          if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+
+                $delid = $this->request->getPost('delid');
+                $uniqueid = $this->request->getPost('uniqueid');
+                 $tablename = $this->request->getPost('tablename');
+
+
+                $status = $this->annualdeclarationcommon->deleteannualdeclare($delid,$uniqueid,$tablename);
+
+                if($status == true)
+                {
+                    $data  = array('logged' => true, 'message' => 'Event Deleted Successfully');
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                   $data  = array('logged' => true, 'message' => 'Event Not Deleted '); 
+                    $this->response->setJsonContent($data);
+                }
+
+
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed to this area');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
 
     }
    
