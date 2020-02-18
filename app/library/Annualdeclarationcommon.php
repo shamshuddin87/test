@@ -1469,10 +1469,7 @@ public function upannualrelativecompany($uid,$relative,$company,$decision,$trans
              VALUES ('".$uid."','".$relative[$i]."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
              $exegetqry = $connection->query($queryinsert);
          }
-
         
-
-               
      }
 
       if($exegetqry)
