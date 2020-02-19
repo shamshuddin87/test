@@ -3,6 +3,7 @@ website(document).ready(function()
   
    loadnoofsec();
     
+    
 });
 
 
@@ -376,7 +377,7 @@ function addhtml(clicked)
          getlastid = ++getlastid;
          var addhtmlnxt='';
        
-            addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
+            addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="t8row'+getlastid+'">';
             addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;width:2.5%; "></td>';
@@ -417,7 +418,7 @@ function addhtml(clicked)
          getlastid = ++getlastid;
          var addhtmlnxt='';
        
-         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
+         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="t9row'+getlastid+'" >';
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>';
@@ -470,7 +471,7 @@ function addhtml(clicked)
          getlastid = ++getlastid;
          var addhtmlnxt='';
        
-            addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
+            addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="t10row'+getlastid+'" >';
             addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;width:2.5%;"></td>';
@@ -534,7 +535,8 @@ function annualmodal(uniqueid){
    // website('#Mymodaldeclara').modal('show');
     
     var uniqueid = uniqueid;
-
+    
+   
     website.ajax({
           type:"POST",
           url:'annualdeclaration/getfilecontent',
@@ -1366,7 +1368,8 @@ function removehtml(clicked)
 
 
       var count = website('.appendd8').attr('plancntr');
-         console.log(count);
+
+        
         if(count != 0)
         {
               website('#t8row'+count).remove();
@@ -1416,6 +1419,7 @@ function removehtml(clicked)
 
 website('body').on('click','#submituserdata', function(e)
 {
+
     var pdfdata = website( "div #belowleveluserdet" ).html();
     //console.log(pdfdata);
     website('.modalform').html(pdfdata);
@@ -1514,7 +1518,7 @@ function hidesection(id)
       {  website('.preloder_wraper').fadeIn(); },
       success: function(response, textStatus, jqXHR)
       {
-        console.log(response);
+        //console.log(response);
         if(response.logged == true)
         {  
            
@@ -1619,3 +1623,72 @@ function numberOnly()
             else
                 return false;
 }
+
+
+website('body').on('click','.deletebtn',function()
+{
+
+  
+    var delid  = website(this).attr('recordid');
+    var uniqueid  = website(this).attr('uniqueid');
+    var tablename  = website(this).attr('table');
+   
+   
+    website('#myModalyesno').modal('show');
+    website('.yesconfirm').attr('delid',delid);
+    website('.yesconfirm').attr('tablename',tablename);
+    website('.yesconfirm').attr('uniqueid',uniqueid);
+  
+});
+
+
+
+
+website('body').on('click','.yesconfirm',function(e)
+{
+    var delid  = website(this).attr('delid');
+    var uniqueid  = website(this).attr('uniqueid');
+     var tablename  = website(this).attr('tablename');
+    //alert(contypeid);
+
+   
+    //console.log(plannerid,commonid); return false;
+    
+    var formdata = {delid:delid,uniqueid:uniqueid,tablename:tablename};
+    website.ajax({
+            url:'annualdeclaration/deleteannualdeclare',
+            data:formdata,
+            method:'POST',
+            //contentType:'json',
+            contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+            //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+            dataType:"json",
+            cache:false,
+            //async:true, /*Cross domain checking*/
+            beforeSend: function()
+            {   },
+            uploadProgress: function(event, position, total, percentComplete)
+            {   },
+            success: function(response, textStatus, jqXHR)
+            {
+                if(response.logged===true)
+                {    
+                    
+               
+                    new PNotify({title: ' Deleted Successfully',
+                          text: ' Deleted Successfully',
+                          type: 'university',
+                          hide: true,
+                          styling: 'bootstrap3',
+                          addclass: 'dark ',
+                      });
+
+                  window.location.reload();
+                }
+            },
+            complete: function(response)
+            {   },
+            error: function(jqXHR, textStatus, errorThrown)
+            {   }
+        });
+});

@@ -66,12 +66,20 @@ header("Pragma: no-cache");
     
 <!-- End User Tracking Code -->
 </head>
+<?php if ($getcontrollername == 'annualdeclaration') { ?>
+  <body tabindex="1" class="nav-sm loadingInProgress  <?php echo ($getcontrollername=='index' || $getcontrollername=='login') ? 'login-cover' : $getcontrollername.'_bodymncl '; ?>" >
+<?php } ?>
 
 <body tabindex="1" class="nav-md loadingInProgress  <?php echo ($getcontrollername=='index' || $getcontrollername=='login') ? 'login-cover' : $getcontrollername.'_bodymncl '; ?>" ><!--bg-purple-->
+
+
+
 <?php if ($getcontrollername != 'highlight' && $getcontrollername != 'agendapdflink') { ?>
 <div class="maincontentelement container">
 
+
 <body class="nav-sm">
+
 <div class="container body">
 <div class="main_container">
 

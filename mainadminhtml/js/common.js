@@ -1,8 +1,6 @@
-/*var run = function(){
-  if (Offline.state === 'up')
-    Offline.check();
-}
-setInterval(run, 5000);*/
+
+
+
 var website = $.noConflict();
 function getgeolocation(getip)
 {
@@ -29,6 +27,9 @@ website(document).mouseup(function (e) {
         container.hide();
         website('.header-search-input').val('');
     }
+
+    // website('#sidebar-menu li').removeClass('active');     
+    // website('.nav.child_menu').hide(); 
   });
 website(document).mouseup(function (e) {
     var container = website('#live-search-header-wrapper1');
