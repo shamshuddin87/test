@@ -27,3 +27,29 @@ tr:nth-child(even) {
     padding-bottom: 15px;
     text-align: center;
 }
+
+
+.nav-sm .container.body .col-md-3.left_col {
+    min-height: 100%;
+    width: 70px;
+    padding: 0;
+    /*position: fixed;*/
+    display: flex;
+    z-index: 999;
+    overflow: visible !important;
+    height: 100%;
+}
+
+body.nav-sm .container.body .left_col {
+    height: 100%;
+}
+
+.main_container {
+    position: relative;
+}
+
+body.nav-sm .main_container .top_nav,
+.main_container .top_nav {
+    z-index: 2;
+    position: relative;
+}
