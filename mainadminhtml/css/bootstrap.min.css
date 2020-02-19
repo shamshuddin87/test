@@ -3400,3 +3400,12 @@
     position: static !important;
     font-weight: 500;
 }
+
+body .container.body .col-md-3.left_col{
+    overflow-y: auto !important;
+    overflow: unset;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+}
