@@ -28,9 +28,9 @@ function addhtml(clicked)
      
 
 
- var id = clicked;
- //alert(id);
- if(id == 'adddiv1') {
+    var id = clicked;
+     //alert(id);
+    if(id == 'adddiv1') {
          
          var getlastid = website('.appendd1').attr('plancntr');
 

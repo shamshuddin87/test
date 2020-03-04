@@ -14,7 +14,7 @@ class Approvelperinfocommon extends Component
        
         if($usergroup==2)
         {
-            $sqlquery="SELECT  pr.`send_status`,pr.`approved_status`,it.`*` FROM it_memberlist it  LEFT JOIN personal_info pr  ON it.`wr_id`=pr.`userid` WHERE it.`user_id`='".$getuserid."'".$mainqry;
+            $sqlquery="SELECT  pr.`send_status`,pr.`approved_status`,it.`*` FROM it_memberlist it  LEFT JOIN personal_info pr  ON it.`wr_id`=pr.`userid` WHERE it.`user_id`='".$getuserid."' ".$mainqry;
 
         }
         else

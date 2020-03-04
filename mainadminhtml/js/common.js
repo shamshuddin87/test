@@ -27,9 +27,6 @@ website(document).mouseup(function (e) {
         container.hide();
         website('.header-search-input').val('');
     }
-
-    // website('#sidebar-menu li').removeClass('active');     
-    // website('.nav.child_menu').hide(); 
   });
 website(document).mouseup(function (e) {
     var container = website('#live-search-header-wrapper1');

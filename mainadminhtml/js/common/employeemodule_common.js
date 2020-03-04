@@ -90,6 +90,7 @@ website('.relativesform').hide();
    // Add a class of "floatLabel" to the input field
    floatLabel(".floatLabel");
 })(jQuery);
+
 datepicker();
 function datepicker(){
 website('.bootdatepick').datetimepicker({

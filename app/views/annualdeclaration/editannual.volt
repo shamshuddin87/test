@@ -210,6 +210,7 @@
           <h2 class="h2_heading">B. Details of Relatives</h2>
           
                  <h3 class="h3_heading">I.  List of Relatives</h3>
+                 <div class="overflowXscroll">
         <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
@@ -256,6 +257,7 @@
                <?php  } ?>
             </tbody>
         </table>
+      </div>
           
                      <h3 class="h3_heading">II.  Demat Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
