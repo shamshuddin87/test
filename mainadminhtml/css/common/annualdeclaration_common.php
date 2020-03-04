@@ -6,7 +6,7 @@ $cssFiles = array(
   "../calendar/bootstrap-datetimepicker.min.css",
   "../datatables/jquery.dataTables.min.css",
   "../preloader.css",   
-  "commoncss/initialdeclaration_common.css"
+  "commoncss/annualdeclaration_common.css"
 );
 /**
  * Ideally, you wouldn't need to change any code beyond this point.
