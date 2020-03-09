@@ -44,7 +44,7 @@
             </li>
             <?php  } ?>
 
-            <?php if(!empty($checkpersonal_info)){ ?>
+            <?php if(!empty($checkpersonal_info) || $gettypm['user_group_id']=='2'  ){ ?>
             <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'|| $gettypm['user_group_id']=='7'){ ?>
             <li>
                <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> Masters <span class="fa fa-chevron-down"></span></a>

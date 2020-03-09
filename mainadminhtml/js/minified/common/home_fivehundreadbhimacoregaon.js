@@ -61,11 +61,12 @@ else
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});}
 checkdetails();function checkdetails()
-{website.ajax({url:'home/checkdetails',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{var firstlogin=website("#firstlogin").val();website.ajax({url:'home/checkdetails',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{website('#updateholdings').modal('show');}
+{if(firstlogin==0)
+{website('#updateholdings').modal('show');}}
 else
 {var base_url=getbaseurl();if(response.data=="relative")
 {var strng=btoa("dash");base_url=base_url+"employeemodule?from="+strng;}
@@ -77,6 +78,22 @@ var link='<a href="'+base_url+'" style="color:red;">Click Here</a>';website('#de
 {}});}
 function disclosures(id)
 {var base_url=getbaseurl();if(id=="yesdisclosures")
-{window.location.reload();website('#updateholdings').modal('hide');}
+{website('#updateholdings').modal('hide');website.ajax({url:'home/firstlogin',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{window.location.reload();}
+else
+{}},complete:function(response)
+{},error:function(jqXHR,textStatus,errorThrown)
+{}});}
 else if(id=="nodisclosures")
-{window.location.href=base_url+"/employeemodule";website('#updateholdings').modal('hide');}};
+{website('#updateholdings').modal('hide');website.ajax({url:'home/firstlogin',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{window.location.href=base_url+"/employeemodule";}
+else
+{}},complete:function(response)
+{},error:function(jqXHR,textStatus,errorThrown)
+{}});}};

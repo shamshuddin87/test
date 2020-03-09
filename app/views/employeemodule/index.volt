@@ -63,10 +63,11 @@
                <!-- <div class="col-md-12"> -->
                <!-- <label for="fname">Full Name:</label> -->
                <input type="hidden" id="fname" name="fname" placeholder="Your name.." value="<?php echo($userdetails[0]['fullname']) ?>">
+                <input type="hidden" id="toemail" name="toemail" placeholder="" value="<?php echo($userdetails[0]['email']) ?> ">
                <?php if(!empty($personaldetails)){ ?>
                 <input type="hidden" id="rqid" name="rqid" placeholder="" value="<?php echo($personaldetails['id']) ?>">
 
-                 <input type="hidden" id="toemail" name="toemail" placeholder="" value="<?php echo($userdetails[0]['email']) ?> ">
+                
                <!-- </div> -->
                <div class="col-md-4 col-xs-12">
                   <label for="pan">PAN*</label>
@@ -152,23 +153,23 @@
                   <div class="col-md-12 col-xs-12"> 
 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Holdings In Shares*</label>  
-                  <input type="text" id="shareholdng" name="shareholdng" value="<?php echo($personaldetails['sharehldng']) ?>" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                  <label for="age">Holdings In Shares</label>  
+                  <input type="text" id="shareholdng" name="shareholdng" value="<?php echo($personaldetails['sharehldng']) ?>" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                 </div>
                 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Holdings In ADRs*</label>
-                  <input type="text" id="adrsholdng" name="adrsholdng" value="<?php echo($personaldetails['adrshldng']) ?>" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                  <label for="age">Holdings In ADRs</label>
+                  <input type="text" id="adrsholdng" name="adrsholdng" value="<?php echo($personaldetails['adrshldng']) ?>" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                </div>
 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Occupation*</label>
-                  <input type="text" id="occupation" name="occupation" value="<?php echo($personaldetails['occupation']) ?>" placeholder="Occupation"  required>
+                  <label for="age">Occupation</label>
+                  <input type="text" id="occupation" name="occupation" value="<?php echo($personaldetails['occupation']) ?>" placeholder="Occupation">
                </div>
 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Name of Companies/Firm*</label>
-                  <input type="text" id="company" name="company" value="<?php echo($personaldetails['company']) ?>" placeholder="Name of Companies/Firm " required>
+                  <label for="age">Name of Companies/Firm</label>
+                  <input type="text" id="company" name="company" value="<?php echo($personaldetails['company']) ?>" placeholder="Name of Companies/Firm ">
                </div>
 
                 </div>
@@ -240,30 +241,31 @@
                <div class="row">
                 <div class="col-md-12 col-xs-12"> 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Holdings In Shares*</label>  
-                  <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                  <label for="age">Holdings In Shares</label>  
+                  <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                 </div>
                 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Holdings In ADRs*</label>
-                  <input type="text" id="adrsholdng" name="adrsholdng"  placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                  <label for="age">Holdings In ADRs</label>
+                  <input type="text" id="adrsholdng" name=" "  placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                </div>
 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Occupation*</label>
-                  <input type="text" id="occupation" name="occupation" placeholder="Occupation"  required>
+                  <label for="age">Occupation</label>
+                  <input type="text" id="occupation" name="occupation" placeholder="Occupation" >
                </div>
 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Name of Companies/Firm*</label>
-                  <input type="text" id="company" name="company"  placeholder="Name of Companies/Firm " required>
+                  <label for="age">Name of Companies/Firm</label>
+                  <input type="text" id="company" name="company"  placeholder="Name of Companies/Firm ">
                </div>
 
                 </div>
               </div>
                 <?php } ?>
+
                <div class="col-md-12 " > 
-                  <input class="btn btn-primary" type="button" value="Submit" id="confirmpersonalinfo" onclick="confirmdisclosure(this.id)"  style="float: right;">
+                  <input class="btn btn-primary" type="button" name="confirmpersonalinfo" value="Submit" id="confirmpersonalinfo" onclick="confirmdisclosure(this.id)"  style="float: right;">
                </div>
             </form>
          </div>
@@ -550,22 +552,22 @@
                       <div class="row">
                     <div class="col-md-12 col-md-12">
                      <div class="col-md-4 "> 
-                          <label for="age">Holdings In Shares*</label>
-                          <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
+                          <label for="age">Holdings In Shares</label>
+                          <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
                        </div>
                      <div class="col-md-4"> 
-                          <label for="age">Holdings In ADRs*</label>
-                          <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
+                          <label for="age">Holdings In ADRs</label>
+                          <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                       </div>
 
                       <div class="col-md-4 col-xs-12 "> 
-                      <label for="age">Occupation*</label>
-                     <input type="text" id="reloccupation" name="reloccupation" placeholder="Occupation"  required>
+                      <label for="age">Occupation</label>
+                     <input type="text" id="reloccupation" name="reloccupation" placeholder="Occupation" >
                     </div>
 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Name of Companies/Firm*</label>
-                  <input type="text" id="relcompany" name="relcompany"  placeholder="Name of Companies/Firm " required>
+                  <label for="age">Name of Companies/Firm</label>
+                  <input type="text" id="relcompany" name="relcompany"  placeholder="Name of Companies/Firm " >
                </div>
 
 
@@ -573,7 +575,7 @@
                     </div>
                      </div>
                      <div class="col-md-12">
-                        <input class="btn btn-primary" type="button" name="submit" value="Submit" id="relsub" onclick="confirmdisclosure(this.id)">
+                        <input class="btn btn-primary" type="button" name="relsub" value="Submit" id="relsub" onclick="confirmdisclosure(this.id)">
                      </div>
                   </div>
                </form>
@@ -725,29 +727,29 @@
                            <div class="row">
                             <div class="col-md-12">
                             <div class="col-md-6">
-                              <label for="age">Holdings In Shares*</label>
-                              <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
+                              <label for="age">Holdings In Shares</label>
+                              <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
                            </div>
 
                             <div class="col-md-6">
-                              <label for="age">Holdings In ADRs*</label>
-                              <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
+                              <label for="age">Holdings In ADRs</label>
+                              <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                            </div>
 
                            <div class="col-md-4 col-xs-12 "> 
-                             <label for="age">Occupation*</label>
-                             <input type="text" id="reloccupationup" name="reloccupationup" placeholder="Occupation"  required>
+                             <label for="age">Occupation</label>
+                             <input type="text" id="reloccupationup" name="reloccupationup" placeholder="Occupation"  >
                             </div>
 
                             <div class="col-md-4 col-xs-12 "> 
-                            <label for="age">Name of Companies/Firm*</label>
-                            <input type="text" id="relcompanyup" name="relcompanyup"  placeholder="Name of Companies/Firm " required>
+                            <label for="age">Name of Companies/Firm</label>
+                            <input type="text" id="relcompanyup" name="relcompanyup"  placeholder="Name of Companies/Firm " >
                             </div>
 
                             </div>
                           </div>
                            <div class="col-md-12"> 
-                              <input type="button" value="Update" onclick="confirmdisclosure(this.id)" id="relupdate">
+                              <input type="button" name= "relupdate" value="Update" onclick="confirmdisclosure(this.id)" id="relupdate">
                            </div>
                         </form>
                      </div>

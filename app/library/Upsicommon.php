@@ -175,9 +175,9 @@ class Upsicommon extends Component
             $connctdps = $excelcondps;
         }
         //print_r($updatedata);exit;
-        $sqlquery = 'UPDATE `upsimaster` SET  `upsitype`="'.$updatedata['upname'].'",`toalldps`="'.$toalldps.'",`projstartdate`="'.$updatedata['cmppstartdte'].'",`enddate`="'.$updatedata['cmpenddate'].'",`projectowner`="'.$updatedata['ownerid'].'",`projdescriptn`="'.$updatedata['projdesc'].'",`connecteddps`="'.$connctdps.'",`date_modified`=NOW(),`timeago`="'.$time.'"
+        $sqlquery = 'UPDATE `upsimaster` SET  `upsitype`="'.$updatedata['upname'].'",`toalldps`="'.$toalldps.'",`projstartdate`="'.$updatedata['pstartdte'].'",`enddate`="'.$updatedata['enddate'].'",`projectowner`="'.$updatedata['ownerid'].'",`projdescriptn`="'.$updatedata['projdesc'].'",`connecteddps`="'.$connctdps.'",`date_modified`=NOW(),`timeago`="'.$time.'"
          WHERE `id`="'.$updatedata['editid'].'"'; 
-        //echo $sqlquery;exit; `companyid`='".$updatedata['cmpid']."',
+        //echo $sqlquery;exit; 
         try
         {
             $exesql = $connection->query($sqlquery);
@@ -186,15 +186,8 @@ class Upsicommon extends Component
             {  
                 $updatedata['nameaddedby'] = $addedby;
                 $datadiffrnt = $this->upsicommon->chckifdatadiff($getuserid,$usergroup,$updatedata,$username);
-
-                if($datadiffrnt == true)
-                {
-                    return true; 
-                }
-                else
-                {
-                    return false;
-                }
+                //print_r($datadiffrnt);exit;
+                return true;
                  
             }
             else
@@ -347,7 +340,7 @@ class Upsicommon extends Component
            
         }
         //print_r($cntin.'*'.sizeof($getdata)); exit;
-        if($result==true)
+        if($result == true)
         {
             return true;
         }
@@ -406,21 +399,24 @@ class Upsicommon extends Component
             $connctdps = implode(',',$updatedata['connectdps']);
             //print_r($connctdps);exit;
             $flag = 0;
-            $chngein = 'all';
-            if(strcasecmp($updatedata['cmpupname'], $updatedata['upname']) !=0)
-             
-            {
 
-                $flag = 1;
-            }
-            if(strcasecmp($updatedata['cmppstartdte'], $updatedata['cmppstartdte']) !=0)
-            {
-                $flag = 1;
-            }
-            if(strcasecmp($updatedata['cmpenddate'], $updatedata['cmpenddate']) !=0)
-            {
-                $flag = 1;
-            }
+            $chngein = 'all';
+            // if(strcasecmp($updatedata['cmpupname'], $updatedata['upname']) !=0)
+             
+            // {
+
+            //     $flag = 1;
+            // }
+            // if(strcasecmp($updatedata['cmppstartdte'], $updatedata['pstartdte']) !=0)
+            // {
+            //     $flag = 1;
+            // }
+            // if(strcasecmp($updatedata['cmpenddate'], $updatedata['enddate']) !=0)
+            // {
+
+            //     $flag = 1;
+
+            // }
             if(strcasecmp($updatedata['ownerid'], $updatedata['cmpownerid']) !=0)
             {
                 $flag = 1;
@@ -433,6 +429,7 @@ class Upsicommon extends Component
             }
             if($flag == 1)
             {
+
                 if($chngein == 'users')
                 {
 
@@ -462,7 +459,7 @@ class Upsicommon extends Component
         }
         if($userids)
         {
-           // print_r($userids);exit;
+           //print_r($userids);exit;
             $result = $this->upsicommon->mailfortradingwindowedit($getuserid,$usergroup,$userids,$updatedata,$username);
             return $result;
         }

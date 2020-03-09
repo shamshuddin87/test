@@ -1302,7 +1302,7 @@ Class Email extends Phalcon\Mvc\User\Component {
     public function mailofnewdp($toemail,$tousername,$pstartdate,$enddate,$today,$fromusername,$upsitype)
     {
 
-        //print_r($username);exit;
+       // print_r($tousername);exit;
         $gethtml = $this->htmlelements->mailofupdatedp($toemail,$tousername,$pstartdate,$enddate,$today,$fromusername,$upsitype);
         //print_r($gethtml);exit;
         $mail = new PHPMailer();
@@ -1327,13 +1327,14 @@ Class Email extends Phalcon\Mvc\User\Component {
         //send the message, check for errors
 
         if ($mail->Send()) {
-            $get = array('logged'=>true,'message'=>'sent');
+          
+            return true;
         }
         else {
             //echo $mail->ErrorInfo; exit;
-            $get = array('logged'=>false,'message'=>'nosent');
+           return false;
         }
-        //echo '<pre>'; print_r($get); exit;
+
         return $get;
  
        

@@ -12,11 +12,44 @@ floatLabel(".floatLabel");})(jQuery);datepicker();function datepicker(){website(
 {var getdate=website(this).val();var getid=website(this).closest('form').attr('id');});}
 function confirmdisclosure(id)
 {var id=id;if(id=="confirmpersonalinfo")
+{var shareholdng=website('#shareholdng').val();var adrsholdng=website('#adrsholdng').val();if(shareholdng||adrsholdng)
 {website('#updateholdings1').modal('show');}
+else
+{website('input[name="confirmpersonalinfo"]').attr("type","submit");website('#perdetail').ajaxForm({dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{getpersonalinfo();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function()
+{}});}}
 else if(id=="relsub")
+{var shareholdng=website('#getdata_1 #shareholdng').val();var adrsholdng=website('#getdata_1 #adrsholdng').val();if(shareholdng||adrsholdng)
 {website('#updateholdings2').modal('show');}
+else
+{website('input[name="relsub"]').attr("type","submit");alert("inelse");website('#getdata_1').ajaxForm({dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{getpersonalinfo();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function()
+{}});}}
 else if(id=="relupdate")
-{website('#updateholdings3').modal('show');}}
+{var shareholdng=website("#reledit #shareholdng").val();var adrsholdng=website("#reledit #adrsholdng").val();if(shareholdng||adrsholdng)
+{website('#updateholdings3').modal('show');}
+else
+{website('input[name="relupdate"]').attr("type","submit");website('#uprel').ajaxForm({dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{getpersonalinfo();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function()
+{}});}}}
 function nodisclosures(id)
 {if(id=="nodisclosures1")
 {new PNotify({title:'Alert',text:'Please Submit necessary disclosures First',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website('#updateholdings1').modal('hide');}
@@ -31,21 +64,23 @@ website.ajax({url:'employeemodule/insmydetail',method:'POST',data:formdata,conte
 {website('.preloder_wraper').fadeOut();website('#updateholdings1').modal('hide');if(response.logged==true)
 {getpersonalinfo();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}});});website('body').on('click','#yesdisclosures2',function(e){var fname=website("#getdata_1 #fname").val();var relationship=website("#getdata_1 #relationship").val();var depnature=website("#getdata_1 #depnature").val();var pan=website("#getdata_1 #pan").val();var aadhar=website("#getdata_1 #aadhar").val();var dob=website("#getdata_1 #dob").val();var sex=website("#getdata_1 input[name='sex']:checked").val();var address=website("#getdata_1 #address").val();var eduqulfcn=website("#getdata_1 #eduqulfcn").val();var file=website("#getdata_1 #file").val();var legal_idntfr=website("#getdata_1 #legal_idntfr").val();var legal_idntfctn_no=website("#getdata_1 #legal_idntfctn_no").val();var shareholdng=website("#getdata_1 #shareholdng").val();var adrsholdng=website("#getdata_1 #adrsholdng").val();var reloccupation=website("#getdata_1 #reloccupation").val();var relcompany=website("#getdata_1 #relcompany").val();var formdata={relationship:relationship,fname:fname,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,reloccupation:reloccupation,relcompany:relcompany,depnature:depnature}
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}});});website('body').on('click','#yesdisclosures2',function(e)
+{var fname=website("#getdata_1 #fname").val();var relationship=website("#getdata_1 #relationship").val();var depnature=website("#getdata_1 #depnature").val();var pan=website("#getdata_1 #pan").val();var aadhar=website("#getdata_1 #aadhar").val();var dob=website("#getdata_1 #1_dob").val();var sex=website("#getdata_1 input[name='sex']:checked").val();var address=website("#getdata_1 #addr").val();var eduqulfcn=website("#getdata_1 #eduqulfcn").val();var file=website("#getdata_1 #file").val();var legal_idntfr=website("#getdata_1 #legal_idntfr").val();var legal_idntfctn_no=website("#getdata_1 #legal_idntfctn_no").val();var shareholdng=website("#getdata_1 #shareholdng").val();var adrsholdng=website("#getdata_1 #adrsholdng").val();var reloccupation=website("#getdata_1 #reloccupation").val();var relcompany=website("#getdata_1 #relcompany").val();var formdata={relationship:relationship,fname:fname,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,reloccupation:reloccupation,relcompany:relcompany,depnature:depnature}
 website.ajax({url:'employeemodule/relationdata',method:'POST',data:formdata,contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
-{if(response.logged===true)
-{website('#updateholdings2').modal('hide');getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
+{website('#updateholdings2').modal('hide');if(response.logged===true)
+{getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
-{}});});website('body').on('click','#yesdisclosures3',function(e){var name=website("#reledit #name").val();var relationship=website("#reledit #relationship").val();var depnature=website("#reledit #depnature").val();var releditid=website("#reledit #releditid").val();var pan=website("#reledit #pan").val();var aadhar=website("#reledit #aadhar").val();var dob=website("#reledit #dob").val();var sex=website("#reledit input[name='sex']:checked").val();var address=website("#reledit #address").val();var eduqulfcn=website("#reledit #eduqulfcn").val();var file=website("#reledit #file").val();var legal_idntfr=website("#reledit #legal_idntfr").val();var legal_idntfctn_no=website("#reledit #legal_idntfctn_no").val();var shareholdng=website("#reledit #shareholdng").val();var adrsholdng=website("#reledit #adrsholdng").val();var occupation=website("#reledit #reloccupationup").val();var company=website("#reledit #relcompanyup").val();var formdata={releditid:releditid,relationship:relationship,name:name,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,occupation:occupation,company:company,depnature:depnature}
+{}});});website('body').on('click','#yesdisclosures3',function(e)
+{var name=website("#reledit #name").val();var relationship=website("#reledit #relationship").val();var depnature=website("#reledit #depnature").val();var releditid=website("#reledit #releditid").val();var pan=website("#reledit #pan").val();var aadhar=website("#reledit #aadhar").val();var dob=website("#reledit #dob").val();var sex=website("#reledit input[name='sex']:checked").val();var address=website("#reledit #address").val();var eduqulfcn=website("#reledit #eduqulfcn").val();var file=website("#reledit #file").val();var legal_idntfr=website("#reledit #legal_idntfr").val();var legal_idntfctn_no=website("#reledit #legal_idntfctn_no").val();var shareholdng=website("#reledit #shareholdng").val();var adrsholdng=website("#reledit #adrsholdng").val();var occupation=website("#reledit #reloccupationup").val();var company=website("#reledit #relcompanyup").val();var formdata={releditid:releditid,relationship:relationship,name:name,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,reloccupationup:occupation,relcompanyup:company,depnature:depnature}
 website.ajax({url:'employeemodule/updaterelatives',method:'POST',data:formdata,contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
-{if(response.logged===true)
-{website('#reledit').modal('hide');website('#updateholdings3').modal('hide');getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+{website('#updateholdings3').modal('hide');if(response.logged===true)
+{website('#reledit').modal('hide');getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()

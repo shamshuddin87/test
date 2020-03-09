@@ -111,34 +111,209 @@ website('.bootdatepick').datetimepicker({
     });
   }
 
+
 //######################################### AJAX Personal INSERTION ################################################//
 
 function confirmdisclosure(id)
 {
     
-  var id = id;
+   var id = id;
  
 
   if(id == "confirmpersonalinfo" )
   {
-    
-     website('#updateholdings1').modal('show');
 
-   
+    var shareholdng = website('#shareholdng').val();
+    var adrsholdng = website('#adrsholdng').val();
+    
+    if(shareholdng || adrsholdng )
+    {
+     
+       website('#updateholdings1').modal('show');
+    }
+    else
+    {
+
+      website('input[name="confirmpersonalinfo"]').attr("type", "submit");
+      
+      //alert("inelse");
+      website('#perdetail').ajaxForm({
+      dataType:"json",
+      beforeSend: function() 
+      {  website('.preloder_wraper').fadeIn(); },
+      uploadProgress: function(event, position, total, percentComplete) 
+      {   },
+      success: function(response, textStatus, jqXHR) 
+      {
+         if(response.logged === true)
+         {
+
+              
+               getpersonalinfo();
+               new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+            window.location.reload();
+ 
+         }
+         else
+         {    
+           new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+         }
+    },
+    complete: function(response) 
+    {  website('.preloder_wraper').fadeOut();
+
+
+    },
+    error: function() 
+    {   }
+
+
+   });
+  }
+    
+    
   }
   else if(id == "relsub")
   {
+    
+    var shareholdng = website('#getdata_1 #shareholdng').val();
+    var adrsholdng = website('#getdata_1 #adrsholdng').val();
 
-    website('#updateholdings2').modal('show');
+   
+     if(shareholdng || adrsholdng )
+    {
+     
+       website('#updateholdings2').modal('show');
+    }
+    else
+    {
+
+      website('input[name="relsub"]').attr("type", "submit");
+      
+      alert("inelse");
+      website('#getdata_1').ajaxForm({
+      dataType:"json",
+      beforeSend: function() 
+      {  website('.preloder_wraper').fadeIn(); },
+      uploadProgress: function(event, position, total, percentComplete) 
+      {   },
+      success: function(response, textStatus, jqXHR) 
+      {
+         if(response.logged === true)
+         {
+
+              
+               getpersonalinfo();
+               new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+            window.location.reload();
+ 
+         }
+         else
+         {    
+           new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+         }
+    },
+    complete: function(response) 
+    {  website('.preloder_wraper').fadeOut();
+
+
+    },
+    error: function() 
+    {   }
+
+
+   });
+  }
   }
   else if(id == "relupdate" )
   {
+    
+    var shareholdng =  website("#reledit #shareholdng").val();
+    var adrsholdng =  website("#reledit #adrsholdng").val();
 
-    website('#updateholdings3').modal('show');
+     if(shareholdng || adrsholdng )
+    {
+     
+       website('#updateholdings3').modal('show');
+    }
+    else
+    {
+
+      website('input[name="relupdate"]').attr("type", "submit");
+      
+      //alert("inelse");
+      website('#uprel').ajaxForm({
+      dataType:"json",
+      beforeSend: function() 
+      {  website('.preloder_wraper').fadeIn(); },
+      uploadProgress: function(event, position, total, percentComplete) 
+      {   },
+      success: function(response, textStatus, jqXHR) 
+      {
+         if(response.logged === true)
+         {
+
+               getpersonalinfo();
+               new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+            window.location.reload();
+ 
+         }
+         else
+         {    
+           new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+         }
+    },
+    complete: function(response) 
+    {  website('.preloder_wraper').fadeOut();
+
+
+    },
+    error: function() 
+    {   }
+
+
+   });
+  }
+    
+    
   }
   
- 
-
   
 } 
 
@@ -146,7 +321,6 @@ function confirmdisclosure(id)
 function nodisclosures(id)
 {
 
- 
  if(id == "nodisclosures1" )
   {
     
@@ -208,6 +382,7 @@ website('body').on('click','#yesdisclosures1',function(e){
    var legal_idntfctn_no =  website("#legal_idntfctn_no").val();
    var rqid =  website("#rqid").val();
    var toemail =  website("#toemail").val();
+   //alert(toemail);
     var shareholdng =  website("#shareholdng").val();
      var adrsholdng =  website("#adrsholdng").val();
      var occupation =  website("#occupation").val();
@@ -262,17 +437,19 @@ website('body').on('click','#yesdisclosures1',function(e){
 
 
 
-website('body').on('click','#yesdisclosures2',function(e){
+website('body').on('click','#yesdisclosures2',function(e)
+{
    
-    var fname =  website("#getdata_1 #fname").val();
+  var fname =  website("#getdata_1 #fname").val();
    var relationship =  website("#getdata_1 #relationship").val();
    var depnature    = website("#getdata_1 #depnature").val();
    var pan =  website("#getdata_1 #pan").val();
    var aadhar =  website("#getdata_1 #aadhar").val();
-   var dob =  website("#getdata_1 #dob").val();
+   var dob =  website("#getdata_1 #1_dob").val();
+
    var sex =  website("#getdata_1 input[name='sex']:checked").val();
    
-   var address =  website("#getdata_1 #address").val();
+   var address =  website("#getdata_1 #addr").val();
    var eduqulfcn =  website("#getdata_1 #eduqulfcn").val();
   
    var file =  website("#getdata_1 #file").val();
@@ -302,10 +479,10 @@ website('body').on('click','#yesdisclosures2',function(e){
         uploadProgress: function(event, position, total, percentComplete)
         {   },
         success: function(response, textStatus, jqXHR) 
-    {
+        { website('#updateholdings2').modal('hide');
          if(response.logged === true)
          {
-               website('#updateholdings2').modal('hide');
+               
               
                getrelationdata();
                new PNotify({title: 'Alert',
@@ -320,7 +497,8 @@ website('body').on('click','#yesdisclosures2',function(e){
  
          }
          else
-         {    
+         {
+
            new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
@@ -335,11 +513,12 @@ website('body').on('click','#yesdisclosures2',function(e){
     error: function() 
     {   }
    });
-});
+ });
 
 
 
-website('body').on('click','#yesdisclosures3',function(e){
+website('body').on('click','#yesdisclosures3',function(e)
+{
    
    var name =  website("#reledit #name").val();
     var relationship =  website("#reledit #relationship").val();
@@ -365,9 +544,9 @@ website('body').on('click','#yesdisclosures3',function(e){
      var company =  website("#reledit #relcompanyup").val();
 
 
-  var formdata = {releditid:releditid,relationship:relationship,name:name,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,occupation:occupation,company:company,depnature:depnature}
+     var formdata = {releditid:releditid,relationship:relationship,name:name,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,reloccupationup:occupation,relcompanyup:company,depnature:depnature}
 
-   website.ajax({
+       website.ajax({
 
         url:'employeemodule/updaterelatives',
         
@@ -385,11 +564,12 @@ website('body').on('click','#yesdisclosures3',function(e){
         {   },
         success: function(response, textStatus, jqXHR) 
        {
+           website('#updateholdings3').modal('hide');
          if(response.logged === true)
          {
              website('#reledit').modal('hide');
              
-              website('#updateholdings3').modal('hide');
+              
               getrelationdata();
 
                new PNotify({title: 'Alert',
@@ -419,8 +599,6 @@ website('body').on('click','#yesdisclosures3',function(e){
     {   }
    });
 });
-
-
 
 
 

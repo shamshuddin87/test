@@ -132,7 +132,7 @@ class Logincommon extends Component
                         'username' => trim($this->elements->htmldecode($robot['username'])),
                         'firstname' => trim($this->elements->htmldecode($robot['firstname'])),
                         'lastname' => trim($this->elements->htmldecode($robot['lastname'])),
-                        'email' => strtolower($robot['email']),'moduleaccess'=>$getdtl,
+                        'email' => strtolower($robot['email']), 'moduleaccess'=>$getdtl,
                         'master' => $robot['master_user_id'],'mastergroup' => $robot['master_group_id']
                         ));
                         //echo '<pre>'; print_r($setsession); exit;

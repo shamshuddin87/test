@@ -441,6 +441,8 @@ function remindrofhldngstmnt()
 checkdetails();
 function checkdetails() 
 {
+  var firstlogin = website("#firstlogin").val();
+
     
     website.ajax({
       url:'home/checkdetails',
@@ -459,11 +461,18 @@ function checkdetails()
       success: function(response, textStatus, jqXHR)
       {
 
-        
+         
 
         if(response.logged===true)
         {
-           website('#updateholdings').modal('show');
+           if(firstlogin == 0)
+           {
+             
+             website('#updateholdings').modal('show');
+           
+             
+           }
+          
         }
        else
        {
@@ -501,13 +510,85 @@ function disclosures(id)
  
  if(id == "yesdisclosures" )
   {
-    window.location.reload();
+    
     website('#updateholdings').modal('hide');
+
+     website.ajax({
+      url:'home/firstlogin',
+      //data:formdata,
+      method:'POST',
+      //contentType:'json',
+      contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+      //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+      dataType:"json",
+      cache:false,
+      //async:true, /*Cross domain checking*/
+      beforeSend: function()
+      {   },
+      uploadProgress: function(event, position, total, percentComplete)
+      {   },
+      success: function(response, textStatus, jqXHR)
+      {
+
+         
+
+        if(response.logged===true)
+        {
+           
+           window.location.reload();
+        }
+       else
+       {
+          
+      }
+    },
+    complete: function(response)
+    {},
+    error: function(jqXHR, textStatus, errorThrown)
+    {}
+  });
+
+   
   }
   else if(id == "nodisclosures")
   {
-    window.location.href = base_url+"/employeemodule";
-    website('#updateholdings').modal('hide');
+    
+    website('#updateholdings').modal('hide'); 
+    website.ajax({
+      url:'home/firstlogin',
+      //data:formdata,
+      method:'POST',
+      //contentType:'json',
+      contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+      //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+      dataType:"json",
+      cache:false,
+      //async:true, /*Cross domain checking*/
+      beforeSend: function()
+      {   },
+      uploadProgress: function(event, position, total, percentComplete)
+      {   },
+      success: function(response, textStatus, jqXHR)
+      {
+
+         
+
+        if(response.logged===true)
+        {
+           window.location.href = base_url+"/employeemodule";
+        }
+       else
+       {
+          
+      }
+    },
+    complete: function(response)
+    {},
+    error: function(jqXHR, textStatus, errorThrown)
+    {}
+  });
+
+     
   }
 }
 

@@ -16,15 +16,39 @@ class HomeController extends ControllerBase
         $uid = $this->session->loginauthspuserfront['id'];
         $gmnlog = $this->session->loginauthspuserfront;
         
-        
-        /*################  Phalcon Database name Fetching
-        $connection = $this->db->getDescriptor();
-        $connection = $connection['dbname'];
-        echo '<pre>';print_r($connection);exit; 
-        ###########################*/
-        
-        //$getmn = $this->session->orgdtl;
-        //echo '<pre>';print_r($getmn);exit;        
+        $this->view->login = $this->homecommon->fetchfirstlogin($uid);
+        $checkupsi  = $this->homecommon->upsiholding($uid);
+        //print_r($checkupsi);exit;
+        $date=date('d-m-Y');
+
+        if(!empty($checkupsi))
+        {
+           for($i = 0 ; $i< count($checkupsi);$i++) 
+        {
+           
+            if(strtotime($checkupsi[$i]['projstartdate']) > strtotime($date))
+            {
+
+              $data = "upsi starts in future";
+
+            }
+            else
+            {
+                   //echo "helloo";exit;
+                if((strtotime($date) >= strtotime($checkupsi[$i]['projstartdate']) && strtotime($date) <= strtotime($checkupsi[$i]['enddate'])) OR empty($checkupsi[$i]['enddate']))
+            {     
+                
+                  $upsiresult[] = $checkupsi[$i];
+            }
+
+            }
+           
+        }
+        }
+       
+
+        $this->view->upsiresult = $upsiresult;
+             
     }
     public function countofrestrictcompAction()
     {
@@ -266,6 +290,50 @@ class HomeController extends ControllerBase
             return $this->response->redirect('errors/show404');
             exit('No direct script access allowed');
         }
+    }
+
+
+    public function firstloginAction()
+    {
+      
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $usergroup = $this->session->loginauthspuserfront['user_group_id'];
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            { 
+
+               $getresponse = $this->homecommon->updatetlogin($uid);
+               
+                if($getresponse == true)
+                    {
+                       $data = array("logged" => true,'message' => "updated");
+                         $this->response->setJsonContent($data);
+                      
+                    }
+                    else
+                    {
+                        $data = array("logged" => false,'message' => "data not updated");
+                        $this->response->setJsonContent($data);
+
+                    }
+
+                     $this->response->send();
+
+            }
+         else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        } 
+
     }
     
     

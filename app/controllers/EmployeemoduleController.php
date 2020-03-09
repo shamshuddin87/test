@@ -58,6 +58,8 @@ class EmployeemoduleController extends ControllerBase
                 $legal_idntfctn_no = $this->request->getPost('legal_idntfctn_no','trim');
                 $rqid   = $this->request->getPost('rqid','trim');
                 $toemail   = $this->request->getPost('toemail','trim');
+                //print_r($toemail);exit;
+
 
                 if(empty($pan))
                 {
@@ -153,18 +155,22 @@ class EmployeemoduleController extends ControllerBase
                         }
 
                         $result = $this->employeemodulecommon->updatemydetails($uid,$rqid,$usergroup,$data,$filepath);
-
+       
                         $sendmail = $this->emailer->mailofpersonalinfo($toemail,$fname);
                         //print_r($sendmail);exit;
                     }
                     else
                     {
+
+
+                        //print_r($toemail);exit;
                         $result = $this->employeemodulecommon->insmydetail($uid,$usergroup,$data,$filepath);
                         $sendmail = $this->emailer->mailofpersonalinfo($toemail,$fname);
+                        //print_r($sendmail);exit;
                     }
                     
                     //print_r($result);exit;
-                    if($result['status']==true && $sendmail['logged'] == true)
+                    if($result['status']== true && $sendmail['logged'] == true)
                     {
                         $data = array("logged" => true,'message' => $result['message']);
                         $this->response->setJsonContent($data);
@@ -412,6 +418,7 @@ class EmployeemoduleController extends ControllerBase
                 $fname   = $this->request->getPost('fname','trim');
                 $pan   = $this->request->getPost('pan','trim');
                 $dob   = $this->request->getPost('dob','trim');
+
                 $relationship   = $this->request->getPost('relationship','trim');
                 $sex   = $this->request->getPost('sex','trim');
                 $address   = $this->request->getPost('address','trim');
@@ -490,6 +497,7 @@ class EmployeemoduleController extends ControllerBase
                         }
                     }
                     $result = $this->employeemodulecommon->relativeinfo($uid,$usergroup,$reldata,$filepath);
+                    
                     if($result['status']==true)
                     {
                         $data = array("logged" => true,'message' =>$result['message']);
