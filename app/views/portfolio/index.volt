@@ -34,7 +34,28 @@
 <!--#########################################PERSONAL PORTOFOLIO##############################################-->
     <div class=" personaldetails" style="display: block;">
   <div class="acc">
-  	<h3 style="text-align: center;">How Many Demat Accounts Do You Have?</h3>
+   
+    <label class="do">Do you have any Demat Account? 
+  <?php 
+   //print_r($getdematsstatus);exit;
+  if(isset($getdematsstatus) && $getdematsstatus[0]['status'] == 1){ ?>
+
+    Yes<input type="radio" name="pastemp" value="1" class="dematup" checked onclick="showsection();" /> 
+    No<input type="radio" name="pastemp" value="0" class="dematup" onclick="hidesection();"><br>
+  <?php }else if(isset($getdematsstatus) && $getdematsstatus[0]['status'] == 0){ ?>
+
+    Yes<input type="radio" name="pastemp" value="1" class="dematup" onclick="showsection();"> 
+    No<input type="radio" name="pastemp" value="0" class="dematup" checked onclick="hidesection();"/><br>
+
+  <?php } else{ 
+   ?>
+    Yes<input type="radio" name="pastemp" value="1" class="dematup" onclick="showsection();"> 
+    No<input type="radio" name="pastemp" value="0" class="dematup" onclick="hidesection();"/><br>
+  <?php } ?>
+  </label>
+  
+  <div id = "showdemat" style="display: none;">
+  <h3 style="text-align: center;">How Many Demat Accounts Do You Have?</h3>
   <div class="input-group">
 
       <input type="text" class="form-control" id="noofacc" size="30" placeholder="No Of account" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
@@ -44,6 +65,7 @@
     </div>
    <div class="appendaccfield">
    </div>
+ 
   <!---------------------------------------------------------------------------------------------->
 
          <!----TABLE OF INSERTED DATA------------------------------------------------------------------>
@@ -61,7 +83,7 @@
    <tbody class="accdetails" appendrow='1'></tbody>
    <tr><td></td><tr>
   </table>
-
+  </div>
   </div>
 <!----------------------------Delete Modal----------------------------------------->
 <div id="myModalyesno" class="modal fade" role="dialog">
@@ -98,7 +120,7 @@
         <div class="title"></div>
         <div class="col-md-12 list_co">
           <label class="modal-title">Edit Account No</label>
-             <input type="text" id="editaccno" name="editaccno" class="form_fields form-control col-md-7 col-xs-12" required="required" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}" >
+             <input type="text" id="editaccno" name="editaccno" class="form_fields form-control col-md-7 col-xs-12" required="required" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="16" pattern="[A-Za-z0-9]{16}" >
         </div>    
           
         

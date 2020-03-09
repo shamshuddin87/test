@@ -27,7 +27,7 @@
          </div>
          <div class="col-md-3 col-xs-12 register">
             <button class="btn mfr">
-            Material Financial Relationship    
+            Other MFR  
             </button>
             <!-- <span class="tooltiptext_bg">The term “material financial relationship” shall mean a relationship in which one person is a recipient of any kind of payment such as by way of a loan or gift during the immediately preceding twelve months, equivalent to at least 25% of such payer’s annual income but shall exclude relationships in which the payment is based on arm’s length transactions</span> -->
          </div>
@@ -65,6 +65,8 @@
                <input type="hidden" id="fname" name="fname" placeholder="Your name.." value="<?php echo($userdetails[0]['fullname']) ?>">
                <?php if(!empty($personaldetails)){ ?>
                 <input type="hidden" id="rqid" name="rqid" placeholder="" value="<?php echo($personaldetails['id']) ?>">
+
+                 <input type="hidden" id="toemail" name="toemail" placeholder="" value="<?php echo($userdetails[0]['email']) ?> ">
                <!-- </div> -->
                <div class="col-md-4 col-xs-12">
                   <label for="pan">PAN*</label>
@@ -85,7 +87,7 @@
                   <input type="text" id="legal_idntfctn_no" value="<?php echo($personaldetails['legal_identification_no']) ?>" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
                </div>
                <div class="col-md-4 col-xs-12">
-                  <label for="aadhar">Aadhaar</label>
+                  <label for="aadhar">Aadhaar*</label>
                   <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<?php echo($personaldetails['aadhar']) ?>" maxlength="12" pattern="[0-9]{12}">
                </div>
                <div class="col-md-4 col-xs-12">
@@ -109,9 +111,9 @@
                         <input type="radio" id="sex" name="sex"  value="Female"  />Female
                         <input type="radio" id="sex" name="sex"  value="Other" checked />Other
                           <?php } else {?>
-                        <input type="radio" id="sex" name="sex" value="Male" checked />Male
+                        <input type="radio" id="sex" name="sex" value="Male" />Male
                         <input type="radio" id="sex" name="sex"  value="Female"  />Female
-                        <input type="radio" id="sex" name="sex"  value="Other" checked />Other
+                        <input type="radio" id="sex" name="sex"  value="Other"  />Other
                         <?php }?>
                    </div>
                    <div class="col-md-4 col-xs-12">
@@ -148,6 +150,7 @@
                </div>
                 <div class="row">
                   <div class="col-md-12 col-xs-12"> 
+
                 <div class="col-md-4 col-xs-12 "> 
                   <label for="age">Holdings In Shares*</label>  
                   <input type="text" id="shareholdng" name="shareholdng" value="<?php echo($personaldetails['sharehldng']) ?>" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
@@ -157,6 +160,17 @@
                   <label for="age">Holdings In ADRs*</label>
                   <input type="text" id="adrsholdng" name="adrsholdng" value="<?php echo($personaldetails['adrshldng']) ?>" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
                </div>
+
+                <div class="col-md-4 col-xs-12 "> 
+                  <label for="age">Occupation*</label>
+                  <input type="text" id="occupation" name="occupation" value="<?php echo($personaldetails['occupation']) ?>" placeholder="Occupation"  required>
+               </div>
+
+                <div class="col-md-4 col-xs-12 "> 
+                  <label for="age">Name of Companies/Firm*</label>
+                  <input type="text" id="company" name="company" value="<?php echo($personaldetails['company']) ?>" placeholder="Name of Companies/Firm " required>
+               </div>
+
                 </div>
                 </div>
                 <?php } else { ?>
@@ -180,7 +194,7 @@
                   <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
                </div>
                <div class="col-md-4 col-xs-12">
-                  <label for="aadhar">Aadhaar</label>
+                  <label for="aadhar">Aadhaar*</label>
                   <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
                </div>
                <div class="col-md-4 col-xs-12">
@@ -191,7 +205,7 @@
                <div class="col-md-12 col-xs-12"> 
                    <div class="col-md-4 col-xs-12"> 
                         <label class="gender" for="sex">Gender*</label>
-                        <input type="radio" id="sex" name="sex" value="Male" checked/>Male
+                        <input type="radio" id="sex" name="sex" value="Male" />Male
                         <input type="radio" id="sex" name="sex"  value="Female"/>Female
                         <input type="radio" id="sex" name="sex"  value="Other"/>Other
                    </div>
@@ -234,11 +248,22 @@
                   <label for="age">Holdings In ADRs*</label>
                   <input type="text" id="adrsholdng" name="adrsholdng"  placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
                </div>
+
+                <div class="col-md-4 col-xs-12 "> 
+                  <label for="age">Occupation*</label>
+                  <input type="text" id="occupation" name="occupation" placeholder="Occupation"  required>
+               </div>
+
+                <div class="col-md-4 col-xs-12 "> 
+                  <label for="age">Name of Companies/Firm*</label>
+                  <input type="text" id="company" name="company"  placeholder="Name of Companies/Firm " required>
+               </div>
+
                 </div>
               </div>
                 <?php } ?>
-               <div class="col-md-12 "> 
-                  <input class="btn btn-primary" type="submit" value="Submit">
+               <div class="col-md-12 " > 
+                  <input class="btn btn-primary" type="button" value="Submit" id="confirmpersonalinfo" onclick="confirmdisclosure(this.id)"  style="float: right;">
                </div>
             </form>
          </div>
@@ -306,30 +331,7 @@
                     </div>
             </div>
             <div class="clearelement"></div>
-<!--
-            <div class="table_data table-responsive">
-               <table class="table table-inverse" id="datableabhi">
-                  <thead>
-                     <tr>
-                        <th>Sr No</th>
-                        <th>Pan</th>
-                        <th>Aadhaar</th>
-                        <th>Date Of Becoming Dp</th>
-                        <th>Date Of Birth</th>
-                        <th>Qualification</th>
-                        <th>Institute</th>
-                        <th>Mobile No</th>
-                        <th>File</th>
-                        <th>Past Employment</th>
-                        <th>Send For Approval</th>
-                        <th>Approval Status</th>
-                        <th>Action</th>
-                     </tr>
-                  </thead>
-                  <tbody class="perdetail" appendrow='1'></tbody>
-               </table>
-            </div>
--->
+
             <!------------------------------------MODAL BOX FOR EDIT------------------------------------------>
             <div id="mydataedit" class="modal fade" role="dialog">
                <div class="modal-dialog">
@@ -348,7 +350,7 @@
                            </div>
 
                            <div class="col-md-6">
-                              <label for="aadhar">Aadhaar</label>
+                              <label for="aadhar">Aadhaar*</label>
                               <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
                            </div>
 
@@ -445,6 +447,7 @@
             <!---------------------------------------------------------------------------------------------->
          </div>
       </div>
+
       <div class="col-md-12 col-xs-12 col-sm-12">
          <div class=" row relativesform" style="display: none;">
             <h3 class="col col-xs-6" style="margin-top: 30px;">Insert Relative Details</h3>
@@ -512,7 +515,7 @@
                       
                     <div class="row">
                      <div class="col-md-4"> 
-                        <label>Aadhaar</label>
+                        <label>Aadhaar*</label>
                         <input  class=" aadhar" placeholder="Aadhaar" id="aadhar"  name="aadhar" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}" />
                      </div>
                      <div class="col-md-4">
@@ -531,7 +534,7 @@
                     <div class="row">
                      <div class="col-md-4"> 
                         <label style="display: block;" for="sex">Gender*</label>
-                        <input type="radio" id="1_sex" name="sex" value="Male" checked/>Male
+                        <input type="radio" id="1_sex" name="sex" value="Male" />Male
                         <input type="radio" id="1_sex" name="sex"  value="Female">Female 
                         <input type="radio" id="1_sex" name="sex"  value="Other">Other 
                      </div>
@@ -553,11 +556,24 @@
                      <div class="col-md-4"> 
                           <label for="age">Holdings In ADRs*</label>
                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
-                       </div>
+                      </div>
+
+                      <div class="col-md-4 col-xs-12 "> 
+                      <label for="age">Occupation*</label>
+                     <input type="text" id="reloccupation" name="reloccupation" placeholder="Occupation"  required>
+                    </div>
+
+                <div class="col-md-4 col-xs-12 "> 
+                  <label for="age">Name of Companies/Firm*</label>
+                  <input type="text" id="relcompany" name="relcompany"  placeholder="Name of Companies/Firm " required>
+               </div>
+
+
+
                     </div>
                      </div>
                      <div class="col-md-12">
-                        <input class="btn btn-primary" type="submit" name="submit" value="Submit" id="relsub">
+                        <input class="btn btn-primary" type="button" name="submit" value="Submit" id="relsub" onclick="confirmdisclosure(this.id)">
                      </div>
                   </div>
                </form>
@@ -677,7 +693,7 @@
                                 <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
                             </div>
                            <div class="col-md-6">
-                              <label for="aadhar">Aadhaar</label>
+                              <label for="aadhar">Aadhaar*</label>
                               <input type="text" id="aadhar" name="aadhar" placeholder="Aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
                            </div>
                            <div class="col-md-6">
@@ -717,10 +733,21 @@
                               <label for="age">Holdings In ADRs*</label>
                               <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required >
                            </div>
+
+                           <div class="col-md-4 col-xs-12 "> 
+                             <label for="age">Occupation*</label>
+                             <input type="text" id="reloccupationup" name="reloccupationup" placeholder="Occupation"  required>
+                            </div>
+
+                            <div class="col-md-4 col-xs-12 "> 
+                            <label for="age">Name of Companies/Firm*</label>
+                            <input type="text" id="relcompanyup" name="relcompanyup"  placeholder="Name of Companies/Firm " required>
+                            </div>
+
                             </div>
                           </div>
                            <div class="col-md-12"> 
-                              <input type="submit" value="Update">
+                              <input type="button" value="Update" onclick="confirmdisclosure(this.id)" id="relupdate">
                            </div>
                         </form>
                      </div>
@@ -734,25 +761,39 @@
       </div>
       <div class="col-md-12 col-lg-12">
          <div class="row relativesform mymfr" style="display: none;">
-           <h3 class="col col-xs-6" style="margin-top: 30px;">Insert Financial Relationship Details</h3>
+           <h3 class="col col-xs-6" style="margin-top: 30px;">Financial Relationship Details</h3>
             <div class="tooltip_div col col-xs-6" style="margin-top: 30px;">
                <a href="javascript:void(0);" data="The term “material financial relationship” shall mean a relationship in which one person is a recipient of any kind of payment such as by way of a loan or gift during the immediately preceding twelve months, equivalent to at least 25% of such payer’s annual income but shall exclude relationships in which the payment is based on arm’s length transactions" class="tooltip_c">what is material financial relationship <abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
             </div>
             <div class="col col-xs-12">
               <div class="input-group row">
                <div class="col-md-6">
-                  <label>Name of the Related party*</label>
-                  <input type="text" placeholder="Name of the Related party" id="mfrname">
+                  <label>Name of the Person*</label>
+                  <input type="text" placeholder="Name of the Person" id="mfrname">
                </div>
                <div class="col-md-6">
                   <label>Identity Number (PAN/Aadhaar etc.)*</label>
                   <input type="text" placeholder="pan" id="adharpan" onkeypress="return isAlphaNumeric(event,this.value);">
                </div>
                <div class="col-md-6">
-                  <label>Nature of Relationship*</label>
-                  <input type="text" placeholder="Nature of Relationship " id="mfrrelation">
+                  <label>Relationship*</label>
+                  <input type="text" placeholder="Relationship " id="mfrrelation">
                </div>
-               <div class="col-md-6">
+              
+
+                <div class="col-md-6">
+                  <label>Nature of Transaction*</label>
+                    <input type="text" placeholder="Nature of Transaction " id="mfrtransaction">
+                 
+               </div>
+
+                <div class="col-md-6">
+                  <label>DP ID/Client ID*</label>
+                  <input type="text" placeholder="DP ID/Client ID " id="mfrclientid" onkeypress="return isAlphaNumeric(event);" maxlength="16">
+                  
+               </div>
+
+                <div class="col-md-6">
                   <label>Address</label>
                   <textarea id="materialaddress" placeholder="Write address.." style="height:100px"></textarea>
                </div>
@@ -765,14 +806,14 @@
             </div>
             <!---------------------------------------------------------------------------------------------->
             <!----TABLE OF INSERTED DATA------------------------------------------------------------------>
-            <h4 class="mfrdetails">Material Financial Relationship Details</h4>
+            <h4 class="mfrdetails">Other MFR</h4>
             <table class="table table-inverse" id="datableabhi">
                <thead>
                   <tr>
                      <th>Sr No</th>
-                     <th>Name of the Related party</th>
+                     <th>Name of the Person</th>
                      <th>Identity Number</th>
-                     <th>Nature of Relationship</th>
+                     <th>Relationship</th>
                      <th>Address</th>
                      <th> Action </th>
                   </tr>
@@ -782,34 +823,7 @@
                   <td></td>
                <tr>
             </table>
-<!--
-            <div class="trdebtn">
-               <div class="trdinti">
-                  <h4 class="tradedetails">Trade Intimation Details</h4>
-               </div>
-               <div class="text-right">
-               <button type="button" class="btn btn-danger" id="trdeintimatn">Trade Intimation</button> 
-            </div>
-            </div>
-            <table class="table table-inverse" id="datableabhi">
-               <thead>
-                  <tr>
-                     <th>Sr No</th>
-                     <th>Name of the Related party</th>
-                     <th>Type Of Security</th>
-                     <th>Company Name</th>
-                     <th>No.Of Shares</th>
-                     <th>Date Of Transaction</th>
-                     <th>Type Of Transaction</th>
-                     <th>Action</th>
-                  </tr>
-               </thead>
-               <tbody class="trdeintimatndetail" appendrow='1'></tbody>
-               <tr>
-                  <td></td>
-               <tr>
-            </table>
--->
+
          </div>
          <div id="mfrdelmodal" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -828,6 +842,65 @@
                </div>
             </div>
          </div>
+              
+          <div id="updateholdings1" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">
+                     &times;</button>
+                  </div>
+                  <div class="modal-body">
+                    
+                     <h5 style="text-align: center;">Please Confirm,you have submitted necessary disclosers</h5>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-danger" id="yesdisclosures1">Yes</button> 
+                      <button type="button" class="btn btn-danger" id="nodisclosures1" onclick="nodisclosures(this.id);">No</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+          <div id="updateholdings2" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">
+                     &times;</button>
+                  </div>
+                  <div class="modal-body">
+                    
+                     <h5 style="text-align: center;">Please Confirm,you have submitted necessary disclosers</h5>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-danger" id="yesdisclosures2">Yes</button> 
+                      <button type="button" class="btn btn-danger" id="nodisclosures2" onclick="nodisclosures(this.id);">No</button>
+                  </div>
+               </div>
+            </div>
+         </div> 
+
+          <div id="updateholdings3" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">
+                     &times;</button>
+                  </div>
+                  <div class="modal-body">
+                    
+                     <h5 style="text-align: center;">Please Confirm,you have submitted necessary disclosers</h5>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-danger" id="yesdisclosures3">Yes</button> 
+                      <button type="button" class="btn btn-danger" id="nodisclosures3" onclick="nodisclosures(this.id);">No</button>
+                  </div>
+               </div>
+            </div>
+         </div> 
+        
+
          <div id="mfrdelmodaledit" class="modal fade" role="dialog">
             <div class="modal-dialog">
                <!-- Modal content-->
@@ -842,21 +915,36 @@
                      <input type="hidden" id="mfreditid" value="" name="">
                   </div>
                   <div class="col-md-6">
-                     <label>Name of the Related party</label>
-                     <input type="text" placeholder="Name of the Related party" id="mfrnameup">
+                     <label>Name of the Person</label>
+                     <input type="text" placeholder="Name of the Person" id="mfrnameup">
                   </div>
                   <div class="col-md-6">
                      <label>Identity Number (PAN/Aadhaar etc.)*</label>
                      <input type="text" placeholder="pan" id="adharpanup" onkeypress="return isAlphaNumeric(event,this.value);">
                   </div>
                   <div class="col-md-6">
-                     <label>Nature of Relationship</label>
-                     <input type="text" placeholder="Nature of Relationship " id="mfrrelationup">
+                     <label>Relationship</label>
+                     <input type="text" placeholder="Relationship " id="mfrrelationup">
                   </div>
-                  <div class="col-md-6">
+                 
+
+                   <div class="col-md-6">
+                  <label>Nature of Transaction*</label>
+                    <input type="text" placeholder="Nature of Transaction " id="mfrtransactionup">
+                 
+               </div>
+
+                <div class="col-md-6">
+                  <label>DP ID/Client ID*</label>
+                  <input type="text" placeholder="DP ID/Client ID " id="mfrclientidup" onkeypress="return isAlphaNumeric(event,this.value); "maxlength="16" pattern="[A-Za-z0-9]{16}">
+                  
+               </div>
+
+                <div class="col-md-6">
                      <label>Address</label>
                      <textarea id="materialaddressup" placeholder="Write address.." style="height:100px"></textarea>
                   </div>
+
                   <div class="modal-footer">
                      <button type="button" class="btn btn-primary" id="upmfrmod">Update</button> 
                   </div>
@@ -907,7 +995,7 @@
                         </section>
                         <section class="col col-md-6 col-xs-6">
                            <div class="input">
-                              <label class="control-label">Name Of Related Party*</label> 
+                              <label class="control-label">Name Of the Person*</label> 
                               <select id="reltedprty" name="reltedprty" class="form_fields form-control col-md-7 col-xs-12" >
                                  <option value="" id="reltedprty" >Select Related Party</option>
                                  <?php foreach($relatedparty as $party){  ?>
@@ -1005,7 +1093,7 @@
                         </section>
                         <section class="col col-md-6 col-xs-6">
                            <div class="input">
-                              <label class="control-label">Name Of Related Party*</label> 
+                              <label class="control-label">Name Of the Person*</label> 
                               <select id="reltedprty" name="reltedprty" class="form_fields form-control col-md-7 col-xs-12" >
                                  <?php foreach($relatedparty as $party){  ?>
                                  <option value="<?php echo $party['id']; ?>"><?php echo $party['related_party']; ?></option>

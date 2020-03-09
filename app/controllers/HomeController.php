@@ -192,6 +192,81 @@ class HomeController extends ControllerBase
             exit('No direct script access allowed');
         }
     }
+
+
+    public function checkdetailsAction()
+    {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $usergroup = $this->session->loginauthspuserfront['user_group_id'];
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {     
+                $result = $this->employeemodulecommon->getmydetails($uid,$usergroup);
+                //print_r($result);exit;
+                $getdematsstatus=$this->portfoliocommon->getdematsstatus($uid,$usergroup);
+                //print_r($getdematsstatus);exit;
+                if(!empty($getdematsstatus))
+                {
+                   // print_r($getdematsstatus);exit;
+                  if($getdematsstatus[0]['status']==1)
+                  {
+                       // print_r("hh");exit;
+                      $getdematsstatus=1;
+                  }
+                  else
+                  {
+                     $getdematsstatus=0;
+                  }
+                }
+                else
+                {
+                     $getdematsstatus=2;
+                }
+
+                // print_r($getdematsstatus);exit;
+            
+                if(!empty($result))
+                {  
+                    
+
+                    $getresponse = $this->portfoliocommon->getaccnoinfo($uid,$usergroup);
+                  
+                    if((empty($getresponse) &&  $getdematsstatus==1) || (empty($getresponse) &&  $getdematsstatus==2))
+                    {
+                       $data = array("logged" => false,'message' => "For using the software please enter your demat account details ",'data'=>'portfolio','usergroup'=>$usergroup);
+                         $this->response->setJsonContent($data);
+                       $this->response->setJsonContent($data);
+                    }
+                    else
+                    {
+                        $data = array("logged" => true,'message' => "Data Fetch Successfully",'data'=>'');
+                             $this->response->setJsonContent($data);
+
+                    }
+                }
+                else
+                {
+
+                    $data = array("logged" => false,'message' => "For using the software please enter your personal details",'data'=>'employeemodule','usergroup'=>$usergroup);
+                    $this->response->setJsonContent($data);
+                }
+
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
     
     
     

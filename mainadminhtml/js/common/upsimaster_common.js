@@ -156,7 +156,7 @@ website('body').on('click','.upedit',function(e){
 
                             addhtml+= '<div class="row-'+userid+'"><section class="col col-md-8 col-xs-8"><label class="control-label">Name of Connected DP*</label><input type="text" id="approvers" name="approvers[]" class="form_fields form-control col-md-7 col-xs-12" value="'+username+'" userid="'+userid+'" useremail="'+useremail+'" required readonly></section>';
 
-                            addhtml += '<section class="col col-md-4 col-xs-4"><i class="fa fa-trash-o faicon dbaprvl" num="'+userid+'" title="Delete entry"></i></section>';
+                            // addhtml += '<section class="col col-md-4 col-xs-4"><i class="fa fa-trash-o faicon dbaprvl" num="'+userid+'" title="Delete entry"></i></section>';
                             
                             addhtml+= '<input type="hidden" value="'+userid+'" name="connectdps[]">';
                             addhtml+= '<input type="hidden" value="'+useremail+'" name="useremail[]"></div>';
@@ -165,6 +165,26 @@ website('body').on('click','.upedit',function(e){
                       
                     }
                 }
+
+                // console.log(response);
+                if(response.data.projectowner == response.loggedinuser)
+                {
+                    // console.log('in iff'); 
+                    website("#upsimodel #upname").attr("readonly","readonly");
+                    website("#upsimodel #projdesc").attr("readonly","readonly");
+                    website(".searchowner").attr("readonly","readonly");
+                    website("#upsimodel #pstartdte").attr("disabled","disabled");
+                     website("#upsimodel #enddate").attr("disabled","disabled");
+                }
+                else
+                {
+                    website("#upsimodel #upname").removeAttr("readonly");
+                    website("#upsimodel #projdesc").removeAttr("readonly");
+                    website(".searchowner").removeAttr("readonly");
+                    website("#upsimodel #pstartdte").removeAttr("disabled");
+                    website("#upsimodel #enddate").removeAttr("disabled");
+                }
+
                 var upupsnm = response.data['upsitype']?response.data['upsitype']:'';
                 var projstartdate = response.data['projstartdate']?response.data['projstartdate']:'';
                 var enddate = response.data['enddate']?response.data['enddate']:'';
@@ -828,7 +848,7 @@ function doSearchfordps(getvalue)
      
         addhtml+= '<div class="row-'+userid+'"><section class="col col-md-8 col-xs-8"><label class="control-label">Name of Connected DP*</label><input type="text" id="approvers" name="approvers[]" class="form_fields form-control col-md-7 col-xs-12" value="'+username+'" userid="'+userid+'" useremail="'+useremail+'" required readonly></section>';
      
-       addhtml += '<section class="col col-md-4 col-xs-4"><i class="fa fa-trash-o faicon dbaprvl" num="'+userid+'" title="Delete entry"></i></section>';
+       // addhtml += '<section class="col col-md-4 col-xs-4"><i class="fa fa-trash-o faicon dbaprvl" num="'+userid+'" title="Delete entry"></i></section>';
        
        addhtml+= '<input type="hidden" value="'+userid+'" name="connectdps[]">';
        addhtml+= '<input type="hidden" value="'+useremail+'" name="useremail[]"></div>';

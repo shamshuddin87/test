@@ -471,5 +471,49 @@
        </div>
       </div>
 
+
+<div id="updateholdings" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">
+                     &times;</button>
+                  </div>
+                  <div class="modal-body">
+                    
+                     <h5 style="text-align: center;">Please Confirm,you have submitted necessary disclosers</h5>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-danger" id="yesdisclosures" onclick="disclosures(this.id);">Yes</button> 
+                      <button type="button" class="btn btn-danger" id="nodisclosures" onclick="disclosures(this.id);">No</button>
+                  </div>
+               </div>
+            </div>
+ </div>
+ <!-- check personal details and demat account info at login Modal -->     
+<div id="declaration" class="modal fade" role="dialog">
+<div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+                &times;</button>
+            <span  id="decmsg"></span>
+
+        <div class="modal-body">
+            <div class="arng">
+
+             </div>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+       
+
  
           

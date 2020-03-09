@@ -149,6 +149,7 @@ function getuseraccno(){
              {
                 var htmlelements='';
                 var j=1;
+                website("#showdemat").css("display","block");
                  for(var i=0;i<response.data.length;i++)
                  {
                       //console.log(response.data[i].accountno);return false; 
@@ -662,3 +663,59 @@ website("body").on("click","#subreldemat",function(e){
  }
 
 });
+
+
+
+ website('body').on('click','.dematup',function(e){
+
+   var dematup=website(this).val();
+   // alert(dematup)
+   website.ajax({
+        url:'portfolio/zerodematacc',
+        data:{dematup:dematup},
+        method:'POST',
+        //contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, Cross domain checking
+        beforeSend: function()
+        {     },
+        uploadProgress: function(event, position, total, percentComplete)
+        {   },
+        success: function(response, textStatus, jqXHR)
+         {
+              //console.log(response);
+              website('#alertcommon #allalertmsg').html(response.message);
+                website('#alertcommon').modal('show');
+         },
+        complete: function(response)
+        {   },
+        error: function(jqXHR, textStatus, errorThrown)
+        {   }
+   });
+});
+
+
+function showsection(){
+
+
+var section = document.getElementById("showdemat");
+
+
+  if (section.style.display === "none") {
+    section.style.display = "block";
+  } 
+
+}
+
+function hidesection(){
+
+var section = document.getElementById("showdemat");
+
+  if (section.style.display === "block") 
+  {
+    section.style.display = "none";
+  } 
+}

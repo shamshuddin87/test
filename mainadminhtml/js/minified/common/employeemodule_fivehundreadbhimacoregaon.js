@@ -10,16 +10,47 @@ else
 {}});website('.relativesform').hide();website('.personal').click(function(e){e.preventDefault();website(this).addClass('active');website('.relatives').removeClass('active');website('.mfr').removeClass('active');website('.personaldetails').show();website('.mymfr').hide();website('.relativesform').hide();});website('.relatives').click(function(e){e.preventDefault();website(this).addClass('active');website('.personal').removeClass('active');website('.mfr').removeClass('active');website('.relativesform').show();website('.mymfr').hide();website('.personaldetails').hide();});website('.mfr').click(function(e){e.preventDefault();website(this).addClass('active');website('.relatives').removeClass('active');website('.personal').removeClass('active');website('.relativesform').hide();website('.personaldetails').hide();website('.mymfr').show();});(function(replace){function floatLabel(inputType){replace(inputType).each(function(){var replacethis=replace(this);var text_value=replace(this).val();replacethis.focus(function(){replacethis.next().addClass("active");});replacethis.blur(function(){if(replacethis.val()===''||replacethis.val()==='blank'){replacethis.next().removeClass();}});if(text_value!=''){replacethis.next().addClass("active");}});replace("select").next().removeClass();}
 floatLabel(".floatLabel");})(jQuery);datepicker();function datepicker(){website('.bootdatepick').datetimepicker({weekStart:1,todayBtn:0,autoclose:1,todayHighlight:0,startView:2,minView:2,forceParse:0,format:"dd-mm-yyyy"}).on('change',function(e,date)
 {var getdate=website(this).val();var getid=website(this).closest('form').attr('id');});}
-website('#perdetail').ajaxForm({dataType:"json",beforeSend:function()
+function confirmdisclosure(id)
+{var id=id;if(id=="confirmpersonalinfo")
+{website('#updateholdings1').modal('show');}
+else if(id=="relsub")
+{website('#updateholdings2').modal('show');}
+else if(id=="relupdate")
+{website('#updateholdings3').modal('show');}}
+function nodisclosures(id)
+{if(id=="nodisclosures1")
+{new PNotify({title:'Alert',text:'Please Submit necessary disclosures First',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website('#updateholdings1').modal('hide');}
+else if(id=="nodisclosures2")
+{new PNotify({title:'Alert',text:'Please Submit necessary disclosures First',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website('#updateholdings2').modal('hide');}
+else if(id=="nodisclosures3")
+{new PNotify({title:'Alert',text:'Please Submit necessary disclosures First',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website('#updateholdings3').modal('hide');website('#reledit').modal('hide');}}
+website('body').on('click','#yesdisclosures1',function(e){var fname=website("#fname").val();var pan=website("#pan").val();var aadhar=website("#aadhar").val();var dob=website("#dob").val();var sex=website("input[name='sex']:checked").val();var address=website("#address").val();var eduqulfcn=website("#eduqulfcn").val();var institute=website("#institute").val();var mobno=website("#mobno").val();var hldngfile=website("#hldngfile").val();var legal_idntfr=website("#legal_idntfr").val();var legal_idntfctn_no=website("#legal_idntfctn_no").val();var rqid=website("#rqid").val();var toemail=website("#toemail").val();var shareholdng=website("#shareholdng").val();var adrsholdng=website("#adrsholdng").val();var occupation=website("#occupation").val();var company=website("#company").val();var formdata={fname:fname,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,institute:institute,mobno:mobno,hldngfile:hldngfile,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,rqid:rqid,toemail:toemail,shareholdng:shareholdng,adrsholdng:adrsholdng,occupation:occupation,company:company}
+website.ajax({url:'employeemodule/insmydetail',method:'POST',data:formdata,contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{website('.preloder_wraper').fadeOut();website('#updateholdings1').modal('hide');if(response.logged==true)
+{getpersonalinfo();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}});});website('body').on('click','#yesdisclosures2',function(e){var fname=website("#getdata_1 #fname").val();var relationship=website("#getdata_1 #relationship").val();var depnature=website("#getdata_1 #depnature").val();var pan=website("#getdata_1 #pan").val();var aadhar=website("#getdata_1 #aadhar").val();var dob=website("#getdata_1 #dob").val();var sex=website("#getdata_1 input[name='sex']:checked").val();var address=website("#getdata_1 #address").val();var eduqulfcn=website("#getdata_1 #eduqulfcn").val();var file=website("#getdata_1 #file").val();var legal_idntfr=website("#getdata_1 #legal_idntfr").val();var legal_idntfctn_no=website("#getdata_1 #legal_idntfctn_no").val();var shareholdng=website("#getdata_1 #shareholdng").val();var adrsholdng=website("#getdata_1 #adrsholdng").val();var reloccupation=website("#getdata_1 #reloccupation").val();var relcompany=website("#getdata_1 #relcompany").val();var formdata={relationship:relationship,fname:fname,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,reloccupation:reloccupation,relcompany:relcompany,depnature:depnature}
+website.ajax({url:'employeemodule/relationdata',method:'POST',data:formdata,contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{getpersonalinfo();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+{website('#updateholdings2').modal('hide');getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
-{}});website('#upmydetails').ajaxForm({dataType:"json",beforeSend:function()
+{}});});website('body').on('click','#yesdisclosures3',function(e){var name=website("#reledit #name").val();var relationship=website("#reledit #relationship").val();var depnature=website("#reledit #depnature").val();var releditid=website("#reledit #releditid").val();var pan=website("#reledit #pan").val();var aadhar=website("#reledit #aadhar").val();var dob=website("#reledit #dob").val();var sex=website("#reledit input[name='sex']:checked").val();var address=website("#reledit #address").val();var eduqulfcn=website("#reledit #eduqulfcn").val();var file=website("#reledit #file").val();var legal_idntfr=website("#reledit #legal_idntfr").val();var legal_idntfctn_no=website("#reledit #legal_idntfctn_no").val();var shareholdng=website("#reledit #shareholdng").val();var adrsholdng=website("#reledit #adrsholdng").val();var occupation=website("#reledit #reloccupationup").val();var company=website("#reledit #relcompanyup").val();var formdata={releditid:releditid,relationship:relationship,name:name,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,occupation:occupation,company:company,depnature:depnature}
+website.ajax({url:'employeemodule/updaterelatives',method:'POST',data:formdata,contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{website('#reledit').modal('hide');website('#updateholdings3').modal('hide');getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function()
+{}});});website('#upmydetails').ajaxForm({dataType:"json",beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {website('#mydataedit').modal('hide');getpersonalinfo();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
@@ -93,19 +124,11 @@ else{new PNotify({title:'Alert',text:response.message,type:'university',hide:tru
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged==true)
-{var name=response.data.name?response.data.name:"";var pan=response.data.pan?response.data.pan:"";var aadhar=response.data.aadhar?response.data.aadhar:"";var dob=response.data.dob?response.data.dob:"";var sex=response.data.sex?response.data.sex:"";var relationship=response.data.relationship?response.data.relationship:"";var education=response.data.education?response.data.education:'';var id=response.data.id?response.data.id:"";var relationship=response.data.relationship?response.data.relationship:"";var address=response.data.address?response.data.address:"";var sharehldng=response.data.sharehldng?response.data.sharehldng:"";var adrshldng=response.data.adrshldng?response.data.adrshldng:"";var legal_idntfr=response.data.legal_identifier?response.data.legal_identifier:"";var legal_idntfctn_no=response.data.legal_identification_no?response.data.legal_identification_no:"";var dependantnature=response.data.dependency_nature?response.data.dependency_nature:"";var filepath=response.data.filepath
-jQuery("#reledit input[value='"+sex+"']").attr('checked',true);website('#reledit #name').val(name);website('#reledit #releditid').val(id);website('#reledit #relationship').val(relationship);website('#reledit #pan').val(pan);website('#reledit #aadhar').val(aadhar);website('#reledit #dob').val(dob);website('#reledit #relationship').val(relationship);website('#reledit #address').val(address);website('#reledit #eduqulfcn').val(education);website('#reledit #filepath').val(filepath);website('#reledit #shareholdng').val(sharehldng);website('#reledit #adrsholdng').val(adrshldng);website('#reledit #legal_idntfr').val(legal_idntfr);website('#reledit #legal_idntfctn_no').val(legal_idntfctn_no);dependantnature=dependantnature.split(",");website.each(dependantnature,function(key,value){website('#reledit #depnature option[value="'+value+'"]').attr('selected','selected');});website('#reledit').modal('show');}
+{var name=response.data.name?response.data.name:"";var pan=response.data.pan?response.data.pan:"";var aadhar=response.data.aadhar?response.data.aadhar:"";var dob=response.data.dob?response.data.dob:"";var sex=response.data.sex?response.data.sex:"";var relationship=response.data.relationship?response.data.relationship:"";var education=response.data.education?response.data.education:'';var id=response.data.id?response.data.id:"";var relationship=response.data.relationship?response.data.relationship:"";var address=response.data.address?response.data.address:"";var sharehldng=response.data.sharehldng?response.data.sharehldng:"";var adrshldng=response.data.adrshldng?response.data.adrshldng:"";var legal_idntfr=response.data.legal_identifier?response.data.legal_identifier:"";var legal_idntfctn_no=response.data.legal_identification_no?response.data.legal_identification_no:"";var dependantnature=response.data.dependency_nature?response.data.dependency_nature:"";var occupation=response.data.occupation?response.data.occupation:"";var company=response.data.company?response.data.company:"";var filepath=response.data.filepath
+jQuery("#reledit input[value='"+sex+"']").attr('checked',true);website('#reledit #name').val(name);website('#reledit #releditid').val(id);website('#reledit #relationship').val(relationship);website('#reledit #pan').val(pan);website('#reledit #aadhar').val(aadhar);website('#reledit #dob').val(dob);website('#reledit #relationship').val(relationship);website('#reledit #address').val(address);website('#reledit #eduqulfcn').val(education);website('#reledit #filepath').val(filepath);website('#reledit #shareholdng').val(sharehldng);website('#reledit #adrsholdng').val(adrshldng);website('#reledit #legal_idntfr').val(legal_idntfr);website('#reledit #legal_idntfctn_no').val(legal_idntfctn_no);website('#reledit #reloccupationup').val(occupation);website('#reledit #relcompanyup').val(company);dependantnature=dependantnature.split(",");website.each(dependantnature,function(key,value){website('#reledit #depnature option[value="'+value+'"]').attr('selected','selected');});website('#reledit').modal('show');}
 else{}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
-{}});});website('#uprel').ajaxForm({dataType:"json",beforeSend:function()
-{},uploadProgress:function(event,position,total,percentComplete)
-{},success:function(response,textStatus,jqXHR)
-{if(response.logged===true)
-{website('#reledit').modal('hide');getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
-else
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
-{},error:function()
-{}});aadharvalidation();function aadharvalidation(){website(".aadhar").on("keyup",function(){var aadharno=parseInt(website(this).val());len=aadharno.toString().length;if(aadharno!=''&&len>=12)
+{}});});aadharvalidation();function aadharvalidation(){website(".aadhar").on("keyup",function(){var aadharno=parseInt(website(this).val());len=aadharno.toString().length;if(aadharno!=''&&len>=12)
 {website.ajax({url:'employeemodule/aadharvalidation',data:{aadharno:aadharno},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
@@ -121,22 +144,14 @@ panvalidation();function panvalidation()
 {document.getElementById("relsub").disabled=true;website(".valida").css("display","none");new PNotify({title:'Alert',text:"Pan No Already Exist You Can Not Insert Data",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}});}
 else
 {document.getElementById("relsub").disabled=false;website(".valida").css("display","block");}});}
-website('#getdata_1').ajaxForm({dataType:"json",beforeSend:function()
-{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
-{},success:function(response,textStatus,jqXHR)
-{if(response.logged===true)
-{website('#mydataedit').modal('hide');getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
-else
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
-{website('.preloder_wraper').fadeOut();},error:function()
-{}});website('body').on('click','.viewdetail',function()
-{var id=website(this).attr('personalid');var baseHref=getbaseurl();window.location.href=baseHref+'employeemodule/viewpastemployer';});website('#upmfrmod').click(function(e){var mfreditid=website('#mfreditid').val();var mfrname=website('#mfrnameup').val();var panup=website('#adharpanup').val();var addressup=website('#materialaddressup').val();var mfrrelation=website('#mfrrelationup').val();website.ajax({url:'employeemodule/updatemfr',data:{mfrname:mfrname,mfrrelation:mfrrelation,mfreditid:mfreditid,panup:panup,addressup:addressup},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+website('body').on('click','.viewdetail',function()
+{var id=website(this).attr('personalid');var baseHref=getbaseurl();window.location.href=baseHref+'employeemodule/viewpastemployer';});website('#upmfrmod').click(function(e){var mfreditid=website('#mfreditid').val();var mfrname=website('#mfrnameup').val();var panup=website('#adharpanup').val();var addressup=website('#materialaddressup').val();var mfrrelation=website('#mfrrelationup').val();var transaction=website('#mfrtransactionup').val();var clientid=website('#mfrclientidup').val();website.ajax({url:'employeemodule/updatemfr',data:{mfrname:mfrname,mfrrelation:mfrrelation,mfreditid:mfreditid,panup:panup,addressup:addressup,transaction:transaction,clientid:clientid},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {getmfrdata();website('#mfrdelmodaledit').modal('hide');window.location.reload();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}});});website('#savemfr').click(function(e){var mfrname=website('#mfrname').val();var mfrrelation=website('#mfrrelation').val();var pan=website('#adharpan').val();var address=website('#materialaddress').val();website.ajax({url:'employeemodule/savemfr',data:{mfrname:mfrname,mfrrelation:mfrrelation,pan:pan,address:address},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}});});website('#savemfr').click(function(e){var mfrname=website('#mfrname').val();var mfrrelation=website('#mfrrelation').val();var pan=website('#adharpan').val();var address=website('#materialaddress').val();var transaction=website('#mfrtransaction').val();var clientid=website('#mfrclientid').val();website.ajax({url:'employeemodule/savemfr',data:{mfrname:mfrname,mfrrelation:mfrrelation,pan:pan,address:address,transaction:transaction,clientid:clientid},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
@@ -155,7 +170,7 @@ website('body').on('click','.delmfr',function(e){var delid=website(this).attr('m
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged==true)
-{var mfrnameu=response.data[0].related_party;var mfrrel=response.data[0].relationship;var mrfpan=response.data[0].pan;var mrfaddress=response.data[0].address;website('#mfrnameup').val(mfrnameu);website('#mfrrelationup').val(mfrrel);website('#adharpanup').val(mrfpan);website('#materialaddressup').val(mrfaddress);website('#mfreditid').val(editid);website('#mfrdelmodaledit').modal('show');}
+{var mfrnameu=response.data[0].related_party;var mfrrel=response.data[0].relationship;var mrfpan=response.data[0].pan;var mrfaddress=response.data[0].address;var transaction=response.data[0].transaction;var clientid=response.data[0].clientid;website('#mfrnameup').val(mfrnameu);website('#mfrrelationup').val(mfrrel);website('#adharpanup').val(mrfpan);website('#materialaddressup').val(mrfaddress);website('#mfrtransactionup').val(transaction);website('#mfrclientidup').val(clientid);website('#mfreditid').val(editid);website('#mfrdelmodaledit').modal('show');}
 else
 {}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)

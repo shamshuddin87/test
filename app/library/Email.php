@@ -1258,6 +1258,7 @@ Class Email extends Phalcon\Mvc\User\Component {
        
     }
     
+
     //##########################  for UPSI trading window data ##############################
     public function mailofupsitradingwindow($emailid,$username,$upsitype,$enddate,$addedby,$pstartdate,$today)
     {
@@ -1285,6 +1286,129 @@ Class Email extends Phalcon\Mvc\User\Component {
         //send the message, check for errors
 
         if ($mail->Send()) {
+            $get = array('logged'=>true,'message'=>'sent');
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false,'message'=>'nosent');
+        }
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+ 
+       
+    }
+
+
+    public function mailofnewdp($toemail,$tousername,$pstartdate,$enddate,$today,$fromusername,$upsitype)
+    {
+
+        //print_r($username);exit;
+        $gethtml = $this->htmlelements->mailofupdatedp($toemail,$tousername,$pstartdate,$enddate,$today,$fromusername,$upsitype);
+        //print_r($gethtml);exit;
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        //add cc
+        //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+        //Set who the message is to be sent to
+        $mail->addAddress($toemail, 'Volody');
+        $mail->Subject = 'Trading Window Closure';
+        $mail->msgHTML($gethtml);
+        //Replace the plain text body with one created manually
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            $get = array('logged'=>true,'message'=>'sent');
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false,'message'=>'nosent');
+        }
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+ 
+       
+    }
+
+    public function mailofnewupsisharing($uniquemail,$sharingdate,$enddate)
+    {
+
+        //print_r($username);exit;
+        $gethtml = $this->htmlelements->mailofupsisharing($uniquemail,$sharingdate,$enddate);
+        //print_r($gethtml);exit;
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        //add cc
+        //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+        //Set who the message is to be sent to
+        $mail->addAddress($uniquemail, 'Volody');
+        $mail->Subject = 'Trading Window Closure';
+        $mail->msgHTML($gethtml);
+        //Replace the plain text body with one created manually
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            $get = array('logged'=>true,'message'=>'sent');
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false,'message'=>'nosent');
+        }
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+ 
+       
+    }
+
+
+    public function mailofpersonalinfo($emailid,$fullname)
+    {
+
+        //print_r($emailid);exit;
+        $gethtml = $this->htmlelements->mailofpersonalinfo($emailid,$fullname);
+        //print_r($gethtml);exit;
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        //add cc
+        //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+        //Set who the message is to be sent to
+        $mail->addAddress($emailid, 'Volody');
+        $mail->Subject = 'Personal Information';
+        $mail->msgHTML($gethtml);
+        //Replace the plain text body with one created manually
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            
             $get = array('logged'=>true,'message'=>'sent');
         }
         else {

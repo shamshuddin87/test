@@ -62,7 +62,8 @@ return true;else if((("0123456789").indexOf(keychar)>-1))
 return true;else if(dec&&(keychar==".")){myfield.form.elements[dec].focus();return false;}
 else
 return false;}
-function isAlphaNumeric(e){var k;document.all?k=e.keycode:k=e.which;return((k>47&&k<58)||(k>64&&k<91)||(k>96&&k<123)||k==0);}
+function isAlphaNumeric(e)
+{var k;document.all?k=e.keycode:k=e.which;return((k>47&&k<58)||(k>64&&k<91)||(k>96&&k<123)||k==0);}
 function validateFloatKeyPress(el,evt){var charCode=(evt.which)?evt.which:event.keyCode;var number=el.value.split('.');if(charCode!=46&&charCode>31&&(charCode<48||charCode>57)){return false;}
 if(number.length>1&&charCode==46){return false;}
 var caratPos=getSelectionStart(el);var dotPos=el.value.indexOf(".");if(caratPos>dotPos&&dotPos>-1&&(number[1].length>1)){return false;}

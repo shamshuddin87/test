@@ -437,5 +437,79 @@ function remindrofhldngstmnt()
 }
 /************ send reminder of hldng stmnt end ***********/
 
+//-----------------------------GET PERSONAL DETAILS--------------//
+checkdetails();
+function checkdetails() 
+{
+    
+    website.ajax({
+      url:'home/checkdetails',
+      //data:formdata,
+      method:'POST',
+      //contentType:'json',
+      contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+      //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+      dataType:"json",
+      cache:false,
+      //async:true, /*Cross domain checking*/
+      beforeSend: function()
+      {   },
+      uploadProgress: function(event, position, total, percentComplete)
+      {   },
+      success: function(response, textStatus, jqXHR)
+      {
+
+        
+
+        if(response.logged===true)
+        {
+           website('#updateholdings').modal('show');
+        }
+       else
+       {
+          var base_url = getbaseurl();
+          // alert(base_url);
+          if(response.data=="relative")
+          {
+              var strng = btoa("dash");
+              base_url=base_url+"employeemodule?from="+strng;
+          }
+          else
+          {
+              base_url=base_url+response.data;
+          }
+
+          var link='<a href="'+base_url+'" style="color:red;">Click Here</a>';
+          website('#declaration .arng').html('<h4 style="text-align:center;">'+response.message+'</h4><p style="text-align: center;padding: 10px;"><u>'+link+'</u></p>');
+          if(response.usergroup!=2)
+          {
+              website('#declaration').modal('show');
+          }
+      }
+    },
+    complete: function(response)
+    {},
+    error: function(jqXHR, textStatus, errorThrown)
+    {}
+  });
+}
+
+
+function disclosures(id)
+{
+ var base_url = getbaseurl();
+ 
+ if(id == "yesdisclosures" )
+  {
+    window.location.reload();
+    website('#updateholdings').modal('hide');
+  }
+  else if(id == "nodisclosures")
+  {
+    window.location.href = base_url+"/employeemodule";
+    website('#updateholdings').modal('hide');
+  }
+}
+
 
 
