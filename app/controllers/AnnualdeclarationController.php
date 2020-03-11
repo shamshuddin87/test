@@ -546,7 +546,7 @@ class AnnualdeclarationController extends ControllerBase
                 $sendmail= $this->annualdeclarationcommon->sendmailtoapprover($reqid,$getuserapprove['approvid'],$getuserapprove['fullname'],$getfile);
                 // print_r($getfile[0]['pdfpath']);exit;
                 if($sendmail==true)
-                {
+                {   
                     $data = array("logged" => true,"message" =>"Mail Sent Successfully..!!!");
                     $this->response->setJsonContent($data);
                 }

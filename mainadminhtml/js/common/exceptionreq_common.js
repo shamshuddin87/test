@@ -9,6 +9,7 @@ function checkredirecturl()
   }
 
 }
+
 website('body').on('click','.paginationmn li', function(e) 
 {
     //alert(itntfr);

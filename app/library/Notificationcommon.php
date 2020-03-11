@@ -189,6 +189,8 @@ public function deletenotification($getuserid)
  {
       $getres = $this->insidercommon->fetchiddata($lastid,'it_memberlist','wr_id',$getuserid);
       $result= $this->insertfornotify($lastid,$getres['fullname'],$getres['approvid'],$type);
+
+     
  }
  
  public function tradingplanapproval($getuserid,$tradeid,$type)

@@ -235,7 +235,7 @@ public function getallrelative($uid,$usergroup)
    }
 
 
-   public function saveinitialdeclare($uid,$usergroup,$pdfpath,$annualyear,$uniqueid,$sendtype)
+   public function  saveinitialdeclare($uid,$usergroup,$pdfpath,$annualyear,$uniqueid,$sendtype)
    {
             // print_r($usergroup);exit;
             $connection = $this->dbtrd;

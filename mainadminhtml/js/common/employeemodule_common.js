@@ -10,15 +10,15 @@ website(document).ready(function()
     else
         {
         }
-     if(actval == 'dash')
-     {
+    if(actval == 'dash')
+    {
         website('.personal').removeClass('active');
         website('.relatives').addClass('active');
         website('.relativesform').show();
         website('.personaldetails').hide();
         website('.mymfr').hide();
           
-     }
+    }
     else
     {
 
@@ -90,6 +90,7 @@ website('.relativesform').hide();
    // Add a class of "floatLabel" to the input field
    floatLabel(".floatLabel");
 })(jQuery);
+
 datepicker();
 function datepicker(){
 website('.bootdatepick').datetimepicker({
@@ -109,19 +110,468 @@ website('.bootdatepick').datetimepicker({
         var getid = website(this).closest('form').attr('id');
     });
   }
-//#########################################AJAX FORM INSERTION################################################//
-website('#perdetail').ajaxForm({
-dataType:"json",
-    beforeSend: function() 
-    {  website('.preloder_wraper').fadeIn();  },
-    uploadProgress: function(event, position, total, percentComplete) 
-    {   },
-    success: function(response, textStatus, jqXHR) 
+
+
+//######################################### AJAX Personal INSERTION ################################################//
+
+function confirmdisclosure(id)
+{
+    
+   var id = id;
+ 
+
+  if(id == "confirmpersonalinfo" )
+  {
+
+    var shareholdng = website('#shareholdng').val();
+    var adrsholdng = website('#adrsholdng').val();
+    
+    if(shareholdng || adrsholdng )
     {
+     
+       website('#updateholdings1').modal('show');
+    }
+    else
+    {
+
+      website('input[name="confirmpersonalinfo"]').attr("type", "submit");
+      
+      //alert("inelse");
+      website('#perdetail').ajaxForm({
+      dataType:"json",
+      beforeSend: function() 
+      {  website('.preloder_wraper').fadeIn(); },
+      uploadProgress: function(event, position, total, percentComplete) 
+      {   },
+      success: function(response, textStatus, jqXHR) 
+      {
          if(response.logged === true)
          {
 
-              getpersonalinfo();
+              
+               getpersonalinfo();
+               new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+            window.location.reload();
+ 
+         }
+         else
+         {    
+           new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+         }
+    },
+    complete: function(response) 
+    {  website('.preloder_wraper').fadeOut();
+
+
+    },
+    error: function() 
+    {   }
+
+
+   });
+  }
+    
+    
+  }
+  else if(id == "relsub")
+  {
+    
+    var shareholdng = website('#getdata_1 #shareholdng').val();
+    var adrsholdng = website('#getdata_1 #adrsholdng').val();
+
+   
+     if(shareholdng || adrsholdng )
+    {
+     
+       website('#updateholdings2').modal('show');
+    }
+    else
+    {
+
+      website('input[name="relsub"]').attr("type", "submit");
+      
+      alert("inelse");
+      website('#getdata_1').ajaxForm({
+      dataType:"json",
+      beforeSend: function() 
+      {  website('.preloder_wraper').fadeIn(); },
+      uploadProgress: function(event, position, total, percentComplete) 
+      {   },
+      success: function(response, textStatus, jqXHR) 
+      {
+         if(response.logged === true)
+         {
+
+              
+               getpersonalinfo();
+               new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+            window.location.reload();
+ 
+         }
+         else
+         {    
+           new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+         }
+    },
+    complete: function(response) 
+    {  website('.preloder_wraper').fadeOut();
+
+
+    },
+    error: function() 
+    {   }
+
+
+   });
+  }
+  }
+  else if(id == "relupdate" )
+  {
+    
+    var shareholdng =  website("#reledit #shareholdng").val();
+    var adrsholdng =  website("#reledit #adrsholdng").val();
+
+     if(shareholdng || adrsholdng )
+    {
+     
+       website('#updateholdings3').modal('show');
+    }
+    else
+    {
+
+      website('input[name="relupdate"]').attr("type", "submit");
+      
+      //alert("inelse");
+      website('#uprel').ajaxForm({
+      dataType:"json",
+      beforeSend: function() 
+      {  website('.preloder_wraper').fadeIn(); },
+      uploadProgress: function(event, position, total, percentComplete) 
+      {   },
+      success: function(response, textStatus, jqXHR) 
+      {
+         if(response.logged === true)
+         {
+
+               getpersonalinfo();
+               new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+            window.location.reload();
+ 
+         }
+         else
+         {    
+           new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+         }
+    },
+    complete: function(response) 
+    {  website('.preloder_wraper').fadeOut();
+
+
+    },
+    error: function() 
+    {   }
+
+
+   });
+  }
+    
+    
+  }
+  
+  
+} 
+
+
+function nodisclosures(id)
+{
+
+ if(id == "nodisclosures1" )
+  {
+    
+    new PNotify({title: 'Alert',
+                    text: 'Please Submit necessary disclosures First',
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+  website('#updateholdings1').modal('hide');
+
+   
+  }
+  else if(id == "nodisclosures2")
+  {
+
+    new PNotify({title: 'Alert',
+                    text: 'Please Submit necessary disclosures First',
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+  website('#updateholdings2').modal('hide');
+  }
+  else if(id == "nodisclosures3" )
+  {
+
+    new PNotify({title: 'Alert',
+                    text: 'Please Submit necessary disclosures First',
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+  website('#updateholdings3').modal('hide');
+  website('#reledit').modal('hide');
+  }
+ 
+}
+
+
+
+website('body').on('click','#yesdisclosures1',function(e){
+   
+   var fname =  website("#fname").val();
+   var pan =  website("#pan").val();
+   var aadhar =  website("#aadhar").val();
+   var dob =  website("#dob").val();
+   var sex =  website("input[name='sex']:checked").val();
+   
+   var address =  website("#address").val();
+   var eduqulfcn =  website("#eduqulfcn").val();
+   var institute =  website("#institute").val();
+   var mobno =  website("#mobno").val();
+   var hldngfile =  website("#hldngfile").val();
+   var legal_idntfr =  website("#legal_idntfr").val();
+   var legal_idntfctn_no =  website("#legal_idntfctn_no").val();
+   var rqid =  website("#rqid").val();
+   var toemail =  website("#toemail").val();
+   //alert(toemail);
+    var shareholdng =  website("#shareholdng").val();
+     var adrsholdng =  website("#adrsholdng").val();
+     var occupation =  website("#occupation").val();
+     var company =  website("#company").val();
+
+
+   var formdata = {fname:fname,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,institute:institute,mobno:mobno,hldngfile:hldngfile,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,rqid:rqid,toemail:toemail,shareholdng:shareholdng,adrsholdng:adrsholdng,occupation:occupation,company:company}
+   website.ajax({
+        url:'employeemodule/insmydetail',
+        
+        method:'POST',
+        data:formdata,
+        // contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, Cross domain checking
+        beforeSend: function()
+        {  website('.preloder_wraper').fadeIn(); },
+        uploadProgress: function(event, position, total, percentComplete)
+        {   },
+        success: function(response, textStatus, jqXHR)
+        {    website('.preloder_wraper').fadeOut();
+          website('#updateholdings1').modal('hide');
+              if(response.logged==true)
+              {
+                getpersonalinfo(); 
+                new PNotify({title: 'Alert',
+                          text: response.message,
+                          type: 'university',
+                          hide: true,
+                          styling: 'bootstrap3',
+                          addclass: 'dark ',
+                      });
+
+               }
+             else
+             {    
+                 new PNotify({title: 'Alert',
+                          text: response.message,
+                          type: 'university',
+                          hide: true,
+                          styling: 'bootstrap3',
+                          addclass: 'dark ',
+                      }); 
+              }
+        }
+   });
+});
+ 
+
+
+
+website('body').on('click','#yesdisclosures2',function(e)
+{
+   
+  var fname =  website("#getdata_1 #fname").val();
+   var relationship =  website("#getdata_1 #relationship").val();
+   var depnature    = website("#getdata_1 #depnature").val();
+   var pan =  website("#getdata_1 #pan").val();
+   var aadhar =  website("#getdata_1 #aadhar").val();
+   var dob =  website("#getdata_1 #1_dob").val();
+
+   var sex =  website("#getdata_1 input[name='sex']:checked").val();
+   
+   var address =  website("#getdata_1 #addr").val();
+   var eduqulfcn =  website("#getdata_1 #eduqulfcn").val();
+  
+   var file =  website("#getdata_1 #file").val();
+   var legal_idntfr =  website("#getdata_1 #legal_idntfr").val();
+   var legal_idntfctn_no =  website("#getdata_1 #legal_idntfctn_no").val();
+  
+   var shareholdng =  website("#getdata_1 #shareholdng").val();
+   var adrsholdng =  website("#getdata_1 #adrsholdng").val();
+   var reloccupation =  website("#getdata_1 #reloccupation").val();
+   var relcompany =  website("#getdata_1 #relcompany").val();
+
+
+  var formdata = {relationship:relationship,fname:fname,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,reloccupation:reloccupation,relcompany:relcompany,depnature:depnature}
+   website.ajax({
+        url:'employeemodule/relationdata',
+        
+        method:'POST',
+        data:formdata,
+        // contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, Cross domain checking
+        beforeSend: function()
+        {  website('.preloder_wraper').fadeIn(); },
+        uploadProgress: function(event, position, total, percentComplete)
+        {   },
+        success: function(response, textStatus, jqXHR) 
+        { website('#updateholdings2').modal('hide');
+         if(response.logged === true)
+         {
+               
+              
+               getrelationdata();
+               new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+             window.location.reload();
+            
+ 
+         }
+         else
+         {
+
+           new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                }); 
+         }
+    },
+    complete: function(response) 
+    {  website('.preloder_wraper').fadeOut();  },
+    error: function() 
+    {   }
+   });
+ });
+
+
+
+website('body').on('click','#yesdisclosures3',function(e)
+{
+   
+   var name =  website("#reledit #name").val();
+    var relationship =  website("#reledit #relationship").val();
+   var depnature    = website("#reledit #depnature").val();
+   var releditid =  website("#reledit #releditid").val();
+ 
+   var pan =  website("#reledit #pan").val();
+   var aadhar =  website("#reledit #aadhar").val();
+   var dob =  website("#reledit #dob").val();
+   var sex =  website("#reledit input[name='sex']:checked").val();
+   
+   var address =  website("#reledit #address").val();
+   var eduqulfcn =  website("#reledit #eduqulfcn").val();
+  
+   var file =  website("#reledit #file").val();
+   var legal_idntfr =  website("#reledit #legal_idntfr").val();
+   var legal_idntfctn_no =  website("#reledit #legal_idntfctn_no").val();
+ 
+  
+    var shareholdng =  website("#reledit #shareholdng").val();
+     var adrsholdng =  website("#reledit #adrsholdng").val();
+     var occupation =  website("#reledit #reloccupationup").val();
+     var company =  website("#reledit #relcompanyup").val();
+
+
+     var formdata = {releditid:releditid,relationship:relationship,name:name,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,reloccupationup:occupation,relcompanyup:company,depnature:depnature}
+
+       website.ajax({
+
+        url:'employeemodule/updaterelatives',
+        
+        method:'POST',
+        data:formdata,
+        // contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, Cross domain checking
+        beforeSend: function()
+        {  website('.preloder_wraper').fadeIn(); },
+        uploadProgress: function(event, position, total, percentComplete)
+        {   },
+        success: function(response, textStatus, jqXHR) 
+       {
+           website('#updateholdings3').modal('hide');
+         if(response.logged === true)
+         {
+             website('#reledit').modal('hide');
+             
+              
+              getrelationdata();
+
                new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
@@ -144,17 +594,19 @@ dataType:"json",
          }
     },
     complete: function(response) 
-    {  website('.preloder_wraper').fadeOut();  },
+    {  website('.preloder_wraper').fadeOut();    },
     error: function() 
     {   }
-
-
+   });
 });
+
+
+
 //#########################################UPDATE MY DETAILS#########################################
 website('#upmydetails').ajaxForm({
 dataType:"json",
     beforeSend: function() 
-    {   website('.preloder_wraper').fadeIn(); },
+    {  },
     uploadProgress: function(event, position, total, percentComplete) 
     {   },
     success: function(response, textStatus, jqXHR) 
@@ -223,7 +675,7 @@ function getpersonalinfo(){
                 // console.log(obj);return false;
                 var fname=obj['fname']?obj['fname']:'';
                 var pan=obj['pan']?obj['pan']:'';
-//                var age=obj['age']?obj['age']:'';
+
                 var dob=obj['dob']?obj['dob']:'';
                 var aadhar=obj['aadhar']?obj['aadhar']:'';
                 var education=obj['education']?obj['education']:'';
@@ -310,11 +762,13 @@ function getpersonalinfo(){
      delid=website(this).attr('delid');
      website('#deleteid').val(delid);
      website('#delmod').modal('show');
- });    
- website('body').on('click','#delinfo',function(e){
+ }); 
+
+
+website('body').on('click','#delinfo',function(e){
 var delid=website('#deleteid').val();
  // alert(delid);
-website.ajax({
+  website.ajax({
         url:'employeemodule/delmydetails',
         data:{delid:delid},
         method:'POST',
@@ -357,8 +811,8 @@ website.ajax({
 });
 //----------------------------------------------Delete Modal Finish here-----------------------------------//
   //----------------------------Ftch data for modal box---------------------------------------------------//
-    website('body').on('click','.editcmp',function(e)
-    { 
+website('body').on('click','.editcmp',function(e)
+{ 
         editid=website(this).attr('editid');
         website.ajax({
             url:'employeemodule/getmydetails',
@@ -378,19 +832,19 @@ website.ajax({
                 var myhtml='<tr>';
                 if(response.logged==true)
                 {
-//                    console.log(response.data.mobileno);
+        //                    console.log(response.data.mobileno);
                     website('#mydataedit').modal('show');
                     var id=response.data.id?response.data.id:'';
                     var mobileno=response.data.mobileno?response.data.mobileno:'';
                     //var myarray = mobileno.split(",");
                     var upmyhtml='';
                     var clid='';
-//                    for(var n=0;n<myarray.length;n++)
-//                    {
-//                       clid="my_id"+n;
-//                       var mobile=myarray[n];
-//                       upmyhtml+="<ul class='upremovemob' id='"+clid+"' upmobno='"+mobile+"'><li>"+mobile+"<span class='close' >&times;</span></li></ul>";
-//                    }
+       //                    for(var n=0;n<myarray.length;n++)
+       //                    {
+       //                       clid="my_id"+n;
+       //                       var mobile=myarray[n];
+      //                       upmyhtml+="<ul class='upremovemob' id='"+clid+"' upmobno='"+mobile+"'><li>"+mobile+"<span class='close' >&times;</span></li></ul>";
+     //                    }
                     var pan=obj['pan']?obj['pan']:'';
                     var dob=obj['dob']?obj['dob']:'';
                     var sex=obj['sex']?obj['sex']:'';
@@ -498,6 +952,7 @@ website('body').on('click','.addrelinfo',function(e){//on click addrelinfo one m
     //---------------------------//
 
  });
+
 //###############################FINISH APPEND FORM FUNCTIONALLITY###################################
 //###############################Start Delete Rel Info###################################
 website('body').on('click','.deleterelinfo',function(e){//on click minus remove last form
@@ -514,36 +969,8 @@ var myform=website(this).attr('formno');//get last form no
  //remove functionality finish here
  });
 //###############################FINISH REL INFO DELETE###################################
-//##################################START FUNCTIONALLITY TO SAVE Relation DATA#########################
-//website('body').on('click','#relsub',function(e){//on click submit button get data
-////var file=website('#file').val().files;
-////console.log(file);return false;
-//var len=website('.chklength').length;//check no of form available in html
-//var data = [];
-//for(var i=1;i<=len;i++){
-////_fname _pan _aadhar __age _sex _dob _relationship _addr
-//var fname=website('#'+i+'_fname').val();
-//var pan=website('#'+i+'_pan').val();
-//var aadhar=website('#'+i+'_aadhar').val();
-//var age=website('#'+i+'_age').val();
-//// var sex=website('#'+i+'_sex').val();
-// var sex =website("input[name='"+i+"_sex']:checked").val();
-//var dob=website('#'+i+'_dob').val();
-//var relationship=website('#'+i+'_relationship').val();
-//var address=website('#'+i+'_addr').val();
-//
-//var obj = {
-//    'fname': fname,
-//    'pan': pan,
-//    'aadhar': aadhar,
-//    'age': age,
-//    'sex': sex,
-//    'dob': dob,
-//    'relationship': relationship,
-//    'address': address
-//}
-//data.push(obj);
-//}
+
+
 
 //##################################FINISH FUNCTIONALLITY TO SAVE RELATION DATA#########################
 getrelationdata();
@@ -618,6 +1045,7 @@ website('body').on('click','.delrel',function(e){//on click submit button get da
   website('#delrel').val(delid);
  website('#delrelation').modal('show');
 });
+
 website('body').on('click','#deleterel',function(e){
   delid=website('#delrel').val();
   website.ajax({
@@ -704,6 +1132,8 @@ website('body').on('click','.editrel',function()
                var legal_idntfr=response.data.legal_identifier?response.data.legal_identifier:"";
                var legal_idntfctn_no=response.data.legal_identification_no?response.data.legal_identification_no:"";
                var dependantnature=response.data.dependency_nature?response.data.dependency_nature:"";
+               var occupation=response.data.occupation?response.data.occupation:"";
+               var company=response.data.company?response.data.company:"";
                var filepath=response.data.filepath
                jQuery("#reledit input[value='"+sex+"']").attr('checked', true);
                 website('#reledit #name').val(name);
@@ -721,6 +1151,8 @@ website('body').on('click','.editrel',function()
                 website('#reledit #adrsholdng').val(adrshldng);
                 website('#reledit #legal_idntfr').val(legal_idntfr);
                 website('#reledit #legal_idntfctn_no').val(legal_idntfctn_no);
+                website('#reledit #reloccupationup').val(occupation);
+                website('#reledit #relcompanyup').val(company);
                dependantnature = dependantnature.split(",");
                website.each(dependantnature, function( key, value ) {
                    website('#reledit #depnature option[value="' + value + '"]').attr('selected','selected');
@@ -738,46 +1170,8 @@ website('body').on('click','.editrel',function()
         {   }
    });
 });
-//####################################Update Relative Info Start Here#################################
-website('#uprel').ajaxForm({
-dataType:"json",
-    beforeSend: function() 
-    {    },
-    uploadProgress: function(event, position, total, percentComplete) 
-    {   },
-    success: function(response, textStatus, jqXHR) 
-    {
-         if(response.logged === true)
-         {
-             website('#reledit').modal('hide');
-              getrelationdata();
 
-               new PNotify({title: 'Alert',
-                    text: response.message,
-                    type: 'university',
-                    hide: true,
-                    styling: 'bootstrap3',
-                    addclass: 'dark ',
-                }); 
-            
- 
-         }
-         else
-         {    
-           new PNotify({title: 'Alert',
-                    text: response.message,
-                    type: 'university',
-                    hide: true,
-                    styling: 'bootstrap3',
-                    addclass: 'dark ',
-                }); 
-         }
-    },
-    complete: function(response) 
-    {      },
-    error: function() 
-    {   }
-});
+
 //--------------------------AAdhar validation Start Here--------------------------
  aadharvalidation();
  function aadharvalidation(){
@@ -827,15 +1221,16 @@ dataType:"json",
     });      
 }
 //###############pan validation#######################################
+
 panvalidation();
 function panvalidation()
 {
 
  website(".panval").on("keyup", function() {
-var panno=website(this).val();
-len=panno.toString().length;
-if(len>=5 && panno!='')
-{
+ var panno=website(this).val();
+ len=panno.toString().length;
+ if(len>=5 && panno!='')
+ {
     website.ajax({
             url:'employeemodule/panvalidation',
             data:{panno:panno},
@@ -877,48 +1272,8 @@ if(len>=5 && panno!='')
  });
 }
 
-website('#getdata_1').ajaxForm({
-dataType:"json",
-    beforeSend: function() 
-    {   website('.preloder_wraper').fadeIn(); },
-    uploadProgress: function(event, position, total, percentComplete) 
-    {   },
-    success: function(response, textStatus, jqXHR) 
-    {
-         if(response.logged === true)
-         {
-
-               website('#mydataedit').modal('hide');
-               getrelationdata();
-               new PNotify({title: 'Alert',
-                    text: response.message,
-                    type: 'university',
-                    hide: true,
-                    styling: 'bootstrap3',
-                    addclass: 'dark ',
-                }); 
-             window.location.reload();
-            
- 
-         }
-         else
-         {    
-           new PNotify({title: 'Alert',
-                    text: response.message,
-                    type: 'university',
-                    hide: true,
-                    styling: 'bootstrap3',
-                    addclass: 'dark ',
-                }); 
-         }
-    },
-    complete: function(response) 
-    {  website('.preloder_wraper').fadeOut();  },
-    error: function() 
-    {   }
 
 
-});
 
 website('body').on('click','.viewdetail', function()
 {
@@ -928,15 +1283,19 @@ website('body').on('click','.viewdetail', function()
 
      window.location.href=baseHref+'employeemodule/viewpastemployer';
 });
+
+
 website('#upmfrmod').click(function(e) {
   var mfreditid= website('#mfreditid').val();
   var mfrname = website('#mfrnameup').val();
   var panup = website('#adharpanup').val();
   var addressup = website('#materialaddressup').val();
   var mfrrelation= website('#mfrrelationup').val();
- website.ajax({
+   var transaction= website('#mfrtransactionup').val();
+  var clientid= website('#mfrclientidup').val();
+  website.ajax({
         url:'employeemodule/updatemfr',
-        data:{mfrname:mfrname,mfrrelation:mfrrelation,mfreditid:mfreditid,panup:panup,addressup:addressup},
+        data:{mfrname:mfrname,mfrrelation:mfrrelation,mfreditid:mfreditid,panup:panup,addressup:addressup,transaction:transaction,clientid:clientid},
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -979,14 +1338,17 @@ website('#upmfrmod').click(function(e) {
       });
 });
 
+
 website('#savemfr').click(function(e) {
   var mfrname = website('#mfrname').val();
   var mfrrelation= website('#mfrrelation').val();
   var pan= website('#adharpan').val();
   var address= website('#materialaddress').val();
+  var transaction= website('#mfrtransaction').val();
+  var clientid= website('#mfrclientid').val();
  website.ajax({
         url:'employeemodule/savemfr',
-        data:{mfrname:mfrname,mfrrelation:mfrrelation,pan:pan,address:address},
+        data:{mfrname:mfrname,mfrrelation:mfrrelation,pan:pan,address:address,transaction:transaction,clientid:clientid},
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -1110,10 +1472,14 @@ website('body').on('click','.mymfredit',function(e){//on click submit button get
               var mfrrel = response.data[0].relationship;
               var mrfpan = response.data[0].pan;
               var mrfaddress = response.data[0].address;
+              var transaction = response.data[0].transaction;
+              var clientid = response.data[0].clientid;
               website('#mfrnameup').val(mfrnameu);
               website('#mfrrelationup').val(mfrrel);
               website('#adharpanup').val(mrfpan);
               website('#materialaddressup').val(mrfaddress);
+              website('#mfrtransactionup').val(transaction);
+              website('#mfrclientidup').val(clientid);
               website('#mfreditid').val(editid);
               website('#mfrdelmodaledit').modal('show');
               

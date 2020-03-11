@@ -244,7 +244,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                         <label class="control-label">New UPSI Owner / Group Leader*</label>
                         <div class="header-search-wrapper  floatnone find_box_company">
                             <i class="fa fa-search"></i>
-                            <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft" placeholder="Search Project Owner/Group Leader" id="search-box" autocomplete="off"/>
+                            <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft searchowner" placeholder="Search Project Owner/Group Leader" id="search-box" autocomplete="off"/>
                             <div id="live-search-header-wrapper" class="">
                                 <ul class="live-searchul"></ul>
                             </div>
@@ -285,7 +285,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                         <label class="control-label">Enter Name of the DPs connected to this UPSI*</label>
                         <div class="header-search-wrapper  floatnone find_box_company">
                             <i class="fa fa-search"></i>
-                            <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft" placeholder="Search Name of the DPs connected" id="search-box" autocomplete="off"/>
+                            <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft " placeholder="Search Name of the DPs connected" id="search-box" autocomplete="off"/>
                             <div id="live-search-header-wrapper" class="">
                                 <ul class="live-searchul"></ul>
                             </div>

@@ -1398,7 +1398,7 @@
 <!-- ########################################## PageContent End ########################################## --> 
 <div id="Mymodaldeclara" class="modal  fade" role="dialog" style="overflow-y: auto;left:-22%; ">
    <div class="modal-dialog">
-      <div class="modal-content" style="width:auto;">
+      <div class="modal-content" style="width:950px;">
          <div class="modal-header">
              <?php 
                 $current_year = date('Y'); 

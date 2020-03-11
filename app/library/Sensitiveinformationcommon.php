@@ -38,12 +38,13 @@ class Sensitiveinformationcommon extends Component
     }
     
        // **************************** recipient insert ***************************
-    public function insertrecipient($getuserid,$user_group_id,$category,$othercate,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath)
+    public function insertrecipient($getuserid,$user_group_id,$category,$othercate,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$pan,$department)
     {
+
         $connection = $this->dbtrd; 
         $time = time();
-           $queryinsert = 'INSERT INTO `sensitiveinfo_recipient`(`user_id`,`user_group_id`,`category`,`othercategory`,`nameofentity`, `name`, `identityno`, `phoneno`, `mobileno`, `designation`, `email`, `filepath`,`agreemntfile`,`date_added`, `date_modified`,`timeago`)
-         VALUES ("'.$getuserid.'","'.$user_group_id.'","'.$category.'","'.$othercate.'","'.$entity.'","'.$name.'","'.$identitynum.'","'.$phonenum.'","'.$mobilenum.'","'.$designation.'","'.$email.'","'.$filepath.'","'.$agreemntfilepath.'",NOW(),NOW(),"'.$time.'")'; 
+           $queryinsert = 'INSERT INTO `sensitiveinfo_recipient`(`user_id`,`user_group_id`,`category`,`othercategory`,`department`,`pannumber`,`nameofentity`, `name`, `identityno`, `phoneno`, `mobileno`, `designation`, `email`, `filepath`,`agreemntfile`,`date_added`, `date_modified`,`timeago`)
+         VALUES ("'.$getuserid.'","'.$user_group_id.'","'.$category.'","'.$othercate.'","'.$department.'","'.$pan.'","'.$entity.'","'.$name.'","'.$identitynum.'","'.$phonenum.'","'.$mobilenum.'","'.$designation.'","'.$email.'","'.$filepath.'","'.$agreemntfilepath.'",NOW(),NOW(),"'.$time.'")'; 
         //print_r($queryinsert);exit;
         try
         {
@@ -141,7 +142,7 @@ class Sensitiveinformationcommon extends Component
     }
     
     // **************************** recipient update ***************************
-    public function updaterecipient($getuserid,$user_group_id,$category,$othrcategory,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$id)
+    public function updaterecipient($getuserid,$user_group_id,$category,$othrcategory,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$id,$pan,$department)
     {
         $connection = $this->dbtrd;
         $time = time();
@@ -151,7 +152,7 @@ class Sensitiveinformationcommon extends Component
         `category`="'.$category.'",`othercategory`="'.$othrcategory.'",
         `nameofentity`="'.$entity.'", `name`="'.$name.'",
         `identityno`="'.$identitynum.'", `phoneno`="'.$phonenum.'", `mobileno`="'.$mobilenum.'",
-        `designation`="'.$designation.'", `email`="'.$email.'", 
+        `designation`="'.$designation.'", `email`="'.$email.'", `department`="'.$department.'",`pannumber`="'.$pan.'",
         `filepath`="'.$filepath.'", `agreemntfile`="'.$agreemntfilepath.'",
         `date_modified`=NOW(),`timeago`="'.$time.'" 
         WHERE `id`="'.$id.'"';       
@@ -210,7 +211,7 @@ class Sensitiveinformationcommon extends Component
     
     
     // **************************** infosharing insert ***************************
-   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$filepath)
+   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$filepath,$emailrec)
     {
         $connection = $this->dbtrd; 
         $times = time();
@@ -220,10 +221,39 @@ class Sensitiveinformationcommon extends Component
         try
         {
             $exeprev = $connection->query($queryinsert);
-             $lastid    = $connection->lastInsertId();
-             $notific=$this->notificationcommon->upsisharingnotify($getuserid,$lastid,"6");
+            $lastid    = $connection->lastInsertId();
+            $notific= $this->notificationcommon->upsisharingnotify($getuserid,$lastid,"6");
 
-            return true;
+            $upsiinfo = $this->upsicommon->getsingleupsi($upsitypeid); // to get project owner
+            $sendmail[] = $upsiinfo['email'];
+            $complianceinfo = $this->sensitiveinformationcommon->compliancedetails(); // CO Officer
+            foreach ($complianceinfo as $c) 
+            {
+                $sendmail1[] = $c['email'];
+            }
+
+            $finalsend = array_merge($sendmail,$sendmail1);
+            array_push($finalsend,$emailrec);
+            $uniquemail = array_unique($finalsend);
+            //print_r($uniquemail);exit;
+            
+            for($i=0;i<count($uniquemail);$i++)
+            {
+               $sendmail = $this->emailer->mailofnewupsisharing($uniquemail[$i],$sharingdate,$enddate);
+            }
+
+            if($sendmail == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+           
+        
+
+        
         }
         catch (Exception $e) 
         {
@@ -384,10 +414,52 @@ class Sensitiveinformationcommon extends Component
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+            //print_r($grpusrs);exit;
             
              $queryget = "SELECT sr.*,cate.`category` AS `categoryname` FROM `sensitiveinfo_recipient` sr
              LEFT JOIN `sensitiveinfo_category` cate ON cate.`id` = sr.`category`
-             WHERE sr.`user_id` IN (".$grpusrs['ulstring'].") AND sr.`name` LIKE '%{$getsearchkywo}%'";
+             WHERE sr.`user_id` IN (".$grpusrs['ulstring'].") AND sr.`nameofentity` LIKE '%{$getsearchkywo}%'";
+            //echo $queryget;exit;
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;
+                }
+                  
+                    
+                //echo '<pre>';print_r($getlist);exit;
+                
+            }else{
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
+
+    public function itnamedetails($getuserid,$user_group_id,$getsearchkywo,$email)
+    {
+        $connection = $this->dbtrd;
+        
+       
+        $email = implode("','", $email);
+        //print_r($email);exit;
+        try
+         {
+            $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+            //print_r($grpusrs);exit;
+            
+             $queryget = "SELECT * FROM it_memberlist 
+             WHERE `wr_id` IN (".$grpusrs['ulstring'].") AND `email` NOT IN('".$email."') AND `fullname` LIKE '%{$getsearchkywo}%' ";
             //echo $queryget;exit;
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
@@ -680,6 +752,43 @@ class Sensitiveinformationcommon extends Component
                 FROM `it_memberlist` itm
                 LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = itm.`wr_id`
                 WHERE `fullname` LIKE '%{$getsearchkywo}%' AND `status`= 1";
+        // echo $queryget;exit;
+        try
+        {
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;
+                }   
+                //echo '<pre>';print_r($getlist);exit;
+            }
+            else
+            {
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
+    /* ---------- Search for user masters End ---------- */
+
+
+
+    /* ----------To get compiance officer from application ---------- */
+    public function compliancedetails()
+    {
+        $connection = $this->dbtrd;
+
+        $queryget = "SELECT * from it_memberlist WHERE  `master_group_id`=  14 ";
         // echo $queryget;exit;
         try
         {

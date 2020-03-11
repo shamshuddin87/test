@@ -363,7 +363,83 @@ class Homecommon extends Component
         }
         return $getlist; 
     }
+
+
+     public function fetchfirstlogin($getuserid)
+    {
+        $connection = $this->db;
+        $getlist = '';
+        $queryget = "SELECT `firstlogin` FROM `web_register_user` where user_id = '".$getuserid."' ";
+
+        $exeget = $connection->query($queryget);
+        $getnum = trim($exeget->numRows());
+        
+        if($getnum>0)
+        {
+            $row = $exeget->fetch();
+            $getlist = $row;
+        }
+        else
+        {
+            $getlist = '';
+        }
+      
+        return $getlist; 
+    }
     
+
+     public function updatetlogin($getuserid)
+    {
+        $connection = $this->db;
+        $getlist = '';
+        $queryget = "UPDATE `web_register_user` SET firstlogin = 1 where user_id = '".$getuserid."' ";
+
+        $exeget = $connection->query($queryget);
+        $getnum = trim($exeget->numRows());
+        
+        if($getnum>0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+      
+       
+    }
+
+    public function upsiholding($getuserid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = '';
+         
+        
+        $queryget = "SELECT * FROM upsimaster WHERE (projectowner = '".$getuserid."' OR  FIND_IN_SET('".$getuserid."',`connecteddps`)) ";
+        
+        
+        $exeget = $connection->query($queryget);
+        
+        $getnum = trim($exeget->numRows());
+         
+        if($getnum>0)
+        {   
+
+            while($row = $exeget->fetch())
+            {
+                $getlist[] = $row;
+            }
+          
+            
+
+        }
+        else
+        {
+            $getlist = '';
+        }
+                  
+        return $getlist; 
+    }
     
     
     

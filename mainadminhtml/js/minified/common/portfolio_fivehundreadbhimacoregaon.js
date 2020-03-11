@@ -15,7 +15,7 @@ else{new PNotify({title:'Alert',text:response.message,type:'university',hide:tru
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{var htmlelements='';var j=1;for(var i=0;i<response.data.length;i++)
+{var htmlelements='';var j=1;website("#showdemat").css("display","block");for(var i=0;i<response.data.length;i++)
 {htmlelements+='<tr>';htmlelements+='<td>'+j+'</td>';htmlelements+='<td>'+response.data[i].accountno+'</td>';htmlelements+='<td>'+response.data[i].depository_participient+'</td>';htmlelements+='<td>'+response.data[i].clearing_house+'</td>';htmlelements+='<td><i class="fa fa-edit accedit" accno="'+response.data[i].accountno+'" rp="'+response.data[i].depository_participient+'" hc="'+response.data[i].clearing_house+'"  acountedit="'+response.data[i].id+'" ></i>'+'<i class="fa fa-trash accdel" acountdel="'+response.data[i].id+'" ></i></td>';htmlelements+='</tr>';j=j+1;}}
 else{htmlelements+='<tr>';htmlelements+='<td colspan="5" style="text-align:center;">Data Not Found</td>';htmlelements+='</tr>';}
 website('.accdetails').html(htmlelements);},complete:function(response)
@@ -87,4 +87,11 @@ if(myarr.length>=1)
 {if(response.logged==true){new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});relativeaccinfo();}
 else{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
-{}});}});;
+{}});}});website('body').on('click','.dematup',function(e){var dematup=website(this).val();website.ajax({url:'portfolio/zerodematacc',data:{dematup:dematup},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{website('#alertcommon #allalertmsg').html(response.message);website('#alertcommon').modal('show');},complete:function(response)
+{},error:function(jqXHR,textStatus,errorThrown)
+{}});});function showsection(){var section=document.getElementById("showdemat");if(section.style.display==="none"){section.style.display="block";}}
+function hidesection(){var section=document.getElementById("showdemat");if(section.style.display==="block")
+{section.style.display="none";}};

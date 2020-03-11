@@ -46,25 +46,29 @@ $condeptsess = $this->session->contractdepartment;
 
                         <section class="col col-md-4 col-xs-12">
                             <div class="input">
+                                <label class="control-label">PAN Of the Entity*</label>
+                                <input type="text" id="panentity" name="panentity" class="form_fields form-control col-md-7 col-xs-12" onkeypress ="return isAlphaNumeric(event);" maxlength="10" minlength="10" required="">
+                            </div>
+                       </section>
+                        
+
+                        <section class="col col-md-4 col-xs-12 nameofemployee" style="display: none;">
+                            <div class="input">
                                 <label class="control-label">Name Of The Recipient*</label>
-                                <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" placeholder="Search..." required>
+                                <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" placeholder="Search..." >
                             </div>
                             <div id="searchuser"></div>
                         </section>
+                    
                         
                         <section class="col col-md-4 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Identity Number (PAN/Aadhar etc.)*</label>
-                                <input type="text" id="identitynum" name="identitynum" class="form_fields form-control col-md-7 col-xs-12" onkeypress ="return numberalphOnly(event);" required>
+                                <input type="text" id="identitynum" name="identitynum" class="form_fields form-control col-md-7 col-xs-12" onkeypress ="return numberalphOnly(event);" maxlength="12" >
                             </div>
                         </section>
                         
-                 <!--        <section class="col col-md-4 col-xs-12">
-                            <div class="input">
-                                <label class="control-label">Phone Number</label>
-                                <input type="text" id="phonenum" name="phonenum"  maxlength="11" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
-                            </div>
-                        </section> -->
+               
                         
                         <section class="col col-md-4 col-xs-12">
                             <div class="input">
@@ -215,11 +219,19 @@ $condeptsess = $this->session->contractdepartment;
                             <input type="text" id="entity" name="entity" class="form_fields form-control col-md-7 col-xs-12">
                         </div>
                     </section>
+
+                      <section class="col col-md-4 col-xs-12">
+                            <div class="input">
+                                <label class="control-label">PAN Of the Entity*</label>
+                                <input type="text" id="panentity" name="panentity" class="form_fields form-control col-md-7 col-xs-12" onkeypress ="return isAlphaNumeric(event);" maxlength="10" minlength="10" required="">
+                            </div>
+                       </section>
+
                         
-                    <section class="col col-md-4 col-xs-12">
+                    <section class="col col-md-4 col-xs-12 nameofemployee" style="display: none;">
                         <div class="input">
                             <label class="control-label">Name Of The Recipient*</label>
-                            <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" placeholder="Search..."  required>
+                            <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" placeholder="Search..." >
                         </div>
                         <div id="searchuser"></div>
                     </section>
@@ -231,12 +243,7 @@ $condeptsess = $this->session->contractdepartment;
                         </div>
                     </section>
                         
-         <!--            <section class="col col-md-6 col-xs-12">
-                        <div class="input">
-                            <label class="control-label">Phone Number</label>
-                            <input type="text" id="phonenum" name="phonenum"  maxlength="11" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
-                        </div>
-                    </section> -->
+        
                 
                     <section class="col col-md-6 col-xs-12">
                             <div class="input">

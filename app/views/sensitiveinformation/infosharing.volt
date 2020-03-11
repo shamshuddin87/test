@@ -31,9 +31,10 @@ $upsiid = $this->session->upsitypeid;
                             <div class="input">
                           <div class="mainelem company_product">
                             <label class="control-label">Search Name Of Recipient*</label>
+                             <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft" placeholder="Select Name" id="search-box" autocomplete="off"/>
                             <div class="header-search-wrapper  floatnone find_box_company">
                           <i class="fa fa-search"></i>
-                          <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft" placeholder="Select Name" id="search-box" autocomplete="off"/>
+                         
                           <div id="live-search-header-wrapper" class="">
                             <ul class="live-searchul"></ul>
                           </div>
@@ -43,12 +44,12 @@ $upsiid = $this->session->upsitypeid;
                             <div class="clearelement"></div>
                           </div>
                         </div>
-                        <div class="header-search-wrapper hide-on-med-and-down services_search find_box_company" style="display: none;">
+                       <!--  <div class="header-search-wrapper hide-on-med-and-down services_search find_box_company" style="display: none;">
                           <i class="fa fa-search"></i>
                           <input type="text" name="getvalueofsearch" class="header-search-input1 z-depth-2 floatleft" placeholder="Explore Resolutions" id="search-box1"/>
                           <div class="clearelement"></div>
                           <div id="live-search-header-wrapper1" class=""><ul class="live-searchul1"></ul></div>
-                        </div>
+                        </div> -->
                        </div>
                             </div>
                     </section>
@@ -56,6 +57,8 @@ $upsiid = $this->session->upsitypeid;
                        <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Name Of Recipient*</label>
+                                 <input type="text" id="emailforsendmail" name="emailforsendmail" class="form_fields form-control col-md-7 col-xs-12" value = 
+                                 "" style="display: none;">
                                 <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" readonly required>
                             </div>
                         </section>
@@ -115,6 +118,7 @@ $upsiid = $this->session->upsitypeid;
                                 <input type="text" id="enddate" name="enddate" class="form-control bootdatepick" readonly required>
                             </div>
                         </section>   
+
 					    <section class="col col-md-12 col-xs-12"></section>
                         <div class="appendfile" filecntr='1'>
                         <section class="col col-md-12 col-xs-12 box_border">
