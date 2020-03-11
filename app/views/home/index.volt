@@ -491,7 +491,7 @@
                   </div>
                   <div class="modal-body">
                     
-                     <h5 style="text-align: center;">Please Confirm,you have submitted necessary disclosers</h5>
+                     <h5 style="text-align: center;">Is your My Information updated with all changes?</h5>
                   </div>
                   <div class="modal-footer">
                      <button type="button" class="btn btn-danger" id="yesdisclosures" onclick="disclosures(this.id);">Yes</button> 
