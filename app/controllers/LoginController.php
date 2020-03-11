@@ -59,6 +59,9 @@ class LoginController extends ControllerBase
 					$getemail 	=	strtolower($youremailch);
                     
                     $getdata = $this->logincommon->checkuserlogin($getemail,$pwd);
+
+                    $resetlogin = $this->logincommon->updatetlogin($getemail);
+
                     //$getdata = $this->logincommon->checkusermylogin($getemail,$pwd);
                     //echo '<pre>';print_r($getdata);exit;
                     if($getdata['logged']==true)
