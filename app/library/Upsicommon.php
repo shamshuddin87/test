@@ -287,7 +287,7 @@ class Upsicommon extends Component
             {
                 $enddate = $data['enddate'];
             }
-            $pstartdate = $data['pstartdate'];
+            $pstartdate = $data['pstartdte'];
             $todaydate = date('d-m-Y');
             // ----- Start InsertDataInAutomailer -----
             $qtypeid = '5'; //-- refer email_queuetype table

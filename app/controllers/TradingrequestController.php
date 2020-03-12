@@ -125,6 +125,10 @@ class TradingrequestController extends ControllerBase
                 }
                 else
                 {
+                    //print_r($typeofrequests);exit;
+                    $checkval = $this->tradingrequestcommon->checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans);
+                    //print_r($checkval);exit;    
+
                     if($typeofrequests==1 && $typeoftrans==2)
                     {
                         $checkopbal = $this->tradingrequestcommon->checkopeningbalance($uid,$usergroup,$idofcmp,$typeoftrans,$sectype,
@@ -132,6 +136,7 @@ class TradingrequestController extends ControllerBase
                         //echo '<pre>'; print_r($checkopbal); exit;
                         if($checkopbal['status'])
                         { 
+
                             $clsstatus=1;
                         }
                         else
@@ -147,12 +152,13 @@ class TradingrequestController extends ControllerBase
                     //print_r($clsstatus); exit;
                     if($clsstatus)
                     {
-                        $data = array("logged" => true,'message' => "You Can Create Request...!!!");
+                        
+                        $data = array("logged" => true,'message' => "You Can Create Request...!!!",'contratrd'=>$checkval);
                         $this->response->setJsonContent($data);
                     }
                     else
                     {
-                        $data = array("logged" => false,'message' => $checkopbal['msg']);
+                        $data = array("logged" => false,'message' => $checkopbal['msg'],'contratrd'=>$checkval);
                         $this->response->setJsonContent($data);
                     }
                 }
@@ -1284,6 +1290,44 @@ class TradingrequestController extends ControllerBase
             }
           }
      }
+
+      public function getfilecontentAction()
+    {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $uid.'*'.$user_group_id; exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $pdf_content = file_get_contents("declaration_form/weaverform.html");
+                // print_r($pdf_content);exit;
+                if(!empty($pdf_content))
+                {
+                    $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdf_content"=>$pdf_content);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" =>false,"message" => "PDF Not Generated");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
 
     
   }

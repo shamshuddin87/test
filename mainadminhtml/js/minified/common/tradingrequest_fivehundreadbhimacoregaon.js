@@ -25,11 +25,24 @@ website("body").on("click",".topul",function(e){var id=website(this).attr('id');
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{website('#checkappvlrequest').modal('show');}
+{if(response.contratrd['status']===true)
+{if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
+{new PNotify({title:'Alert',text:response.contratrd.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+else
+{website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest').modal('show');}}
+else
+{getform();}}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
-{}});});website('body').on('click','.reqdraft',function()
+{}});});function getform(uniqueid){var uniqueid=uniqueid;website.ajax({type:"POST",url:'tradingrequest/getfilecontent',dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response)
+{if(response.logged===true)
+{website('.weaverbody').html(response.pdf_content);website('#weaverform').modal('show');}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function()
+{}});}
+website('body').on('click','.reqdraft',function()
 {var approverids=website('#approverid').val();website('#checkappvlrequest #approverid').val(approverids);var reqnames=website('#reqname').val();website('#checkappvlrequest #reqname').val(reqnames);var typeofrequests=website('#typeofrequest').val();website('#checkappvlrequest #typeofrequest').val(typeofrequests);var selrelatives=website('#selrelative').val();website('#checkappvlrequest #selrelative').val(selrelatives);var idofcmps=website('#idofcmp').val();website('#checkappvlrequest #idofcmp').val(idofcmps);var nameofcmps=website('#nameofcmp').val();website('#checkappvlrequest #nameofcmp').val(nameofcmps);var noofshares=website('#noofshare').val();website('#checkappvlrequest #noofshare').val(noofshares);var sectypes=website('#sectypeid').val();website('#checkappvlrequest #sectype').val(sectypes);var typeoftranss=website('#typeoftrans').val();website('#checkappvlrequest #typeoftrans').val(typeoftranss);var sendreq=website('#sendrequest').val();website('#checkappvlrequest #sendreq').val(sendreq);website.ajax({url:'tradingrequest/checkclosebalval',data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)

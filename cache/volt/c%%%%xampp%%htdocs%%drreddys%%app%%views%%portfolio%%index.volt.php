@@ -126,7 +126,8 @@
         
         <div class="col-md-12 list_co">
           <label class="modal-title">Depository Participient</label>
-             <input type="text" id="dpar" name="dpar" class="form_fields form-control col-md-7 col-xs-12" required="required" >
+             <input type="text" id="dpar" name="dpar" class="form_fields form-control col-md-7 col-xs-12 showhovertext" required="required" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)">
+             <span id= "showhovertext" class ="cssclass " style="display: none;">16 digit DP Id/Client Id</span>
         </div>  
         
         <div class="col-md-12 list_co">
@@ -237,9 +238,11 @@
              <input type="text" id="releditaccno" name="releditaccno" class="form_fields form-control col-md-7 col-xs-12" required="required" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}">
         </div>    
         
-        <div class="list_co">
+        <div class="col-md-12 list_co">
           <label class="modal-title">Depository Participient</label>
-             <input type="text" id="dparrel" name="dparrel" class="form_fields form-control col-md-7 col-xs-12" required="required" >
+            <input type="text" id="dparrel" name="dparrel" class="form_fields form-control col-md-7 col-xs-12 showhovertext1" required="required" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)">
+
+             <span id= "showhovertext1" class ="cssclass " style="display: none;">16 digit DP Id/Client Id</span>
         </div>  
           
         

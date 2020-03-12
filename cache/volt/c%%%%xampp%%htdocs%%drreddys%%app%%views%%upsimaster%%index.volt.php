@@ -275,7 +275,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                
                <div class="step_1">
                 <div class="div">
-                        <i class="sec">3</i> <p>Enter Name of the DPs connected to this UPSI</p>   
+                        <i class="sec">3</i> <p>Enter Name of the DPs who are a part or have access to this UPSI</p>   
                  </div>       
 
                 <div id="dpsmodel">

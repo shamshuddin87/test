@@ -54,7 +54,7 @@ class UpsimasterController extends ControllerBase
 
                     if($result)
                     {
-                        $data = array("logged"=>true, 'message'=>'Type of Upsi Added successfully');
+                        $data = array("logged"=>true, 'message'=>'UPSI Created');
                         $this->response->setJsonContent($data);
                     }
                     else
