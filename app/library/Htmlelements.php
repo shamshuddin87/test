@@ -2415,88 +2415,231 @@ public function mailofupsisharing($uniquemail,$sharingdate,$enddate)
 }
 
    
-public function mailofpersonalinfo($emailid,$name)
+public function mailofpersonalinfo($data)
   {   
-       //echo "<pre>";print_r($userids);exit;
-            $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-      <html xmlns="htth3://www.w3.org/1999/xhtml">
+     $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";            
+                $baseuri = $this->url->getBaseUri();
+                $baseurl = $server_link.$baseuri;
+  $html='<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+}
+</style>
+</head>
 
-      <head>
-        <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-        <title>Phoenix Peth</title>
-            <style>
-            .button {
-                background-color: #4CAF50; /* Green */
-                border: none;
-                color: white;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 4px 2px;
-                cursor: pointer;
-            }
+<body style="margin:0; background: #e5e5e5;">
+        <table cellpadding="0" cellspacing="0" width="100%" border="0">
+    <tr>
+      <td>
+      <table cellpadding="0" cellspacing="0" border="0" style="font-family:"Roboto",Arial, Helvetica, sans-serif; max-width:680px; font-size:12px; color:#333; background: #fff;" align="center">
+       <tr>
+            <td style="padding:20px 0 20px 0px; background: #f8f8f8;width:50%;" align="center">
+               <a href="https://www.volody.com/" target="_blank" style="border:0; outline:0;">
+                <img src="https://www.volody.com/mainadmin/img/emailer/logo.png" border="0"/>
+               </a>
+            </td>
 
-            .button2 {background-color: #008CBA;} /* Blue */
-            .button3 {background-color: #f44336;} /* Red */ 
-            .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
-            .button5 {background-color: #555555;} /* Black */
-            </style>
-    </head>
+            <td align="center" style="background: #f8f8f8;width:50%;">
+                <a href="https://www.facebook.com/VolodySoftware/" style="text-decoration: none; padding-right: 15px;">
+                  <img src="https://www.volody.com/companysecretary/gstemailer/images/facebook.png" alt="" />
+                </a>
+                <a href="https://www.youtube.com/channel/UCV8kLW489Q-iw16n_nxAmAg" style="text-decoration: none;">
+                  <img src="https://www.volody.com/companysecretary/gstemailer/images/youtube.png" alt="" />
+                </a>
+            </td>
+       </tr>
 
-    <body style="font-family: Arial;
-        width: 100%;
-        background-color: #f2f2f2;
-        padding:30px;
-        max-width: 600px;
-        margin: 0 auto;;
+      <!-- <tr>
+         <td align="center" colspan="2" style="padding-top: 20px; background: #fff;">
+            <p style="max-width: 100%; margin:0; font-weight:600; letter-spacing: 1px; color:#333; font-size:24px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;"><b>Welcome '.$data['fname'].'</b></p>
+            <p style="max-width: 68%; margin:10px 0;color:#333; font-size:15px; line-height:20px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;"> We\'re happy to have you on board.</p>
+         </td>
+      </tr> -->
 
-      ">
-        <div class="container" style=" max-width:600px; margin: 0 auto; background-color: #fff;padding:25px;">
-            <div class="main_container" style="max-width:600px; margin:0px;">
-                <div class="header" style="margin-bottom:50px;">
-                    <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
-                        <div style="    text-shadow: 1px 0px 2px #626262;
-        color: #626262;">Trading Window Closure</div>
-                    </div>
-                     <div style="clear:both;"></div>
-                </div>
-            <div style="    background-color: #f2f2f2;
-        padding: 18px;">
-        <p>Dear '.$name.'</p>
-        <p>You have been added as Project Owner / Project member in connection with Project as mentioned herein, which is Unpublished Price Sensitive Information (UPSI).</p>
-        <p>As part of the Project, you would be deemed to be in possession / recipient <b>of Unpublished Price Sensitive Information (UPSI) </b>in relation to the affairs concerning the Company. Please note that all UPSI in your possession or that may be shared with you over the course of time, are private and confidential and intended to be used STRICTLY for legitimate purposes only in pursuance to the applicable provisions of the SEBI (Prohibition of Insider Trading) Regulations, 2015 (including any amendment(s) or re-enactment(s) thereof) (SEBI PIT Regulations).</p>
-        <p>The holder/recipient of UPSI (including its Representative) is expected to maintain highest level of confidentiality and shall abide by and undertake to comply with the applicable provisions of the said SEBI PIT Regulations in dealings concerning the listed securities of the Company.</p>
-        
-                <div class="main">
-                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
-                   
-                    
-                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
-                   
-                       
-                       <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
-                      
-                       
-                       <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
-                     
+      <tr>
+         <td align="center" colspan="2" style="padding-top: 20px; background: #fff;">
+            <p style="max-width: 100%; margin:0; font-weight:600; letter-spacing: 1px; color:#333; font-size:24px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">Personal Details</p>
+         </td>
+      </tr>
 
-                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">        Project End Date : to be notified </div> 
-                     <p>Please note that in view of the holding of aforesaid UPSI, the trading window to deal in the listed securities of the Company, has been closed for you and your immediate relatives with immediate effect and shall continue to be so till 48 hours after the said UPSI is made available to public or such activity or project is abandoned.</p>
-                     <p>Please consult the Corporate Governance Dept. for any query or clarification. </p>
-                     <div><br></div>
-                     <p>Regards,</p>
-                     <p>Corporate Governance Team</p>
-                     
-                </div>
+      <tr>
+         <td align="center" colspan="2" style="padding-top: 20px; background: #fff;">
+          <form target="_blank">
+            
+
+             <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px"> Employee ID:</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600"> '.$data['ecode'].'</span>
+              </div>
             </div>
-        </div>
 
+            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px;font-weight:600">Name:</span>
+
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600"> '.$data['fname'].'</span>
+              </div>
+            </div>
+
+           
+
+            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Email ID :</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['toemail'].'</span>
+              </div>
+            </div>
+
+            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px;font-weight:600">PAN :</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['pan'].'</span>
+              </div>
+            </div>
+
+            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Any other legal identifier:</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['legal_idntfr'].'</span>
+              </div>
+            </div>
+
+            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Other legal identification No:</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['legal_idntfctn_no'].'</span>
+              </div>
+            </div>
+
+            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px;font-weight:600">Aadhaar:</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['aadhar'].'</span>
+              </div>
+            </div>
+
+            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Date of Birth:</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['dob'].'</span>
+              </div>
+            </div>
+
+            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Gender :</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['sex'].'</span>
+              </div>
+            </div>
+
+            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px;font-weight:600">Educational Qualification:</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['eduqulfcn'].'</span>
+              </div>
+            </div>
+
+            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Institute:</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['eduqulfcn'].'</span>
+              </div>
+            </div>
+
+            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Password :</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['institute'].'</span>
+              </div>
+            </div>
+
+            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px;font-weight:600">Address:</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['address'].'</span>
+              </div>
+            </div>
+
+            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Mobile No:</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['mobno'].'</span>
+              </div>
+            </div>
+
+             <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Holding in Shares:</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['shareholdng'].'</span>
+              </div>
+            </div>
+
+             <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
+              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Holding in ADRs:</span>
+                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['adrsholdng'].'</span>
+              </div>
+            </div>
+
+          </form>
+         </td>
+      </tr>
+
+
+
+     <!--  <tr>
+        <td colspan="2" align="center">
+        <div style="padding:40px 0 50px 0; background: #fff;">
+        <a href="https://www.volody.com/user/" style="background:#27b16d;border-radius:3px;padding:12px 40px;color:#fff;font-size:16px;text-decoration:none;letter-spacing:1px" target="_blank" data-saferedirecturl="">Login Now!</a>
         </div>
-    </body>
-    </html>';
+        </td>
+      </tr> -->
+     
+      <tr>
+          <td style="padding:0px 0 20px 0; background: #f7f7f7; padding: 10px;" colspan="2">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+              <td align="center" colspan="2">
+                <p style="font-weight:600; letter-spacing: 1px; color:#333; font-size:20px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">For Support</p>
+              </td>
+            </tr>
+
+              <tr>
+                  <td align="center" style="width:340px">
+                  <img src="'.$baseurl.'/mainadminhtml/img/emailer/phone.png" style="display:block; border:0"/>
+                  <p style="margin:5px 0 0; color:#333; font-family:\'Roboto\',Arial,Helvetica,sans-serif; font-size:15px;">+91 8080809301</p>
+                  </td>
+
+
+                  <td align="center" style="width:340px">
+                    <img src="'.$baseurl.'/mainadminhtml/img/emailer/gmailicon.png" style="display:block; border:0"/>
+                    <p style="margin:5px 0 0; font-family:\'Roboto\',Arial,Helvetica,sans-serif; font-size:15px;"><a href="mailto:care@pretr.com" style="color:#333; text-decoration:none; border:0; outline:0;"> connect@volody.in</a></p>
+                  </td>
+              </tr>
+
+          </table>
+          </td>
+      </tr>
+
+      <tr>
+           <td align="center" colspan="2" style="max-width:100%; line-height:25px; background: #333;">
+           <p style="margin:0px; padding:8px 0 8px 0;  color:#fff; font-size:12px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">© 2019-20 Volody Products Pvt Ltd. - volody.com </p>
+            </td>
+      </tr>
+
+    </table>
+         
+    </td>
+    </tr>
+
+
+      </table>
+  </body>
+
+</html>';
 
     //echo $html; exit; 
 

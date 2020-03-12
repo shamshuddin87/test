@@ -217,7 +217,7 @@ class Sensitiveinformationcommon extends Component
         $times = time();
         $queryinsert = "INSERT INTO `sensitiveinfo_sharing`(`user_id`,`user_group_id`,`recipientid`,`name`,`sharingdate`,`upsitype`,`sharingtime`,`enddate`, `datashared`,`category`,`filepath`,`date_added`, `date_modified`,`timeago`)
          VALUES ('".$getuserid."','".$user_group_id."','".$recipientid."','".$name."','".$sharingdate."','".$upsitypeid."','".$sharingtime."','".$enddate."','".$datashared."','".$category."','".$filepath."',NOW(),NOW(),'".$times."')"; 
-        //print_r($queryinsert);exit;
+        print_r($queryinsert);exit;
         try
         {
             $exeprev = $connection->query($queryinsert);
@@ -418,7 +418,7 @@ class Sensitiveinformationcommon extends Component
             
              $queryget = "SELECT sr.*,cate.`category` AS `categoryname` FROM `sensitiveinfo_recipient` sr
              LEFT JOIN `sensitiveinfo_category` cate ON cate.`id` = sr.`category`
-             WHERE sr.`user_id` IN (".$grpusrs['ulstring'].") AND sr.`nameofentity` LIKE '%{$getsearchkywo}%'";
+             WHERE sr.`user_id` IN (".$grpusrs['ulstring'].") AND sr.`name` LIKE '%{$getsearchkywo}%'";
             //echo $queryget;exit;
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());

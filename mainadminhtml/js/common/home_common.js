@@ -471,8 +471,6 @@ function checkdetails()
              website('#updateholdings').modal('show');
 
 
-    
-           
              
            }
           
@@ -538,7 +536,7 @@ function disclosures(id)
         if(response.logged===true)
         {
            
-           window.location.reload();
+          window.location.href = base_url+"/employeemodule";
         }
        else
        {
@@ -578,7 +576,7 @@ function disclosures(id)
 
         if(response.logged===true)
         {
-           window.location.href = base_url+"/employeemodule";
+           window.location.reload();
         }
        else
        {

@@ -35,24 +35,32 @@
     <div class=" personaldetails" style="display: block;">
   <div class="acc">
    
-    <label class="do">Do you have any Demat Account? 
+    <label class="do">Do you have any Demat Account?  
   <?php 
    //print_r($getdematsstatus);exit;
-  if(isset($getdematsstatus) && $getdematsstatus[0]['status'] == 1){ ?>
+  if(isset($getdematsstatus) ){ 
+    
+
+    if($getdematsstatus[0]['status'] == 1){?>
+    
 
     Yes<input type="radio" name="pastemp" value="1" class="dematup" checked onclick="showsection();" /> 
     No<input type="radio" name="pastemp" value="0" class="dematup" onclick="hidesection();"><br>
-  <?php }else if(isset($getdematsstatus) && $getdematsstatus[0]['status'] == 0){ ?>
+  <?php } else if(isset($getdematsstatus) && $getdematsstatus[0]['status'] == 0) { ?>
 
     Yes<input type="radio" name="pastemp" value="1" class="dematup" onclick="showsection();"> 
     No<input type="radio" name="pastemp" value="0" class="dematup" checked onclick="hidesection();"/><br>
 
-  <?php } else{ 
+  <?php } else { 
    ?>
     Yes<input type="radio" name="pastemp" value="1" class="dematup" onclick="showsection();"> 
     No<input type="radio" name="pastemp" value="0" class="dematup" onclick="hidesection();"/><br>
-  <?php } ?>
-  </label>
+  <?php }}else{ ?>
+     Yes<input type="radio" name="pastemp" value="1" class="dematup" onclick="showsection();"> 
+    No<input type="radio" name="pastemp" value="0" class="dematup" onclick="hidesection();"/><br>
+     <?php } ?>
+     </label>
+ 
   
   <div id = "showdemat" style="display: none;">
   <h3 style="text-align: center;">How Many Demat Accounts Do You Have?</h3>
@@ -229,11 +237,11 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Edit Content</h4>
-        <div class="list_co">
+        <div class="col-md-12 list_co">
           <label class="modal-title">Name</label>
              <input type="text" id="reledname" name="reledname" class="form_fields form-control col-md-7 col-xs-12" required="required" readonly/>
         </div>  
-        <div class="list_co">
+        <div class="col-md-12 list_co">
             <label class="modal-title">Account No</label>
              <input type="text" id="releditaccno" name="releditaccno" class="form_fields form-control col-md-7 col-xs-12" required="required" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}">
         </div>    
@@ -246,7 +254,7 @@
         </div>  
           
         
-        <div class="list_co">
+        <div class="col-md-12 list_co">
           <label class="modal-title">Clearing House</label>
              <input type="text" id="relclhouse" name="relclhouse" class="form_fields form-control col-md-7 col-xs-12" required="required" >
         </div>  

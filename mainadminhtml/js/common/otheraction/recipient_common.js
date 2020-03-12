@@ -18,6 +18,7 @@ website(document).ready(function()
         var getid = website(this).closest('form').attr('id');
     });
     
+
 });
 
    website('#insertrecipient').ajaxForm({
@@ -268,7 +269,7 @@ var id = website(this).attr('aprvllistid');
             website("#Mymodaledit #category").val(response.data['0'].category);
             if(response.data['0'].category == 16)
             {
-              alert("hello");
+              
                    var html = '<section class="col col-md-6 col-xs-6"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
                    website('#Mymodaledit .othercateedit').html(html);
                    website("#Mymodaledit #othercategory").val(response.data['0'].othercategory);
@@ -430,6 +431,9 @@ website('body').on('click','.yesconfirm', function(){
 
 website('body').on('change','#category',function(){
     var id = website(this).val();
+         
+        //  
+
     if(id == 16)
     {
         website('#insertrecipient .employeecate').css('display','none');
@@ -437,20 +441,31 @@ website('body').on('change','#category',function(){
         var html = '<section class="col col-md-4 col-xs-12"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
         website('#insertrecipient .othercate').html(html);
         website('#insertrecipient #entity').val("");
-        website('#insertrecipient .nameofemployee').css('display','none');
+      
         website('#insertrecipient #entity').attr("readonly",false);
-          website('#insertrecipient #name').attr("required",false);
+        website('#insertrecipient #name').removeAttr('placeholder');
+        website('#insertrecipient #name').removeAttr('searchemp');
+         website('#insertrecipient #searchuser').css("display", "none");
+        
+         
     }
     else if(id == 14)
     {
         website('#insertrecipient .othercate').css('display','none');
         website('#insertrecipient .employeecate').css('display','block');
-        website('#insertrecipient .nameofemployee').css('display','block');
+      
         var html = '<section class="col col-md-4 col-xs-12"><div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
         website('#insertrecipient .employeecate').html(html);
         website('#insertrecipient #entity').val("Dr Reddy's Laboratories Ltd.");
         website('#insertrecipient #entity').attr("readonly",true);
-        website('#insertrecipient #name').attr("required",true);
+        website('#insertrecipient #name').attr('placeholder',"Search");
+        website('#insertrecipient #name').attr('searchemp','searchemp');
+         onkeysearchuser();
+        
+       
+        
+       
+       
     }
     else
     {
@@ -458,10 +473,14 @@ website('body').on('change','#category',function(){
         website('#insertrecipient .employeecate').css('display','none');
         website('#insertrecipient #othercategory').removeAttr('required');
         website('#insertrecipient #empcategory').removeAttr('required');
-        website('#insertrecipient .nameofemployee').css('display','none');
+        
         website('#insertrecipient #entity').val("");
         website('#insertrecipient #entity').attr("readonly",false);
-          website('#insertrecipient #name').attr("required",false);
+        website('#insertrecipient #name').removeAttr('placeholder');
+         website('#insertrecipient #name').removeAttr('searchemp');
+        website('#insertrecipient #searchuser').css("display", "none");
+        
+         
     }
     
 });
@@ -480,8 +499,8 @@ if(id == 16)
         website('#Mymodaledit .othercateedit').html(html);
         website('#Mymodaledit #entity').val("");
         website('#Mymodaledit #entity').attr("readonly",false);
-        website('#Mymodaledit .nameofemployee').css('display','none');
-        website('#Mymodaledit #name').attr("required",false);
+         website('#Mymodaledit #name').removeAttr('searchemp');
+        
     }
     else if(id == 14)
     {
@@ -491,8 +510,11 @@ if(id == 16)
         website('#Mymodaledit .employeecateedit').html(html);
         website('#Mymodaledit #entity').val("Dr Reddy's Laboratories Ltd.");
         website('#Mymodaledit #entity').attr("readonly",true);
-        website('#Mymodaledit .nameofemployee').css('display','block');
-        website('#Mymodaledit #name').attr("required",true);
+       
+        website('#Mymodaledit #name').attr('searchemp','searchemp');
+        onkeysearchusermodal();
+        
+
     }
     else
     {
@@ -503,23 +525,27 @@ if(id == 16)
         website('#Mymodaledit #empcategory').removeAttr('required');
         website('#Mymodaledit #entity').val("");
         website('#Mymodaledit #entity').attr("readonly",false);
-         website('#Mymodaledit .nameofemployee').css('display','none');
-         website('#Mymodaledit #name').attr("required",false);
+         website('#Mymodaledit #name').removeAttr('searchemp');
+        
 }
 }
 
 
 //-----------------------------------on key up search user----------------------
-onkeysearchuser();
+
 function onkeysearchuser() { 
     website('#insertrecipient #searchuser').css("display", "none");
     website("#name").keyup(function(){
+        
 
         var search=website('#insertrecipient #name').val();
+        var searchuser =  website('#insertrecipient #name').attr('searchemp');
+       
+        
         var addhtml='';
         website('#insertrecipient #searchuser').html("");
         var formdata = {search:search};
-        if(search == '')
+        if(search == '' || !searchuser )
         {
             website('#insertrecipient #searchuser').css("display", "none");
         }
@@ -606,16 +632,17 @@ website("body").on("click",".topul",function(e){
 });
 
 
-onkeysearchusermodal();
+
 function onkeysearchusermodal(){ 
     website('#Mymodaledit #searchuser').css("display", "none");
     website("#Mymodaledit #name").keyup(function(){
 
         var search = website('#Mymodaledit #name').val();
+         var searchuser =  website('#Mymodaledit #name').attr('searchemp');
         var addhtml = '';
         website('#Mymodaledit #searchuser').html("");
         var formdata = {search:search};
-        if(search == '') {
+        if(search == '' || !searchuser) {
             website('#Mymodaledit #searchuser').css("display", "none");
         }
         else

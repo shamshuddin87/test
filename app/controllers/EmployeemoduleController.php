@@ -58,7 +58,9 @@ class EmployeemoduleController extends ControllerBase
                 $legal_idntfctn_no = $this->request->getPost('legal_idntfctn_no','trim');
                 $rqid   = $this->request->getPost('rqid','trim');
                 $toemail   = $this->request->getPost('toemail','trim');
-                //print_r($toemail);exit;
+
+               
+                
 
 
                 if(empty($pan))
@@ -70,6 +72,12 @@ class EmployeemoduleController extends ControllerBase
                 {
 
                    $data = array("logged" => false,'message' => 'Please Enter Mobile Number!!');
+                   $this->response->setJsonContent($data); 
+                }
+                 else if(strlen($mobile) < 10)
+                {
+
+                   $data = array("logged" => false,'message' => 'Your Mobile No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
                 }
                 else if(strlen($pan) < 10)
@@ -88,12 +96,18 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Birth Date Should Be In Past');
                     $this->response->setJsonContent($data);
                 }
-                 else if(empty($aadhar))
+                else if(empty($aadhar))
                 {
 
                    $data = array("logged" => false,'message' => 'Please Enter Aadhaar Number!!');
                    $this->response->setJsonContent($data); 
                 }
+                 else if(strlen($aadhar) < 12)
+                {
+                   $data = array("logged" => false,'message' => 'Your Aadhaar No Should Be 12 Digit!!');
+                   $this->response->setJsonContent($data); 
+                }
+                
                 else if(empty($sex))
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Gender');
@@ -145,6 +159,7 @@ class EmployeemoduleController extends ControllerBase
                     }
                     $newdob = date("d-m-Y", strtotime($dob));
                     $data=$this->request->getPost();
+                    //print_r($data);exit;
                     $check =  $this->employeemodulecommon->checkpersonalinfo($uid,$usergroup);
 
                     if($check == true)
@@ -156,7 +171,7 @@ class EmployeemoduleController extends ControllerBase
 
                         $result = $this->employeemodulecommon->updatemydetails($uid,$rqid,$usergroup,$data,$filepath);
        
-                        $sendmail = $this->emailer->mailofpersonalinfo($toemail,$fname);
+                        $sendmail = $this->emailer->mailofpersonalinfo($data);
                         //print_r($sendmail);exit;
                     }
                     else
@@ -165,7 +180,7 @@ class EmployeemoduleController extends ControllerBase
 
                         //print_r($toemail);exit;
                         $result = $this->employeemodulecommon->insmydetail($uid,$usergroup,$data,$filepath);
-                        $sendmail = $this->emailer->mailofpersonalinfo($toemail,$fname);
+                        $sendmail = $this->emailer->mailofpersonalinfo($data);
                         //print_r($sendmail);exit;
                     }
                     
@@ -424,11 +439,19 @@ class EmployeemoduleController extends ControllerBase
                 $address   = $this->request->getPost('address','trim');
                 $aadhaar   = $this->request->getPost('aadhar','trim');
                 $file   = $this->request->getPost('file','trim');
+                $depnature   = $this->request->getPost('depnature','trim');
+                //print_r($reldata);exit;
                 if(empty($fname))
                 {
                     $data = array("logged" => false,'message' => 'Please Enter First Name!!');
                     $this->response->setJsonContent($data);
                 }
+                else if(empty($depnature))
+                {
+                     $data = array("logged" => false,'message' => 'Please Provide Nature of Dependency');
+                    $this->response->setJsonContent($data);
+                }
+               
                 else if(empty($pan))
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Pan Number');
@@ -442,6 +465,11 @@ class EmployeemoduleController extends ControllerBase
                    else if(empty($aadhaar)) 
                 {
                     $data = array("logged" => false,'message' => 'Please Enter Aadhar Number');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strlen($aadhaar) < 12) 
+                {
+                    $data = array("logged" => false,'message' => 'Your Aadhaar No Should Be 12 Digit!!');
                     $this->response->setJsonContent($data);
                 }
                 

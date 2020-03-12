@@ -86,6 +86,11 @@ class SensitiveinformationController extends ControllerBase
                     $this->response->setJsonContent($data);
                     
                 }
+                else if(empty($email))
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter Email Address',);
+                    $this->response->setJsonContent($data);
+                }
                 else
                 {
                 
@@ -492,7 +497,7 @@ class SensitiveinformationController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Time Cannot Exceed 24:59!!');
                     $this->response->setJsonContent($data);
                 }
-//                
+
                 else
                 {
                     $filepath = '';

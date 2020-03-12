@@ -12,44 +12,26 @@ floatLabel(".floatLabel");})(jQuery);datepicker();function datepicker(){website(
 {var getdate=website(this).val();var getid=website(this).closest('form').attr('id');});}
 function confirmdisclosure(id)
 {var id=id;if(id=="confirmpersonalinfo")
-{var shareholdng=website('#shareholdng').val();var adrsholdng=website('#adrsholdng').val();if(shareholdng||adrsholdng)
+{var shareholdng=website('#shareholdng').val();var adrsholdng=website('#adrsholdng').val();if(shareholdng&&adrsholdng)
 {website('#updateholdings1').modal('show');}
-else
-{website('input[name="confirmpersonalinfo"]').attr("type","submit");website('#perdetail').ajaxForm({dataType:"json",beforeSend:function()
-{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
-{},success:function(response,textStatus,jqXHR)
-{if(response.logged===true)
-{getpersonalinfo();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
-else
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
-{website('.preloder_wraper').fadeOut();},error:function()
-{}});}}
+else if(!shareholdng)
+{new PNotify({title:'Alert',text:'Please Enter Holding in Shares',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+else if(!adrsholdng)
+{new PNotify({title:'Alert',text:'Please Enter Holding in ADRs',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}
 else if(id=="relsub")
-{var shareholdng=website('#getdata_1 #shareholdng').val();var adrsholdng=website('#getdata_1 #adrsholdng').val();if(shareholdng||adrsholdng)
+{var shareholdng=website('#getdata_1 #shareholdng').val();var adrsholdng=website('#getdata_1 #adrsholdng').val();if(shareholdng&&adrsholdng)
 {website('#updateholdings2').modal('show');}
-else
-{website('input[name="relsub"]').attr("type","submit");alert("inelse");website('#getdata_1').ajaxForm({dataType:"json",beforeSend:function()
-{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
-{},success:function(response,textStatus,jqXHR)
-{if(response.logged===true)
-{getpersonalinfo();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
-else
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
-{website('.preloder_wraper').fadeOut();},error:function()
-{}});}}
+else if(!shareholdng)
+{new PNotify({title:'Alert',text:'Please Enter Holding in Shares',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+else if(!adrsholdng)
+{new PNotify({title:'Alert',text:'Please Enter Holding in ADRs',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}
 else if(id=="relupdate")
-{var shareholdng=website("#reledit #shareholdng").val();var adrsholdng=website("#reledit #adrsholdng").val();if(shareholdng||adrsholdng)
+{var shareholdng=website("#reledit #shareholdng").val();var adrsholdng=website("#reledit #adrsholdng").val();if(shareholdng&&adrsholdng)
 {website('#updateholdings3').modal('show');}
-else
-{website('input[name="relupdate"]').attr("type","submit");website('#uprel').ajaxForm({dataType:"json",beforeSend:function()
-{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
-{},success:function(response,textStatus,jqXHR)
-{if(response.logged===true)
-{getpersonalinfo();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
-else
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
-{website('.preloder_wraper').fadeOut();},error:function()
-{}});}}}
+else if(!shareholdng)
+{new PNotify({title:'Alert',text:'Please Enter Holding in Shares',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+else if(!adrsholdng)
+{new PNotify({title:'Alert',text:'Please Enter Holding in ADRs',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}}
 function nodisclosures(id)
 {if(id=="nodisclosures1")
 {new PNotify({title:'Alert',text:'Please Submit necessary disclosures First',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website('#updateholdings1').modal('hide');}
@@ -57,7 +39,7 @@ else if(id=="nodisclosures2")
 {new PNotify({title:'Alert',text:'Please Submit necessary disclosures First',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website('#updateholdings2').modal('hide');}
 else if(id=="nodisclosures3")
 {new PNotify({title:'Alert',text:'Please Submit necessary disclosures First',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website('#updateholdings3').modal('hide');website('#reledit').modal('hide');}}
-website('body').on('click','#yesdisclosures1',function(e){var fname=website("#fname").val();var pan=website("#pan").val();var aadhar=website("#aadhar").val();var dob=website("#dob").val();var sex=website("input[name='sex']:checked").val();var address=website("#address").val();var eduqulfcn=website("#eduqulfcn").val();var institute=website("#institute").val();var mobno=website("#mobno").val();var hldngfile=website("#hldngfile").val();var legal_idntfr=website("#legal_idntfr").val();var legal_idntfctn_no=website("#legal_idntfctn_no").val();var rqid=website("#rqid").val();var toemail=website("#toemail").val();var shareholdng=website("#shareholdng").val();var adrsholdng=website("#adrsholdng").val();var occupation=website("#occupation").val();var company=website("#company").val();var formdata={fname:fname,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,institute:institute,mobno:mobno,hldngfile:hldngfile,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,rqid:rqid,toemail:toemail,shareholdng:shareholdng,adrsholdng:adrsholdng,occupation:occupation,company:company}
+website('body').on('click','#yesdisclosures1',function(e){var fname=website("#fname").val();var pan=website("#pan").val();var aadhar=website("#aadhar").val();var dob=website("#dob").val();var sex=website("input[name='sex']:checked").val();var address=website("#address").val();var eduqulfcn=website("#eduqulfcn").val();var institute=website("#institute").val();var mobno=website("#mobno").val();var hldngfile=website("#hldngfile").val();var legal_idntfr=website("#legal_idntfr").val();var legal_idntfctn_no=website("#legal_idntfctn_no").val();var rqid=website("#rqid").val();var toemail=website("#toemail").val();var shareholdng=website("#shareholdng").val();var adrsholdng=website("#adrsholdng").val();var ecode=website("#ecode").val();var formdata={ecode:ecode,fname:fname,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,institute:institute,mobno:mobno,hldngfile:hldngfile,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,rqid:rqid,toemail:toemail,shareholdng:shareholdng,adrsholdng:adrsholdng}
 website.ajax({url:'employeemodule/insmydetail',method:'POST',data:formdata,contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
@@ -190,7 +172,7 @@ else
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{getmfrdata();window.location.reload();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+{getmfrdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}});});getmfrdata();function getmfrdata(){website.ajax({url:'employeemodule/getmfrdata',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)

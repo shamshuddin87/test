@@ -1381,11 +1381,11 @@ Class Email extends Phalcon\Mvc\User\Component {
     }
 
 
-    public function mailofpersonalinfo($emailid,$fullname)
+    public function mailofpersonalinfo($emaildata)
     {
 
         //print_r($emailid);exit;
-        $gethtml = $this->htmlelements->mailofpersonalinfo($emailid,$fullname);
+        $gethtml = $this->htmlelements->mailofpersonalinfo($emaildata);
         //print_r($gethtml);exit;
         $mail = new PHPMailer();
         $mail->isSMTP();
@@ -1402,7 +1402,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
-        $mail->addAddress($emailid, 'Volody');
+        $mail->addAddress($emaildata['toemail'], 'Volody');
         $mail->Subject = 'Personal Information';
         $mail->msgHTML($gethtml);
         //Replace the plain text body with one created manually

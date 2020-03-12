@@ -103,5 +103,5 @@ else if(length==3)
 function boxhide(name)
 {var classname=name.split(" ");var length=classname.length;if(length==5)
 {website("#"+classname[4]).css("display","none");}
-else if(length==4)
-{website("#"+classname[3]).css("display","none");}};
+else if(length==3)
+{website("#"+classname[2]).css("display","none");}};

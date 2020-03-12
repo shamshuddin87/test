@@ -757,9 +757,10 @@ function boxhide(name)
   website("#"+classname[4]).css("display","none");
 
  }
- else if(length == 4)
+ else if(length == 3)
  {
+  
 
-   website("#"+classname[3]).css("display","none");
+   website("#"+classname[2]).css("display","none");
  }
 }

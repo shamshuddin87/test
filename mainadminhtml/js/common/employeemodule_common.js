@@ -126,62 +126,37 @@ function confirmdisclosure(id)
     var shareholdng = website('#shareholdng').val();
     var adrsholdng = website('#adrsholdng').val();
     
-    if(shareholdng || adrsholdng )
+    if(shareholdng && adrsholdng )
     {
      
        website('#updateholdings1').modal('show');
     }
-    else
+    else if(!shareholdng)
     {
-
-      website('input[name="confirmpersonalinfo"]').attr("type", "submit");
-      
-      //alert("inelse");
-      website('#perdetail').ajaxForm({
-      dataType:"json",
-      beforeSend: function() 
-      {  website('.preloder_wraper').fadeIn(); },
-      uploadProgress: function(event, position, total, percentComplete) 
-      {   },
-      success: function(response, textStatus, jqXHR) 
-      {
-         if(response.logged === true)
-         {
-
               
-               getpersonalinfo();
-               new PNotify({title: 'Alert',
-                    text: response.message,
-                    type: 'university',
-                    hide: true,
-                    styling: 'bootstrap3',
-                    addclass: 'dark ',
-                }); 
-            window.location.reload();
- 
-         }
-         else
-         {    
-           new PNotify({title: 'Alert',
-                    text: response.message,
-                    type: 'university',
-                    hide: true,
-                    styling: 'bootstrap3',
-                    addclass: 'dark ',
-                }); 
-         }
-    },
-    complete: function(response) 
-    {  website('.preloder_wraper').fadeOut();
-
-
-    },
-    error: function() 
-    {   }
-
-
-   });
-  }
+        new PNotify({title: 'Alert',
+        text: 'Please Enter Holding in Shares',
+        type: 'university',
+        hide: true,
+        styling: 'bootstrap3',
+        addclass: 'dark ',
+        }); 
+        
+  
+    }
+    else if(!adrsholdng)
+    {
+              
+        new PNotify({title: 'Alert',
+        text: 'Please Enter Holding in ADRs',
+        type: 'university',
+        hide: true,
+        styling: 'bootstrap3',
+        addclass: 'dark ',
+        }); 
+        
+  
+    }
     
     
   }
@@ -191,128 +166,86 @@ function confirmdisclosure(id)
     var shareholdng = website('#getdata_1 #shareholdng').val();
     var adrsholdng = website('#getdata_1 #adrsholdng').val();
 
-   
-     if(shareholdng || adrsholdng )
+    if(shareholdng && adrsholdng )
     {
      
        website('#updateholdings2').modal('show');
     }
-    else
+    else if(!shareholdng)
     {
-
-      website('input[name="relsub"]').attr("type", "submit");
-      
-      alert("inelse");
-      website('#getdata_1').ajaxForm({
-      dataType:"json",
-      beforeSend: function() 
-      {  website('.preloder_wraper').fadeIn(); },
-      uploadProgress: function(event, position, total, percentComplete) 
-      {   },
-      success: function(response, textStatus, jqXHR) 
-      {
-         if(response.logged === true)
-         {
-
               
-               getpersonalinfo();
-               new PNotify({title: 'Alert',
-                    text: response.message,
-                    type: 'university',
-                    hide: true,
-                    styling: 'bootstrap3',
-                    addclass: 'dark ',
-                }); 
-            window.location.reload();
- 
-         }
-         else
-         {    
-           new PNotify({title: 'Alert',
-                    text: response.message,
-                    type: 'university',
-                    hide: true,
-                    styling: 'bootstrap3',
-                    addclass: 'dark ',
-                }); 
-         }
-    },
-    complete: function(response) 
-    {  website('.preloder_wraper').fadeOut();
+        new PNotify({title: 'Alert',
+        text: 'Please Enter Holding in Shares',
+        type: 'university',
+        hide: true,
+        styling: 'bootstrap3',
+        addclass: 'dark ',
+        }); 
+        
+  
+    }
+    else if(!adrsholdng)
+    {
+              
+        new PNotify({title: 'Alert',
+        text: 'Please Enter Holding in ADRs',
+        type: 'university',
+        hide: true,
+        styling: 'bootstrap3',
+        addclass: 'dark ',
+        }); 
+        
+  
+    }
+    
 
-
-    },
-    error: function() 
-    {   }
-
-
-   });
+   
+     
   }
-  }
+  
   else if(id == "relupdate" )
   {
     
     var shareholdng =  website("#reledit #shareholdng").val();
     var adrsholdng =  website("#reledit #adrsholdng").val();
 
-     if(shareholdng || adrsholdng )
+    if(shareholdng && adrsholdng )
     {
      
        website('#updateholdings3').modal('show');
     }
-    else
+    else if(!shareholdng)
     {
+              
+        new PNotify({title: 'Alert',
+        text: 'Please Enter Holding in Shares',
+        type: 'university',
+        hide: true,
+        styling: 'bootstrap3',
+        addclass: 'dark ',
+        }); 
+        
+  
+    }
+    else if(!adrsholdng)
+    {
+              
+        new PNotify({title: 'Alert',
+        text: 'Please Enter Holding in ADRs',
+        type: 'university',
+        hide: true,
+        styling: 'bootstrap3',
+        addclass: 'dark ',
+        }); 
+        
+  
+    }
+    
 
-      website('input[name="relupdate"]').attr("type", "submit");
-      
-      //alert("inelse");
-      website('#uprel').ajaxForm({
-      dataType:"json",
-      beforeSend: function() 
-      {  website('.preloder_wraper').fadeIn(); },
-      uploadProgress: function(event, position, total, percentComplete) 
-      {   },
-      success: function(response, textStatus, jqXHR) 
-      {
-         if(response.logged === true)
-         {
-
-               getpersonalinfo();
-               new PNotify({title: 'Alert',
-                    text: response.message,
-                    type: 'university',
-                    hide: true,
-                    styling: 'bootstrap3',
-                    addclass: 'dark ',
-                }); 
-            window.location.reload();
- 
-         }
-         else
-         {    
-           new PNotify({title: 'Alert',
-                    text: response.message,
-                    type: 'university',
-                    hide: true,
-                    styling: 'bootstrap3',
-                    addclass: 'dark ',
-                }); 
-         }
-    },
-    complete: function(response) 
-    {  website('.preloder_wraper').fadeOut();
-
-
-    },
-    error: function() 
-    {   }
-
-
-   });
   }
     
     
-  }
+  
   
   
 } 
@@ -385,11 +318,11 @@ website('body').on('click','#yesdisclosures1',function(e){
    //alert(toemail);
     var shareholdng =  website("#shareholdng").val();
      var adrsholdng =  website("#adrsholdng").val();
-     var occupation =  website("#occupation").val();
-     var company =  website("#company").val();
+      var ecode =  website("#ecode").val();
+    
 
 
-   var formdata = {fname:fname,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,institute:institute,mobno:mobno,hldngfile:hldngfile,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,rqid:rqid,toemail:toemail,shareholdng:shareholdng,adrsholdng:adrsholdng,occupation:occupation,company:company}
+   var formdata = {ecode:ecode,fname:fname,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,institute:institute,mobno:mobno,hldngfile:hldngfile,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,rqid:rqid,toemail:toemail,shareholdng:shareholdng,adrsholdng:adrsholdng}
    website.ajax({
         url:'employeemodule/insmydetail',
         
@@ -1365,7 +1298,7 @@ website('#savemfr').click(function(e) {
             if(response.logged === true)
           {
               getmfrdata();
-              window.location.reload();
+            
                new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
@@ -1373,6 +1306,8 @@ website('#savemfr').click(function(e) {
                     styling: 'bootstrap3',
                     addclass: 'dark ',
                 }); 
+
+                 window.location.reload();
             
  
          }
