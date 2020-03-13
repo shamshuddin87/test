@@ -1233,9 +1233,16 @@ class Tradingrequestcommon extends Component
                         $start_date = strtotime($row2['date_of_transaction']); 
 
                         $end_date = strtotime($mydate); 
-                        $diffdays=($end_date - $start_date)/60/60/24; 
-                        if($diffdays<=182 && $row['type_of_transaction']!=$typeoftrans)
+                        $diff = abs($start_date - $end_date);
+
+                        $years = floor($diff / (365*60*60*24));
+                        $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+                        $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+
+                        if($days<=182 && $row['type_of_transaction']!=$typeoftrans)
                         {
+
                             $results = array('status'=>'false', 'mg'=>'You Are Doing Different Trade Before Six Months Transaction');
                         }
                         else

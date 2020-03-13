@@ -587,7 +587,7 @@ function doSearch(getvalue)
       //async:true, /*Cross domain checking*/
       beforeSend: function() 
       {
-              website('#live-search-header-wrapper').fadeIn();
+            website('#live-search-header-wrapper').fadeIn();
             website('#live-search-header-wrapper ul').html("<li>Please wait...</li>");
                 website('.mainprogressbarforall .progress').fadeIn();
                 website('.filtr-container').html("");
@@ -623,7 +623,7 @@ function doSearch(getvalue)
                   if(response.data[i].category == '16')
                   {
                        categoryname = response.data[i].othercategory;
-                        name = response.data[i].nameofentity;
+                        name = response.data[i].name;
                          email = response.data[i].email;
                           category = response.data[i].category;
                             id = response.data[i].id;
@@ -639,7 +639,7 @@ function doSearch(getvalue)
                   else
                   {
                     categoryname = response.data[i].categoryname;
-                     name = response.data[i].nameofentity;
+                     name = response.data[i].name;
                       email = response.data[i].email;
                        category = response.data[i].category;
                          id = response.data[i].id;
@@ -721,10 +721,10 @@ function doSearchforedit(getvalue)
       },
       uploadProgress: function(event, position, total, percentComplete) 
       {
-                website('#Mymodaledit #live-search-header-wrapper').fadeIn();
+        website('#Mymodaledit #live-search-header-wrapper').fadeIn();
         website('#Mymodaledit #live-search-header-wrapper ul').html("<li>Please wait...</li>");
-                website('#Mymodaledit .mainprogressbarforall .progress').fadeIn();
-                website("#Mymodaledit .mainprogressbarforall .progress .progress-bar").width(percentComplete+'%');
+        website('#Mymodaledit .mainprogressbarforall .progress').fadeIn();
+        website("#Mymodaledit .mainprogressbarforall .progress .progress-bar").width(percentComplete+'%');
                 
       },
       success: function(response, textStatus, jqXHR) 
@@ -791,7 +791,8 @@ function doSearchforedit(getvalue)
        var cate = website(this).attr('category');
        var categoryname = website(this).attr('categoryname');
        var email = website(this).attr('email');
-       alert(email);
+       
+       
         
        website('#insertinfosharing #search-box').val(name);
        website('#search-box').attr('recid',recid);

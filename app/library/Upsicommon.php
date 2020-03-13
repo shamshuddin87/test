@@ -287,7 +287,7 @@ class Upsicommon extends Component
             {
                 $enddate = $data['enddate'];
             }
-            $pstartdate = $data['pstartdate'];
+            $pstartdate = $data['pstartdte'];
             $todaydate = date('d-m-Y');
             // ----- Start InsertDataInAutomailer -----
             $qtypeid = '5'; //-- refer email_queuetype table
@@ -395,9 +395,22 @@ class Upsicommon extends Component
         }
         else
         {
-
-            $connctdps = implode(',',$updatedata['connectdps']);
-            //print_r($connctdps);exit;
+            if(array_key_exists("connectdps",$updatedata)  && !empty($_FILES['connecteddps']))
+            {
+                     $connctdps = implode(',',$updatedata['connectdps']);
+                if(strcasecmp($connctdps, $updatedata['cmpconnectdps']) !=0)
+                 {
+                    $chngein = 'users';
+                
+                   $flag = 1;
+                 }
+            }
+            else
+            {
+                      $connctdps ='';
+            }
+          
+          
             $flag = 0;
 
             $chngein = 'all';
@@ -421,12 +434,7 @@ class Upsicommon extends Component
             {
                 $flag = 1;
             }
-            if(strcasecmp($connctdps, $updatedata['cmpconnectdps']) !=0)
-            {
-                $chngein = 'users';
-                //print_r($connctdps); print_r($updatedata['upname']); exit;
-                $flag = 1;
-            }
+           
             if($flag == 1)
             {
 

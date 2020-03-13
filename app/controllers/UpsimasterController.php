@@ -54,7 +54,7 @@ class UpsimasterController extends ControllerBase
 
                     if($result)
                     {
-                        $data = array("logged"=>true, 'message'=>'Type of Upsi Added successfully');
+                        $data = array("logged"=>true, 'message'=>'UPSI Created');
                         $this->response->setJsonContent($data);
                     }
                     else
@@ -178,6 +178,8 @@ class UpsimasterController extends ControllerBase
         $firstname = $this->session->loginauthspuserfront['firstname'];
         $lastname = $this->session->loginauthspuserfront['lastname'];
         $username = $this->session->loginauthspuserfront['username'];
+       
+
         $timeago = time();
         if($this->request->isPost() == true)
         {
@@ -185,14 +187,14 @@ class UpsimasterController extends ControllerBase
             {
                 $updatedata = $this->request->getPost();
                 //print_r($updatedata);exit;
-                if((!array_key_exists("connectdps",$updatedata) && !array_key_exists("upalldps",$updatedata)) && empty($_FILES['connecteddps']))
-                {
-                    $data = array("logged" => false,'message' => 'Please Select Atleast One Connected Dp OR upload file' );
-                    $this->response->setJsonContent($data);
-                }
-                else
-                {
-                    //
+                // if((!array_key_exists("connectdps",$updatedata) && !array_key_exists("upalldps",$updatedata)) && empty($_FILES['connecteddps']))
+                // {
+                //     $data = array("logged" => false,'message' => 'Please Select Atleast One Connected Dp OR upload file' );
+                //     $this->response->setJsonContent($data);
+                // }
+                // else
+                // {
+                  
                     $exceldpids = array();
                     if(!empty($_FILES['connecteddps']))
                     {
@@ -245,7 +247,7 @@ class UpsimasterController extends ControllerBase
                         $data = array("logged"=>false,"message"=>'Data Not Updated..!!!');
                         $this->response->setJsonContent($data);
                     }
-                }
+                
                 $this->response->send();
             }
             else

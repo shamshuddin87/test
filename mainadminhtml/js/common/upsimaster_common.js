@@ -89,7 +89,11 @@ function getallupsietails()
                     {
                         htmlelements+='<i class="fa fa-edit upedit" upsiid="'+response.data[i][0]+'" ></i>';
                     }
-                    htmlelements+='<i class="fa fa-trash delups" delupsiid="'+response.data[i][0]+'"></i></td>';
+                    if(response.usergrp == '14' || response.usergrp == '2')
+                    {
+                        htmlelements+='<i class="fa fa-trash delups" delupsiid="'+response.data[i][0]+'"></i></td>';
+                    }
+                   
                     htmlelements+='</tr>';
                  }
             }
@@ -156,7 +160,7 @@ website('body').on('click','.upedit',function(e){
 
                             addhtml+= '<div class="row-'+userid+'"><section class="col col-md-8 col-xs-8"><label class="control-label">Name of Connected DP*</label><input type="text" id="approvers" name="approvers[]" class="form_fields form-control col-md-7 col-xs-12" value="'+username+'" userid="'+userid+'" useremail="'+useremail+'" required readonly></section>';
 
-                            // addhtml += '<section class="col col-md-4 col-xs-4"><i class="fa fa-trash-o faicon dbaprvl" num="'+userid+'" title="Delete entry"></i></section>';
+                            addhtml += '<section class="col col-md-4 col-xs-4"><i class="fa fa-trash-o faicon dbaprvl" num="'+userid+'" title="Delete entry"></i></section>';
                             
                             addhtml+= '<input type="hidden" value="'+userid+'" name="connectdps[]">';
                             addhtml+= '<input type="hidden" value="'+useremail+'" name="useremail[]"></div>';
@@ -174,7 +178,10 @@ website('body').on('click','.upedit',function(e){
                     website("#upsimodel #projdesc").attr("readonly","readonly");
                     website(".searchowner").attr("readonly","readonly");
                     website("#upsimodel #pstartdte").attr("disabled","disabled");
-                     website("#upsimodel #enddate").attr("disabled","disabled");
+                    website("#upsimodel #enddate").attr("disabled","disabled");
+
+                   
+
                 }
                 else
                 {
@@ -197,9 +204,11 @@ website('body').on('click','.upedit',function(e){
                 
                 website('#upsimodel #pstartdte').val(projstartdate);
                 website('#upsimodel #cmppstartdte').val(projstartdate);
+                 website('#upsimodel #pstartdtecopy').val(projstartdate);
                 
                 website('#upsimodel #enddate').val(enddate);
                 website('#upsimodel #cmpenddate').val(enddate);
+                 website('#upsimodel #enddatecopy').val(enddate);
                 
                 website('#upsimodel #ownerid').val(projectownerid);
                 website('#upsimodel #cmpownerid').val(projectownerid);
@@ -226,12 +235,14 @@ website('body').on('click','.upedit',function(e){
    
 });
 
+
+
 website('#updateupsimast').ajaxForm({
     //data:formdata,
     //contentType:'application/x-www-form-urlencoded; charset=UTF-8',
     dataType:"json",
     beforeSend: function() 
-    {   },
+    {   website('.preloder_wraper').fadeIn(); },
     uploadProgress: function(event, position, total, percentComplete) 
     {   },
     success: function(response, textStatus, jqXHR) 
@@ -260,10 +271,11 @@ website('#updateupsimast').ajaxForm({
          }
     },
     complete: function(response) 
-    {   },
+    {   website('.preloder_wraper').fadeOut(); },
     error: function() 
     {   }
 });
+
 
 website('body').on('click','.delups',function(e){ 
   var delid = website(this).attr('delupsiid');
@@ -848,7 +860,7 @@ function doSearchfordps(getvalue)
      
         addhtml+= '<div class="row-'+userid+'"><section class="col col-md-8 col-xs-8"><label class="control-label">Name of Connected DP*</label><input type="text" id="approvers" name="approvers[]" class="form_fields form-control col-md-7 col-xs-12" value="'+username+'" userid="'+userid+'" useremail="'+useremail+'" required readonly></section>';
      
-       // addhtml += '<section class="col col-md-4 col-xs-4"><i class="fa fa-trash-o faicon dbaprvl" num="'+userid+'" title="Delete entry"></i></section>';
+       addhtml += '<section class="col col-md-4 col-xs-4"><i class="fa fa-trash-o faicon dbaprvl" num="'+userid+'" title="Delete entry"></i></section>';
        
        addhtml+= '<input type="hidden" value="'+userid+'" name="connectdps[]">';
        addhtml+= '<input type="hidden" value="'+useremail+'" name="useremail[]"></div>';

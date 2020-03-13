@@ -18,8 +18,14 @@ class PortfolioController extends ControllerBase
         $gmnlog = $this->session->loginauthspuserfront;
         $this->view->relativesinfo =$this->employeemodulecommon->getrelativedata($uid,$usergroup);
        // demat Account Detail
+      
 
-      $this->view->getdematsstatus=$this->portfoliocommon->getdematsstatus($uid,$usergroup);
+      $demat = $this->portfoliocommon->getdematsstatus($uid,$usergroup);
+      if(!empty($demat))
+      {
+         $this->view->getdematsstatus=$this->portfoliocommon->getdematsstatus($uid,$usergroup);
+      }
+     
        //print_r($getdematsstatus);exit;
         
             

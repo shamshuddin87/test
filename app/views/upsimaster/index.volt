@@ -211,6 +211,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                      <input type="hidden" id="cmppstartdte" name="cmppstartdte">
                     <label class="control-label">UPSI Start Date*</label>
                     <div class="input">
+                         <input type="text" id="pstartdtecopy" name="pstartdte"  class="form_fields form-control col-md-7 col-xs-12 " style="display: none">
                         <input type="text" id="pstartdte" name="pstartdte" required="required" class="form_fields form-control col-md-7 col-xs-12 bootdatepick" readonly>
                     </div>
                 </section>
@@ -219,6 +220,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                    <input type="hidden" id="cmpenddate" name="cmpenddate">
                     <div class="input">
                     <label class="control-label">UPSI End Date*</label>
+                     <input type="text" id="enddatecopy" name="enddate"  class="form_fields form-control col-md-7 col-xs-12"  style="display: none;">
                         <input type="text" id="enddate" name="enddate" required="required" class="form_fields form-control col-md-7 col-xs-12 bootdatepick" readonly>
                     </div>
                 </section>
@@ -275,7 +277,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                
                <div class="step_1">
                 <div class="div">
-                        <i class="sec">3</i> <p>Enter Name of the DPs connected to this UPSI</p>   
+                        <i class="sec">3</i> <p>Enter Name of the DPs who are a part or have access to this UPSI</p>   
                  </div>       
 
                 <div id="dpsmodel">
