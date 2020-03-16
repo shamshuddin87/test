@@ -18,6 +18,8 @@ $condeptsess = $this->session->contractdepartment;
   <div class="create_button">
    <a href="annualdeclaration/createannual"> <button type="button" class="btn btn-primary getdata">Create Declaration</button></a>
    </div>
+
+   
   <table width="100%" border="1" class="table table-inverse" id="datableabhi">
  <thead>
   <tr>

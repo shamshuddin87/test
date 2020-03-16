@@ -130,8 +130,8 @@ function getdataonload()
             }
             addhtmlnxt += '<td >';
 
-            if(response.getaccess[0]['upsi_conn_per_edit']==1)
-            {
+           
+           
                 addhtmlnxt+='<i class="fa fa-edit faicon floatleft editrestrictedcmp" title="Edit entry" aprvllistid="'+response.resdta[i].id+'"> </i>';
             }
             else
