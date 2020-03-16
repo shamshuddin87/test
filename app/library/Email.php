@@ -1298,13 +1298,15 @@ Class Email extends Phalcon\Mvc\User\Component {
        
     }
 
-
-    public function mailofnewdp($toemail,$tousername,$pstartdate,$enddate,$today,$fromusername,$upsitype)
+ public function mailofType1($toemail,$todaydate,$title,$upsiinfo,$dpnames)
     {
 
-       // print_r($tousername);exit;
-        $gethtml = $this->htmlelements->mailofupdatedp($toemail,$tousername,$pstartdate,$enddate,$today,$fromusername,$upsitype);
-        //print_r($gethtml);exit;
+        $date_added =  explode(" ", $upsiinfo['date_added']);
+        $date_timestamp = strtotime($date_added[0]);
+        $new_date = date("d-m-Y",  $date_timestamp);
+
+        $gethtml = $this->htmlelements->Type1content($toemail,$todaydate,$title,$new_date,$upsiinfo['fullname'],$dpnames);
+        //print_r($toemail);exit;
         $mail = new PHPMailer();
         $mail->isSMTP();
         $mail->SMTPDebug = 2;
@@ -1327,7 +1329,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         //send the message, check for errors
 
         if ($mail->Send()) {
-          
+         
             return true;
         }
         else {
@@ -1340,11 +1342,60 @@ Class Email extends Phalcon\Mvc\User\Component {
        
     }
 
-    public function mailofnewupsisharing($uniquemail,$sharingdate,$enddate)
+    public function mailofnewdp($toemail,$tousername,$pstartdate,$enddate,$today,$fromusername,$upsitype)
     {
 
-        //print_r($username);exit;
-        $gethtml = $this->htmlelements->mailofupsisharing($uniquemail,$sharingdate,$enddate);
+       // print_r($tousername);exit;
+        $gethtml = $this->htmlelements->mailofupdatedp($toemail,$tousername,$pstartdate,$enddate,$today,$fromusername,$upsitype);
+            //print_r($gethtml);exit;
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        //add cc
+        //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+        //Set who the message is to be sent to
+        $mail->addAddress($toemail, 'Volody');
+        $mail->Subject = 'Trading Window Closure';
+        $mail->msgHTML($gethtml);
+        //Replace the plain text body with one created manually
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+         
+            return true;
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+           return false;
+        }
+
+        return $get;
+ 
+       
+    }
+
+    public function mailofnewupsisharing($uniquemail,$sharingdate,$upsiname,$toname,$category)
+    {
+
+        //print_r($category);exit;
+        if($category == 14)
+        {
+             $gethtml = $this->htmlelements->internalmember($uniquemail,$sharingdate,$upsiname,$toname);
+        }
+        else
+        {
+            $gethtml = $this->htmlelements->externalmember($uniquemail,$sharingdate,$upsiname,$toname);
+        }
+       
         //print_r($gethtml);exit;
         $mail = new PHPMailer();
         $mail->isSMTP();

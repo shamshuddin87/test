@@ -352,6 +352,8 @@ website('body').on('click','#yesdisclosures1',function(e){
                           addclass: 'dark ',
                       });
 
+                window.location.reload();
+
                }
              else
              {    
@@ -513,6 +515,7 @@ website('body').on('click','#yesdisclosures3',function(e)
                     addclass: 'dark ',
                 }); 
             
+              window.location.reload();
  
          }
          else

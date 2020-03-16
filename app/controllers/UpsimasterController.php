@@ -178,6 +178,7 @@ class UpsimasterController extends ControllerBase
         $firstname = $this->session->loginauthspuserfront['firstname'];
         $lastname = $this->session->loginauthspuserfront['lastname'];
         $username = $this->session->loginauthspuserfront['username'];
+        
        
 
         $timeago = time();

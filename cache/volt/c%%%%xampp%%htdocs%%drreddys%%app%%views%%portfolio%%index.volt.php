@@ -110,8 +110,8 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger mar_0 yesconfirm">Yes</button>
-                <button type="button" class="btn btn-default btn-default-one" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary mar_0 yesconfirm">Yes</button>
+                <button type="button" class="btn btn-danger  " data-dismiss="modal">No</button>
             </div>
         </div>
     </div>

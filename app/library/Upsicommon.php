@@ -185,7 +185,7 @@ class Upsicommon extends Component
             if($exesql)
             {  
                 $updatedata['nameaddedby'] = $addedby;
-                $datadiffrnt = $this->upsicommon->chckifdatadiff($getuserid,$usergroup,$updatedata,$username);
+                $datadiffrnt = $this->upsicommon->chckifdatadiff($getuserid,$usergroup,$updatedata,$username,$updatedata['editid']);
                 //print_r($datadiffrnt);exit;
                 return true;
                  
@@ -308,24 +308,45 @@ class Upsicommon extends Component
     }
 
 
-    public function mailfortradingwindowedit($getuserid,$user_group_id,$userids,$data,$username)
+    public function mailfortradingwindowedit($getuserid,$user_group_id,$userdp,$data,$username,$ownerid,$upsiid)
     {
         //print_r($data);exit;
-        $uniuserid = array_unique($userids);
+        $uniuserid = array_unique($userdp);
         //print_r($uniuserid);exit;
         $uniuserid = array_values($uniuserid);
         
         $unquser = implode(',',$uniuserid);
         //print_r($unquser);exit;
-        $userdata = $this->fetchuserdata($unquser);
-        //print_r($userdata);exit;
-     //        $cmpid = $data['cmpid'];
-     //        $cmpname = $this->fetchcmpname($cmpid);
-        for($i=0;$i<sizeof($userdata);$i++)
+        $userdatadp = $this->fetchuserdata($unquser);
+
+        $ownerdata = $this->fetchuserdata($ownerid);
+        $owneremail =  $ownerdata[0]['email'];
+        for($i=0;$i<sizeof($userdatadp);$i++)
         {
-            $sendtoid = $userdata[$i]['wr_id'];                        
-            $sendtoname = $userdata[$i]['fullname'];
-            $emailid = $userdata[$i]['email'];
+                              
+            $sendtoname[] = $userdatadp[$i]['fullname'];
+           
+        }
+        $dpnames = implode(",", $sendtoname);
+        
+ 
+        
+        $upsiinfo = $this->upsicommon->getsingleupsi($upsiid);
+        //print_r($upsiinfo);exit;
+        $complianceinfo = $this->sensitiveinformationcommon->compliancedetails(); // CO Officer
+            foreach ($complianceinfo as $c) 
+            {
+                $sendmail1[] = $c['email'];
+            }
+            //print_r($sendmail1);exit;
+
+        array_push($sendmail1,$owneremail); // to send mail to projec owner and co officer
+         
+        $uniquemail1 = array_unique($sendmail1);
+        for($i=0;$i<sizeof($uniquemail1);$i++)
+        {
+           
+            $email = $uniquemail1[$i];
             $enddate = '';
             //print_r($data);exit;
             if(array_key_exists("enddate", $data))
@@ -335,10 +356,36 @@ class Upsicommon extends Component
             $pstartdate = $data['pstartdte'];
             $todaydate = date('d-m-Y');
 
-            $result = $this->emailer->mailofnewdp($emailid,$sendtoname,$pstartdate,$enddate,$todaydate,$data['nameaddedby'],$data['upname']);
+            $result = $this->emailer->mailofType1($email,$todaydate,$data['upname'],$upsiinfo,$dpnames);
            
            
         }
+        
+
+
+       
+        // for($i=0;$i<sizeof($userdatadp);$i++)
+        // {
+        //     $sendtoid = $userdatadp[$i]['wr_id'];                        
+        //     $sendtoname = $userdatadp[$i]['fullname'];
+        //     $emailid = $userdatadp[$i]['email'];
+        //     $enddate = '';
+        //     print_r($data);exit;
+        //     if(array_key_exists("enddate", $data))
+        //     {
+        //         $enddate = $data['enddate'];
+        //     }
+        //     $pstartdate = $data['pstartdte'];
+        //     $todaydate = date('d-m-Y');
+
+        //     $result = $this->emailer->mailofnewdp($emailid,$sendtoname,$pstartdate,$enddate,$todaydate,$data['nameaddedby'],$data['upname']);
+           
+           
+        // }
+
+
+         // mail Type One:
+        
         //print_r($cntin.'*'.sizeof($getdata)); exit;
         if($result == true)
         {
@@ -376,7 +423,7 @@ class Upsicommon extends Component
         return $getlist;
     }
     
-    public function chckifdatadiff($getuserid,$usergroup,$updatedata,$username)
+    public function chckifdatadiff($getuserid,$usergroup,$updatedata,$username,$upsiid)
     {
         $userids = '';
         if(array_key_exists("upalldps", $updatedata))
@@ -395,11 +442,22 @@ class Upsicommon extends Component
         }
         else
         {
-            if(array_key_exists("connectdps",$updatedata)  && !empty($_FILES['connecteddps']))
+
+
+            $flag = 0;
+
+            $chngein = 'all';
+            
+            //print_r($updatedata);exit;
+            if(array_key_exists("connectdps",$updatedata))
             {
-                     $connctdps = implode(',',$updatedata['connectdps']);
+                
+
+                $connctdps = implode(',',$updatedata['connectdps']);
+                //print_r($connctdps);exit;
+
                 if(strcasecmp($connctdps, $updatedata['cmpconnectdps']) !=0)
-                 {
+                 { 
                     $chngein = 'users';
                 
                    $flag = 1;
@@ -411,9 +469,6 @@ class Upsicommon extends Component
             }
           
           
-            $flag = 0;
-
-            $chngein = 'all';
             // if(strcasecmp($updatedata['cmpupname'], $updatedata['upname']) !=0)
              
             // {
@@ -432,7 +487,14 @@ class Upsicommon extends Component
             // }
             if(strcasecmp($updatedata['ownerid'], $updatedata['cmpownerid']) !=0)
             {
-                $flag = 1;
+                //print_r($updatedata);exit;
+                //$flag = 1;
+                $ownerid = $updatedata['ownerid'];
+            }
+            else
+            {    
+
+                 $ownerid = $updatedata['cmpownerid'];
             }
            
             if($flag == 1)
@@ -441,21 +503,17 @@ class Upsicommon extends Component
                 if($chngein == 'users')
                 {
 
-                    $ownerid = explode(',',$updatedata['ownerid']); // new project owner id
                     
-                    $condp = explode(',',$connctdps); // new connected dps in array
+                    $condp = explode(',',$connctdps); // all connected dps in array
+                    //print_r($condp);
                    
-                    $userids1 = array_merge($ownerid, $condp); //merge of both array
-                   
-
-                    $owneridcmp = explode(',',$updatedata['cmpownerid']); //old owner id
                      
                     $connctdpscmp = explode(',',$updatedata['cmpconnectdps']); //old dps
+                    //print_r( $connctdpscmp  );
 
-                    $userids2 = array_merge($owneridcmp, $connctdpscmp);
 
-                    $userids = array_diff($userids1,$userids2);
-                     //print_r($userids);exit;
+                    $useriddp = array_diff($condp,$connctdpscmp);
+                     //print_r($useriddp);echo "hello";exit;
                 }
                 else
                 {
@@ -465,10 +523,10 @@ class Upsicommon extends Component
                 }
             }
         }
-        if($userids)
+        if($useriddp)
         {
-           //print_r($userids);exit;
-            $result = $this->upsicommon->mailfortradingwindowedit($getuserid,$usergroup,$userids,$updatedata,$username);
+           //print_r($username);exit;
+            $result = $this->upsicommon->mailfortradingwindowedit($getuserid,$usergroup,$useriddp,$updatedata,$username,$ownerid,$upsiid);
             return $result;
         }
         

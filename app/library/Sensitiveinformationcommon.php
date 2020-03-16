@@ -211,36 +211,42 @@ class Sensitiveinformationcommon extends Component
     
     
     // **************************** infosharing insert ***************************
-   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$filepath,$emailrec)
+   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$filepath,$emailrec,$upsiname)
     {
         $connection = $this->dbtrd; 
         $times = time();
         $queryinsert = "INSERT INTO `sensitiveinfo_sharing`(`user_id`,`user_group_id`,`recipientid`,`name`,`sharingdate`,`upsitype`,`sharingtime`,`enddate`, `datashared`,`category`,`filepath`,`date_added`, `date_modified`,`timeago`)
          VALUES ('".$getuserid."','".$user_group_id."','".$recipientid."','".$name."','".$sharingdate."','".$upsitypeid."','".$sharingtime."','".$enddate."','".$datashared."','".$category."','".$filepath."',NOW(),NOW(),'".$times."')"; 
-        print_r($queryinsert);exit;
+        //print_r($queryinsert);exit;
         try
         {
             $exeprev = $connection->query($queryinsert);
             $lastid    = $connection->lastInsertId();
             $notific= $this->notificationcommon->upsisharingnotify($getuserid,$lastid,"6");
 
-            $upsiinfo = $this->upsicommon->getsingleupsi($upsitypeid); // to get project owner
-            $sendmail[] = $upsiinfo['email'];
-            $complianceinfo = $this->sensitiveinformationcommon->compliancedetails(); // CO Officer
-            foreach ($complianceinfo as $c) 
-            {
-                $sendmail1[] = $c['email'];
-            }
+            // $upsiinfo = $this->upsicommon->getsingleupsi($upsitypeid); // to get project owner
+            // $sendmail[] = $upsiinfo['email'];
+            // $complianceinfo = $this->sensitiveinformationcommon->compliancedetails(); // CO Officer
+            // foreach ($complianceinfo as $c) 
+            // {
+            //     $sendmail1[] = $c['email'];
+            // }
 
-            $finalsend = array_merge($sendmail,$sendmail1);
-            array_push($finalsend,$emailrec);
-            $uniquemail = array_unique($finalsend);
+            // $finalsend = array_merge($sendmail,$sendmail1);
+            // array_push($finalsend,$emailrec);
+            // $uniquemail = array_unique($finalsend);
             //print_r($uniquemail);exit;
             
-            for($i=0;i<count($uniquemail);$i++)
-            {
-               $sendmail = $this->emailer->mailofnewupsisharing($uniquemail[$i],$sharingdate,$enddate);
-            }
+            // for($i=0;i<count($uniquemail);$i++)
+            // {
+            //    $sendmail = $this->emailer->mailofnewupsisharing($uniquemail[$i],$sharingdate,$enddate);
+            // }
+            
+            
+
+            $sendmail = $this->emailer->mailofnewupsisharing($emailrec,$sharingdate,$upsiname,$name,$category);
+
+           
 
             if($sendmail == true)
             {

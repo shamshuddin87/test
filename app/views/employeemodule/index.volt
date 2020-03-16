@@ -842,11 +842,11 @@
                   </div>
                   <div class="modal-body">
                     
-                     <h5 style="text-align: center;">Please Confirm,you have submitted necessary disclosers</h5>
+                     <h5 style="text-align: center;">Please confirm whether you have submitted necessary disclosures under Insider Trading Regulations to the Compliance officer</h5>
                   </div>
                   <div class="modal-footer">
-                     <button type="button" class="btn btn-danger" id="yesdisclosures1">Yes</button> 
-                      <button type="button" class="btn btn-danger" id="nodisclosures1" onclick="nodisclosures(this.id);">No</button>
+                     <button type="button" class="btn btn-primary" id="yesdisclosures1">Yes</button> 
+                      <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="nodisclosures1" onclick="nodisclosures(this.id);">No</button>
                   </div>
                </div>
             </div>
@@ -861,11 +861,11 @@
                   </div>
                   <div class="modal-body">
                     
-                     <h5 style="text-align: center;">Please Confirm,you have submitted necessary disclosers</h5>
+                     <h5 style="text-align: center;">Please confirm whether you have submitted necessary disclosures under Insider Trading Regulations to the Compliance officer</h5>
                   </div>
                   <div class="modal-footer">
-                     <button type="button" class="btn btn-danger" id="yesdisclosures2">Yes</button> 
-                      <button type="button" class="btn btn-danger" id="nodisclosures2" onclick="nodisclosures(this.id);">No</button>
+                     <button type="button" class="btn btn-primary" id="yesdisclosures2">Yes</button> 
+                      <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="nodisclosures2" onclick="nodisclosures(this.id);">No</button>
                   </div>
                </div>
             </div>
@@ -880,11 +880,11 @@
                   </div>
                   <div class="modal-body">
                     
-                     <h5 style="text-align: center;">Please Confirm,you have submitted necessary disclosers</h5>
+                     <h5 style="text-align: center;">Please confirm whether you have submitted necessary disclosures under Insider Trading Regulations to the Compliance officer</h5>
                   </div>
                   <div class="modal-footer">
-                     <button type="button" class="btn btn-danger" id="yesdisclosures3">Yes</button> 
-                      <button type="button" class="btn btn-danger" id="nodisclosures3" onclick="nodisclosures(this.id);">No</button>
+                     <button type="button" class="btn btn-primary" id="yesdisclosures3">Yes</button> 
+                      <button style="color: #522c8f !important;border-color: #cecece;" type="button" class="btn btn-default" id="nodisclosures3" onclick="nodisclosures(this.id);">No</button>
                   </div>
                </div>
             </div>

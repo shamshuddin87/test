@@ -458,7 +458,7 @@ $uid = $this->session->loginauthspuserfront['id'];
                 </h4>
             </div>
             <div class="modal-body">
-              <h4 style="text-align: center;">If the trading window needs to be closed. </h4>
+              <h4 style="text-align: center;">You have just created an entry for UPSI, would you like to close the trading window.</h4>
                
             </div>
             <div class="modal-footer">

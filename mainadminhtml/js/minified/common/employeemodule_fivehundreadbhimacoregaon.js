@@ -44,7 +44,7 @@ website.ajax({url:'employeemodule/insmydetail',method:'POST',data:formdata,conte
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {website('.preloder_wraper').fadeOut();website('#updateholdings1').modal('hide');if(response.logged==true)
-{getpersonalinfo();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+{getpersonalinfo();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}});});website('body').on('click','#yesdisclosures2',function(e)
 {var fname=website("#getdata_1 #fname").val();var relationship=website("#getdata_1 #relationship").val();var depnature=website("#getdata_1 #depnature").val();var pan=website("#getdata_1 #pan").val();var aadhar=website("#getdata_1 #aadhar").val();var dob=website("#getdata_1 #1_dob").val();var sex=website("#getdata_1 input[name='sex']:checked").val();var address=website("#getdata_1 #addr").val();var eduqulfcn=website("#getdata_1 #eduqulfcn").val();var file=website("#getdata_1 #file").val();var legal_idntfr=website("#getdata_1 #legal_idntfr").val();var legal_idntfctn_no=website("#getdata_1 #legal_idntfctn_no").val();var shareholdng=website("#getdata_1 #shareholdng").val();var adrsholdng=website("#getdata_1 #adrsholdng").val();var reloccupation=website("#getdata_1 #reloccupation").val();var relcompany=website("#getdata_1 #relcompany").val();var formdata={relationship:relationship,fname:fname,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,reloccupation:reloccupation,relcompany:relcompany,depnature:depnature}
@@ -62,7 +62,7 @@ website.ajax({url:'employeemodule/updaterelatives',method:'POST',data:formdata,c
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {website('#updateholdings3').modal('hide');if(response.logged===true)
-{website('#reledit').modal('hide');getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+{website('#reledit').modal('hide');getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()

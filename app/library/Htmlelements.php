@@ -2236,7 +2236,74 @@ public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$e
      return $html;
 }
 
-    
+  public function Type1content($email,$todaydate,$title,$dt_added,$owner,$dpnames)
+  {   
+       
+            $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="htth3://www.w3.org/1999/xhtml">
+
+      <head>
+        <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <title>Phoenix Peth</title>
+            <style>
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+
+            .button2 {background-color: #008CBA;} /* Blue */
+            .button3 {background-color: #f44336;} /* Red */ 
+            .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+            .button5 {background-color: #555555;} /* Black */
+            </style>
+    </head>
+
+    <body style="font-family: Arial;
+        width: 100%;
+        background-color: #f2f2f2;
+        padding:30px;
+        max-width: 600px;
+        margin: 0 auto;;
+
+      ">
+        <div class="container" style=" max-width:600px; margin: 0 auto; background-color: #fff;padding:25px;">
+            <div class="main_container" style="max-width:600px; margin:0px;">
+                <div class="header" style="margin-bottom:50px;">
+                    <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
+                        <div style="    text-shadow: 1px 0px 2px #626262;
+        color: #626262;">Trading Window Closure</div>
+                    </div>
+                     <div style="clear:both;"></div>
+                </div>
+            <div style="    background-color: #f2f2f2;
+        padding: 18px;">
+        <p>Dear compliance officer/Project Owner, 
+        </p>
+        <p>YThis is to inform you that '.$dpnames.' has been added to the UPSI titled '.$title.' on '.$todaydate.'. This UPSI was created by '.$owner.' on '.$dt_added.'.
+         </p>
+        
+               
+            </div>
+        </div>
+
+        </div>
+    </body>
+    </html>';
+
+    //echo $html; exit; 
+
+     return $html;
+} 
+
 public function mailofupdatedp($tomail,$tousername,$pstartdate,$enddate,$today,$fromusername,$upsitype)
   {   
        //echo "<pre>";print_r($userids);exit;
@@ -2326,7 +2393,101 @@ public function mailofupdatedp($tomail,$tousername,$pstartdate,$enddate,$today,$
 }
 
     
-public function mailofupsisharing($uniquemail,$sharingdate,$enddate)
+public function internalmember($uniquemail,$sharingdate,$upsiname,$toname)
+  {   
+       //echo "<pre>";print_r($toname);exit;
+            $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="htth3://www.w3.org/1999/xhtml">
+
+      <head>
+        <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <title>Phoenix Peth</title>
+            <style>
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+
+            ol,ul{ padding-left: 18px; text-align: justify;}
+            ol>li{margin-bottom: 15px;}
+            ol>li>ol>li{margin-bottom: 10px;}            
+            ol>li>ol{margin-top: 10px;}            
+            ol>li>ol>ul>li{margin-bottom:5px;}
+
+            .button2 {background-color: #008CBA;} /* Blue */
+            .button3 {background-color: #f44336;} /* Red */ 
+            .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+            .button5 {background-color: #555555;} /* Black */
+            </style>
+    </head>
+
+    <body style="font-family: Arial;width: 100%;background-color: #f2f2f2;padding:30px;max-width: 600px;margin: 0 auto;">
+        <div class="container" style=" max-width:600px; margin: 0 auto; background-color: #fff;padding:25px;">
+            <div class="main_container" style="max-width:600px; margin:0px;">
+                <div class="header" style="margin-bottom:25px;">
+                    <div class="header_img" style="/*width:300px;*/float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
+                        <div style="    text-shadow: 1px 0px 2px #626262;
+        color: #626262;">Trading Window Closure</div>
+                    </div>
+                     <div style="clear:both;"></div>
+                </div>
+            <div style="    background-color: #f2f2f2;
+        padding: 18px;">
+        <p>Dear '.$toname.'</p>
+        <p>Please note that you have received information pertaining to '.$upsiname.' on '.$sharingdate.'. Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time (hereinafter referred to as “Insider Trading Regulations”).</p>
+        
+                <div class="main">
+                    <div style="">Accordingly, you are requested to ensure the below:</div>
+
+                    <ol type="a">
+                      <li>Such UPSI should not be shared with any one and should be kept confidential until the same is made generally available / public by the Company.</li>
+
+                      <li>Since this UPSI is being shared with you, you are deemed to be an insider as defined in Insider Trading Regulations. No insider or his/her immediate relative shall trade / deal in Company’s securities when in possession of UPSI pursuant to Insider Trading Regulations.</li>
+
+                      <li>You are required to ensure compliance with the Insider Trading Regulations including duties, responsibilities and liabilities related to misuse or unwarranted use of such UPSI.</li>
+
+                      <li>You are required to share with (Project Owner name) the following information of the entity / persons (internal/external) to whom such information is being further shared by you for Legitimate Purposes, performance of duties or discharge of his / her legal obligations, as defined in Insider Trading Regulations, after obtaining prior written / email permission from (Project owner). The (Project owner) is responsible to make entries in the structured digital database maintained by the Company for UPSI under Insider Trading Regulations. So whenever you share this UPSI:
+                        <ol>
+                          <li>Such person, entity with whom UPSI is being shared shall also be deemed to be an insider, for the purpose Insider Trading Regulations.</li>
+                          <li>You are requested to share with us the below details of the person, entity with whom the UPSI is being shared:</li>
+                          <ul type="circul">
+                            <li>Full name</li>
+                            <li>Email ids</li>
+                            <li>Cell phone number</li>
+                            <li>Permanent Account Number (PAN) or any other identifier authorized by law where PAN is not available.</li>
+                          </ul>
+                        </ol>
+                      </li>
+
+                      <li>The Company is expected to maintain a database of the UPSI provided to such persons, entity. The Company may disclose the said information a) as permitted or required by applicable laws or regulatory requirements. In such a case, we will endeavour to disclose only the requested information under the circumstances; b) as part of the Company’s reporting or disclosure obligations, if any.</li>
+                    </ol>
+                   
+                    
+                   
+                     
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </body>
+    </html>';
+
+    //echo $html; exit; 
+
+     return $html;
+}
+
+public function externalmember($uniquemail,$sharingdate,$upsiname,$toname)
   {   
        //echo "<pre>";print_r($userids);exit;
             $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -2350,6 +2511,12 @@ public function mailofupsisharing($uniquemail,$sharingdate,$enddate)
                 cursor: pointer;
             }
 
+            ol,ul{ padding-left: 18px; text-align: justify;}
+            ol>li{margin-bottom: 15px;}
+            ol>li>ol>li{margin-bottom: 10px;}            
+            ol>li>ol{margin-top: 10px;}            
+            ol>li>ol>ul>li{margin-bottom:5px;}
+
             .button2 {background-color: #008CBA;} /* Blue */
             .button3 {background-color: #f44336;} /* Red */ 
             .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
@@ -2357,18 +2524,11 @@ public function mailofupsisharing($uniquemail,$sharingdate,$enddate)
             </style>
     </head>
 
-    <body style="font-family: Arial;
-        width: 100%;
-        background-color: #f2f2f2;
-        padding:30px;
-        max-width: 600px;
-        margin: 0 auto;;
-
-      ">
+    <body style="font-family: Arial;width: 100%;background-color: #f2f2f2;padding:30px;max-width: 600px;margin: 0 auto;">
         <div class="container" style=" max-width:600px; margin: 0 auto; background-color: #fff;padding:25px;">
             <div class="main_container" style="max-width:600px; margin:0px;">
-                <div class="header" style="margin-bottom:50px;">
-                    <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
+                <div class="header" style="margin-bottom:25px;">
+                    <div class="header_img" style="/*width:300px;*/float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
                         <div style="    text-shadow: 1px 0px 2px #626262;
         color: #626262;">Trading Window Closure</div>
                     </div>
@@ -2376,30 +2536,39 @@ public function mailofupsisharing($uniquemail,$sharingdate,$enddate)
                 </div>
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
-        <p>Dear '.$uniquemail.'</p>
-        <p>You have been added as Project Owner / Project member in connection with Project as mentioned herein, which is Unpublished Price Sensitive Information (UPSI).</p>
-        <p>As part of the Project, you would be deemed to be in possession / recipient <b>of Unpublished Price Sensitive Information (UPSI) </b>in relation to the affairs concerning the Company. Please note that all UPSI in your possession or that may be shared with you over the course of time, are private and confidential and intended to be used STRICTLY for legitimate purposes only in pursuance to the applicable provisions of the SEBI (Prohibition of Insider Trading) Regulations, 2015 (including any amendment(s) or re-enactment(s) thereof) (SEBI PIT Regulations).</p>
-        <p>The holder/recipient of UPSI (including its Representative) is expected to maintain highest level of confidentiality and shall abide by and undertake to comply with the applicable provisions of the said SEBI PIT Regulations in dealings concerning the listed securities of the Company.</p>
+        <p>Dear '.$toname.'</p>
+        <p>Please note that you have received information pertaining to '.$upsiname.' of Dr. Reddy’s Laboratories Limited on '.$sharingdate.'. Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time (hereinafter referred to as “Insider Trading Regulations”)..</p>
         
                 <div class="main">
-                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
+                    <div style="">Accordingly, you are requested to ensure the below:</div>
+
+                    <ol type="a">
+                      <li>In addition to the Confidentiality and Non-Disclosure agreements, such UPSI should not be shared with any one and should be kept confidential until the same is made generally available / public by the Company..</li>
+
+                      <li>Since this UPSI is being shared with you, you are deemed to be an insider as defined in Insider Trading Regulations. No insider shall trade / deal in Company’s securities when in possession of UPSI pursuant to Insider Trading Regulations.</li>
+
+                      <li>You are required to ensure compliance with the Insider Trading Regulations and Company’s Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons, including duties, responsibilities and liabilities related to misuse or unwarranted use of such UPSI.</li>
+
+                      <li>You are required to share with (Project Owner name) the following information regarding your entity / persons (internal/external) to whom such information is being further shared by you for Legitimate Purposes, performance of duties or discharge of his / her legal obligations, as defined in Insider Trading Regulations, after obtaining prior written / email permission from (Project owner). The (Project owner) is responsible to make entries in the structured digital database maintained by the Company for UPSI under Insider Trading Regulations. So whenever you share this UPSI:
+                        <ol>
+                          <li>Such person, entity with whom UPSI is being shared shall also be deemed to be an insider, for the purpose Insider Trading Regulations.</li>
+                          <li>You are requested to share with us the below details of the person, entity with whom the UPSI is being shared:</li>
+                          <ul type="circul">
+                            <li>Full name</li>
+                            <li>Email ids</li>
+                            <li>Cell phone number</li>
+                            <li>Permanent Account Number (PAN) or any other identifier authorized by law where PAN is not available.</li>
+                          </ul>
+                        </ol>
+                      </li>
+
+                      <li>At your end, kindly ensure that your entity maintains the details under the Schedule C of the Insider Trading Regulations and maintain a list of persons having access to UPSI along with their PANs or other unique identifier (incase PAN is not available) in accordance with Regulation 9A(2)(d) of the said Regulations.</li>
+                      
+                       <li>The Company is expected to maintain a database of the UPSI provided to such entities. The Company may disclose the said information a) as permitted or required by applicable laws or regulatory requirements. In such a case, we will endeavour to disclose only the requested information under the circumstances; b) as part of the Company’s reporting or disclosure obligations, if any.</li>
+                    </ol>
                    
                     
-                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
-                   
-                       
-                       <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
-                      
-                       
-                       <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
-                     
-
-                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">        Project End Date : to be notified </div> 
-                     <p>Please note that in view of the holding of aforesaid UPSI, the trading window to deal in the listed securities of the Company, has been closed for you and your immediate relatives with immediate effect and shall continue to be so till 48 hours after the said UPSI is made available to public or such activity or project is abandoned.</p>
-                     <p>Please consult the Corporate Governance Dept. for any query or clarification. </p>
-                     <div><br></div>
-                     <p>Regards,</p>
-                     <p>Corporate Governance Team</p>
+                    
                      
                 </div>
             </div>

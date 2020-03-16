@@ -467,8 +467,14 @@ function checkdetails()
         {
            if(firstlogin == 0)
            {
-             
-             website('#updateholdings').modal('show');
+
+
+            if(response.usergroup!=2)
+           {
+
+              website('#updateholdings').modal('show');
+            }
+            
 
 
              
@@ -490,7 +496,8 @@ function checkdetails()
           }
 
           var link='<a href="'+base_url+'" style="color:red;">Click Here</a>';
-          website('#declaration .arng').html('<h4 style="text-align:center;">'+response.message+'</h4><p style="text-align: center;padding: 10px;"><u>'+link+'</u></p>');
+          website('#declaration .arng').html('<h5 style="text-align:left;    line-height: 25px;">'+response.message+'</h5><p style="text-align: left;"><u>'+link+'</u></p>');
+          
           if(response.usergroup!=2)
           {
               website('#declaration').modal('show');

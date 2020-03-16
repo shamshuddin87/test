@@ -256,10 +256,10 @@ class HomeController extends ControllerBase
                     
 
                     $getresponse = $this->portfoliocommon->getaccnoinfo($uid,$usergroup);
-                  
+                    //print_r($getdematsstatus);exit;
                     if((empty($getresponse) &&  $getdematsstatus==1) || (empty($getresponse) &&  $getdematsstatus==2))
                     {
-                       $data = array("logged" => false,'message' => "For using the software please enter your demat account details ",'data'=>'portfolio','usergroup'=>$usergroup);
+                       $data = array("logged" => false,'message' => "You will not be allowed access until you update your demat account details. Please click no if you don’t have a demat account.",'data'=>'portfolio','usergroup'=>$usergroup);
                          $this->response->setJsonContent($data);
                        $this->response->setJsonContent($data);
                     }
@@ -273,7 +273,7 @@ class HomeController extends ControllerBase
                 else
                 {
 
-                    $data = array("logged" => false,'message' => "For using the software please enter your personal details",'data'=>'employeemodule','usergroup'=>$usergroup);
+                    $data = array("logged" => false,'message' => "Please verify/update your personal information as given under ‘My Info’ first.You will not be allowed access until you verify your personal information.",'data'=>'employeemodule','usergroup'=>$usergroup);
                     $this->response->setJsonContent($data);
                 }
 

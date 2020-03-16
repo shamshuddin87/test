@@ -1,7 +1,8 @@
-<?php $gmnlog = $this->session->loginauthspuserfront; ?>
-     
-<?php  ;
-//echo"<pre>";print_r($login); exit;?> 
+<?php $gmnlog = $this->session->loginauthspuserfront; 
+//print_r($gmnlog);exit;?>
+   
+
+
 <!-- Main content -->
 
 
@@ -491,11 +492,11 @@
                   </div>
                   <div class="modal-body">
                     
-                     <h5 style="text-align: center;">Is your My Information updated with all changes?</h5>
+                     <h5 style="text-align: center;">I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too</h5>
                   </div>
                   <div class="modal-footer">
-                     <button type="button" class="btn btn-danger" id="yesdisclosures" onclick="disclosures(this.id);">Yes</button> 
-                      <button type="button" class="btn btn-danger" id="nodisclosures" onclick="disclosures(this.id);">No</button>
+                     <button type="button" class="btn btn-primary" id="yesdisclosures" onclick="disclosures(this.id);">Yes</button> 
+                      <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="nodisclosures" onclick="disclosures(this.id);">No</button>
                   </div>
                </div>
             </div>
@@ -505,20 +506,17 @@
 <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-                &times;</button>
-            <span  id="decmsg"></span>
-
+       
         <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal">
+                &times;</button>
+            <h1 style="    color: #36186e;">Hello</h1>
+           <h4 style="margin-bottom: 10px;margin-top: 5px;font-size: 15px;color: #2b2b2b;"> <?php echo $gmnlog['username'] ?>,</h4>
             <div class="arng">
+              
 
              </div>
         </div>
-        <div class="modal-footer">
-
-        </div>
-    </div>
 </div>
 </div>
 
