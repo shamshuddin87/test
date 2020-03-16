@@ -237,6 +237,12 @@ website('body').on('click','.upedit',function(e){
 
 
 
+website('body').on('click','#upbtn',function(e){
+    website('#modaltradingwindowclose #tradingwindowno').attr('action','update');
+    website('#modaltradingwindowclose').modal('show');
+    //website('#addupsimast').submit();
+});
+
 website('#updateupsimast').ajaxForm({
     //data:formdata,
     //contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -249,6 +255,7 @@ website('#updateupsimast').ajaxForm({
     {
          if(response.logged === true)
          {
+            website('#modaltradingwindowclose').modal('hide');
             website("#upsimodel").modal('hide');
             new PNotify({title: 'Alert',
             text: response.message,
@@ -273,7 +280,7 @@ website('#updateupsimast').ajaxForm({
     complete: function(response) 
     {   website('.preloder_wraper').fadeOut(); },
     error: function() 
-    {   }
+    {  website('.preloder_wraper').fadeOut(); }
 });
 
 
@@ -360,20 +367,34 @@ formdata={delid:delid};
     }
     else
     {
-        console.log('in else');
         website('#updateupsimast #connectdps').attr('required','required');
         website('#updateupsimast #dpsmodel').css('display','block');
     }       
 });
 
 website('body').on('click','.addupsitype',function(e){
-    website('#addupsimast').submit();
+    website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');
+    website('#modaltradingwindowclose').modal('show');
+    //website('#addupsimast').submit();
 });
 
 //website('body').on('click','#tradingacc',function(e){
 //    website('#addupsimast').submit();
 //   
 //});
+
+website('body').on('click','#tradingwindowno',function(e){
+    var actiontype = website(this).attr('action');
+    if(actiontype == 'insert')
+    {
+        website('#addupsimast').submit();
+    }
+    else if(actiontype == 'update')
+    {
+        website('#updateupsimast').submit();
+    }
+   
+});
 
 website('body').on('click','#tradingrej',function(e){
          
@@ -396,6 +417,7 @@ website('body').on('click','#tradingrej',function(e){
          if(response.logged === true)
          {
             website('#modaltradingwindow').modal('hide');
+             website('#modaltradingwindowclose').modal('hide');
               new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
