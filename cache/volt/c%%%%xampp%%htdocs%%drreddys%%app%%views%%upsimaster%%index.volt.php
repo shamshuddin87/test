@@ -346,12 +346,13 @@ $uid = $this->session->loginauthspuserfront['id'];
                     </div>
                 </section>   
 -->
-                <section class="col col-md-12 col-xs-12 text-right">
-                    <button type="Submit" class="btn btn-success"  id="upbtn" editid="">Update</button>
-                </section>
+                
             </form>
             </div>
             <div class="modal-footer">
+                <section class="col col-md-12 col-xs-12 text-right">
+                    <button type="Submit" class="btn btn-success"  id="upbtn" editid="">Update</button>
+                </section>
             </div>
         </div>
     </div>
@@ -443,5 +444,28 @@ $uid = $this->session->loginauthspuserfront['id'];
 
     
 </div>
+</div>
+    
+
+<div id="modaltradingwindowclose" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;</button>
+                <h4 class="modal-title">
+                </h4>
+            </div>
+            <div class="modal-body">
+              <h4 style="text-align: center;">If the trading window needs to be closed. </h4>
+               
+            </div>
+            <div class="modal-footer">
+             <a href="blackoutperiod"><input type="button" class="btn btn-success" id="tradingwindowyes" value="Yes"></a>
+             <input type="button" class="btn btn-success"  id="tradingwindowno" value="No">
+            </div>
+        </div>
+    </div>
 </div>
 <!-- ########################################## PageContent End ########################################## --> 

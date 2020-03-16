@@ -21,7 +21,6 @@ $condeptsess = $this->session->contractdepartment;
                 <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>
-                            <th>Added By</th>
                             <th>Category</th>
                             <th>Name of entity</th>
                             <th>Name</th>
@@ -32,6 +31,8 @@ $condeptsess = $this->session->contractdepartment;
                             <th>Email ID</th> 
                             <th>Download Identity Proof</th> 
                             <th>Download Confidentiallity Agreement</th> 
+                            <th>Added On</th>
+                            <th>Added By</th>
                         </tr>
                     </thead>
                     <tbody class="appendrow" appendrow='1'>
