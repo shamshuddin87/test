@@ -29,9 +29,9 @@ website("body").on("click",".topul",function(e){var id=website(this).attr('id');
 {if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
 {new PNotify({title:'Alert',text:response.contratrd.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{getform(form2);}}
+{getform('form2');}}
 else
-{getform(form1);}}
+{getform('form1');}}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()

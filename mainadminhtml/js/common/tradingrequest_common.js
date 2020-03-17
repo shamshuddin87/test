@@ -215,7 +215,7 @@ website('body').on('click','.sendrequst',function()
             if(response.logged === true)
             {
 
-                 if(response.contratrd['status'] === true)
+                if(response.contratrd['status'] === true)
                 {
 
                     if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
@@ -231,7 +231,7 @@ website('body').on('click','.sendrequst',function()
                     else
                     {
                       //form 2
-                        getform(form2);
+                        getform('form2');
                         //website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
                         //website('#chckexcptnrequest').modal('show');
                     }
@@ -240,7 +240,7 @@ website('body').on('click','.sendrequst',function()
                 else
                 {
                   //form 1
-                  getform(form1);
+                  getform('form1');
 
                   
                 }
