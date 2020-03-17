@@ -161,6 +161,7 @@ class TradingrequestController extends ControllerBase
                         $data = array("logged" => false,'message' => $checkopbal['msg'],'contratrd'=>$checkval);
                         $this->response->setJsonContent($data);
                     }
+                    //print_R($data);exit;
                 }
                 $this->response->send();
             }

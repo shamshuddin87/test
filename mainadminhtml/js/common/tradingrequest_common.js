@@ -470,6 +470,21 @@ website('body').on('click','#Yesreqst',function(e)
       {
            if(response.logged === true)
          {
+            if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
+            {
+                new PNotify({title: 'Alert',
+                    text: response.contratrd.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+              });  
+            }
+            else
+            {
+                website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
+                website('#chckexcptnrequest').modal('show');
+            }
             new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
