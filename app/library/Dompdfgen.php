@@ -29,6 +29,8 @@ Class Dompdfgen extends Phalcon\Mvc\User\Component {
         else if($typeof=="configReport"){$path = $this->declarationDir.'/reportingexe';}
         else if($typeof=="misrecip"){$path = 'img/mis';}
         else if($typeof=="mispersnlinfo"){$path = 'img/mis';}
+        else if($typeof=="preclerance"){$path = 'img/preclerance';}
+        else if($typeof=="weaver"){$path = 'img/weaver';}
         else{$path='';}
 
         if($typeof=="configvcs"){$stylesheet = file_get_contents('css/pdf/pdf.css');}
@@ -44,6 +46,8 @@ Class Dompdfgen extends Phalcon\Mvc\User\Component {
         else if($typeof=="configNonReport"){$stylesheet = file_get_contents('css/pdf/nonreportingpdf.css');}
         else if($typeof=="misrecip"){$stylesheet = file_get_contents('css/pdf/misrecip.css');}
         else if($typeof=="mispersnlinfo"){$stylesheet = file_get_contents('css/pdf/mispersnlinfo.css');}
+        else if($typeof=="preclerance"){$stylesheet = file_get_contents('css/pdf/preclerance.css');}
+         else if($typeof=="weaver"){$stylesheet = file_get_contents('css/pdf/preclerance.css');}
         else{$path='';$stylesheet='';}
         
         //echo $stylesheet; exit;

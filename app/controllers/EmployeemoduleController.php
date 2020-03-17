@@ -172,6 +172,7 @@ class EmployeemoduleController extends ControllerBase
                         $result = $this->employeemodulecommon->updatemydetails($uid,$rqid,$usergroup,$data,$filepath);
        
                         $sendmail = $this->emailer->mailofpersonalinfo($data);
+                        
                         //print_r($sendmail);exit;
                     }
                     else

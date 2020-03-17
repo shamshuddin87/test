@@ -1413,7 +1413,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($uniquemail, 'Volody');
-        $mail->Subject = 'Trading Window Closure';
+        $mail->Subject = 'New Upsi Sharing';
         $mail->msgHTML($gethtml);
         //Replace the plain text body with one created manually
         //send the message, check for errors
@@ -1472,5 +1472,91 @@ Class Email extends Phalcon\Mvc\User\Component {
  
        
     }
+
+
+    public function notifyupsi($addedby,$addedbyemail,$data,$todaydate,$dayOfWeek)
+    {
+
+        //print_r($emailid);exit;
+        $gethtml = $this->htmlelements->notifyupsi($addedby,$addedbyemail,$data['upname'],$data['projdesc'],$todaydate,$dayOfWeek);
+        //print_r($addedbyemail);exit;
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        //add cc
+        //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+        //Set who the message is to be sent to
+        $mail->addAddress($addedbyemail, 'Volody');
+        $mail->Subject = 'Upsi Module Added';
+        $mail->msgHTML($gethtml);
+        //Replace the plain text body with one created manually
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            
+            $get = array('logged'=>true,'message'=>'sent');
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false,'message'=>'nosent');
+        }
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+ 
+       
+    }
+
+
+    public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek)
+    {
+
+        //print_r($emailid);exit;
+        $gethtml = $this->htmlelements->notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek);
+        //print_r($addedbyemail);exit;
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        //add cc
+        //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+        //Set who the message is to be sent to
+        $mail->addAddress($loggedemail, 'Volody');
+        $mail->Subject = 'Info Sharing Added';
+        $mail->msgHTML($gethtml);
+        //Replace the plain text body with one created manually
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            
+            $get = array('logged'=>true,'message'=>'sent');
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false,'message'=>'nosent');
+        }
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+ 
+       
+    }
+
+
     
 }
