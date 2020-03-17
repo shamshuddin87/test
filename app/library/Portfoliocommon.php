@@ -65,7 +65,7 @@ class Portfoliocommon extends Component
                        $getlist[] = $row;                     
                     
                 }
-                 echo '<pre>';print_r($getlist);exit;
+                 //echo '<pre>';print_r($getlist);exit;
             }
             else
             {   $getlist = array(); }

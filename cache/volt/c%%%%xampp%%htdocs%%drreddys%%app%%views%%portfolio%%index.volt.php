@@ -44,7 +44,7 @@
     if($getdematsstatus[0]['status'] == 1){?>
     
 
-    Yes<input type="radio" name="pastemp" value="1" class="dematup" checked onclick="showsection();" /> 
+    Yes<input type="radio"  name="pastemp" value="1" class="dematup" checked onclick="showsection();" /> 
     No<input type="radio" name="pastemp" value="0" class="dematup" onclick="hidesection();"><br>
   <?php } else if(isset($getdematsstatus) && $getdematsstatus[0]['status'] == 0) { ?>
 
@@ -55,7 +55,8 @@
    ?>
     Yes<input type="radio" name="pastemp" value="1" class="dematup" onclick="showsection();"> 
     No<input type="radio" name="pastemp" value="0" class="dematup" onclick="hidesection();"/><br>
-  <?php }}else{ ?>
+  <?php }}
+   else{ ?>
      Yes<input type="radio" name="pastemp" value="1" class="dematup" onclick="showsection();"> 
     No<input type="radio" name="pastemp" value="0" class="dematup" onclick="hidesection();"/><br>
      <?php } ?>
@@ -128,14 +129,21 @@
         <div class="title"></div>
         <div class="col-md-12 list_co">
           <label class="modal-title">Edit Account No</label>
-             <input type="text" id="editaccno" name="editaccno" class="form_fields form-control col-md-7 col-xs-12" required="required" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="16" pattern="[A-Za-z0-9]{16}" >
+             <input type="text" id="editaccno" name="editaccno" class="form_fields form-control col-md-7 col-xs-12 showhovertext" required="required" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="16" pattern="[A-Za-z0-9]{16}"  onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)" >
+            <span id= "showhovertext" class ="cssclass " style="display: none;z-index: 2;">
+            <ol type="a" style="padding: 5px 5px 5px 15px;">
+              <li>Demat account, mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>
+              <li>In case of physical shares held in Dr. Reddy’s, please mention the Folio No.: (For eg. P12345)</li>
+              <li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held</li>
+            </ol>
+        </span>
         </div>    
           
         
         <div class="col-md-12 list_co">
           <label class="modal-title">Depository Participient</label>
-             <input type="text" id="dpar" name="dpar" class="form_fields form-control col-md-7 col-xs-12 showhovertext" required="required" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)">
-             <span id= "showhovertext" class ="cssclass " style="display: none;">16 digit DP Id/Client Id</span>
+             <input type="text" id="dpar" name="dpar" class="form_fields form-control col-md-7 col-xs-12 " required="required">
+           
         </div>  
         
         <div class="col-md-12 list_co">
@@ -243,14 +251,21 @@
         </div>  
         <div class="col-md-12 list_co">
             <label class="modal-title">Account No</label>
-             <input type="text" id="releditaccno" name="releditaccno" class="form_fields form-control col-md-7 col-xs-12" required="required" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}">
+             <input type="text" id="releditaccno" name="releditaccno" class="form_fields form-control col-md-7 col-xs-12 showhovertext1" required="required" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)">
+              <span id= "showhovertext1" class ="cssclass " style="display: none;z-index: 2;">
+            <ol type="a" style="padding: 5px 5px 5px 15px;">
+              <li>Demat account, mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>
+              <li>In case of physical shares held in Dr. Reddy’s, please mention the Folio No.: (For eg. P12345)</li>
+              <li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held</li>
+            </ol>
+        </span>
         </div>    
         
         <div class="col-md-12 list_co">
           <label class="modal-title">Depository Participient</label>
-            <input type="text" id="dparrel" name="dparrel" class="form_fields form-control col-md-7 col-xs-12 showhovertext1" required="required" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)">
+            <input type="text" id="dparrel" name="dparrel" class="form_fields form-control col-md-7 col-xs-12 " required="required" >
 
-             <span id= "showhovertext1" class ="cssclass " style="display: none;">16 digit DP Id/Client Id</span>
+             
         </div>  
           
         

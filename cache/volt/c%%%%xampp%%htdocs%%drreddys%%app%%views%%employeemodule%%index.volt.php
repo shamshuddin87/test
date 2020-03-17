@@ -315,9 +315,14 @@
                   </div>
                </div>
             </div>
-             <div class="tablitiledesc text-center">
+             <div class="tablitiledesc">
                     <div class="note">
-                        (<strong>Note : </strong>Once your personal information is filled please send 'Declaration form' to the Compliance Officer. <a href="annualdeclaration">Click here.</a>)
+                      <strong>Note : </strong><br/>
+                        <ol type="1" style="display: inline-block;padding: 5px 15px;">
+                          <li>I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too.</li>
+                          <li>Once your personal information is filled please send 'Declaration form' to the Compliance Officer. <a href="annualdeclaration">Click here.</a></li>
+                        </ol>
+
                     </div>
             </div>
             <div class="clearelement"></div>
