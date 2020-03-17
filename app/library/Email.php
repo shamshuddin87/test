@@ -1323,7 +1323,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($toemail, 'Volody');
-        $mail->Subject = 'Trading Window Closure';
+        $mail->Subject = 'New DP Added';
         $mail->msgHTML($gethtml);
         //Replace the plain text body with one created manually
         //send the message, check for errors
