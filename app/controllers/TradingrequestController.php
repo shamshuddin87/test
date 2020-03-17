@@ -1302,11 +1302,25 @@ class TradingrequestController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
-                $pdf_content = file_get_contents("declaration_form/weaverform.html");
-                // print_r($pdf_content);exit;
+                $formtype = $this->request->getPost("formtype");
+
+                if($formtype == "form1" )
+                {
+                     $pdf_content = file_get_contents("declaration_form/preclearance.html");
+                      $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','weaver','weaver');
+                }
+                else if($formtype == "form2")
+                {
+                     
+                     $pdf_content = file_get_contents("declaration_form/weaverform.html");
+                     $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','preclerance','preclerance');
+                }
+               
+               
+
                 if(!empty($pdf_content))
                 {
-                    $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdf_content"=>$pdf_content);
+                    $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdf_content"=>$pdfpath);
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -1328,6 +1342,7 @@ class TradingrequestController extends ControllerBase
             exit('No direct script access allowed');
         }
     }
+
 
     
   }

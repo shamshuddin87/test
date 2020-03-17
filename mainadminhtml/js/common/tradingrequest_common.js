@@ -160,6 +160,7 @@ website('#nameofcmp').val(name);
   website('#searchcmp').css("display", "none");
 });
 
+
 website("body").on("click",".myupnaresh",function(e){
 
    var id=website(this).attr('id');
@@ -169,6 +170,7 @@ website("body").on("click",".myupnaresh",function(e){
   website('#tradinformupdate #nameofcmp').val(name);
   website('#tradinformupdate #searchcmp').css("display", "none");
 });
+
  //##############################################AJAX FORM########################################################
 website('body').on('click','.sendrequst',function()
 {   
@@ -228,16 +230,19 @@ website('body').on('click','.sendrequst',function()
                     }
                     else
                     {
-                        website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
-                        website('#chckexcptnrequest').modal('show');
+                      //form 2
+                        getform(form2);
+                        //website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
+                        //website('#chckexcptnrequest').modal('show');
                     }
                      
                 }
                 else
                 {
-                  
+                  //form 1
+                  getform(form1);
 
-                   getform();
+                  
                 }
             }
             else
@@ -258,16 +263,16 @@ website('body').on('click','.sendrequst',function()
     });
 });
 
-function getform(uniqueid){
+function getform(formtype){
 
    // website('#Mymodaldeclara').modal('show');
     
-    var uniqueid = uniqueid;
-
+   
+    
     website.ajax({
           type:"POST",
           url:'tradingrequest/getfilecontent',
-
+          data:{formtype:formtype},
          
          
           dataType:"json",
@@ -306,6 +311,8 @@ function getform(uniqueid){
           }
 });
 }
+
+
 
 website('body').on('click','.reqdraft',function()
 {

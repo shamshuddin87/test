@@ -29,13 +29,13 @@ website("body").on("click",".topul",function(e){var id=website(this).attr('id');
 {if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
 {new PNotify({title:'Alert',text:response.contratrd.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest').modal('show');}}
+{getform(form2);}}
 else
-{getform();}}
+{getform(form1);}}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
-{}});});function getform(uniqueid){var uniqueid=uniqueid;website.ajax({type:"POST",url:'tradingrequest/getfilecontent',dataType:"json",beforeSend:function()
+{}});});function getform(formtype){website.ajax({type:"POST",url:'tradingrequest/getfilecontent',data:{formtype:formtype},dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
 {if(response.logged===true)
