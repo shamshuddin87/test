@@ -9,8 +9,17 @@ class Upsicommon extends Component
         //print_r($data);exit;
         $connection = $this->dbtrd;
         $userdata = $this->fetchuserdata($getuserid);
-        //print_r($userdata);exit;
+        $todaydate = date('d-m-Y');
+        $unixTimestamp = strtotime($todaydate);
+ 
+      
+        $dayOfWeek = date("l", $unixTimestamp);
+ 
+
+
+       
         $addedby = $userdata[0]['fullname'];
+        $addedbyemail = $userdata[0]['email'];
         $time=time();
         $toalldps = 0;
         $connctdps = '';
@@ -56,6 +65,7 @@ class Upsicommon extends Component
             {
                 $data['nameaddedby'] = $addedby;
                 $result = $this->upsicommon->mailfortradingwindow($getuserid,$usergroup,$userids,$data);
+                $notifymail =$this->emailer->notifyupsi($addedby,$addedbyemail,$data,$todaydate,$dayOfWeek);
                 return true;    
             }
             else

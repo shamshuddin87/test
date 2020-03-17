@@ -40,9 +40,10 @@ class Sensitiveinformationcommon extends Component
        // **************************** recipient insert ***************************
     public function insertrecipient($getuserid,$user_group_id,$category,$othercate,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$pan,$department)
     {
-
+        
         $connection = $this->dbtrd; 
         $time = time();
+       
            $queryinsert = 'INSERT INTO `sensitiveinfo_recipient`(`user_id`,`user_group_id`,`category`,`othercategory`,`department`,`pannumber`,`nameofentity`, `name`, `identityno`, `phoneno`, `mobileno`, `designation`, `email`, `filepath`,`agreemntfile`,`date_added`, `date_modified`,`timeago`)
          VALUES ("'.$getuserid.'","'.$user_group_id.'","'.$category.'","'.$othercate.'","'.$department.'","'.$pan.'","'.$entity.'","'.$name.'","'.$identitynum.'","'.$phonenum.'","'.$mobilenum.'","'.$designation.'","'.$email.'","'.$filepath.'","'.$agreemntfilepath.'",NOW(),NOW(),"'.$time.'")'; 
         //print_r($queryinsert);exit;
@@ -51,7 +52,8 @@ class Sensitiveinformationcommon extends Component
             $exeprev = $connection->query($queryinsert);
             $lastid    = $connection->lastInsertId();
             // print_r($lastid);exit;
-             $notific=$this->notificationcommon->upsisharingnotify($getuserid,$lastid,"4");
+            $notific=$this->notificationcommon->upsisharingnotify($getuserid,$lastid,"4");
+           
             return true;
         }
         catch (Exception $e) 
@@ -211,10 +213,15 @@ class Sensitiveinformationcommon extends Component
     
     
     // **************************** infosharing insert ***************************
-   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$filepath,$emailrec,$upsiname)
+   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$filepath,$emailrec,$upsiname,$loggedemail)
     {
         $connection = $this->dbtrd; 
         $times = time();
+        $todaydate = date('d-m-Y');
+        $unixTimestamp = strtotime($todaydate);
+ 
+      
+        $dayOfWeek = date("l", $unixTimestamp);
         $queryinsert = "INSERT INTO `sensitiveinfo_sharing`(`user_id`,`user_group_id`,`recipientid`,`name`,`sharingdate`,`upsitype`,`sharingtime`,`enddate`, `datashared`,`category`,`filepath`,`date_added`, `date_modified`,`timeago`)
          VALUES ('".$getuserid."','".$user_group_id."','".$recipientid."','".$name."','".$sharingdate."','".$upsitypeid."','".$sharingtime."','".$enddate."','".$datashared."','".$category."','".$filepath."',NOW(),NOW(),'".$times."')"; 
         //print_r($queryinsert);exit;
@@ -223,28 +230,14 @@ class Sensitiveinformationcommon extends Component
             $exeprev = $connection->query($queryinsert);
             $lastid    = $connection->lastInsertId();
             $notific= $this->notificationcommon->upsisharingnotify($getuserid,$lastid,"6");
+           
 
-            // $upsiinfo = $this->upsicommon->getsingleupsi($upsitypeid); // to get project owner
-            // $sendmail[] = $upsiinfo['email'];
-            // $complianceinfo = $this->sensitiveinformationcommon->compliancedetails(); // CO Officer
-            // foreach ($complianceinfo as $c) 
-            // {
-            //     $sendmail1[] = $c['email'];
-            // }
-
-            // $finalsend = array_merge($sendmail,$sendmail1);
-            // array_push($finalsend,$emailrec);
-            // $uniquemail = array_unique($finalsend);
-            //print_r($uniquemail);exit;
-            
-            // for($i=0;i<count($uniquemail);$i++)
-            // {
-            //    $sendmail = $this->emailer->mailofnewupsisharing($uniquemail[$i],$sharingdate,$enddate);
-            // }
+           
             
             
 
             $sendmail = $this->emailer->mailofnewupsisharing($emailrec,$sharingdate,$upsiname,$name,$category);
+             $notifymail =$this->emailer->notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek);
 
            
 

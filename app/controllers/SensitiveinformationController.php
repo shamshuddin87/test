@@ -77,6 +77,7 @@ class SensitiveinformationController extends ControllerBase
                 $email   = $this->request->getPost('email','trim');
                 $pan   = $this->request->getPost('panentity','trim');
 
+
                
                 $panvalidate = $this->elements->panvalidation($pan);
                 
@@ -433,6 +434,7 @@ class SensitiveinformationController extends ControllerBase
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
         $firstname = $this->session->loginauthspuserfront['firstname'];
         $lastname = $this->session->loginauthspuserfront['lastname'];
+        $loggedemail = $this->session->loginauthspuserfront['email'];
         $timeago = time();
         $todaydate=date('d-m-Y');
         if($this->request->isPost() == true)
@@ -548,7 +550,7 @@ class SensitiveinformationController extends ControllerBase
                         
                     }
                   //print_r($filepath);exit;
-                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$filepath,$email,$upsiname);
+                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$filepath,$email,$upsiname,$loggedemail);
                   //print_r($getres);exit;
                     
                   if($getres == true)

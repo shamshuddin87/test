@@ -1720,7 +1720,8 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
  return $html;
 }
   /********** send mail for form b start ***********/
-    
+   
+
   /********** send mail for form c start *********/
    public function mailformcapprvlrqst($subject,$emaildata)
    {
@@ -2590,15 +2591,15 @@ public function mailofpersonalinfo($data)
                 $baseuri = $this->url->getBaseUri();
                 $baseurl = $server_link.$baseuri;
   $html='<!DOCTYPE html>
-<html>
-<head>
-<style>
-table, th, td {
-}
-</style>
-</head>
+   <html>
+  <head>
+  <style>
+  table, th, td {
+  }
+  </style>
+  </head>
 
-<body style="margin:0; background: #e5e5e5;">
+ <body style="margin:0; background: #e5e5e5;">
         <table cellpadding="0" cellspacing="0" width="100%" border="0">
     <tr>
       <td>
@@ -2620,16 +2621,12 @@ table, th, td {
             </td>
        </tr>
 
-      <!-- <tr>
-         <td align="center" colspan="2" style="padding-top: 20px; background: #fff;">
-            <p style="max-width: 100%; margin:0; font-weight:600; letter-spacing: 1px; color:#333; font-size:24px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;"><b>Welcome '.$data['fname'].'</b></p>
-            <p style="max-width: 68%; margin:10px 0;color:#333; font-size:15px; line-height:20px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;"> We\'re happy to have you on board.</p>
-         </td>
-      </tr> -->
-
+     
       <tr>
-         <td align="center" colspan="2" style="padding-top: 20px; background: #fff;">
-            <p style="max-width: 100%; margin:0; font-weight:600; letter-spacing: 1px; color:#333; font-size:24px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">Personal Details</p>
+         <td  colspan="2" style="padding-top: 20px;padding-left: 20px background: #fff;">
+          <p>Dear '.$data['fname'].',</p>
+          <p>You have updated section of ‘personal information’ under ‘My info’. This is for your information..</p>
+        
          </td>
       </tr>
 
@@ -2808,12 +2805,146 @@ table, th, td {
       </table>
   </body>
 
-</html>';
+ </html>';
 
     //echo $html; exit; 
 
      return $html;
 }
+
+public function notifyupsi($addedby,$addedbyemail,$title,$desc,$todaydate,$dayOfWeek)
+  {   
+      // echo "<pre>";print_r($data);exit;
+            $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="htth3://www.w3.org/1999/xhtml">
+
+      <head>
+        <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <title>Phoenix Peth</title>
+            <style>
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+
+            ol,ul{ padding-left: 18px; text-align: justify;}
+            ol>li{margin-bottom: 15px;}
+            ol>li>ol>li{margin-bottom: 10px;}            
+            ol>li>ol{margin-top: 10px;}            
+            ol>li>ol>ul>li{margin-bottom:5px;}
+
+            .button2 {background-color: #008CBA;} /* Blue */
+            .button3 {background-color: #f44336;} /* Red */ 
+            .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+            .button5 {background-color: #555555;} /* Black */
+            </style>
+    </head>
+
+    <body style="font-family: Arial;width: 100%;background-color: #f2f2f2;padding:30px;max-width: 600px;margin: 0 auto;">
+        <div class="container" style=" max-width:600px; margin: 0 auto; background-color: #fff;padding:25px;">
+            <div class="main_container" style="max-width:600px; margin:0px;">
+                <div class="header" style="margin-bottom:25px;">
+                    <div class="header_img" style="/*width:300px;*/float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
+                        <div style="    text-shadow: 1px 0px 2px #626262;
+        color: #626262;">Upsi Module Added</div>
+                    </div>
+                     <div style="clear:both;"></div>
+                </div>
+            <div style="    background-color: #f2f2f2;
+        padding: 18px;">
+        <p>Dear '.$addedby.'</p>
+        <p>You have created an entry in the UPSI module of '.$title.' software for '.$desc.' on '.$dayOfWeek.' '.$todaydate.'. This is for your information. 
+          </p>
+        
+            </div>
+        </div>
+
+        </div>
+    </body>
+    </html>';
+
+    //echo $html; exit; 
+
+     return $html;
+}
+
+
+
+public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek)
+  {   
+         //echo "<pre>";print_r($upsiname);exit;
+            $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="htth3://www.w3.org/1999/xhtml">
+
+      <head>
+        <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <title>Phoenix Peth</title>
+            <style>
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+
+            ol,ul{ padding-left: 18px; text-align: justify;}
+            ol>li{margin-bottom: 15px;}
+            ol>li>ol>li{margin-bottom: 10px;}            
+            ol>li>ol{margin-top: 10px;}            
+            ol>li>ol>ul>li{margin-bottom:5px;}
+
+            .button2 {background-color: #008CBA;} /* Blue */
+            .button3 {background-color: #f44336;} /* Red */ 
+            .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+            .button5 {background-color: #555555;} /* Black */
+            </style>
+    </head>
+
+    <body style="font-family: Arial;width: 100%;background-color: #f2f2f2;padding:30px;max-width: 600px;margin: 0 auto;">
+        <div class="container" style=" max-width:600px; margin: 0 auto; background-color: #fff;padding:25px;">
+            <div class="main_container" style="max-width:600px; margin:0px;">
+                <div class="header" style="margin-bottom:25px;">
+                    <div class="header_img" style="/*width:300px;*/float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
+                        <div style="    text-shadow: 1px 0px 2px #626262;
+        color: #626262;">Upsi Sharing Added</div>
+                    </div>
+                     <div style="clear:both;"></div>
+                </div>
+            <div style="    background-color: #f2f2f2;
+        padding: 18px;">
+        <p>Dear '.$name.'</p>
+        <p>You have created an entry for information sharing with '.$name.' for the UPSI pertaining to'.$upsiname.' on '.$dayOfWeek.' '.$todaydate.'. This is for your information. 
+          </p> 
+        
+            </div>
+        </div>
+
+        </div>
+    </body>
+    </html>';
+
+    //echo $html; exit; 
+
+     return $html;
+}
+
+
 
     
 }
