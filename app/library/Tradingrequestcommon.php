@@ -1773,7 +1773,7 @@ class Tradingrequestcommon extends Component
             $msg = array();
             //$connection->close();
         }
-        // print_r($msg);exit;
+        //print_r($msg);exit;
         return $msg;
     }
     
