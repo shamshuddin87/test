@@ -293,7 +293,7 @@ function getform(formtype){
               {
                 
                   website('.weaverbody').html(response.pdf_content);
-                   website('#weaverform').modal('show'); 
+                  website('#weaverform').modal('show'); 
 
 
 
