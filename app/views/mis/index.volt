@@ -50,7 +50,7 @@ $condeptsess = $this->session->contractdepartment;
             <thead>
                 <tr>
                     <th>User Name</th>
-                    <th colspan="3" style="text-align: center;">Closing Balance</th>
+                    <th colspan="3" style="text-align: center;">Closing Balance As On Date</th>
                 </tr>
                 <tr>  
                     <th></th>
