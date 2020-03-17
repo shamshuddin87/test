@@ -38,8 +38,9 @@ button#noofdmat ,button.btn.btn-primary.relhtml {
 	padding: 5px 10px;
     background: black;
     color: rgb(255,255,255);
-    position: relative;
-    left: 30%;
-    top: 0px;
-}
+    position: absolute;
+    width: 120%;
+    left: 0%;
+    top: 55px;
+
 }
