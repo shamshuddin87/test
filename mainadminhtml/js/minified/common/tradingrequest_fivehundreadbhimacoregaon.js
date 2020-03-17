@@ -35,12 +35,16 @@ else
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
-{}});});function getform(formtype){website.ajax({type:"POST",url:'tradingrequest/getfilecontent',data:{formtype:formtype},dataType:"json",beforeSend:function()
-{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{}});});function getform(formtype)
+{website.ajax({type:"POST",url:'tradingrequest/getfilecontent',data:{formtype:formtype},dataType:"json",beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
 {if(response.logged===true)
-{website('.weaverbody').html(response.pdf_content);website('#weaverform').modal('show');}},complete:function(response)
-{website('.preloder_wraper').fadeOut();},error:function()
+{if(formtype=='form1')
+{website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);website('#checkappvlrequest').modal('show');}
+else if(formtype=='form2')
+{website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest').modal('show');}}},complete:function(response)
+{},error:function()
 {}});}
 website('body').on('click','.reqdraft',function()
 {var approverids=website('#approverid').val();website('#checkappvlrequest #approverid').val(approverids);var reqnames=website('#reqname').val();website('#checkappvlrequest #reqname').val(reqnames);var typeofrequests=website('#typeofrequest').val();website('#checkappvlrequest #typeofrequest').val(typeofrequests);var selrelatives=website('#selrelative').val();website('#checkappvlrequest #selrelative').val(selrelatives);var idofcmps=website('#idofcmp').val();website('#checkappvlrequest #idofcmp').val(idofcmps);var nameofcmps=website('#nameofcmp').val();website('#checkappvlrequest #nameofcmp').val(nameofcmps);var noofshares=website('#noofshare').val();website('#checkappvlrequest #noofshare').val(noofshares);var sectypes=website('#sectypeid').val();website('#checkappvlrequest #sectype').val(sectypes);var typeoftranss=website('#typeoftrans').val();website('#checkappvlrequest #typeoftrans').val(typeoftranss);var sendreq=website('#sendrequest').val();website('#checkappvlrequest #sendreq').val(sendreq);website.ajax({url:'tradingrequest/checkclosebalval',data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
@@ -293,4 +297,19 @@ website('#Mymodalaudittrail').modal('show');}
 else
 {}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
+{}});});website('body').on("click","#Yesexcreqst",function(e){website("#reasonexceptn").modal('show');});website('body').on('click','#Noexcrequest',function(e)
+{new PNotify({title:'Alert',text:'You cannot send request',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});var base_url=getbaseurl();window.location.href=base_url+'tradingrequest';setTimeout(function(){window.location.reload();},1000);});website('body').on('click','#reasonexetrans',function(e)
+{var reasonmsg=website("#reasontrans").val();var approverids=website('#approverid').val();var reqname=website('#reqname').val();var typeofrequests=website('#Mymodalreq #typeofrequest').val();if(typeofrequests==3)
+{var dpuserid=website("#dpuserid").val();var dpusergroup=website("#dpusergroup").val();}
+else
+{var dpuserid=website("#dpuserid").val();var dpusergroup=website("#dpusergroup").val();}
+var selrelatives=website('#Mymodalreq #selrelative').val();var idofcmps=website('#Mymodalreq #idofcmp').val();var nameofcmps=website('#Mymodalreq #nameofcmp').val();var noofshares=website('#Mymodalreq #noofshare').val();var sectypes=website('#Mymodalreq #sectypeid').val();var typeoftranss=website('#Mymodalreq #typeoftrans').val();var typeofsave=website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');var formdata={approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup}
+website.ajax({url:'tradingrequest/savecontratrdexceptn',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{var baseHref=getbaseurl();var redirecturl=baseHref+"exceptionreq";window.location.href=redirecturl;}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function()
 {}});});;

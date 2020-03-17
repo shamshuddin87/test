@@ -1206,13 +1206,80 @@ class Tradingrequestcommon extends Component
 
         //######### VALIDATION OF REQUEST ################
 
+//        public function checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans)
+//        {
+//            $connection = $this->dbtrd;
+//            //echo "wait here ";exit;
+//            $mydate=date('d-m-Y');
+//            $getlist = array();
+//            $queryget = "SELECT * FROM `personal_request` WHERE user_id='".$uid."' AND id_of_company='".$idofcmp."' order by id desc limit 1";
+//            //echo $queryget;exit;
+//            try
+//            {
+//                $exeget = $connection->query($queryget);
+//                $getnum = trim($exeget->numRows());
+//
+//                if($getnum>0)
+//                {
+//                    $row = $exeget->fetch();
+//                    // $queryget = "SELECT * FROM `trading_status` WHERE req_id = '".$row['id']."'  order by id desc limit 1";
+//                    $queryget = "SELECT ts.* FROM `trading_status` ts LEFT JOIN `personal_request` pr ON pr.`id`=ts.`req_id` WHERE ts.`req_id` = '".$row['id']."' AND pr.`trading_status` IS NOT NULL order by id desc limit 1";
+//                    //echo $queryget;exit;
+//                    $exege = $connection->query($queryget);
+//                    $getm= trim($exege->numRows());
+//                    if($getm>0)
+//                    {
+//                        $row2 = $exege->fetch();
+//                        $start_date = strtotime($row2['date_of_transaction']); 
+//
+//                        $end_date = strtotime($mydate); 
+//                        $diff = abs($start_date - $end_date);
+//
+//                        $years = floor($diff / (365*60*60*24));
+//                        $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+//                        $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+//
+//
+//                        if($days<=182 && $row['type_of_transaction']!=$typeoftrans)
+//                        {
+//
+//                            $results = array('status'=>'false', 'mg'=>'You Are Doing Different Trade Before Six Months Transaction');
+//                        }
+//                        else
+//                        {
+//                             $results = array('status'=>'true', 'mg'=>'You can create request');
+//                        }
+//
+//                    }
+//                    else
+//                    {
+//                        $results = array('status'=>'false', 'mg'=>'Please Complete Your Latest Transaction');
+//                    }
+//
+//                }
+//                else
+//                {
+//                    $results = array('status'=>'true', 'mg'=>'You can create request');
+//                }
+//            }
+//            catch (Exception $e)
+//            {
+//                $results = array('status'=>'false', 'mg'=>'Exception');
+//            //$connection->close();
+//            }
+//            //echo '<pre>';print_r($results);exit;
+//            return $results;
+//
+//        }
+    
         public function checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans)
         {
+
             $connection = $this->dbtrd;
             //echo "wait here ";exit;
             $mydate=date('d-m-Y');
             $getlist = array();
-            $queryget = "SELECT * FROM `personal_request` WHERE user_id='".$uid."' AND id_of_company='".$idofcmp."' order by id desc limit 1";
+            $queryget = "SELECT * FROM `personal_request` WHERE user_id='".$uid."' AND id_of_company='".$idofcmp."'  order by id desc limit 1";
             //echo $queryget;exit;
             try
             {
@@ -1222,56 +1289,51 @@ class Tradingrequestcommon extends Component
                 if($getnum>0)
                 {
                     $row = $exeget->fetch();
-                    // $queryget = "SELECT * FROM `trading_status` WHERE req_id = '".$row['id']."'  order by id desc limit 1";
-                    $queryget = "SELECT ts.* FROM `trading_status` ts LEFT JOIN `personal_request` pr ON pr.`id`=ts.`req_id` WHERE ts.`req_id` = '".$row['id']."' AND pr.`trading_status` IS NOT NULL order by id desc limit 1";
-                    //echo $queryget;exit;
+
+                    $queryget = "SELECT * FROM `trading_status` WHERE req_id = '".$row['id']."' order by id desc limit 1";
                     $exege = $connection->query($queryget);
                     $getm= trim($exege->numRows());
                     if($getm>0)
                     {
                         $row2 = $exege->fetch();
+
                         $start_date = strtotime($row2['date_of_transaction']); 
 
                         $end_date = strtotime($mydate); 
                         $diff = abs($start_date - $end_date);
-
                         $years = floor($diff / (365*60*60*24));
                         $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
                         $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-
-
                         if($days<=182 && $row['type_of_transaction']!=$typeoftrans)
                         {
-
-                            $results = array('status'=>'false', 'mg'=>'You Are Doing Different Trade Before Six Months Transaction');
+                            $result = array('status'=>true,'message'=>'');
                         }
                         else
                         {
-                             $results = array('status'=>'true', 'mg'=>'You can create request');
+                            $result = array('status'=>false,'message'=>'');
                         }
 
                     }
                     else
                     {
-                        $results = array('status'=>'false', 'mg'=>'Please Complete Your Latest Transaction');
+                        $result = array('status'=>true,'message'=>'Please Complete Your Latest Trade..!!');
                     }
 
                 }
                 else
                 {
-                    $results = array('status'=>'true', 'mg'=>'You can create request');
+                    $result = array('status'=>false,'message'=>'');
                 }
             }
             catch (Exception $e)
             {
-                $results = array('status'=>'false', 'mg'=>'Exception');
+                $result = array();
             //$connection->close();
             }
-            //echo '<pre>';print_r($results);exit;
-            return $results;
+            //Secho '<pre>';print_r($getlist);exit;
+            return $result;
 
         }
-    
         public function fetchreqtrail($getuserid,$user_group_id,$rqstid)
         { 
             $connection = $this->dbtrd;
@@ -1777,6 +1839,88 @@ class Tradingrequestcommon extends Component
         return $msg;
     }
     
+    public function savecontratrdexceptn($uid,$usergroup,$data,$send_status)
+    {
+        $connection = $this->dbtrd;
+
+        // $usergroup = $this->session->loginauthspuserfront['user_group_id'];
+        // -------- Start CHECK TRANSACTION DATE VALIDATION OF NEXT 6 MONTHS --------
+            $time = time();
+
+            if($data['typeofrequest']==2)
+            {
+                $reetiveid=$data['selrelative'];
+            }
+            else
+            {
+                $reetiveid='';
+            }
+
+             if($data['typeofrequest']==3)
+            {
+                $reqtype=1;
+            }
+            else
+            {
+               $reqtype=$data['typeofrequest'];
+            }
+        // -------- End CHECK TRANSACTION DATE VALIDATION OF NEXT 6 MONTHS --------
+
+
+        // --------  Start GET AUTO APPROVE STATUS --------
+            $res=$this->tradingrequestcommon->getautoapprovestatus($uid,$usergroup,$data,$send_status);
+            if(($res>=$data['noofshare'] && $send_status==1) || ($data['typeofrequest']==3 && $send_status==1))
+            {
+                $tradingdate=$this->tradingrequestcommon->gettradingdate($uid,$usergroup,$data,$send_status);
+                if($tradingdate!='')
+                {
+                    $autoapst=1;
+                    $tradingdate=$tradingdate;
+                }
+                else
+                {
+                    $autoapst=0;
+                    $tradingdate='';
+                }
+            }
+            else
+            {
+                $autoapst='';
+                $tradingdate='';
+            }
+        // --------  End GET AUTO APPROVE STATUS --------
+            //$pdfpath = $this->tradingrequestcommon->generatepdfreq($uid,$usergroup,$reetiveid,$data['idofcmp'],$data['sectype'],$data['noofshare'],$data['typeoftrans']);
+            // -------- Start GET AUTO APPROVE STATUS --------
+                $query = "INSERT INTO `personal_request`(`user_id`,`user_group`,`type_of_request`,`relative_id`,`name_of_requester`,`sectype`,`id_of_company`,`no_of_shares`,`type_of_transaction`,`pdffilepath`,`approver_id`,`sent_contraexeaprvl`,`apprv_contraexedte`,`contraexcapvsts`,`trading_date`,`ex_approve_status`,`exception_reason`,
+                `date_added`,`date_modified`,`timeago`)
+                VALUES('".$uid."','".$usergroup."','".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."','".$data['sectype']."','".$data['idofcmp']."','".$data['noofshare']."','".$data['typeoftrans']."','abc','".$data['approverid']."','".$send_status."',NOW(),'".$autoapst."','".$tradingdate."','0','".$data['reasonmsg']."',
+                NOW(),NOW(),'".$time."')";
+
+                 echo $query;exit;
+                try
+                {
+                    $exeget = $connection->query($query);
+                    if($exeget)
+                    {
+                        if($send_status == 1)
+                        {
+                            $lastid = $connection->lastInsertId();
+                            $getsendexcrqstmail = $this->exceptionreqcommon->sendexcrqstmail($lastid,'contratrd');
+                        }
+                        $msg['status']=true;
+                        $msg['message']="Request Saved Successfully";
+                        return $msg;
+                    }
+                 
+
+                }
+                catch(Exception $e)
+                {
+                    $msg['status']=false;
+                    $msg['message']="Exception Occured";
+                    return $msg;
+                } 
+    }
     
     
 }
