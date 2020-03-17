@@ -2437,7 +2437,7 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname)
                 <div class="header" style="margin-bottom:25px;">
                     <div class="header_img" style="/*width:300px;*/float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
                         <div style="    text-shadow: 1px 0px 2px #626262;
-        color: #626262;">Trading Window Closure</div>
+        color: #626262;">New UPSI Sharing</div>
                     </div>
                      <div style="clear:both;"></div>
                 </div>
@@ -2531,7 +2531,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname)
                 <div class="header" style="margin-bottom:25px;">
                     <div class="header_img" style="/*width:300px;*/float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
                         <div style="    text-shadow: 1px 0px 2px #626262;
-        color: #626262;">Trading Window Closure</div>
+        color: #626262;">New UPSI Sharing</div>
                     </div>
                      <div style="clear:both;"></div>
                 </div>
@@ -2625,7 +2625,7 @@ public function mailofpersonalinfo($data)
       <tr>
          <td  colspan="2" style="padding-top: 20px;padding-left: 20px background: #fff;">
           <p>Dear '.$data['fname'].',</p>
-          <p>You have updated section of ‘personal information’ under ‘My info’. This is for your information..</p>
+          <p>You have updated Personal Information section of ‘personal information’ under ‘My info’. This is for your information..</p>
         
          </td>
       </tr>
