@@ -464,8 +464,10 @@
                     &times;</button>
                 <h4 class="modal-title">
                 </h4>
+                
             </div>
             <div class="modal-body">
+               <a id="pdflink"><input type="button" class="btn btn-success"  value="Download"></a>
               <input type="hidden" id="approverid" name="approverid">
               <input type="hidden" id="reqname" name="reqname">
               <input type="hidden" id="typeofrequest" name="typeofrequest">
@@ -568,40 +570,47 @@
     </div>
 </div>
 
-<div id="weaverform" class="modal fade" role="dialog">
-  <div class="modal-dialog">
 
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        
-        <h4 class="modal-title"></h4>
-      </div>
-        <div class="modal-body weaverbody">
-        
+<div id="chckexcptnrequest" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;</button>
+                <h4 class="modal-title">
+                </h4>
+            </div>
+            <div class="modal-body">
+                <a id="pdflink"><input type="button" class="btn btn-success" value="Download"></a>
+              <p class="here" style="text-align: justify;">This transaction is a contra trade within 6 months of previous trade. You will require an exceptional pre-clearance approval for such trade request. Also, you can raise this request only if you do not hold any UPSI. Please confirm if you want to send exception approval?</p>
+               
+            </div>
+            <div class="modal-footer">
+             <input type="submit" class="btn btn-success" id="Yesexcreqst" value="Yes">
+             <input type="submit" class="btn btn-success" id="Noexcrequest" value="No">
+            </div>
         </div>
-        
-      </div>
     </div>
 </div>
 
-<div id="preclerance" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+<div id="reasonexceptn" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <h3>Please Enter Your Reason</h3>
+              <button type="button" class="close" data-dismiss="modal">
+                    &times;</button>
+            </div>
+            <div class="modal-body">
+           
+           <textarea  width="80%" id="reasontrans"></textarea>
 
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        
-        <h4 class="modal-title"></h4>
-      </div>
-        <div class="modal-body preclerancebody">
-        
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" id="reasonexetrans">Submit</button> 
+            </div>
         </div>
-        
-      </div>
     </div>
 </div>
-
-
-
-
+</div>

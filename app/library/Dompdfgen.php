@@ -29,8 +29,8 @@ Class Dompdfgen extends Phalcon\Mvc\User\Component {
         else if($typeof=="configReport"){$path = $this->declarationDir.'/reportingexe';}
         else if($typeof=="misrecip"){$path = 'img/mis';}
         else if($typeof=="mispersnlinfo"){$path = 'img/mis';}
-        else if($typeof=="preclerance"){$path = 'img/preclerance';}
-        else if($typeof=="weaver"){$path = 'img/weaver';}
+        else if($typeof=="preclerance"){$path = 'img/preclearance_request/form1';}
+        else if($typeof=="weaver"){$path = 'img/preclearance_request/form2';}
         else{$path='';}
 
         if($typeof=="configvcs"){$stylesheet = file_get_contents('css/pdf/pdf.css');}

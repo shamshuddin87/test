@@ -263,53 +263,39 @@ website('body').on('click','.sendrequst',function()
     });
 });
 
-function getform(formtype){
-
-   // website('#Mymodaldeclara').modal('show');
-    
-   
-    
+function getform(formtype)
+{
     website.ajax({
-          type:"POST",
-          url:'tradingrequest/getfilecontent',
-          data:{formtype:formtype},
-         
-         
-          dataType:"json",
-          beforeSend: function()
-          {
-              website('.preloder_wraper').fadeIn();
-              // website('#modaldocument .downloadpdf .pdfln').html('');
-              // website('#modaldocument .trailpdfdownload').addClass('disabled');
-          },
-          uploadProgress: function(event, position, total, percentComplete)
-          {
-              
-          },
-          success: function(response) 
-          {
-              //console.log(response); return false;
-              if(response.logged===true)
-              {
-                
-                  website('.weaverbody').html(response.pdf_content);
-                  website('#weaverform').modal('show'); 
-
-
-
-                  //getpdfdata(uniqueid);
-              }
-          },
-          complete: function(response)
-          {
-             
-               website('.preloder_wraper').fadeOut();
-          },
-          error: function() 
-          {
-              
-          }
-});
+        type:"POST",
+        url:'tradingrequest/getfilecontent',
+        data:{formtype:formtype},
+        dataType:"json",
+        beforeSend: function()
+        {   },
+        uploadProgress: function(event, position, total, percentComplete)
+        {   },
+        success: function(response) 
+        {
+            //console.log(response); return false;
+            if(response.logged===true)
+            {
+                if(formtype == 'form1')
+                {
+                    website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);
+                    website('#checkappvlrequest').modal('show');
+                }
+                else if(formtype == 'form2')
+                {
+                    website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
+                    website('#chckexcptnrequest').modal('show');
+                }
+            }
+        },
+        complete: function(response)
+        {   },
+        error: function() 
+        {   }
+    });
 }
 
 
@@ -1769,4 +1755,88 @@ website('body').on("click",".requsttrail",function(e){
     error: function(jqXHR, textStatus, errorThrown)
     {}
   }); 
+});
+
+website('body').on("click","#Yesexcreqst",function(e){
+    website("#reasonexceptn").modal('show');
+});
+
+website('body').on('click','#Noexcrequest',function(e)
+{
+    new PNotify({title: 'Alert',
+              text: 'You cannot send request',
+              type: 'university',
+              hide: true,
+              styling: 'bootstrap3',
+              addclass: 'dark ',
+                });
+      var base_url = getbaseurl();
+      window.location.href = base_url+'tradingrequest';
+    setTimeout(function(){window.location.reload();}, 1000);
+});
+
+website('body').on('click','#reasonexetrans',function(e)
+{
+    var reasonmsg = website("#reasontrans").val();
+    var approverids = website('#approverid').val();
+    var reqname = website('#reqname').val();
+    var typeofrequests = website('#Mymodalreq #typeofrequest').val();
+    if(typeofrequests==3)
+    {
+        var dpuserid=website("#dpuserid").val();
+        var dpusergroup=website("#dpusergroup").val();
+
+    }
+    else
+    {
+       var dpuserid=website("#dpuserid").val();
+       var dpusergroup=website("#dpusergroup").val();
+    }
+    var selrelatives = website('#Mymodalreq #selrelative').val();
+    var idofcmps = website('#Mymodalreq #idofcmp').val();
+    var nameofcmps = website('#Mymodalreq #nameofcmp').val();
+    var noofshares = website('#Mymodalreq #noofshare').val();
+    var sectypes = website('#Mymodalreq #sectypeid').val();
+    var typeoftranss = website('#Mymodalreq #typeoftrans').val();
+    var typeofsave = website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');
+    var formdata = {approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup}
+    website.ajax({
+        url:'tradingrequest/savecontratrdexceptn',
+        data:formdata,
+        method:'POST',
+        //contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, /*Cross domain checking*/
+        beforeSend: function()
+        { website('.preloder_wraper').fadeIn();   },
+        uploadProgress: function(event, position, total, percentComplete)
+        {   },
+        success: function(response, textStatus, jqXHR)
+        {
+            if(response.logged === true)
+            {
+                 var baseHref = getbaseurl();
+                 var redirecturl=baseHref+"exceptionreq";
+                 window.location.href =redirecturl;
+                
+            }
+            else
+            {    
+                new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+              });  
+            }
+        },
+        complete: function(response) 
+        {   website('.preloder_wraper').fadeOut();   },
+        error: function() 
+        {   }
+    });
 });
