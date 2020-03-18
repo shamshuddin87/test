@@ -495,8 +495,8 @@ function checkdetails()
               base_url=base_url+response.data;
           }
 
-          var link='<a href="'+base_url+'" style="color:red;">Click Here</a>';
-          website('#declaration .arng').html('<h5 style="text-align:left;    line-height: 25px;">'+response.message+'</h5><p style="text-align: left;"><u>'+link+'</u></p>');
+          var link='<a href="'+base_url+'" style="background: #36186e;">Click Here</a>';
+          website('#declaration .arng').html('<h5 style="text-align:center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">'+response.message+'</h5><p style="text-align: center;"><u>'+link+'</u></p>');
           
           if(response.usergroup!=2)
           {
