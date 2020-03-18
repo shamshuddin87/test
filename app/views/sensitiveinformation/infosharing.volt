@@ -25,6 +25,7 @@ $upsiid = $this->session->upsitypeid;
                     <form id="insertinfosharing" action="sensitiveinformation/insertinfosharing" method="post" enctype="multipart/form-data" autocomplete="off" > 
                         <input type="hidden" name="category" class="category" id="category" value="">
                         <input type="hidden" name="recid" class="recid" id="recid" value="">
+                        <input type="hidden" name="rectype" class="rectype" id="rectype" value="">
                         <input type="hidden" name="upsitypeid" class="upsitypeid" id="upsitypeid" value="<?php echo $upsiid;?>">
                         
                         <section class="col col-md-4 col-xs-4">

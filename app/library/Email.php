@@ -1498,7 +1498,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($addedbyemail, 'Volody');
-        $mail->Subject = 'Upsi Module Added';
+        $mail->Subject = 'New UPSI Created';
         $mail->msgHTML($gethtml);
         //Replace the plain text body with one created manually
         //send the message, check for errors
