@@ -286,7 +286,9 @@ function getform(formtype)
                 }
                 else if(formtype == 'form2')
                 {
+
                     website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
+                    website('#chckexcptnrequest #pdflink').attr('href',response.pdf_path);
                     website('#chckexcptnrequest').modal('show');
                 }
             }
@@ -443,8 +445,10 @@ website('body').on('click','#Yesreqst',function(e)
     var noofshare = website('#checkappvlrequest #noofshare').val();
     var typeoftrans = website('#checkappvlrequest #typeoftrans').val();
     var sendreq = website('#checkappvlrequest #sendreq').val();
+    var link = website('#checkappvlrequest #pdflink').attr('href');
 
-    var formdata = {approverid:approverid,reqname:reqname,typeofrequest:typeofrequest,selrelative:selrelative,sectype:sectype,idofcmp:idofcmp,nameofcmp:nameofcmp,noofshare:noofshare,typeoftrans:typeoftrans,sendreq:sendreq};
+
+    var formdata = {approverid:approverid,reqname:reqname,typeofrequest:typeofrequest,selrelative:selrelative,sectype:sectype,idofcmp:idofcmp,nameofcmp:nameofcmp,noofshare:noofshare,typeoftrans:typeoftrans,sendreq:sendreq,link:link};
     website.ajax({
       url:'tradingrequest/tradingrequests',
       data:formdata,
@@ -461,12 +465,14 @@ website('body').on('click','#Yesreqst',function(e)
       {  website('.preloder_wraper').fadeIn();  },
       success: function(response, textStatus, jqXHR)
       {
+        console.log(response);
            if(response.logged === true)
          {
-            if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
+           
+            if(response.message =='Please Complete Your Latest Trade..!!')
             {
                 new PNotify({title: 'Alert',
-                    text: response.contratrd.message,
+                    text: response.message,
                     type: 'university',
                     hide: true,
                     styling: 'bootstrap3',
@@ -489,7 +495,7 @@ website('body').on('click','#Yesreqst',function(e)
               
          }
          else
-         {    
+         {      
             new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
@@ -1758,7 +1764,11 @@ website('body').on("click",".requsttrail",function(e){
 });
 
 website('body').on("click","#Yesexcreqst",function(e){
-    website("#reasonexceptn").modal('show');
+  var link =  website('#chckexcptnrequest #pdflink').attr('href');
+
+  website('#reasonexceptn #reasonlink').attr('link',link);
+  website("#reasonexceptn").modal('show');
+
 });
 
 website('body').on('click','#Noexcrequest',function(e)
@@ -1781,6 +1791,9 @@ website('body').on('click','#reasonexetrans',function(e)
     var approverids = website('#approverid').val();
     var reqname = website('#reqname').val();
     var typeofrequests = website('#Mymodalreq #typeofrequest').val();
+     var link = website('#reasonexceptn #reasonlink').attr('link');
+      
+    
     if(typeofrequests==3)
     {
         var dpuserid=website("#dpuserid").val();
@@ -1799,7 +1812,7 @@ website('body').on('click','#reasonexetrans',function(e)
     var sectypes = website('#Mymodalreq #sectypeid').val();
     var typeoftranss = website('#Mymodalreq #typeoftrans').val();
     var typeofsave = website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');
-    var formdata = {approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup}
+    var formdata = {approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup,link:link}
     website.ajax({
         url:'tradingrequest/savecontratrdexceptn',
         data:formdata,

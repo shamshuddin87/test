@@ -941,25 +941,31 @@ class Exceptionreqcommon extends Component
         return $getlist;
     }
     
-    public function sendexcrqstmail($rqstid)
+    public function sendexcrqstmail($rqstid,$type)
     {
         $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";            
                 $baseuri = $this->url->getBaseUri();
                 $baseurl = $server_link.$baseuri;
         
-        $excnrqstmaildetail = $this->exceptionreqcommon->getexcrqstdata($rqstid);
-        $excnrqstapprvmail = array(
+        $excnrqstmaildetail = $this->exceptionreqcommon->getexcrqstdata($rqstid,$type);
+        //print_r($excnrqstmaildetail);exit;
+         $excnrqstapprvmail = array(
                                  'id'=>$excnrqstmaildetail['maildata'][0]['id'],
-                                 'rqstid'=>$excnrqstmaildetail['maildata'][0]['req_id'],
+                                 //'rqstid'=>$excnrqstmaildetail['maildata'][0]['req_id'],
                                  'requester_name'=>$excnrqstmaildetail['maildata'][0]['fullname'],  
                                  'company_name'=>$excnrqstmaildetail['maildata'][0]['company_name'],  
                                  'type_trnscn'=>$excnrqstmaildetail['maildata'][0]['transaction'],  
                                  'securty_type'=>$excnrqstmaildetail['maildata'][0]['security_type'],
                                  'noofshres'=>$excnrqstmaildetail['maildata'][0]['noofsecurity'],
                                  'url'=>$baseurl);
+           if($type == 'contratrd')
+           {
+               $excnrqstapprvmail['pdfpath']= $excnrqstmaildetail['maildata'][0]['pdffilepath'];
+           }
             for($i = 0;$i<sizeof($excnrqstmaildetail['emailid']);$i++)
             {
-                $result = $this->emailer->sendmailexcbrqstapprvl($excnrqstapprvmail,$excnrqstmaildetail['emailid'][$i]);
+
+                $result = $this->emailer->sendmailexcbrqstapprvl($excnrqstapprvmail,$excnrqstmaildetail['emailid'][$i],$type);
             }
             //print_r($result);exit;
             if($result['logged']==true)
@@ -976,17 +982,29 @@ class Exceptionreqcommon extends Component
         
     }
     
-   public function getexcrqstdata($rqstid)
+  
+    public function getexcrqstdata($rqstid,$type)
    {
         $connection = $this->dbtrd;
-        $queryget = "SELECT ts.*,memb.`fullname`,cmp.`company_name`,secu.`security_type`,pr.`type_of_transaction`        ,trans.`transaction`,pr.`approver_id`,pr.`no_of_shares` as noofsecurity FROM `trading_status` ts
+        if($type == 'contratrd')
+        {
+             $queryget = "SELECT pr.*,memb.`fullname`,cmp.`company_name`,secu.`security_type`,pr.`type_of_transaction` ,trans.`transaction`,pr.`approver_id`,pr.`no_of_shares` AS noofsecurity 
+            FROM `personal_request` pr 
+            LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = pr.`user_id` 
+            LEFT JOIN `listedcmpmodule` cmp ON cmp.`id` = pr.`id_of_company` 
+            LEFT JOIN `req_securitytype` secu ON secu.`id` = pr.`sectype`
+            LEFT JOIN `type_of_transaction` trans ON trans.`id` = pr.`type_of_transaction` WHERE pr.`id` = '".$rqstid."' ";
+        }
+        else if($type == 'trade')
+        {
+            $queryget = "SELECT ts.*,memb.`fullname`,cmp.`company_name`,secu.`security_type`,pr.`type_of_transaction`        ,trans.`transaction`,pr.`approver_id`,pr.`no_of_shares` as noofsecurity FROM `trading_status` ts
                         LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ts.`user_id` 
                         LEFT JOIN `listedcmpmodule` cmp ON cmp.`id` = ts.`id_of_company` 
                         LEFT JOIN `req_securitytype` secu ON secu.`id` = ts.`sectype`
                         LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id` 
                         LEFT JOIN `type_of_transaction` trans ON trans.`id` = pr.`type_of_transaction`
                         WHERE ts.`req_id` = '".$rqstid."'";
-
+        }
         try
         {
                 $exeget = $connection->query($queryget);
@@ -1013,7 +1031,9 @@ class Exceptionreqcommon extends Component
                             }
                         }
                     }
+
                     $getadminemail = $this->tradingplancommon->getadminmailid($approverid[0]);
+
                     array_push($getapproveremail,$getadminemail);
                     $getlist = array('maildata'=>$getemaildata,'emailid'=>$getapproveremail);
                 }

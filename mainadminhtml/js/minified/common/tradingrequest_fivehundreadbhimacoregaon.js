@@ -43,7 +43,7 @@ else
 {if(formtype=='form1')
 {website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);website('#checkappvlrequest').modal('show');}
 else if(formtype=='form2')
-{website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest').modal('show');}}},complete:function(response)
+{website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest #pdflink').attr('href',response.pdf_path);website('#chckexcptnrequest').modal('show');}}},complete:function(response)
 {},error:function()
 {}});}
 website('body').on('click','.reqdraft',function()
@@ -66,12 +66,12 @@ else
 {website('.preloder_wraper').fadeOut();},error:function()
 {}});}
 website('body').on('click','#Yesreqst',function(e)
-{var approverid=website('#checkappvlrequest #approverid').val();var reqname=website('#checkappvlrequest #reqname').val();var typeofrequest=website('#checkappvlrequest #typeofrequest').val();var selrelative=website('#checkappvlrequest #selrelative').val();var sectype=website('#checkappvlrequest #sectype').val();var idofcmp=website('#checkappvlrequest #idofcmp').val();var nameofcmp=website('#checkappvlrequest #nameofcmp').val();var noofshare=website('#checkappvlrequest #noofshare').val();var typeoftrans=website('#checkappvlrequest #typeoftrans').val();var sendreq=website('#checkappvlrequest #sendreq').val();var formdata={approverid:approverid,reqname:reqname,typeofrequest:typeofrequest,selrelative:selrelative,sectype:sectype,idofcmp:idofcmp,nameofcmp:nameofcmp,noofshare:noofshare,typeoftrans:typeoftrans,sendreq:sendreq};website.ajax({url:'tradingrequest/tradingrequests',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{var approverid=website('#checkappvlrequest #approverid').val();var reqname=website('#checkappvlrequest #reqname').val();var typeofrequest=website('#checkappvlrequest #typeofrequest').val();var selrelative=website('#checkappvlrequest #selrelative').val();var sectype=website('#checkappvlrequest #sectype').val();var idofcmp=website('#checkappvlrequest #idofcmp').val();var nameofcmp=website('#checkappvlrequest #nameofcmp').val();var noofshare=website('#checkappvlrequest #noofshare').val();var typeoftrans=website('#checkappvlrequest #typeoftrans').val();var sendreq=website('#checkappvlrequest #sendreq').val();var link=website('#checkappvlrequest #pdflink').attr('href');var formdata={approverid:approverid,reqname:reqname,typeofrequest:typeofrequest,selrelative:selrelative,sectype:sectype,idofcmp:idofcmp,nameofcmp:nameofcmp,noofshare:noofshare,typeoftrans:typeoftrans,sendreq:sendreq,link:link};website.ajax({url:'tradingrequest/tradingrequests',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
-{if(response.logged===true)
-{if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
-{new PNotify({title:'Alert',text:response.contratrd.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+{console.log(response);if(response.logged===true)
+{if(response.message=='Please Complete Your Latest Trade..!!')
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
 {website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest').modal('show');}
 new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});setTimeout(function(){window.location.reload();},1000);}
@@ -297,13 +297,13 @@ website('#Mymodalaudittrail').modal('show');}
 else
 {}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
-{}});});website('body').on("click","#Yesexcreqst",function(e){website("#reasonexceptn").modal('show');});website('body').on('click','#Noexcrequest',function(e)
+{}});});website('body').on("click","#Yesexcreqst",function(e){var link=website('#chckexcptnrequest #pdflink').attr('href');website('#reasonexceptn #reasonlink').attr('link',link);website("#reasonexceptn").modal('show');});website('body').on('click','#Noexcrequest',function(e)
 {new PNotify({title:'Alert',text:'You cannot send request',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});var base_url=getbaseurl();window.location.href=base_url+'tradingrequest';setTimeout(function(){window.location.reload();},1000);});website('body').on('click','#reasonexetrans',function(e)
-{var reasonmsg=website("#reasontrans").val();var approverids=website('#approverid').val();var reqname=website('#reqname').val();var typeofrequests=website('#Mymodalreq #typeofrequest').val();if(typeofrequests==3)
+{var reasonmsg=website("#reasontrans").val();var approverids=website('#approverid').val();var reqname=website('#reqname').val();var typeofrequests=website('#Mymodalreq #typeofrequest').val();var link=website('#reasonexceptn #reasonlink').attr('link');if(typeofrequests==3)
 {var dpuserid=website("#dpuserid").val();var dpusergroup=website("#dpusergroup").val();}
 else
 {var dpuserid=website("#dpuserid").val();var dpusergroup=website("#dpusergroup").val();}
-var selrelatives=website('#Mymodalreq #selrelative').val();var idofcmps=website('#Mymodalreq #idofcmp').val();var nameofcmps=website('#Mymodalreq #nameofcmp').val();var noofshares=website('#Mymodalreq #noofshare').val();var sectypes=website('#Mymodalreq #sectypeid').val();var typeoftranss=website('#Mymodalreq #typeoftrans').val();var typeofsave=website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');var formdata={approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup}
+var selrelatives=website('#Mymodalreq #selrelative').val();var idofcmps=website('#Mymodalreq #idofcmp').val();var nameofcmps=website('#Mymodalreq #nameofcmp').val();var noofshares=website('#Mymodalreq #noofshare').val();var sectypes=website('#Mymodalreq #sectypeid').val();var typeoftranss=website('#Mymodalreq #typeoftrans').val();var typeofsave=website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');var formdata={approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup,link:link}
 website.ajax({url:'tradingrequest/savecontratrdexceptn',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)

@@ -348,7 +348,7 @@ $uid = $this->session->loginauthspuserfront['id'];
 -->
              <div class="modal-footer">
                 <section class="col col-md-12 col-xs-12 text-right">
-                    <input type="submit" class="btn btn-success"  id="upbtn" editid="" value="Update">
+                    <input type="submit" class="btn btn-success"  id="upbtn" editid="">
                 </section>
             </div>
                 

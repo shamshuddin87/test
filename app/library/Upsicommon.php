@@ -527,9 +527,9 @@ class Upsicommon extends Component
                 }
                 else
                 {
-                    $ownerid = explode(',',$updatedata['ownerid']);
-                    $condp = explode(',',$connctdps);
-                    $userids = array_merge($ownerid, $condp);
+                    //$ownerid = explode(',',$updatedata['ownerid']);
+                    //$condp = explode(',',$connctdps);
+                    //$useriddp = array_merge($ownerid, $condp);
                 }
             }
         }
