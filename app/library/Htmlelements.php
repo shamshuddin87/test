@@ -2287,7 +2287,7 @@ public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$e
                 </div>
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
-        <p>'.$greeting.', 
+        <p>Dear '.$greeting.', 
         </p>
         <p>This is to inform you that '.$dpnames.' has been added to the UPSI titled '.$title.' on '.$todaydate.'. This UPSI was created by '.$owner.' on '.$dt_added.'.
          </p>
@@ -2396,7 +2396,7 @@ public function mailofupdatedp($tomail,$tousername,$pstartdate,$enddate,$today,$
     
 public function internalmember($uniquemail,$sharingdate,$upsiname,$toname)
   {   
-       //echo "<pre>";print_r($toname);exit;
+       $title ="You have been added to digital database of Dr. Reddy's Laboratories Ltd";
             $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <html xmlns="htth3://www.w3.org/1999/xhtml">
 
@@ -2437,7 +2437,7 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname)
                 <div class="header" style="margin-bottom:25px;">
                     <div class="header_img" style="/*width:300px;*/float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
                         <div style="    text-shadow: 1px 0px 2px #626262;
-        color: #626262;">New UPSI Sharing</div>
+        color: #626262;">'.$title.'.</div>
                     </div>
                      <div style="clear:both;"></div>
                 </div>
@@ -2922,14 +2922,14 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
                 <div class="header" style="margin-bottom:25px;">
                     <div class="header_img" style="/*width:300px;*/float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
                         <div style="    text-shadow: 1px 0px 2px #626262;
-        color: #626262;">Upsi Sharing Added</div>
+        color: #626262;">A new entry was added in UPSI</div>
                     </div>
                      <div style="clear:both;"></div>
                 </div>
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
         <p>Dear '.$name.'</p>
-        <p>You have created an entry for information sharing with '.$name.' for the UPSI pertaining to'.$upsiname.' on '.$dayOfWeek.' '.$todaydate.'. This is for your information. 
+        <p>You have created an entry for information sharing with '.$name.' for the UPSI pertaining to '.$upsiname.' on '.$dayOfWeek.' '.$todaydate.'. This is for your information. 
           </p> 
         
             </div>

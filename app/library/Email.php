@@ -1415,7 +1415,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($uniquemail, 'Volody');
-        $mail->Subject = 'New Upsi Sharing';
+        $mail->Subject = "You have been added to digital database of Dr. Reddy's Laboratories Ltd";
         $mail->msgHTML($gethtml);
         //Replace the plain text body with one created manually
         //send the message, check for errors
@@ -1540,7 +1540,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
         $mail->addAddress($loggedemail, 'Volody');
-        $mail->Subject = 'Info Sharing Added';
+        $mail->Subject = 'A new entry was added in UPSI';
         $mail->msgHTML($gethtml);
         //Replace the plain text body with one created manually
         //send the message, check for errors

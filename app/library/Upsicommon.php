@@ -331,6 +331,7 @@ class Upsicommon extends Component
 
         $ownerdata = $this->fetchuserdata($ownerid);
         $owneremail =  $ownerdata[0]['email'];
+        $ownerfullname = $ownerdata[0]['fullname'];
         for($i=0;$i<sizeof($userdatadp);$i++)
         {
                               
@@ -347,12 +348,16 @@ class Upsicommon extends Component
             foreach ($complianceinfo as $c) 
             {
                 $sendmail1[] = $c['email'];
+                $sendmailname[] = $c['fullname'];
             }
-            //print_r($sendmail1);exit;
+           // print_r($sendmail1);exit;
 
-        array_push($sendmail1,$owneremail); // to send mail to projec owner and co officer
-         
+        array_push($sendmail1,$owneremail);
+        array_push($sendmailname,$ownerfullname); // to send mail to projec owner and co officer
+        
         $uniquemail1 = array_unique($sendmail1);
+        $uniquemailname = array_unique($sendmailname);
+        //print_r($sendmailname);exit;
 
 
 
@@ -368,23 +373,9 @@ class Upsicommon extends Component
             }
             $pstartdate = $data['pstartdte'];
             $todaydate = date('d-m-Y');
-            if(count($uniquemail1) == 2)
-            {
-               if($i == 0)
-               {
-                 $greeting = "Dear Compliance officer";
-               }
-               else if($i == 1)
-               {
-                $greeting = "Dear Project Owner";
-               }
-            }
-            else
-            {
-                $greeting = "Dear Compliance officer/Project Owner";
-            }
+           
             
-            $result = $this->emailer->mailofType1($email,$todaydate,$data['upname'],$upsiinfo,$dpnames,$greeting);
+            $result = $this->emailer->mailofType1($email,$todaydate,$data['upname'],$upsiinfo,$dpnames,$uniquemailname[$i]);
            
            
            
