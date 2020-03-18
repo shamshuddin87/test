@@ -112,7 +112,15 @@ function getdataonload()
             
         for(var i = 0; i < response.resdta.length; i++) 
         {
-            
+            var name = ''
+            if(response.resdta[i].recipienttype=='connected person')
+            {
+                name = response.resdta[i].name?response.resdta[i].name:'';
+            }
+            else if(response.resdta[i].recipienttype=='userlist')
+            {
+                name = response.resdta[i].username?response.resdta[i].username:'';
+            }
             var category = response.resdta[i].category_name?response.resdta[i].category_name:'';
             var enddate = response.resdta[i].enddate?response.resdta[i].enddate:'';
             var datefrom = response.resdta[i].sharingdate;
@@ -123,7 +131,7 @@ function getdataonload()
 
 //            //------------------------- Table Fields Insertion START ------------------------
             addhtmlnxt += '<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';
-            addhtmlnxt += '<td width="10%">'+response.resdta[i].name+'</td>';
+            addhtmlnxt += '<td width="10%">'+name+'</td>';
             if(response.resdta[i].category == 16)
             {
                 category = response.resdta[i].othercategory?response.resdta[i].othercategory:'';
@@ -149,7 +157,7 @@ function getdataonload()
             addhtmlnxt += '<td width="10%">'+response.resdta[i].fullname+'</td>';
             addhtmlnxt += '<td width="25%">';
 
-            if(response.getaccess[0].upsi_infoshare_delete==1)
+            if(response.getaccess[0].upsi_infoshare_delete && response.getaccess[0].upsi_infoshare_delete==1)
             {
                 addhtmlnxt += '<i class="fa fa-trash-o faicon floatleft deleterestrictedcmp" title="Delete entry" aprvllistid="'+response.resdta[i].id+'" ></i>';
             }
@@ -170,9 +178,9 @@ function getdataonload()
             //------------------------ Table Fields Insertion END ------------------------
             //hide edit field <i class="fa fa-edit faicon floatleft editrestrictedcmp" title="Edit entry" aprvllistid="'+response.resdta[i].id+'"></i>
         }
-	             if(response.getaccess[0].upsi_infoshare_add==1)
+	             if(response.getaccess[0].upsi_infoshare_add && response.getaccess[0].upsi_infoshare_add==1)
 	              {
-	              	   // alert(1);
+	              	   
 	                  website('.formelementmain').css('display','block');
 
                  
@@ -617,9 +625,11 @@ function doSearch(getvalue)
             var categoryname = ''; 
             var name = ''; 
             var category = ''; 
+            var rectype = '';
 
             if(response.data[i].category != null)
             {
+                  rectype = 'connected person';
                   if(response.data[i].category == '16')
                   {
                        categoryname = response.data[i].othercategory;
@@ -649,7 +659,7 @@ function doSearch(getvalue)
             }
             else
             {
-
+              rectype = 'userlist';
               categoryname ='Employee';
               name = response.data[i].fullname;
               category = 14;
@@ -660,7 +670,7 @@ function doSearch(getvalue)
 
 
            
-              addhtml += '<li rec_id="'+id+'" name="'+name+'" category ="'+category+'"  email ="'+email+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+name;
+              addhtml += '<li rec_id="'+id+'" rec_type="'+rectype+'" name="'+name+'" category ="'+category+'"  email ="'+email+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
             
@@ -787,6 +797,7 @@ function doSearchforedit(getvalue)
 
    
        var recid = website(this).attr('rec_id');
+       var rectype = website(this).attr('rec_type');
        var name = website(this).attr('name');
        var cate = website(this).attr('category');
        var categoryname = website(this).attr('categoryname');
@@ -798,6 +809,7 @@ function doSearchforedit(getvalue)
        website('#search-box').attr('recid',recid);
        website('#search-box').attr('recname',name);
        website('#insertinfosharing #recid').val(recid);
+       website('#insertinfosharing #rectype').val(rectype);
        website('#insertinfosharing #category').val(cate);
        website('#insertinfosharing #emailforsendmail').val(email);
        website('#live-search-header-wrapper').fadeOut();       

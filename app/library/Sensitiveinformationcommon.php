@@ -213,7 +213,7 @@ class Sensitiveinformationcommon extends Component
     
     
     // **************************** infosharing insert ***************************
-   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$filepath,$emailrec,$upsiname,$loggedemail)
+   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$emailrec,$upsiname,$loggedemail)
     {
         $connection = $this->dbtrd; 
         $times = time();
@@ -222,8 +222,8 @@ class Sensitiveinformationcommon extends Component
  
       
         $dayOfWeek = date("l", $unixTimestamp);
-        $queryinsert = "INSERT INTO `sensitiveinfo_sharing`(`user_id`,`user_group_id`,`recipientid`,`name`,`sharingdate`,`upsitype`,`sharingtime`,`enddate`, `datashared`,`category`,`filepath`,`date_added`, `date_modified`,`timeago`)
-         VALUES ('".$getuserid."','".$user_group_id."','".$recipientid."','".$name."','".$sharingdate."','".$upsitypeid."','".$sharingtime."','".$enddate."','".$datashared."','".$category."','".$filepath."',NOW(),NOW(),'".$times."')"; 
+        $queryinsert = "INSERT INTO `sensitiveinfo_sharing`(`user_id`,`user_group_id`,`recipientid`,`recipienttype`,`name`,`sharingdate`,`upsitype`,`sharingtime`,`enddate`, `datashared`,`category`,`filepath`,`date_added`, `date_modified`,`timeago`)
+         VALUES ('".$getuserid."','".$user_group_id."','".$recipientid."','".$recipienttype."','".$name."','".$sharingdate."','".$upsitypeid."','".$sharingtime."','".$enddate."','".$datashared."','".$category."','".$filepath."',NOW(),NOW(),'".$times."')"; 
         //print_r($queryinsert);exit;
         try
         {
@@ -268,15 +268,15 @@ class Sensitiveinformationcommon extends Component
        $connection = $this->dbtrd;
         try
          {
-            $queryget = "SELECT ss.*, upt.`upsitype` as upsiname, memb.`fullname`,sc.`category` AS category_name,sr.`othercategory`,sr.`name` 
+            $queryget = "SELECT ss.*, upt.`upsitype` as upsiname, memb.`fullname`,sc.`category` AS category_name,sr.`othercategory`,sr.`name`,memb1.`fullname`AS `username` 
                         FROM `sensitiveinfo_sharing` ss
                         LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ss.`user_id`
+                        LEFT JOIN `it_memberlist` memb1 ON memb1.`wr_id` = ss.`recipientid`
                         LEFT JOIN `upsimaster` upt ON upt.`id` = ss.`upsitype`
                         LEFT JOIN `sensitiveinfo_category` sc ON sc.`id` = ss.`category`
                         LEFT JOIN `sensitiveinfo_recipient` sr ON sr.`id` = ss.`recipientid`
                         WHERE ss.`upsitype`='".$upsitypeid."' AND (FIND_IN_SET('".$getuserid."',upt.`projectowner`) OR FIND_IN_SET('".$getuserid."',upt.`connecteddps`)) ORDER BY ss.`id` DESC ".$query; 
             //echo $queryget;  exit;
-            //
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
 

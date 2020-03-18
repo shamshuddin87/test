@@ -474,6 +474,7 @@ class SensitiveinformationController extends ControllerBase
                 $file   = $this->request->getPost('upload','trim');
                 $category   = $this->request->getPost('category','trim');
                 $recipientid   = $this->request->getPost('recid','trim');
+                $recipienttype   = $this->request->getPost('rectype','trim');
                 $filepath = '';
                 //print_r($time);
                 if(empty($date))
@@ -550,7 +551,7 @@ class SensitiveinformationController extends ControllerBase
                         
                     }
                   //print_r($filepath);exit;
-                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$filepath,$email,$upsiname,$loggedemail);
+                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail);
                   //print_r($getres);exit;
                     
                   if($getres == true)
