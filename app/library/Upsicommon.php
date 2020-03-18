@@ -523,7 +523,14 @@ class Upsicommon extends Component
 
 
                     $useriddp = array_diff($condp,$connctdpscmp);
-                     //print_r($useriddp);echo "hello";exit;
+
+                 if($useriddp)
+                {
+          
+                $result = $this->upsicommon->mailfortradingwindowedit($getuserid,$usergroup,$useriddp,$updatedata,$username,$ownerid,$upsiid);
+                 return $result;
+                 }
+                      //print_r($useriddp);echo "hello";exit;
                 }
                 else
                 {
@@ -533,12 +540,7 @@ class Upsicommon extends Component
                 }
             }
         }
-        if($useriddp)
-        {
-           //print_r($username);exit;
-            $result = $this->upsicommon->mailfortradingwindowedit($getuserid,$usergroup,$useriddp,$updatedata,$username,$ownerid,$upsiid);
-            return $result;
-        }
+       
         
     }
     
