@@ -353,6 +353,9 @@ class Upsicommon extends Component
         array_push($sendmail1,$owneremail); // to send mail to projec owner and co officer
          
         $uniquemail1 = array_unique($sendmail1);
+
+
+
         for($i=0;$i<sizeof($uniquemail1);$i++)
         {
            
@@ -365,8 +368,24 @@ class Upsicommon extends Component
             }
             $pstartdate = $data['pstartdte'];
             $todaydate = date('d-m-Y');
-
-            $result = $this->emailer->mailofType1($email,$todaydate,$data['upname'],$upsiinfo,$dpnames);
+            if(count($uniquemail1) == 2)
+            {
+               if($i == 0)
+               {
+                 $greeting = "Dear Compliance officer";
+               }
+               else if($i == 1)
+               {
+                $greeting = "Dear Project Owner";
+               }
+            }
+            else
+            {
+                $greeting = "Dear Compliance officer/Project Owner";
+            }
+            
+            $result = $this->emailer->mailofType1($email,$todaydate,$data['upname'],$upsiinfo,$dpnames,$greeting);
+           
            
            
         }

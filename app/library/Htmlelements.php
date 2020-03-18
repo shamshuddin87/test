@@ -2237,7 +2237,7 @@ public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$e
      return $html;
 }
 
-  public function Type1content($email,$todaydate,$title,$dt_added,$owner,$dpnames)
+  public function Type1content($email,$todaydate,$title,$dt_added,$owner,$dpnames,$greeting)
   {   
        
             $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -2287,9 +2287,9 @@ public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$e
                 </div>
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
-        <p>Dear compliance officer/Project Owner, 
+        <p>'.$greeting.', 
         </p>
-        <p>YThis is to inform you that '.$dpnames.' has been added to the UPSI titled '.$title.' on '.$todaydate.'. This UPSI was created by '.$owner.' on '.$dt_added.'.
+        <p>This is to inform you that '.$dpnames.' has been added to the UPSI titled '.$title.' on '.$todaydate.'. This UPSI was created by '.$owner.' on '.$dt_added.'.
          </p>
         
                
