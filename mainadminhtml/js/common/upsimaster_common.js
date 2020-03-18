@@ -237,11 +237,11 @@ website('body').on('click','.upedit',function(e){
 
 
 
-website('body').on('click','#upbtn',function(e){
-    website('#modaltradingwindowclose #tradingwindowno').attr('action','update');
-    website('#modaltradingwindowclose').modal('show');
-    //website('#addupsimast').submit();
-});
+// website('body').on('click','#upbtn',function(e){
+//     website('#modaltradingwindowclose #tradingwindowno').attr('action','update');
+//     website('#modaltradingwindowclose').modal('show');
+//     //website('#addupsimast').submit();
+// });
 
 website('#updateupsimast').ajaxForm({
     //data:formdata,
@@ -255,7 +255,7 @@ website('#updateupsimast').ajaxForm({
     {
          if(response.logged === true)
          {
-            website('#modaltradingwindowclose').modal('hide');
+            //website('#modaltradingwindowclose').modal('hide');
             website("#upsimodel").modal('hide');
             new PNotify({title: 'Alert',
             text: response.message,
@@ -389,10 +389,10 @@ website('body').on('click','#tradingwindowno',function(e){
     {
         website('#addupsimast').submit();
     }
-    else if(actiontype == 'update')
-    {
-        website('#updateupsimast').submit();
-    }
+    // else if(actiontype == 'update')
+    // {
+    //     website('#updateupsimast').submit();
+    // }
    
 });
 

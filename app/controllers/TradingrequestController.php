@@ -192,6 +192,7 @@ class TradingrequestController extends ControllerBase
                 $selrelative=$this->request->getPost('selrelative','trim');
                 $reqname= $this->request->getPost('reqname','trim');
                 $sendreq=$this->request->getPost('sendreq','trim');
+                $pdfpath = $this->request->getPost('link','trim');
                 $flag = 1;
                 
                 $checkval = $this->tradingrequestcommon->checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans);
@@ -308,7 +309,8 @@ class TradingrequestController extends ControllerBase
 
                     if($flag == 1)
                     {
-                        $result = $this->tradingrequestcommon->createrequest($uid,$usergroup,$alldata,$send_status);
+                        $result = $this->tradingrequestcommon->createrequest($uid,$usergroup,$alldata,$send_status,$pdfpath);
+                        //print_r($result);exit;
                         if($result['status']==true)
                         {
                             $data = array("logged" => true,'message' =>$msg);
@@ -1373,6 +1375,8 @@ class TradingrequestController extends ControllerBase
                 $selrelative = $this->request->getPost('selrelative','trim');
                 $reqname = $this->request->getPost('reqname','trim');
                 $typeofsave = $this->request->getPost('typeofsave','trim');
+                $path = $this->request->getPost('link','trim');
+                //print_r($path);exit;
                 $flag = 1;
 //                if($typeofrequest==3)
 //                {

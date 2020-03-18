@@ -38,11 +38,11 @@ else
 {website("#upsimodel #upname").removeAttr("readonly");website("#upsimodel #projdesc").removeAttr("readonly");website(".searchowner").removeAttr("readonly");website("#upsimodel #pstartdte").removeAttr("disabled");website("#upsimodel #enddate").removeAttr("disabled");}
 var upupsnm=response.data['upsitype']?response.data['upsitype']:'';var projstartdate=response.data['projstartdate']?response.data['projstartdate']:'';var enddate=response.data['enddate']?response.data['enddate']:'';var projectownerid=response.data['projectowner']?response.data['projectowner']:'';var projectownername=response.data['fullname']?response.data['fullname']:'';var projectdes=response.data['projdescriptn']?response.data['projdescriptn']:'';website('#upsimodel #upname').val(upupsnm);website('#upsimodel #cmpupname').val(upupsnm);website('#upsimodel #pstartdte').val(projstartdate);website('#upsimodel #cmppstartdte').val(projstartdate);website('#upsimodel #pstartdtecopy').val(projstartdate);website('#upsimodel #enddate').val(enddate);website('#upsimodel #cmpenddate').val(enddate);website('#upsimodel #enddatecopy').val(enddate);website('#upsimodel #ownerid').val(projectownerid);website('#upsimodel #cmpownerid').val(projectownerid);website('#upsimodel #ownermodal').val(projectownername);website('#upsimodel #cmpownermodal').val(projectownername);website('#upsimodel #cmpprojdes').val(projectdes);website('#upsimodel #projdesc').val(projectdes);website('#upsimodel #cmpid').val(response.data['companyid']);website('#upsimodel #editid').val(response.data['id']);website('#upsimodel').modal('show');}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
-{}});});website('body').on('click','#upbtn',function(e){website('#modaltradingwindowclose #tradingwindowno').attr('action','update');website('#modaltradingwindowclose').modal('show');});website('#updateupsimast').ajaxForm({dataType:"json",beforeSend:function()
+{}});});website('#updateupsimast').ajaxForm({dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{website('#modaltradingwindowclose').modal('hide');website("#upsimodel").modal('hide');new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});getallupsietails();}
+{website("#upsimodel").modal('hide');new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});getallupsietails();}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
@@ -61,9 +61,7 @@ else
 {website('#updateupsimast #connectdps').removeAttr('required','required');website('#updateupsimast #dpsmodel').css('display','none');}
 else
 {website('#updateupsimast #connectdps').attr('required','required');website('#updateupsimast #dpsmodel').css('display','block');}});website('body').on('click','.addupsitype',function(e){website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');website('#modaltradingwindowclose').modal('show');});website('body').on('click','#tradingwindowno',function(e){var actiontype=website(this).attr('action');if(actiontype=='insert')
-{website('#addupsimast').submit();}
-else if(actiontype=='update')
-{website('#updateupsimast').submit();}});website('body').on('click','#tradingrej',function(e){website('#alertcommon #allalertmsg').html("Upsi Is Not Added..!!!");website('#alertcommon').modal('show');});website('#addupsimast').ajaxForm({dataType:"json",beforeSend:function()
+{website('#addupsimast').submit();}});website('body').on('click','#tradingrej',function(e){website('#alertcommon #allalertmsg').html("Upsi Is Not Added..!!!");website('#alertcommon').modal('show');});website('#addupsimast').ajaxForm({dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)

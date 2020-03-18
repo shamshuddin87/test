@@ -1035,8 +1035,8 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
                     No Of Securities : '.$emaildata['noofshres'].'</div>
                     <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
-                      <a href="'.$emaildata['url'].'randomexception?vote='.base64_encode("1").'&excrqst='.base64_encode($emaildata['id']).'&rqst='.base64_encode($emaildata['rqstid']).'"><button class="button ">Accept</button></a>
-                      <a href="'.$emaildata['url'].'randomexception?vote='.base64_encode("1").'&excrqst='.base64_encode($emaildata['id']).'"><button class="button  button3">Reject</button></a>
+                      <a href="'.$emaildata['url'].'randomexception?vote='.base64_encode("1").'&excrqst='.base64_encode($emaildata['id']).'&rqst='.base64_encode($emaildata['id']).'"><button class="button ">Accept</button></a>
+                      <a href="'.$emaildata['url'].'randomexception?vote='.base64_encode("0").'&excrqst='.base64_encode($emaildata['id']).'"><button class="button  button3">Reject</button></a>
                 </div>
 
                 </div>

@@ -379,6 +379,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         $subject = 'Received Request For Approval';
         $to =$mailid;
         $gethtml = $this->htmlelements->sendmailrqstapprvl($subject,$emaildata);
+        //print_r($gethtml);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
         $mail->isSMTP();
@@ -455,11 +456,12 @@ Class Email extends Phalcon\Mvc\User\Component {
     
     
     /******** send mail to approver of exception rqst start ********/
-    public function sendmailexcbrqstapprvl($emaildata,$mailid)
+    public function sendmailexcbrqstapprvl($emaildata,$mailid,$type)
     {
         $subject = 'Received Exception Request For Approval';
         $to =$mailid;
         $gethtml = $this->htmlelements->sendmailexcbrqstapprvl($subject,$emaildata);
+        //print_r($gethtml);exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
         $mail->isSMTP();

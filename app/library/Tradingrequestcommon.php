@@ -207,7 +207,7 @@ class Tradingrequestcommon extends Component
             }
         }
 
-        public function createrequest($uid,$usergroup,$data,$send_status)
+        public function createrequest($uid,$usergroup,$data,$send_status,$pdfpath)
         { 
             $connection = $this->dbtrd;
             
@@ -255,15 +255,15 @@ class Tradingrequestcommon extends Component
                 $query = "INSERT INTO `personal_request`(`user_id`,`user_group`,
                     `type_of_request`,`relative_id`,`name_of_requester`,
                     `sectype`,`id_of_company`,`no_of_shares`,
-                    `type_of_transaction`,`approver_id`,`send_status`,
+                    `type_of_transaction`,`pdffilepath`,`approver_id`,`send_status`,
                     `sendaprvl_date`,`approved_status`,`trading_date`,`ex_approve_status`,
                     `date_added`,`date_modified`,`timeago`) VALUES('".$uid."','".$usergroup."',
                     '".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."',
                     '".$data['sectype']."','".$data['idofcmp']."','".$data['noofshare']."',
-                    '".$data['typeoftrans']."','".$data['approverid']."','".$send_status."',
+                    '".$data['typeoftrans']."','".$pdfpath."','".$data['approverid']."','".$send_status."',
                     NOW(),'".$autoapst."','".$tradingdate."','0',
                     NOW(),NOW(),'".$time."')";
-                // echo $query; exit;
+                //echo $query; exit;
             
                 try
                 {
@@ -1409,6 +1409,7 @@ class Tradingrequestcommon extends Component
                 $baseurl = $server_link.$baseuri;
 
                 $rqstmaildetail = $this->tradingrequestcommon->getrqstdata($rqstid);
+                //print_r($rqstmaildetail);exit;
                 $rqstapprvmail = array(
                                  'rqst_id'=>$rqstmaildetail['maildata'][0]['id'],
                                  'requester_name'=>$rqstmaildetail['maildata'][0]['fullname'],  
@@ -1893,10 +1894,10 @@ class Tradingrequestcommon extends Component
             // -------- Start GET AUTO APPROVE STATUS --------
                 $query = "INSERT INTO `personal_request`(`user_id`,`user_group`,`type_of_request`,`relative_id`,`name_of_requester`,`sectype`,`id_of_company`,`no_of_shares`,`type_of_transaction`,`pdffilepath`,`approver_id`,`sent_contraexeaprvl`,`apprv_contraexedte`,`contraexcapvsts`,`trading_date`,`ex_approve_status`,`exception_reason`,
                 `date_added`,`date_modified`,`timeago`)
-                VALUES('".$uid."','".$usergroup."','".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."','".$data['sectype']."','".$data['idofcmp']."','".$data['noofshare']."','".$data['typeoftrans']."','abc','".$data['approverid']."','".$send_status."',NOW(),'".$autoapst."','".$tradingdate."','0','".$data['reasonmsg']."',
+                VALUES('".$uid."','".$usergroup."','".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."','".$data['sectype']."','".$data['idofcmp']."','".$data['noofshare']."','".$data['typeoftrans']."','".$data['link']."','".$data['approverid']."','".$send_status."',NOW(),'".$autoapst."','".$tradingdate."','0','".$data['reasonmsg']."',
                 NOW(),NOW(),'".$time."')";
 
-                 echo $query;exit;
+                 //echo $query;exit;
                 try
                 {
                     $exeget = $connection->query($query);
