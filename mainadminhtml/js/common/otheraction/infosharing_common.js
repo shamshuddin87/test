@@ -149,7 +149,7 @@ function getdataonload()
             addhtmlnxt += '<td width="10%">'+response.resdta[i].fullname+'</td>';
             addhtmlnxt += '<td width="25%">';
 
-            if(response.getaccess[0].upsi_infoshare_delete==1)
+            if(response.getaccess[0].upsi_infoshare_delete && response.getaccess[0].upsi_infoshare_delete==1)
             {
                 addhtmlnxt += '<i class="fa fa-trash-o faicon floatleft deleterestrictedcmp" title="Delete entry" aprvllistid="'+response.resdta[i].id+'" ></i>';
             }
@@ -170,9 +170,9 @@ function getdataonload()
             //------------------------ Table Fields Insertion END ------------------------
             //hide edit field <i class="fa fa-edit faicon floatleft editrestrictedcmp" title="Edit entry" aprvllistid="'+response.resdta[i].id+'"></i>
         }
-	             if(response.getaccess[0].upsi_infoshare_add==1)
+	             if(response.getaccess[0].upsi_infoshare_add && response.getaccess[0].upsi_infoshare_add==1)
 	              {
-	              	   // alert(1);
+	              	   
 	                  website('.formelementmain').css('display','block');
 
                  

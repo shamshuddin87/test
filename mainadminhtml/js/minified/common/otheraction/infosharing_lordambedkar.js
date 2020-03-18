@@ -25,8 +25,8 @@ else
 if(enddate=='')
 {addhtmlnxt+='<i class="fa fa-edit faicon floatleft editenddate" title="View entry" infoidtid="'+response.resdta[i].id+'"></i>';}
 addhtmlnxt+='</td>';addhtmlnxt+='</tr>';}
-if(response.getaccess[0].upsi_infoshare_add==1)
-{website('.formelementmain').css('display','block');}
+if(response.getaccess[0].upsi_infoshare_add&&response.getaccess[0].upsi_infoshare_add==1)
+{alert(response.getaccess[0].upsi_infoshare_add);website('.formelementmain').css('display','block');}
 else
 {website('.formelementmain').css('display','none');website('#alertcommon #allalertmsg').html("You Do Not Have Access To Add Info Sharing");website('#alertcommon').modal('show');}
 if(response.getaccess[0].upsi_infoshare_view==1)
