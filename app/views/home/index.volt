@@ -492,11 +492,11 @@
                   </div>
                   <div class="modal-body">
                     
-                     <h5 style="text-align: center;">I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too</h5>
+                     <h5 style="text-align: center;">Please verify/update your personal information as given under ‘My Info’ first. You will not be allowed access until you verify your personal information</h5>
                   </div>
                   <div class="modal-footer">
-                     <button type="button" class="btn btn-primary" id="yesdisclosures" onclick="disclosures(this.id);">Yes</button> 
-                      <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="nodisclosures" onclick="disclosures(this.id);">No</button>
+                     <button type="button" class="btn btn-primary" id="yesdisclosures" onclick="disclosures(this.id);">Ok</button> 
+<!--                       <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="nodisclosures" onclick="disclosures(this.id);">No</button> -->
                   </div>
                </div>
             </div>

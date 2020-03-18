@@ -353,6 +353,9 @@ class Upsicommon extends Component
         array_push($sendmail1,$owneremail); // to send mail to projec owner and co officer
          
         $uniquemail1 = array_unique($sendmail1);
+
+
+
         for($i=0;$i<sizeof($uniquemail1);$i++)
         {
            
@@ -365,8 +368,24 @@ class Upsicommon extends Component
             }
             $pstartdate = $data['pstartdte'];
             $todaydate = date('d-m-Y');
-
-            $result = $this->emailer->mailofType1($email,$todaydate,$data['upname'],$upsiinfo,$dpnames);
+            if(count($uniquemail1) == 2)
+            {
+               if($i == 0)
+               {
+                 $greeting = "Dear Compliance officer";
+               }
+               else if($i == 1)
+               {
+                $greeting = "Dear Project Owner";
+               }
+            }
+            else
+            {
+                $greeting = "Dear Compliance officer/Project Owner";
+            }
+            
+            $result = $this->emailer->mailofType1($email,$todaydate,$data['upname'],$upsiinfo,$dpnames,$greeting);
+           
            
            
         }
@@ -523,7 +542,14 @@ class Upsicommon extends Component
 
 
                     $useriddp = array_diff($condp,$connctdpscmp);
-                     //print_r($useriddp);echo "hello";exit;
+
+                 if($useriddp)
+                {
+          
+                $result = $this->upsicommon->mailfortradingwindowedit($getuserid,$usergroup,$useriddp,$updatedata,$username,$ownerid,$upsiid);
+                 return $result;
+                 }
+                      //print_r($useriddp);echo "hello";exit;
                 }
                 else
                 {
@@ -533,12 +559,7 @@ class Upsicommon extends Component
                 }
             }
         }
-        if($useriddp)
-        {
-           //print_r($username);exit;
-            $result = $this->upsicommon->mailfortradingwindowedit($getuserid,$usergroup,$useriddp,$updatedata,$username,$ownerid,$upsiid);
-            return $result;
-        }
+       
         
     }
     

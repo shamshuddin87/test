@@ -1300,14 +1300,14 @@ Class Email extends Phalcon\Mvc\User\Component {
        
     }
 
- public function mailofType1($toemail,$todaydate,$title,$upsiinfo,$dpnames)
+ public function mailofType1($toemail,$todaydate,$title,$upsiinfo,$dpnames,$greeting)
     {
 
         $date_added =  explode(" ", $upsiinfo['date_added']);
         $date_timestamp = strtotime($date_added[0]);
         $new_date = date("d-m-Y",  $date_timestamp);
 
-        $gethtml = $this->htmlelements->Type1content($toemail,$todaydate,$title,$new_date,$upsiinfo['fullname'],$dpnames);
+        $gethtml = $this->htmlelements->Type1content($toemail,$todaydate,$title,$new_date,$upsiinfo['fullname'],$dpnames,$greeting);
         //print_r($toemail);exit;
         $mail = new PHPMailer();
         $mail->isSMTP();
