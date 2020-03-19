@@ -20,12 +20,18 @@ button.btn.btn-primary.genfile.excel_bg {
 
 
 /*scrool css */
+
+
+::-webkit-scrollbar {
+  width: 2px;
+}
 #style-1::-webkit-scrollbar-track
 {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     border-radius: 10px;
     background-color: #35495d;
     scroll-behavior: smooth;
+    background: #f1f1f1; 
 }
 
 #style-1::-webkit-scrollbar
@@ -41,25 +47,42 @@ button.btn.btn-primary.genfile.excel_bg {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #35495d;
     scroll-behavior: smooth;
-}
-::-webkit-scrollbar {
-  width: 2px;
+    background: #888; 
 }
 
 /* Track */
 #style-1::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  
 }
  
 /* Handle */
 #style-1::-webkit-scrollbar-thumb {
-  background: #888; 
+  
 }
 
 /* Handle on hover */
 #style-1::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
+
+
+.table-responsive::-webkit-scrollbar {
+  width:8px !important;
+}
+
+
+.table-responsive::-webkit-scrollbar-track
+{
+    scroll-behavior: smooth;
+    background: #e3e3e3; 
+}
+
+.table-responsive::-webkit-scrollbar-thumb
+{
+    scroll-behavior: smooth;
+    background: #b6b6b6; 
+}
+
 /*scrool css */
 
 
