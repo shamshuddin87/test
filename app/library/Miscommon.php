@@ -688,8 +688,8 @@ class Miscommon extends Component
             LEFT JOIN `type_of_transaction` trans ON trans.`id` = pr.`type_of_transaction`
             LEFT JOIN `trading_days` trddays ON trddays.`user_id` = memb.`user_id`
             LEFT JOIN `listedcmpmodule` lst ON lst.`id`=pr.`id_of_company`
-            WHERE ts.`user_id` IN (".$grpusrs['ulstring'].") AND ts.`trading_status`=1 AND (ts.`excep_approv`=1) ".$query; 
-             // echo $queryget;  exit;
+            WHERE ts.`user_id` IN (".$grpusrs['ulstring'].") AND ts.`trading_status`=1 AND (ts.`excep_approv`=1 OR pr.`sent_contraexeaprvl`=1) ".$query; 
+            //echo $queryget;  exit;
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
 

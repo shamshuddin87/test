@@ -974,28 +974,26 @@ class TradingrequestController extends ControllerBase
                 }
                 else
                 { 
+                    $data=$this->request->getPost();
                     $data['exceptinappr']=$exceptinappr;
+                    $reqid=$this->request->getPost('reqid','trim');  
+                    $data['typetrans']=$this->request->getPost('transtype','trim'); 
                     
-                    /* --------- Start FileUpload --------- */
-                    $file_name = $_FILES['fileToUpload']['name'];
-                    //echo $file_name;exit;
-                    $file_tmp = $_FILES['fileToUpload']['tmp_name'];
-                    $file_size = $_FILES['fileToUpload']['size'];
-                    $file_type = $_FILES['fileToUpload']['type'];
-                    $filename = pathinfo($_FILES['fileToUpload']['name'], PATHINFO_FILENAME);
-                    //echo $filename; exit;
-                    $file_ext = $this->validationcommon->getfileext($file_name);
-                    
-                    $upload_path = $this->cmpmodule."/tradingrequest/";  
-                    
-                    $large_imp_name = $filename.'-'.$uid.'-'.$time;
-                    //$large_imp_name = strtolower($large_imp_name);
-                    $target_file = $upload_path.$large_imp_name.".".$file_ext;
-                    /* --------- End FileUpload --------- */
-                    
-                    $result = @move_uploaded_file($file_tmp, $target_file);
-                    //echo $result;exit;
-                    
+                    $upload_path = $this->cmpmodule."/tradingrequest/"; 
+                    // print_r($upload_path);exit; 
+                    if(empty($_FILES["fileToUpload"]["name"]))
+                    {
+                         $target_file ='';
+                         $file='';  
+                         $result =true;
+                    }
+                    else
+                    {
+                        $target_file =  $upload_path.basename($_FILES["fileToUpload"]["name"]);
+                        $file=$_FILES['fileToUpload']['name'];    
+                        $result = move_uploaded_file($_FILES['fileToUpload']['tmp_name'],$target_file.$file);
+                        // print_r($result);exit;
+                    }
                     if ($result) 
                     {
                         $resp=$this->tradingrequestcommon->uploadtradingfile($uid,$usergroup,$reqid,$target_file,$data,$typeofbutton);

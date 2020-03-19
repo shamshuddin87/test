@@ -257,6 +257,7 @@ else{
         <!--   <th>Updated Date</th> -->
            <th>Trading Status</th>
            <th>Audit Trail</th>
+            <th>Reason</th>
       <!--     <th>Action</th> -->
         </tr>
       </thead>
@@ -394,63 +395,100 @@ else{
 
 <!-------------------------------MODAL BOX FOR UPLOAD FILE------------------------------------------------------>
 <div id="uploadmyfile" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-      <div class="modal-content">
-       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal">
-                    &times;</button>
-           <h4 class="trade" style="text-align: center;">Is this transaction completed?
-          
-           <button type="button" class="btn btn-primary yestrade">Yes</button>
-           <button type="button" class="btn btn-danger notrade">No</button>
-           </h4>
-            
-            </div>
-            <div class="modal-body dispalytrade">
-               
-                <form action="tradingrequest/uploadtradingfile" id="uploadtrade" method="post" enctype="multipart/form-data" autocomplete="off">
-                 <table class="table table-inverse mytable" id="datablerushi" typage="reqview">
-                 <thead>
-                  <tr>
-                    <th style="width: 10%">No Of Share</th>
-                    <th style="width: 20%">Price Per Share</th>
-                    <th style="width: 20%">Total Amount</th>
-                    <th style="width: 15%">Date Of Transaction</th>
-                     <th style="width: 30%">Demat Account No</th>
-                   </tr>
-                 </thead>
-                  <tbody class="modtable" appendrow='1'></tbody>
-                </table>
-                <input type="hidden" name="reqid" id="filereqid" value="">
-                <input type="hidden" name="compid" id="compid" value="">
-                <input type="hidden" name="sectype" id="sectype" value="">  
-                <input type="hidden" name="tradedate" id="tradedate" value="">  
+<div class="modal-dialog">
+<!-- Modal content-->
+<div class="modal-content margin-top"  style="width:900px;">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">×</button>
+           <h4 class="modal-title">Trading Status</h4>
+        </div>
 
-                 <h5>Please Attach Broker Note</h5>
-                 <input type="file" name="fileToUpload" id="fileToUpload">
-                 
-                <input  type="submit" name="uploadtrade" class="btn btn-primary"  value="Upload" id="subfile" tempid="" style="float:right;">
-                <input  type="submit" name="uploadtrade" class="btn btn-primary"  value="Exception_Request" id="excreq" exceptionreq="" style="float:right;">
-                 </form>
-           </div>
-          
-           <div class="notrading" style="display: none;">
-           <input type="hidden" name="reqid" id="filereqid" value="">
-            <h4 style="text-align: center;">Are You Sure About  Not Done Trading?</h4> 
-              <input  type="button" class="btn btn-primary"  value="Confirm" id="nottrade" tempid="" style="float:right;">      
+        <div class="modal-body dispalytrade">
+        <form action="tradingrequest/uploadtradingfile" id="uploadtrade" method="post" enctype="multipart/form-data" autocomplete="off">
+           <div class="table-responsive">
+            <table class="table table-inverse mytable" id="datablerushi" typage="reqview">
+                <thead>
+                    <tr>
+                        <th style="width: 18%">No Of Share</th>
+                        <th style="width: 20%">Price Per Share</th>
+                        <th style="width: 25%">Total Amount</th>
+                        <th style="width: 15%">Date Of Transaction</th>
+                        <th style="width: 45%">Demat Account No</th>
+                        <th style="width: 15%">Broker Notes</th>
+                    </tr>
+                </thead>
+                <tbody class="modtable" appendrow='1'>
+                    <tr>
+                        <td>
+                            <input type="text" name="noofshare" value="" id="noofsharemodal" class="form-control noshare">
+                        </td>
+                        <td>
+                            <input type="text" name="priceofshare" value="" id="pricepersharemodal" class="form-control priceshare">
+                        </td>
+                        <td>
+                            <input type="text" name="total" value="" id="totalamtmodal" class="form-control" readonly>
+                        </td>
+                        <td>
+                            <input type="text"  name="transdate" value="" id="transdatemodal" class="form-control bootdatepick" readonly>
+                        </td>
+                        <td>
+                            <select id="dmatacc" name="dmatacc" class="form_fields form-control col-md-7 col-xs-12" required>
+                                <!--<option value="">Select Option</option>-->
+                            </select>
+                        </td>
+                        <td>
+                            <input type="file" name="fileToUpload" id="fileToUpload">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
           </div>
 
+            <input type="hidden" name="transtype" id="transtype" value="">
+            <input type="hidden" name="noofffshares" id="noofffshares" value="">
+            <input type="hidden" name="transshare" id="transshare" value="">
+            <input type="hidden" name="reqid" id="filereqid" value="">
+            <input type="hidden" name="compid" id="compid" value="">
+            <input type="hidden" name="sectype" id="sectype" value="">  
+            <input type="hidden" name="tradedate" id="tradedate" value="">  
+            <input type="hidden" name="createdate" id="createdate" value="">  
 
-    </div>
+            <input  type="submit" name="uploadtrade" class="btn btn-primary"  value="Upload" id="subfile" tempid="" style="float:right;">
+
+            <div style="display: none;" id="excdiv">
+                <input  type="submit" name="uploadtrade" class="btn btn-primary"  value="Exception Request" id="excreq" exceptionreq="" style="float:right;">
+            </div>
+        </form>
+
+            <table class="table table-inverse mytable" id="datablerushi" typage="reqview">
+                <thead>
+                    <tr>
+                        <th style="width: 10%">No Of Share</th>
+                        <th style="width: 20%">Price Per Share</th>
+                        <th style="width: 20%">Total Amount</th>
+                        <th style="width: 15%">Date Of Transaction</th>
+                        <th style="width: 20%">Demat Account No</th>
+                        <th style="width: 20%">File</th>
+                        <th style="width: 20%">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="tradeviewtb" appendrow='1'></tbody>
+            </table>
+
+            <div class="cmplttrans">
+                <h4 class="trade" style="text-align: center;">Is this transaction completed?</h4>
+                <label class="switch_button">
+                    <input type="checkbox" id="modalcheck" name="modalcheck" class="yestrade" value="true">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <span id="typebtn">
+                <input type="button" id="nottrade" class="btn btn-danger" value="Trading Not Done" >
+            </span>
+        </div>
+
 </div>
-
-
-
-<!-------------------------------------------------------------------------------------------------------------->
-
-<!------------------------------------------------------------------------------------------------------------>
-
+</div>
 </div>
 
 <!--################################RELATIVE SECTION START HERE##################################################################-->
@@ -576,5 +614,22 @@ else{
 
 
       </div>
+    </div>
+</div>
+    
+<div id="showexereason" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                    &times;</button>
+            <h4 class="modal-title">Reason
+                </h4>
+            </div>
+            <textarea rows="4" cols="50" id="exereason" readonly>
+            </textarea>
+
+        </div>
     </div>
 </div>
