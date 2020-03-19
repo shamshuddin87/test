@@ -138,6 +138,35 @@ class Upsicommon extends Component
         return $getlist;
     }
 
+     public function getsingleupsidetail($id)
+    {
+
+        $connection = $this->dbtrd;
+        $sqlquery = "SELECT upsi.*,memb.`fullname`,memb.`email` FROM `upsimaster` upsi 
+                    LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = upsi.`user_id`
+                    WHERE upsi.`id`= '".$id."'"; 
+
+        //echo $sqlquery; exit;
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                   $getlist = $row;                     
+                }
+            }
+            else
+            {   $getlist = array(); }
+        }
+        catch (Exception $e)
+        {   $getlist = array(); }
+        //echo '<pre>';print_r($getlist);exit;
+        return $getlist;
+    }
+
     public function updateupsi($getuserid,$usergroup,$updatedata,$exceldpids,$username)
     {
         //print_r($updatedata);exit;
@@ -342,7 +371,7 @@ class Upsicommon extends Component
         
  
         
-        $upsiinfo = $this->upsicommon->getsingleupsi($upsiid);
+        $upsiinfo = $this->upsicommon->getsingleupsidetail($upsiid);
         //print_r($upsiinfo);exit;
         $complianceinfo = $this->sensitiveinformationcommon->compliancedetails(); // CO Officer
             foreach ($complianceinfo as $c) 

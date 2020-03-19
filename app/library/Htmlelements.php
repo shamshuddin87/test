@@ -2281,7 +2281,7 @@ public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$e
                 <div class="header" style="margin-bottom:50px;">
                     <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
                         <div style="    text-shadow: 1px 0px 2px #626262;
-        color: #626262;">Upsi Updated</div>
+        color: #626262;">UPSI Updated</div>
                     </div>
                      <div style="clear:both;"></div>
                 </div>
