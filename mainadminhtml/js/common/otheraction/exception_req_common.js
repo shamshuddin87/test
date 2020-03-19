@@ -5,134 +5,197 @@ function subuserapproval()
     var pagenum = website('#pagenum').val();
     var redirecturl=website('#redirecturl').val();
     var formdata = {noofrows:noofrows,pagenum:pagenum,redirecturl:redirecturl};
-   website.ajax({
-                  url:'exceptionreq/excesubuserapproval',
-                  data:formdata,
-                  method:'POST',
-                  contentType:'application/x-www-form-urlencoded; charset=UTF-8',
-                  dataType:"json",
-                  cache:false,
-                  beforeSend: function()
-                  { 
-                     
+    website.ajax({
+          url:'exceptionreq/excesubuserapproval',
+          data:formdata,
+          method:'POST',
+          contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+          dataType:"json",
+          cache:false,
+          beforeSend: function()
+          { },
+          uploadProgress: function(event, position, total, percentComplete)
+          { },
+          success: function(response, textStatus, jqXHR) 
+          {
+            if(response.logged==true)
+            {
+              var addhtmlnxt='';
+              for(var i=0;i<response.data.length;i++)
+              {
+                  var j=i+1;
+                  var demat_acc_no=response.data[i].demat_acc_no?response.data[i].demat_acc_no:'';
+                  var sectype=response.data[i].security_type?response.data[i].security_type:'';
+                  var name_of_company=response.data[i].mycompany?response.data[i].mycompany:''
+                  var no_of_shares=response.data[i].no_of_shares?response.data[i].no_of_shares:'';
+                  var nameofrelative=response.data[i].name?response.data[i].name:'';
+                  var relationship=response.data[i].relationship?response.data[i].relationship:'';
+                  var name=response.data[i].name_of_requester?response.data[i].name_of_requester:'';
+                  var type_of_transaction=response.data[i].transaction?response.data[i].transaction:'';
+                  var price_per_share=response.data[i].price_per_share?response.data[i].price_per_share:''
+                  var total_amount=response.data[i].total_amount?response.data[i].total_amount:'';
+                  var date_added=response.data[i].date_added?response.data[i].date_added:'';
+                  var date_modified=response.data[i].date_modified?response.data[i].date_modified:'';
+                  var transaction_date=response.data[i].date_of_transaction?response.data[i].date_of_transaction:'';
+                  var trading_date=response.data[i].trading_date?response.data[i].trading_date:'';
+                  var send_status=response.data[i].send_status;
+                  var approved_status=response.data[i].approved_status;
+                  var contraexcapvsts=response.data[i].contraexcapvsts?response.data[i].contraexcapvsts:'';
+                  var typeofrequest=response.data[i].request_type?response.data[i].request_type:'';
 
-                   },
-                   uploadProgress: function(event, position, total, percentComplete)
-                   { 
-                   },
-                   success: function(response, textStatus, jqXHR) 
-                   {
-                        if(response.logged==true)
-                        {
-                          var addhtmlnxt='';
-                          for(var i=0;i<response.data.length;i++)
-                          {
-                              var j=i+1;
-                              var demat_acc_no=response.data[i].demat_acc_no?response.data[i].demat_acc_no:'';
-                              var sectype=response.data[i].security_type?response.data[i].security_type:'';
-                              var name_of_company=response.data[i].mycompany?response.data[i].mycompany:''
-                              var no_of_shares=response.data[i].no_of_shares?response.data[i].no_of_shares:'';
-                              var nameofrelative=response.data[i].name?response.data[i].name:'';
-                              var relationship=response.data[i].relationship?response.data[i].relationship:'';
-                              var name=response.data[i].name_of_requester?response.data[i].name_of_requester:'';
-                              var type_of_transaction=response.data[i].transaction?response.data[i].transaction:'';
-                              var price_per_share=response.data[i].price_per_share?response.data[i].price_per_share:''
-                              var total_amount=response.data[i].total_amount?response.data[i].total_amount:'';
-                              var date_added=response.data[i].date_added?response.data[i].date_added:'';
-                              var date_modified=response.data[i].date_modified?response.data[i].date_modified:'';
-                              var transaction_date=response.data[i].date_of_transaction?response.data[i].date_of_transaction:'';
-                              var trading_date=response.data[i].trading_date?response.data[i].trading_date:'';
-                              var send_status=response.data[i].send_status;
-                              var approved_status=response.data[i].approved_status;
-                              var typeofrequest=response.data[i].request_type?response.data[i].request_type:'';
-                             
-                              var message=response.data[i].rejmsg?response.data[i].rejmsg:'';
-                              var trading_status=response.data[i].trading_status?response.data[i].trading_status:'';
-                              var user_group=response.chkusergroup?response.chkusergroup:'';
-                              var excep_approv=response.data[i].excepapp_status?response.data[i].excepapp_status:'';
+                  var message=response.data[i].rejmsg?response.data[i].rejmsg:'';
+                  var trading_status=response.data[i].trading_status?response.data[i].trading_status:'';
+                  var user_group=response.chkusergroup?response.chkusergroup:'';
+                  var excep_approv=response.data[i].excepapp_status?response.data[i].excepapp_status:'';
                              // console.log(excep_approv);
-                              if(trading_status==1 || trading_status=='')
-                              {
-                                  var file=response.data[i].file?response.data[i].file:'File Not FounD On Server';
-                                  file=file+'<p  class="gettradestatus" reqid="'+response.data[i].tradeid+'"><i class="fa fa-line-chart" style="font-size:18px;color:green;"></p>';
-                              }
-                              else if(trading_status==0)
-                              {
-                                     var file=response.data[i].file?response.data[i].file:'<p style="color:red;">Trading Not Done</p>';
-                              }
-                           
-                              
-                                     addhtmlnxt += '<tr class="counter" tempid="'+response.data[i].tradeid+'" >';
-                                   
-                                      addhtmlnxt += '<td width="15%">'+j+'</td>';
-                                       addhtmlnxt += '<td width="15%">'+name+'</td>';
-                                      addhtmlnxt += '<td width="15%">'+sectype+'</td>';
-                                      addhtmlnxt += '<td width="15%">'+name_of_company+'</td>';
-                                      addhtmlnxt += '<td width="15%">'+type_of_transaction+'</td>';
-                                      addhtmlnxt += '<td width="15%">'+no_of_shares+'</td>';
-                                      addhtmlnxt += '<td width="15%">'+typeofrequest+'</td>';
-                                      addhtmlnxt += '<td width="15%">'+nameofrelative+'</td>';
-                                      addhtmlnxt += '<td width="15%">'+relationship+'</td>';
-                                   
-                                       if(excep_approv==1){
-                                        addhtmlnxt += '<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;">Approved</i></td>';
-                                       }
-                                       else if(excep_approv==2){
-                                       addhtmlnxt += '<td width="15%" class="getmsg" mymessage="'+message+'"><i class="fa fa-close" style="font-size:18px;color:red;">Rejected</i></td>';
-                                       }
-                                       else{
-                                           addhtmlnxt += '<td width="15%">Not Approved</td>';
-                                       }
-                                      
-                                        addhtmlnxt += '<td width="15%">'+transaction_date+'</td>';
-                                        addhtmlnxt += '<td width="15%">'+date_modified+'</td>';
-                                       addhtmlnxt += '<td width="15%">'+file+'</td>';
-                                       addhtmlnxt+='<td width="15%"><i class="fa fa-bar-chart viewexcprequsttrail" trdeid="'+response.data[i].tradeid+'" rqstid="'+response.data[i].id+'"></i></td>';
-                                         if(excep_approv==1)
-                                       { 
-                                               if(user_group==2)
-                                              {
-                                                addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'" ></i></td>';
-                                              }
-                                              else
-                                              {
-                                                
-                                                addhtmlnxt+='<td width="15%"></td>';
-                                              }
-                                        }
-                                       else if(excep_approv==2)
-                                       {
-                                       
-                                             if(user_group==2)
-                                            {
-                                             addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'"></i>';
-                                            }
-                                            else
-                                             {
-                                               addhtmlnxt+='<td width="15%"></td>';
-                                             }
-                                        }
-                                       else{
-                                               if(user_group==2)
-                                               {
-                                                   addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'" style="font-size:20px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].tradeid+'"><i class="fa fa-close"></i></button></td>';
-                                               }
-                                               else
-                                               { 
-                                                  addhtmlnxt+='<td width="15%"><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].tradeid+'"><i class="fa fa-close"></i></button></td>';
-                                               }
-                                          
-                                         }
-                                        
-                                       
-                                         addhtmlnxt+='</tr>';
+                addhtmlnxt += '<tr class="counter" tempid="'+response.data[i].tradeid+'" reqid="'+response.data[i].id+'" >';
+                addhtmlnxt += '<td width="15%">'+j+'</td>';
+                addhtmlnxt += '<td width="15%">'+name+'</td>';
+                addhtmlnxt += '<td width="15%">'+sectype+'</td>';
+                addhtmlnxt += '<td width="15%">'+name_of_company+'</td>';
+                addhtmlnxt += '<td width="15%">'+type_of_transaction+'</td>';
+                addhtmlnxt += '<td width="15%">'+no_of_shares+'</td>';
+                addhtmlnxt += '<td width="15%">'+typeofrequest+'</td>';
+                addhtmlnxt += '<td width="15%">'+nameofrelative+'</td>';
+                addhtmlnxt += '<td width="15%">'+relationship+'</td>';
+                if(response.data[i].sent_contraexeaprvl == 1)
+                {
+                    if(trading_status==1)
+                    {
+                        var file=response.data[i].file?response.data[i].file:'File Not FounD On Server';
+                        file=file+'<p  class="gettradestatus" reqid="'+response.data[i].tradeid+'"><i class="fa fa-line-chart" style="font-size:18px;color:green;"></p>';
+                    }
+                    else if(trading_status==0)
+                    {
+                        var file='';
+                    }
+                    
+                    if(contraexcapvsts==1)
+                    {
+                       addhtmlnxt += '<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;">Approved</i></td>'; 
+                    }
+                    else if(contraexcapvsts==2)
+                    {
+                        addhtmlnxt += '<td width="15%" class="getmsg" mymessage="'+messagepersnl+'"><i class="fa fa-close" style="font-size:18px;color:red;">Rejected</i></td>';
+                    }
+                    else
+                    {
+                        addhtmlnxt += '<td width="15%">Not Approved</td>';
+                    }
+                }
+                else
+                {
+                    if(trading_status==1 || trading_status=='')
+                    {
+                        var file=response.data[i].file?response.data[i].file:'File Not FounD On Server';
+                        file=file+'<p  class="gettradestatus" reqid="'+response.data[i].tradeid+'"><i class="fa fa-line-chart" style="font-size:18px;color:green;"></p>';
+                    }
+                    else if(trading_status==0)
+                    {
+                        var file=response.data[i].file?response.data[i].file:'<p style="color:red;">Trading Not Done</p>';
+                    }
+                    if(excep_approv==1)
+                    {
+                        addhtmlnxt += '<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;">Approved</i></td>';
+                    }
+                    else if(excep_approv==2)
+                    {
+                        addhtmlnxt += '<td width="15%" class="getmsg" mymessage="'+message+'"><i class="fa fa-close" style="font-size:18px;color:red;">Rejected</i></td>';
+                    }
+                    else
+                    {
+                        addhtmlnxt += '<td width="15%">Not Approved</td>';
+                    }
+                }
+                addhtmlnxt += '<td width="15%">'+transaction_date+'</td>';
+                addhtmlnxt += '<td width="15%">'+date_modified+'</td>';
+                addhtmlnxt += '<td width="15%">'+file+'</td>';
+                addhtmlnxt+='<td width="15%"><i class="fa fa-bar-chart viewexcprequsttrail" trdeid="'+response.data[i].tradeid+'" rqstid="'+response.data[i].id+'"></i></td>';
+                
+                if(response.data[i].sent_contraexeaprvl == 1)
+                {
+                    addhtmlnxt+='<td width="15%"><i class="fa fa-comments-o exereason" type="contra" rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].tradeid+'" ></i></td>';
+                    if(contraexcapvsts==1)
+                    { 
+                        if(user_group==2)
+                        {
+                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" type=personal ></i></td>';
+                        }
+                        else
+                        {
+                            addhtmlnxt+='<td width="15%"></td>';
+                        }
+                    }
+                    else if(contraexcapvsts==2)
+                    {
+
+                        if(user_group==2)
+                        {
+                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" type=personal></i>';
+                        }
+                        else
+                        {
+                            addhtmlnxt+='<td width="15%"></td>';
+                        }
+                    }
+                    else
+                    {
+                        if(user_group==2)
+                        {
+                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" type=personal style="font-size:20px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'" type=personal><i class="fa fa-close"></i></button></td>';
+                        }
+                        else
+                        { 
+                            addhtmlnxt+='<td width="15%"><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'" type=personal><i class="fa fa-close"></i></button></td>';
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    if(excep_approv==1)
+                    { 
+                        if(user_group==2)
+                        {
+                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'" ></i></td>';
+                        }
+                        else
+                        {
+                            addhtmlnxt+='<td width="15%"></td>';
+                        }
+                    }
+                    else if(excep_approv==2)
+                    {
+                        if(user_group==2)
+                        {
+                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'"></i>';
+                        }
+                        else
+                        {
+                            addhtmlnxt+='<td width="15%"></td>';
+                        }
+                    }
+                    else
+                    {
+                        if(user_group==2)
+                        {
+                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'" style="font-size:20px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].tradeid+'"><i class="fa fa-close"></i></button></td>';
+                        }
+                        else
+                        { 
+                            addhtmlnxt+='<td width="15%"><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].tradeid+'"><i class="fa fa-close"></i></button></td>';
+                        }
+
+                    }
+                }
+                addhtmlnxt+='</tr>';
                          
-                           }                          
-                        }
-                       else
-                       {
-                            addhtmlnxt += '<td width="15%" colspan="13" style="text-align:center;">Data Not Found..!!!</td>';
-                        }
+                }                          
+                }
+                else
+                {
+                    addhtmlnxt += '<td width="15%" colspan="13" style="text-align:center;">Data Not Found..!!!</td>';
+                }
                        
                         website(".viewreqtable").html(addhtmlnxt);
                         website('.paginationmn').html(response.pgnhtml);
@@ -236,17 +299,20 @@ else{
 website("body").on("click",".delapprove",function(e){
 
  var delid=website(this).attr('perdelid');
+ var reqtype = website(this).attr('type');
  website("#approvedel").attr('tempid',delid)
+ website("#approvedel").attr('reqtype',reqtype)
   website('#approvdel').modal('show');
 });
 
 
 website("body").on("click","#approvedel",function(e){
   var delid=website(this).attr('tempid');
+  var reqtype=website(this).attr('reqtype');
   // console.log(delid);
    website.ajax({
                   url:'exceptionreq/deletepersrequest',
-                  data:{delid:delid},
+                  data:{delid:delid,reqtype:reqtype},
                   method:'POST',
                   contentType:'application/x-www-form-urlencoded; charset=UTF-8',
                   dataType:"json",
@@ -466,64 +532,171 @@ website('body').on("click",".viewexcprequsttrail",function(e){
       {
         if(response.logged===true)
         {
-            /* for date_added start */
-             dteadded = response.data[0].time_added.split("-");                   
-             dteaddedspace = response.data[0].time_added.split(" ");                    
-                     ddmmyyadded = dteaddedspace[0];
-                     dteadded = dteaddedspace[0].split("-");
-                     ddmmyyadded = dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];
-                     timesadded = dteaddedspace[1];
-            /* for date_added end */
+           if(response.persnreq[0].sent_contraexeaprvl != 1)
+            {
+                    /* for date_added start */
+                 dteadded = response.data[0].date_added.split("-");                   
+                 dteaddedspace = response.data[0].date_added.split(" ");                    
+                         ddmmyyadded = dteaddedspace[0];
+                         dteadded = dteaddedspace[0].split("-");
+                         ddmmyyadded = dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];
+                         timesadded = dteaddedspace[1];
+                /* for date_added end */
+
+                /* for date_added start */
+                 dtemodified = response.data[0].date_modified.split("-");                   
+                 dtemodifdspace = response.data[0].date_modified.split(" ");                    
+                         ddmmyymodified = dtemodifdspace[0];
+                         dtemodified = dtemodifdspace[0].split("-");
+                         ddmmyymodified = dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];
+                         timesmodified = dtemodifdspace[1];
+                /* for date_added end */   
+                
+                
+               website('#Mymodalaudittrail .reqstcreateddte' ).html(ddmmyyadded+' '+timesadded);
+               website('#Mymodalaudittrail .reqstupdteddte' ).html(ddmmyymodified+' '+timesmodified);
+               if(response.data[0].excep_approv == 1)
+               {
+                   if(response.data[0].excepsendaprv_date)
+                    {
+                        /* for sent apprvl start */
+                         dtesendaprv = response.data[0].excepsendaprv_date.split("-");                   
+                         dtesendaprvspace = response.data[0].excepsendaprv_date.split(" ");                    
+                         ddmmyysendaprv = dtesendaprvspace[0];
+                         dtesendaprv = dtesendaprvspace[0].split("-");
+                         ddmmyysendaprv = dtesendaprv[2]+'-'+dtesendaprv[1]+'-'+dtesendaprv[0];
+                         timessendaprv = dtesendaprvspace[1];
+                        /* for sent apprvl end */  
+                        website('#Mymodalaudittrail .reqstsendapprv' ).html(ddmmyysendaprv+' '+timessendaprv);
+                    }
+
+               }
+               else
+               {
+                   website('#Mymodalaudittrail .reqstsendapprv' ).html(''); 
+               }
+               if(response.data[0].excepapp_status == 1)
+               {
+                   if(response.data[0].excepapprv_date)
+                   {
+                        /* for apprvl start */
+                         dteaprv = response.data[0].excepapprv_date.split("-");                   
+                         dteaprvspace = response.data[0].excepapprv_date.split(" ");                    
+                         ddmmyyaprv = dteaprvspace[0];
+                         dteaprv = dteaprvspace[0].split("-");
+                         ddmmyyaprv = dteaprv[2]+'-'+dteaprv[1]+'-'+dteaprv[0];
+                         timesaprv = dteaprvspace[1];
+                        /* for apprvl end */
+                        website('#Mymodalaudittrail .reqstapprvd' ).html(ddmmyyaprv+' '+timesaprv);
+                   }
+               }
+               else
+               {
+                   website('#Mymodalaudittrail .reqstapprvd' ).html(''); 
+               }
+               if(response.persnreq[0].trading_status == 1)
+               {
+                   website('#Mymodalaudittrail .reqsttrdngsts' ).html('Completed');
+                   if(response.persnreq[0].tradestatus_date)
+                   {
+                        /* for tradestts start */
+                         dtetrdsts = response.persnreq[0].tradestatus_date.split("-");                   
+                         dtetrdstsspace = response.persnreq[0].tradestatus_date.split(" ");                    
+                         ddmmyytrdsts = dtetrdstsspace[0];
+                         dtetrdsts = dtetrdstsspace[0].split("-");
+                         ddmmyytrdsts = dtetrdsts[2]+'-'+dtetrdsts[1]+'-'+dtetrdsts[0];
+                         timestrdsts = dtetrdstsspace[1];
+                        /* for tradestts end */
+                        website('#Mymodalaudittrail .reqststsupdate' ).html(ddmmyytrdsts+' '+timestrdsts);
+                   }
+                   if(response.data[0].date_of_transaction)
+                   {
+                        /* for transactiondate start */
+                         dtetransdate = response.data[0].date_of_transaction.split("-");                   
+                         dtetransdatespace = response.data[0].date_of_transaction.split(" ");                    
+                         ddmmyytransdate = dtetransdatespace[0];
+                         dtetransdate = dtetransdatespace[0].split("-");
+                         ddmmyytransdate = dtetransdate[2]+'-'+dtetransdate[1]+'-'+dtetransdate[0];
+                        /* for transactiondate end */
+                       website('#Mymodalaudittrail .reqsttranscmplt').html(ddmmyytransdate);
+                   }
+
+               }
+               else
+               {
+                   website('#Mymodalaudittrail .reqsttrdngsts' ).html('Pending'); 
+                   website('#Mymodalaudittrail .reqststsupdate' ).html(''); 
+                   website('#Mymodalaudittrail .reqsttranscmplt').html('');
+               }
+            }
+             
             
-            /* for date_added start */
-             dtemodified = response.data[0].modified_time.split("-");                   
-             dtemodifdspace = response.data[0].modified_time.split(" ");                    
-                     ddmmyymodified = dtemodifdspace[0];
-                     dtemodified = dtemodifdspace[0].split("-");
-                     ddmmyymodified = dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];
-                     timesmodified = dtemodifdspace[1];
-            /* for date_added end */
+           else
+            {
+                /* for date_added start */
+                 dteadded = response.persnreq[0].date_added.split("-");                   
+                 dteaddedspace = response.persnreq[0].date_added.split(" ");                    
+                         ddmmyyadded = dteaddedspace[0];
+                         dteadded = dteaddedspace[0].split("-");
+                         ddmmyyadded = dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];
+                         timesadded = dteaddedspace[1];
+                /* for date_added end */
+
+                /* for date_added start */
+                 dtemodified = response.persnreq[0].date_modified.split("-");                   
+                 dtemodifdspace = response.persnreq[0].date_modified.split(" ");                    
+                         ddmmyymodified = dtemodifdspace[0];
+                         dtemodified = dtemodifdspace[0].split("-");
+                         ddmmyymodified = dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];
+                         timesmodified = dtemodifdspace[1];
+                /* for date_added end */ 
+                
+                if(response.persnreq[0].sent_contraexeaprvl == 1)
+                {
+                    if(response.persnreq[0].apprv_contraexedte)
+                    {
+                        var ddmmyysendaprv = '';
+                        var timessendaprv = '';
+                        /* for sent apprvl start */
+                        dtesendaprv = response.persnreq[0].apprv_contraexedte.split("-");                   
+                        dtesendaprvspace = response.persnreq[0].apprv_contraexedte.split(" ");                    
+                        ddmmyysendaprv = dtesendaprvspace[0];
+                        dtesendaprv = dtesendaprvspace[0].split("-");
+                        ddmmyysendaprv = dtesendaprv[2]+'-'+dtesendaprv[1]+'-'+dtesendaprv[0];
+                        timessendaprv = dtesendaprvspace[1];
+                        /* for sent apprvl end */  
+                        website('#Mymodalaudittrail .reqstsendapprv' ).html(ddmmyysendaprv+' '+timessendaprv);
+                    }
+
+                }
+                else
+                {
+                    website('#Mymodalaudittrail .reqstsendapprv' ).html(''); 
+                }
+       
+                if(response.persnreq[0].contraexcapvsts == 1)
+                {
+                    if(response.persnreq[0].contraexcapvdte)
+                    {
+                        /* for apprvl start */
+                        dteaprv = response.persnreq[0].contraexcapvdte.split("-");                   
+                        dteaprvspace = response.persnreq[0].contraexcapvdte.split(" ");                    
+                        ddmmyyaprv = dteaprvspace[0];
+                        dteaprv = dteaprvspace[0].split("-");
+                        ddmmyyaprv = dteaprv[2]+'-'+dteaprv[1]+'-'+dteaprv[0];
+                        timesaprv = dteaprvspace[1];
+                        /* for apprvl end */
+                        website('#Mymodalaudittrail .reqstapprvd' ).html(ddmmyyaprv+' '+timesaprv);
+                    }
+                }
+                else
+                {
+                    website('#Mymodalaudittrail .reqstapprvd' ).html(''); 
+                }
             
            website('#Mymodalaudittrail .reqstcreateddte' ).html(ddmmyyadded+' '+timesadded);
            website('#Mymodalaudittrail .reqstupdteddte' ).html(ddmmyymodified+' '+timesmodified);
-           if(response.data[0].excep_approv == 1)
-           {
-               if(response.data[0].excepsendaprv_date)
-                {
-                    /* for sent apprvl start */
-                     dtesendaprv = response.data[0].excepsendaprv_date.split("-");                   
-                     dtesendaprvspace = response.data[0].excepsendaprv_date.split(" ");                    
-                     ddmmyysendaprv = dtesendaprvspace[0];
-                     dtesendaprv = dtesendaprvspace[0].split("-");
-                     ddmmyysendaprv = dtesendaprv[2]+'-'+dtesendaprv[1]+'-'+dtesendaprv[0];
-                     timessendaprv = dtesendaprvspace[1];
-                    /* for sent apprvl end */  
-                    website('#Mymodalaudittrail .reqstsendapprv' ).html(ddmmyysendaprv+' '+timessendaprv);
-                }
-           }
-           else
-           {
-               website('#Mymodalaudittrail .reqstsendapprv' ).html(''); 
-           }
-           if(response.data[0].excepapp_status == 1)
-           {
-                 if(response.data[0].excepapprv_date)
-                 {
-                    /* for apprvl start */
-                     dteaprv = response.data[0].excepapprv_date.split("-");                   
-                     dteaprvspace = response.data[0].excepapprv_date.split(" ");                    
-                     ddmmyyaprv = dteaprvspace[0];
-                     dteaprv = dteaprvspace[0].split("-");
-                     ddmmyyaprv = dteaprv[2]+'-'+dteaprv[1]+'-'+dteaprv[0];
-                     timesaprv = dteaprvspace[1];
-                    /* for apprvl end */
-                    website('#Mymodalaudittrail .reqstapprvd' ).html(ddmmyyaprv+' '+timesaprv);
-                 }
-           }
-           else
-           {
-               website('#Mymodalaudittrail .reqstapprvd' ).html(''); 
-           }
+
            if(response.persnreq[0].trading_status == 1)
            {
                website('#Mymodalaudittrail .reqsttrdngsts' ).html('Completed');
@@ -550,6 +723,7 @@ website('body').on("click",".viewexcprequsttrail",function(e){
                     /* for transactiondate end */
                    website('#Mymodalaudittrail .reqsttranscmplt').html(ddmmyytransdate);
                }
+               
            }
            else
            {
@@ -557,6 +731,7 @@ website('body').on("click",".viewexcprequsttrail",function(e){
                website('#Mymodalaudittrail .reqststsupdate' ).html(''); 
                website('#Mymodalaudittrail .reqsttranscmplt').html('');
            }
+        }
             
            website('#Mymodalaudittrail').modal('show'); 
         }
@@ -571,4 +746,48 @@ website('body').on("click",".viewexcprequsttrail",function(e){
     {}
   });
    
+});
+
+website("body").on("click",".exereason",function(e){
+    var reqid = website(this).attr('rqstid');
+    var trdeid = website(this).attr('trdeid');
+    var type = website(this).attr('type');
+    var formdata = {reqid:reqid,trdeid:trdeid,type:type}
+    website.ajax({
+        url:'exceptionreq/fetchreasonofexe',
+        data:formdata,
+        method:'POST',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType:"json",
+        cache:false,
+        beforeSend: function()
+        {  },
+        uploadProgress: function(event, position, total, percentComplete)
+        { },
+        success: function(response, textStatus, jqXHR) 
+        {
+            if(response.logged==true)
+            {
+                website('#showexereason #exereason').val(response.data.exception_reason)
+                website('#showexereason').modal('show');
+            }
+            else
+            {
+                new PNotify({title: 'Alert',
+                text: 'Something went wrong',
+                type: 'university',
+                hide: true,
+                styling: 'bootstrap3',
+                addclass: 'dark ',
+                }); 
+            }
+        },
+        complete: function(response) 
+        {
+            
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {   }
+
+    });
 });

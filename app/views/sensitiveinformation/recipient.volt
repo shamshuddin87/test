@@ -210,9 +210,11 @@ $condeptsess = $this->session->contractdepartment;
                             </select>
                         </div>
                     </section>
+                    <section class="employeecateedit col col-md-8 col-xs-12">
+                    </section>
                 
-                    <div class="othercateedit"></div>
-                    <div class="employeecateedit"></div>
+                    <section class="othercateedit col col-md-12 col-xs-12">
+                    </section>
 
                     <section class="col col-md-4 col-xs-12">
                         <div class="input">
@@ -276,7 +278,7 @@ $condeptsess = $this->session->contractdepartment;
                     </div>
                    </section>
                     
-                    <section class="col col-md-6 col-xs-12">
+                    <section class="col col-md-12 col-xs-12">
                         <div class="input">
                         <label class="control-label">Upload Confidentiallity Agreement</label>
                             <div class="choose_files">
@@ -287,9 +289,9 @@ $condeptsess = $this->session->contractdepartment;
                     
 
                 <div class="control-label btnsubmitme cntrol_tab_one col-md-12 col-xs-12">
-                    <div class="floatright">
-                        <input type="submit" class="btn btn-primary updateme floatleft" value="Update" >
-                        <button type="button" class="btn btn-default btn-default-one" data-dismiss="modal">Close</button>
+                    <div class="" style="text-align: right;">
+                        <button type="submit" class="btn btn-primary updateme ">Update</button>
+                        <button type="button" class="btn btn-default" style="color: #522c8f !important;border-color: #cecece;" data-dismiss="modal">Close</button>
                     </div>
                 </div>
           </form>

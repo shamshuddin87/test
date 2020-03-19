@@ -34,18 +34,18 @@ else
 {getform('form1');}}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
-{website('.preloder_wraper').fadeOut();},error:function()
+{},error:function()
 {}});});function getform(formtype)
 {website.ajax({type:"POST",url:'tradingrequest/getfilecontent',data:{formtype:formtype},dataType:"json",beforeSend:function()
-{},uploadProgress:function(event,position,total,percentComplete)
-{},success:function(response)
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{website('.preloder_wraper').fadeIn();},success:function(response)
 {if(response.logged===true)
 {if(formtype=='form1')
 {website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);website('#checkappvlrequest').modal('show');}
 else if(formtype=='form2')
 {website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest #pdflink').attr('href',response.pdf_path);website('#chckexcptnrequest').modal('show');}}},complete:function(response)
-{},error:function()
-{}});}
+{website('.preloder_wraper').fadeOut();},error:function()
+{website('.preloder_wraper').fadeOut();}});}
 website('body').on('click','.reqdraft',function()
 {var approverids=website('#approverid').val();website('#checkappvlrequest #approverid').val(approverids);var reqnames=website('#reqname').val();website('#checkappvlrequest #reqname').val(reqnames);var typeofrequests=website('#typeofrequest').val();website('#checkappvlrequest #typeofrequest').val(typeofrequests);var selrelatives=website('#selrelative').val();website('#checkappvlrequest #selrelative').val(selrelatives);var idofcmps=website('#idofcmp').val();website('#checkappvlrequest #idofcmp').val(idofcmps);var nameofcmps=website('#nameofcmp').val();website('#checkappvlrequest #nameofcmp').val(nameofcmps);var noofshares=website('#noofshare').val();website('#checkappvlrequest #noofshare').val(noofshares);var sectypes=website('#sectypeid').val();website('#checkappvlrequest #sectype').val(sectypes);var typeoftranss=website('#typeoftrans').val();website('#checkappvlrequest #typeoftrans').val(typeoftranss);var sendreq=website('#sendrequest').val();website('#checkappvlrequest #sendreq').val(sendreq);website.ajax({url:'tradingrequest/checkclosebalval',data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
@@ -69,12 +69,8 @@ website('body').on('click','#Yesreqst',function(e)
 {var approverid=website('#checkappvlrequest #approverid').val();var reqname=website('#checkappvlrequest #reqname').val();var typeofrequest=website('#checkappvlrequest #typeofrequest').val();var selrelative=website('#checkappvlrequest #selrelative').val();var sectype=website('#checkappvlrequest #sectype').val();var idofcmp=website('#checkappvlrequest #idofcmp').val();var nameofcmp=website('#checkappvlrequest #nameofcmp').val();var noofshare=website('#checkappvlrequest #noofshare').val();var typeoftrans=website('#checkappvlrequest #typeoftrans').val();var sendreq=website('#checkappvlrequest #sendreq').val();var link=website('#checkappvlrequest #pdflink').attr('href');var formdata={approverid:approverid,reqname:reqname,typeofrequest:typeofrequest,selrelative:selrelative,sectype:sectype,idofcmp:idofcmp,nameofcmp:nameofcmp,noofshare:noofshare,typeoftrans:typeoftrans,sendreq:sendreq,link:link};website.ajax({url:'tradingrequest/tradingrequests',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
-{console.log(response);if(response.logged===true)
-{if(response.message=='Please Complete Your Latest Trade..!!')
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
-else
-{website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest').modal('show');}
-new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});setTimeout(function(){window.location.reload();},1000);}
+{if(response.logged===true)
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});setTimeout(function(){window.location.reload();},1000);}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
