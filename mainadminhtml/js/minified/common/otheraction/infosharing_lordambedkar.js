@@ -23,14 +23,14 @@ else if(response.resdta[i].recipienttype=='userlist')
 {name=response.resdta[i].username?response.resdta[i].username:'';}
 var category=response.resdta[i].category_name?response.resdta[i].category_name:'';var enddate=response.resdta[i].enddate?response.resdta[i].enddate:'';var datefrom=response.resdta[i].sharingdate;var upsiname=response.resdta[i].upsiname;var time=response.resdta[i].sharingtime?response.resdta[i].sharingtime:'';var newtime=time.replace(/:[^:]*$/,'');addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="10%">'+name+'</td>';if(response.resdta[i].category==16)
 {category=response.resdta[i].othercategory?response.resdta[i].othercategory:'';}
-addhtmlnxt+='<td width="10%">'+category+'</td>';addhtmlnxt+='<td width="10%">'+datefrom+'</td>';addhtmlnxt+='<td width="5%">'+newtime+'</td>';addhtmlnxt+='<td width="10%">'+enddate+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].datashared+'</td>';addhtmlnxt+='<td width="10%">'+upsiname+'</td>';addhtmlnxt+='<td width="10%"><i class="fa fa-file" aria-hidden="true" id="upsiattachmnt" filepath="'+response.resdta[i].filepath+'"></i></td>';addhtmlnxt+='<td width="5%"><i class="fa fa-bar-chart viewtrail" infoshrid="'+response.resdta[i].id+'"></i></td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].fullname+'</td>';addhtmlnxt+='<td width="25%">';if(response.getaccess[0].upsi_infoshare_delete==1)
+addhtmlnxt+='<td width="10%">'+category+'</td>';addhtmlnxt+='<td width="10%">'+datefrom+'</td>';addhtmlnxt+='<td width="5%">'+newtime+'</td>';addhtmlnxt+='<td width="10%">'+enddate+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].datashared+'</td>';addhtmlnxt+='<td width="10%">'+upsiname+'</td>';addhtmlnxt+='<td width="10%"><i class="fa fa-file" aria-hidden="true" id="upsiattachmnt" filepath="'+response.resdta[i].filepath+'"></i></td>';addhtmlnxt+='<td width="5%"><i class="fa fa-bar-chart viewtrail" infoshrid="'+response.resdta[i].id+'"></i></td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].fullname+'</td>';addhtmlnxt+='<td width="25%">';if(response.getaccess[0].upsi_infoshare_delete&&response.getaccess[0].upsi_infoshare_delete==1)
 {addhtmlnxt+='<i class="fa fa-trash-o faicon floatleft deleterestrictedcmp" title="Delete entry" aprvllistid="'+response.resdta[i].id+'" ></i>';}
 else
 {addhtmlnxt+='';}
 if(enddate=='')
 {addhtmlnxt+='<i class="fa fa-edit faicon floatleft editenddate" title="View entry" infoidtid="'+response.resdta[i].id+'"></i>';}
 addhtmlnxt+='</td>';addhtmlnxt+='</tr>';}
-if(response.getaccess[0].upsi_infoshare_add==1)
+if(response.getaccess[0].upsi_infoshare_add&&response.getaccess[0].upsi_infoshare_add==1)
 {website('.formelementmain').css('display','block');}
 else
 {website('.formelementmain').css('display','none');website('#alertcommon #allalertmsg').html("You Do Not Have Access To Add Info Sharing");website('#alertcommon').modal('show');}

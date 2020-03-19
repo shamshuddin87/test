@@ -213,7 +213,7 @@ class Sensitiveinformationcommon extends Component
     
     
     // **************************** infosharing insert ***************************
-   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$emailrec,$upsiname,$loggedemail)
+   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$emailrec,$upsiname,$loggedemail,$nameoflogged)
     {
         $connection = $this->dbtrd; 
         $times = time();
@@ -228,16 +228,18 @@ class Sensitiveinformationcommon extends Component
         try
         {
             $exeprev = $connection->query($queryinsert);
+            //print_r($exeprev);exit;
             $lastid    = $connection->lastInsertId();
             $notific= $this->notificationcommon->upsisharingnotify($getuserid,$lastid,"6");
            
-
+            
            
             
             
 
             $sendmail = $this->emailer->mailofnewupsisharing($emailrec,$sharingdate,$upsiname,$name,$category);
-             $notifymail =$this->emailer->notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek);
+            //echo "hello";exit;
+             $notifymail =$this->emailer->notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek,$nameoflogged);
 
            
 

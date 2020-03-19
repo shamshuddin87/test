@@ -742,7 +742,7 @@
                             </div>
                           </div>
                            <div class="col-md-12"> 
-                              <input type="button" name= "relupdate" value="Update" onclick="confirmdisclosure(this.id)" id="relupdate">
+                              <input type="button" class="btn btn-primary" name= "relupdate" value="Update" onclick="confirmdisclosure(this.id)" id="relupdate" style="float: right;">
                            </div>
                         </form>
                      </div>

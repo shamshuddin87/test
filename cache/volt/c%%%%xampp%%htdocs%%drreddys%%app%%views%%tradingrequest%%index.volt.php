@@ -577,22 +577,17 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    &times;</button>
-                <h4 class="modal-title">
-                </h4>
-            </div>
-            <div class="modal-body">
-                <a href = "" id="pdflink" download><input type="button" class="btn btn-success" value="Download"></a>
-              <p class="here" style="text-align: justify;">This transaction is a contra trade within 6 months of previous trade. You will require an exceptional pre-clearance approval for such trade request. Also, you can raise this request only if you do not hold any UPSI. Please confirm if you want to send exception approval?</p>
+                  <div class="modal-body">
+                     <button type="button" class="close" data-dismiss="modal">
+                     &times;</button>
+                 <button type="button" class="btn btn-primary" id="pdflink" download value="Download"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
+               <h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">This transaction is a contra trade within 6 months of previous trade. You will require an exceptional pre-clearance approval for such trade request. Also, you can raise this request only if you do not hold any UPSI. Please confirm if you want to send exception approval?</h5>
                
             </div>
-            <div class="modal-footer">
-             <input type="submit" class="btn btn-success" id="Yesexcreqst" value="Yes">
-             <input type="submit" class="btn btn-success" id="Noexcrequest" value="No">
+            <div class="modal-footer" style="border-top:none;">
+              <button type="button" class="btn btn-primary" id="Yesexcreqst">Yes</button> 
+            <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="Noexcrequest">No</button>
             </div>
-        </div>
     </div>
 </div>
 <div id="exceptnresionmodal" class="modal fade" role="dialog">
