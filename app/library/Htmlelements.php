@@ -2491,6 +2491,7 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname)
 public function externalmember($uniquemail,$sharingdate,$upsiname,$toname)
   {   
        //echo "<pre>";print_r($userids);exit;
+    $title ="You have been added to digital database of Dr. Reddy's Laboratories Ltd";
             $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <html xmlns="htth3://www.w3.org/1999/xhtml">
 
@@ -2531,7 +2532,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname)
                 <div class="header" style="margin-bottom:25px;">
                     <div class="header_img" style="/*width:300px;*/float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
                         <div style="    text-shadow: 1px 0px 2px #626262;
-        color: #626262;">New UPSI Sharing</div>
+        color: #626262;">'.$title.'.</div>
                     </div>
                      <div style="clear:both;"></div>
                 </div>
