@@ -2593,20 +2593,17 @@ public function mailofpersonalinfo($data)
   $html='<!DOCTYPE html>
    <html>
   <head>
-  <style>
-  table, th, td {
-  }
-  </style>
   </head>
 
  <body style="margin:0; background: #e5e5e5;">
         <table cellpadding="0" cellspacing="0" width="100%" border="0">
     <tr>
-      <td>
-      <table cellpadding="0" cellspacing="0" border="0" style="font-family:"Roboto",Arial, Helvetica, sans-serif; max-width:680px; font-size:12px; color:#333; background: #fff;" align="center">
+     <td>
+     <table cellpadding="0" cellspacing="0" border="0" style="font-family:"Roboto,Arial, Helvetica, sans-serif; max-width:680px; font-size:12px; color:#333; background: #fff; align="center">
+
        <tr>
             <td style="padding:20px 0 20px 0px; background: #f8f8f8;width:50%;" align="center">
-               <a href="https://www.volody.com/" target="_blank" style="border:0; outline:0;">
+               <a href="https://www.volody.com/" target="_blank" style="border:0; outline:0;">  
                 <img src="https://www.volody.com/mainadmin/img/emailer/logo.png" border="0"/>
                </a>
             </td>
@@ -2623,17 +2620,17 @@ public function mailofpersonalinfo($data)
 
      
       <tr>
-         <td  colspan="2" style="padding-top: 20px;padding-left: 20px background: #fff;">
+         <td  colspan="2" style="padding-top: 20px;padding-left: 20px; background: #fff;">
           <p>Dear '.$data['fname'].',</p>
           <p>You have updated Personal Information section of ‘personal information’ under ‘My info’. This is for your information..</p>
-        
+       
          </td>
       </tr>
 
       <tr>
          <td align="center" colspan="2" style="padding-top: 20px; background: #fff;">
           <form target="_blank">
-            
+           
 
              <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
               <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
@@ -2756,13 +2753,6 @@ public function mailofpersonalinfo($data)
 
 
 
-     <!--  <tr>
-        <td colspan="2" align="center">
-        <div style="padding:40px 0 50px 0; background: #fff;">
-        <a href="https://www.volody.com/user/" style="background:#27b16d;border-radius:3px;padding:12px 40px;color:#fff;font-size:16px;text-decoration:none;letter-spacing:1px" target="_blank" data-saferedirecturl="">Login Now!</a>
-        </div>
-        </td>
-      </tr> -->
      
       <tr>
           <td style="padding:0px 0 20px 0; background: #f7f7f7; padding: 10px;" colspan="2">
