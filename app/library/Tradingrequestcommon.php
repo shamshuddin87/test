@@ -829,17 +829,28 @@ class Tradingrequestcommon extends Component
                 $tsstatus='';
             }
 
-            $link='<a href="'.$target_file.'"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>';
-
+            if($target_file!='')
+            {
+                $link='<a href="'.$target_file.'" target="_blank"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>';
+            }
+            else
+            {
+                $link='';
+            }
+            
+//            if(!isset($data['reasonexe']))
+//            {
+//                $data['reasonexe']='';
+//            }
             $query = "INSERT INTO  `trading_status` (req_id, user_id, user_group_id,`id_of_company`,`sectype`,no_of_share,price_per_share,trading_status,total_amount,demat_acc_no,excep_approv,excepsendaprv_date,file,date_of_transaction,date_added,date_modified,`type_of_request`,`timeago`) VALUES ('".$reqid."','".$uid."','".$usergroup."','".$data['compid']."','".$data['sectype']."','".$data['noofshare']."','".$data['priceofshare']."','1','".$data['total']."','".$data['dmatacc']."','".$data['exceptinappr']."',NOW() ,'".$link."','".$data['transdate']."',NOW(),NOW(),'".$data['typetrans']."','".$time."')";  
-            // print_r($query);exit;
+            //print_r($query);exit;
             $exeget = $connection->query($query);
                   
             if($exeget)
             {
                 if($typeofbutton == 'Exception Request')
                 {
-                    $getsendexcrqstmail = $this->exceptionreqcommon->sendexcrqstmail($reqid);
+                    $getsendexcrqstmail = $this->exceptionreqcommon->sendexcrqstmail($reqid,'trade');
                 }
 
                 $link='<a href="'.$target_file.'"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>';
@@ -1417,6 +1428,7 @@ class Tradingrequestcommon extends Component
                                  'type_trnscn'=>$rqstmaildetail['maildata'][0]['transaction'],  
                                  'securty_type'=>$rqstmaildetail['maildata'][0]['security_type'],
                                  'noofshres'=>$rqstmaildetail['maildata'][0]['no_of_shares'],
+                                 'pdfpath'=>$rqstmaildetail['maildata'][0]['pdffilepath'],
                                  'url'=>$baseurl);
 
                 for($i = 0;$i<sizeof($rqstmaildetail['emailid']);$i++)
@@ -1475,10 +1487,11 @@ class Tradingrequestcommon extends Component
                             }
                             $getemaildata[] = $row;
                         }
-                        //print_r($getapproveremail);exit;
+                        //print_r($getemaildata);exit;
                         $getadminemail = $this->tradingplancommon->getadminmailid($approverid[0]);
                         array_push($getapproveremail,$getadminemail);
-                        $getlist = array('maildata'=>$getemaildata,'emailid'=>$getapproveremail);
+                        $approveremailnew = array_unique($getapproveremail);
+                        $getlist = array('maildata'=>$getemaildata,'emailid'=>$approveremailnew);
                     }
                     else{
                         $getlist[] = array();

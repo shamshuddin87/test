@@ -90,6 +90,7 @@ website('.createreq').click(function(e)
  website('#Mymodalreq').modal('show');
 });
 website("#pricepershare").keyup(function(){
+    alert();
    var noofshare=website('#noofshare').val();
    var pricepershare=website('#pricepershare').val();
    if(noofshare !='' && pricepershare!='')
@@ -493,57 +494,91 @@ function getalltradingrequest()
                               var excep_approv=response.data[i].excepapp_status?response.data[i].excepapp_status:'';
                                //console.log(excep_approv);return false;
                               
-                                     addhtmlnxt += '<tr class="counter" tempid="'+response.data[i].id+'" >';
-                                      //  if(send_status==0)
-                                      // {
-                                      //    addhtmlnxt += '<td width="15%"><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"></td>';
-                                      // }
-                                      // else
-                                      // {
-                                      //     addhtmlnxt +='<td></td>';
-                                      // }
-                                      addhtmlnxt += '<td>'+j+'</td>';
-                                      addhtmlnxt += '<td>'+sectype+'</td>';
-                                      addhtmlnxt += '<td>'+name_of_company+'</td>';
-                                      addhtmlnxt += '<td>'+type_of_transaction+'</td>';
-                                      addhtmlnxt += '<td>'+no_of_shares+'</td>';
-                                      addhtmlnxt += '<td>'+typeofrequest+'</td>';
-                                      addhtmlnxt += '<td>'+nameofreq+'</td>';
-                                      addhtmlnxt += '<td>'+relationship+'</td>';
-                                      //console.log(excep_approv);
-                                      //addhtmlnxt += '<td width="15%">'+price_per_share+'</td>';
-                                      //addhtmlnxt += '<td width="15%">'+total_amount+'</td>';
-                                     if(send_status==1)
-                                       {
-                                        addhtmlnxt += '<td width="15%">Sent</td>';
-                                       }
-                                       else
-                                       {
-                                        addhtmlnxt += '<td width="15%">Drafted</td>';
-                                       }
-                                       if(excep_approv==1){
+                                addhtmlnxt += '<tr class="counter" tempid="'+response.data[i].id+'" >';
+                                addhtmlnxt += '<td>'+j+'</td>';
+                                addhtmlnxt += '<td>'+sectype+'</td>';
+                                addhtmlnxt += '<td>'+name_of_company+'</td>';
+                                addhtmlnxt += '<td>'+type_of_transaction+'</td>';
+                                addhtmlnxt += '<td>'+no_of_shares+'</td>';
+                                addhtmlnxt += '<td>'+typeofrequest+'</td>';
+                                addhtmlnxt += '<td>'+nameofreq+'</td>';
+                                addhtmlnxt += '<td>'+relationship+'</td>';
+                                if(send_status==1 || response.data[i].sent_contraexeaprvl == 1)
+                                {
+                                    addhtmlnxt += '<td width="15%">Sent</td>';
+                                }
+                                else 
+                                {
+                                    addhtmlnxt += '<td width="15%">Drafted</td>';
+                                }
+                              
+                                if(response.data[i].sent_contraexeaprvl == 1)
+                                {
+                                    if(response.data[i].contraexcapvsts==1)
+                                    {
                                         addhtmlnxt += '<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;">Approved</i></td>';
-                                       }
-                                       else if(excep_approv==2)
-                                       {
-                                           addhtmlnxt += '<td width="15%" class="rejmessage" mymessage="'+message+'"><i class="fa fa-close" style="font-size:18px;color:red;">Rejected</i></td>';
-                                       }
-                                       else{
-                                           addhtmlnxt += '<td width="15%">Not Approved</td>';
-                                       }
-                                      
-                                       addhtmlnxt += '<td width="15%">'+transaction_date+'</td>';
-                                       // console.log(trading_status);
-                                        addhtmlnxt += '<td width="15%">'+date_modified+'</td>';
-                                     //   addhtmlnxt += '<td width="15%">'+date_modified+'</td>';
-                                     
-
-
+                                    }
+                                    else if(response.data[i].contraexcapvsts==2)
+                                    {
+                                        addhtmlnxt += '<td width="15%" class="rejmessage" mymessage="'+message+'"><i class="fa fa-close" style="font-size:18px;color:red;">Rejected</i></td>';
+                                    }
+                                    else
+                                    {
+                                        addhtmlnxt += '<td width="15%">Not Approved</td>';
+                                    }
+                                }
+                                else
+                                {
+                                    if(excep_approv==1)
+                                    {
+                                        addhtmlnxt += '<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;">Approved</i></td>';
+                                    }
+                                    else if(excep_approv==2)
+                                    {
+                                        addhtmlnxt += '<td width="15%" class="rejmessage" mymessage="'+message+'"><i class="fa fa-close" style="font-size:18px;color:red;">Rejected</i></td>';
+                                    }
+                                    else
+                                    {
+                                        addhtmlnxt += '<td width="15%">Not Approved</td>';
+                                    }
+                                }
+                                addhtmlnxt += '<td width="15%">'+transaction_date+'</td>';
+                                addhtmlnxt += '<td width="15%">'+date_modified+'</td>';
+                                if(response.data[i].sent_contraexeaprvl == 1)
+                                {
+                                    if(response.data[i].contraexcapvsts==1 && response.data[i].trading_status!=1 && response.data[i].trading_status!=0)
+                                    {   
+                                        addhtmlnxt += '<td>';
+                                            addhtmlnxt += '<i class="fa fa-line-chart uploadfile" typeofreq="'+type_of_request+'" modtotal="'+total_amount+'" modpriceshare="'+price_per_share+'" modnoofshare="'+no_of_shares+'" modaltransdate="'+transaction_date+'" editid="'+response.data[i].id+'" compid="'+response.data[i].id_of_company+'" sectype="'+response.data[i].sectype+'" trading_date="'+trading_date+'" create_date="'+date_added+'" ></i>';
+                                         addhtmlnxt += '</td>';
+                                    }
+                                    else if(response.data[i].contraexcapvsts!=1)
+                                    {
+                                        addhtmlnxt += '<td></td>';
+                                    }
+                                    else if(response.data[i].trading_status==0 && response.data[i].contraexcapvsts==1)
+                                    {
+                                        addhtmlnxt += '<td><i class="fa fa-line-chart" style="color:red;"></i></td>';    
+                                    }
+                                    else
+                                    {
                                         addhtmlnxt += '<td width="15%">'+file+'<p reqid="'+response.data[i].myid+'" class="checkstatus"><i class="fa fa-line-chart" style="color:green;"></i></p></td>';
-                                     
-                                        addhtmlnxt+='<td width="15%"><i class="fa fa-bar-chart excprequsttrail" rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].myid+'" ></i></td>';
-                                       
-                                         addhtmlnxt+='</tr>';
+                                    }
+                                }
+                                else
+                                {
+                                    addhtmlnxt += '<td width="15%">'+file+'<p reqid="'+response.data[i].myid+'" class="checkstatus"><i class="fa fa-line-chart" style="color:green;"></i></p></td>';
+                                }
+                                addhtmlnxt+='<td width="15%"><i class="fa fa-bar-chart excprequsttrail" rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].myid+'" ></i></td>';
+                                if(response.data[i].sent_contraexeaprvl == 1)
+                                {
+                                    addhtmlnxt+='<td width="15%"><i class="fa fa-comments-o exereason" type="contra" rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].myid+'" ></i></td>';
+                                }
+                                else
+                                {
+                                    addhtmlnxt+='<td width="15%"><i class="fa fa-comments-o exereason" type="trade"  rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].myid+'" ></td>';
+                                }
+                                addhtmlnxt+='</tr>';
                          
                            }                          
                         }
@@ -853,92 +888,92 @@ else{
 
 });
 
-website("body").on("click",".uploadfile",function(e){  
-
-   var editid= website(this).attr('editid');
-   var typeofreq=website(this).attr('typeofreq');
-   var compid= website(this).attr('compid');
-   var sectype= website(this).attr('sectype');
-  var total=website(this).attr('modtotal');
-  var priceofshare=website(this).attr('modpriceshare');
-  var noofshare=website(this).attr('modnoofshare');
-  var transdate=website(this).attr('modaltransdate');
- var tradedate = website(this).attr('trading_date');
-  website.ajax({
-                  url:'exceptionreq/checktradestatus',
-                  data:{editid:editid,typeofreq:typeofreq},
-                  method:'POST',
-                  contentType:'application/x-www-form-urlencoded; charset=UTF-8',
-                  dataType:"json",
-                  cache:false,
-                  beforeSend: function()
-                  { 
-                     
-
-                   },
-                   uploadProgress: function(event, position, total, percentComplete)
-                   { 
-                   },
-                   success: function(response, textStatus, jqXHR) 
-                   {
-                         if(response.logged==true)
-                         {
-                             // console.log(response.data.demat_acc_no);
-                               tradestatus=response.data['trading_status'];
-                               var noofshare1=response.data.no_of_share?response.data.no_of_share:"";
-                                // console.log(noofshare);
-                               var priceofshare1=response.data.price_per_share?response.data.price_per_share:"";
-                               var total1=response.data.total_amount?response.data.total_amount:"";
-                               var transdate1=response.data.date_of_transaction?response.data.date_of_transaction:"";
-                              // alert(transdate);
-                                var myhtml='<tr><td><input type="text" name="noofshare" value="'+noofshare1+'" id="noofshare" class="form-control" size="20px"></td><td><input type="text" name="priceofshare" value="'+priceofshare1+'" id="pricepershare" class="form-control" size="20px">'+
-                             '</td><td><input type="text" name="total" value="'+total1+'" id="totalamt" class="form-control" size="20px"></td><td><input type="text"  name="transdate" value="'+transdate1+'" class="form-control bootdatepick" size="20px"></td>';
-                                var appendsel = '';
-                              website.each(response.dematacc, function (index, value) {
-                                  if(response.data.demat_acc_no==value['accountno'])
-                                      {
-                                        appendsel += '<option value='+value['accountno']+' selected>'+value['accountno']+'</option>';             
-                                      }
-                                  else{
-                                       appendsel += '<option value='+value['accountno']+'>'+value['accountno']+'</option>'; 
-                                  }
-                       
-                                });
-                             myhtml+='<td><select id="dmatacc" name="dmatacc" class="form_fields form-control col-md-7 col-xs-12" required>'+appendsel+'</select></td></tr>';
-//                             website('#dmatacc select option[value="'+response.data.demat_acc_no+'"]').prop("selected","selected");
-//                            
-                              website('#uploadmyfile #filereqid').val(editid);
-                              website('#uploadmyfile #compid').val(compid);
-                              website('#uploadmyfile #sectype').val(sectype);
-                              website('#uploadmyfile #tradedate').val(tradedate);
-                              website('.modtable').html(myhtml);
-                              website('#uploadmyfile').modal('show');
-                              datepicker();
-                         }
-                         else{
-                              var myhtml='<tr><td><input type="text" name="noofshare" value="'+noofshare+'" id="noofshare" class="form-control" size="20px"></td><td><input type="text" name="priceofshare" value="'+priceofshare+'" id="pricepershare" class="form-control" size="20px">'+
-                             '</td><td><input type="text" name="total" value="'+total+'" id="totalamt" class="form-control" size="20px"></td><td><input type="text"  name="transdate" value="'+transdate+'" class="form-control bootdatepick" size="20px"></td>'; 
-                             var appendsel = '';
-                              website.each(response.dematacc, function (index, value) {  
-                               appendsel += '<option value='+value['accountno']+'>'+value['accountno']+'</option>';
-                                
-                                });
-                             myhtml+='<td><select id="dmatacc" name="dmatacc" class="form_fields form-control col-md-7 col-xs-12" required>'+appendsel+'</select></td></tr>';
-
-                              website('#uploadmyfile #filereqid').val(editid);
-                              website('#uploadmyfile #compid').val(compid);
-                              website('#uploadmyfile #sectype').val(sectype);
-                              website('#uploadmyfile #tradedate').val(tradedate);
-                              website('.modtable').html(myhtml);
-                              website('#uploadmyfile').modal('show');
-                              datepicker();
-                         }
-                    
-                     } 
-
-                });
-                     
-});
+//website("body").on("click",".uploadfile",function(e){  
+//
+//   var editid= website(this).attr('editid');
+//   var typeofreq=website(this).attr('typeofreq');
+//   var compid= website(this).attr('compid');
+//   var sectype= website(this).attr('sectype');
+//  var total=website(this).attr('modtotal');
+//  var priceofshare=website(this).attr('modpriceshare');
+//  var noofshare=website(this).attr('modnoofshare');
+//  var transdate=website(this).attr('modaltransdate');
+// var tradedate = website(this).attr('trading_date');
+//  website.ajax({
+//                  url:'exceptionreq/checktradestatus',
+//                  data:{editid:editid,typeofreq:typeofreq},
+//                  method:'POST',
+//                  contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+//                  dataType:"json",
+//                  cache:false,
+//                  beforeSend: function()
+//                  { 
+//                     
+//
+//                   },
+//                   uploadProgress: function(event, position, total, percentComplete)
+//                   { 
+//                   },
+//                   success: function(response, textStatus, jqXHR) 
+//                   {
+//                         if(response.logged==true)
+//                         {
+//                             // console.log(response.data.demat_acc_no);
+//                               tradestatus=response.data['trading_status'];
+//                               var noofshare1=response.data.no_of_share?response.data.no_of_share:"";
+//                                // console.log(noofshare);
+//                               var priceofshare1=response.data.price_per_share?response.data.price_per_share:"";
+//                               var total1=response.data.total_amount?response.data.total_amount:"";
+//                               var transdate1=response.data.date_of_transaction?response.data.date_of_transaction:"";
+//                              // alert(transdate);
+//                                var myhtml='<tr><td><input type="text" name="noofshare" value="'+noofshare1+'" id="noofshare" class="form-control" size="20px"></td><td><input type="text" name="priceofshare" value="'+priceofshare1+'" id="pricepershare" class="form-control" size="20px">'+
+//                             '</td><td><input type="text" name="total" value="'+total1+'" id="totalamt" class="form-control" size="20px"></td><td><input type="text"  name="transdate" value="'+transdate1+'" class="form-control bootdatepick" size="20px"></td>';
+//                                var appendsel = '';
+//                              website.each(response.dematacc, function (index, value) {
+//                                  if(response.data.demat_acc_no==value['accountno'])
+//                                      {
+//                                        appendsel += '<option value='+value['accountno']+' selected>'+value['accountno']+'</option>';             
+//                                      }
+//                                  else{
+//                                       appendsel += '<option value='+value['accountno']+'>'+value['accountno']+'</option>'; 
+//                                  }
+//                       
+//                                });
+//                             myhtml+='<td><select id="dmatacc" name="dmatacc" class="form_fields form-control col-md-7 col-xs-12" required>'+appendsel+'</select></td></tr>';
+////                             website('#dmatacc select option[value="'+response.data.demat_acc_no+'"]').prop("selected","selected");
+////                            
+//                              website('#uploadmyfile #filereqid').val(editid);
+//                              website('#uploadmyfile #compid').val(compid);
+//                              website('#uploadmyfile #sectype').val(sectype);
+//                              website('#uploadmyfile #tradedate').val(tradedate);
+//                              website('.modtable').html(myhtml);
+//                              website('#uploadmyfile').modal('show');
+//                              datepicker();
+//                         }
+//                         else{
+//                              var myhtml='<tr><td><input type="text" name="noofshare" value="'+noofshare+'" id="noofshare" class="form-control" size="20px"></td><td><input type="text" name="priceofshare" value="'+priceofshare+'" id="pricepershare" class="form-control" size="20px">'+
+//                             '</td><td><input type="text" name="total" value="'+total+'" id="totalamt" class="form-control" size="20px"></td><td><input type="text"  name="transdate" value="'+transdate+'" class="form-control bootdatepick" size="20px"></td>'; 
+//                             var appendsel = '';
+//                              website.each(response.dematacc, function (index, value) {  
+//                               appendsel += '<option value='+value['accountno']+'>'+value['accountno']+'</option>';
+//                                
+//                                });
+//                             myhtml+='<td><select id="dmatacc" name="dmatacc" class="form_fields form-control col-md-7 col-xs-12" required>'+appendsel+'</select></td></tr>';
+//
+//                              website('#uploadmyfile #filereqid').val(editid);
+//                              website('#uploadmyfile #compid').val(compid);
+//                              website('#uploadmyfile #sectype').val(sectype);
+//                              website('#uploadmyfile #tradedate').val(tradedate);
+//                              website('.modtable').html(myhtml);
+//                              website('#uploadmyfile').modal('show');
+//                              datepicker();
+//                         }
+//                    
+//                     } 
+//
+//                });
+//                     
+//});
 website("body").on("click",".rejmessage",function(e){ 
       var mymessage=website(this).attr('mymessage');
       console.log(mymessage);
@@ -1146,65 +1181,171 @@ website('body').on("click",".excprequsttrail",function(e){
       {
         if(response.logged===true)
         {
-            /* for date_added start */
-             dteadded = response.data[0].time_added.split("-");                   
-             dteaddedspace = response.data[0].time_added.split(" ");                    
-                     ddmmyyadded = dteaddedspace[0];
-                     dteadded = dteaddedspace[0].split("-");
-                     ddmmyyadded = dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];
-                     timesadded = dteaddedspace[1];
-            /* for date_added end */
+            if(response.persnreq[0].sent_contraexeaprvl != 1)
+            {
+                    /* for date_added start */
+                 dteadded = response.data[0].date_added.split("-");                   
+                 dteaddedspace = response.data[0].date_added.split(" ");                    
+                         ddmmyyadded = dteaddedspace[0];
+                         dteadded = dteaddedspace[0].split("-");
+                         ddmmyyadded = dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];
+                         timesadded = dteaddedspace[1];
+                /* for date_added end */
+
+                /* for date_added start */
+                 dtemodified = response.data[0].date_modified.split("-");                   
+                 dtemodifdspace = response.data[0].date_modified.split(" ");                    
+                         ddmmyymodified = dtemodifdspace[0];
+                         dtemodified = dtemodifdspace[0].split("-");
+                         ddmmyymodified = dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];
+                         timesmodified = dtemodifdspace[1];
+                /* for date_added end */   
+                
+                
+               website('#Mymodalaudittrail .reqstcreateddte' ).html(ddmmyyadded+' '+timesadded);
+               website('#Mymodalaudittrail .reqstupdteddte' ).html(ddmmyymodified+' '+timesmodified);
+               if(response.data[0].excep_approv == 1)
+               {
+                   if(response.data[0].excepsendaprv_date)
+                    {
+                        /* for sent apprvl start */
+                         dtesendaprv = response.data[0].excepsendaprv_date.split("-");                   
+                         dtesendaprvspace = response.data[0].excepsendaprv_date.split(" ");                    
+                         ddmmyysendaprv = dtesendaprvspace[0];
+                         dtesendaprv = dtesendaprvspace[0].split("-");
+                         ddmmyysendaprv = dtesendaprv[2]+'-'+dtesendaprv[1]+'-'+dtesendaprv[0];
+                         timessendaprv = dtesendaprvspace[1];
+                        /* for sent apprvl end */  
+                        website('#Mymodalaudittrail .reqstsendapprv' ).html(ddmmyysendaprv+' '+timessendaprv);
+                    }
+
+               }
+               else
+               {
+                   website('#Mymodalaudittrail .reqstsendapprv' ).html(''); 
+               }
+               if(response.data[0].excepapp_status == 1)
+               {
+                   if(response.data[0].excepapprv_date)
+                   {
+                        /* for apprvl start */
+                         dteaprv = response.data[0].excepapprv_date.split("-");                   
+                         dteaprvspace = response.data[0].excepapprv_date.split(" ");                    
+                         ddmmyyaprv = dteaprvspace[0];
+                         dteaprv = dteaprvspace[0].split("-");
+                         ddmmyyaprv = dteaprv[2]+'-'+dteaprv[1]+'-'+dteaprv[0];
+                         timesaprv = dteaprvspace[1];
+                        /* for apprvl end */
+                        website('#Mymodalaudittrail .reqstapprvd' ).html(ddmmyyaprv+' '+timesaprv);
+                   }
+               }
+               else
+               {
+                   website('#Mymodalaudittrail .reqstapprvd' ).html(''); 
+               }
+               if(response.persnreq[0].trading_status == 1)
+               {
+                   website('#Mymodalaudittrail .reqsttrdngsts' ).html('Completed');
+                   if(response.persnreq[0].tradestatus_date)
+                   {
+                        /* for tradestts start */
+                         dtetrdsts = response.persnreq[0].tradestatus_date.split("-");                   
+                         dtetrdstsspace = response.persnreq[0].tradestatus_date.split(" ");                    
+                         ddmmyytrdsts = dtetrdstsspace[0];
+                         dtetrdsts = dtetrdstsspace[0].split("-");
+                         ddmmyytrdsts = dtetrdsts[2]+'-'+dtetrdsts[1]+'-'+dtetrdsts[0];
+                         timestrdsts = dtetrdstsspace[1];
+                        /* for tradestts end */
+                        website('#Mymodalaudittrail .reqststsupdate' ).html(ddmmyytrdsts+' '+timestrdsts);
+                   }
+                   if(response.data[0].date_of_transaction)
+                   {
+                        /* for transactiondate start */
+                         dtetransdate = response.data[0].date_of_transaction.split("-");                   
+                         dtetransdatespace = response.data[0].date_of_transaction.split(" ");                    
+                         ddmmyytransdate = dtetransdatespace[0];
+                         dtetransdate = dtetransdatespace[0].split("-");
+                         ddmmyytransdate = dtetransdate[2]+'-'+dtetransdate[1]+'-'+dtetransdate[0];
+                        /* for transactiondate end */
+                       website('#Mymodalaudittrail .reqsttranscmplt').html(ddmmyytransdate);
+                   }
+
+               }
+               else
+               {
+                   website('#Mymodalaudittrail .reqsttrdngsts' ).html('Pending'); 
+                   website('#Mymodalaudittrail .reqststsupdate' ).html(''); 
+                   website('#Mymodalaudittrail .reqsttranscmplt').html('');
+               }
+            }
+             
             
-            /* for date_added start */
-             dtemodified = response.data[0].modified_time.split("-");                   
-             dtemodifdspace = response.data[0].modified_time.split(" ");                    
-                     ddmmyymodified = dtemodifdspace[0];
-                     dtemodified = dtemodifdspace[0].split("-");
-                     ddmmyymodified = dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];
-                     timesmodified = dtemodifdspace[1];
-            /* for date_added end */
+           else
+            {
+                /* for date_added start */
+                 dteadded = response.persnreq[0].date_added.split("-");                   
+                 dteaddedspace = response.persnreq[0].date_added.split(" ");                    
+                         ddmmyyadded = dteaddedspace[0];
+                         dteadded = dteaddedspace[0].split("-");
+                         ddmmyyadded = dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];
+                         timesadded = dteaddedspace[1];
+                /* for date_added end */
+
+                /* for date_added start */
+                 dtemodified = response.persnreq[0].date_modified.split("-");                   
+                 dtemodifdspace = response.persnreq[0].date_modified.split(" ");                    
+                         ddmmyymodified = dtemodifdspace[0];
+                         dtemodified = dtemodifdspace[0].split("-");
+                         ddmmyymodified = dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];
+                         timesmodified = dtemodifdspace[1];
+                /* for date_added end */ 
+                
+                if(response.persnreq[0].sent_contraexeaprvl == 1)
+                {
+                    if(response.persnreq[0].apprv_contraexedte)
+                    {
+                        var ddmmyysendaprv = '';
+                        var timessendaprv = '';
+                        /* for sent apprvl start */
+                        dtesendaprv = response.persnreq[0].apprv_contraexedte.split("-");                   
+                        dtesendaprvspace = response.persnreq[0].apprv_contraexedte.split(" ");                    
+                        ddmmyysendaprv = dtesendaprvspace[0];
+                        dtesendaprv = dtesendaprvspace[0].split("-");
+                        ddmmyysendaprv = dtesendaprv[2]+'-'+dtesendaprv[1]+'-'+dtesendaprv[0];
+                        timessendaprv = dtesendaprvspace[1];
+                        /* for sent apprvl end */  
+                        website('#Mymodalaudittrail .reqstsendapprv' ).html(ddmmyysendaprv+' '+timessendaprv);
+                    }
+
+                }
+                else
+                {
+                    website('#Mymodalaudittrail .reqstsendapprv' ).html(''); 
+                }
+       
+                if(response.persnreq[0].contraexcapvsts == 1)
+                {
+                    if(response.persnreq[0].contraexcapvdte)
+                    {
+                        /* for apprvl start */
+                        dteaprv = response.persnreq[0].contraexcapvdte.split("-");                   
+                        dteaprvspace = response.persnreq[0].contraexcapvdte.split(" ");                    
+                        ddmmyyaprv = dteaprvspace[0];
+                        dteaprv = dteaprvspace[0].split("-");
+                        ddmmyyaprv = dteaprv[2]+'-'+dteaprv[1]+'-'+dteaprv[0];
+                        timesaprv = dteaprvspace[1];
+                        /* for apprvl end */
+                        website('#Mymodalaudittrail .reqstapprvd' ).html(ddmmyyaprv+' '+timesaprv);
+                    }
+                }
+                else
+                {
+                    website('#Mymodalaudittrail .reqstapprvd' ).html(''); 
+                }
             
            website('#Mymodalaudittrail .reqstcreateddte' ).html(ddmmyyadded+' '+timesadded);
            website('#Mymodalaudittrail .reqstupdteddte' ).html(ddmmyymodified+' '+timesmodified);
-           if(response.data[0].excep_approv == 1)
-           {
-               if(response.data[0].excepsendaprv_date)
-                {
-                    /* for sent apprvl start */
-                     dtesendaprv = response.data[0].excepsendaprv_date.split("-");                   
-                     dtesendaprvspace = response.data[0].excepsendaprv_date.split(" ");                    
-                     ddmmyysendaprv = dtesendaprvspace[0];
-                     dtesendaprv = dtesendaprvspace[0].split("-");
-                     ddmmyysendaprv = dtesendaprv[2]+'-'+dtesendaprv[1]+'-'+dtesendaprv[0];
-                     timessendaprv = dtesendaprvspace[1];
-                    /* for sent apprvl end */  
-                    website('#Mymodalaudittrail .reqstsendapprv' ).html(ddmmyysendaprv+' '+timessendaprv);
-                }
-               
-           }
-           else
-           {
-               website('#Mymodalaudittrail .reqstsendapprv' ).html(''); 
-           }
-           if(response.data[0].excepapp_status == 1)
-           {
-               if(response.data[0].excepapprv_date)
-               {
-                    /* for apprvl start */
-                     dteaprv = response.data[0].excepapprv_date.split("-");                   
-                     dteaprvspace = response.data[0].excepapprv_date.split(" ");                    
-                     ddmmyyaprv = dteaprvspace[0];
-                     dteaprv = dteaprvspace[0].split("-");
-                     ddmmyyaprv = dteaprv[2]+'-'+dteaprv[1]+'-'+dteaprv[0];
-                     timesaprv = dteaprvspace[1];
-                    /* for apprvl end */
-                    website('#Mymodalaudittrail .reqstapprvd' ).html(ddmmyyaprv+' '+timesaprv);
-               }
-           }
-           else
-           {
-               website('#Mymodalaudittrail .reqstapprvd' ).html(''); 
-           }
+
            if(response.persnreq[0].trading_status == 1)
            {
                website('#Mymodalaudittrail .reqsttrdngsts' ).html('Completed');
@@ -1239,6 +1380,7 @@ website('body').on("click",".excprequsttrail",function(e){
                website('#Mymodalaudittrail .reqststsupdate' ).html(''); 
                website('#Mymodalaudittrail .reqsttranscmplt').html('');
            }
+        }
             
            website('#Mymodalaudittrail').modal('show'); 
         }
@@ -1253,4 +1395,241 @@ website('body').on("click",".excprequsttrail",function(e){
     {}
   });
    
+});
+
+website("body").on("click",".uploadfile",function(e)
+{  
+    var editid= website(this).attr('editid');
+    var typeofreq=website(this).attr('typeofreq');
+    var compid= website(this).attr('compid');
+    var sectype= website(this).attr('sectype');
+    var total=website(this).attr('modtotal');
+    var priceofshare=website(this).attr('modpriceshare');
+    var noofshare=website(this).attr('modnoofshare');
+    var transdate=website(this).attr('modaltransdate');
+    var tradedate = website(this).attr('trading_date');
+    var createdate = website(this).attr('create_date');
+
+   
+    var status=website("#modalcheck").prop("checked");
+    if(status==true)
+    {
+        website("#modalcheck"). prop("checked", false);
+    }
+    
+    website.ajax({
+        url:'tradingrequest/checktradestatus',
+        data:{editid:editid,typeofreq:typeofreq},
+        method:'POST',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType:"json",
+        cache:false,
+        beforeSend: function()
+        { },
+        uploadProgress: function(event, position, total, percentComplete)
+        { },
+        success: function(response, textStatus, jqXHR) 
+        {
+        var tradehtml='';
+
+        if(response.logged===true)
+        {
+            var transactedshares=0;
+            for(var i=0;i<response.data.length;i++)
+            {
+                var no_of_share=response.data[i].no_of_share;
+                var price_per_share=response.data[i].price_per_share;
+                var total_amount=response.data[i].total_amount;
+                var date_of_transaction=response.data[i].date_of_transaction;
+                var demat_acc_no=response.data[i].demat_acc_no;
+                var dnlfile=response.data[i].file;
+
+                tradehtml+='<tr>';
+                tradehtml+='<td>'+no_of_share+'</td>';
+                tradehtml+='<td>'+price_per_share+'</td>';
+                tradehtml+='<td>'+total_amount+'</td>';
+                tradehtml+='<td>'+date_of_transaction+'</td>';
+                tradehtml+='<td>'+demat_acc_no+'</td>';
+                tradehtml+='<td>'+dnlfile+'</td>';
+                tradehtml+='<td><i class="fa fa-trash-o tradedel" delmytrade="'+response.data[i].id+'" style="font-size:15px; color:#F44336;"></i></td>';
+                tradehtml+='</tr>';
+                transactedshares=parseInt(transactedshares)+parseInt(no_of_share);
+                website('#nottrade').css("display", "none");
+            }
+        }
+        else
+        {
+            tradehtml+='<tr>';
+            tradehtml+='<td colspan="7" style="text-align:center;">Data Not Found</td>';
+            tradehtml+='</tr>';
+            website('#nottrade').css("display", "block")
+        }
+
+        // ------ Start Fields ------
+        if(transactedshares)
+        {   var leftnfshr = noofshare-transactedshares; }
+        else
+        {   var leftnfshr = noofshare; }
+        if(leftnfshr<0)
+        {   var leftnfshr = 0; }
+
+        website('#noofsharemodal').val(leftnfshr);
+        website('#pricepersharemodal').val(priceofshare);
+        website('#totalamtmodal').val(total);
+        website('#transdatemodal').val(transdate);
+
+        var appendsel = '';
+        website.each(response.dematacc, function (index, value) 
+        {  
+            appendsel += '<option value='+value['accountno']+'>'+value['accountno']+'</option>';
+        });
+        website('#dmatacc').html(appendsel);
+        // ------ End Fields ------
+
+        // ------ Start OtherFields ------
+        website('#uploadmyfile #transtype').val(typeofreq);
+        website('#noofffshares').val(noofshare);
+        website('#transshare').val(transactedshares);
+        website('#uploadmyfile #filereqid').val(editid);
+        website('#uploadmyfile #compid').val(compid);
+        website('#uploadmyfile #sectype').val(sectype);
+        website('#uploadmyfile #tradedate').val(tradedate);
+        website('#uploadmyfile #createdate').val(createdate);
+        // ------ End OtherFields ------
+
+        website('.tradeviewtb').html(tradehtml);
+        console.log(response.data.length);
+        if(response.data.length == 0)
+        {
+            website('.cmplttrans').hide();
+        }
+        else
+        {
+            website('.trade').show();
+        }
+        website('#uploadmyfile').modal('show');
+        datepicker();
+        } 
+    });
+});
+
+website('#uploadtrade #noofsharemodal,#pricepersharemodal').on('keyup', function(e){
+    var noofshare=website('#noofsharemodal').val();
+    var pricepershare=website('#pricepersharemodal').val();
+    if(noofshare !='' && pricepershare!='')
+    {
+        var totalamt=noofshare*pricepershare;
+        website('#totalamtmodal').val(totalamt);
+    }  
+    else
+    {
+        website('#totalamtmodal').val('');
+    }
+});
+
+website(":checkbox[name='modalcheck']").change(function() {
+    var checkbox_Value = website(this).val();
+    var chkhtml='';
+    if (website(this).is(':checked')) 
+    {
+        website(this).attr('value', 'false');
+        chkhtml='<input type="button" id="donetrade" class="btn btn-primary" value="Final Submit" >';
+    } 
+    else
+    {
+        chkhtml='';
+    }
+    website('#typebtn').html(chkhtml);
+});
+
+website("body").on("click","#donetrade",function(e){
+    var reqid=website('#filereqid').val();
+    website.ajax({
+        url:'tradingrequest/donetrade',
+        data:{reqid:reqid},
+        method:'POST',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType:"json",
+        cache:false,
+        beforeSend: function()
+        {  website('.preloder_wraper').fadeIn(); },
+        uploadProgress: function(event, position, total, percentComplete)
+        { website('.preloder_wraper').fadeIn();},
+        success: function(response, textStatus, jqXHR) 
+        {
+            if(response.logged==true)
+            {
+                new PNotify({title: 'Alert',
+                text: response.message,
+                type: 'university',
+                hide: true,
+                styling: 'bootstrap3',
+                addclass: 'dark ',
+                }); 
+                website('#uploadmyfile').modal('hide');
+                getalltradingrequest();
+            }
+            else
+            {
+                new PNotify({title: 'Alert',
+                text: response.message,
+                type: 'university',
+                hide: true,
+                styling: 'bootstrap3',
+                addclass: 'dark ',
+                }); 
+            }
+        },
+        complete: function(response) 
+        {
+            website('.preloder_wraper').fadeOut();
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {   }
+
+    });
+
+});
+
+website("body").on("click",".exereason",function(e){
+    var reqid = website(this).attr('rqstid');
+    var trdeid = website(this).attr('trdeid');
+    var type = website(this).attr('type');
+    var formdata = {reqid:reqid,trdeid:trdeid,type:type}
+    website.ajax({
+        url:'exceptionreq/fetchreasonofexe',
+        data:formdata,
+        method:'POST',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType:"json",
+        cache:false,
+        beforeSend: function()
+        {  },
+        uploadProgress: function(event, position, total, percentComplete)
+        { },
+        success: function(response, textStatus, jqXHR) 
+        {
+            if(response.logged==true)
+            {
+                website('#showexereason #exereason').val(response.data.exception_reason)
+                website('#showexereason').modal('show');
+            }
+            else
+            {
+                new PNotify({title: 'Alert',
+                text: 'Something went wrong',
+                type: 'university',
+                hide: true,
+                styling: 'bootstrap3',
+                addclass: 'dark ',
+                }); 
+            }
+        },
+        complete: function(response) 
+        {
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {   }
+
+    });
 });

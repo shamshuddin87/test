@@ -232,17 +232,12 @@ website('body').on('click','.sendrequst',function()
                     {
                       //form 2
                         getform('form2');
-                        //website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
-                        //website('#chckexcptnrequest').modal('show');
                     }
-                     
                 }
                 else
                 {
                   //form 1
                   getform('form1');
-
-                  
                 }
             }
             else
@@ -257,7 +252,7 @@ website('body').on('click','.sendrequst',function()
             }
         },
         complete: function(response) 
-        {   website('.preloder_wraper').fadeOut();   },
+        {   /*website('.preloder_wraper').fadeOut();*/   },
         error: function() 
         {   }
     });
@@ -271,9 +266,9 @@ function getform(formtype)
         data:{formtype:formtype},
         dataType:"json",
         beforeSend: function()
-        {   },
+        { website('.preloder_wraper').fadeIn();  },
         uploadProgress: function(event, position, total, percentComplete)
-        {   },
+        {  website('.preloder_wraper').fadeIn(); },
         success: function(response) 
         {
             //console.log(response); return false;
@@ -294,9 +289,9 @@ function getform(formtype)
             }
         },
         complete: function(response)
-        {   },
+        { website('.preloder_wraper').fadeOut();  },
         error: function() 
-        {   }
+        { website('.preloder_wraper').fadeOut();  }
     });
 }
 
@@ -465,25 +460,8 @@ website('body').on('click','#Yesreqst',function(e)
       {  website('.preloder_wraper').fadeIn();  },
       success: function(response, textStatus, jqXHR)
       {
-        console.log(response);
-           if(response.logged === true)
+        if(response.logged === true)
          {
-           
-            if(response.message =='Please Complete Your Latest Trade..!!')
-            {
-                new PNotify({title: 'Alert',
-                    text: response.message,
-                    type: 'university',
-                    hide: true,
-                    styling: 'bootstrap3',
-                    addclass: 'dark ',
-              });  
-            }
-            else
-            {
-                website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
-                website('#chckexcptnrequest').modal('show');
-            }
             new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
@@ -546,6 +524,7 @@ website('#uploadtrade').ajaxForm({
                             styling: 'bootstrap3',
                             addclass: 'dark ',
                           }); 
+//                      website("#exceptnresionmodal").modal('show');
                   }
                   else if(response.message=="limit exception")
                   {
@@ -559,7 +538,7 @@ website('#uploadtrade').ajaxForm({
                             styling: 'bootstrap3',
                             addclass: 'dark ',
                           }); 
-
+//                      website("#exceptnresionmodal").modal('show');
                   }
                   else
                   {
@@ -1784,6 +1763,16 @@ website('body').on('click','#Noexcrequest',function(e)
       window.location.href = base_url+'tradingrequest';
     setTimeout(function(){window.location.reload();}, 1000);
 });
+
+//website('body').on('click','#reasonexe',function(e)
+//{
+//    var reasonmsg = website("#reason").val();
+//    var status = website("#uploadtrade #reasonexe").val(reasonmsg);
+//    if(status)
+//    {
+//        website("#exceptnresionmodal").modal('hide');
+//    }
+//});
 
 website('body').on('click','#reasonexetrans',function(e)
 {

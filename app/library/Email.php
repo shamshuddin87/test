@@ -399,7 +399,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         $mail->addAddress($to, 'Volody');
         $mail->Subject = $subject;
         $mail->msgHTML($gethtml);
-        // $mail->addAttachment(''.$summdoc.'');
+        $mail->addAttachment(''.$emaildata['pdfpath'].'');
 
         if ($mail->Send()) {
             $get = array('logged'=>true,'message'=>'sent');
@@ -481,7 +481,11 @@ Class Email extends Phalcon\Mvc\User\Component {
         $mail->addAddress($to, 'Volody');
         $mail->Subject = $subject;
         $mail->msgHTML($gethtml);
-        // $mail->addAttachment(''.$summdoc.'');
+        if($type == 'contratrd')
+        {
+            $mail->addAttachment(''.$emaildata['pdfpath'].'');
+        }
+        
         //send the message, check for errors
 
         if ($mail->Send()) {

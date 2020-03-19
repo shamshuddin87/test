@@ -264,11 +264,11 @@ class Exceptionreqcommon extends Component
             LEFT JOIN `listedcmpmodule` cmpdl ON cmpdl.`id` = pr.`id_of_company` 
             LEFT JOIN `relative_info` relative ON relative.`id` = pr.`relative_id` 
             LEFT JOIN `request_type` rt ON rt.`id` = pr.`type_of_request` 
-            INNER JOIN `trading_status` ts ON ts.`req_id` = pr.`id` 
+            LEFT JOIN `trading_status` ts ON ts.`req_id` = pr.`id` 
             LEFT JOIN `type_of_transaction` obj ON obj.`id`=pr.`type_of_transaction`
             JOIN `req_securitytype` sec ON sec.`id` = pr.`sectype`
-            WHERE ts.`excep_approv`='1' AND pr.`user_id`='".$uid."' ORDER BY pr.`id` DESC ".$mainqry;
-        //echo '<pre>';print_r($queryget); exit;     
+            WHERE (ts.`excep_approv`='1' OR pr.`sent_contraexeaprvl`='1') AND pr.`user_id`='".$uid."' ORDER BY pr.`id` DESC ".$mainqry;
+            //echo '<pre>';print_r($queryget); exit;     
 
          try{
                 $exeget = $connection->query($queryget);
@@ -308,7 +308,7 @@ class Exceptionreqcommon extends Component
                 sec.`security_type`, 
                 memb.`deptaccess` AS `department` 
                 FROM `personal_request` pr
-                INNER JOIN `trading_status` obj ON obj.`req_id`=pr.`id`
+                LEFT JOIN `trading_status` obj ON obj.`req_id`=pr.`id`
                 LEFT JOIN `listedcmpmodule` cmpdl ON cmpdl.`id` = pr.`id_of_company` 
                 LEFT JOIN `relative_info` relative ON relative.`id` = pr.`relative_id` 
                 LEFT JOIN `request_type` rt ON rt.`id` = pr.`type_of_request` 
@@ -316,7 +316,7 @@ class Exceptionreqcommon extends Component
                 LEFT JOIN `req_securitytype` sec ON sec.`id` = pr.`sectype`
                 LEFT JOIN `it_memberlist` memb ON memb.`wr_id` =  pr.`user_id`
                 LEFT JOIN `con_dept` dpt ON memb.`deptaccess` = dpt.`id`
-                WHERE obj.`excep_approv`='1' AND FIND_IN_SET('".$uid."',pr.`approver_id`) ORDER BY pr.`id` DESC ".$mainqry;
+                WHERE (obj.`excep_approv`='1' OR pr.`sent_contraexeaprvl`='1') AND FIND_IN_SET('".$uid."',pr.`approver_id`) ORDER BY pr.`id` DESC ".$mainqry;
             //echo $queryget;exit;
         }
         else
@@ -338,7 +338,7 @@ class Exceptionreqcommon extends Component
                 LEFT JOIN `req_securitytype` sec ON sec.`id` = pr.`sectype`
                 LEFT JOIN `it_memberlist` memb ON memb.`wr_id` =  pr.`user_id`
                 LEFT JOIN `con_dept` dpt ON memb.`deptaccess` = dpt.`id`
-                WHERE obj.`excep_approv`='1' AND pr.`user_id` IN (".$alluserid.") ORDER BY pr.`id` DESC ".$mainqry;
+                WHERE (obj.`excep_approv`='1' OR pr.`sent_contraexeaprvl`='1') AND pr.`user_id` IN (".$alluserid.") ORDER BY pr.`id` DESC ".$mainqry;
             //echo $queryget;exit;
         }
         //echo $queryget;exit;
@@ -367,14 +367,21 @@ class Exceptionreqcommon extends Component
             return $getlist;
       }
 
-      public function excdelpersonalreq($uid,$usergroup,$delid)
+      public function excdelpersonalreq($uid,$usergroup,$delid,$reqtype)
 
       {
            $connection = $this->dbtrd;
            $myarr=array();
            $time = time();
           try{
-            $query="DELETE FROM trading_status WHERE id='".$delid."'";
+            if($reqtype == 'trade')
+            {
+                $query="DELETE FROM trading_status WHERE id='".$delid."'";
+            }
+            else if($reqtype == 'personal')
+            {
+                $query="DELETE FROM `personal_request` WHERE id='".$delid."'";
+            }
           //  print_r($query);exit;
             $exessa= $connection->query($query);
 
@@ -511,12 +518,41 @@ class Exceptionreqcommon extends Component
 
                   for($i=0;$i<sizeof($selctedid);$i++)
                   {
+                      if($selctedid[$i] == 'null')
+                      {
+                        $getmasterid = $this->tradingrequestcommon->getmasterid($uid);
+                        $queryget = "SELECT * FROM  `trading_days` WHERE `user_id`='".$getmasterid['user_id']."'";
+                        $exeget = $connection->query($queryget);
+                        $getnum = trim($exeget->numRows());
+
+                        if($getnum>0)
+                        {
+                            $row = $exeget->fetch();
+                            $mydate=date('d-m-Y');
+                            $tradedate=date('d-m-Y', strtotime($mydate. ' + '.$row['noofdays'].' days'));
+                            $year = date('Y');
+                            if($myid<10)
+                            {
+                               $myid = '0'.$myid;
+                            }
+                            $approverno = 'PCT-'.$myid.'/'.$year;
+                        }
+                        else
+                        {
+                            $tradedate = '';
+                        }
+                         $querychk = "UPDATE `personal_request` SET  `contraexcapvsts`='1',`contraexcapvdte`=NOW(),`trading_date`='".$tradedate."',`approverno`='".$approverno."'  WHERE id='".$myid."'";
+                         $exeget = $connection->query($querychk);
+                      }
+                      else
+                      {
+                      
                          $query = "UPDATE `trading_status` SET  `excepapp_status`='1',`excepapprv_date`=NOW()  WHERE id='".$selctedid[$i]."'";   
                          $querychk = "UPDATE `personal_request` SET  `exception_approve`='0'  WHERE id='".$myid."'";   
                         
                          $exeget = $connection->query($query);
                          $exeget1 = $connection->query($querychk);
-                       
+                       }
                        
                        //  print_r($query);exit;
                        if($exeget)
@@ -988,7 +1024,7 @@ class Exceptionreqcommon extends Component
         $connection = $this->dbtrd;
         if($type == 'contratrd')
         {
-             $queryget = "SELECT pr.*,memb.`fullname`,cmp.`company_name`,secu.`security_type`,pr.`type_of_transaction` ,trans.`transaction`,pr.`approver_id`,pr.`no_of_shares` AS noofsecurity 
+             $queryget = "SELECT pr.*,memb.`fullname`,cmp.`company_name`,secu.`security_type`,pr.`type_of_transaction` ,trans.`transaction`,pr.`approver_id`,pr.`no_of_shares` AS noofsecurity,pr.`pdffilepath` 
             FROM `personal_request` pr 
             LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = pr.`user_id` 
             LEFT JOIN `listedcmpmodule` cmp ON cmp.`id` = pr.`id_of_company` 
@@ -1033,9 +1069,9 @@ class Exceptionreqcommon extends Component
                     }
 
                     $getadminemail = $this->tradingplancommon->getadminmailid($approverid[0]);
-
                     array_push($getapproveremail,$getadminemail);
-                    $getlist = array('maildata'=>$getemaildata,'emailid'=>$getapproveremail);
+                    $approveremailnew = array_unique($getapproveremail);
+                    $getlist = array('maildata'=>$getemaildata,'emailid'=>$approveremailnew);
                 }
                 else{
                     $getlist[] = array();
@@ -1047,5 +1083,46 @@ class Exceptionreqcommon extends Component
             }
         return $getlist;
    }
+    
+    public function fetchreasonofexe($getuserid,$user_group_id,$reqstid,$trdid,$type)
+    {
+        $connection = $this->dbtrd;
+        if($type == 'contra')
+        {
+             $queryget = "SELECT pr.*
+             FROM `personal_request` pr 
+             WHERE pr.`id` = '".$reqstid."' ";
+        }
+        else if($type == 'trade')
+        {
+            $queryget = "SELECT ts.*
+            FROM `trading_status` ts
+            WHERE ts.`id` = '".$trdid."'";
+        }
+        //echo $queryget;exit;
+        try
+        {
+                $exeget = $connection->query($queryget);
+                $getnum = trim($exeget->numRows());
+
+                if($getnum>0)
+                {
+                    while($row = $exeget->fetch())
+                    {
+                        $getlist = $row;
+                    }
+                   
+                }
+                else{
+                    $getlist = array();
+                }
+            }
+            catch (Exception $e)
+            {
+                $getlist = array();
+            }
+        //print_r($getlist);exit;
+        return $getlist;
+    }
     
   }

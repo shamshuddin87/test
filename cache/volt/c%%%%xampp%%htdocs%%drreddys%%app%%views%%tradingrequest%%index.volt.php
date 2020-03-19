@@ -595,7 +595,26 @@
         </div>
     </div>
 </div>
+<div id="exceptnresionmodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <h3>Please Enter Your Reason</h3>
+              <button type="button" class="close" data-dismiss="modal">
+                    &times;</button>
+            </div>
+            <div class="modal-body">
+           
+           <textarea  width="80%" id="reason"></textarea>
 
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" id="reasonexe">Submit</button> 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 <div id="reasonexceptn" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
