@@ -433,6 +433,8 @@ class SensitiveinformationController extends ControllerBase
         $cin = $this->session->memberdoccin;
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
         $firstname = $this->session->loginauthspuserfront['firstname'];
+        $nameoflogged = $this->session->loginauthspuserfront['username'];
+        //print_r($fullname);exit;
         $lastname = $this->session->loginauthspuserfront['lastname'];
         $loggedemail = $this->session->loginauthspuserfront['email'];
         $timeago = time();
@@ -551,7 +553,7 @@ class SensitiveinformationController extends ControllerBase
                         
                     }
                   //print_r($filepath);exit;
-                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail);
+                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail,$nameoflogged);
                   //print_r($getres);exit;
                     
                   if($getres == true)

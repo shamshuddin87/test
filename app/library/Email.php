@@ -1518,12 +1518,12 @@ Class Email extends Phalcon\Mvc\User\Component {
     }
 
 
-    public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek)
+    public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek,$nameoflogged)
     {
 
         //print_r($emailid);exit;
-        $gethtml = $this->htmlelements->notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek);
-        //print_r($addedbyemail);exit;
+        $gethtml = $this->htmlelements->notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek,$nameoflogged);
+        //print_r($gethtml);exit;
         $mail = new PHPMailer();
         $mail->isSMTP();
         $mail->SMTPDebug = 2;

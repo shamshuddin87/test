@@ -249,7 +249,7 @@
                         </section>
                      </div> -->
                      <div class="step_1">
-                        <i class="sec">1</i> 
+                        <i class="sec">2</i> 
                         <p>Change UPSI Owner</p>
                         <section class="col col-md-12 col-xs-12">
                            <!--   <div class="input">
@@ -293,7 +293,7 @@
                         </section>
                         
                        
- </div>
+                    </div>
                      <div class="step_1">
                         <div class="div">
                            <i class="sec">3</i> 
@@ -446,24 +446,22 @@
       </div>
    </div>
 </div>
+
+
 <div id="modaltradingwindowclose" class="modal fade" role="dialog">
-   <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-            &times;</button>
-            <h4 class="modal-title">
-            </h4>
-         </div>
-         <div class="modal-body">
-            <h4 style="text-align: center;">You have just created an entry for UPSI, would you like to close the trading window.</h4>
-         </div>
-         <div class="modal-footer">
-            <a href="blackoutperiod"><input type="button" class="btn btn-success" id="tradingwindowyes" value="Yes"></a>
-            <input type="button" class="btn btn-success"  id="tradingwindowno" value="No">
-         </div>
-      </div>
-   </div>
+    <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-body">
+
+                     <button type="button" class="close" data-dismiss="modal">
+                     &times;</button>                    
+                     <h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">You have just created an entry for UPSI, would you like to close the trading window.</h5>
+                  </div>
+                  <div class="modal-footer" style="border-top:none;">
+             <a href="blackoutperiod"><button type="button" class="btn btn-primary" id="tradingwindowyes" >Yes</button> </a>
+             <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="tradingwindowno">No</button>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- ########################################## PageContent End ########################################## -->
