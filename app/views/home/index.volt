@@ -439,29 +439,29 @@
         </div>
 
 <div class="col-md-2 col-sm-4 col-xl-6">
-            <a href="sensitiveinformation/infosharing">
-             <section class="col panel left-border6 panel-featured-left panel-featured-quartenary">
-                <div class="panel-body">
-                    <div class="widget-summary">
-                        <div class="widget-summary-col widget-summary-col-icon">
-                        <div class="summary-icon bg-four">
-                        <i class="fa fa-info-circle"></i>
-                        </div>
-                    </div>
-                            <div class="widget-summary-col">
-                               <div class="summary">
-                                  <h4 class="title">UPSI & Connected Person</h4>
-                            <!-- <div class="info">
-                            <strong class="amount">3765</strong>
-                            </div> -->
-                            </div>
-                                
-                            </div>
-                    </div>
-                </div>
-             </section>
-         </a>
-        </div>
+      <a href="sensitiveinformation/infosharing">
+       <section class="col panel left-border6 panel-featured-left panel-featured-quartenary">
+          <div class="panel-body">
+              <div class="widget-summary">
+                  <div class="widget-summary-col widget-summary-col-icon">
+                  <div class="summary-icon bg-four">
+                  <i class="fa fa-info-circle"></i>
+                  </div>
+              </div>
+                      <div class="widget-summary-col">
+                         <div class="summary">
+                            <h4 class="title">UPSI & Connected Person</h4>
+                      <!-- <div class="info">
+                      <strong class="amount">3765</strong>
+                      </div> -->
+                      </div>
+                          
+                      </div>
+              </div>
+          </div>
+       </section>
+   </a>
+ </div>
     </div>
             </div>
                 </div>
