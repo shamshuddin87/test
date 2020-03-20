@@ -2281,7 +2281,7 @@ public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$e
                 <div class="header" style="margin-bottom:50px;">
                     <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
                         <div style="    text-shadow: 1px 0px 2px #626262;
-        color: #626262;">Upsi Updated</div>
+        color: #626262;">UPSI Updated</div>
                     </div>
                      <div style="clear:both;"></div>
                 </div>
@@ -2491,6 +2491,7 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname)
 public function externalmember($uniquemail,$sharingdate,$upsiname,$toname)
   {   
        //echo "<pre>";print_r($userids);exit;
+    $title ="You have been added to digital database of Dr. Reddy's Laboratories Ltd";
             $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <html xmlns="htth3://www.w3.org/1999/xhtml">
 
@@ -2531,7 +2532,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname)
                 <div class="header" style="margin-bottom:25px;">
                     <div class="header_img" style="/*width:300px;*/float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
                         <div style="    text-shadow: 1px 0px 2px #626262;
-        color: #626262;">New UPSI Sharing</div>
+        color: #626262;">'.$title.'.</div>
                     </div>
                      <div style="clear:both;"></div>
                 </div>
@@ -2593,20 +2594,17 @@ public function mailofpersonalinfo($data)
   $html='<!DOCTYPE html>
    <html>
   <head>
-  <style>
-  table, th, td {
-  }
-  </style>
   </head>
 
  <body style="margin:0; background: #e5e5e5;">
         <table cellpadding="0" cellspacing="0" width="100%" border="0">
     <tr>
-      <td>
-      <table cellpadding="0" cellspacing="0" border="0" style="font-family:"Roboto",Arial, Helvetica, sans-serif; max-width:680px; font-size:12px; color:#333; background: #fff;" align="center">
+     <td>
+     <table cellpadding="0" cellspacing="0" border="0" style="font-family:"Roboto,Arial, Helvetica, sans-serif; max-width:680px; font-size:12px; color:#333; background: #fff; align="center">
+
        <tr>
             <td style="padding:20px 0 20px 0px; background: #f8f8f8;width:50%;" align="center">
-               <a href="https://www.volody.com/" target="_blank" style="border:0; outline:0;">
+               <a href="https://www.volody.com/" target="_blank" style="border:0; outline:0;">  
                 <img src="https://www.volody.com/mainadmin/img/emailer/logo.png" border="0"/>
                </a>
             </td>
@@ -2623,17 +2621,17 @@ public function mailofpersonalinfo($data)
 
      
       <tr>
-         <td  colspan="2" style="padding-top: 20px;padding-left: 20px background: #fff;">
+         <td  colspan="2" style="padding-top: 20px;padding-left: 20px; background: #fff;">
           <p>Dear '.$data['fname'].',</p>
           <p>You have updated Personal Information section of ‘personal information’ under ‘My info’. This is for your information..</p>
-        
+       
          </td>
       </tr>
 
       <tr>
          <td align="center" colspan="2" style="padding-top: 20px; background: #fff;">
           <form target="_blank">
-            
+           
 
              <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
               <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
@@ -2756,13 +2754,6 @@ public function mailofpersonalinfo($data)
 
 
 
-     <!--  <tr>
-        <td colspan="2" align="center">
-        <div style="padding:40px 0 50px 0; background: #fff;">
-        <a href="https://www.volody.com/user/" style="background:#27b16d;border-radius:3px;padding:12px 40px;color:#fff;font-size:16px;text-decoration:none;letter-spacing:1px" target="_blank" data-saferedirecturl="">Login Now!</a>
-        </div>
-        </td>
-      </tr> -->
      
       <tr>
           <td style="padding:0px 0 20px 0; background: #f7f7f7; padding: 10px;" colspan="2">
@@ -2862,7 +2853,7 @@ public function notifyupsi($addedby,$addedbyemail,$title,$desc,$todaydate,$dayOf
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
         <p>Dear '.$addedby.'</p>
-        <p>You have created an entry in the UPSI module for '.$title.' on '.$dayOfWeek.','.$todaydate.'. This is for your information. 
+        <p>You have created an entry in the UPSI module for '.$title.' on '.$dayOfWeek.', '.$todaydate.'. This is for your information. 
           </p>
         
             </div>

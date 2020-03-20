@@ -259,9 +259,9 @@ class HomeController extends ControllerBase
                     //print_r($getdematsstatus);exit;
                     if((empty($getresponse) &&  $getdematsstatus==1) || (empty($getresponse) &&  $getdematsstatus==2))
                     {
-                       $data = array("logged" => false,'message' => "You will not be allowed access until you update your demat account details. Please click no if you don’t have a demat account.",'data'=>'portfolio','usergroup'=>$usergroup);
+                       $data = array("logged" => false,'message' => "You will not be allowed access until you update your demat account details. Please click  'No' if you don’t have a demat account.",'data'=>'portfolio','usergroup'=>$usergroup);
                          $this->response->setJsonContent($data);
-                       $this->response->setJsonContent($data);
+                       
                     }
                     else
                     {

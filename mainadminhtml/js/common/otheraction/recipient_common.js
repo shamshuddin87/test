@@ -273,14 +273,14 @@ var id = website(this).attr('aprvllistid');
             if(response.data['0'].category == 16)
             {
               
-                   var html = '<section class="col col-md-6 col-xs-6"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
+                   var html = '<div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div>';
                    website('#Mymodaledit .othercateedit').html(html);
                    website("#Mymodaledit #othercategory").val(response.data['0'].othercategory);
                   
             }
             else if(response.data['0'].category == 14)
             {
-                   var html = '<section class="col col-md-6 col-xs-6"><div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
+                   var html = '<div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div>';
                    website('#Mymodaledit .employeecateedit').html(html);
                    website("#Mymodaledit #empcategory").val(response.data['0'].department);
                    website("#Mymodaledit #entity").attr("readonly",true);
@@ -319,7 +319,7 @@ var id = website(this).attr('aprvllistid');
     error: function(jqXHR, textStatus, errorThrown)
     {}
   });
-    
+  
     
 });
 
@@ -335,6 +335,7 @@ website('#updaterecipient').ajaxForm({
         { website('.preloder_wraper').fadeIn();},
         success: function(response, textStatus, jqXHR) 
         {
+            website('.preloder_wraper').fadeOut();
            if(response.logged === true)
            {
               //fetchmasterlist();
@@ -716,6 +717,11 @@ website("body").on("click",".myupmodal",function(e){
 website(document).ready(function(){
     
     website('#panentity').keyup(function(e){
+    website(this).val(website(this).val().toUpperCase());
+   
+    });
+
+    website('#updaterecipient #panentity').keyup(function(e){
     website(this).val(website(this).val().toUpperCase());
    
     });

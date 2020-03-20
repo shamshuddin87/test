@@ -79,9 +79,9 @@ else
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {if(response.message=="exception")
-{website("#subfile").css("display","none");website("#excdiv").css("display","block");new PNotify({title:'Alert',text:"You have not traded within the trading window. Please take exception approval.",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website("#exceptnresionmodal").modal('show');}
+{website("#subfile").css("display","none");website("#excdiv").css("display","block");new PNotify({title:'Alert',text:"You have not traded within the trading window. Please take exception approval.",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else if(response.message=="limit exception")
-{website("#subfile").css("display","none");website("#excdiv").css("display","block");new PNotify({title:'Alert',text:"You have Exceed The Limit Of No Of Alloted Shares.",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website("#exceptnresionmodal").modal('show');}
+{website("#subfile").css("display","none");website("#excdiv").css("display","block");new PNotify({title:'Alert',text:"You have Exceed The Limit Of No Of Alloted Shares.",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
 {if(response.exceptinappr==1)
 {var baseHref=getbaseurl();var redirecturl=baseHref+"exceptionreq";window.location.href=redirecturl;}
@@ -294,9 +294,7 @@ else
 {}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});});website('body').on("click","#Yesexcreqst",function(e){var link=website('#chckexcptnrequest #pdflink').attr('href');website('#reasonexceptn #reasonlink').attr('link',link);website("#reasonexceptn").modal('show');});website('body').on('click','#Noexcrequest',function(e)
-{new PNotify({title:'Alert',text:'You cannot send request',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});var base_url=getbaseurl();window.location.href=base_url+'tradingrequest';setTimeout(function(){window.location.reload();},1000);});website('body').on('click','#reasonexe',function(e)
-{var reasonmsg=website("#reason").val();var status=website("#uploadtrade #reasonexe").val(reasonmsg);if(status)
-{website("#exceptnresionmodal").modal('hide');}});website('body').on('click','#reasonexetrans',function(e)
+{new PNotify({title:'Alert',text:'You cannot send request',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});var base_url=getbaseurl();window.location.href=base_url+'tradingrequest';setTimeout(function(){window.location.reload();},1000);});website('body').on('click','#reasonexetrans',function(e)
 {var reasonmsg=website("#reasontrans").val();var approverids=website('#approverid').val();var reqname=website('#reqname').val();var typeofrequests=website('#Mymodalreq #typeofrequest').val();var link=website('#reasonexceptn #reasonlink').attr('link');if(typeofrequests==3)
 {var dpuserid=website("#dpuserid").val();var dpusergroup=website("#dpusergroup").val();}
 else

@@ -157,12 +157,12 @@
                   <div class="col-md-12 col-xs-12"> 
 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Holdings In Shares</label>  
+                  <label for="age">Holdings In Shares*</label>  
                   <input type="text" id="shareholdng" name="shareholdng" value="<?php echo($personaldetails['sharehldng']) ?>" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                 </div>
                 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Holdings In ADRs</label>
+                  <label for="age">Holdings In ADRs*</label>
                   <input type="text" id="adrsholdng" name="adrsholdng" value="<?php echo($personaldetails['adrshldng']) ?>" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                </div>
 
@@ -237,12 +237,12 @@
                <div class="row">
                 <div class="col-md-12 col-xs-12"> 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Holdings In Shares</label>  
+                  <label for="age">Holdings In Shares*</label>  
                   <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                 </div>
                 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Holdings In ADRs</label>
+                  <label for="age">Holdings In ADRs*</label>
                   <input type="text" id="adrsholdng" name=" "  placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                </div>
 
@@ -545,11 +545,11 @@
                       <div class="row">
                     <div class="col-md-12 col-md-12">
                      <div class="col-md-4 "> 
-                          <label for="age">Holdings In Shares</label>
+                          <label for="age">Holdings In Shares*</label>
                           <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
                        </div>
                      <div class="col-md-4 col-xs-12"> 
-                          <label for="age">Holdings In ADRs</label>
+                          <label for="age">Holdings In ADRs*</label>
                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                       </div>
 
@@ -720,12 +720,12 @@
                            <div class="row">
                             <div class="col-md-12">
                             <div class="col-md-6">
-                              <label for="age">Holdings In Shares</label>
+                              <label for="age">Holdings In Shares*</label>
                               <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
                            </div>
 
                             <div class="col-md-6">
-                              <label for="age">Holdings In ADRs</label>
+                              <label for="age">Holdings In ADRs*</label>
                               <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                            </div>
 
@@ -841,15 +841,13 @@
           <div id="updateholdings1" class="modal fade" role="dialog">
             <div class="modal-dialog">
                <div class="modal-content">
-                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal">
-                     &times;</button>
-                  </div>
                   <div class="modal-body">
-                    
-                     <h5 style="text-align: center;">Please confirm whether you have submitted necessary disclosures under Insider Trading Regulations to the Compliance officer</h5>
+
+                     <button type="button" class="close" data-dismiss="modal">
+                     &times;</button>                    
+                     <h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Please confirm whether you have submitted necessary disclosures under Insider Trading Regulations to the Compliance officer</h5>
                   </div>
-                  <div class="modal-footer">
+                  <div class="modal-footer" style="border-top:none;">
                      <button type="button" class="btn btn-primary" id="yesdisclosures1">Yes</button> 
                       <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="nodisclosures1" onclick="nodisclosures(this.id);">No</button>
                   </div>
@@ -860,15 +858,13 @@
           <div id="updateholdings2" class="modal fade" role="dialog">
             <div class="modal-dialog">
                <div class="modal-content">
-                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal">
-                     &times;</button>
-                  </div>
                   <div class="modal-body">
-                    
-                     <h5 style="text-align: center;">Please confirm whether you have submitted necessary disclosures under Insider Trading Regulations to the Compliance officer</h5>
+
+                     <button type="button" class="close" data-dismiss="modal">
+                     &times;</button>                    
+                     <h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Please confirm whether you have submitted necessary disclosures under Insider Trading Regulations to the Compliance officer</h5>
                   </div>
-                  <div class="modal-footer">
+                  <div class="modal-footer" style="border-top:none;">
                      <button type="button" class="btn btn-primary" id="yesdisclosures2">Yes</button> 
                       <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="nodisclosures2" onclick="nodisclosures(this.id);">No</button>
                   </div>
@@ -879,15 +875,13 @@
           <div id="updateholdings3" class="modal fade" role="dialog">
             <div class="modal-dialog">
                <div class="modal-content">
-                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal">
-                     &times;</button>
-                  </div>
                   <div class="modal-body">
-                    
-                     <h5 style="text-align: center;">Please confirm whether you have submitted necessary disclosures under Insider Trading Regulations to the Compliance officer</h5>
+
+                     <button type="button" class="close" data-dismiss="modal">
+                     &times;</button>                    
+                     <h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Please confirm whether you have submitted necessary disclosures under Insider Trading Regulations to the Compliance officer</h5>
                   </div>
-                  <div class="modal-footer">
+                  <div class="modal-footer" style="border-top:none;">
                      <button type="button" class="btn btn-primary" id="yesdisclosures3">Yes</button> 
                       <button style="color: #522c8f !important;border-color: #cecece;" type="button" class="btn btn-default" id="nodisclosures3" onclick="nodisclosures(this.id);">No</button>
                   </div>
