@@ -437,8 +437,14 @@ website('body').on('click','#tradingwindowno',function(e){
     // {
     //     website('#updateupsimast').submit();
     // }
+
    
 });
+
+ function pageRedirect() {
+        window.location.replace("blackoutperiod");
+    }      
+   
 
 website('body').on('click','#tradingwindowyes',function(e){
     var actiontype = website(this).attr('action');
@@ -450,6 +456,7 @@ website('body').on('click','#tradingwindowyes',function(e){
     // {
     //     website('#updateupsimast').submit();
     // }
+
    
 });
 

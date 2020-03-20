@@ -213,7 +213,7 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="employeecateedit col col-md-8 col-xs-12">
                     </section>
                 
-                    <section class="othercateedit col col-md-12 col-xs-12">
+                    <section class="othercateedit col col-md-8 col-xs-12">
                     </section>
 
                     <section class="col col-md-4 col-xs-12">
