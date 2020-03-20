@@ -68,7 +68,8 @@ else if(!owner)
 {new PNotify({title:'Alert',text:'Please Select owner of UPSI',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
 {website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');website('#modaltradingwindowclose #tradingwindowyes').attr('action','insert');website('#modaltradingwindowclose').modal('show');}});website('body').on('click','#tradingwindowno',function(e){var actiontype=website(this).attr('action');if(actiontype=='insert')
-{website('#addupsimast').submit();}});website('body').on('click','#tradingwindowyes',function(e){var actiontype=website(this).attr('action');if(actiontype=='insert')
+{website('#addupsimast').submit();}});function pageRedirect(){window.location.replace("blackoutperiod");}
+website('body').on('click','#tradingwindowyes',function(e){var actiontype=website(this).attr('action');if(actiontype=='insert')
 {website('#addupsimast').submit();}});website('body').on('click','#tradingrej',function(e){website('#alertcommon #allalertmsg').html("Upsi Is Not Added..!!!");website('#alertcommon').modal('show');});website('#addupsimast').ajaxForm({dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)

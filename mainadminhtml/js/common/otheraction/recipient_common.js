@@ -276,6 +276,9 @@ var id = website(this).attr('aprvllistid');
                    var html = '<div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div>';
                    website('#Mymodaledit .othercateedit').html(html);
                    website("#Mymodaledit #othercategory").val(response.data['0'].othercategory);
+                    website("#Mymodaledit .nameofemployee").addClass('col-md-4').removeClass('col-md-12');
+
+                  
                   
             }
             else if(response.data['0'].category == 14)
@@ -284,6 +287,7 @@ var id = website(this).attr('aprvllistid');
                    website('#Mymodaledit .employeecateedit').html(html);
                    website("#Mymodaledit #empcategory").val(response.data['0'].department);
                    website("#Mymodaledit #entity").attr("readonly",true);
+                    website("#Mymodaledit .nameofemployee").addClass('col-md-4').removeClass('col-md-12');
             }
             else
             {
@@ -291,6 +295,8 @@ var id = website(this).attr('aprvllistid');
                     website('#Mymodaledit .empcateedit').css('display','none');
                     website('#Mymodaledit #othercategory').removeAttr('required');
                     website('#Mymodaledit #empcategory').removeAttr('required');
+                     website("#Mymodaledit .nameofemployee").addClass('col-md-12').removeClass('col-md-4');
+
             }
             website("#Mymodaledit #entity").val(response.data['0'].nameofentity);
             website("#Mymodaledit #name").val(response.data['0'].name);
