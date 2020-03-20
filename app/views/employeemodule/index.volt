@@ -157,12 +157,12 @@
                   <div class="col-md-12 col-xs-12"> 
 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Holdings In Shares</label>  
+                  <label for="age">Holdings In Shares*</label>  
                   <input type="text" id="shareholdng" name="shareholdng" value="<?php echo($personaldetails['sharehldng']) ?>" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                 </div>
                 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Holdings In ADRs</label>
+                  <label for="age">Holdings In ADRs*</label>
                   <input type="text" id="adrsholdng" name="adrsholdng" value="<?php echo($personaldetails['adrshldng']) ?>" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                </div>
 
@@ -237,12 +237,12 @@
                <div class="row">
                 <div class="col-md-12 col-xs-12"> 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Holdings In Shares</label>  
+                  <label for="age">Holdings In Shares*</label>  
                   <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                 </div>
                 
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Holdings In ADRs</label>
+                  <label for="age">Holdings In ADRs*</label>
                   <input type="text" id="adrsholdng" name=" "  placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                </div>
 
@@ -545,11 +545,11 @@
                       <div class="row">
                     <div class="col-md-12 col-md-12">
                      <div class="col-md-4 "> 
-                          <label for="age">Holdings In Shares</label>
+                          <label for="age">Holdings In Shares*</label>
                           <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
                        </div>
                      <div class="col-md-4 col-xs-12"> 
-                          <label for="age">Holdings In ADRs</label>
+                          <label for="age">Holdings In ADRs*</label>
                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                       </div>
 
@@ -695,7 +695,7 @@
                               <label for="Dob">DOB*</label>
                               <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="DOB" readonly>
                            </div>
-                           <div class="col-md-12"> 
+                           <div class="col-md-12" style="margin-bottom: 15px;">
                                <label style="display: block;" for="sex">Gender*</label>
                               <input type="radio" id="sex" name="sex" value="Male" checked/>Male
                               <input type="radio" id="sex" name="sex"  value="Female"/>Female
@@ -720,12 +720,12 @@
                            <div class="row">
                             <div class="col-md-12">
                             <div class="col-md-6">
-                              <label for="age">Holdings In Shares</label>
+                              <label for="age">Holdings In Shares*</label>
                               <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
                            </div>
 
                             <div class="col-md-6">
-                              <label for="age">Holdings In ADRs</label>
+                              <label for="age">Holdings In ADRs*</label>
                               <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                            </div>
 

@@ -373,8 +373,52 @@ formdata={delid:delid};
 });
 
 website('body').on('click','.addupsitype',function(e){
-    website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');
-    website('#modaltradingwindowclose').modal('show');
+
+    var title = website("#addupsimast #upnm").val();
+    var startdt = website("#addupsimast #pstartdte").val();
+    var owner = website("#addupsimast #owner").val();
+    
+    if(!title)
+    {
+         new PNotify({title: 'Alert',
+                    text: 'Please Enter title of UPSI',
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                 });
+    }
+    else if(!startdt)
+    {
+        new PNotify({title: 'Alert',
+                    text: 'Please Enter start date of UPSI',
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                 });
+  
+    }
+    else if(!owner)
+    {
+        new PNotify({title: 'Alert',
+                    text: 'Please Select owner of UPSI',
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                 });
+  
+    }
+    else
+    {
+        website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');
+        website('#modaltradingwindowclose #tradingwindowyes').attr('action','insert');
+        website('#modaltradingwindowclose').modal('show');
+    }
+
+   
+   
     //website('#addupsimast').submit();
 });
 
@@ -393,8 +437,29 @@ website('body').on('click','#tradingwindowno',function(e){
     // {
     //     website('#updateupsimast').submit();
     // }
+
    
 });
+
+ function pageRedirect() {
+        window.location.replace("blackoutperiod");
+    }      
+   
+
+website('body').on('click','#tradingwindowyes',function(e){
+    var actiontype = website(this).attr('action');
+    if(actiontype == 'insert')
+    {
+        website('#addupsimast').submit();
+    }
+    // else if(actiontype == 'update')
+    // {
+    //     website('#updateupsimast').submit();
+    // }
+
+   
+});
+
 
 website('body').on('click','#tradingrej',function(e){
          

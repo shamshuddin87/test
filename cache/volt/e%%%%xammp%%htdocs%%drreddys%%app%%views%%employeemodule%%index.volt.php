@@ -102,7 +102,7 @@
                 
                <div class="col-md-12 col-xs-12"> 
                    <div class="col-md-4 col-xs-12"> 
-                        <label class="gender" for="sex" style="margin-bottom: 10px;">Gender*</label>
+                        <label class="gender" for="sex">Gender*</label>
                         <?php if($personaldetails['sex'] == 'Male'){?>
                         <input type="radio" id="sex" name="sex" value="Male" checked/>Male
                         <input type="radio" id="sex" name="sex"  value="Female"/>Female
@@ -201,7 +201,7 @@
                 
                <div class="col-md-12 col-xs-12"> 
                    <div class="col-md-4 col-xs-12"> 
-                        <label class="gender" for="sex" style="margin-bottom: 10px;">Gender*</label>
+                        <label class="gender" for="sex">Gender*</label>
                         <input type="radio" id="sex" name="sex" value="Male" />Male
                         <input type="radio" id="sex" name="sex"  value="Female"/>Female
                         <input type="radio" id="sex" name="sex"  value="Other"/>Other
@@ -369,7 +369,7 @@
                               <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="dob">
                            </div>
                            <div class="col-md-6"> 
-                              <label class="gender" for="sex" style="margin-bottom: 10px;">Gender*</label>
+                              <label class="gender" for="sex">Gender*</label>
                               <input type="radio" id="sex" name="sex" value="Male" checked/>Male
                               <input type="radio" id="sex" name="sex"  value="Female"/>Female
                               <input type="radio" id="sex" name="sex"  value="Other"/>Other
@@ -528,7 +528,7 @@
                       
                     <div class="row">
                      <div class="col-md-4"> 
-                        <label style="display: block; margin-bottom: 10px;" for="sex">Gender*</label>
+                        <label style="display: block;" for="sex">Gender*</label>
                         <input type="radio" id="1_sex" name="sex" value="Male" />Male
                         <input type="radio" id="1_sex" name="sex"  value="Female">Female 
                         <input type="radio" id="1_sex" name="sex"  value="Other">Other 
@@ -695,15 +695,15 @@
                               <label for="Dob">DOB*</label>
                               <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="DOB" readonly>
                            </div>
-                           <div class="col-md-12"> 
-                               <label style="display: block;margin-bottom: 10px;" for="sex">Gender*</label>
+                           <div class="col-md-12" style="margin-bottom: 15px;"> 
+                               <label style="display: block;" for="sex">Gender*</label>
                               <input type="radio" id="sex" name="sex" value="Male" checked/>Male
                               <input type="radio" id="sex" name="sex"  value="Female"/>Female
                               <input type="radio" id="sex" name="sex"  value="Other"/>Other
                            </div>
                            
                            <div class="col-md-12"> 
-                              <label for="subject" style="margin-top: 10px;">Address*</label>
+                              <label for="subject">Address*</label>
                               <textarea id="address" name="address" placeholder="Write address.." style="height:100px"></textarea>
                            </div>
                            <div class="col-md-6">

@@ -83,13 +83,13 @@ class SensitiveinformationController extends ControllerBase
                 
                 if($panvalidate == false )
                 {
-                    $data = array("logged" => false,'message' => 'Please Enter Valid PAN Number',);
+                    $data = array("logged" => false,'message' => 'Please enter valid PAN number',);
                     $this->response->setJsonContent($data);
                     
                 }
                 else if(empty($email))
                 {
-                    $data = array("logged" => false,'message' => 'Please Enter Email Address',);
+                    $data = array("logged" => false,'message' => 'Please enter Email Address',);
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -297,6 +297,23 @@ class SensitiveinformationController extends ControllerBase
                 //echo "checking form data";print_r($this->request->getPost()); exit;
                 $filepath = '';
                 $agreemntfilepath = '';
+                $panvalidate = $this->elements->panvalidation($pan);
+                //print_r($panvalidate);exit;
+                
+                if($panvalidate == false )
+                {
+
+                    $data = array("logged" => false,'message' => 'Please enter valid PAN number',);
+                    $this->response->setJsonContent($data);
+                    
+                }
+                else if(empty($email))
+                {
+                    $data = array("logged" => false,'message' => 'Please enter Email Address',);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
                 if(!empty($_FILES["upload"]))
                 {
                         $userfile_name = $_FILES['upload']['name'];
@@ -348,7 +365,7 @@ class SensitiveinformationController extends ControllerBase
                 //print_r($agreemntfilepath);exit;
                 
                 
-                    $getres = $this->sensitiveinformationcommon->updaterecipient($getuserid,$user_group_id,$category,$othrcategory,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$id,$pan,$department);
+                $getres = $this->sensitiveinformationcommon->updaterecipient($getuserid,$user_group_id,$category,$othrcategory,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$id,$pan,$department);
                     
                     //echo "checking form data";print_r($getres); exit;      
                     if($getres)
@@ -360,7 +377,9 @@ class SensitiveinformationController extends ControllerBase
                     {
                         $data = array("logged" => false,'message' => "Record Not Updated..!!");
                         $this->response->setJsonContent($data);
-                    }
+                 
+                   }
+            }
                 
 
                 $this->response->send();
