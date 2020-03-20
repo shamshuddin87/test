@@ -1400,6 +1400,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         else
         {
             $gethtml = $this->htmlelements->externalmember($uniquemail,$sharingdate,$upsiname,$toname);
+            //print_r($gethtml);exit;
         }
        
         //print_r($gethtml);exit;

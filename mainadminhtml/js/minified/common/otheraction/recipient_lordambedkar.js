@@ -74,7 +74,7 @@ else
 {}});});website('#updaterecipient').ajaxForm({dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
-{if(response.logged===true)
+{website('.preloder_wraper').fadeOut();if(response.logged===true)
 {new PNotify({title:'Record Updated Successfully',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
 else
 {new PNotify({title:'Record Not Updated',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
@@ -137,7 +137,7 @@ website("body").on("click",".myupmodal",function(e){var id=website(this).attr('w
 {website('#Mymodaledit #identitynum').val(pan);website('#Mymodaledit #identitynum').attr('readonly',true);}
 else
 {website('#Mymodaledit #identitynum').val("");website('#Mymodaledit #identitynum').attr('readonly',false);}
-website('#Mymodaledit #name').val(name);website('#Mymodaledit #searchuser').css("display","none");});website(document).ready(function(){website('#panentity').keyup(function(e){website(this).val(website(this).val().toUpperCase());});});function numberalphOnly()
+website('#Mymodaledit #name').val(name);website('#Mymodaledit #searchuser').css("display","none");});website(document).ready(function(){website('#panentity').keyup(function(e){website(this).val(website(this).val().toUpperCase());});website('#updaterecipient #panentity').keyup(function(e){website(this).val(website(this).val().toUpperCase());});});function numberalphOnly()
 {var charCode=event.keyCode;if((charCode>47&&charCode<58)||charCode==32||(charCode>64&&charCode<91)||(charCode>96&&charCode<123)||charCode==8||charCode==44||charCode==40||charCode==41||charCode==46||charCode==47)
 return true;else
 return false;}

@@ -412,7 +412,8 @@ website('body').on('click','.addupsitype',function(e){
     }
     else
     {
-         website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');
+        website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');
+        website('#modaltradingwindowclose #tradingwindowyes').attr('action','insert');
         website('#modaltradingwindowclose').modal('show');
     }
 
@@ -438,6 +439,20 @@ website('body').on('click','#tradingwindowno',function(e){
     // }
    
 });
+
+website('body').on('click','#tradingwindowyes',function(e){
+    var actiontype = website(this).attr('action');
+    if(actiontype == 'insert')
+    {
+        website('#addupsimast').submit();
+    }
+    // else if(actiontype == 'update')
+    // {
+    //     website('#updateupsimast').submit();
+    // }
+   
+});
+
 
 website('body').on('click','#tradingrej',function(e){
          

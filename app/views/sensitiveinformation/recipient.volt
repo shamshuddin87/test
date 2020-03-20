@@ -86,7 +86,7 @@ $condeptsess = $this->session->contractdepartment;
                         
                         <section class="col col-md-4 col-xs-12">
                             <div class="input">
-                                <label class="control-label">Email ID</label>
+                                <label class="control-label">Email ID*</label>
                                 <input type="email" id="email" name="email" class="form_fields form-control col-md-7 col-xs-12" onkeypress ="return emailOnly(event);">
                             </div>
                         </section>

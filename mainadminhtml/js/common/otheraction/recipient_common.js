@@ -335,6 +335,7 @@ website('#updaterecipient').ajaxForm({
         { website('.preloder_wraper').fadeIn();},
         success: function(response, textStatus, jqXHR) 
         {
+            website('.preloder_wraper').fadeOut();
            if(response.logged === true)
            {
               //fetchmasterlist();
@@ -716,6 +717,11 @@ website("body").on("click",".myupmodal",function(e){
 website(document).ready(function(){
     
     website('#panentity').keyup(function(e){
+    website(this).val(website(this).val().toUpperCase());
+   
+    });
+
+    website('#updaterecipient #panentity').keyup(function(e){
     website(this).val(website(this).val().toUpperCase());
    
     });

@@ -2853,7 +2853,7 @@ public function notifyupsi($addedby,$addedbyemail,$title,$desc,$todaydate,$dayOf
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
         <p>Dear '.$addedby.'</p>
-        <p>You have created an entry in the UPSI module for '.$title.' on '.$dayOfWeek.','.$todaydate.'. This is for your information. 
+        <p>You have created an entry in the UPSI module for '.$title.' on '.$dayOfWeek.', '.$todaydate.'. This is for your information. 
           </p>
         
             </div>
