@@ -462,8 +462,6 @@
              </section>
          </a>
         </div>
-
-
     </div>
             </div>
                 </div>
@@ -487,7 +485,7 @@
                <div class="modal-content">
                   <div class="modal-body">
                      <button type="button" class="close" data-dismiss="modal">&times;</button>                    
-                     <h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Please verify/update your personal information as given under ‘My Info’ first. You will not be allowed access until you verify your personal information</h5>
+                     <h5 style="text-align: center;color: #000;margin: 45px 35px 25px 35px;line-height: 25px;">Please verify/update your personal information as given under ‘My Info’ first. You will not be allowed access until you verify your personal information</h5>
                   </div>
                   <div class="modal-footer" style="border-top:none; text-align: center;">
                      <button type="button" class="btn btn-primary" id="yesdisclosures" onclick="disclosures(this.id);">Ok</button> 
@@ -510,10 +508,4 @@
             </div>
         </div>
     </div>
-</div>
-
-
-       
-
- 
-          
+</div>          

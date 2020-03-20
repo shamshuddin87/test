@@ -24,7 +24,7 @@ website("body").on("click",".topul",function(e){var id=website(this).attr('id');
 {var approverids=website('#approverid').val();website('#checkappvlrequest #approverid').val(approverids);var reqnames=website('#reqname').val();website('#checkappvlrequest #reqname').val(reqnames);var typeofrequests=website('#typeofrequest').val();website('#checkappvlrequest #typeofrequest').val(typeofrequests);var selrelatives=website('#selrelative').val();website('#checkappvlrequest #selrelative').val(selrelatives);var idofcmps=website('#idofcmp').val();website('#checkappvlrequest #idofcmp').val(idofcmps);var nameofcmps=website('#nameofcmp').val();website('#checkappvlrequest #nameofcmp').val(nameofcmps);var noofshares=website('#noofshare').val();website('#checkappvlrequest #noofshare').val(noofshares);var sectypes=website('#sectypeid').val();website('#checkappvlrequest #sectype').val(sectypes);var typeoftranss=website('#typeoftrans').val();website('#checkappvlrequest #typeoftrans').val(typeoftranss);var sendreq=website('#sendrequest').val();website('#checkappvlrequest #sendreq').val(sendreq);website.ajax({url:'tradingrequest/checkclosebalval',data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
-{if(response.logged===true)
+{website('.preloder_wraper').fadeOut();if(response.logged===true)
 {if(response.contratrd['status']===true)
 {if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
 {new PNotify({title:'Alert',text:response.contratrd.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
@@ -41,11 +41,109 @@ else
 {website('.preloder_wraper').fadeIn();},success:function(response)
 {if(response.logged===true)
 {if(formtype=='form1')
-{website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);website('#checkappvlrequest').modal('show');}
+{website('#chckexcptnrequest').modal('show');}
 else if(formtype=='form2')
 {website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest #pdflink').attr('href',response.pdf_path);website('#chckexcptnrequest').modal('show');}}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
 {website('.preloder_wraper').fadeOut();}});}
+function getpdfdata(uniqueid)
+{var formData={uniqueid:uniqueid};website.ajax({url:'annualdeclaration/fetchannualdeclaration',data:formData,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(response.logged==true)
+{var addhtmlnxt='';var addhtmlnxt1='';var addhtmlnxt2='';var addhtmlnxt3='';var addhtmlnxt4='';var addhtmlnxt5='';var addhtmlnxt6='';var addhtmlnxt7='';var addhtmlnxt8='';var addhtmlnxt9='';var pastemp='';var mfr='';var dematacc='';var reldetail='';var reldemat='';if(response!=0)
+{website("#uniqueid").val(uniqueid);if(response.selfcompany!=0)
+{for(var i=0;i<response.selfcompany.length;i++)
+{addhtmlnxt+='<tr class="counter">';addhtmlnxt+='<td width="25%">'+response.selfcompany[i]['company']+'</td>';addhtmlnxt+='<td width="25%">'+response.selfcompany[i]['decision']+'</td>';addhtmlnxt+='<td width="25%">'+response.selfcompany[i]['transaction']+'</td>';addhtmlnxt+='</tr>';}}
+if(response.selffirm!=0)
+{for(var i=0;i<response.selffirm.length;i++)
+{addhtmlnxt1+='<tr class="counter">';addhtmlnxt1+='<td width="25%">'+response.selffirm[i]['firm']+'</td>';addhtmlnxt1+='<td width="25%">'+response.selffirm[i]['interest']+'</td>';addhtmlnxt1+='<td width="25%">'+response.selffirm[i]['decision']+'</td>';addhtmlnxt1+='<td width="25%">'+response.selffirm[i]['transaction']+'</td>'
+addhtmlnxt+='</tr>';}}
+if(response.selfpubpri!=0)
+{for(var i=0;i<response.selfpubpri.length;i++)
+{addhtmlnxt2+='<tr class="counter">';addhtmlnxt2+='<td width="25%">'+response.selfpubpri[i]['company']+'</td>';var interst='';if(response.selfpubpri[i]['interest']==1)
+{interst='Member';}
+else if(response.selfpubpri[i]['interest']==1)
+{interst='Director';}
+else if(response.selfpubpri[i]['interest']==1)
+{interst='Member and Director';}
+addhtmlnxt2+='<td width="25%">'+interst+'</td>';addhtmlnxt2+='<td width="25%">'+response.selfpubpri[i]['noofshare']+'</td>';addhtmlnxt2+='<td width="25%">'+response.selfpubpri[i]['decision']+'</td>';addhtmlnxt2+='<td width="25%">'+response.selfpubpri[i]['transaction']+'</td>'
+addhtmlnxt+='</tr>';}}
+if(response.selfpubshare!=0)
+{for(var i=0;i<response.selfpubshare.length;i++)
+{addhtmlnxt3+='<tr class="counter">';addhtmlnxt3+='<td width="25%">'+response.selfpubshare[i]['company']+'</td>';addhtmlnxt3+='<td width="25%">'+response.selfpubshare[i]['interest']+'</td>';addhtmlnxt3+='<td width="25%">'+response.selfpubshare[i]['decision']+'</td>';addhtmlnxt3+='<td width="25%">'+response.selfpubshare[i]['transaction']+'</td>';addhtmlnxt+='</tr>';}}
+if(response.selfholdngshare!=0)
+{for(var i=0;i<response.selfholdngshare.length;i++)
+{addhtmlnxt7+='<tr class="counter">';addhtmlnxt7+='<td width="25%">'+response.selfholdngshare[i]['cmpname']+'</td>';addhtmlnxt7+='<td width="25%">'+response.selfholdngshare[i]['isdecisionmaking']+'</td>';addhtmlnxt7+='<td width="25%">'+response.selfholdngshare[i]['isfincltrans']+'</td>';addhtmlnxt7+='</tr>';}}
+if(response.relative!=0)
+{for(var i=0;i<response.relative.length;i++)
+{if(response.relative[i]['relative']!='')
+{addhtmlnxt4+='<tr class="counter">';addhtmlnxt4+='<td width="25%">'+response.relative[i]['relative']+'</td>';addhtmlnxt4+='<td width="25%">'+response.relative[i]['company']+'</td>';addhtmlnxt4+='<td width="25%">'+response.relative[i]['decision']+'</td>';addhtmlnxt4+='<td width="25%">'+response.relative[i]['transaction']+'</td>'
+addhtmlnxt+='</tr>';}}}
+if(response.relativefirm!=0)
+{for(var i=0;i<response.relativefirm.length;i++)
+{if(response.relativefirm[i]['relative']!='')
+{addhtmlnxt5+='<tr class="counter">';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['relative']+'</td>';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['firm']+'</td>';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['interest']+'</td>';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['decision']+'</td>';addhtmlnxt5+='<td width="25%">'+response.relativefirm[i]['transaction']+'</td>'
+addhtmlnxt+='</tr>';}}}
+if(response.relativepubpri!=0)
+{for(var i=0;i<response.relativepubpri.length;i++)
+{if(response.relativepubpri[i]['relative']!='')
+{addhtmlnxt6+='<tr class="counter">';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['relative']+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['company']+'</td>';var interst='';if(response.relativepubpri[i]['interest']==1)
+{interst='Member';}
+else if(response.relativepubpri[i]['interest']==1)
+{interst='Director';}
+else if(response.relativepubpri[i]['interest']==1)
+{interst='Member and Director';}
+addhtmlnxt6+='<td width="25%">'+interst+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['noofshare']+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['decision']+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['transaction']+'</td>'
+addhtmlnxt6+='</tr>';}}}
+if(response.relativepubshare!=0)
+{for(var i=0;i<response.relativepubshare.length;i++)
+{if(response.relativepubshare[i]['relative']!='')
+{addhtmlnxt8+='<tr class="counter">';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['relative']+'</td>';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['company']+'</td>';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['interest']+'</td>';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['decision']+'</td>';addhtmlnxt8+='<td width="25%">'+response.relativepubshare[i]['transaction']+'</td>';addhtmlnxt8+='</tr>';}}}
+if(response.relativeholdngshare!=0)
+{for(var i=0;i<response.relativeholdngshare.length;i++)
+{if(response.relativeholdngshare[i]['relative']!='')
+{addhtmlnxt9+='<tr class="counter">';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['relative']+'</td>';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['cmpname']+'</td>';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['isdecisionmaking']+'</td>';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['isfincltrans']+'</td>';addhtmlnxt9+='</tr>';}}}
+if(response.userlevel)
+{website('.empcode').html(response.userlevel['employeecode']);website('.username').html(response.personaldetail['name']);website('.emailid').html(response.userlevel['email']);website('.pan').html(response.personaldetail['pan']);website('.legalidentifier').html(response.personaldetail['legal_identifier']);website('.legalidentityno').html(response.personaldetail['legal_identification_no']);website('.dob').html(response.personaldetail['dob']);website('.gender').html(response.personaldetail['sex']);website('.edu').html(response.personaldetail['education']);website('.institute').html(response.personaldetail['institute']);website('.address').html(response.personaldetail['address']);website('.mobno').html(response.personaldetail['mobileno']);website('.noofshare').html(response.personaldetail['sharehldng']);website('.adrsshare').html(response.personaldetail['adrshldng']);}
+if(response.empdetail.length>0)
+{for(var i=0;i<response.empdetail.length;i++)
+{if(response.empdetail[i]['emp_name']!='')
+{j=i;j++;pastemp+='<tr class="counter">';pastemp+='<td width="25%">'+j+'</td>';pastemp+='<td width="25%">'+response.empdetail[i]['emp_name']+'</td>';pastemp+='<td width="25%">'+response.empdetail[i]['emp_desigtn']+'</td>';pastemp+='<td width="25%">'+response.empdetail[i]['startdate']+'</td>';pastemp+='<td width="25%">'+response.empdetail[i]['enddate']+'</td>';pastemp+='</tr>';}}}
+else
+{pastemp='<tr><td colspan ="5">No Data Found..</td></tr>';}
+if(response.mfrdetail.length>0)
+{for(var i=0;i<response.mfrdetail.length;i++)
+{if(response.mfrdetail[i]['related_party']!='')
+{j=i;j++;mfr+='<tr class="counter">';mfr+='<td width="25%">'+j+'</td>';mfr+='<td width="25%">'+response.mfrdetail[i]['related_party']+'</td>';mfr+='<td width="25%">'+response.mfrdetail[i]['pan']+'</td>';mfr+='<td width="25%">'+response.mfrdetail[i]['relationship']+'</td>';mfr+='<td width="25%">'+response.mfrdetail[i]['address']+'</td>';mfr+='</tr>';}}}
+else
+{mfr='<tr><td colspan ="5">No Data Found..</td></tr>';}
+if(response.dematdetail.length>0)
+{for(var i=0;i<response.dematdetail.length;i++)
+{if(response.dematdetail[i]['accountno']!='')
+{j=i;j++;dematacc+='<tr class="counter">';dematacc+='<td width="25%">'+j+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['accountno']+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['depository_participient']+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['clearing_house']+'</td>';dematacc+='</tr>';}}}
+else
+{dematacc='<tr><td colspan ="4">No Data Found..</td></tr>';}
+if(response.reldetail.length>0)
+{var deptype='';for(var i=0;i<response.reldetail.length;i++)
+{if(response.reldetail[i]['name']!='')
+{j=i;j++;reldetail+='<tr class="counter">';reldetail+='<td>'+j+'</td>';reldetail+='<td>'+response.reldetail[i]['name']+'</td>';reldetail+='<td>'+response.reldetail[i]['relationshipname']+'</td>';if(response.reldetail[i]['dependency_nature']!='')
+{deptype=response.reldetail[i]['dependency_nature'].toString(',');}
+reldetail+='<td>'+deptype+'</td>';reldetail+='<td>'+response.reldetail[i]['pan']+'</td>';reldetail+='<td>'+response.reldetail[i]['legal_identifier']+'</td>';reldetail+='<td>'+response.reldetail[i]['legal_identification_no']+'</td>';reldetail+='<td>'+response.reldetail[i]['aadhar']+'</td>';reldetail+='<td>'+response.reldetail[i]['dob']+'</td>';reldetail+='<td>'+response.reldetail[i]['address']+'</td>';reldetail+='<td>'+response.reldetail[i]['education']+'</td>';reldetail+='<td>'+response.reldetail[i]['education']+'</td>';reldetail+='<td>'+response.reldetail[i]['sharehldng']+'</td>';reldetail+='<td>'+response.reldetail[i]['adrshldng']+'</td>';reldetail+='</tr>';}}}
+else
+{reldetail='<tr><td colspan ="14">No Data Found..</td></tr>';}
+if(response.relDematdetail.length>0)
+{for(var i=0;i<response.relDematdetail.length;i++)
+{if(response.relDematdetail[i]['accountno']!='')
+{j=i;j++;reldemat+='<tr class="counter">';reldemat+='<td>'+j+'</td>';reldemat+='<td>'+response.reldetail[i]['accountno']+'</td>';reldemat+='<td>'+response.reldetail[i]['depository_participient']+'</td>';reldemat+='<td>'+response.reldetail[i]['clearing_house']+'</td>';reldemat+='</tr>';}}}
+else
+{reldemat='<tr><td colspan ="14">No Data Found..</td></tr>';}
+website('.selfcompany').html(addhtmlnxt);website('.selffirm').html(addhtmlnxt1);website('.selfpubpri').html(addhtmlnxt2);website('.selfpubshare').html(addhtmlnxt3);website('.selfholdcontrl').html(addhtmlnxt7);website('.relative').html(addhtmlnxt4);website('.relativefirm').html(addhtmlnxt5);website('.relativepubpri').html(addhtmlnxt6);website('.relativepubshare').html(addhtmlnxt8);website('.relativeholdngcontrl').html(addhtmlnxt9);website('.pastemp').html(pastemp);website('.mfr').html(mfr);website('.dematacc').html(dematacc);website('.reldetail').html(reldetail);website('.reldemat').html(reldemat);}
+website('#Mymodaldeclara').modal('show');}
+else
+{new PNotify({title:'Alert',text:"Please Fill All The Data In Software..!!!",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
+{}});}
 website('body').on('click','.reqdraft',function()
 {var approverids=website('#approverid').val();website('#checkappvlrequest #approverid').val(approverids);var reqnames=website('#reqname').val();website('#checkappvlrequest #reqname').val(reqnames);var typeofrequests=website('#typeofrequest').val();website('#checkappvlrequest #typeofrequest').val(typeofrequests);var selrelatives=website('#selrelative').val();website('#checkappvlrequest #selrelative').val(selrelatives);var idofcmps=website('#idofcmp').val();website('#checkappvlrequest #idofcmp').val(idofcmps);var nameofcmps=website('#nameofcmp').val();website('#checkappvlrequest #nameofcmp').val(nameofcmps);var noofshares=website('#noofshare').val();website('#checkappvlrequest #noofshare').val(noofshares);var sectypes=website('#sectypeid').val();website('#checkappvlrequest #sectype').val(sectypes);var typeoftranss=website('#typeoftrans').val();website('#checkappvlrequest #typeoftrans').val(typeoftranss);var sendreq=website('#sendrequest').val();website('#checkappvlrequest #sendreq').val(sendreq);website.ajax({url:'tradingrequest/checkclosebalval',data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
