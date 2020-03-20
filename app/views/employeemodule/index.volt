@@ -695,7 +695,7 @@
                               <label for="Dob">DOB*</label>
                               <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="DOB" readonly>
                            </div>
-                           <div class="col-md-12" style="margin-bottom: 15px;"> 
+                           <div class="col-md-12" style="margin-bottom: 15px;">
                                <label style="display: block;" for="sex">Gender*</label>
                               <input type="radio" id="sex" name="sex" value="Male" checked/>Male
                               <input type="radio" id="sex" name="sex"  value="Female"/>Female
