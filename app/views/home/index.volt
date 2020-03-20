@@ -25,7 +25,8 @@
                         </div>
                         <?php if(isset($upsiresult) && count($upsiresult) != 0){?>
                         <div class="col col-xs-10">
-                            <div class="alertbox"><span><h4 style="display: inline-block;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> </h4> Alert! You hold UPSI and therefore you cannot trade in shares of Dr. Reddy's Laboratories Ltd until the UPSI ends / becomes public</span></div>
+                           <!--  <div class="alertbox"><span><h4 style="display: inline-block;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> </h4> Alert! You hold UPSI and therefore you cannot trade in shares of Dr. Reddy's Laboratories Ltd until the UPSI ends / becomes public</span>
+                            </div> -->
                         </div>
                         <?php } ?>
                         <!-- /.col-lg-12 -->
