@@ -931,6 +931,7 @@ class SensitiveinformationController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
+                $namelistemail = array();
                 $searchvallist = $this->request->getPost('searchvallist');
                 //echo  $searchvallist;exit;
                 $searchlist = $this->filter->sanitize($searchvallist, "trim");
@@ -940,32 +941,59 @@ class SensitiveinformationController extends ControllerBase
 
                     $getsearchkywo = $searchlist;
                     $limit = 10;
+                    $receipientlist = array();
+                    $receipientemailid = array();
+                    $softuserlist = array();
                     
-                    $userlist = array();
-                    $complist = array();
-                    $namelist = $this->sensitiveinformationcommon->namedetails($getuserid,$user_group_id,$getsearchkywo);  
+                    $receipientlist = $this->sensitiveinformationcommon->namedetails($getuserid,$user_group_id,$getsearchkywo);  
                     //print_r($namelist);exit;
-                    foreach ($namelist as $n) {
+                    foreach ($receipientlist as $n) 
+                    {
                         if(!empty($n['email']))
                         {
-                             $namelistemail[] = $n['email'];
+                             $receipientemailid[] = $n['email'];
                         }
                       
                     }
-                    //print_r($namelistemail);exit;
-                    $namelist1 = $this->sensitiveinformationcommon->itnamedetails($getuserid,$user_group_id,$getsearchkywo,$namelistemail); 
-                   
-                  
-
-                    $finallist = array_merge($namelist,$namelist1);
-                    //print_r($finallist);exit;
-
-                  
                     
-                    $getcount = count($namelist);
+                    $softuserlist = $this->sensitiveinformationcommon->itnamedetails($getuserid,$user_group_id,$getsearchkywo,$receipientemailid); 
+                    //print_r($softuserlist);exit;
+                    if(empty($receipientlist) && !empty($softuserlist))
+                    {
+                        $finallist = $softuserlist;
+                    }
+                    else if(!empty($receipientlist) && empty($softuserlist))
+                    {
+                        $finallist = $receipientlist;
+                    }
+                    else if(!empty($receipientlist) && !empty($softuserlist))
+                    {
+                        $finallist = array_merge($receipientlist,$softuserlist);
+                    }
+                    else
+                    {
+                        $finallist = array();
+                    }
+                    //print_r($finallist);exit;
+//                    $finallist1 = array_push($namelist,$namelist1);
+//                    $finallist1 = array_push($namelist,$namelist1);
+//                    $finallistnew = array_unique($namelist);
+//                    $finallist = array_shift($finallistnew);
+//                    print_r($finallist1);
+                    //print_r($abc);exit;
+
+                  
+                    if(!empty($finallist))
+                    {
+                        $getcount = count($finallist);
+                    }
+                    else
+                    {
+                        $getcount = 0;
+                    }
                     //echo $getcount; exit;
 
-                    if(!empty($namelist))
+                    if(!empty($finallist))
                     {
                         $data = array("logged" => true,'message' => 'Found!!!' ,'data'=> $finallist,'count'=> $getcount);
                         //echo '<pre>'; print_r($data); exit;

@@ -450,17 +450,25 @@ class Sensitiveinformationcommon extends Component
     public function itnamedetails($getuserid,$user_group_id,$getsearchkywo,$email)
     {
         $connection = $this->dbtrd;
-        
        
-        $email = implode("','", $email);
+        //$email = implode("','", $email); AND `email` NOT IN('".$email."')
         //print_r($email);exit;
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
             //print_r($grpusrs);exit;
-            
-             $queryget = "SELECT * FROM it_memberlist 
-             WHERE `wr_id` IN (".$grpusrs['ulstring'].") AND `email` NOT IN('".$email."') AND `fullname` LIKE '%{$getsearchkywo}%' ";
+            if(!empty($email))
+            {
+                $email = implode("','", $email);
+                $queryget = "SELECT * FROM it_memberlist 
+                WHERE `wr_id` IN (".$grpusrs['ulstring'].") AND `email` NOT IN('".$email."') AND `fullname` LIKE '%{$getsearchkywo}%' ";
+            }
+            else
+            {
+                $queryget = "SELECT * FROM it_memberlist 
+                WHERE `wr_id` IN (".$grpusrs['ulstring'].")  AND `fullname` LIKE '%{$getsearchkywo}%' ";
+            }
+             
             //echo $queryget;exit;
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
