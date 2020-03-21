@@ -2934,6 +2934,118 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
 
      return $html;
 }
+    
+    public function Reqform2content($userdata,$data)
+    {
+        $todate = date('d-m-Y');
+//        print_r($userdata);
+//        print_r($data);exit;
+        if($data['typeoftrans'] == 1 || $data['typeoftrans'] == 3 || $data['typeoftrans'] == 4)
+        {
+            $transtype = 'Purchase';
+        }
+        else if($data['typeoftrans'] == 2)
+        {
+            $transtype = 'sell';
+        }
+       $html=' <div>
+          <table style=" border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
+           <tr>
+              <td>Dr. Reddy’s Laboratories Limited</td>
+              <td><img src="img/dr reddy logo BnW"></td>                        
+            </tr>
+          </table>
+
+          <p style="text-align: center;"><b>
+            Form II<br/>
+            (Application for grant of relaxation of minimum holding period) <br/>
+            Under Clause 9.1(a) of the Code</b>
+          </p>
+
+          <br/>
+
+          <p style="text-align: left;">
+            The Compliance Officer<br/>
+            <b>Dr. Reddy’s Laboratories Limited</b><br/>
+            Hyderabad
+          </p>
+
+          <br/>
+
+          <p>Dears Sir,<br/><br/>
+           In terms of Clause 9.1(a) of the Code, I would like to state that I intend to '.$transtype.' '.$data['noofshare'].' shares/ADRs/options of the Company because of following reason(s):-
+          </p>
+
+          <br/>
+
+          <table width="100%" style="border-width: 2px; border-color: #000; border-top: solid; border-bottom: solid; ">
+            <tr>
+              <td style="padding: 10px;"></td>
+            </tr>
+          </table>
+
+          <br/>
+
+          <table style=" border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
+           <tr>
+              <td width="50%"><ol style="padding-left: 17px;"><li type="circle">Medical Expenses for self / family Members</li></ol></td>
+              <td width="50%"><ol style="padding-left: 17px;"><li type="circle">Repayment of existing Loan</li></ol></td>                    
+            </tr>
+            <tr>
+              <td width="50%"><ol style="padding-left: 17px;"><li type="circle">Education</li></ol></td>
+              <td width="50%"><ol style="padding-left: 17px;"><li type="circle">Wedding /other family function</li></ol></td>                         
+            </tr>
+            <tr>
+              <td width="50%"><ol style="padding-left: 17px;"><li type="circle">Any other reason (Please specify):</li></ol></td>                         
+            </tr>
+          </table>
+
+          <br/>
+
+          <table style=" border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
+           <tr>
+              <td width="50%">Date of last purchase / sale<br/>
+                  (Immediately prior to the date of this application) <br/><br/> </td>
+              <td width="50%">: '.$data['lasttransdate'].'</td>                    
+            </tr>
+            <tr>
+              <td width="50%">No. of shares / ADRs purchase/sold  <br/>
+                  (Immediately prior to the date of this application)<br/><br/> </td>
+              <td width="50%">: '.$data['noofshareoftrans'].'</td>                         
+            </tr>
+            <tr>
+              <td width="50%">No. of shares / ADRs held as on date</td>
+              <td width="50%">: </td>                          
+            </tr>
+          </table>
+
+          <br/>
+
+          <p>You are requested to consider my application and grant the relaxation to enter into an opposite transaction within 6 months period basis the above reason(s) and undertaking given herein below:-. </p>
+
+          <p><b>I hereby undertake and confirm that,</b></p>
+          <ol style="padding-left: 17px;">
+            <li>I do not have any access or have not received "Unpublished Price Sensitive Information" up to the time of signing this undertaking.</li>
+            <li>In case I have access to or have received "Unpublished Price Sensitive Information" after the signing of the undertaking but before the execution of the transaction I will inform the Compliance Officer of the change in my position and that I or my Immediate Relative(s) would completely refrain from dealing in the Securities till the time such information becomes public.</li>
+            <li>I have not contravened the Code (as amended from time to time) and any of the provisions of the Insider Trading Regulations (as applicable).</li>
+          </ol>
+
+          <br/>
+
+          <p>I further confirm that the aforesaid facts are true and correct and I shall be fully responsible for any wrongful acts and/or misrepresentation done by me or my Immediate Relative(s) including such penalties as may be imposed by the Company/ SEBI.<br/><br/>
+        Thanking you,<br/><br/>
+        Yours faithfully,<br/><br/><br/>
+
+        ---------------------<br/>
+        Name: '.$userdata['fullname'].'<br/>
+        Employee code: '.$userdata['employeecode'].'<br/>
+        Designation: '.$userdata['designation'].'<br/>
+        Date: '.$todate.'<br/>
+        Place: '.$data['form2place'].'<br/>
+        </p>
+        </div>';
+        return $html;
+    }
 
 
 

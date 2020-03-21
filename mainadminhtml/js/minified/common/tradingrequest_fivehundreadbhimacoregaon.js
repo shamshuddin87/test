@@ -29,24 +29,13 @@ website("body").on("click",".topul",function(e){var id=website(this).attr('id');
 {if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
 {new PNotify({title:'Alert',text:response.contratrd.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{getform('form2');}}
+{website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest').modal('show');}}
 else
-{getform('form1');}}
+{website('#checkappvlrequest').modal('show');}}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
-{},error:function()
-{}});});function getform(formtype)
-{website.ajax({type:"POST",url:'tradingrequest/getfilecontent',data:{formtype:formtype},dataType:"json",beforeSend:function()
-{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
-{website('.preloder_wraper').fadeIn();},success:function(response)
-{if(response.logged===true)
-{if(formtype=='form1')
-{website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);website('#checkappvlrequest').modal('show');}
-else if(formtype=='form2')
-{website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest #pdflink').attr('href',response.pdf_path);website('#chckexcptnrequest').modal('show');}}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
-{website('.preloder_wraper').fadeOut();}});}
-website('body').on('click','.reqdraft',function()
+{}});});website('body').on('click','.reqdraft',function()
 {var approverids=website('#approverid').val();website('#checkappvlrequest #approverid').val(approverids);var reqnames=website('#reqname').val();website('#checkappvlrequest #reqname').val(reqnames);var typeofrequests=website('#typeofrequest').val();website('#checkappvlrequest #typeofrequest').val(typeofrequests);var selrelatives=website('#selrelative').val();website('#checkappvlrequest #selrelative').val(selrelatives);var idofcmps=website('#idofcmp').val();website('#checkappvlrequest #idofcmp').val(idofcmps);var nameofcmps=website('#nameofcmp').val();website('#checkappvlrequest #nameofcmp').val(nameofcmps);var noofshares=website('#noofshare').val();website('#checkappvlrequest #noofshare').val(noofshares);var sectypes=website('#sectypeid').val();website('#checkappvlrequest #sectype').val(sectypes);var typeoftranss=website('#typeoftrans').val();website('#checkappvlrequest #typeoftrans').val(typeoftranss);var sendreq=website('#sendrequest').val();website('#checkappvlrequest #sendreq').val(sendreq);website.ajax({url:'tradingrequest/checkclosebalval',data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
@@ -272,7 +261,11 @@ website.ajax({url:'tradingrequest/fetchreqtrail',data:formdata,method:'POST',con
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{dteadded=response.data[0].date_added.split("-");dteaddedspace=response.data[0].date_added.split(" ");ddmmyyadded=dteaddedspace[0];dteadded=dteaddedspace[0].split("-");ddmmyyadded=dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];timesadded=dteaddedspace[1];dtemodified=response.data[0].date_modified.split("-");dtemodifdspace=response.data[0].date_modified.split(" ");ddmmyymodified=dtemodifdspace[0];dtemodified=dtemodifdspace[0].split("-");ddmmyymodified=dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];timesmodified=dtemodifdspace[1];website('#Mymodalaudittrail .reqstcreateddte').html(ddmmyyadded+' '+timesadded);website('#Mymodalaudittrail .reqstupdteddte').html(ddmmyymodified+' '+timesmodified);if(response.data[0].send_status==1)
+{dteadded=response.data[0].date_added.split("-");dteaddedspace=response.data[0].date_added.split(" ");ddmmyyadded=dteaddedspace[0];dteadded=dteaddedspace[0].split("-");ddmmyyadded=dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];timesadded=dteaddedspace[1];dtemodified=response.data[0].date_modified.split("-");dtemodifdspace=response.data[0].date_modified.split(" ");ddmmyymodified=dtemodifdspace[0];dtemodified=dtemodifdspace[0].split("-");ddmmyymodified=dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];timesmodified=dtemodifdspace[1];website('#Mymodalaudittrail .reqstcreateddte').html(ddmmyyadded+' '+timesadded);website('#Mymodalaudittrail .reqstupdteddte').html(ddmmyymodified+' '+timesmodified);if(response.data[0].pdffilepath)
+{website('#Mymodalaudittrail .pdfpath').html('<a href="'+response.data[0].pdffilepath+'" target="_blank"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>');}
+else
+{website('#Mymodalaudittrail .pdfpath').html('');}
+if(response.data[0].send_status==1)
 {if(response.data[0].sendaprvl_date)
 {dtesendaprv=response.data[0].sendaprvl_date.split("-");dtesendaprvspace=response.data[0].sendaprvl_date.split(" ");ddmmyysendaprv=dtesendaprvspace[0];dtesendaprv=dtesendaprvspace[0].split("-");ddmmyysendaprv=dtesendaprv[2]+'-'+dtesendaprv[1]+'-'+dtesendaprv[0];timessendaprv=dtesendaprvspace[1];website('#Mymodalaudittrail .reqstsendapprv').html(ddmmyysendaprv+' '+timessendaprv);}}
 else
@@ -295,11 +288,11 @@ else
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});});website('body').on("click","#Yesexcreqst",function(e){var link=website('#chckexcptnrequest #pdflink').attr('href');website('#reasonexceptn #reasonlink').attr('link',link);website("#reasonexceptn").modal('show');});website('body').on('click','#Noexcrequest',function(e)
 {new PNotify({title:'Alert',text:'You cannot send request',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});var base_url=getbaseurl();window.location.href=base_url+'tradingrequest';setTimeout(function(){window.location.reload();},1000);});website('body').on('click','#reasonexetrans',function(e)
-{var reasonmsg=website("#reasontrans").val();var approverids=website('#approverid').val();var reqname=website('#reqname').val();var typeofrequests=website('#Mymodalreq #typeofrequest').val();var link=website('#reasonexceptn #reasonlink').attr('link');if(typeofrequests==3)
+{var reasonmsg=website("#reasontrans").val();var approverids=website('#approverid').val();var reqname=website('#reqname').val();var typeofrequests=website('#Mymodalreq #typeofrequest').val();if(typeofrequests==3)
 {var dpuserid=website("#dpuserid").val();var dpusergroup=website("#dpusergroup").val();}
 else
 {var dpuserid=website("#dpuserid").val();var dpusergroup=website("#dpusergroup").val();}
-var selrelatives=website('#Mymodalreq #selrelative').val();var idofcmps=website('#Mymodalreq #idofcmp').val();var nameofcmps=website('#Mymodalreq #nameofcmp').val();var noofshares=website('#Mymodalreq #noofshare').val();var sectypes=website('#Mymodalreq #sectypeid').val();var typeoftranss=website('#Mymodalreq #typeoftrans').val();var typeofsave=website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');var formdata={approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup,link:link}
+var selrelatives=website('#Mymodalreq #selrelative').val();var idofcmps=website('#Mymodalreq #idofcmp').val();var nameofcmps=website('#Mymodalreq #nameofcmp').val();var noofshares=website('#Mymodalreq #noofshare').val();var sectypes=website('#Mymodalreq #sectypeid').val();var typeoftranss=website('#Mymodalreq #typeoftrans').val();var typeofsave=website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');var reasonoftrans=website("#reasonexceptn #reasonoftrans").val();var otherreason=website("#reasonexceptn #otherreason").val();var lasttransdate=website("#reasonexceptn #lasttransdate").val();var noofshareoftrans=website("#reasonexceptn #noofshareoftrans").val();var form2place=website("#reasonexceptn #form2place").val();var formdata={approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup,reasonoftrans:reasonoftrans,otherreason:otherreason,lasttransdate:lasttransdate,noofshareoftrans:noofshareoftrans,form2place:form2place}
 website.ajax({url:'tradingrequest/savecontratrdexceptn',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
@@ -308,4 +301,8 @@ website.ajax({url:'tradingrequest/savecontratrdexceptn',data:formdata,method:'PO
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
-{}});});;
+{}});});website('body').on('change','#reasonoftrans',function(e)
+{var reasontype=website(this).val();if(reasontype==4)
+{website('.otherreason').css('display','block');}
+else
+{website('.otherreason').css('display','none');}});;

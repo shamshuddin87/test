@@ -1298,7 +1298,7 @@ class TradingrequestController extends ControllerBase
           }
      }
 
-      public function getfilecontentAction()
+    public function getfilecontentAction()
     {
         $this->view->disable();
         $uid = $this->session->loginauthspuserfront['id'];
@@ -1313,18 +1313,15 @@ class TradingrequestController extends ControllerBase
 
                 if($formtype == "form1" )
                 {
-                     $pdf_content = file_get_contents("declaration_form/preclearance.html");
-                      $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','weaver','weaver');
+                    $pdf_content = file_get_contents("declaration_form/preclearance.html");
+                    $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form I','FormI');
                 }
                 else if($formtype == "form2")
                 {
-                     
-                     $pdf_content = file_get_contents("declaration_form/weaverform.html");
-                     $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','preclerance','preclerance');
+                    $pdf_content = file_get_contents("declaration_form/weaverform.html");
+                    $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form II','FormII');
                 }
                
-               
-
                 if(!empty($pdf_content))
                 {
                     $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdf_path"=>$pdfpath);
@@ -1373,7 +1370,14 @@ class TradingrequestController extends ControllerBase
                 $selrelative = $this->request->getPost('selrelative','trim');
                 $reqname = $this->request->getPost('reqname','trim');
                 $typeofsave = $this->request->getPost('typeofsave','trim');
-                $path = $this->request->getPost('link','trim');
+                
+                /*----additional questions*/
+                $reasonoftrans = $this->request->getPost('reasonoftrans','trim');
+                $otherreason = $this->request->getPost('otherreason','trim');
+                $lasttransdate = $this->request->getPost('lasttransdate','trim');
+                $noofshareoftrans = $this->request->getPost('noofshareoftrans','trim');
+                $form2place = $this->request->getPost('form2place','trim');
+                //$path = $this->request->getPost('link','trim');
                 //print_r($path);exit;
                 $flag = 1;
 //                if($typeofrequest==3)
@@ -1433,6 +1437,13 @@ class TradingrequestController extends ControllerBase
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
+                else if($reasonoftrans == 4 && empty($otherreason)) 
+                {
+                    $data = array("logged" => false,'message' => 'Please specify any other reason');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                
                 else
                 {
                     $send_status=1;

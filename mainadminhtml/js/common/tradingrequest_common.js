@@ -230,14 +230,15 @@ website('body').on('click','.sendrequst',function()
                     }
                     else
                     {
-                      //form 2
-                        getform('form2');
+                        //form 2
+                        website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
+                        website('#chckexcptnrequest').modal('show');
                     }
                 }
                 else
                 {
-                  //form 1
-                  getform('form1');
+                    //form 1
+                    website('#checkappvlrequest').modal('show');
                 }
             }
             else
@@ -252,48 +253,48 @@ website('body').on('click','.sendrequst',function()
             }
         },
         complete: function(response) 
-        {   /*website('.preloder_wraper').fadeOut();*/   },
+        {   website('.preloder_wraper').fadeOut();   },
         error: function() 
         {   }
     });
 });
 
-function getform(formtype)
-{
-    website.ajax({
-        type:"POST",
-        url:'tradingrequest/getfilecontent',
-        data:{formtype:formtype},
-        dataType:"json",
-        beforeSend: function()
-        { website('.preloder_wraper').fadeIn();  },
-        uploadProgress: function(event, position, total, percentComplete)
-        {  website('.preloder_wraper').fadeIn(); },
-        success: function(response) 
-        {
-            //console.log(response); return false;
-            if(response.logged===true)
-            {
-                if(formtype == 'form1')
-                {
-                    website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);
-                    website('#checkappvlrequest').modal('show');
-                }
-                else if(formtype == 'form2')
-                {
-
-                    website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
-                    website('#chckexcptnrequest #pdflink').attr('href',response.pdf_path);
-                    website('#chckexcptnrequest').modal('show');
-                }
-            }
-        },
-        complete: function(response)
-        { website('.preloder_wraper').fadeOut();  },
-        error: function() 
-        { website('.preloder_wraper').fadeOut();  }
-    });
-}
+//function getform(formtype)
+//{
+//    website.ajax({
+//        type:"POST",
+//        url:'tradingrequest/getfilecontent',
+//        data:{formtype:formtype},
+//        dataType:"json",
+//        beforeSend: function()
+//        { website('.preloder_wraper').fadeIn();  },
+//        uploadProgress: function(event, position, total, percentComplete)
+//        {  website('.preloder_wraper').fadeIn(); },
+//        success: function(response) 
+//        {
+//            //console.log(response); return false;
+//            if(response.logged===true)
+//            {
+//                if(formtype == 'form1')
+//                {
+//                    website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);
+//                    website('#checkappvlrequest').modal('show');
+//                }
+//                else if(formtype == 'form2')
+//                {
+//
+//                    website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
+//                    website('#chckexcptnrequest #pdflink').attr('href',response.pdf_path);
+//                    website('#chckexcptnrequest').modal('show');
+//                }
+//            }
+//        },
+//        complete: function(response)
+//        { website('.preloder_wraper').fadeOut();  },
+//        error: function() 
+//        { website('.preloder_wraper').fadeOut();  }
+//    });
+//}
 
 
 
@@ -1641,14 +1642,17 @@ website('body').on("click",".requsttrail",function(e){
                      timesmodified = dtemodifdspace[1];
             /* for date_added end */
             
-            
-            
-             
-            
-            
-                    
-           website('#Mymodalaudittrail .reqstcreateddte' ).html(ddmmyyadded+' '+timesadded);
-           website('#Mymodalaudittrail .reqstupdteddte' ).html(ddmmyymodified+' '+timesmodified);
+            website('#Mymodalaudittrail .reqstcreateddte' ).html(ddmmyyadded+' '+timesadded);
+            website('#Mymodalaudittrail .reqstupdteddte' ).html(ddmmyymodified+' '+timesmodified);
+            /* -----  Application copy ----*/
+            if(response.data[0].pdffilepath)
+            {
+               website('#Mymodalaudittrail .pdfpath').html('<a href="'+response.data[0].pdffilepath+'" target="_blank"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>'); 
+            }
+            else
+            {
+                website('#Mymodalaudittrail .pdfpath').html('');
+            }
            if(response.data[0].send_status == 1)
            {
                if(response.data[0].sendaprvl_date)
@@ -1780,8 +1784,6 @@ website('body').on('click','#reasonexetrans',function(e)
     var approverids = website('#approverid').val();
     var reqname = website('#reqname').val();
     var typeofrequests = website('#Mymodalreq #typeofrequest').val();
-     var link = website('#reasonexceptn #reasonlink').attr('link');
-      
     
     if(typeofrequests==3)
     {
@@ -1801,7 +1803,15 @@ website('body').on('click','#reasonexetrans',function(e)
     var sectypes = website('#Mymodalreq #sectypeid').val();
     var typeoftranss = website('#Mymodalreq #typeoftrans').val();
     var typeofsave = website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');
-    var formdata = {approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup,link:link}
+    
+    /*----additional questions*/
+    var reasonoftrans = website("#reasonexceptn #reasonoftrans").val();
+    var otherreason = website("#reasonexceptn #otherreason").val();
+    var lasttransdate = website("#reasonexceptn #lasttransdate").val();
+    var noofshareoftrans = website("#reasonexceptn #noofshareoftrans").val();
+    var form2place = website("#reasonexceptn #form2place").val();
+    
+    var formdata = {approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup,reasonoftrans:reasonoftrans,otherreason:otherreason,lasttransdate:lasttransdate,noofshareoftrans:noofshareoftrans,form2place:form2place}
     website.ajax({
         url:'tradingrequest/savecontratrdexceptn',
         data:formdata,
@@ -1841,4 +1851,17 @@ website('body').on('click','#reasonexetrans',function(e)
         error: function() 
         {   }
     });
+});
+
+website('body').on('change','#reasonoftrans', function(e) 
+{
+    var reasontype = website(this).val();
+    if(reasontype == 4)
+    {
+        website('.otherreason').css('display','block');
+    }
+    else
+    {
+        website('.otherreason').css('display','none');
+    }
 });

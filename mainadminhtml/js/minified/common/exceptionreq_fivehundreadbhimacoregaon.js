@@ -96,7 +96,7 @@ else
 addhtmlnxt+='<td width="15%"><i class="fa fa-bar-chart excprequsttrail" rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].myid+'" ></i></td>';if(response.data[i].sent_contraexeaprvl==1)
 {addhtmlnxt+='<td width="15%"><i class="fa fa-comments-o exereason" type="contra" rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].myid+'" ></i></td>';}
 else
-{addhtmlnxt+='<td width="15%"><i class="fa fa-comments-o exereason" type="trade"  rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].myid+'" ></td>';}
+{addhtmlnxt+='<td width="15%"></td>';}
 addhtmlnxt+='</tr>';}}
 else
 {addhtmlnxt+='<td width="15%" colspan="13" style="text-align:center;">Data No Found..!!!</td>';}
@@ -176,7 +176,11 @@ website.ajax({url:'exceptionreq/fetchexcereqtrail',data:formdata,method:'POST',c
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {if(response.persnreq[0].sent_contraexeaprvl!=1)
-{dteadded=response.data[0].date_added.split("-");dteaddedspace=response.data[0].date_added.split(" ");ddmmyyadded=dteaddedspace[0];dteadded=dteaddedspace[0].split("-");ddmmyyadded=dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];timesadded=dteaddedspace[1];dtemodified=response.data[0].date_modified.split("-");dtemodifdspace=response.data[0].date_modified.split(" ");ddmmyymodified=dtemodifdspace[0];dtemodified=dtemodifdspace[0].split("-");ddmmyymodified=dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];timesmodified=dtemodifdspace[1];website('#Mymodalaudittrail .reqstcreateddte').html(ddmmyyadded+' '+timesadded);website('#Mymodalaudittrail .reqstupdteddte').html(ddmmyymodified+' '+timesmodified);if(response.data[0].excep_approv==1)
+{dteadded=response.data[0].date_added.split("-");dteaddedspace=response.data[0].date_added.split(" ");ddmmyyadded=dteaddedspace[0];dteadded=dteaddedspace[0].split("-");ddmmyyadded=dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];timesadded=dteaddedspace[1];dtemodified=response.data[0].date_modified.split("-");dtemodifdspace=response.data[0].date_modified.split(" ");ddmmyymodified=dtemodifdspace[0];dtemodified=dtemodifdspace[0].split("-");ddmmyymodified=dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];timesmodified=dtemodifdspace[1];website('#Mymodalaudittrail .reqstcreateddte').html(ddmmyyadded+' '+timesadded);website('#Mymodalaudittrail .reqstupdteddte').html(ddmmyymodified+' '+timesmodified);if(response.persnreq[0].pdffilepath)
+{website('#Mymodalaudittrail .pdfpath').html('<a href="'+response.persnreq[0].pdffilepath+'" target="_blank"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>');}
+else
+{website('#Mymodalaudittrail .pdfpath').html('');}
+if(response.data[0].excep_approv==1)
 {if(response.data[0].excepsendaprv_date)
 {dtesendaprv=response.data[0].excepsendaprv_date.split("-");dtesendaprvspace=response.data[0].excepsendaprv_date.split(" ");ddmmyysendaprv=dtesendaprvspace[0];dtesendaprv=dtesendaprvspace[0].split("-");ddmmyysendaprv=dtesendaprv[2]+'-'+dtesendaprv[1]+'-'+dtesendaprv[0];timessendaprv=dtesendaprvspace[1];website('#Mymodalaudittrail .reqstsendapprv').html(ddmmyysendaprv+' '+timessendaprv);}}
 else
