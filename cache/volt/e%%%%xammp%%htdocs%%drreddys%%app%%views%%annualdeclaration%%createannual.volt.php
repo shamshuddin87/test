@@ -1131,14 +1131,14 @@
                    </td>
                </tr>
                <tr>
-                   <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
-                   <td style="width: 15%">  <label class="control-label">Relative Name</label></td>
-                   <td style="width: 15%">  <label class="control-label">Company Name</label></td>
-                   <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative <span>(%)</span></label></td>
-                   <td>    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
-                   <td>
-                   <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
-                   </td>
+                  <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
+                  <td style="width: 15%">  <label class="control-label">Relative Name</label></td>
+                  <td style="width: 15%">  <label class="control-label">Company Name</label></td>
+                  <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative <span>(%)</span></label></td>
+                  <td style="width: 15%">    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
+                  <td style="width: 15%">
+                  <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+                  </td>
                </tr>
                <tr>
                    <td style="border-right: 1px solid #f7f7f7"></td>
@@ -1164,7 +1164,7 @@
                    <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" value="holding above 2% shares" readonly="readonly">
                    </div>
                    </td>
-                   <td style="width: 15%">
+                   <td>
                    <div class="input">
                    <select id="d9ques4" name="d9ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4">
                    <option value="">Select Option</option>
@@ -1173,7 +1173,7 @@
                    </select>
                    </div>
                    </td>
-                   <td style="width: 15%"> 
+                   <td> 
                    <div class="input">
                    <select id="d9ques5" name="d9ques5[]" class="form_fields form-control col-md-7 col-xs-12">
                    <option value="">Select Option</option>
