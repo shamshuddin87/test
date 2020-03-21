@@ -259,7 +259,8 @@
           <h2 class="h2_heading">B. Details of Relatives</h2>
           
                  <h3 class="h3_heading">I.  List of Relatives</h3>
-        <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+        <div class="table-responsive">
+          <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
@@ -305,6 +306,7 @@
                <?php  } ?>
             </tbody>
         </table>
+        </div>
           
                      <h3 class="h3_heading">II.  Demat Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
@@ -868,7 +870,8 @@
           
           <h2 class="h2_heading">B. Details of Relatives</h2>
           <h3 class="h3_heading">I.  List of Relatives</h3>
-        <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+          <div class="table-responsive">
+            <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
@@ -914,6 +917,7 @@
                <?php  } ?>
             </tbody>
         </table>
+          </div>
           
         <h3 class="h3_heading">II.  Demat Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
