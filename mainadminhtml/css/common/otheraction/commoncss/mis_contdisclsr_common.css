@@ -133,3 +133,8 @@ input.gotobtn { padding: 2px 6px 2px 6px; border: 1px solid #5d6677;}
     padding: 5px;
     border-color: rgb(191, 190, 190);
 }
+
+.datetimepicker
+{
+    top: 10px !important;
+}

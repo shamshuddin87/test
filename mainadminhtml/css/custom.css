@@ -66,18 +66,21 @@ button.btn.btn-primary.genfile.excel_bg {
 }
 
 
-.table-responsive::-webkit-scrollbar {
+.table-responsive::-webkit-scrollbar,
+.overflowXscroll::-webkit-scrollbar {
   width:8px !important;
 }
 
 
-.table-responsive::-webkit-scrollbar-track
+.table-responsive::-webkit-scrollbar-track,
+.overflowXscroll::-webkit-scrollbar-track
 {
     scroll-behavior: smooth;
     background: #e3e3e3; 
 }
 
-.table-responsive::-webkit-scrollbar-thumb
+.table-responsive::-webkit-scrollbar-thumb,
+.overflowXscroll::-webkit-scrollbar-thumb
 {
     scroll-behavior: smooth;
     background: #b6b6b6; 

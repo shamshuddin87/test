@@ -249,19 +249,20 @@ class Tradingrequestcommon extends Component
                     $tradingdate='';
                 }
             // --------  End GET AUTO APPROVE STATUS --------
-
+            
+            //print_r($data);exit;
             
             // -------- Start GET AUTO APPROVE STATUS --------
                 $query = "INSERT INTO `personal_request`(`user_id`,`user_group`,
                     `type_of_request`,`relative_id`,`name_of_requester`,
                     `sectype`,`id_of_company`,`no_of_shares`,
                     `type_of_transaction`,`pdffilepath`,`approver_id`,`send_status`,
-                    `sendaprvl_date`,`approved_status`,`trading_date`,`ex_approve_status`,
+                    `sendaprvl_date`,`approved_status`,`trading_date`,`ex_approve_status`,approxprice,broker,demat,place,dateoftransaction,trans,shares,
                     `date_added`,`date_modified`,`timeago`) VALUES('".$uid."','".$usergroup."',
                     '".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."',
                     '".$data['sectype']."','".$data['idofcmp']."','".$data['noofshare']."',
                     '".$data['typeoftrans']."','".$pdfpath."','".$data['approverid']."','".$send_status."',
-                    NOW(),'".$autoapst."','".$tradingdate."','0',
+                    NOW(),'".$autoapst."','".$tradingdate."','0','".$data['approxprice']."','".$data['broker']."','".$data['demataccount']."','".$data['place']."','".$data['datetrans']."','".$data['transaction']."','".$data['sharestrans']."',
                     NOW(),NOW(),'".$time."')";
                 //echo $query; exit;
             
@@ -639,6 +640,37 @@ class Tradingrequestcommon extends Component
             $connection = $this->dbtrd;
             //echo "wait here ";exit;
             $queryget = "SELECT * FROM `personal_request` WHERE id = '".$editid."'";
+
+            //echo $queryget;  exit;
+
+            try
+            {
+                $exeget = $connection->query($queryget);
+                $getnum = trim($exeget->numRows());
+
+                if($getnum>0)
+                {
+                    $getlist = $exeget->fetch();
+                }
+                else
+                {
+                    $getlist = array();
+                }
+            }
+            catch (Exception $e)
+            {
+                $getlist = array();
+            //$connection->close();
+            }
+            //echo '<pre>';print_r($getlist);exit;
+            return $getlist;
+        }
+
+         public function getpersonalinfo($uid,$usergroup)
+        {
+            $connection = $this->dbtrd;
+            //echo "wait here ";exit;
+            $queryget = "SELECT * FROM `personal_info` WHERE userid = '".$uid."'";
 
             //echo $queryget;  exit;
 
@@ -1940,6 +1972,78 @@ class Tradingrequestcommon extends Component
                     return $msg;
                 } 
     }
+
+
+    public function selfdematacc($getuserid)
+    {
+        $connection = $this->dbtrd;
+       
+            $querygetdetail = "SELECT * FROM `user_demat_accounts` WHERE user_id='".$getuserid."'";  
+        
+       
+        //echo $querygetdetail;exit;
+        try
+        {
+                $exegetdetail = $connection->query($querygetdetail);
+                $getnum = trim($exegetdetail->numRows());
+
+                if($getnum>0)
+                {
+                    while($row = $exegetdetail->fetch())
+                    {
+                        $getlist[] = $row;
+                    }
+                }
+                else
+                {
+                    $getlist = array();
+                }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+        //$connection->close();
+        }
+        //print_r($getlist);exit;
+        return $getlist;
+    }
+
+      public function relativedematacc($getuserid)
+    {
+        $connection = $this->dbtrd;
+       
+            
+        $querygetdetail = "SELECT * FROM `relative_demat_accounts` WHERE rel_user_id = '".$getuserid."'";
+       
+        
+        //echo $querygetdetail;exit;
+        try
+        {
+                $exegetdetail = $connection->query($querygetdetail);
+                $getnum = trim($exegetdetail->numRows());
+
+                if($getnum>0)
+                {
+                    while($row = $exegetdetail->fetch())
+                    {
+                        $getlist[] = $row;
+                    }
+                }
+                else
+                {
+                    $getlist = array();
+                }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+        //$connection->close();
+        }
+        return $getlist;
+    }
+
+
+
     
     
 }

@@ -1,6 +1,6 @@
 <?php $gmnlog = $this->session->loginauthspuserfront;
 
-
+    //print_r($selfdemat);exit;
 
  ?>
 
@@ -146,7 +146,8 @@
             <div class="form-group">
                 <label for="">Select Type Of Request</label>
                 <select class="form-control" id="typeofrequest" name="typeofrequest">
-                    <option value="1" selected="selected">Self</option>
+                    <option value="" >Select Type of Request</option>
+                    <option value="1" >Self</option>
                     <option value="2">Relative</option>
                 </select>
             </div>
@@ -193,6 +194,68 @@
                     <option value="4">RIGHTS</option>
                 </select>
             </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Approx price or range (shares/ADRs * market price)</label>
+               
+                <input type="text" class="form-control" id="sharesprice" name="sharesprice" placeholder="Approx price or range (shares/ADRs * market price)" >
+            </div>
+
+             
+
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Broker through which dealing will take place</label>
+               
+                <input type="text" class="form-control" id="broker" name="broker" placeholder="Broker through which dealing will take place" >
+            </div>
+
+            <div class="form-group">
+               
+                <label for="">Demat Account</label>
+                <select class="form-control" id="demataccount" name="demataccount">
+                   
+                    
+                   
+                </select>
+            </div>
+
+              <div class="form-group">
+                <label for="">Place</label>
+                 <input type="text" class="form-control " id="place" name="place" placeholder="Place" >
+               
+            </div>
+
+
+
+
+            <div class="form-group col-md-12" >
+                <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>
+                <div id = "left" class="form-group col-md-4">
+                <label for="">Date</label>
+                <input type="text" class="form-control bootdatepick" id="dateoftrans[]" name="dateoftrans[]" placeholder="Date" >
+                </div>
+                <div id = "middle" class="form-group col-md-4">
+                 <label for="">Transaction</label>
+                <input type="text" class="form-control " id="trans[]" name="trans[]" placeholder="Transaction" >
+                </div>
+                <div id = "right" class="form-group col-md-4">
+                <label for="">No of Shares</label>
+                <input type="text" class="form-control " id="sharestrans[]" name="sharestrans[]" placeholder="No of Shares">
+                </div>
+               
+            </div>
+
+             <div class = "appenddiv" id="appenddiv">
+            </div>
+
+            <div class="adddiv2section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+            <input type="button" id ="adddiv" class="btn btn-primary "  value="+" onclick="addhtml(this.id);">
+            <input type="button" id = "remvdiv" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+            <input type="hidden" class="append" plancntr="1">
+            </div>
+
+
+
 
             <input type="button" id ="sendrequest" name="sendreq" value="SEND" class="btn btn-primary sendrequst" style="float: right;">  
             <input type="button"  name="draft" value="SAVE AS DRAFT" id="draftedreq" class="btn btn-primary reqdraft" style="float: right;"> 
@@ -477,7 +540,15 @@
               <input type="hidden" id="nameofcmp" name="nameofcmp">
               <input type="hidden" id="noofshare" name="noofshare">
               <input type="hidden" id="typeoftrans" name="typeoftrans">
-              <input type="hidden" id="sendreq" name="sendreq">
+               <input type="hidden" id="sendreq" name="sendreq">
+              <input type="hidden" id="approxprice" name="approxprice">
+               <input type="hidden" id="broker" name="broker">
+                <input type="hidden" id="demataccount" name="demataccount">
+                 <input type="hidden" id="place" name="place">
+                  <input type="hidden" id="datetrans" name="datetrans">
+                   <input type="hidden" id="transaction" name="sendreq">
+                    <input type="hidden" id="sharestrans" name="sharestrans">
+
 
 
                 
@@ -576,6 +647,26 @@
     </div>
 </div>
 
+
+<div id="formI" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">
+                     &times;</button>
+                 
+         <div id = "appendformI">
+           
+         </div>    
+               
+        </div>
+            <div class="modal-footer" style="border-top:none;">
+              <button type="button" class="btn btn-primary" id="Yesexcreqst">Yes</button> 
+            <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="Noexcrequest">No</button>
+            </div>
+    </div>
+</div>
 
 <div id="chckexcptnrequest" class="modal fade" role="dialog">
     <div class="modal-dialog">

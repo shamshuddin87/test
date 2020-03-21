@@ -122,7 +122,7 @@ function addhtml(clicked)
           addhtmlnxt += '</td>';
             addhtmlnxt += '<td style="width: 16%"><label class="control-label">Nature of Interest</label>';
           addhtmlnxt += '</td>';
-          addhtmlnxt += '<td ><label class="control-label">No. of Shares held</label></td>';
+          addhtmlnxt += '<td  style="width: 15%"><label class="control-label">No. of Shares held</label></td>';
           addhtmlnxt += '<td><label class="control-label">Can you significantly influence the decision making of this company?</label>';
             addhtmlnxt +='</td>';
           addhtmlnxt += '<td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';
@@ -265,10 +265,10 @@ function addhtml(clicked)
         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>';
-          addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;"></td>';
+          addhtmlnxt += '<td style="width: 15%"><label class="control-label">Relative Name</label>';
           addhtmlnxt += '</td>';
-            addhtmlnxt += '<td style="width: 20%"><label class="control-label">Firm Name</label>';
+            addhtmlnxt += '<td style="width: 15%"><label class="control-label">Firm Name</label>';
           addhtmlnxt += '</td>';
 
            addhtmlnxt += '<td style="width: 15%"><label class="control-label">Nature of interest</label>';
@@ -281,7 +281,7 @@ function addhtml(clicked)
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;width:2.5%;"></td>';
+          addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;"></td>';
 
         addhtmlnxt += '<td><div class="input"> <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >';
            addhtmlnxt +='<option value="">Select Option </option>';   
@@ -317,18 +317,18 @@ function addhtml(clicked)
          var addhtmlnxt='';
        
         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="row'+getlastid+'" >';
-       addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
+       addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%;" border="1">';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;width:2.5%;"></td>';
-          addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;"></td>';
+          addhtmlnxt += '<td style="width: 15%"><label class="control-label">Relative Name</label>';
           addhtmlnxt += '</td>';
-            addhtmlnxt += '<td style="width: 20%"><label class="control-label">Company Name</label>';
+            addhtmlnxt += '<td style="width: 15%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
 
            addhtmlnxt += '<td style="width: 15%"><label class="control-label">Nature of interest</label>';
           addhtmlnxt += '</td>';
-           addhtmlnxt += '<td ><label class="control-label">No. of Shares held</label></td>';
-          addhtmlnxt += '<td><label class="control-label">Can this relative significantly influence the decision making of this company?</label>';
+           addhtmlnxt += '<td style="width: 15%"><label class="control-label">No. of Shares held</label></td>';
+          addhtmlnxt += '<td style="width: 15%"><label class="control-label">Can this relative significantly influence the decision making of this company?</label>';
             addhtmlnxt +='</td>';
           addhtmlnxt += '<td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';
         
@@ -336,7 +336,7 @@ function addhtml(clicked)
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>';
+          addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;"></td>';
 
         addhtmlnxt += '<td><div class="input"> <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >';
         addhtmlnxt += '<option value="">Select Option </option>';   
@@ -417,14 +417,14 @@ function addhtml(clicked)
          addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>';
-           addhtmlnxt += '<td style="width: 20%">  <label class="control-label">Relative Name</label></td>';
-          addhtmlnxt += '<td style="width: 22%"><label class="control-label">Company Name</label>';
+           addhtmlnxt += '<td style="width: 15%">  <label class="control-label">Relative Name</label></td>';
+          addhtmlnxt += '<td style="width: 15%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
             addhtmlnxt += '<td style="width: 16%"><label class="control-label">Percentage of Shares alongwith relative(%)</label>';
           addhtmlnxt += '</td>';
-          addhtmlnxt += '<td><label class="control-label">Can you significantly influence the decision making of this company?</label>';
+          addhtmlnxt += '<td style="width: 15%"><label class="control-label">Can you significantly influence the decision making of this company?</label>';
             addhtmlnxt +='</td>';
-          addhtmlnxt += '<td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';
+          addhtmlnxt += '<td style="width: 15%"><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';
         
         
           addhtmlnxt += '</td>';
@@ -669,7 +669,9 @@ function removehtml(clicked)
 
 }
 
-function showsection(id){
+
+function showsection(id)
+{
 
 var id = id;
 
@@ -803,7 +805,7 @@ function annualmodal(uniqueid){
           },
           success: function(response) 
           {
-              //console.log(response); return false;
+                //console.log(response); return false;
               if(response.logged===true)
               {
                 
@@ -824,6 +826,7 @@ function annualmodal(uniqueid){
           }
 });
 }
+
 
 function getpdfdata(uniqueid)
 {
@@ -1242,9 +1245,9 @@ function getpdfdata(uniqueid)
     error: function(jqXHR, textStatus, errorThrown)
     {   }
     });
-    }
+}
 
-website('#insertannual').ajaxForm({
+  website('#insertannual').ajaxForm({
 
     
       

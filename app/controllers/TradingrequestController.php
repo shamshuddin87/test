@@ -19,6 +19,10 @@ class TradingrequestController extends ControllerBase
          $this->view->alldetails = $this->tradingrequestcommon->userdetails($uid,$usergroup);
          $this->view->relativeinfo = $this->tradingrequestcommon->getrelativeinfo($uid,$usergroup);
          $this->view->sectype = $this->tradingrequestcommon->securitytype();
+         
+
+         
+        
          if(isset($_GET["redirect"]))
          {
            $this->view->$redirecturl= $_GET["redirect"];
@@ -188,11 +192,43 @@ class TradingrequestController extends ControllerBase
                 $nameofcmp  = $this->request->getPost('nameofcmp','trim');
                 $noofshare = $this->request->getPost('noofshare','trim');
                 $typeoftrans  = $this->request->getPost('typeoftrans','trim');
+                //print_r($typeoftrans);exit;
                 $typeofrequest=$this->request->getPost('typeofrequest','trim');
                 $selrelative=$this->request->getPost('selrelative','trim');
                 $reqname= $this->request->getPost('reqname','trim');
                 $sendreq=$this->request->getPost('sendreq','trim');
-                $pdfpath = $this->request->getPost('link','trim');
+                //print_r($sendreq);exit;
+                //$pdfpath = $this->request->getPost('link','trim');
+
+                $approxprice=$this->request->getPost('approxprice','trim');
+                $broker=$this->request->getPost('broker','trim');
+                $demataccount=$this->request->getPost('demataccount','trim');
+                $place=$this->request->getPost('place','trim');
+                $datetrans=$this->request->getPost('datetrans','trim');
+                $transaction=$this->request->getPost('transaction','trim');
+                $sharestrans=$this->request->getPost('sharestrans','trim');
+                if($typeoftrans == 2)
+                {
+                    $nature = 'Sale';
+                }
+                else
+                {
+                    $nature = 'Purchase';
+                }
+
+                $personalinfo = $this->tradingrequestcommon->getpersonalinfo($uid,$usergroup);
+
+                $itmemberinfo = $this->tradingrequestcommon->userdetails($uid,$usergroup);
+
+                $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccount,$place,$datetrans,$transaction,$sharestrans,$nature);
+
+                $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','formI','weaver');
+                //print_r($pdfpath);exit;
+
+
+
+                $checkval = $this->tradingrequestcommon->checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans);
+
                 $flag = 1;
                 
                 $checkval = $this->tradingrequestcommon->checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans);
@@ -1298,6 +1334,7 @@ class TradingrequestController extends ControllerBase
           }
      }
 
+
     public function getfilecontentAction()
     {
         $this->view->disable();
@@ -1311,20 +1348,23 @@ class TradingrequestController extends ControllerBase
             {
                 $formtype = $this->request->getPost("formtype");
 
-                if($formtype == "form1" )
+                if($formtype == "form1")
                 {
                     $pdf_content = file_get_contents("declaration_form/preclearance.html");
-                    $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form I','FormI');
+                    $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','weaver','weaver');
                 }
                 else if($formtype == "form2")
                 {
+                     
                     $pdf_content = file_get_contents("declaration_form/weaverform.html");
-                    $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form II','FormII');
+                    $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','preclerance','preclerance');
                 }
                
+               
+                
                 if(!empty($pdf_content))
                 {
-                    $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdf_path"=>$pdfpath);
+                    $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdf_path"=>$pdfpath,"pdf_content"=> $pdf_content);
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -1370,21 +1410,14 @@ class TradingrequestController extends ControllerBase
                 $selrelative = $this->request->getPost('selrelative','trim');
                 $reqname = $this->request->getPost('reqname','trim');
                 $typeofsave = $this->request->getPost('typeofsave','trim');
-                
-                /*----additional questions*/
-                $reasonoftrans = $this->request->getPost('reasonoftrans','trim');
-                $otherreason = $this->request->getPost('otherreason','trim');
-                $lasttransdate = $this->request->getPost('lasttransdate','trim');
-                $noofshareoftrans = $this->request->getPost('noofshareoftrans','trim');
-                $form2place = $this->request->getPost('form2place','trim');
-                //$path = $this->request->getPost('link','trim');
+                $path = $this->request->getPost('link','trim');
                 //print_r($path);exit;
                 $flag = 1;
-//                if($typeofrequest==3)
-//                {
-//                	   $uid =$this->request->getPost('dpuserid','trim');
-//                	   $usergroup=$this->request->getPost('dpusergroup','trim');
-//                }
+       //                if($typeofrequest==3)
+       //                {
+      //                	   $uid =$this->request->getPost('dpuserid','trim');
+        //                	   $usergroup=$this->request->getPost('dpusergroup','trim');
+        //                }
                 // print_r($usergroup);exit;
                 $checkdemat = $this->tradingrequestcommon->checkdematacc($uid,$usergroup,$selrelative);
               
@@ -1437,13 +1470,6 @@ class TradingrequestController extends ControllerBase
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
-                else if($reasonoftrans == 4 && empty($otherreason)) 
-                {
-                    $data = array("logged" => false,'message' => 'Please specify any other reason');
-                    $this->response->setJsonContent($data);
-                    $this->response->send();
-                }
-                
                 else
                 {
                     $send_status=1;
@@ -1503,6 +1529,62 @@ class TradingrequestController extends ControllerBase
         }
     }
 
+
+     public function fetchdematAction()
+    {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $usergroup = $this->session->loginauthspuserfront['user_group_id'];
+        $time = time();
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {   
+                $date=date('d-m-Y');
+                
+                //print_R($alldata);exit;
+                $typeofreq = $this->request->getPost('typeofreq','trim');
+               
+                if($typeofreq == 1)
+                {
+                     $result = $this->tradingrequestcommon->selfdematacc($uid);
+
+                }
+                else if($typeofreq == 2)
+                {
+                    $result = $this->tradingrequestcommon->relativedematacc($uid);
+                }
+               
+                   
+                if($result)
+                {
+                    $data = array("logged" => true,'message' =>"data fetched",'data'=>$result);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' =>"data not fetched");
+                    $this->response->setJsonContent($data);
+                }
+                   
+                $this->response->send();
+
+            }
+            else
+            {
+                exit('No direct script access allowed');
+            }
+            
+           
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+
+    
 
     
   }
