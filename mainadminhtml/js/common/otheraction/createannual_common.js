@@ -669,7 +669,9 @@ function removehtml(clicked)
 
 }
 
-function showsection(id){
+
+function showsection(id)
+{
 
 var id = id;
 
@@ -803,7 +805,7 @@ function annualmodal(uniqueid){
           },
           success: function(response) 
           {
-              //console.log(response); return false;
+                //console.log(response); return false;
               if(response.logged===true)
               {
                 
@@ -824,6 +826,7 @@ function annualmodal(uniqueid){
           }
 });
 }
+
 
 function getpdfdata(uniqueid)
 {
@@ -1242,9 +1245,9 @@ function getpdfdata(uniqueid)
     error: function(jqXHR, textStatus, errorThrown)
     {   }
     });
-    }
+}
 
-website('#insertannual').ajaxForm({
+  website('#insertannual').ajaxForm({
 
     
       

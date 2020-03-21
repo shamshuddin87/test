@@ -1298,7 +1298,8 @@ class TradingrequestController extends ControllerBase
           }
      }
 
-      public function getfilecontentAction()
+
+    public function getfilecontentAction()
     {
         $this->view->disable();
         $uid = $this->session->loginauthspuserfront['id'];
@@ -1311,23 +1312,23 @@ class TradingrequestController extends ControllerBase
             {
                 $formtype = $this->request->getPost("formtype");
 
-                if($formtype == "form1" )
+                if($formtype == "form1")
                 {
-                     $pdf_content = file_get_contents("declaration_form/preclearance.html");
-                      $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','weaver','weaver');
+                    $pdf_content = file_get_contents("declaration_form/preclearance.html");
+                    $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','weaver','weaver');
                 }
                 else if($formtype == "form2")
                 {
                      
-                     $pdf_content = file_get_contents("declaration_form/weaverform.html");
-                     $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','preclerance','preclerance');
+                    $pdf_content = file_get_contents("declaration_form/weaverform.html");
+                    $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','preclerance','preclerance');
                 }
                
                
-
+                
                 if(!empty($pdf_content))
                 {
-                    $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdf_path"=>$pdfpath);
+                    $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdf_path"=>$pdfpath,"pdf_content"=> $pdf_content);
                     $this->response->setJsonContent($data);
                 }
                 else
