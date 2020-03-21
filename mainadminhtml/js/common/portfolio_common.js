@@ -80,6 +80,7 @@ website("body").on("click","#subdemat",function(e) {
     { 
         var accno=website('#field_'+i).val();
         var dp=website('#field2_'+i).val();
+        //alert('#field2_'+i);return;
         var clhouse=website('#field3_'+i).val();
         var obj=
         {

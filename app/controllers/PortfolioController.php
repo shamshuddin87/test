@@ -41,7 +41,8 @@ class PortfolioController extends ControllerBase
          if($this->request->isAjax() == true)
          {
              $flag =0;
-            $accnodata= $this->request->getPost('accno');
+             $accnodata= $this->request->getPost('accno');
+             //print_r($accnodata);exit;
             $clhouse= $this->request->getPost('clhouse');
             for($i=0;$i<sizeof($accnodata);$i++)
             {
