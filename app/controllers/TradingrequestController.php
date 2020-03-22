@@ -1410,14 +1410,21 @@ class TradingrequestController extends ControllerBase
                 $selrelative = $this->request->getPost('selrelative','trim');
                 $reqname = $this->request->getPost('reqname','trim');
                 $typeofsave = $this->request->getPost('typeofsave','trim');
-                $path = $this->request->getPost('link','trim');
+                
+                /*----additional questions*/
+                $reasonoftrans = $this->request->getPost('reasonoftrans','trim');
+                $otherreason = $this->request->getPost('otherreason','trim');
+                $lasttransdate = $this->request->getPost('lasttransdate','trim');
+                $noofshareoftrans = $this->request->getPost('noofshareoftrans','trim');
+                $form2place = $this->request->getPost('form2place','trim');
+                //$path = $this->request->getPost('link','trim');
                 //print_r($path);exit;
                 $flag = 1;
-       //                if($typeofrequest==3)
-       //                {
-      //                	   $uid =$this->request->getPost('dpuserid','trim');
-        //                	   $usergroup=$this->request->getPost('dpusergroup','trim');
-        //                }
+//                if($typeofrequest==3)
+//                {
+//                	   $uid =$this->request->getPost('dpuserid','trim');
+//                	   $usergroup=$this->request->getPost('dpusergroup','trim');
+//                }
                 // print_r($usergroup);exit;
                 $checkdemat = $this->tradingrequestcommon->checkdematacc($uid,$usergroup,$selrelative);
               
@@ -1470,6 +1477,13 @@ class TradingrequestController extends ControllerBase
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
+                else if($reasonoftrans == 4 && empty($otherreason)) 
+                {
+                    $data = array("logged" => false,'message' => 'Please specify any other reason');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                
                 else
                 {
                     $send_status=1;

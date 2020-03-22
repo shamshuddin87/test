@@ -615,6 +615,10 @@
                         <td><span class="reqstupdteddte"></span></td>
                     </tr>
                     <tr>
+                        <td>Application Copy :</td>
+                        <td><span class="pdfpath"></span></td>
+                    </tr>
+                    <tr>
                         <td>Sent for Approval On :</td>
                         <td><span class="reqstsendapprv"></span></td>
                     </tr>
@@ -671,7 +675,7 @@
                   <div class="modal-body">
                      <button type="button" class="close" data-dismiss="modal">
                      &times;</button>
-                 <button type="button" class="btn btn-primary" id="pdflink" download value="Download"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
+                 <button type="button" class="btn btn-primary" id="pdflink" download value="Download" style="display:none;"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
                <h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">This transaction is a contra trade within 6 months of previous trade. You will require an exceptional pre-clearance approval for such trade request. Also, you can raise this request only if you do not hold any UPSI. Please confirm if you want to send exception approval?</h5>
                
             </div>
@@ -706,14 +710,47 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-              <h3>Please Enter Your Reason</h3>
+              <h3>Additional Questions</h3>
               <button type="button" class="close" data-dismiss="modal">
                     &times;</button>
             </div>
             <div class="modal-body">
-           
+            <div class="form-group">
+                <label for="">I intend to sell/purchase/exercise no. of shares/ADRs/options of the Company because of following reason(s)</label>
+                <select class="form-control" id="reasonoftrans" name="reasonoftrans">
+                    <option value="">Select Option</option>
+                    <option value="1">Medical Expenses for self / family Members</option>
+                    <option value="2">Repayment of existing Loan</option>
+                    <option value="3">Wedding /other family function</option>
+                    <option value="4">Any other reason (Please specify)</option>
+                </select>
+            </div>
+                
+            <div class="form-group otherreason" style="display:none;">
+                <label for="">Any other reason*</label>
+                <input type="text" class="form-control" name="otherreason" id="otherreason" placeholder="Any other reason (Please specify)">
+            </div>
+                
+           <div class="form-group">
+                <label for="">Date of last purchase / sale</label>
+                <input type="text" class="form-control bootdatepick" name="lasttransdate" id="lasttransdate" readonly placeholder="Date of last purchase / sale">
+            </div>
+            
+            <div class="form-group">
+                <label for="">No. of shares / ADRs purchase/sold</label>
+                <input type="text" class="form-control" name="noofshareoftrans" id="noofshareoftrans" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of shares / ADRs purchase/sold">
+            </div>
+                
+            <div class="form-group">
+                <label for="">Place</label>
+                <input type="text" class="form-control" name="form2place" id="form2place"  placeholder="Place">
+            </div>
+
+            
+<!--
            <textarea  width="80%" id="reasontrans"></textarea>
            <input type="hidden" id = "reasonlink">
+-->
 
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" id="reasonexetrans">Submit</button> 

@@ -576,7 +576,7 @@ function getalltradingrequest()
                                 }
                                 else
                                 {
-                                    addhtmlnxt+='<td width="15%"><i class="fa fa-comments-o exereason" type="trade"  rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].myid+'" ></td>';
+                                    addhtmlnxt+='<td width="15%"></td>';
                                 }
                                 addhtmlnxt+='</tr>';
                          
@@ -1204,6 +1204,17 @@ website('body').on("click",".excprequsttrail",function(e){
                 
                website('#Mymodalaudittrail .reqstcreateddte' ).html(ddmmyyadded+' '+timesadded);
                website('#Mymodalaudittrail .reqstupdteddte' ).html(ddmmyymodified+' '+timesmodified);
+                
+                /* -----  Application copy ----*/
+                if(response.persnreq[0].pdffilepath)
+                {
+                   website('#Mymodalaudittrail .pdfpath').html('<a href="'+response.persnreq[0].pdffilepath+'" target="_blank"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>'); 
+                }
+                else
+                {
+                    website('#Mymodalaudittrail .pdfpath').html('');
+                }
+                
                if(response.data[0].excep_approv == 1)
                {
                    if(response.data[0].excepsendaprv_date)

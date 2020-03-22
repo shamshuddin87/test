@@ -248,6 +248,10 @@ $gmnlog = $this->session->loginauthspuserfront;
                         <td><span class="reqstupdteddte"></span></td>
                     </tr>
                     <tr>
+                        <td>Application Copy :</td>
+                        <td><span class="pdfpath"></span></td>
+                    </tr>
+                    <tr>
                         <td>Sent for Approval On :</td>
                         <td><span class="reqstsendapprv"></span></td>
                     </tr>
