@@ -169,7 +169,7 @@ class Upsicommon extends Component
 
     public function updateupsi($getuserid,$usergroup,$updatedata,$exceldpids,$username)
     {
-        //print_r($updatedata);exit;
+        print_r($updatedata);exit;
         $connection = $this->dbtrd;
         $userdata = $this->fetchuserdata($getuserid);
         $addedby = $userdata[0]['fullname'];
@@ -702,7 +702,7 @@ class Upsicommon extends Component
         $connection = $this->dbtrd;
         //$emailid = implode("','",$EmailData['emailid']);
         $emailid = $EmailData['emailid'];
-        //print_r($emailid);exit;
+            //print_r($emailid);exit;
         $sqlquery = "SELECT * FROM `it_memberlist` WHERE `email` = '".$emailid."' AND `status`=1 ";
         //print_r($sqlquery);
         try
@@ -722,7 +722,7 @@ class Upsicommon extends Component
         }
         catch (Exception $e)
         {   $getlist = false;  }
-        //echo '<pre>';print_r($getlist);exit;
+          echo '<pre>';print_r($getlist);exit;
         return $getlist;
     }
   
