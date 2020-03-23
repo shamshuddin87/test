@@ -3089,7 +3089,7 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
 public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccount,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename,$datetrans,$transaction,$sharestrans)
   {   
          //echo "<pre>";print_r($datetrans);exit;
-            $html='<div >
+            $html='<div>
   <table style="  border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
    <tr>
       <td>Dr. Reddy’s Laboratories Limited</td>
@@ -3113,7 +3113,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
 
   <br/>
 
-  <p>Dear Sir,<br/><br/>
+  <p>Dears Sir,<br/><br/>
    I/we am/are desirous of dealing in the shares / ADRs of the Company.  In terms of the Company’s Code, I/we seek your approval for the trade as detailed below:
   </p>
 
@@ -3165,10 +3165,9 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
       <td style="padding: 0;">
       <table style="width:100%">
      <tr>
-    <th style="background: none;color: #000;">Date</th>
-    <th style="background: none;color: #000;">Transaction</th>
-    <th style="background: none;color: #000;">No. of shares</th>
-
+    <th style="background: none;color: #000;width:30%;">Date</th>
+    <th style="background: none;color: #000;width:35%;">Transaction</th>
+    <th style="background: none;color: #000;width:35%;">No. of shares</th>
     </tr>';
 
 
