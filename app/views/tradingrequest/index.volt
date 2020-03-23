@@ -40,14 +40,14 @@
             <div class="create_button">
              <div class="top_margin">   
             <button type="button" class="btn btn-primary createreq">Create Request</button>
-            <input type="button"  id="sendmulreq" value="Send" class="btn btn-primary">
+<!--            <input type="button"  id="sendmulreq" value="Send" class="btn btn-primary">-->
             </div> 
                 <div class="cssfilter">               
                     <div class="control-label form-group">
                         <label>Status Filter</label>
                         <select id="filterstatus" name="filterstatus" class="form-control">
                             <option value="">All</option>
-                            <option value="drafted">Drafted</option>
+<!--                            <option value="drafted">Drafted</option>-->
                             <option value="sent_for_approval">Sent for approval</option>
                             <option value="not_approved">Not approved</option>
                             <option value="approved">Approved</option>
@@ -76,14 +76,14 @@
                             <th>Name Of Relative</th>
                             <th>Relationship</th>
                             <!--<th>Total Amount</th>-->
-                            <th>Request Status</th>
+<!--                            <th>Request Status</th>-->
                             <th>Approval Status</th>
                             <th>Trading Window</th>
                             <th>Created Date</th>
                             <!--<th>Updated Date</th>-->
                             <th>Trading Status</th>
                             <th>Audit Trail</th>
-                            <th>Action</th>
+<!--                            <th>Action</th>-->
                         </tr>
                     </thead>
                     <tbody class="reqtable" appendrow='1'></tbody>
@@ -257,7 +257,7 @@
 
 
             <input type="button" id ="sendrequest" name="sendreq" value="SEND" class="btn btn-primary sendrequst" style="float: right;">  
-            <input type="button"  name="draft" value="SAVE AS DRAFT" id="draftedreq" class="btn btn-primary reqdraft" style="float: right;"> 
+<!--            <input type="button"  name="draft" value="SAVE AS DRAFT" id="draftedreq" class="btn btn-primary reqdraft" style="float: right;"> -->
 
         </form>
     </div>
@@ -530,6 +530,7 @@
             </div>
             <div class="modal-body">
              <!-- <a id="pdflink" download><input type="button" class="btn btn-success"  value="Download"></a> -->
+
               <input type="hidden" id="approverid" name="approverid">
               <input type="hidden" id="reqname" name="reqname">
               <input type="hidden" id="typeofrequest" name="typeofrequest">
@@ -666,7 +667,7 @@
             </div>
     </div>
 </div>
-
+</div>
 <div id="chckexcptnrequest" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -683,6 +684,7 @@
             <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="Noexcrequest">No</button>
             </div>
     </div>
+</div>
 </div>
 <div id="exceptnresionmodal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -721,7 +723,8 @@
                     <option value="1">Medical Expenses for self / family Members</option>
                     <option value="2">Repayment of existing Loan</option>
                     <option value="3">Wedding /other family function</option>
-                    <option value="4">Any other reason (Please specify)</option>
+                    <option value="4">Education</option>
+                    <option value="5">Any other reason (Please specify)</option>
                 </select>
             </div>
                 
