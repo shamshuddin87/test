@@ -2053,15 +2053,9 @@ function addhtml(clicked)
 
            addhtmlnxt += '</div>';
 
-         if(datepre)
-         {
-            website('.appenddiv').append(addhtmlnxt);
-         }
-         else
-         {
-            alert("alert");
-         }
          
+            website('.appenddiv').append(addhtmlnxt);
+       
          datepicker();
        
          website('.append').attr('plancntr',getlastid);
