@@ -99,6 +99,7 @@ class BlackoutperiodController extends ControllerBase
                 $blckoutfrom   = $this->request->getPost('blckoutfrom','trim');
                 $blckoutto   = $this->request->getPost('blckoutto','trim');
                 $reason   = $this->request->getPost('reason','trim');
+                $infodata = $this->request->getPost();
                 //print_r($reason);exit;
                 
                 if(empty($compid))
@@ -138,7 +139,43 @@ class BlackoutperiodController extends ControllerBase
                 
                 
                     $getres = $this->blackoutperiodcommon->insertblackoutperiod($getuserid,$user_group_id,$compid,$blckoutfrom,$blckoutto,$reason);
-                    if($getres)
+
+                    $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+                    $connectedperson = $this->insidercommon->getconnectedusers($getuserid,$user_group_id);
+
+                    //print_r($connectedperson);exit;
+                    $email = $grpusrs['userlist'];
+                    $email =array_merge($email,$connectedperson);
+                    //print_r($infodata);exit;
+                    
+                  
+                    for($i=0;$i<sizeof($email);$i++)
+                    {
+                        // echo '<pre>'; print_r($email[$i]); 
+
+                        if(array_key_exists("wr_id", $email[$i]))
+                        {
+                        $sendtoid = $email[$i]['wr_id'];                        
+                        $sendtoname = $email[$i]['fullname'];
+                        $emailid = $email[$i]['email'];
+                        }
+                        else if(array_key_exists("nameofentity", $email[$i]))
+                        {
+
+                        $sendtoid = $email[$i]['user_id'];                        
+                        $sendtoname = $email[$i]['nameofentity'];
+                        $emailid = $email[$i]['email'];
+                        }
+                        
+                        //$result = $this->emailer->mailoftradingwindow($emailcontent,$emailid);
+                                                
+                        // ----- Start InsertDataInAutomailer -----
+                        $qtypeid = '3'; //-- refer email_queuetype table
+                       
+                        $result = $this->automailercommon->insertemailqueue($getuserid,$user_group_id,$qtypeid,$sendtoid,$emailid,$sendtoname,$infodata);
+                    }
+
+                    if($getres && $result==true)
                     {
                         $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
                         $this->response->setJsonContent($data);

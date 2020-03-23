@@ -1963,77 +1963,95 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
     public function mailformdackrqst($subject,$emaildata)
    {
 
+        //print_r($emaildata);exit;
+        $unixTimestamp = strtotime($emaildata['blckoutfrom']);
+ 
+        $dayOfWeek = date("l", $unixTimestamp);
+        $unixTimestamp1 = strtotime($emaildata['blckoutto']);
+ 
+        $dayOfWeek1 = date("l", $unixTimestamp1);
+
+ 
+ 
           //echo "<pre>";print_r($userids);exit;
-          $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-          <html xmlns="htth3://www.w3.org/1999/xhtml">
+           $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="htth3://www.w3.org/1999/xhtml">
 
-          <head>
-          <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-          <title>Phoenix Peth</title>
-          <style>
-          p{color: black;}
-          .button {
-          background-color: #4CAF50; /* Green */
-          border: none;
-          color: white;
-          padding: 15px 32px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin: 4px 2px;
-          cursor: pointer;
-          }
+      <head>
+        <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <title>Phoenix Peth</title>
+            <style>
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
 
-          .button2 {background-color: #008CBA;} /* Blue */
-          .button3 {background-color: #f44336;} /* Red */ 
-          .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
-          .button5 {background-color: #555555;} /* Black */
-          </style>
-          </head>
+            .button2 {background-color: #008CBA;} /* Blue */
+            .button3 {background-color: #f44336;} /* Red */ 
+            .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+            .button5 {background-color: #555555;} /* Black */
+            </style>
+    </head>
 
-          <body style="font-family: Arial;
-          width: 100%;
-          background-color: #f2f2f2;
-          padding:30px;
-          max-width: 600px;
-          margin: 0 auto;;
+    <body style="font-family: Arial;
+        width: 100%;
+        background-color: #f2f2f2;
+        padding:30px;
+        max-width: 600px;
+        margin: 0 auto;;
 
-          ">
-          <div class="container" style=" max-width:600px; margin: 0 auto; background-color: #fff;padding:25px;">
-          <div class="main_container" style="max-width:600px; margin:0px;">
-          <div class="header" style="margin-bottom:50px;">
-          <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
-          <div style="    text-shadow: 1px 0px 2px #626262;
-          color: #626262;">Form D</div>
-          </div>
-          <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-          color: #626262;
+      ">
+        <div class="container" style=" max-width:600px; margin: 0 auto; background-color: #fff;padding:25px;">
+            <div class="main_container" style="max-width:600px; margin:0px;">
+                <div class="header" style="margin-bottom:50px;">
+                    <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
+                        <div style="    text-shadow: 1px 0px 2px #626262;
+        color: #626262;">Trading Window Closure</div>
+                    </div>
+                     <div style="clear:both;"></div>
+                </div>
+            <div style="    background-color: #f2f2f2;
+        padding: 18px;">
+        <p>Dear All</p>
+        <p>Please note that the trading window is closed from '.$dayOfWeek.' '.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.' '.$emaildata['blckoutto'].' both days inclusive on account of '.$emaildata['reason'].'.
+        </p>
+        <p>Under the Securities and Exchange Board of India (Prohibition of Insider Trading) Regulations 2015, (Insider Trading Regulations) buying, selling or dealing in the securities of the company by its directors/employees on the knowledge of any inside, unpublished price-sensitive information is prohibited and doing so is an offense. The Directors and employees of the Company and their immediate relatives are not permitted to trade in the Company’s shares/ADRs during the period, as may be notified in this behalf and/or till such price-sensitive information is disseminated to the public at large.
 
-          text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
-          <div style="clear:both;"></div>
-          </div>
-          <div style="    background-color: #f2f2f2;
-          padding: 18px;">
-          <div class="main">
-          <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
-          From Date : '.$emaildata['fromdate'].',</div>
-          <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
-          To Date : '.$emaildata['todate'].',</div>
-          <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
-          Connection with company : '.$emaildata['connection'].'</div>
-          <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
-          </div>
-                                    
-          </div>
-          </div>
-          </div>
+              </p>
+        <p>Under the revised Insider Trading Regulations and Company’s revised Code of Conduct to regulate, monitor and report trading by designated persons (the Code), the trading restriction period can be made applicable from the end of every quarter till 48 hours after the declaration of financial results or such other period as may be notified in this behalf. Accordingly, it is hereby informed that the Trading Window for buying, selling or dealing in the securities of the Company by the designated persons (including their immediate relatives) will be closed from from '.$dayOfWeek.' '.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.' '.$emaildata['blckoutto'].' for '.$emaildata['reason'].'..
+           </p>
+            <p>Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.
 
-          </div>
-          </body>
-          </html>';
+           </p>
 
+            <p>Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.
+
+           </p>
+        
+                <div class="main">
+                    
+                  
+                     <p>Further, exercise of stock options shall not be allowed during the above period. </p>
+                     <div><br></div>
+                     <p>Regards,<br>Sandeep Poddar</br><br>Company Secretary</br></p>
+                    
+                     
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </body>
+    </html>';
 //echo $html; exit; 
 
  return $html;
@@ -2149,16 +2167,10 @@ public function sendmailforpersinfo($subject,$fullname){
         return $html;
     }
     
-public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$pstartdate,$today)
+public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$emaildate,$today)
   {   
-         $unixTimestamp = strtotime($today);
-        $dayOfWeek = date("l", $unixTimestamp);
-        $unixTimestamp1 = strtotime($enddate);
-        $dayOfWeek1 = date("l", $unixTimestamp1);
-         $unixTimestamp2 = strtotime($pstartdate);
-        $dayOfWeek2 = date("l", $unixTimestamp2);
-
-      $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+       //echo "<pre>";print_r($userids);exit;
+            $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <html xmlns="htth3://www.w3.org/1999/xhtml">
 
       <head>
@@ -2205,18 +2217,32 @@ public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$p
                 </div>
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
-        <p>Dear All</p>
-        <p>A meeting of the Board of Directors of Dr. Reddys Laboratories Limited (the Company) is scheduled to be held on (day), (Date) to consider the Unaudited Financial Results of the Company for the quarter and nine months ended December 31, 2019.
-        </p>
-        <p>Under the Securities and Exchange Board of India (Prohibition of Insider Trading) Regulations 2015, (Insider Trading Regulations) buying, selling or dealing in the securities of the company by its directors/employees on the knowledge of any inside, unpublished price-sensitive information is prohibited and doing so is an offense. The Directors and employees of the Company and their immediate relatives are not permitted to trade in the Company’s shares/ADRs during the period, as may be notified in this behalf and/or till such price-sensitive information is disseminated to the public at large.
-          </p>
-        <p>Under the revised Insider Trading Regulations and Company’s revised Code of Conduct to regulate, monitor and report trading by designated persons (the Code), the trading restriction period can be made applicable from the end of every quarter till 48 hours after the declaration of financial results or such other period as may be notified in this behalf. Accordingly, it is hereby informed that the Trading Window for buying, selling or dealing in the securities of the Company by the designated persons (including their immediate relatives) will be closed from (day), (date) to  (day), (date) (both days inclusive).
-         </p>
-         <p>
-         Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.</p>
-         <p>Further, exercise of stock options shall not be allowed during the above period.</p>
-
+        <p>Dear '.$username.'</p>
+        <p>You have been added as Project Owner / Project member in connection with Project as mentioned herein, which is Unpublished Price Sensitive Information (UPSI).</p>
+        <p>As part of the Project, you would be deemed to be in possession / recipient <b>of Unpublished Price Sensitive Information (UPSI) </b>in relation to the affairs concerning the Company. Please note that all UPSI in your possession or that may be shared with you over the course of time, are private and confidential and intended to be used STRICTLY for legitimate purposes only in pursuance to the applicable provisions of the SEBI (Prohibition of Insider Trading) Regulations, 2015 (including any amendment(s) or re-enactment(s) thereof) (SEBI PIT Regulations).</p>
+        <p>The holder/recipient of UPSI (including its Representative) is expected to maintain highest level of confidentiality and shall abide by and undertake to comply with the applicable provisions of the said SEBI PIT Regulations in dealings concerning the listed securities of the Company.</p>
         
+                <div class="main">
+                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
+                    UPSI Name : '.$upsitype.',</div>
+                    
+                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
+                    Name added by : '.$addedby.',</div>
+                       
+                       <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
+                       Project Start Date : '.$emaildate.',</div>
+                       
+                       <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
+                       Date of closure of Trading Window : '.$today.',</div> 
+
+                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">        Project End Date : to be notified </div> 
+                     <p>Please note that in view of the holding of aforesaid UPSI, the trading window to deal in the listed securities of the Company, has been closed for you and your immediate relatives with immediate effect and shall continue to be so till 48 hours after the said UPSI is made available to public or such activity or project is abandoned.</p>
+                     <p>Please consult the Corporate Governance Dept. for any query or clarification. </p>
+                     <div><br></div>
+                     <p>Regards,</p>
+                     <p>Corporate Governance Team</p>
+                     
+                </div>
             </div>
         </div>
 
@@ -2927,8 +2953,8 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
      return $html;
 }
     
-    public function Reqform2content($userdata,$data)
-    {
+  public function Reqform2content($userdata,$data)
+  {
         $todate = date('d-m-Y');
 //        print_r($userdata);
 //        print_r($data);exit;
@@ -3039,11 +3065,10 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
         return $html;
     }
 
-
-public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccount,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename,$datetrans,$transaction,$sharestrans)
+    public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccount,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename,$datetrans,$transaction,$sharestrans)
   {   
          //echo "<pre>";print_r($datetrans);exit;
-            $html='<div>
+            $html='<div >
   <table style="  border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
    <tr>
       <td>Dr. Reddy’s Laboratories Limited</td>
@@ -3068,7 +3093,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
   <br/>
 
   <p>Dears Sir,<br/><br/>
-   I/we am/are desirous of dealing in the shares / ADRs of the Company.  In terms of the Company’s Code, I/we seek your approval for the trade as detailed below: 
+   I/we am/are desirous of dealing in the shares / ADRs of the Company.  In terms of the Company’s Code, I/we seek your approval for the trade as detailed below:
   </p>
 
   <br/>
@@ -3116,16 +3141,17 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
     </tr>    
      <tr>
       <td style="border: 1px solid #000; " width="40%">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</td>
-      <td>
+      <td style="padding: 0;">
       <table style="width:100%">
      <tr>
-    <th>Date</th>
-    <th>Transaction</th>
-    <th>No. of shares</th>
+    <th style="background: none;color: #000;">Date</th>
+    <th style="background: none;color: #000;">Transaction</th>
+    <th style="background: none;color: #000;">No. of shares</th>
+
     </tr>';
 
 
-  
+ 
   if(count($datetrans) != 0)
   {
   for($i= 0 ;$i<count($datetrans);$i++)
@@ -3158,7 +3184,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
 
   Thanking you,<br/><br/>
   Yours faithfully,<br/><br/><br/>
-  
+ 
   _____________________<br/>
   Signature<br/><br/>
   Place '.$place.'<br/>
@@ -3173,9 +3199,10 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
     <li>Fresh application for pre-clearance shall be required if the trade is not executed within 7 days of approval.</li>
   </ol>
   </p>
-  
-  
-</div>';
+ 
+ 
+</div>
+';
 
     //echo $html; exit; 
 
@@ -3183,11 +3210,6 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
 }
 
 
-
-
-
-
-    
 }
 
 
