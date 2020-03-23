@@ -220,8 +220,8 @@ class UpsimasterController extends ControllerBase
                         //echo 'here';exit;
                         
                         $exceldpids = $this->phpimportexpogen->FetchconnectedDP($getuserid,$user_group_id,$large_impfile_location);
-                       
-                        if(!empty($exceldpids[$key]))
+                       //print_r($exceldpids);exit;
+                        if($exceldpids)
                         {
 
                             $result = $this->upsicommon->updateupsi($getuserid,$user_group_id,$updatedata,$exceldpids,$username);

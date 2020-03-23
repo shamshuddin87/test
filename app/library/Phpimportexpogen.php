@@ -380,13 +380,18 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                     if(!empty($name) && !empty($email))
                     {
 
-                         $username = $name;
-                         $emailid = $email;
+                         $username[] = $name;
+                         $emailid[] = $email;
                          
                          $ConnctdDpArray = array('username'=>$username,'emailid'=>$emailid);
                          
-                        $getres[] = $this->upsicommon->Fetchusersid($getuserid,$user_group_id,$ConnctdDpArray);
-                        //print_r($getres);echo "hello";exit;
+                        
+                 }
+                
+              }   
+              //print_r($username);exit;
+              $getres = $this->upsicommon->Fetchusersid($getuserid,$user_group_id,$ConnctdDpArray);
+                //print_r($getres);echo "hello";exit;
                         if(!$getres)
                         {
                             //print_r('dasd');exit;
@@ -394,10 +399,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                         }
                      }
                  
-                    
-                 }
-                // print_r($getres);exit;
-            }
+                
             
         }
         catch (Exception $e)
