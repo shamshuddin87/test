@@ -2045,7 +2045,7 @@ function addhtml(clicked)
           addhtmlnxt += '</div>';
           addhtmlnxt +=' <div id = "right" class="form-group col-md-4">';
           addhtmlnxt += ' <label for="">No of Shares</label>';
-          addhtmlnxt += '<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" placeholder="No of Shares">';
+          addhtmlnxt += '<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">';
           addhtmlnxt += ' </div>';
         
 
