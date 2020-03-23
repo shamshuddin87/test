@@ -158,7 +158,7 @@
               </tr>
                <tr>
                 <td>14</td>
-                <td>No. of ADRs of Dr. Reddys held by your</td>
+                <td>No. of ADRs of Dr. Reddys held by you</td>
                 <td><?php echo $personaldetail['adrshldng'];?></td>                
               </tr>
             <tr>
@@ -205,9 +205,9 @@
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Name of Related Party</th>
-                <th>PAN / or any other Identification no. available</th>
-                <th>Nature of Relationship</th>
+                <th>Name of Related Party*</th>
+                <th>PAN / or any other Identification no. available*</th>
+                <th>Nature of Relationship*</th>
                 <th>Address of Related Party</th>
             </tr>
             </thead>
@@ -264,19 +264,19 @@
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Name of Relative</th>
-                <th>Relationship with Relative</th>
+                <th>Name of Relative*</th>
+                <th>Relationship with Relative*</th>
                 <th>Type of Dependency</th>
-                <th>PAN of Relative</th>
-                <th>Other Identification no.</th>
-                <th>Nature of Identification no.</th>
+                <th>PAN of Relative*</th>
+                <th>Other Identification no. (In case of Foreign Nationals)</th>
+                <th>Nature of Identification no. (In case of Foreign Nationals)</th>
                 <th>Aadhar of Relative</th>
                 <th>Date of Birth of Relative</th>
                 <th>Residential Address</th>
                 <th>Qualification</th>
                 <th>Institute / University from which Qualification Acquired</th>
-                <th>No. of Shares</th>
-                <th>No. of ADRs</th>
+                <th>No. of Shares of Dr. Reddy's held by the relative</th>
+                <th>No. of ADRs of Dr. Reddy's held by the relative</th>
             </tr>
             </thead>
 
@@ -313,8 +313,8 @@
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Demat Account No.</th>
-                <th>Name of Depository Participant</th>
+                <th>Demat Account No.*</th>
+                <th>Name of Depository Participant*</th>
             </tr>
             </thead>
             <tbody>
@@ -433,7 +433,7 @@
               </tr>
                <tr>
                 <td>14</td>
-                <td>No. of ADRs of Dr. Reddys held by your</td>
+                <td>No. of ADRs of Dr. Reddys held by you</td>
                 <td><?php echo $personaldetail['adrshldng'];?></td>                
               </tr>
             <tr>
@@ -480,9 +480,9 @@
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Name of Related Party</th>
-                <th>PAN / or any other Identification no. available</th>
-                <th>Nature of Relationship</th>
+                <th>Name of Related Party*</th>
+                <th>PAN / or any other Identification no. available*</th>
+                <th>Nature of Relationship*</th>
                 <th>Address of Related Party</th>
             </tr>
             </thead>
@@ -640,7 +640,7 @@
                     </select>
                      </div>
                      </td>
-                      <td><input type="text" class="form-control inputbox4" id="d3ques5" name="d3ques5[]" ></td>
+                      <td><input type="text" class="form-control inputbox4" id="d3ques5" name="d3ques5[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></td>
                      <td>
                      <div class="input">
                      <select id="d3ques3" name="d3ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4">
@@ -875,10 +875,10 @@
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Name of Relative</th>
-                <th>Relationship with Relative</th>
+                <th>Name of Relative*</th>
+                <th>Relationship with Relative*</th>
                 <th>Type of Dependency</th>
-                <th>PAN of Relative</th>
+                <th>PAN of Relative*</th>
                 <th>Other Identification no. (In case of Foreign Nationals)</th>
                 <th>Nature of Identification no. (In case of Foreign Nationals)</th>
                 <th>Aadhar of Relative</th>
@@ -1090,7 +1090,7 @@
                     </select>
                      </div>
                 </td>
-                   <td><input type="text" class="form-control inputbox4" id="d7ques5" name="d7ques5[]" ></td>
+                   <td><input type="text" class="form-control inputbox4" id="d7ques5" name="d7ques5[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" ></td>
                <td>
                <div class="input">
                <select id="d7ques3" name="d7ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4">
@@ -1156,12 +1156,12 @@
                    </td>
                    <td> 
                    <div class="input">
-                   <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" >
+                   <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" value="holding above 2% shares" readonly="readonly">
                        </div>
                    </td>
                    <td> 
                    <div class="input">
-                   <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" value="holding above 2% shares" readonly="readonly">
+                   <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" >
                    </div>
                    </td>
                    <td>

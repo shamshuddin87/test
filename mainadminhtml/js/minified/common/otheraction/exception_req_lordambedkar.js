@@ -29,39 +29,7 @@ else if(excep_approv==2)
 {addhtmlnxt+='<td width="15%" class="getmsg" mymessage="'+message+'"><i class="fa fa-close" style="font-size:18px;color:red;">Rejected</i></td>';}
 else
 {addhtmlnxt+='<td width="15%">Not Approved</td>';}}
-addhtmlnxt+='<td width="15%">'+transaction_date+'</td>';addhtmlnxt+='<td width="15%">'+date_modified+'</td>';addhtmlnxt+='<td width="15%">'+file+'</td>';addhtmlnxt+='<td width="15%"><i class="fa fa-bar-chart viewexcprequsttrail" trdeid="'+response.data[i].tradeid+'" rqstid="'+response.data[i].id+'"></i></td>';if(response.data[i].sent_contraexeaprvl==1)
-{addhtmlnxt+='<td width="15%"><i class="fa fa-comments-o exereason" type="contra" rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].tradeid+'" ></i></td>';if(contraexcapvsts==1)
-{if(user_group==2)
-{addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" type=personal ></i></td>';}
-else
-{addhtmlnxt+='<td width="15%"></td>';}}
-else if(contraexcapvsts==2)
-{if(user_group==2)
-{addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" type=personal></i>';}
-else
-{addhtmlnxt+='<td width="15%"></td>';}}
-else
-{if(user_group==2)
-{addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" type=personal style="font-size:20px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'" type=personal><i class="fa fa-close"></i></button></td>';}
-else
-{addhtmlnxt+='<td width="15%"><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'" type=personal><i class="fa fa-close"></i></button></td>';}}}
-else
-{if(excep_approv==1)
-{if(user_group==2)
-{addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'" ></i></td>';}
-else
-{addhtmlnxt+='<td width="15%"></td>';}}
-else if(excep_approv==2)
-{if(user_group==2)
-{addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'"></i>';}
-else
-{addhtmlnxt+='<td width="15%"></td>';}}
-else
-{if(user_group==2)
-{addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'" style="font-size:20px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].tradeid+'"><i class="fa fa-close"></i></button></td>';}
-else
-{addhtmlnxt+='<td width="15%"><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].tradeid+'"><i class="fa fa-close"></i></button></td>';}}}
-addhtmlnxt+='</tr>';}}
+addhtmlnxt+='<td width="15%">'+transaction_date+'</td>';addhtmlnxt+='<td width="15%">'+date_modified+'</td>';addhtmlnxt+='<td width="15%">'+file+'</td>';addhtmlnxt+='<td width="15%"><i class="fa fa-bar-chart viewexcprequsttrail" trdeid="'+response.data[i].tradeid+'" rqstid="'+response.data[i].id+'"></i></td>';addhtmlnxt+='</tr>';}}
 else
 {addhtmlnxt+='<td width="15%" colspan="13" style="text-align:center;">Data Not Found..!!!</td>';}
 website(".viewreqtable").html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);},complete:function(response)
@@ -107,7 +75,11 @@ website.ajax({url:'exceptionreq/fetchexcereqtrail',data:formdata,method:'POST',c
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {if(response.persnreq[0].sent_contraexeaprvl!=1)
-{dteadded=response.data[0].date_added.split("-");dteaddedspace=response.data[0].date_added.split(" ");ddmmyyadded=dteaddedspace[0];dteadded=dteaddedspace[0].split("-");ddmmyyadded=dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];timesadded=dteaddedspace[1];dtemodified=response.data[0].date_modified.split("-");dtemodifdspace=response.data[0].date_modified.split(" ");ddmmyymodified=dtemodifdspace[0];dtemodified=dtemodifdspace[0].split("-");ddmmyymodified=dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];timesmodified=dtemodifdspace[1];website('#Mymodalaudittrail .reqstcreateddte').html(ddmmyyadded+' '+timesadded);website('#Mymodalaudittrail .reqstupdteddte').html(ddmmyymodified+' '+timesmodified);if(response.data[0].excep_approv==1)
+{dteadded=response.data[0].date_added.split("-");dteaddedspace=response.data[0].date_added.split(" ");ddmmyyadded=dteaddedspace[0];dteadded=dteaddedspace[0].split("-");ddmmyyadded=dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];timesadded=dteaddedspace[1];dtemodified=response.data[0].date_modified.split("-");dtemodifdspace=response.data[0].date_modified.split(" ");ddmmyymodified=dtemodifdspace[0];dtemodified=dtemodifdspace[0].split("-");ddmmyymodified=dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];timesmodified=dtemodifdspace[1];website('#Mymodalaudittrail .reqstcreateddte').html(ddmmyyadded+' '+timesadded);website('#Mymodalaudittrail .reqstupdteddte').html(ddmmyymodified+' '+timesmodified);if(response.persnreq[0].pdffilepath)
+{website('#Mymodalaudittrail .pdfpath').html('<a href="'+response.persnreq[0].pdffilepath+'" target="_blank"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>');}
+else
+{website('#Mymodalaudittrail .pdfpath').html('');}
+if(response.data[0].excep_approv==1)
 {if(response.data[0].excepsendaprv_date)
 {dtesendaprv=response.data[0].excepsendaprv_date.split("-");dtesendaprvspace=response.data[0].excepsendaprv_date.split(" ");ddmmyysendaprv=dtesendaprvspace[0];dtesendaprv=dtesendaprvspace[0].split("-");ddmmyysendaprv=dtesendaprv[2]+'-'+dtesendaprv[1]+'-'+dtesendaprv[0];timessendaprv=dtesendaprvspace[1];website('#Mymodalaudittrail .reqstsendapprv').html(ddmmyysendaprv+' '+timessendaprv);}}
 else

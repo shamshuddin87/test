@@ -142,39 +142,39 @@ function subuserapproval()
                         addhtmlnxt += '<td>'+file+'</td>';
                         addhtmlnxt+='<td><i class="fa fa-bar-chart viewrequsttrail" rqstid="'+response.data[i].id+'"></i></td>';
                       
-                        if(approved_status==1)
-                        { 
-                            if(user_group==2)
-                            {
-                                addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i></td>';
-                            }
-                            else
-                            {
-                                addhtmlnxt+='<td></td>';
-                            }
-                        }
-                        else if(approved_status==2)
-                        {
-                            if(user_group==2)
-                            {
-                                addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i>';
-                            }
-                            else
-                            {
-                                addhtmlnxt+='<td></td>';
-                            }
-                        }
-                        else
-                        {
-                            if(user_group==2)
-                            {
-                                addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'"><i class="fa fa-close"></i></button></td>';
-                            }
-                            else
-                            { 
-                                addhtmlnxt+='<td><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'"><i class="fa fa-close"></i></button></td>';
-                            }
-                        }
+//                        if(approved_status==1)
+//                        { 
+//                            if(user_group==2)
+//                            {
+//                                addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i></td>';
+//                            }
+//                            else
+//                            {
+//                                addhtmlnxt+='<td></td>';
+//                            }
+//                        }
+//                        else if(approved_status==2)
+//                        {
+//                            if(user_group==2)
+//                            {
+//                                addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i>';
+//                            }
+//                            else
+//                            {
+//                                addhtmlnxt+='<td></td>';
+//                            }
+//                        }
+//                        else
+//                        {
+//                            if(user_group==2)
+//                            {
+//                                addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'"><i class="fa fa-close"></i></button></td>';
+//                            }
+//                            else
+//                            { 
+//                                addhtmlnxt+='<td><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'"><i class="fa fa-close"></i></button></td>';
+//                            }
+//                        }
                                        
                         addhtmlnxt+='</tr>';
                          
@@ -517,11 +517,17 @@ website('body').on("click",".viewrequsttrail",function(e){
             /* for date_added end */
             
             
-            
-             
-            
            website('#Mymodalaudittrail .reqstcreateddte' ).html(ddmmyyadded+' '+timesadded);
            website('#Mymodalaudittrail .reqstupdteddte' ).html(ddmmyymodified+' '+timesmodified);
+            /* -----  Application copy ----*/
+            if(response.data[0].pdffilepath)
+            {
+               website('#Mymodalaudittrail .pdfpath').html('<a href="'+response.data[0].pdffilepath+'" target="_blank"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>'); 
+            }
+            else
+            {
+                website('#Mymodalaudittrail .pdfpath').html('');
+            }
            if(response.data[0].send_status == 1)
            {
                if(response.data[0].sendaprvl_date)

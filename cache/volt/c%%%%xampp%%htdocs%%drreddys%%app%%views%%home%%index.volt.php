@@ -25,7 +25,8 @@
                         </div>
                         <?php if(isset($upsiresult) && count($upsiresult) != 0){?>
                         <div class="col col-xs-10">
-                            <div class="alertbox"><span><h4 style="display: inline-block;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> </h4> Alert! You hold UPSI and therefore you cannot trade in shares of Dr. Reddy's Laboratories Ltd until the UPSI ends / becomes public</span></div>
+                           <!--  <div class="alertbox"><span><h4 style="display: inline-block;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> </h4> Alert! You hold UPSI and therefore you cannot trade in shares of Dr. Reddy's Laboratories Ltd until the UPSI ends / becomes public</span>
+                            </div> -->
                         </div>
                         <?php } ?>
                         <!-- /.col-lg-12 -->
@@ -439,29 +440,29 @@
         </div>
 
 <div class="col-md-2 col-sm-4 col-xl-6">
-            <a href="sensitiveinformation/infosharing">
-             <section class="col panel left-border6 panel-featured-left panel-featured-quartenary">
-                <div class="panel-body">
-                    <div class="widget-summary">
-                        <div class="widget-summary-col widget-summary-col-icon">
-                        <div class="summary-icon bg-four">
-                        <i class="fa fa-info-circle"></i>
-                        </div>
-                    </div>
-                            <div class="widget-summary-col">
-                               <div class="summary">
-                                  <h4 class="title">UPSI & Connected Person</h4>
-                            <!-- <div class="info">
-                            <strong class="amount">3765</strong>
-                            </div> -->
-                            </div>
-                                
-                            </div>
-                    </div>
-                </div>
-             </section>
-         </a>
-        </div>
+      <a href="sensitiveinformation/infosharing">
+       <section class="col panel left-border6 panel-featured-left panel-featured-quartenary">
+          <div class="panel-body">
+              <div class="widget-summary">
+                  <div class="widget-summary-col widget-summary-col-icon">
+                  <div class="summary-icon bg-four">
+                  <i class="fa fa-info-circle"></i>
+                  </div>
+              </div>
+                      <div class="widget-summary-col">
+                         <div class="summary">
+                            <h4 class="title">UPSI & Connected Person</h4>
+                      <!-- <div class="info">
+                      <strong class="amount">3765</strong>
+                      </div> -->
+                      </div>
+                          
+                      </div>
+              </div>
+          </div>
+       </section>
+   </a>
+ </div>
     </div>
             </div>
                 </div>

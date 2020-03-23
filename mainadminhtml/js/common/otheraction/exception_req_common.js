@@ -112,82 +112,83 @@ function subuserapproval()
                 addhtmlnxt += '<td width="15%">'+file+'</td>';
                 addhtmlnxt+='<td width="15%"><i class="fa fa-bar-chart viewexcprequsttrail" trdeid="'+response.data[i].tradeid+'" rqstid="'+response.data[i].id+'"></i></td>';
                 
-                if(response.data[i].sent_contraexeaprvl == 1)
-                {
-                    addhtmlnxt+='<td width="15%"><i class="fa fa-comments-o exereason" type="contra" rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].tradeid+'" ></i></td>';
-                    if(contraexcapvsts==1)
-                    { 
-                        if(user_group==2)
-                        {
-                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" type=personal ></i></td>';
-                        }
-                        else
-                        {
-                            addhtmlnxt+='<td width="15%"></td>';
-                        }
-                    }
-                    else if(contraexcapvsts==2)
-                    {
-
-                        if(user_group==2)
-                        {
-                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" type=personal></i>';
-                        }
-                        else
-                        {
-                            addhtmlnxt+='<td width="15%"></td>';
-                        }
-                    }
-                    else
-                    {
-                        if(user_group==2)
-                        {
-                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" type=personal style="font-size:20px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'" type=personal><i class="fa fa-close"></i></button></td>';
-                        }
-                        else
-                        { 
-                            addhtmlnxt+='<td width="15%"><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'" type=personal><i class="fa fa-close"></i></button></td>';
-                        }
-                    }
-                    
-                }
-                else
-                {
-                    if(excep_approv==1)
-                    { 
-                        if(user_group==2)
-                        {
-                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'" ></i></td>';
-                        }
-                        else
-                        {
-                            addhtmlnxt+='<td width="15%"></td>';
-                        }
-                    }
-                    else if(excep_approv==2)
-                    {
-                        if(user_group==2)
-                        {
-                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'"></i>';
-                        }
-                        else
-                        {
-                            addhtmlnxt+='<td width="15%"></td>';
-                        }
-                    }
-                    else
-                    {
-                        if(user_group==2)
-                        {
-                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'" style="font-size:20px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].tradeid+'"><i class="fa fa-close"></i></button></td>';
-                        }
-                        else
-                        { 
-                            addhtmlnxt+='<td width="15%"><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].tradeid+'"><i class="fa fa-close"></i></button></td>';
-                        }
-
-                    }
-                }
+//                if(response.data[i].sent_contraexeaprvl == 1)
+//                {
+//                    addhtmlnxt+='<td width="15%"><i class="fa fa-comments-o exereason" type="contra" rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].tradeid+'" ></i></td>';
+//                    if(contraexcapvsts==1)
+//                    { 
+//                        if(user_group==2)
+//                        {
+//                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" type=personal ></i></td>';
+//                        }
+//                        else
+//                        {
+//                            addhtmlnxt+='<td width="15%"></td>';
+//                        }
+//                    }
+//                    else if(contraexcapvsts==2)
+//                    {
+//
+//                        if(user_group==2)
+//                        {
+//                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" type=personal></i>';
+//                        }
+//                        else
+//                        {
+//                            addhtmlnxt+='<td width="15%"></td>';
+//                        }
+//                    }
+//                    else
+//                    {
+//                        if(user_group==2)
+//                        {
+//                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" type=personal style="font-size:20px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'" type=personal><i class="fa fa-close"></i></button></td>';
+//                        }
+//                        else
+//                        { 
+//                            addhtmlnxt+='<td width="15%"><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'" type=personal><i class="fa fa-close"></i></button></td>';
+//                        }
+//                    }
+//                    
+//                }
+//                else
+//                {
+//                    addhtmlnxt+='<td width="15%"></td>';
+//                    if(excep_approv==1)
+//                    { 
+//                        if(user_group==2)
+//                        {
+//                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'" ></i></td>';
+//                        }
+//                        else
+//                        {
+//                            addhtmlnxt+='<td width="15%"></td>';
+//                        }
+//                    }
+//                    else if(excep_approv==2)
+//                    {
+//                        if(user_group==2)
+//                        {
+//                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'"></i>';
+//                        }
+//                        else
+//                        {
+//                            addhtmlnxt+='<td width="15%"></td>';
+//                        }
+//                    }
+//                    else
+//                    {
+//                        if(user_group==2)
+//                        {
+//                            addhtmlnxt+='<td width="15%"><i class="fa fa-trash delapprove" perdelid="'+response.data[i].tradeid+'" style="font-size:20px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].tradeid+'"><i class="fa fa-close"></i></button></td>';
+//                        }
+//                        else
+//                        { 
+//                            addhtmlnxt+='<td width="15%"><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].tradeid+'" chkval2="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].tradeid+'"><button class="rejectbutton"  rejectid="'+response.data[i].tradeid+'"><i class="fa fa-close"></i></button></td>';
+//                        }
+//
+//                    }
+//                }
                 addhtmlnxt+='</tr>';
                          
                 }                          
@@ -555,6 +556,15 @@ website('body').on("click",".viewexcprequsttrail",function(e){
                 
                website('#Mymodalaudittrail .reqstcreateddte' ).html(ddmmyyadded+' '+timesadded);
                website('#Mymodalaudittrail .reqstupdteddte' ).html(ddmmyymodified+' '+timesmodified);
+                /* -----  Application copy ----*/
+                if(response.persnreq[0].pdffilepath)
+                {
+                   website('#Mymodalaudittrail .pdfpath').html('<a href="'+response.persnreq[0].pdffilepath+'" target="_blank"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>'); 
+                }
+                else
+                {
+                    website('#Mymodalaudittrail .pdfpath').html('');
+                }
                if(response.data[0].excep_approv == 1)
                {
                    if(response.data[0].excepsendaprv_date)

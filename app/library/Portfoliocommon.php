@@ -10,6 +10,7 @@ class Portfoliocommon extends Component
         $myarr=array();
         $time = time();
         
+       //print_r($accnodata);exit;
          try{
 	          for($i=0;$i<sizeof($accnodata);$i++)
 	         {

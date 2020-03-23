@@ -17,6 +17,8 @@ class Automailercommon extends Component
         {
             $maildata = '';
             $maildata = json_encode($infodata);
+            $maildata = str_replace("'", "''", $maildata);
+            //print_r($maildata);exit;    
             
             $queryinsert = "INSERT INTO `email_queue`
                 (`user_id`,`user_group_id`,

@@ -1028,8 +1028,8 @@ Class Email extends Phalcon\Mvc\User\Component {
     {
         $subject = 'Trading Window';
         $to =$emailid;
-        //$gethtml = $this->htmlelements->mailformdackrqst($subject,$emaildata);
-        $gethtml = $emailcontent;
+        $gethtml = $this->htmlelements->mailformdackrqst($subject,$emailcontent);
+        //$gethtml = $emailcontent;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
         $mail->isSMTP();

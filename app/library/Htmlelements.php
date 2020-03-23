@@ -1958,80 +1958,99 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
  return $html;
 }
     
+ 
     public function mailformdackrqst($subject,$emaildata)
    {
 
+        //print_r($emaildata);exit;
+        $unixTimestamp = strtotime($emaildata['blckoutfrom']);
+ 
+        $dayOfWeek = date("l", $unixTimestamp);
+        $unixTimestamp1 = strtotime($emaildata['blckoutto']);
+ 
+        $dayOfWeek1 = date("l", $unixTimestamp1);
+
+ 
+ 
           //echo "<pre>";print_r($userids);exit;
-          $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-          <html xmlns="htth3://www.w3.org/1999/xhtml">
+           $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="htth3://www.w3.org/1999/xhtml">
 
-          <head>
-          <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-          <title>Phoenix Peth</title>
-          <style>
-          p{color: black;}
-          .button {
-          background-color: #4CAF50; /* Green */
-          border: none;
-          color: white;
-          padding: 15px 32px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin: 4px 2px;
-          cursor: pointer;
-          }
+      <head>
+        <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <title>Phoenix Peth</title>
+            <style>
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
 
-          .button2 {background-color: #008CBA;} /* Blue */
-          .button3 {background-color: #f44336;} /* Red */ 
-          .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
-          .button5 {background-color: #555555;} /* Black */
-          </style>
-          </head>
+            .button2 {background-color: #008CBA;} /* Blue */
+            .button3 {background-color: #f44336;} /* Red */ 
+            .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+            .button5 {background-color: #555555;} /* Black */
+            </style>
+    </head>
 
-          <body style="font-family: Arial;
-          width: 100%;
-          background-color: #f2f2f2;
-          padding:30px;
-          max-width: 600px;
-          margin: 0 auto;;
+    <body style="font-family: Arial;
+        width: 100%;
+        background-color: #f2f2f2;
+        padding:30px;
+        max-width: 600px;
+        margin: 0 auto;;
 
-          ">
-          <div class="container" style=" max-width:600px; margin: 0 auto; background-color: #fff;padding:25px;">
-          <div class="main_container" style="max-width:600px; margin:0px;">
-          <div class="header" style="margin-bottom:50px;">
-          <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
-          <div style="    text-shadow: 1px 0px 2px #626262;
-          color: #626262;">Form D</div>
-          </div>
-          <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-          color: #626262;
+      ">
+        <div class="container" style=" max-width:600px; margin: 0 auto; background-color: #fff;padding:25px;">
+            <div class="main_container" style="max-width:600px; margin:0px;">
+                <div class="header" style="margin-bottom:50px;">
+                    <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
+                        <div style="    text-shadow: 1px 0px 2px #626262;
+        color: #626262;">Trading Window Closure</div>
+                    </div>
+                     <div style="clear:both;"></div>
+                </div>
+            <div style="    background-color: #f2f2f2;
+        padding: 18px;">
+        <p>Dear All</p>
+        <p>Please note that the trading window is closed from '.$dayOfWeek.' '.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.' '.$emaildata['blckoutto'].' both days inclusive on account of '.$emaildata['reason'].'.
+        </p>
+        <p>Under the Securities and Exchange Board of India (Prohibition of Insider Trading) Regulations 2015, (Insider Trading Regulations) buying, selling or dealing in the securities of the company by its directors/employees on the knowledge of any inside, unpublished price-sensitive information is prohibited and doing so is an offense. The Directors and employees of the Company and their immediate relatives are not permitted to trade in the Company’s shares/ADRs during the period, as may be notified in this behalf and/or till such price-sensitive information is disseminated to the public at large.
 
-          text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
-          <div style="clear:both;"></div>
-          </div>
-          <div style="    background-color: #f2f2f2;
-          padding: 18px;">
-          <div class="main">
-          <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
-          From Date : '.$emaildata['fromdate'].',</div>
-          <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
-          To Date : '.$emaildata['todate'].',</div>
-          <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
-          Connection with company : '.$emaildata['connection'].'</div>
-          <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
-          </div>
-                                    
-          </div>
-          </div>
-          </div>
+              </p>
+        <p>Under the revised Insider Trading Regulations and Company’s revised Code of Conduct to regulate, monitor and report trading by designated persons (the Code), the trading restriction period can be made applicable from the end of every quarter till 48 hours after the declaration of financial results or such other period as may be notified in this behalf. Accordingly, it is hereby informed that the Trading Window for buying, selling or dealing in the securities of the Company by the designated persons (including their immediate relatives) will be closed from from '.$dayOfWeek.' '.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.' '.$emaildata['blckoutto'].' for '.$emaildata['reason'].'..
+           </p>
+            <p>Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.
 
-          </div>
-          </body>
-          </html>';
+           </p>
 
+            <p>Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.
+
+           </p>
+        
+                <div class="main">
+                    
+                  
+                     <p>Further, exercise of stock options shall not be allowed during the above period. </p>
+                     <div><br></div>
+                     <p>Regards,<br>Sandeep Poddar</br><br>Company Secretary</br></p>
+                    
+                     
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </body>
+    </html>';
 //echo $html; exit; 
 
  return $html;
@@ -2146,7 +2165,9 @@ public function sendmailforpersinfo($subject,$fullname){
 
         return $html;
     }
-    
+ 
+
+
 public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$emaildate,$today)
   {   
        //echo "<pre>";print_r($userids);exit;
@@ -2932,6 +2953,281 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
 
      return $html;
 }
+    
+    public function Reqform2content($userdata,$data,$personaldata)
+    {
+        $todate = date('d-m-Y');
+        $transreason = '';
+//        print_r($userdata);
+//        print_r($data);exit;
+        if($data['typeoftrans'] == 1 || $data['typeoftrans'] == 3 || $data['typeoftrans'] == 4)
+        {
+            $transtype = 'Purchase';
+        }
+        else if($data['typeoftrans'] == 2)
+        {
+            $transtype = 'Sell';
+        }
+        if($data['typeofrequest'] == '1' &&  $data['reasonoftrans'] == '1')
+        {
+            $transreason = 'Medical Expenses for self';
+        }
+        else if($data['typeofrequest'] == '2' &&  $data['reasonoftrans'] == '1')
+        {
+            $transreason = 'Medical Expenses for family Members';
+        }
+        if($data['reasonoftrans'] == '2')
+        {
+           $transreason = 'Repayment of existing Loan'; 
+        }
+        if($data['reasonoftrans'] == '3')
+        {
+           $transreason = 'Education'; 
+        }
+        if($data['reasonoftrans'] == '4')
+        {
+           $transreason = 'Wedding /other family function'; 
+        }
+       $html=' <div>
+          <table style=" border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
+           <tr>
+              <td>Dr. Reddy’s Laboratories Limited</td>
+              <td><img src="img/dr reddy logo BnW"></td>                        
+            </tr>
+          </table>
+
+          <p style="text-align: center;"><b>
+            Form II<br/>
+            (Application for grant of relaxation of minimum holding period) <br/>
+            Under Clause 9.1(a) of the Code</b>
+          </p>
+
+          <br/>
+
+          <p style="text-align: left;">
+            The Compliance Officer<br/>
+            <b>Dr. Reddy’s Laboratories Limited</b><br/>
+            Hyderabad
+          </p>
+
+          <br/>
+
+          <p>Dears Sir,<br/><br/>
+           In terms of Clause 9.1(a) of the Code, I would like to state that I intend to '.$transtype.' '.$data['noofshare'].' shares/ADRs/options of the Company because of following reason(s):-
+          </p>
+
+          <br/>
+
+          
+
+          <br/>
+
+          <table style=" border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
+          ';
+        if($data['reasonoftrans'] != '5'){
+           $html.='<tr>
+              <td width="50%"><ol style="padding-left: 17px;"><li type="circle"> '.$transreason.' </li></ol></td>
+            </tr>';
+            }
+            if($data['reasonoftrans'] == '5'){
+            $html.='<tr>
+              <td width="50%"><ol style="padding-left: 17px;"><li type="circle">Any other reason (Please specify): '.$data['otherreason'].'</li></ol></td>                         
+            </tr>';
+                }
+          $html.='</table>
+
+          <br/>
+
+          <table style=" border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
+           <tr>
+              <td width="50%">Date of last purchase / sale<br/>
+                  (Immediately prior to the date of this application) <br/><br/> </td>
+              <td width="50%"> '.$data['lasttransdate'].'</td>                    
+            </tr>
+            <tr>
+              <td width="50%">No. of shares / ADRs purchase/sold  <br/>
+                  (Immediately prior to the date of this application)<br/><br/> </td>
+              <td width="50%"> '.$data['noofshareoftrans'].'</td>                         
+            </tr>
+            <tr>
+              <td width="50%">No. of shares / ADRs held as on date</td>
+              <td width="50%"> '.$personaldata['sharehldng'].' / '.$personaldata['adrshldng'].'</td>                          
+            </tr>
+          </table>
+
+          <br/>
+
+          <p>You are requested to consider my application and grant the relaxation to enter into an opposite transaction within 6 months period basis the above reason(s) and undertaking given herein below:-. </p>
+
+          <p><b>I hereby undertake and confirm that,</b></p>
+          <ol style="padding-left: 17px;">
+            <li>I do not have any access or have not received "Unpublished Price Sensitive Information" up to the time of signing this undertaking.</li>
+            <li>In case I have access to or have received "Unpublished Price Sensitive Information" after the signing of the undertaking but before the execution of the transaction I will inform the Compliance Officer of the change in my position and that I or my Immediate Relative(s) would completely refrain from dealing in the Securities till the time such information becomes public.</li>
+            <li>I have not contravened the Code (as amended from time to time) and any of the provisions of the Insider Trading Regulations (as applicable).</li>
+          </ol>
+
+          <br/>
+
+          <p>I further confirm that the aforesaid facts are true and correct and I shall be fully responsible for any wrongful acts and/or misrepresentation done by me or my Immediate Relative(s) including such penalties as may be imposed by the Company/ SEBI.<br/><br/>
+        Thanking you,<br/><br/>
+        Yours faithfully,<br/><br/><br/>
+
+        ---------------------<br/>
+        Name: '.$userdata['fullname'].'<br/>
+        Employee code: '.$userdata['employeecode'].'<br/>
+        Designation: '.$userdata['designation'].'<br/>
+        Date: '.$todate.'<br/>
+        Place: '.$data['form2place'].'<br/>
+        </p>
+        </div>';
+        return $html;
+    }
+
+
+public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccount,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename,$datetrans,$transaction,$sharestrans)
+  {   
+         //echo "<pre>";print_r($datetrans);exit;
+            $html='<div>
+  <table style="  border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
+   <tr>
+      <td>Dr. Reddy’s Laboratories Limited</td>
+      <td><img src="img/dr reddy logo BnW"></td>                        
+    </tr>
+  </table>
+
+  <p style="text-align: center;"><b>
+    Form I<br/>
+    (Application for pre-clearance of trade)  <br/>
+    Under Clause 8.3 of the Code</b>
+  </p>
+
+  <br/>
+
+  <p style="text-align: left;">
+    The Compliance Officer<br/>
+    <b>Dr. Reddy’s Laboratories Limited</b><br/>
+    Hyderabad
+  </p>
+
+  <br/>
+
+  <p>Dears Sir,<br/><br/>
+   I/we am/are desirous of dealing in the shares / ADRs of the Company.  In terms of the Company’s Code, I/we seek your approval for the trade as detailed below:
+  </p>
+
+  <br/>
+
+  <table width="100%" style="border-collapse: collapse;">
+    <tr>
+      <td style="border: 1px solid #000; " width="40%">Name of Designated Person</td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$itmemberinfo['fullname'].'</td>
+    </tr>
+     <tr>
+      <td style="border: 1px solid #000; " width="40%">Employee Code</td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$itmemberinfo['employeecode'].'</td>
+    </tr>
+     <tr>
+      <td style="border: 1px solid #000; " width="40%">Designation</td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$itmemberinfo['designation'].'</td>
+    </tr>
+     <tr>
+      <td style="border: 1px solid #000; " width="40%">Name of the Immediate relative with relationship<br/>(if he/she intends to deal)</td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$relativename.'</td>
+    </tr>
+     <tr>
+      <td style="border: 1px solid #000; " width="40%">No. of shares/ADRs held as on this date</td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$personalinfo['sharehldng'].','.$personalinfo['adrshldng'].'</td>
+    </tr>
+     <tr>
+      <td style="border: 1px solid #000; " width="40%">Approx. price or range<br/> (shares/ADRs * market price)</td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$approxprice.'</td>
+    </tr>
+     <tr>
+      <td style="border: 1px solid #000; " width="40%">Nature of deal – Purchase / Sale</td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$nature.'</td>
+    </tr>
+     <tr>
+      <td style="border: 1px solid #000; " width="40%">No. of shares / ADRs intended to be dealt in within next 7 days</td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$noofshare.'</td>
+    </tr>
+     <tr>
+      <td style="border: 1px solid #000; " width="40%">Broker through which dealing will take place</td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$broker.'</td>
+    </tr>
+     <tr>
+      <td style="border: 1px solid #000; " width="40%">DP name with whom the demat account is maintained along with DP ID and Client ID / Folio no.</td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$dp.' '.$dpacc.'</td>
+    </tr>    
+     <tr>
+      <td style="border: 1px solid #000; " width="40%">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</td>
+      <td style="padding: 0;">
+      <table style="width:100%">
+     <tr>
+    <th style="background: none;color: #000;width:30%;">Date</th>
+    <th style="background: none;color: #000;width:35%;">Transaction</th>
+    <th style="background: none;color: #000;width:35%;">No. of shares</th>
+    </tr>';
+
+
+ 
+  if(count($datetrans) != 0)
+  {
+  for($i= 0 ;$i<count($datetrans);$i++)
+  {    
+
+   $html.= '<tr>
+    <td>'.$datetrans[$i].'</td>
+    <td>'. $transaction[$i].'</td>
+    <td>'.$sharestrans[$i].'</td>
+    </tr>';
+   }}
+
+ $html.= '</table>
+      </td>
+    </tr>
+  </table>
+
+  <br/>
+
+  <p>You are requested to consider my application and grant the relaxation to enter into an opposite transaction within 6 months period basis the above reason(s) and undertaking given herein below:-. </p>
+
+  <p><b>I hereby undertake and confirm that,</b></p>
+  <ol style="padding-left: 17px;">
+    <li>I do not have any access or have not received "Unpublished Price Sensitive Information" up to the time of signing this undertaking</li>
+    <li>In case I have access to or have received "Unpublished Price Sensitive Information" after the signing of the undertaking but before the execution of the transaction I shall inform the Compliance Officer of the change in my position and that I or my immediate relatives would completely refrain from dealing in the Securities till the time such information becomes public.</li>
+    <li>I have not contravened the Code (as emended from time to time) and any of the provisions of the Insider Trading Regulations (as applicable).</li>
+  </ol>
+
+  <p>I further confirm that the aforesaid facts are true and correct and I shall be fully responsible for any wrongful acts and / or misrepresentation done by me or my immediate relatives including such penalties as may be imposed by the Company / SEBI<br/><br/>You are requested to provide your approval to the aforesaid transaction. <br/><br/>
+
+  Thanking you,<br/><br/>
+  Yours faithfully,<br/><br/><br/>
+ 
+  _____________________<br/>
+  Signature<br/><br/>
+  Place '.$place.'<br/>
+  Date:'.$date.'<br/>
+  </p>
+
+  <br/>
+
+  <p><b>Note:</b><br/>
+  <ol style="padding-left: 17px;">
+    <li>This application has to be submitted through electronic system / mail and followed by a hard copy.</li>
+    <li>Fresh application for pre-clearance shall be required if the trade is not executed within 7 days of approval.</li>
+  </ol>
+  </p>
+ 
+ 
+</div>
+';
+
+    //echo $html; exit; 
+
+     return $html;
+}
+
+
 
 
 

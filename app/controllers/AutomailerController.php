@@ -130,24 +130,25 @@ class AutomailerController extends ControllerBase
                 {
                     $emailid = $svl['sendtoemail'];
                     
+                    //  print_r($maildata);exit;
+                    
                     if(!empty($svl['maildata']))
                     {
-                        $maildata = json_decode($svl['maildata'], true);
+                        $maildata = str_replace("''", "'", $svl['maildata']);
+                        $maildata = json_decode($maildata, true);
                         //echo '<pre>'; print_r($maildata); exit;
+                        //$maildata = str_replace('"',"'", $svl['maildata']);
 
                         // ---
-                        if(isset($maildata['emailcontent']))
-                        {   $emailcontent = $maildata['emailcontent'];    }
-                        else
-                        {   $emailcontent = '';    }
+                       
                     }
                     else
                     {
-                        $emailcontent = '';
+                        $maildata = '';
                     }
                     
-                    $result = $this->emailer->mailoftradingwindow($emailcontent,$emailid);
-                    //echo '<pre>'; print_r($result); exit;
+                    $result = $this->emailer->mailoftradingwindow($maildata,$emailid);
+                    echo '<pre>'; print_r($result); exit;
                     
                 }
             /* ----- End Blackout Period (Trading Window) ----- */
