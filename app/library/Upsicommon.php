@@ -15,8 +15,6 @@ class Upsicommon extends Component
       
         $dayOfWeek = date("l", $unixTimestamp);
  
-
-
        
         $addedby = $userdata[0]['fullname'];
         $addedbyemail = $userdata[0]['email'];
@@ -703,9 +701,11 @@ class Upsicommon extends Component
         $connection = $this->dbtrd;
         //$emailid = implode("','",$EmailData['emailid']);
         $emailid = $EmailData['emailid'];
-            //print_r($emailid);exit;
-        $sqlquery = "SELECT * FROM `it_memberlist` WHERE `email` = '".$emailid."' AND `status`=1 ";
-        //print_r($sqlquery);
+           
+        $emailid = implode("','", $emailid);
+
+        $sqlquery = "SELECT * FROM `it_memberlist` WHERE `email` IN('".$emailid."')  AND `status`=1 ";
+        //print_r($sqlquery);exit;
         try
         {
             $exeget = $connection->query($sqlquery);
@@ -714,17 +714,17 @@ class Upsicommon extends Component
             {
                 while($row = $exeget->fetch())
                 {
-                    $getlist = $row['wr_id'];                     
+                    $getlist[] = $row['wr_id'];                     
                 }
-             //echo '<pre>';print_r($getlist);exit;
+                 return $getlist;
             }
             else
-            {   $getlist = false; }
+            {   return false; }
         }
         catch (Exception $e)
         {   $getlist = false;  }
-          //echo '<pre>';print_r($getlist);exit;
-        return $getlist;
+         
+       
     }
   
 }

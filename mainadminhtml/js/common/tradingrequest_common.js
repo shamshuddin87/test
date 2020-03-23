@@ -199,6 +199,7 @@ website('body').on('click','.sendrequst',function()
     website('#checkappvlrequest #sendreq').val(sendreq);
 
      var approxprice = website('#sharesprice').val();
+
     website('#checkappvlrequest #approxprice').val(approxprice);
 
      var broker = website('#broker').val();
@@ -229,7 +230,7 @@ website('body').on('click','.sendrequst',function()
     
     website.ajax({
         url:'tradingrequest/checkclosebalval',
-        data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},
+        data:{datetrans:datetrans,approxprice:approxprice,broker:broker,place:place,idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -285,7 +286,7 @@ website('body').on('click','.sendrequst',function()
             }
         },
         complete: function(response) 
-        {   /*website('.preloder_wraper').fadeOut();*/   },
+        {   website('.preloder_wraper').fadeOut();   },
         error: function() 
         {   }
     });
@@ -2022,7 +2023,8 @@ function addhtml(clicked)
 {
     
     var id = clicked;
-     //alert(id);
+   
+     //alert(datepre);
     if(id == 'adddiv') {
          
          var getlastid = website('.append').attr('plancntr');
@@ -2045,14 +2047,16 @@ function addhtml(clicked)
           addhtmlnxt += '</div>';
           addhtmlnxt +=' <div id = "right" class="form-group col-md-4">';
           addhtmlnxt += ' <label for="">No of Shares</label>';
-          addhtmlnxt += '<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" placeholder="No of Shares">';
+          addhtmlnxt += '<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">';
           addhtmlnxt += ' </div>';
         
 
            addhtmlnxt += '</div>';
 
-      
-         website('.appenddiv').append(addhtmlnxt);
+         
+           website('.appenddiv').append(addhtmlnxt);
+         
+         
          datepicker();
        
          website('.append').attr('plancntr',getlastid);

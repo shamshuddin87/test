@@ -1028,8 +1028,8 @@ Class Email extends Phalcon\Mvc\User\Component {
     {
         $subject = 'Trading Window';
         $to =$emailid;
-        //$gethtml = $this->htmlelements->mailformdackrqst($subject,$emaildata);
-        $gethtml = $emailcontent;
+        $gethtml = $this->htmlelements->mailformdackrqst($subject,$emailcontent);
+        //$gethtml = $emailcontent;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
         $mail->isSMTP();
@@ -1269,7 +1269,7 @@ Class Email extends Phalcon\Mvc\User\Component {
     public function mailofupsitradingwindow($emailid,$username,$upsitype,$enddate,$addedby,$pstartdate,$today)
     {
         $gethtml = $this->htmlelements->mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$pstartdate,$today);
-        //print_r($gethtml);exit;
+        //print_r($emailid);exit;
         $mail = new PHPMailer();
         $mail->isSMTP();
         $mail->SMTPDebug = 2;
@@ -1285,7 +1285,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         //add cc
         //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
         //Set who the message is to be sent to
-        $mail->addAddress($to, 'Volody');
+        $mail->addAddress($emailid, 'Volody');
         $mail->Subject = 'Trading Window Closure';
         $mail->msgHTML($gethtml);
         //Replace the plain text body with one created manually

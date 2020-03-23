@@ -113,6 +113,36 @@ class Insidercommon extends Component
         //echo '<pre>'; print_r($finaldata); exit;        
         return $finaldata;
     }
+
+    public function getconnectedusers($getuserid,$user_group_id)
+    {
+        //echo '<pre>';print_r($getuserid);exit;  
+        $volodydb = $this->db;        
+        $connection = $this->dbtrd;       
+        $masteruserdata = array();
+        
+       
+            $sqlusrlst = "SELECT * FROM `sensitiveinfo_recipient`";
+            //echo $sqlusrlst;exit;
+            $exeusrlst = $connection->query($sqlusrlst);
+            $usrlstnum = trim($exeusrlst->numRows());
+            if($usrlstnum>0)
+            {
+                while($rowusrlst = $exeusrlst->fetch())
+                {
+                    $userlist[] = $rowusrlst;
+                }
+                //echo '<pre>';print_r($userlist);exit;
+            }
+            else
+            {   $userlist = array();    }
+
+          
+        //echo '<pre>'; print_r($finaldata); exit;        
+        return $userlist;
+    }
+
+
 /* ******************************** IMPORTANT End ******************************** */
     
     

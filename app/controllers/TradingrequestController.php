@@ -99,9 +99,14 @@ class TradingrequestController extends ControllerBase
                 $typeoftrans=$this->request->getPost('typeoftranss','trim');
                 $sectype=$this->request->getPost('sectypes','trim');
                 $noofshare=$this->request->getPost('noofshares','trim');
+                $approxprice=$this->request->getPost('approxprice','trim');
+                $broker=$this->request->getPost('broker','trim');
+                $place=$this->request->getPost('place','trim');
+                $datetrans =$this->request->getPost('datetrans','trim');
                 $typeofrequests=$this->request->getPost('typeofrequests');
+                $todaydate = date('d-m-Y');
 
-                 // print_r($typeofrequests);exit;
+                  
                 if(empty($idofcmp))
                 {
                     $data = array("logged" => false,'message' => 'Please Select Company..!!!');
@@ -127,9 +132,41 @@ class TradingrequestController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Select Type Of request...!!!');
                     $this->response->setJsonContent($data);
                 }
+                else if(empty($approxprice))
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter Approx Price or range');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                 else if(empty($broker))
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter Broker');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                 else if(empty($place))
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter Place');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                
                 else
                 {
                     //print_r($typeofrequests);exit;
+                    if(!empty($datetrans[0]))
+                    {
+                        for($i=0;$i<count($datetrans);$i++)
+                        {
+                            if(strtotime($datetrans[$i]) > strtotime($todaydate))
+                            {
+                            $data = array("logged" => false,'message' => 'Date of transaction cannot be in future');
+                            $this->response->setJsonContent($data);
+                            $this->response->send();
+                            }
+                        }
+                    }
+                   
                     $checkval = $this->tradingrequestcommon->checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans);
                     //print_r($checkval);exit;    
 
@@ -208,6 +245,7 @@ class TradingrequestController extends ControllerBase
                 $datetrans=$this->request->getPost('datetrans','trim');
                 $transaction=$this->request->getPost('transaction','trim');
                 $sharestrans=$this->request->getPost('sharestrans','trim');
+
                 if($typeoftrans == 2)
                 {
                     $nature = 'Sale';
@@ -262,20 +300,7 @@ class TradingrequestController extends ControllerBase
                 $datetrans = explode(",", $datetrans);
                 $transaction = explode(",", $transaction);
                 $sharestrans = explode(",", $sharestrans);
-               
-
-               
-                //print_r( $datetrans);exit;
-                 $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccountid,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename,$datetrans,$transaction,$sharestrans);
-                 //print_r($pdf_content);exit;        
-
-                   
-               
-                //print_r($html);exit;
-                
-
-                $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form I','FormI');
-                //print_r($pdfpath);exit;
+              
 
 
 
@@ -344,7 +369,7 @@ class TradingrequestController extends ControllerBase
                 }
                 else if(empty($noofshare))
                 {
-                    $data = array("logged" => false,'message' => 'Please Insert Total No Of Shares');
+                    $data = array("logged" => false,'message' => 'Please Enter Total No Of Shares');
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
@@ -354,8 +379,15 @@ class TradingrequestController extends ControllerBase
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
+
+                
                 else
                 {
+
+                
+                $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccountid,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename);
+
+                $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form I','FormI');
                     //echo 'in else';exit;
                     if(!empty($sendreq))
                     {

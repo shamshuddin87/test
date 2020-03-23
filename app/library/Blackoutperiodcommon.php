@@ -39,7 +39,7 @@ class Blackoutperiodcommon extends Component
     /**************************** search for cmp masters end *****************************/
     
     /**************************** insert cmp in blackout period start *****************************/
-    public function insertblackoutperiod($getuserid,$user_group_id,$compid,$blckoutfrom,$blckoutto)
+    public function insertblackoutperiod($getuserid,$user_group_id,$compid,$blckoutfrom,$blckoutto,$reason)
     {
         $connection = $this->dbtrd;
         $time = time();
@@ -54,7 +54,7 @@ class Blackoutperiodcommon extends Component
 
         $queryinsert = "INSERT INTO `blackoutperiod_cmp`
         (`user_id`,`user_group_id`,`companyid`,`datefrom`, `dateto`,`reason`,`date_added`, `date_modified`,`timeago`)
-         VALUES ('".$getuserid."','".$user_group_id."','".$compid."','".$blckoutfrom."','".$blckoutto."',NOW(),NOW(),'".$time."')"; 
+         VALUES ('".$getuserid."','".$user_group_id."','".$compid."','".$blckoutfrom."','".$blckoutto."','".$reason."',NOW(),NOW(),'".$time."')"; 
         
         //print_r($queryinsert);exit;
         try
