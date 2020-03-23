@@ -3112,7 +3112,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">DP name with whom the demat account is maintained along with DP ID and Client ID / Folio no.</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$dp.'  '.$dpacc.'</td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$dp.' '.$dpacc.'</td>
     </tr>    
      <tr>
       <td style="border: 1px solid #000; " width="40%">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</td>
@@ -3123,19 +3123,22 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
     <th>Transaction</th>
     <th>No. of shares</th>
     </tr>';
+
+
   
   if(count($datetrans) != 0)
   {
   for($i= 0 ;$i<count($datetrans);$i++)
-  {        
-    '<tr>
+  {    
+
+   $html.= '<tr>
     <td>'.$datetrans[$i].'</td>
     <td>'. $transaction[$i].'</td>
     <td>'.$sharestrans[$i].'</td>
     </tr>';
    }}
 
-  '</table>
+ $html.= '</table>
       </td>
     </tr>
   </table>
@@ -3172,8 +3175,6 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
   </p>
   
   
-
-
 </div>';
 
     //echo $html; exit; 

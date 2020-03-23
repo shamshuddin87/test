@@ -71,6 +71,13 @@ $condeptsess = $this->session->contractdepartment;
                         <input type="text" name="blckoutto" id="blckoutto" class="form-control bootdatepick" required readonly>
                     </div>
                     </section>
+
+                     <section class="col col-md-6 col-xs-6">
+                    <div class="input">
+                    <label class="control-label">Reason for closure of trading</label>  
+                       <textarea id="reason" name="reason" style="width: 100%;"></textarea>
+                    </div>
+                    </section>
                         
                     
                         

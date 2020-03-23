@@ -98,6 +98,8 @@ class BlackoutperiodController extends ControllerBase
                 $compid   = $this->request->getPost('compid','trim');
                 $blckoutfrom   = $this->request->getPost('blckoutfrom','trim');
                 $blckoutto   = $this->request->getPost('blckoutto','trim');
+                $reason   = $this->request->getPost('reason','trim');
+                //print_r($reason);exit;
                 
                 if(empty($compid))
                 {
@@ -135,7 +137,7 @@ class BlackoutperiodController extends ControllerBase
                     $blckoutto =  date("d-m-Y", strtotime($blckoutto));
                 
                 
-                    $getres = $this->blackoutperiodcommon->insertblackoutperiod($getuserid,$user_group_id,$compid,$blckoutfrom,$blckoutto);
+                    $getres = $this->blackoutperiodcommon->insertblackoutperiod($getuserid,$user_group_id,$compid,$blckoutfrom,$blckoutto,$reason);
                     if($getres)
                     {
                         $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);

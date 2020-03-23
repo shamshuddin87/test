@@ -53,7 +53,7 @@ class Blackoutperiodcommon extends Component
         }
 
         $queryinsert = "INSERT INTO `blackoutperiod_cmp`
-        (`user_id`,`user_group_id`,`companyid`,`datefrom`, `dateto`,`date_added`, `date_modified`,`timeago`)
+        (`user_id`,`user_group_id`,`companyid`,`datefrom`, `dateto`,`reason`,`date_added`, `date_modified`,`timeago`)
          VALUES ('".$getuserid."','".$user_group_id."','".$compid."','".$blckoutfrom."','".$blckoutto."',NOW(),NOW(),'".$time."')"; 
         
         //print_r($queryinsert);exit;

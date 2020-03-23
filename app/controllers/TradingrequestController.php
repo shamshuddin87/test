@@ -267,7 +267,7 @@ class TradingrequestController extends ControllerBase
                
                 //print_r( $datetrans);exit;
                  $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccountid,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename,$datetrans,$transaction,$sharestrans);
-                 print_r($pdf_content);exit;        
+                 //print_r($pdf_content);exit;        
 
                    
                
