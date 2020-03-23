@@ -169,7 +169,7 @@ class Upsicommon extends Component
 
     public function updateupsi($getuserid,$usergroup,$updatedata,$exceldpids,$username)
     {
-        print_r($updatedata);exit;
+        //print_r($updatedata);exit;
         $connection = $this->dbtrd;
         $userdata = $this->fetchuserdata($getuserid);
         $addedby = $userdata[0]['fullname'];
@@ -201,6 +201,7 @@ class Upsicommon extends Component
         }
         if(!empty($exceldpids))
         {
+            //print_r($exceldpids);exit;
             $excelcondps = implode(',',$exceldpids);
         }
        
@@ -713,7 +714,7 @@ class Upsicommon extends Component
             {
                 while($row = $exeget->fetch())
                 {
-                    $getlist[] = $row['wr_id'];                     
+                    $getlist = $row['wr_id'];                     
                 }
              //echo '<pre>';print_r($getlist);exit;
             }
@@ -722,7 +723,7 @@ class Upsicommon extends Component
         }
         catch (Exception $e)
         {   $getlist = false;  }
-          echo '<pre>';print_r($getlist);exit;
+          //echo '<pre>';print_r($getlist);exit;
         return $getlist;
     }
   

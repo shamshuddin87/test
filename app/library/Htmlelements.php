@@ -2149,10 +2149,16 @@ public function sendmailforpersinfo($subject,$fullname){
         return $html;
     }
     
-public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$emaildate,$today)
+public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$pstartdate,$today)
   {   
-       //echo "<pre>";print_r($userids);exit;
-            $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+         $unixTimestamp = strtotime($today);
+        $dayOfWeek = date("l", $unixTimestamp);
+        $unixTimestamp1 = strtotime($enddate);
+        $dayOfWeek1 = date("l", $unixTimestamp1);
+         $unixTimestamp2 = strtotime($pstartdate);
+        $dayOfWeek2 = date("l", $unixTimestamp2);
+
+      $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <html xmlns="htth3://www.w3.org/1999/xhtml">
 
       <head>
@@ -2199,32 +2205,18 @@ public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$e
                 </div>
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
-        <p>Dear '.$username.'</p>
-        <p>You have been added as Project Owner / Project member in connection with Project as mentioned herein, which is Unpublished Price Sensitive Information (UPSI).</p>
-        <p>As part of the Project, you would be deemed to be in possession / recipient <b>of Unpublished Price Sensitive Information (UPSI) </b>in relation to the affairs concerning the Company. Please note that all UPSI in your possession or that may be shared with you over the course of time, are private and confidential and intended to be used STRICTLY for legitimate purposes only in pursuance to the applicable provisions of the SEBI (Prohibition of Insider Trading) Regulations, 2015 (including any amendment(s) or re-enactment(s) thereof) (SEBI PIT Regulations).</p>
-        <p>The holder/recipient of UPSI (including its Representative) is expected to maintain highest level of confidentiality and shall abide by and undertake to comply with the applicable provisions of the said SEBI PIT Regulations in dealings concerning the listed securities of the Company.</p>
-        
-                <div class="main">
-                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
-                    UPSI Name : '.$upsitype.',</div>
-                    
-                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
-                    Name added by : '.$addedby.',</div>
-                       
-                       <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
-                       Project Start Date : '.$emaildate.',</div>
-                       
-                       <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">
-                       Date of closure of Trading Window : '.$today.',</div> 
+        <p>Dear All</p>
+        <p>A meeting of the Board of Directors of Dr. Reddys Laboratories Limited (the Company) is scheduled to be held on (day), (Date) to consider the Unaudited Financial Results of the Company for the quarter and nine months ended December 31, 2019.
+        </p>
+        <p>Under the Securities and Exchange Board of India (Prohibition of Insider Trading) Regulations 2015, (Insider Trading Regulations) buying, selling or dealing in the securities of the company by its directors/employees on the knowledge of any inside, unpublished price-sensitive information is prohibited and doing so is an offense. The Directors and employees of the Company and their immediate relatives are not permitted to trade in the Company’s shares/ADRs during the period, as may be notified in this behalf and/or till such price-sensitive information is disseminated to the public at large.
+          </p>
+        <p>Under the revised Insider Trading Regulations and Company’s revised Code of Conduct to regulate, monitor and report trading by designated persons (the Code), the trading restriction period can be made applicable from the end of every quarter till 48 hours after the declaration of financial results or such other period as may be notified in this behalf. Accordingly, it is hereby informed that the Trading Window for buying, selling or dealing in the securities of the Company by the designated persons (including their immediate relatives) will be closed from (day), (date) to  (day), (date) (both days inclusive).
+         </p>
+         <p>
+         Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.</p>
+         <p>Further, exercise of stock options shall not be allowed during the above period.</p>
 
-                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;font-weight: 700;letter-spacing: .7px;">        Project End Date : to be notified </div> 
-                     <p>Please note that in view of the holding of aforesaid UPSI, the trading window to deal in the listed securities of the Company, has been closed for you and your immediate relatives with immediate effect and shall continue to be so till 48 hours after the said UPSI is made available to public or such activity or project is abandoned.</p>
-                     <p>Please consult the Corporate Governance Dept. for any query or clarification. </p>
-                     <div><br></div>
-                     <p>Regards,</p>
-                     <p>Corporate Governance Team</p>
-                     
-                </div>
+        
             </div>
         </div>
 
@@ -2946,7 +2938,7 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
         }
         else if($data['typeoftrans'] == 2)
         {
-            $transtype = 'sell';
+            $transtype = 'Sell';
         }
        $html=' <div>
           <table style=" border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -3048,14 +3040,14 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
     }
 
 
-public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccount,$place,$datetrans,$transaction,$sharestrans,$nature)
+public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccount,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename,$datetrans,$transaction,$sharestrans)
   {   
-        // echo "<pre>";print_r($itmemberinfo);exit;
+         //echo "<pre>";print_r($datetrans);exit;
             $html='<div>
   <table style="  border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
    <tr>
       <td>Dr. Reddy’s Laboratories Limited</td>
-      <td><img src=""></td>                        
+      <td><img src="img/dr reddy logo BnW"></td>                        
     </tr>
   </table>
 
@@ -3096,7 +3088,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">Name of the Immediate relative with relationship<br/>(if he/she intends to deal)</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%"></td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$relativename.'</td>
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">No. of shares/ADRs held as on this date</td>
@@ -3112,7 +3104,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">No. of shares / ADRs intended to be dealt in within next 7 days</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%"></td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$noofshare.'</td>
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">Broker through which dealing will take place</td>
@@ -3120,13 +3112,30 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">DP name with whom the demat account is maintained along with DP ID and Client ID / Folio no.</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$demataccount.'</td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$dp.'  '.$dpacc.'</td>
     </tr>    
      <tr>
       <td style="border: 1px solid #000; " width="40%">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</td>
-      <td style="border: 1px solid #000; " width="20%">Date</td>
-      <td style="border: 1px solid #000; " width="20%">Transaction</td>
-      <td style="border: 1px solid #000; " width="20%">No. of shares
+      <td>
+      <table style="width:100%">
+     <tr>
+    <th>Date</th>
+    <th>Transaction</th>
+    <th>No. of shares</th>
+    </tr>';
+  
+  if(count($datetrans) != 0)
+  {
+  for($i= 0 ;$i<count($datetrans);$i++)
+  {        
+    '<tr>
+    <td>'.$datetrans[$i].'</td>
+    <td>'. $transaction[$i].'</td>
+    <td>'.$sharestrans[$i].'</td>
+    </tr>';
+   }}
+
+  '</table>
       </td>
     </tr>
   </table>
@@ -3150,7 +3159,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
   _____________________<br/>
   Signature<br/><br/>
   Place '.$place.'<br/>
-  Date:<br/>
+  Date:'.$date.'<br/>
   </p>
 
   <br/>

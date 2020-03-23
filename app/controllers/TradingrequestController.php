@@ -195,6 +195,7 @@ class TradingrequestController extends ControllerBase
                 //print_r($typeoftrans);exit;
                 $typeofrequest=$this->request->getPost('typeofrequest','trim');
                 $selrelative=$this->request->getPost('selrelative','trim');
+
                 $reqname= $this->request->getPost('reqname','trim');
                 $sendreq=$this->request->getPost('sendreq','trim');
                 //print_r($sendreq);exit;
@@ -202,7 +203,7 @@ class TradingrequestController extends ControllerBase
 
                 $approxprice=$this->request->getPost('approxprice','trim');
                 $broker=$this->request->getPost('broker','trim');
-                $demataccount=$this->request->getPost('demataccount','trim');
+                $demataccountid=$this->request->getPost('demataccount','trim');
                 $place=$this->request->getPost('place','trim');
                 $datetrans=$this->request->getPost('datetrans','trim');
                 $transaction=$this->request->getPost('transaction','trim');
@@ -210,19 +211,70 @@ class TradingrequestController extends ControllerBase
                 if($typeoftrans == 2)
                 {
                     $nature = 'Sale';
+                    $relativeinfo = $this->tradingrequestcommon->getrelativesingle($selrelative);
+                    if(!empty($demataccountid))
+                    {
+                        $dematinfo = $this->tradingrequestcommon->relativedemat($demataccountid);
+                        $dp = $dematinfo['depository_participient'];
+                        $dpacc = $dematinfo['accountno'];
+                    }
+                    else
+                    {
+                        $dp = ' ';
+                        $dpacc = ' ';
+                    }
+                    
+                    $relativename = $relativeinfo['name'];
+                }
+                else if($typeoftrans == 1)
+                {
+                    $nature = 'Purchase';
+                    $relativename = ' ';
+                    //print_r($dematinfo);exit;
+                     if(!empty($demataccountid))
+                    {
+                          $dematinfo = $this->tradingrequestcommon->userdemat($demataccountid);
+                          $dp = $dematinfo['depository_participient'];
+                          $dpacc = $dematinfo['accountno'];
+
+                    }
+                    else
+                    {
+                        $dp = ' ';
+                        $dpacc = ' ';
+                    }
+                  
                 }
                 else
                 {
-                    $nature = 'Purchase';
+                    $nature = ' ';
+                    $relativename = ' ';
+                    $dematinfo = ' ';
                 }
-
+                //print_r($dematinfo);exit;
+                
+               
+                
                 $personalinfo = $this->tradingrequestcommon->getpersonalinfo($uid,$usergroup);
 
                 $itmemberinfo = $this->tradingrequestcommon->userdetails($uid,$usergroup);
+                
+                $datetrans = explode(",", $datetrans);
+                $transaction = explode(",", $transaction);
+                $sharestrans = explode(",", $sharestrans);
+               
 
-                $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccount,$place,$datetrans,$transaction,$sharestrans,$nature);
+               
+                //print_r( $datetrans);exit;
+                 $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccountid,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename,$datetrans,$transaction,$sharestrans);
+                 print_r($pdf_content);exit;        
 
-                $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','formI','weaver');
+                   
+               
+                //print_r($html);exit;
+                
+
+                $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form I','FormI');
                 //print_r($pdfpath);exit;
 
 
@@ -1351,20 +1403,20 @@ class TradingrequestController extends ControllerBase
                 if($formtype == "form1")
                 {
                     $pdf_content = file_get_contents("declaration_form/preclearance.html");
-                    $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','weaver','weaver');
+                    //$pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','weaver','weaver');
                 }
                 else if($formtype == "form2")
                 {
                      
                     $pdf_content = file_get_contents("declaration_form/weaverform.html");
-                    $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','preclerance','preclerance');
+                    //$pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','preclerance','preclerance');
                 }
                
                
                 
                 if(!empty($pdf_content))
                 {
-                    $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdf_path"=>$pdfpath,"pdf_content"=> $pdf_content);
+                    $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdf_content"=> $pdf_content);
                     $this->response->setJsonContent($data);
                 }
                 else

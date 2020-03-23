@@ -41,7 +41,7 @@ else
 {website('.preloder_wraper').fadeIn();},success:function(response)
 {if(response.logged===true)
 {if(formtype=='form1')
-{website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);website('#checkappvlrequest').modal('show');}
+{website('#checkappvlrequest').modal('show');}
 else if(formtype=='form2')
 {website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest #pdflink').attr('href',response.pdf_path);website('#chckexcptnrequest').modal('show');}}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
@@ -258,8 +258,8 @@ selecttypeofreq();function selecttypeofreq()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {var addhtmlnxt='';if(response.logged==true)
-{addhtmlnxt+=' <option value="">Select Demat Account</option>';for(var i=0;i<response.data.length;i++)
-{var id=response.data[i].id?response.data[i].id:'Not Found';var accno=response.data[i].accountno?response.data[i].accountno:'Not Found';var dp=response.data[i].depository_participient?response.data[i].depository_participient:'Not Found';addhtmlnxt+='<option value="'+id+'">'+accno+'</option>';website("#dpdemat").val(dp);}
+{for(var i=0;i<response.data.length;i++)
+{var id=response.data[i].id?response.data[i].id:'Not Found';var accno=response.data[i].accountno?response.data[i].accountno:'Not Found';var dp=response.data[i].depository_participient?response.data[i].depository_participient:'Not Found';addhtmlnxt+='<option value="'+id+'">'+accno+'</option>';}
 website('#demataccount').html(addhtmlnxt);}
 else{addhtmlnxt+=' ';}}});}
 else
@@ -332,7 +332,7 @@ else
 {website('.otherreason').css('display','block');}
 else
 {website('.otherreason').css('display','none');}});function addhtml(clicked)
-{var id=clicked;if(id=='adddiv'){var getlastid=website('.append').attr('plancntr');getlastid=++getlastid;var addhtmlnxt='';addhtmlnxt+='<div class=" form-group col-md-12 row'+getlastid+' "  id="row'+getlastid+'" >';addhtmlnxt+=' <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>';addhtmlnxt+=' <div id = "left" class="form-group col-md-4">';addhtmlnxt+='<label for="">Date</label>';addhtmlnxt+=' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "middle" class="form-group col-md-4">';addhtmlnxt+='<label for="">Transaction</label>';addhtmlnxt+=' <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "right" class="form-group col-md-4">';addhtmlnxt+=' <label for="">No of Shares</label>';addhtmlnxt+='<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" placeholder="No of Shares">';addhtmlnxt+=' </div>';addhtmlnxt+='</div>';website('.appenddiv').append(addhtmlnxt);datepicker();website('.append').attr('plancntr',getlastid);}
+{var id=clicked;if(id=='adddiv'){var getlastid=website('.append').attr('plancntr');getlastid=++getlastid;var addhtmlnxt='';addhtmlnxt+='<div class=" form-group col-md-12 row'+getlastid+' "  id="row'+getlastid+'" >';addhtmlnxt+=' <div id = "left" class="form-group col-md-4" style="margin-left: -18px;">';addhtmlnxt+='<label for="">Date</label>';addhtmlnxt+=' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "middle" class="form-group col-md-4">';addhtmlnxt+='<label for="">Transaction</label>';addhtmlnxt+=' <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "right" class="form-group col-md-4">';addhtmlnxt+=' <label for="">No of Shares</label>';addhtmlnxt+='<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" placeholder="No of Shares">';addhtmlnxt+=' </div>';addhtmlnxt+='</div>';website('.appenddiv').append(addhtmlnxt);datepicker();website('.append').attr('plancntr',getlastid);}
 else{var addhtmlnxt='';}}
 function removehtml(clicked)
 {var rmid=clicked;if(rmid=='remvdiv')

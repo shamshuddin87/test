@@ -213,9 +213,8 @@
                
                 <label for="">Demat Account</label>
                 <select class="form-control" id="demataccount" name="demataccount">
-                   
-                    
-                   
+                <option value="">Select Demat Account</option>
+                          
                 </select>
             </div>
 
@@ -228,9 +227,9 @@
 
 
 
-            <div class="form-group col-md-12" >
+            <div class="form-group col-md-12" style="margin-left: -9px;">
                 <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>
-                <div id = "left" class="form-group col-md-4">
+                <div id = "left" class="form-group col-md-4" style="margin-left: -9px;">
                 <label for="">Date</label>
                 <input type="text" class="form-control bootdatepick" id="dateoftrans[]" name="dateoftrans[]" placeholder="Date" >
                 </div>
@@ -530,7 +529,7 @@
                 
             </div>
             <div class="modal-body">
-             <a id="pdflink" download><input type="button" class="btn btn-success"  value="Download"></a>
+             <!-- <a id="pdflink" download><input type="button" class="btn btn-success"  value="Download"></a> -->
               <input type="hidden" id="approverid" name="approverid">
               <input type="hidden" id="reqname" name="reqname">
               <input type="hidden" id="typeofrequest" name="typeofrequest">
@@ -542,12 +541,12 @@
               <input type="hidden" id="typeoftrans" name="typeoftrans">
                <input type="hidden" id="sendreq" name="sendreq">
               <input type="hidden" id="approxprice" name="approxprice">
-               <input type="hidden" id="broker" name="broker">
-                <input type="hidden" id="demataccount" name="demataccount">
-                 <input type="hidden" id="place" name="place">
-                  <input type="hidden" id="datetrans" name="datetrans">
-                   <input type="hidden" id="transaction" name="sendreq">
-                    <input type="hidden" id="sharestrans" name="sharestrans">
+             <input type="hidden" id="broker" name="broker">
+             <input type="hidden" id="demataccount" name="demataccount">
+            <input type="hidden" id="place" name="place">
+           <input type="hidden" id="datetrans" name="datetrans">
+          <input type="hidden" id="transaction" name="sendreq">
+         <input type="hidden" id="sharestrans" name="sharestrans">
 
 
 

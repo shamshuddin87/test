@@ -379,13 +379,13 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                      
                      if(!empty($name) && !empty($email))
                      {
-                         $username[] = $name;
+                         $username = $name;
                          $emailid = $email;
                          
                          $ConnctdDpArray = array('username'=>$username,'emailid'=>$emailid);
                          
-                        $getres = $this->upsicommon->Fetchusersid($getuserid,$user_group_id,$ConnctdDpArray);
-                        //print_r($getres);
+                        $getres[] = $this->upsicommon->Fetchusersid($getuserid,$user_group_id,$ConnctdDpArray);
+                        //print_r($getres);echo "hello";exit;
                         if(!$getres)
                         {
                             //print_r('dasd');exit;
@@ -396,13 +396,14 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                     
                  }
             }
-            //die;
+            
         }
         catch (Exception $e)
         {
             $getres = array();
             $connection->close();
         }
+       // print_r($getres);exit;
         return $getres;
     }
 
