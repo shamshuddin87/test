@@ -404,7 +404,7 @@ website('body').on('click','.sendemail',function(e){
                   styling: 'bootstrap3',
                   addclass: 'dark ',
               }); 
-             setTimeout(function() {window.location.reload()}, 5000);
+             setTimeout(function() {window.location.reload()},5000);
                
            }
            else

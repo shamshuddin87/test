@@ -2023,8 +2023,8 @@ function addhtml(clicked)
 {
     
     var id = clicked;
-    var datepre = website("#dateoftrans").val();
-     //alert(id);
+   
+     //alert(datepre);
     if(id == 'adddiv') {
          
          var getlastid = website('.append').attr('plancntr');
@@ -2054,8 +2054,9 @@ function addhtml(clicked)
            addhtmlnxt += '</div>';
 
          
-            website('.appenddiv').append(addhtmlnxt);
-       
+           website('.appenddiv').append(addhtmlnxt);
+         
+         
          datepicker();
        
          website('.append').attr('plancntr',getlastid);

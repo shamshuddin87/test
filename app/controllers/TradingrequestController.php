@@ -385,7 +385,7 @@ class TradingrequestController extends ControllerBase
                 {
 
                 
-                $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccountid,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename,$datetrans,$transaction,$sharestrans);
+                $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccountid,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename);
 
                 $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form I','FormI');
                     //echo 'in else';exit;

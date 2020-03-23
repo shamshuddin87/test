@@ -3084,7 +3084,7 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
     }
 
 
-public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccount,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename,$datetrans,$transaction,$sharestrans)
+public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccount,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename)
   {   
          //echo "<pre>";print_r($datetrans);exit;
             $html='<div>
