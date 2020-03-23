@@ -3020,13 +3020,17 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
         else if($data['typeofrequest'] == '2' &&  $data['reasonoftrans'] == '1')
         {
             $transreason = 'Medical Expenses for family Members';
-            $type2 = ' - Yes';
+            $type1 = ' - Yes';
         }
         if($data['reasonoftrans'] == '2')
         {
-           $type3 = ' - Yes';
+           $type2 = ' - Yes';
         }
         if($data['reasonoftrans'] == '3')
+        {
+           $type3 = ' - Yes';
+        }
+        if($data['reasonoftrans'] == '4')
         {
            $type4 = ' - Yes';
         }
