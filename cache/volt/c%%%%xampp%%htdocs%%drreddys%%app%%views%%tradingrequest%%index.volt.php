@@ -239,7 +239,7 @@
                 </div>
                 <div id = "right" class="form-group col-md-4">
                 <label for="">No of Shares</label>
-                <input type="text" class="form-control " id="sharestrans[]" name="sharestrans[]" placeholder="No of Shares">
+                <input type="text" class="form-control " id="sharestrans[]" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">
                 </div>
                
             </div>

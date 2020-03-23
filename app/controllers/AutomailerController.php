@@ -148,7 +148,7 @@ class AutomailerController extends ControllerBase
                     }
                     
                     $result = $this->emailer->mailoftradingwindow($maildata,$emailid);
-                    echo '<pre>'; print_r($result); exit;
+                    //echo '<pre>'; print_r($result); exit;
                     
                 }
             /* ----- End Blackout Period (Trading Window) ----- */

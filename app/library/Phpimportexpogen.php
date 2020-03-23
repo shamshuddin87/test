@@ -377,8 +377,9 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                     $name  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
                     $email  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
                      
-                     if(!empty($name) && !empty($email))
-                     {
+                    if(!empty($name) && !empty($email))
+                    {
+
                          $username = $name;
                          $emailid = $email;
                          
@@ -395,6 +396,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                  
                     
                  }
+                // print_r($getres);exit;
             }
             
         }

@@ -15,8 +15,6 @@ class Upsicommon extends Component
       
         $dayOfWeek = date("l", $unixTimestamp);
  
-
-
        
         $addedby = $userdata[0]['fullname'];
         $addedbyemail = $userdata[0]['email'];
@@ -716,15 +714,15 @@ class Upsicommon extends Component
                 {
                     $getlist = $row['wr_id'];                     
                 }
-             //echo '<pre>';print_r($getlist);exit;
+                 return $getlist;
             }
             else
-            {   $getlist = false; }
+            {   return false; }
         }
         catch (Exception $e)
         {   $getlist = false;  }
-          //echo '<pre>';print_r($getlist);exit;
-        return $getlist;
+         
+       
     }
   
 }
