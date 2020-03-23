@@ -18,22 +18,7 @@ else
 addhtmlnxt+='<tr class="counter" tempid="'+response.data[i].id+'" >';addhtmlnxt+='<td>'+name+'</td>';addhtmlnxt+='<td>'+sectype+'</td>';addhtmlnxt+='<td>'+name_of_company+'</td>';addhtmlnxt+='<td>'+type_of_transaction+'</td>';addhtmlnxt+='<td>'+no_of_shares+'</td>';addhtmlnxt+='<td>'+typeofrequest+'</td>';addhtmlnxt+='<td>'+nameofrelative+'</td>';addhtmlnxt+='<td>'+relationship+'</td>';if(approved_status==1){addhtmlnxt+='<td><i class="fa fa-check-circle" style="font-size:15px;color:green;"></i></td>';}
 else if(approved_status==2){addhtmlnxt+='<td class="getmsg" mymessage="'+message+'"><i class="fa fa-close" style="font-size:15px;color:red;"></i></td>';}
 else{addhtmlnxt+='<td style="color:#F44336;">Not Approved</td>';}
-addhtmlnxt+='<td>'+trading_date+'</td>';addhtmlnxt+='<td>'+date_added+'</td>';addhtmlnxt+='<td>'+file+'</td>';addhtmlnxt+='<td><i class="fa fa-bar-chart viewrequsttrail" rqstid="'+response.data[i].id+'"></i></td>';if(approved_status==1)
-{if(user_group==2)
-{addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i></td>';}
-else
-{addhtmlnxt+='<td></td>';}}
-else if(approved_status==2)
-{if(user_group==2)
-{addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i>';}
-else
-{addhtmlnxt+='<td></td>';}}
-else
-{if(user_group==2)
-{addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'"><i class="fa fa-close"></i></button></td>';}
-else
-{addhtmlnxt+='<td><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'"><i class="fa fa-close"></i></button></td>';}}
-addhtmlnxt+='</tr>';}}
+addhtmlnxt+='<td>'+trading_date+'</td>';addhtmlnxt+='<td>'+date_added+'</td>';addhtmlnxt+='<td>'+file+'</td>';addhtmlnxt+='<td><i class="fa fa-bar-chart viewrequsttrail" rqstid="'+response.data[i].id+'"></i></td>';addhtmlnxt+='</tr>';}}
 else
 {addhtmlnxt+='<tr><td colspan="13" style="text-align:center;">Data Not Found..!!!</td></tr>';}
 website(".viewreqtable").html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);},complete:function(response)

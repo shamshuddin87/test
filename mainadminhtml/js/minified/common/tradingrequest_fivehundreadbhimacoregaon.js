@@ -29,9 +29,9 @@ website("body").on("click",".topul",function(e){var id=website(this).attr('id');
 {if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
 {new PNotify({title:'Alert',text:response.contratrd.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{getform('form2');}}
+{website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest').modal('show');}}
 else
-{getform('form1');}}
+{website('#checkappvlrequest').modal('show');}}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function()
@@ -117,11 +117,7 @@ var total_amount=response.data[i].total_amount?response.data[i].total_amount:'';
 {addhtmlnxt+='<td>'+j+' <input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"></td>';}
 else
 {addhtmlnxt+='<td>'+j+'</td>';}
-addhtmlnxt+='<td>'+sectype+'</td>';addhtmlnxt+='<td>'+name_of_company+'</td>';addhtmlnxt+='<td>'+type_of_transaction+'</td>';addhtmlnxt+='<td>'+no_of_shares+'</td>';addhtmlnxt+='<td>'+typeofrequest+'</td>';addhtmlnxt+='<td>'+nameofreq+'</td>';addhtmlnxt+='<td>'+relationship+'</td>';if(send_status==1)
-{addhtmlnxt+='<td>Sent</td>';}
-else
-{addhtmlnxt+='<td>Drafted</td>';}
-if(approved_status==1)
+addhtmlnxt+='<td>'+sectype+'</td>';addhtmlnxt+='<td>'+name_of_company+'</td>';addhtmlnxt+='<td>'+type_of_transaction+'</td>';addhtmlnxt+='<td>'+no_of_shares+'</td>';addhtmlnxt+='<td>'+typeofrequest+'</td>';addhtmlnxt+='<td>'+nameofreq+'</td>';addhtmlnxt+='<td>'+relationship+'</td>';if(approved_status==1)
 {addhtmlnxt+='<td><i class="fa fa-check-circle" style="font-size:15px;color:green;"></i></td>';}
 else if(approved_status==2)
 {addhtmlnxt+='<td class="rejmessage" mymessage="'+message+'"><i class="fa fa-times-circle" style="font-size:15px;color:red;" ></i></td>';}
@@ -138,11 +134,7 @@ else if(trading_status==0&&approved_status==1)
 {addhtmlnxt+='<td><i class="fa fa-line-chart" style="color:red;"></i></td>';}
 else
 {addhtmlnxt+='<td></td>';}}
-addhtmlnxt+='<td><i class="fa fa-bar-chart requsttrail" rqstid="'+response.data[i].id+'"></i></td>';if(send_status==1)
-{addhtmlnxt+='<td><i class="fa fa-ban" style="color:#F44336;"></i></td>';;}
-else
-{addhtmlnxt+='<td>';addhtmlnxt+='<i class="fa fa-edit editper" pereditid="'+response.data[i].id+'" style="font-size:15px;"></i>';addhtmlnxt+='<i class="fa fa-trash-o delreq" perdelid="'+response.data[i].id+'" style="font-size:15px; color:#F44336;"></i>';addhtmlnxt+='</td>';}
-addhtmlnxt+='</tr>';}}
+addhtmlnxt+='<td><i class="fa fa-bar-chart requsttrail" rqstid="'+response.data[i].id+'"></i></td>';addhtmlnxt+='</tr>';}}
 else
 {addhtmlnxt+='<tr><td colspan="13" style="text-align:center;"> No Data Found..!!!</td></tr>';}
 website(".reqtable").html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);},complete:function(response)
@@ -287,7 +279,11 @@ website.ajax({url:'tradingrequest/fetchreqtrail',data:formdata,method:'POST',con
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{dteadded=response.data[0].date_added.split("-");dteaddedspace=response.data[0].date_added.split(" ");ddmmyyadded=dteaddedspace[0];dteadded=dteaddedspace[0].split("-");ddmmyyadded=dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];timesadded=dteaddedspace[1];dtemodified=response.data[0].date_modified.split("-");dtemodifdspace=response.data[0].date_modified.split(" ");ddmmyymodified=dtemodifdspace[0];dtemodified=dtemodifdspace[0].split("-");ddmmyymodified=dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];timesmodified=dtemodifdspace[1];website('#Mymodalaudittrail .reqstcreateddte').html(ddmmyyadded+' '+timesadded);website('#Mymodalaudittrail .reqstupdteddte').html(ddmmyymodified+' '+timesmodified);if(response.data[0].send_status==1)
+{dteadded=response.data[0].date_added.split("-");dteaddedspace=response.data[0].date_added.split(" ");ddmmyyadded=dteaddedspace[0];dteadded=dteaddedspace[0].split("-");ddmmyyadded=dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];timesadded=dteaddedspace[1];dtemodified=response.data[0].date_modified.split("-");dtemodifdspace=response.data[0].date_modified.split(" ");ddmmyymodified=dtemodifdspace[0];dtemodified=dtemodifdspace[0].split("-");ddmmyymodified=dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];timesmodified=dtemodifdspace[1];website('#Mymodalaudittrail .reqstcreateddte').html(ddmmyyadded+' '+timesadded);website('#Mymodalaudittrail .reqstupdteddte').html(ddmmyymodified+' '+timesmodified);if(response.data[0].pdffilepath)
+{website('#Mymodalaudittrail .pdfpath').html('<a href="'+response.data[0].pdffilepath+'" target="_blank"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>');}
+else
+{website('#Mymodalaudittrail .pdfpath').html('');}
+if(response.data[0].send_status==1)
 {if(response.data[0].sendaprvl_date)
 {dtesendaprv=response.data[0].sendaprvl_date.split("-");dtesendaprvspace=response.data[0].sendaprvl_date.split(" ");ddmmyysendaprv=dtesendaprvspace[0];dtesendaprv=dtesendaprvspace[0].split("-");ddmmyysendaprv=dtesendaprv[2]+'-'+dtesendaprv[1]+'-'+dtesendaprv[0];timessendaprv=dtesendaprvspace[1];website('#Mymodalaudittrail .reqstsendapprv').html(ddmmyysendaprv+' '+timessendaprv);}}
 else
@@ -310,11 +306,11 @@ else
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});});website('body').on("click","#Yesexcreqst",function(e){var link=website('#chckexcptnrequest #pdflink').attr('href');website('#reasonexceptn #reasonlink').attr('link',link);website("#reasonexceptn").modal('show');});website('body').on('click','#Noexcrequest',function(e)
 {new PNotify({title:'Alert',text:'You cannot send request',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});var base_url=getbaseurl();window.location.href=base_url+'tradingrequest';setTimeout(function(){window.location.reload();},1000);});website('body').on('click','#reasonexetrans',function(e)
-{var reasonmsg=website("#reasontrans").val();var approverids=website('#approverid').val();var reqname=website('#reqname').val();var typeofrequests=website('#Mymodalreq #typeofrequest').val();var link=website('#reasonexceptn #reasonlink').attr('link');if(typeofrequests==3)
+{var reasonmsg=website("#reasontrans").val();var approverids=website('#approverid').val();var reqname=website('#reqname').val();var typeofrequests=website('#Mymodalreq #typeofrequest').val();if(typeofrequests==3)
 {var dpuserid=website("#dpuserid").val();var dpusergroup=website("#dpusergroup").val();}
 else
 {var dpuserid=website("#dpuserid").val();var dpusergroup=website("#dpusergroup").val();}
-var selrelatives=website('#Mymodalreq #selrelative').val();var idofcmps=website('#Mymodalreq #idofcmp').val();var nameofcmps=website('#Mymodalreq #nameofcmp').val();var noofshares=website('#Mymodalreq #noofshare').val();var sectypes=website('#Mymodalreq #sectypeid').val();var typeoftranss=website('#Mymodalreq #typeoftrans').val();var typeofsave=website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');var formdata={approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup,link:link}
+var selrelatives=website('#Mymodalreq #selrelative').val();var idofcmps=website('#Mymodalreq #idofcmp').val();var nameofcmps=website('#Mymodalreq #nameofcmp').val();var noofshares=website('#Mymodalreq #noofshare').val();var sectypes=website('#Mymodalreq #sectypeid').val();var typeoftranss=website('#Mymodalreq #typeoftrans').val();var typeofsave=website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');var reasonoftrans=website("#reasonexceptn #reasonoftrans").val();var otherreason=website("#reasonexceptn #otherreason").val();var lasttransdate=website("#reasonexceptn #lasttransdate").val();var noofshareoftrans=website("#reasonexceptn #noofshareoftrans").val();var form2place=website("#reasonexceptn #form2place").val();var formdata={approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup,reasonoftrans:reasonoftrans,otherreason:otherreason,lasttransdate:lasttransdate,noofshareoftrans:noofshareoftrans,form2place:form2place}
 website.ajax({url:'tradingrequest/savecontratrdexceptn',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
@@ -323,7 +319,11 @@ website.ajax({url:'tradingrequest/savecontratrdexceptn',data:formdata,method:'PO
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
-{}});});function addhtml(clicked)
+{}});});website('body').on('change','#reasonoftrans',function(e)
+{var reasontype=website(this).val();if(reasontype==5)
+{website('.otherreason').css('display','block');}
+else
+{website('.otherreason').css('display','none');}});function addhtml(clicked)
 {var id=clicked;if(id=='adddiv'){var getlastid=website('.append').attr('plancntr');getlastid=++getlastid;var addhtmlnxt='';addhtmlnxt+='<div class=" form-group col-md-12 row'+getlastid+' "  id="row'+getlastid+'" >';addhtmlnxt+=' <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>';addhtmlnxt+=' <div id = "left" class="form-group col-md-4">';addhtmlnxt+='<label for="">Date</label>';addhtmlnxt+=' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "middle" class="form-group col-md-4">';addhtmlnxt+='<label for="">Transaction</label>';addhtmlnxt+=' <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "right" class="form-group col-md-4">';addhtmlnxt+=' <label for="">No of Shares</label>';addhtmlnxt+='<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" placeholder="No of Shares">';addhtmlnxt+=' </div>';addhtmlnxt+='</div>';website('.appenddiv').append(addhtmlnxt);datepicker();website('.append').attr('plancntr',getlastid);}
 else{var addhtmlnxt='';}}
 function removehtml(clicked)

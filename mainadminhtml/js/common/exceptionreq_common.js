@@ -503,14 +503,14 @@ function getalltradingrequest()
                                 addhtmlnxt += '<td>'+typeofrequest+'</td>';
                                 addhtmlnxt += '<td>'+nameofreq+'</td>';
                                 addhtmlnxt += '<td>'+relationship+'</td>';
-                                if(send_status==1 || response.data[i].sent_contraexeaprvl == 1)
-                                {
-                                    addhtmlnxt += '<td width="15%">Sent</td>';
-                                }
-                                else 
-                                {
-                                    addhtmlnxt += '<td width="15%">Drafted</td>';
-                                }
+//                                if(send_status==1 || response.data[i].sent_contraexeaprvl == 1)
+//                                {
+//                                    addhtmlnxt += '<td width="15%">Sent</td>';
+//                                }
+//                                else 
+//                                {
+//                                    addhtmlnxt += '<td width="15%">Drafted</td>';
+//                                }
                               
                                 if(response.data[i].sent_contraexeaprvl == 1)
                                 {
@@ -570,14 +570,14 @@ function getalltradingrequest()
                                     addhtmlnxt += '<td width="15%">'+file+'<p reqid="'+response.data[i].myid+'" class="checkstatus"><i class="fa fa-line-chart" style="color:green;"></i></p></td>';
                                 }
                                 addhtmlnxt+='<td width="15%"><i class="fa fa-bar-chart excprequsttrail" rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].myid+'" ></i></td>';
-                                if(response.data[i].sent_contraexeaprvl == 1)
-                                {
-                                    addhtmlnxt+='<td width="15%"><i class="fa fa-comments-o exereason" type="contra" rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].myid+'" ></i></td>';
-                                }
-                                else
-                                {
-                                    addhtmlnxt+='<td width="15%"></td>';
-                                }
+//                                if(response.data[i].sent_contraexeaprvl == 1)
+//                                {
+//                                    addhtmlnxt+='<td width="15%"><i class="fa fa-comments-o exereason" type="contra" rqstid="'+response.data[i].id+'" trdeid="'+response.data[i].myid+'" ></i></td>';
+//                                }
+//                                else
+//                                {
+//                                    addhtmlnxt+='<td width="15%"></td>';
+//                                }
                                 addhtmlnxt+='</tr>';
                          
                            }                          

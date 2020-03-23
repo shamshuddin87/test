@@ -250,14 +250,14 @@ else{
           <th>Relationship</th>
 
 <!--          <th>Total Amount</th>-->
-          <th>Status</th>
+<!--          <th>Status</th>-->
           <th>Exception Approvel Status</th>
           <th>Transaction Date</th>
           <th>Created Date</th>
         <!--   <th>Updated Date</th> -->
            <th>Trading Status</th>
            <th>Audit Trail</th>
-            <th>Reason</th>
+<!--            <th>Reason</th>-->
       <!--     <th>Action</th> -->
         </tr>
       </thead>

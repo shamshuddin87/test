@@ -222,7 +222,7 @@ class TradingrequestController extends ControllerBase
 
                 $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccount,$place,$datetrans,$transaction,$sharestrans,$nature);
 
-                $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','formI','weaver');
+                $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form I','FormI');
                 //print_r($pdfpath);exit;
 
 

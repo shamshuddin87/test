@@ -450,8 +450,8 @@ class Tradingrequestcommon extends Component
                 LEFT JOIN type_of_transaction obj ON `obj`.id=`pr`.type_of_transaction
                 LEFT JOIN relationship newrp ON `newrp`.id=`relative`.relationship  
                 JOIN `req_securitytype` sec ON `sec`.id = `pr`.sectype
-                WHERE `pr`.user_id = '".$uid."' ".$extqry;
-            // print_r($queryget);die;
+                WHERE `pr`.user_id = '".$uid."' AND pr.`sent_contraexeaprvl`= '0'  ".$extqry;
+            //print_r($queryget);die;
 
             try
             {
@@ -1322,7 +1322,7 @@ class Tradingrequestcommon extends Component
             //echo "wait here ";exit;
             $mydate=date('d-m-Y');
             $getlist = array();
-            $queryget = "SELECT * FROM `personal_request` WHERE user_id='".$uid."' AND id_of_company='".$idofcmp."'  order by id desc limit 1";
+            $queryget = "SELECT * FROM `personal_request` WHERE user_id='".$uid."' AND id_of_company='".$idofcmp."' AND `sent_contraexeaprvl`='0'  order by id desc limit 1";
             //echo $queryget;exit;
             try
             {
@@ -1936,7 +1936,8 @@ class Tradingrequestcommon extends Component
             }
         // --------  End GET AUTO APPROVE STATUS --------
         $userdata = $this->tradingrequestcommon->userdetails($uid,$usergroup);
-        $pdf_content = $this->htmlelements->Reqform2content($userdata,$data);
+        $userPersonaldata = $this->tradingrequestcommon->userPersonaldetails($uid,$usergroup);
+        $pdf_content = $this->htmlelements->Reqform2content($userdata,$data,$userPersonaldata);
         //print_r($pdf_content);exit;
         $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form II','FormII');
         
@@ -2040,6 +2041,33 @@ class Tradingrequestcommon extends Component
         //$connection->close();
         }
         return $getlist;
+    }
+    
+    public function userPersonaldetails($uid,$usergroup)
+    {
+            $connection = $this->dbtrd;
+            $queryget = "SELECT * FROM `personal_info` WHERE userid = '".$uid."'";
+
+            try
+            {
+                $exeget = $connection->query($queryget);
+                $getnum = trim($exeget->numRows());
+
+                if($getnum>0)
+                {
+                    $getlist =$exeget->fetch();
+                }
+                else
+                {
+                    $getlist = array();
+                }
+            }
+            catch (Exception $e)
+            {
+                $getlist = array();
+            }
+            return $getlist;
+
     }
 
 

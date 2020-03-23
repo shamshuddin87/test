@@ -2935,9 +2935,10 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
      return $html;
 }
     
-    public function Reqform2content($userdata,$data)
+    public function Reqform2content($userdata,$data,$personaldata)
     {
         $todate = date('d-m-Y');
+        $transreason = '';
 //        print_r($userdata);
 //        print_r($data);exit;
         if($data['typeoftrans'] == 1 || $data['typeoftrans'] == 3 || $data['typeoftrans'] == 4)
@@ -2947,6 +2948,26 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
         else if($data['typeoftrans'] == 2)
         {
             $transtype = 'sell';
+        }
+        if($data['typeofrequest'] == '1' &&  $data['reasonoftrans'] == '1')
+        {
+            $transreason = 'Medical Expenses for self';
+        }
+        else if($data['typeofrequest'] == '2' &&  $data['reasonoftrans'] == '1')
+        {
+            $transreason = 'Medical Expenses for family Members';
+        }
+        if($data['reasonoftrans'] == '2')
+        {
+           $transreason = 'Repayment of existing Loan'; 
+        }
+        if($data['reasonoftrans'] == '3')
+        {
+           $transreason = 'Education'; 
+        }
+        if($data['reasonoftrans'] == '4')
+        {
+           $transreason = 'Wedding /other family function'; 
         }
        $html=' <div>
           <table style=" border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -2978,27 +2999,23 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
 
           <br/>
 
-          <table width="100%" style="border-width: 2px; border-color: #000; border-top: solid; border-bottom: solid; ">
-            <tr>
-              <td style="padding: 10px;"></td>
-            </tr>
-          </table>
+          
 
           <br/>
 
           <table style=" border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
-           <tr>
-              <td width="50%"><ol style="padding-left: 17px;"><li type="circle">Medical Expenses for self / family Members</li></ol></td>
-              <td width="50%"><ol style="padding-left: 17px;"><li type="circle">Repayment of existing Loan</li></ol></td>                    
-            </tr>
-            <tr>
-              <td width="50%"><ol style="padding-left: 17px;"><li type="circle">Education</li></ol></td>
-              <td width="50%"><ol style="padding-left: 17px;"><li type="circle">Wedding /other family function</li></ol></td>                         
-            </tr>
-            <tr>
-              <td width="50%"><ol style="padding-left: 17px;"><li type="circle">Any other reason (Please specify):</li></ol></td>                         
-            </tr>
-          </table>
+          ';
+        if($data['reasonoftrans'] != '5'){
+           $html.='<tr>
+              <td width="50%"><ol style="padding-left: 17px;"><li type="circle"> '.$transreason.' </li></ol></td>
+            </tr>';
+            }
+            if($data['reasonoftrans'] == '5'){
+            $html.='<tr>
+              <td width="50%"><ol style="padding-left: 17px;"><li type="circle">Any other reason (Please specify): '.$data['otherreason'].'</li></ol></td>                         
+            </tr>';
+                }
+          $html.='</table>
 
           <br/>
 
@@ -3006,16 +3023,16 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
            <tr>
               <td width="50%">Date of last purchase / sale<br/>
                   (Immediately prior to the date of this application) <br/><br/> </td>
-              <td width="50%">: '.$data['lasttransdate'].'</td>                    
+              <td width="50%"> '.$data['lasttransdate'].'</td>                    
             </tr>
             <tr>
               <td width="50%">No. of shares / ADRs purchase/sold  <br/>
                   (Immediately prior to the date of this application)<br/><br/> </td>
-              <td width="50%">: '.$data['noofshareoftrans'].'</td>                         
+              <td width="50%"> '.$data['noofshareoftrans'].'</td>                         
             </tr>
             <tr>
               <td width="50%">No. of shares / ADRs held as on date</td>
-              <td width="50%">: </td>                          
+              <td width="50%"> '.$personaldata['sharehldng'].' / '.$personaldata['adrshldng'].'</td>                          
             </tr>
           </table>
 
