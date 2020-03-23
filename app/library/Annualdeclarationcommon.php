@@ -413,7 +413,7 @@ public function getallrelative($uid,$usergroup)
 
               for($i=0;$i<count($mail);$i++)
               {
-                  $status=$this->emailer->sendpdfmailapprannual($mail[$i]['email'],$getfile,$getname);
+                  $status=$this->emailer->sendpdfmailapprannual($mail[$i]['email'],$getfile,$getname,'Annual Disclosure');
                   if($status==true)
                   {
                     $status= $this->annualdeclarationcommon->updateinitialdeclaration($reqid);

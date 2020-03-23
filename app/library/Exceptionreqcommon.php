@@ -255,7 +255,7 @@ class Exceptionreqcommon extends Component
 
                         
         $queryget = "SELECT pr.*, cmpdl.`company_name` as `mycompany`, 
-            relative.`relationship`, relative.`name`, 
+            `newrp`.relationshipname as relationship, relative.`name`, 
             rt.`request_type`, 
             ts.`id` as `myid`, ts.`file`, ts.`date_of_transaction`, ts.`excepapp_status`, 
             ts.`id` as `tradeid`, ts.`rej_message` as `rejmessage`,
@@ -266,6 +266,7 @@ class Exceptionreqcommon extends Component
             LEFT JOIN `request_type` rt ON rt.`id` = pr.`type_of_request` 
             LEFT JOIN `trading_status` ts ON ts.`req_id` = pr.`id` 
             LEFT JOIN `type_of_transaction` obj ON obj.`id`=pr.`type_of_transaction`
+            LEFT JOIN relationship newrp ON `newrp`.id=`relative`.relationship
             JOIN `req_securitytype` sec ON sec.`id` = pr.`sectype`
             WHERE (ts.`excep_approv`='1' OR pr.`sent_contraexeaprvl`='1') AND pr.`user_id`='".$uid."' ORDER BY pr.`id` DESC ".$mainqry;
             //echo '<pre>';print_r($queryget); exit;     
@@ -304,7 +305,7 @@ class Exceptionreqcommon extends Component
             $queryget = "SELECT pr.*, 
                 obj.`date_of_transaction`, obj.`file`, obj.`excepapp_status`, obj.`id` as `tradeid`, obj.`rej_message` as `rejmsg`,
                 cmpdl.`company_name` as `mycompany`, 
-                relative.`relationship`, relative.`name`, rt.`request_type`, ts.`transaction`,
+                `newrp`.relationshipname as relationship, relative.`name`, rt.`request_type`, ts.`transaction`,
                 sec.`security_type`, 
                 memb.`deptaccess` AS `department` 
                 FROM `personal_request` pr
@@ -316,6 +317,7 @@ class Exceptionreqcommon extends Component
                 LEFT JOIN `req_securitytype` sec ON sec.`id` = pr.`sectype`
                 LEFT JOIN `it_memberlist` memb ON memb.`wr_id` =  pr.`user_id`
                 LEFT JOIN `con_dept` dpt ON memb.`deptaccess` = dpt.`id`
+                LEFT JOIN relationship newrp ON `newrp`.id=`relative`.relationship
                 WHERE (obj.`excep_approv`='1' OR pr.`sent_contraexeaprvl`='1') AND FIND_IN_SET('".$uid."',pr.`approver_id`) ORDER BY pr.`id` DESC ".$mainqry;
             //echo $queryget;exit;
         }
@@ -325,7 +327,7 @@ class Exceptionreqcommon extends Component
             $alluserid= implode(",",$allusers);
          
             $queryget = "SELECT pr.*, ts.`transaction`, cmpdl.`company_name` as `mycompany`, 
-                relative.`relationship`, relative.`name`, rt.`request_type`, 
+                `newrp`.relationshipname as relationship, relative.`name`, rt.`request_type`, 
                 obj.`date_of_transaction`, obj.`file`, sec.`security_type`, obj.`excepapp_status`, 
                 obj.`id` as `tradeid`, obj.`rej_message` as `rejmsg`,
                 memb.`deptaccess` AS `department`
@@ -338,6 +340,7 @@ class Exceptionreqcommon extends Component
                 LEFT JOIN `req_securitytype` sec ON sec.`id` = pr.`sectype`
                 LEFT JOIN `it_memberlist` memb ON memb.`wr_id` =  pr.`user_id`
                 LEFT JOIN `con_dept` dpt ON memb.`deptaccess` = dpt.`id`
+                LEFT JOIN relationship newrp ON `newrp`.id=`relative`.relationship
                 WHERE (obj.`excep_approv`='1' OR pr.`sent_contraexeaprvl`='1') AND pr.`user_id` IN (".$alluserid.") ORDER BY pr.`id` DESC ".$mainqry;
             //echo $queryget;exit;
         }

@@ -1223,9 +1223,9 @@ Class Email extends Phalcon\Mvc\User\Component {
 
     }
 
-    public function sendpdfmailapprannual($mailids,$getfile,$getname)
+    public function sendpdfmailapprannual($mailids,$getfile,$getname,$subject)
     {
-        $subject = 'Annual Declaration';
+        //$subject = 'Annual Declaration';
         $to = $mailids;
         $gethtml = $this->htmlelements->initialdeclarationannual($getname);
         
