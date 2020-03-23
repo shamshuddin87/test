@@ -396,10 +396,7 @@ website('body').on('click','.sendemail',function(e){
         {
            if(response.logged === true)
            {
-              //fetchmasterlist();
-              // website('#myModalemail').modal('hide');
-            
-              //website('#Mymodaledit').fadeOut();
+              
               new PNotify({title: 'Alert!!',
                   text: response.message,
                   type: 'university',
@@ -407,8 +404,8 @@ website('body').on('click','.sendemail',function(e){
                   styling: 'bootstrap3',
                   addclass: 'dark ',
               }); 
-
-              window.location.reload();
+             setTimeout(function() {window.location.reload()}, 5000);
+               
            }
            else
            {    
@@ -420,6 +417,8 @@ website('body').on('click','.sendemail',function(e){
                   addclass: 'dark ',
               });
            }
+
+          
         },
         complete: function(response) 
         {   website('.preloder_wraper').fadeOut();

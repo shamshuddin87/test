@@ -62,8 +62,9 @@ else
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{new PNotify({title:'Alert!!',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
+{new PNotify({title:'Alert!!',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{new PNotify({title:'Alert!!',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{new PNotify({title:'Alert!!',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+setTimeout(function(){document.location.reload()},5000);},complete:function(response)
 {website('.preloder_wraper').fadeOut();website('#myModalyesno .mainprogressbarforall').fadeOut();},error:function()
 {}});});;

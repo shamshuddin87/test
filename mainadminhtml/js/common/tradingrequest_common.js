@@ -199,6 +199,7 @@ website('body').on('click','.sendrequst',function()
     website('#checkappvlrequest #sendreq').val(sendreq);
 
      var approxprice = website('#sharesprice').val();
+
     website('#checkappvlrequest #approxprice').val(approxprice);
 
      var broker = website('#broker').val();
@@ -229,7 +230,7 @@ website('body').on('click','.sendrequst',function()
     
     website.ajax({
         url:'tradingrequest/checkclosebalval',
-        data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},
+        data:{datetrans:datetrans,approxprice:approxprice,broker:broker,place:place,idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -285,7 +286,7 @@ website('body').on('click','.sendrequst',function()
             }
         },
         complete: function(response) 
-        {   /*website('.preloder_wraper').fadeOut();*/   },
+        {   website('.preloder_wraper').fadeOut();   },
         error: function() 
         {   }
     });
@@ -2022,6 +2023,7 @@ function addhtml(clicked)
 {
     
     var id = clicked;
+    var datepre = website("#dateoftrans").val();
      //alert(id);
     if(id == 'adddiv') {
          
@@ -2051,8 +2053,15 @@ function addhtml(clicked)
 
            addhtmlnxt += '</div>';
 
-      
-         website('.appenddiv').append(addhtmlnxt);
+         if(datepre)
+         {
+            website('.appenddiv').append(addhtmlnxt);
+         }
+         else
+         {
+            alert("alert");
+         }
+         
          datepicker();
        
          website('.append').attr('plancntr',getlastid);
