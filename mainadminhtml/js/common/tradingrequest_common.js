@@ -263,13 +263,14 @@ website('body').on('click','.sendrequst',function()
                     else
                     {
                       //form 2
-                        getform('form2');
+                        website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
+                        website('#chckexcptnrequest').modal('show');
                     }
                 }
                 else
                 {
                   //form 1
-                  getform('form1');
+                  website('#checkappvlrequest').modal('show');
                 }
             }
             else
@@ -789,14 +790,14 @@ function getalltradingrequest(url_status)
                     //addhtmlnxt += '<td width="15%">'+price_per_share+'</td>';
                     //addhtmlnxt += '<td width="15%">'+total_amount+'</td>';
 
-                    if(send_status==1)
-                    {
-                        addhtmlnxt += '<td>Sent</td>';
-                    }
-                    else
-                    {
-                        addhtmlnxt += '<td>Drafted</td>';
-                    }
+//                    if(send_status==1)
+//                    {
+//                        addhtmlnxt += '<td>Sent</td>';
+//                    }
+//                    else
+//                    {
+//                        addhtmlnxt += '<td>Drafted</td>';
+//                    }
 
 
                     if(approved_status==1)
@@ -850,17 +851,17 @@ function getalltradingrequest(url_status)
                     }
 
                     addhtmlnxt+='<td><i class="fa fa-bar-chart requsttrail" rqstid="'+response.data[i].id+'"></i></td>';
-                    if(send_status==1)
-                    { 
-                        addhtmlnxt+='<td><i class="fa fa-ban" style="color:#F44336;"></i></td>';;
-                    }
-                    else
-                    {
-                        addhtmlnxt+='<td>';
-                        addhtmlnxt += '<i class="fa fa-edit editper" pereditid="'+response.data[i].id+'" style="font-size:15px;"></i>';
-                        addhtmlnxt += '<i class="fa fa-trash-o delreq" perdelid="'+response.data[i].id+'" style="font-size:15px; color:#F44336;"></i>';
-                        addhtmlnxt += '</td>';
-                    }
+//                    if(send_status==1)
+//                    { 
+//                        addhtmlnxt+='<td><i class="fa fa-ban" style="color:#F44336;"></i></td>';;
+//                    }
+//                    else
+//                    {
+//                        addhtmlnxt+='<td>';
+//                        addhtmlnxt += '<i class="fa fa-edit editper" pereditid="'+response.data[i].id+'" style="font-size:15px;"></i>';
+//                        addhtmlnxt += '<i class="fa fa-trash-o delreq" perdelid="'+response.data[i].id+'" style="font-size:15px; color:#F44336;"></i>';
+//                        addhtmlnxt += '</td>';
+//                    }
 
                     addhtmlnxt+='</tr>';
                 }                          
@@ -2005,7 +2006,7 @@ website('body').on('click','#reasonexetrans',function(e)
 website('body').on('change','#reasonoftrans', function(e) 
 {
     var reasontype = website(this).val();
-    if(reasontype == 4)
+    if(reasontype == 5)
     {
         website('.otherreason').css('display','block');
     }
