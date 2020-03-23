@@ -35,7 +35,7 @@
              <div class="belowleveluserdetcss">
           <h2 class="h2_heading">A.  Details Of Self</h2>
          <h3 class="h3_heading">I.  Personal Details</h3>
-        <!-- <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+        <!-- <div class="overflowXscroll"><table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Employee ID</th>
@@ -77,11 +77,11 @@
              
             </tr>
             </tbody>
-        </table> -->
+        </table> </div>-->
 
 
 
-         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;  width: 600px;" class="table table-responsive table-inverse" width="100%">
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;  width: 600px;" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th style="width: 63px;">Sr No.</th>
@@ -279,8 +279,8 @@
                 <th>No. of ADRs</th>
             </tr>
             </thead>
-            <tbody>
-            
+
+            <tbody>            
              <?php if(!empty($reldetail)){ for($i=0;$i<sizeof($reldetail);$i++){ $j = $i;$j++; $deptype = '';?> 
                 <tr>
                  <td><?php echo $j;?></td>
