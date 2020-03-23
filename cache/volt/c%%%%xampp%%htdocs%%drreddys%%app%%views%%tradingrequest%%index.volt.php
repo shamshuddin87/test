@@ -718,7 +718,7 @@
             <div class="modal-body">
             <div class="form-group">
                 <label for="">I intend to sell/purchase/exercise no. of shares/ADRs/options of the Company because of following reason(s)</label>
-                <select class="form-control" id="reasonoftrans" name="reasonoftrans">
+                <select class="form-control" id="reasonoftrans" name="reasonoftrans" required>
                     <option value="">Select Option</option>
                     <option value="1">Medical Expenses for self / family Members</option>
                     <option value="2">Repayment of existing Loan</option>
@@ -735,18 +735,20 @@
                 
            <div class="form-group">
                 <label for="">Date of last purchase / sale</label>
-                <input type="text" class="form-control bootdatepick" name="lasttransdate" id="lasttransdate" readonly placeholder="Date of last purchase / sale">
+                <input type="text" class="form-control bootdatepick" name="lasttransdate" id="lasttransdate" readonly placeholder="Date of last purchase / sale" required>
             </div>
             
             <div class="form-group">
                 <label for="">No. of shares / ADRs purchase/sold</label>
-                <input type="text" class="form-control" name="noofshareoftrans" id="noofshareoftrans" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of shares / ADRs purchase/sold">
+                <input type="text" class="form-control" name="noofshareoftrans" id="noofshareoftrans" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of shares / ADRs purchase/sold" required>
             </div>
                 
+<!--
             <div class="form-group">
                 <label for="">Place</label>
                 <input type="text" class="form-control" name="form2place" id="form2place"  placeholder="Place">
             </div>
+-->
 
             
 <!--

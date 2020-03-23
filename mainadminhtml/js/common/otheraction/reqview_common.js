@@ -142,39 +142,39 @@ function subuserapproval()
                         addhtmlnxt += '<td>'+file+'</td>';
                         addhtmlnxt+='<td><i class="fa fa-bar-chart viewrequsttrail" rqstid="'+response.data[i].id+'"></i></td>';
                       
-//                        if(approved_status==1)
-//                        { 
-//                            if(user_group==2)
-//                            {
-//                                addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i></td>';
-//                            }
-//                            else
-//                            {
-//                                addhtmlnxt+='<td></td>';
-//                            }
-//                        }
-//                        else if(approved_status==2)
-//                        {
-//                            if(user_group==2)
-//                            {
-//                                addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i>';
-//                            }
-//                            else
-//                            {
-//                                addhtmlnxt+='<td></td>';
-//                            }
-//                        }
-//                        else
-//                        {
-//                            if(user_group==2)
-//                            {
-//                                addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'"><i class="fa fa-close"></i></button></td>';
-//                            }
-//                            else
-//                            { 
-//                                addhtmlnxt+='<td><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'"><i class="fa fa-close"></i></button></td>';
-//                            }
-//                        }
+                        if(approved_status==1)
+                        { 
+                            if(user_group==2)
+                            {
+                                addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i></td>';
+                            }
+                            else
+                            {
+                                addhtmlnxt+='<td></td>';
+                            }
+                        }
+                        else if(approved_status==2)
+                        {
+                            if(user_group==2)
+                            {
+                                addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i>';
+                            }
+                            else
+                            {
+                                addhtmlnxt+='<td></td>';
+                            }
+                        }
+                        else
+                        {
+                            if(user_group==2)
+                            {
+                                addhtmlnxt+='<td><i class="fa fa-trash delapprove" perdelid="'+response.data[i].id+'" style="font-size:15px;"></i>'+'<input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'"><i class="fa fa-close"></i></button></td>';
+                            }
+                            else
+                            { 
+                                addhtmlnxt+='<td><input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"><button class="rejectbutton"  rejectid="'+response.data[i].id+'"><i class="fa fa-close"></i></button></td>';
+                            }
+                        }
                                        
                         addhtmlnxt+='</tr>';
                          

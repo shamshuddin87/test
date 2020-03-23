@@ -518,6 +518,7 @@ class Exceptionreqcommon extends Component
 
                   for($i=0;$i<sizeof($selctedid);$i++)
                   {
+                      
                       if($selctedid[$i] == 'null')
                       {
                         $getmasterid = $this->tradingrequestcommon->getmasterid($uid);
@@ -533,28 +534,28 @@ class Exceptionreqcommon extends Component
                             $year = date('Y');
                             if($myid<10)
                             {
-                               $myid = '0'.$myid;
+                               $myid1 = '0'.$myid;
                             }
-                            $approverno = 'PCT-'.$myid.'/'.$year;
+                            $approverno = 'PCT-'.$myid1.'/'.$year;
                         }
                         else
                         {
                             $tradedate = '';
                         }
-                         $querychk = "UPDATE `personal_request` SET  `contraexcapvsts`='1',`contraexcapvdte`=NOW(),`trading_date`='".$tradedate."',`approverno`='".$approverno."'  WHERE id='".$myid."'";
+                         $querychk = "UPDATE `personal_request` SET  `contraexcapvsts`='1',`contraexcapvdte`=NOW(),`trading_date`='".$tradedate."'  WHERE id='".$myid."'";
+                          //echo $querychk;exit;
                          $exeget = $connection->query($querychk);
                       }
                       else
                       {
                       
                          $query = "UPDATE `trading_status` SET  `excepapp_status`='1',`excepapprv_date`=NOW()  WHERE id='".$selctedid[$i]."'";   
-                         $querychk = "UPDATE `personal_request` SET  `exception_approve`='0'  WHERE id='".$myid."'";   
-                        
-                         $exeget = $connection->query($query);
-                         $exeget1 = $connection->query($querychk);
+                          $querychk = "UPDATE `personal_request` SET  `exception_approve`='0'  WHERE id='".$myid."'";
+                          $exeget = $connection->query($query);
+                          $exeget1 = $connection->query($querychk);
                        }
                        
-                       //  print_r($query);exit;
+                       //print_r($query);exit;
                        if($exeget)
                        {
                           $msg['status']=true;

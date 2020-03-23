@@ -78,7 +78,7 @@ $gmnlog = $this->session->loginauthspuserfront;
                                     <th>Created Date</th>
                                     <th>File</th>
                                     <th>Audit Trail</th>
-<!--                                    <th>Action <input type="checkbox" class="getallchkbox" name="getallchkbox" chkval="ALL" value="ALL" size="30px;"></th>-->
+                                    <th>Action <input type="checkbox" class="getallchkbox" name="getallchkbox" chkval="ALL" value="ALL" size="30px;"></th>
                                 </tr>
                             </thead>
                          <tbody class="viewreqtable" appendrow='1'></tbody>

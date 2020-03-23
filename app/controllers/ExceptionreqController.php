@@ -551,7 +551,7 @@ class ExceptionreqController extends ControllerBase
                     //print_r($this->request->getPost());exit;
                     $selctedid = $this->request->getPost('selctedid');  
                     $ckkval2 = $this->request->getPost('ckkval2'); 
-                   // print_r($selctedid);exit;
+                   //print_r($ckkval2);exit;
                  
                         $result = $this->exceptionreqcommon->acceptapprovel($uid,$usergroup,$selctedid,$ckkval2);
                         //print_r($result);exit;

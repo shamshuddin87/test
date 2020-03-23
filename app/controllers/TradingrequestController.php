@@ -1535,6 +1535,30 @@ class TradingrequestController extends ControllerBase
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
+                else if(empty($reasonoftrans)) 
+                {
+                    $data = array("logged" => false,'message' => 'Please select reason');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if(empty($lasttransdate)) 
+                {
+                    $data = array("logged" => false,'message' => 'Please select Date of last purchase / sale');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if(strtotime($lasttransdate) > strtotime($date)) 
+                {
+                    $data = array("logged" => false,'message' => 'Date of last purchase / sale cannot be in future');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if(empty($noofshareoftrans)) 
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter No. of shares / ADRs purchase/sold');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
                 
                 else
                 {

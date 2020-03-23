@@ -1226,10 +1226,10 @@ Class Email extends Phalcon\Mvc\User\Component {
     public function sendpdfmailapprannual($mailids,$getfile,$getname)
     {
         $subject = 'Annual Declaration';
-        $to =$mailids;
+        $to = $mailids;
         $gethtml = $this->htmlelements->initialdeclarationannual($getname);
         
-        // echo $gethtml; exit;
+        //echo $this->hosemail; exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
         $mail->isSMTP();
@@ -1251,13 +1251,13 @@ Class Email extends Phalcon\Mvc\User\Component {
         $mail->msgHTML($gethtml);
         $mail->addAttachment($getfile[0]['pdfpath']);
         //send the message, check for errors
-
+        //print_R($mail);exit;
         if ($mail->Send()) {
             // print_r("true");exit;
             return true;
         }
         else {
-            //echo $mail->ErrorInfo; exit;
+            echo $mail->ErrorInfo; exit;
           return false;
         }
 
