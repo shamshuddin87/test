@@ -311,8 +311,8 @@ function getform(formtype)
                 if(formtype == 'form1')
                 {
 
-                  website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);
-                    website('#checkappvlrequest').modal('show');
+                  //website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);
+                  website('#checkappvlrequest').modal('show');
                   
                     
                 }
@@ -1570,7 +1570,7 @@ if(typeofreq==2)
                       if(response.logged==true)
                       {
                         //console.log(response);
-                         addhtmlnxt+=' <option value="">Select Demat Account</option>';
+                         //addhtmlnxt+=' <option value="">Select Demat Account</option>';
                          for(var i=0;i<response.data.length;i++)
                          {
                            var id=response.data[i].id?response.data[i].id:'Not Found';
@@ -1580,7 +1580,7 @@ if(typeofreq==2)
                           
                            addhtmlnxt+='<option value="'+id+'">'+accno+'</option>';
 
-                           website("#dpdemat").val(dp);
+                          
                           
 
                           
@@ -1632,6 +1632,7 @@ else
                            
                           
                            addhtmlnxt+='<option value="'+id+'">'+accno+'</option>';
+                            //website("#dpdemat").val(dp);
                           
                           
                           }
@@ -2031,8 +2032,8 @@ function addhtml(clicked)
 
         
          addhtmlnxt += '<div class=" form-group col-md-12 row'+getlastid+' "  id="row'+getlastid+'" >';
-          addhtmlnxt += ' <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>';
-          addhtmlnxt += ' <div id = "left" class="form-group col-md-4">';
+         // addhtmlnxt += ' <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>';
+          addhtmlnxt += ' <div id = "left" class="form-group col-md-4" style="margin-left: -18px;">';
           addhtmlnxt += '<label for="">Date</label>';
           addhtmlnxt += ' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" >';
             addhtmlnxt += '</div>';

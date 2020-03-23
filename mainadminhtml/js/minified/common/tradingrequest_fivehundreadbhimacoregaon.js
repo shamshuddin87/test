@@ -29,9 +29,9 @@ website("body").on("click",".topul",function(e){var id=website(this).attr('id');
 {if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
 {new PNotify({title:'Alert',text:response.contratrd.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest').modal('show');}}
+{getform('form2');}}
 else
-{website('#checkappvlrequest').modal('show');}}
+{getform('form1');}}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function()
@@ -41,7 +41,7 @@ else
 {website('.preloder_wraper').fadeIn();},success:function(response)
 {if(response.logged===true)
 {if(formtype=='form1')
-{website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);website('#checkappvlrequest').modal('show');}
+{website('#checkappvlrequest').modal('show');}
 else if(formtype=='form2')
 {website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest #pdflink').attr('href',response.pdf_path);website('#chckexcptnrequest').modal('show');}}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
@@ -117,7 +117,11 @@ var total_amount=response.data[i].total_amount?response.data[i].total_amount:'';
 {addhtmlnxt+='<td>'+j+' <input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"></td>';}
 else
 {addhtmlnxt+='<td>'+j+'</td>';}
-addhtmlnxt+='<td>'+sectype+'</td>';addhtmlnxt+='<td>'+name_of_company+'</td>';addhtmlnxt+='<td>'+type_of_transaction+'</td>';addhtmlnxt+='<td>'+no_of_shares+'</td>';addhtmlnxt+='<td>'+typeofrequest+'</td>';addhtmlnxt+='<td>'+nameofreq+'</td>';addhtmlnxt+='<td>'+relationship+'</td>';if(approved_status==1)
+addhtmlnxt+='<td>'+sectype+'</td>';addhtmlnxt+='<td>'+name_of_company+'</td>';addhtmlnxt+='<td>'+type_of_transaction+'</td>';addhtmlnxt+='<td>'+no_of_shares+'</td>';addhtmlnxt+='<td>'+typeofrequest+'</td>';addhtmlnxt+='<td>'+nameofreq+'</td>';addhtmlnxt+='<td>'+relationship+'</td>';if(send_status==1)
+{addhtmlnxt+='<td>Sent</td>';}
+else
+{addhtmlnxt+='<td>Drafted</td>';}
+if(approved_status==1)
 {addhtmlnxt+='<td><i class="fa fa-check-circle" style="font-size:15px;color:green;"></i></td>';}
 else if(approved_status==2)
 {addhtmlnxt+='<td class="rejmessage" mymessage="'+message+'"><i class="fa fa-times-circle" style="font-size:15px;color:red;" ></i></td>';}
@@ -134,7 +138,11 @@ else if(trading_status==0&&approved_status==1)
 {addhtmlnxt+='<td><i class="fa fa-line-chart" style="color:red;"></i></td>';}
 else
 {addhtmlnxt+='<td></td>';}}
-addhtmlnxt+='<td><i class="fa fa-bar-chart requsttrail" rqstid="'+response.data[i].id+'"></i></td>';addhtmlnxt+='</tr>';}}
+addhtmlnxt+='<td><i class="fa fa-bar-chart requsttrail" rqstid="'+response.data[i].id+'"></i></td>';if(send_status==1)
+{addhtmlnxt+='<td><i class="fa fa-ban" style="color:#F44336;"></i></td>';;}
+else
+{addhtmlnxt+='<td>';addhtmlnxt+='<i class="fa fa-edit editper" pereditid="'+response.data[i].id+'" style="font-size:15px;"></i>';addhtmlnxt+='<i class="fa fa-trash-o delreq" perdelid="'+response.data[i].id+'" style="font-size:15px; color:#F44336;"></i>';addhtmlnxt+='</td>';}
+addhtmlnxt+='</tr>';}}
 else
 {addhtmlnxt+='<tr><td colspan="13" style="text-align:center;"> No Data Found..!!!</td></tr>';}
 website(".reqtable").html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);},complete:function(response)
@@ -250,8 +258,8 @@ selecttypeofreq();function selecttypeofreq()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {var addhtmlnxt='';if(response.logged==true)
-{addhtmlnxt+=' <option value="">Select Demat Account</option>';for(var i=0;i<response.data.length;i++)
-{var id=response.data[i].id?response.data[i].id:'Not Found';var accno=response.data[i].accountno?response.data[i].accountno:'Not Found';var dp=response.data[i].depository_participient?response.data[i].depository_participient:'Not Found';addhtmlnxt+='<option value="'+id+'">'+accno+'</option>';website("#dpdemat").val(dp);}
+{for(var i=0;i<response.data.length;i++)
+{var id=response.data[i].id?response.data[i].id:'Not Found';var accno=response.data[i].accountno?response.data[i].accountno:'Not Found';var dp=response.data[i].depository_participient?response.data[i].depository_participient:'Not Found';addhtmlnxt+='<option value="'+id+'">'+accno+'</option>';}
 website('#demataccount').html(addhtmlnxt);}
 else{addhtmlnxt+=' ';}}});}
 else
@@ -320,11 +328,11 @@ else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
 {}});});website('body').on('change','#reasonoftrans',function(e)
-{var reasontype=website(this).val();if(reasontype==5)
+{var reasontype=website(this).val();if(reasontype==4)
 {website('.otherreason').css('display','block');}
 else
 {website('.otherreason').css('display','none');}});function addhtml(clicked)
-{var id=clicked;if(id=='adddiv'){var getlastid=website('.append').attr('plancntr');getlastid=++getlastid;var addhtmlnxt='';addhtmlnxt+='<div class=" form-group col-md-12 row'+getlastid+' "  id="row'+getlastid+'" >';addhtmlnxt+=' <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>';addhtmlnxt+=' <div id = "left" class="form-group col-md-4">';addhtmlnxt+='<label for="">Date</label>';addhtmlnxt+=' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "middle" class="form-group col-md-4">';addhtmlnxt+='<label for="">Transaction</label>';addhtmlnxt+=' <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "right" class="form-group col-md-4">';addhtmlnxt+=' <label for="">No of Shares</label>';addhtmlnxt+='<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" placeholder="No of Shares">';addhtmlnxt+=' </div>';addhtmlnxt+='</div>';website('.appenddiv').append(addhtmlnxt);datepicker();website('.append').attr('plancntr',getlastid);}
+{var id=clicked;if(id=='adddiv'){var getlastid=website('.append').attr('plancntr');getlastid=++getlastid;var addhtmlnxt='';addhtmlnxt+='<div class=" form-group col-md-12 row'+getlastid+' "  id="row'+getlastid+'" >';addhtmlnxt+=' <div id = "left" class="form-group col-md-4" style="margin-left: -18px;">';addhtmlnxt+='<label for="">Date</label>';addhtmlnxt+=' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "middle" class="form-group col-md-4">';addhtmlnxt+='<label for="">Transaction</label>';addhtmlnxt+=' <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "right" class="form-group col-md-4">';addhtmlnxt+=' <label for="">No of Shares</label>';addhtmlnxt+='<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" placeholder="No of Shares">';addhtmlnxt+=' </div>';addhtmlnxt+='</div>';website('.appenddiv').append(addhtmlnxt);datepicker();website('.append').attr('plancntr',getlastid);}
 else{var addhtmlnxt='';}}
 function removehtml(clicked)
 {var rmid=clicked;if(rmid=='remvdiv')

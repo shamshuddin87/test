@@ -160,8 +160,8 @@ class Tradingrequestcommon extends Component
         }
     
         //################## GET APPROVER ID #########
-        public function userdetails($uid,$usergroup)
-        {
+public function userdetails($uid)
+{
             $connection = $this->dbtrd;
             $queryget = "SELECT * FROM `it_memberlist` WHERE wr_id = '".$uid."'";
 
@@ -185,9 +185,64 @@ class Tradingrequestcommon extends Component
             }
             return $getlist;
 
-        }
-        function checktypeofreq($uid,$usergroup,$data)
-        {
+}
+
+public function userdemat($id)
+{
+            $connection = $this->dbtrd;
+            $queryget = "SELECT * FROM `user_demat_accounts` WHERE id = '".$id."'";
+
+            try
+            {
+                $exeget = $connection->query($queryget);
+                $getnum = trim($exeget->numRows());
+
+                if($getnum>0)
+                {
+                    $getlist =$exeget->fetch();
+                }
+                else
+                {
+                    $getlist = array();
+                }
+            }
+            catch (Exception $e)
+            {
+                $getlist = array();
+            }
+            return $getlist;
+
+}
+public function relativedemat($id)
+{
+            $connection = $this->dbtrd;
+            $queryget = "SELECT * FROM `relative_demat_accounts` WHERE id = '".$id."'";
+           
+
+            try
+            {
+                $exeget = $connection->query($queryget);
+                $getnum = trim($exeget->numRows());
+
+                if($getnum>0)
+                {
+                    $getlist =$exeget->fetch();
+                }
+                else
+                {
+                    $getlist = array();
+                }
+            }
+            catch (Exception $e)
+            {
+                $getlist = array();
+            }
+            return $getlist;
+
+}
+
+function checktypeofreq($uid,$usergroup,$data)
+{
         	//print_r($data);exit;
              if($data['typeoftrans']==2)
             { 
@@ -205,7 +260,7 @@ class Tradingrequestcommon extends Component
                     $msg['message']="You Can Create Request";
                 }
             }
-        }
+}
 
         public function createrequest($uid,$usergroup,$data,$send_status,$pdfpath)
         { 
@@ -1139,6 +1194,40 @@ class Tradingrequestcommon extends Component
             //echo "wait here ";exit;
             $getlist = array();
             $queryget = "SELECT * FROM `relative_info` WHERE user_id='".$uid."'";
+
+            //echo $queryget;  exit;
+
+             try{
+                    $exeget = $connection->query($queryget);
+                    $getnum = trim($exeget->numRows());
+
+                    if($getnum>0)
+                    {
+                        while($row = $exeget->fetch())
+                        {
+                            $getlist[] = $row;
+                        }
+                        //echo '<pre>';print_r($getlist);exi//
+                    }
+                    else{
+                        $getlist[] = array();
+                    }
+                }
+                catch (Exception $e)
+                {
+                    $getlist = array();
+                    //$connection->close();
+                }
+            //echo '<pre>';print_r($getlist);exit;
+            return $getlist;
+        }
+        
+          public function  getrelativesingle($uid)
+        { 
+            $connection = $this->dbtrd;
+            //echo "wait here ";exit;
+            $getlist = array();
+            $queryget = "SELECT * FROM `relative_info` WHERE id='".$uid."'";
 
             //echo $queryget;  exit;
 

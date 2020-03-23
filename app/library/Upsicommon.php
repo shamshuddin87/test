@@ -201,6 +201,7 @@ class Upsicommon extends Component
         }
         if(!empty($exceldpids))
         {
+            //print_r($exceldpids);exit;
             $excelcondps = implode(',',$exceldpids);
         }
        
@@ -702,7 +703,7 @@ class Upsicommon extends Component
         $connection = $this->dbtrd;
         //$emailid = implode("','",$EmailData['emailid']);
         $emailid = $EmailData['emailid'];
-        //print_r($emailid);exit;
+            //print_r($emailid);exit;
         $sqlquery = "SELECT * FROM `it_memberlist` WHERE `email` = '".$emailid."' AND `status`=1 ";
         //print_r($sqlquery);
         try
@@ -713,7 +714,7 @@ class Upsicommon extends Component
             {
                 while($row = $exeget->fetch())
                 {
-                    $getlist[] = $row['wr_id'];                     
+                    $getlist = $row['wr_id'];                     
                 }
              //echo '<pre>';print_r($getlist);exit;
             }
@@ -722,7 +723,7 @@ class Upsicommon extends Component
         }
         catch (Exception $e)
         {   $getlist = false;  }
-        //echo '<pre>';print_r($getlist);exit;
+          //echo '<pre>';print_r($getlist);exit;
         return $getlist;
     }
   
