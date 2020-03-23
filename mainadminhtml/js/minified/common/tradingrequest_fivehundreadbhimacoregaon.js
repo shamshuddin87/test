@@ -29,9 +29,9 @@ website("body").on("click",".topul",function(e){var id=website(this).attr('id');
 {if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
 {new PNotify({title:'Alert',text:response.contratrd.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{getform('form2');}}
+{website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest').modal('show');}}
 else
-{getform('form1');}}
+{website('#checkappvlrequest').modal('show');}}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function()
@@ -117,11 +117,7 @@ var total_amount=response.data[i].total_amount?response.data[i].total_amount:'';
 {addhtmlnxt+='<td>'+j+' <input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"></td>';}
 else
 {addhtmlnxt+='<td>'+j+'</td>';}
-addhtmlnxt+='<td>'+sectype+'</td>';addhtmlnxt+='<td>'+name_of_company+'</td>';addhtmlnxt+='<td>'+type_of_transaction+'</td>';addhtmlnxt+='<td>'+no_of_shares+'</td>';addhtmlnxt+='<td>'+typeofrequest+'</td>';addhtmlnxt+='<td>'+nameofreq+'</td>';addhtmlnxt+='<td>'+relationship+'</td>';if(send_status==1)
-{addhtmlnxt+='<td>Sent</td>';}
-else
-{addhtmlnxt+='<td>Drafted</td>';}
-if(approved_status==1)
+addhtmlnxt+='<td>'+sectype+'</td>';addhtmlnxt+='<td>'+name_of_company+'</td>';addhtmlnxt+='<td>'+type_of_transaction+'</td>';addhtmlnxt+='<td>'+no_of_shares+'</td>';addhtmlnxt+='<td>'+typeofrequest+'</td>';addhtmlnxt+='<td>'+nameofreq+'</td>';addhtmlnxt+='<td>'+relationship+'</td>';if(approved_status==1)
 {addhtmlnxt+='<td><i class="fa fa-check-circle" style="font-size:15px;color:green;"></i></td>';}
 else if(approved_status==2)
 {addhtmlnxt+='<td class="rejmessage" mymessage="'+message+'"><i class="fa fa-times-circle" style="font-size:15px;color:red;" ></i></td>';}
@@ -138,11 +134,7 @@ else if(trading_status==0&&approved_status==1)
 {addhtmlnxt+='<td><i class="fa fa-line-chart" style="color:red;"></i></td>';}
 else
 {addhtmlnxt+='<td></td>';}}
-addhtmlnxt+='<td><i class="fa fa-bar-chart requsttrail" rqstid="'+response.data[i].id+'"></i></td>';if(send_status==1)
-{addhtmlnxt+='<td><i class="fa fa-ban" style="color:#F44336;"></i></td>';;}
-else
-{addhtmlnxt+='<td>';addhtmlnxt+='<i class="fa fa-edit editper" pereditid="'+response.data[i].id+'" style="font-size:15px;"></i>';addhtmlnxt+='<i class="fa fa-trash-o delreq" perdelid="'+response.data[i].id+'" style="font-size:15px; color:#F44336;"></i>';addhtmlnxt+='</td>';}
-addhtmlnxt+='</tr>';}}
+addhtmlnxt+='<td><i class="fa fa-bar-chart requsttrail" rqstid="'+response.data[i].id+'"></i></td>';addhtmlnxt+='</tr>';}}
 else
 {addhtmlnxt+='<tr><td colspan="13" style="text-align:center;"> No Data Found..!!!</td></tr>';}
 website(".reqtable").html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);},complete:function(response)
@@ -328,7 +320,7 @@ else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
 {}});});website('body').on('change','#reasonoftrans',function(e)
-{var reasontype=website(this).val();if(reasontype==4)
+{var reasontype=website(this).val();if(reasontype==5)
 {website('.otherreason').css('display','block');}
 else
 {website('.otherreason').css('display','none');}});function addhtml(clicked)
