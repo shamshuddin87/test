@@ -1960,7 +1960,7 @@ website('body').on('click','#reasonexetrans',function(e)
     var otherreason = website("#reasonexceptn #otherreason").val();
     var lasttransdate = website("#reasonexceptn #lasttransdate").val();
     var noofshareoftrans = website("#reasonexceptn #noofshareoftrans").val();
-    var form2place = website("#reasonexceptn #form2place").val();
+    var form2place = website("#Mymodalreq #place").val();
     
     var formdata = {approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup,reasonoftrans:reasonoftrans,otherreason:otherreason,lasttransdate:lasttransdate,noofshareoftrans:noofshareoftrans,form2place:form2place}
     website.ajax({
