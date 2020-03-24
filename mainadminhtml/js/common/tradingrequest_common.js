@@ -198,11 +198,11 @@ website('body').on('click','.sendrequst',function()
     var sendreq = website('#sendrequest').val();
     website('#checkappvlrequest #sendreq').val(sendreq);
 
-     var approxprice = website('#sharesprice').val();
+    var approxprice = website('#sharesprice').val();
 
     website('#checkappvlrequest #approxprice').val(approxprice);
 
-     var broker = website('#broker').val();
+    var broker = website('#broker').val();
     website('#checkappvlrequest #broker').val(broker);
 
      var demataccount = website('#demataccount').val();
@@ -248,11 +248,14 @@ website('body').on('click','.sendrequst',function()
             if(response.logged === true)
             {
 
+
                 if(response.contratrd['status'] === true)
                 {
-
+                   // console.log(response.contratrd);
+                 
                     if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
                     {
+
                         new PNotify({title: 'Alert',
                             text: response.contratrd.message,
                             type: 'university',
@@ -276,6 +279,7 @@ website('body').on('click','.sendrequst',function()
             }
             else
             {    
+
                 new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
@@ -2023,47 +2027,68 @@ function addhtml(clicked)
 {
     
     var id = clicked;
+    
    
      //alert(datepre);
     if(id == 'adddiv') {
          
-         var getlastid = website('.append').attr('plancntr');
+        datepicker();
+        var getlastid = website('.append').attr('plancntr');
 
          getlastid = ++getlastid;
          var addhtmlnxt='';
 
         
-         addhtmlnxt += '<div class=" form-group col-md-12 row'+getlastid+' "  id="row'+getlastid+'" >';
+        addhtmlnxt += '<div class=" form-group col-md-12 row'+getlastid+' "  id="row'+getlastid+'" >';
          // addhtmlnxt += ' <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>';
-          addhtmlnxt += ' <div id = "left" class="form-group col-md-4" style="margin-left: -18px;">';
-          addhtmlnxt += '<label for="">Date</label>';
-          addhtmlnxt += ' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" >';
-            addhtmlnxt += '</div>';
-          addhtmlnxt += ' <div id = "middle" class="form-group col-md-4">';
-            addhtmlnxt += '<label for="">Transaction</label>';
-          addhtmlnxt += ' <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >';
+        addhtmlnxt += ' <div id = "left" class="form-group col-md-4" style="margin-left: -18px;">';
+        addhtmlnxt += '<label for="">Date</label>';
+        addhtmlnxt += ' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" >';
+        addhtmlnxt += '</div>';
+        addhtmlnxt += ' <div id = "middle" class="form-group col-md-4">';
+        addhtmlnxt += '<label for="">Transaction</label>';
+        addhtmlnxt += ' <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >';
         
         
-          addhtmlnxt += '</div>';
-          addhtmlnxt +=' <div id = "right" class="form-group col-md-4">';
-          addhtmlnxt += ' <label for="">No of Shares</label>';
-          addhtmlnxt += '<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">';
-          addhtmlnxt += ' </div>';
+        addhtmlnxt += '</div>';
+        addhtmlnxt +=' <div id = "right" class="form-group col-md-4">';
+        addhtmlnxt += ' <label for="">No of Shares</label>';
+        addhtmlnxt += '<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">';
+        addhtmlnxt += ' </div>';
         
 
-           addhtmlnxt += '</div>';
-
-         
-           website('.appenddiv').append(addhtmlnxt);
-         
-         
-         datepicker();
-       
-         website('.append').attr('plancntr',getlastid);
-      }
+        addhtmlnxt += '</div>';
+        
+        let invalid = '';
+        website('input[name^="dateoftrans"]').each(function() {
      
-   
+        const date = website(this).val();
+        if(!date.length )
+        {
+           invalid = true;
+        }
+       
+        });
 
+        if(!invalid)
+        {
+          website('.appenddiv').append(addhtmlnxt);
+          website('.append').attr('plancntr',getlastid);
+        }
+        else
+        {
+            new PNotify({title: 'Alert',
+                    text: 'Please Fill All the Fields First',
+                    type: 'university',
+                    hide: true, 
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+            });  
+            
+        }
+       
+       
+      }
       else{
       
        var addhtmlnxt='';
