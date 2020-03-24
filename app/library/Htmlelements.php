@@ -3128,7 +3128,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
 
   <br/>
 
-  <p>Dears Sir,<br/><br/>
+  <p>Dear Sir,<br/><br/>
    I/we am/are desirous of dealing in the shares / ADRs of the Company.  In terms of the Company’s Code, I/we seek your approval for the trade as detailed below:
   </p>
 
@@ -3137,43 +3137,43 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
   <table width="100%" style="border-collapse: collapse;">
     <tr>
       <td style="border: 1px solid #000; " width="40%">Name of Designated Person</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$itmemberinfo['fullname'].'</td>
+      <td style="border: 1px solid #000; "  width="60%">'.$itmemberinfo['fullname'].'</td>
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">Employee Code</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$itmemberinfo['employeecode'].'</td>
+      <td style="border: 1px solid #000; "  width="60%">'.$itmemberinfo['employeecode'].'</td>
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">Designation</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$itmemberinfo['designation'].'</td>
+      <td style="border: 1px solid #000; "  width="60%">'.$itmemberinfo['designation'].'</td>
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">Name of the Immediate relative with relationship<br/>(if he/she intends to deal)</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$relativename.'</td>
+      <td style="border: 1px solid #000; "  width="60%">'.$relativename.'</td>
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">No. of shares/ADRs held as on this date</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$personalinfo['sharehldng'].' / '.$personalinfo['adrshldng'].'</td>
+      <td style="border: 1px solid #000; "  width="60%">'.$personalinfo['sharehldng'].' / '.$personalinfo['adrshldng'].'</td>
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">Approx. price or range<br/> (shares/ADRs * market price)</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$approxprice.'</td>
+      <td style="border: 1px solid #000; "  width="60%">'.$approxprice.'</td>
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">Nature of deal – Purchase / Sale</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$nature.'</td>
+      <td style="border: 1px solid #000; "  width="60%">'.$nature.'</td>
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">No. of shares / ADRs intended to be dealt in within next 7 days</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$noofshare.'</td>
+      <td style="border: 1px solid #000; "  width="60%">'.$noofshare.'</td>
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">Broker through which dealing will take place</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$broker.'</td>
+      <td style="border: 1px solid #000; "  width="60%">'.$broker.'</td>
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">DP name with whom the demat account is maintained along with DP ID and Client ID / Folio no.</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$dp.' '.$dpacc.'</td>
+      <td style="border: 1px solid #000; "  width="60%">'.$dp.' '.$dpacc.'</td>
     </tr>    
      <tr>
       <td style="border: 1px solid #000; " width="40%">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</td>
