@@ -50,29 +50,28 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                         </section> -->
 
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                                <label class="control-label">Name Of Company*</label>
-                                <input type="text" id="cmpname" name="cmpname" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="Dr Reddy's Laboratories Ltd" readonly>
-                            </div>
-                        </section>
-                    
+                    <section class="col col-md-4 col-xs-4">
+                        <div class="input">
+                            <label class="control-label">Name Of Company*</label>
+                            <input type="text" id="cmpname" name="cmpname" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="Dr Reddy's Laboratories Ltd" readonly>
+                        </div>
+                    </section>                    
                         
-                    <section class="col col-md-6 col-xs-6">
+                    <section class="col col-md-4 col-xs-4">
                     <div class="input">
                         <label class="control-label">Trading Window From </label> 
                         <input type="text" name="blckoutfrom" id="blckoutfrom" class="form-control bootdatepick" required readonly>
                     </div>
                     </section>
                         
-                    <section class="col col-md-6 col-xs-6">
+                    <section class="col col-md-4 col-xs-4">
                     <div class="input">
                     <label class="control-label">Trading Window To </label>  
                         <input type="text" name="blckoutto" id="blckoutto" class="form-control bootdatepick" required readonly>
                     </div>
                     </section>
 
-                     <section class="col col-md-6 col-xs-6">
+                     <section class="col col-md-12 col-xs-12">
                     <div class="input">
                     <label class="control-label">Reason for closure of trading</label>  
                        <textarea id="reason" name="reason" style="width: 100%;"></textarea>
