@@ -2034,7 +2034,7 @@ function checktypeofreq($uid,$usergroup,$data)
             // -------- Start GET AUTO APPROVE STATUS --------
                 $query = "INSERT INTO `personal_request`(`user_id`,`user_group`,`type_of_request`,`relative_id`,`name_of_requester`,`sectype`,`id_of_company`,`no_of_shares`,`type_of_transaction`,`pdffilepath`,`approver_id`,`sent_contraexeaprvl`,`apprv_contraexedte`,`contraexcapvsts`,`trading_date`,`ex_approve_status`,`exception_reason`,
                 `date_added`,`date_modified`,`timeago`)
-                VALUES('".$uid."','".$usergroup."','".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."','".$data['sectype']."','".$data['idofcmp']."','".$data['noofshare']."','".$data['typeoftrans']."','".$pdfpath."','".$data['approverid']."','".$send_status."',NOW(),'".$autoapst."','".$tradingdate."','0','".$data['reasonmsg']."',
+                VALUES('".$uid."','".$usergroup."','".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."','".$data['sectype']."','".$data['idofcmp']."','".$data['noofshare']."','".$data['typeoftrans']."','".$pdfpath."','".$data['approverid']."','".$send_status."',NOW(),'0','".$tradingdate."','0','".$data['reasonmsg']."',
                 NOW(),NOW(),'".$time."')";
 
                  //echo $query;exit;

@@ -2968,26 +2968,7 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
         {
             $transtype = 'Sell';
         }
-        if($data['typeofrequest'] == '1' &&  $data['reasonoftrans'] == '1')
-        {
-            $transreason = 'Medical Expenses for self';
-        }
-        else if($data['typeofrequest'] == '2' &&  $data['reasonoftrans'] == '1')
-        {
-            $transreason = 'Medical Expenses for family Members';
-        }
-        if($data['reasonoftrans'] == '2')
-        {
-           $transreason = 'Repayment of existing Loan'; 
-        }
-        if($data['reasonoftrans'] == '3')
-        {
-           $transreason = 'Education'; 
-        }
-        if($data['reasonoftrans'] == '4')
-        {
-           $transreason = 'Wedding /other family function'; 
-        }
+        
        $html=' <div>
           <table style=" border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
            <tr>
@@ -3023,17 +3004,52 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
           <br/>
 
           <table style=" border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
-          ';
-        if($data['reasonoftrans'] != '5'){
-           $html.='<tr>
-              <td width="50%"><ol style="padding-left: 17px;"><li type="circle"> '.$transreason.' </li></ol></td>
+          
+          <tr>';
+        $transreason = 'Medical Expenses for self / family Members';
+        $type1 = '';
+        $type2 = '';
+        $type3 = '';
+        $type4 = '';
+        $type5 = '';
+        if($data['typeofrequest'] == '1' &&  $data['reasonoftrans'] == '1')
+        {
+            $transreason = 'Medical Expenses for self';
+            $type1 = ' - Yes';
+        }
+        else if($data['typeofrequest'] == '2' &&  $data['reasonoftrans'] == '1')
+        {
+            $transreason = 'Medical Expenses for family Members';
+            $type1 = ' - Yes';
+        }
+        if($data['reasonoftrans'] == '2')
+        {
+           $type2 = ' - Yes';
+        }
+        if($data['reasonoftrans'] == '3')
+        {
+           $type3 = ' - Yes';
+        }
+        if($data['reasonoftrans'] == '4')
+        {
+           $type4 = ' - Yes';
+        }
+        if($data['reasonoftrans'] == '4')
+        {
+           $type5 = ' - Yes';
+        }
+        
+              $html.='<td width="50%"><ul style="padding-left: 17px;"><li type="circle">'.$transreason.''.$type1.'</li></ul></td>
+              <td width="50%"><ul style="padding-left: 17px;"><li type="circle">Repayment of existing Loan'.$type2.'</li></ul></td>                    
+            </tr>
+            <tr>
+              <td width="50%"><ul style="padding-left: 17px;"><li type="circle">Education'.$type3.'</li></ul></td>
+              <td width="50%"><ul style="padding-left: 17px;"><li type="circle">Wedding /other family function'.$type4.'</li></ul></td>                         
+            </tr>
+            <tr>
+              <td width="50%"><ul style="padding-left: 17px;"><li type="circle">Any other reason (Please specify) '.$type5.' :'.$data['otherreason'].'</li></ul></td>                         
             </tr>';
-            }
-            if($data['reasonoftrans'] == '5'){
-            $html.='<tr>
-              <td width="50%"><ol style="padding-left: 17px;"><li type="circle">Any other reason (Please specify): '.$data['otherreason'].'</li></ol></td>                         
-            </tr>';
-                }
+                  
           $html.='</table>
 
           <br/>
@@ -3080,11 +3096,12 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
         Place: '.$data['form2place'].'<br/>
         </p>
         </div>';
+        //print_r($html);exit;
         return $html;
     }
 
 
-public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccount,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename,$datetrans,$transaction,$sharestrans)
+public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccount,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename)
   {   
          //echo "<pre>";print_r($datetrans);exit;
             $html='<div>
@@ -3136,7 +3153,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">No. of shares/ADRs held as on this date</td>
-      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$personalinfo['sharehldng'].','.$personalinfo['adrshldng'].'</td>
+      <td style="border: 1px solid #000; " colspan="3" width="60%">'.$personalinfo['sharehldng'].' / '.$personalinfo['adrshldng'].'</td>
     </tr>
      <tr>
       <td style="border: 1px solid #000; " width="40%">Approx. price or range<br/> (shares/ADRs * market price)</td>

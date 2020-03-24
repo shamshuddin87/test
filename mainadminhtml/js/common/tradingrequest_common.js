@@ -199,6 +199,7 @@ website('body').on('click','.sendrequst',function()
     website('#checkappvlrequest #sendreq').val(sendreq);
 
      var approxprice = website('#sharesprice').val();
+
     website('#checkappvlrequest #approxprice').val(approxprice);
 
      var broker = website('#broker').val();
@@ -229,7 +230,7 @@ website('body').on('click','.sendrequst',function()
     
     website.ajax({
         url:'tradingrequest/checkclosebalval',
-        data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},
+        data:{datetrans:datetrans,approxprice:approxprice,broker:broker,place:place,idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -285,7 +286,7 @@ website('body').on('click','.sendrequst',function()
             }
         },
         complete: function(response) 
-        {   /*website('.preloder_wraper').fadeOut();*/   },
+        {   website('.preloder_wraper').fadeOut();   },
         error: function() 
         {   }
     });
@@ -1959,7 +1960,7 @@ website('body').on('click','#reasonexetrans',function(e)
     var otherreason = website("#reasonexceptn #otherreason").val();
     var lasttransdate = website("#reasonexceptn #lasttransdate").val();
     var noofshareoftrans = website("#reasonexceptn #noofshareoftrans").val();
-    var form2place = website("#reasonexceptn #form2place").val();
+    var form2place = website("#Mymodalreq #place").val();
     
     var formdata = {approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup,reasonoftrans:reasonoftrans,otherreason:otherreason,lasttransdate:lasttransdate,noofshareoftrans:noofshareoftrans,form2place:form2place}
     website.ajax({
@@ -2022,7 +2023,8 @@ function addhtml(clicked)
 {
     
     var id = clicked;
-     //alert(id);
+   
+     //alert(datepre);
     if(id == 'adddiv') {
          
          var getlastid = website('.append').attr('plancntr');
@@ -2051,8 +2053,10 @@ function addhtml(clicked)
 
            addhtmlnxt += '</div>';
 
-      
-         website('.appenddiv').append(addhtmlnxt);
+         
+           website('.appenddiv').append(addhtmlnxt);
+         
+         
          datepicker();
        
          website('.append').attr('plancntr',getlastid);
