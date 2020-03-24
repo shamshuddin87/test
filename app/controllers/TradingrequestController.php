@@ -429,6 +429,7 @@ class TradingrequestController extends ControllerBase
 
                     if($flag == 1)
                     {
+                        
                         $result = $this->tradingrequestcommon->createrequest($uid,$usergroup,$alldata,$send_status,$pdfpath);
                         //print_r($result);exit;
                         if($result['status']==true)

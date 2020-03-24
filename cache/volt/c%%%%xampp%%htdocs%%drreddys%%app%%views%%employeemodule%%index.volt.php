@@ -545,11 +545,11 @@
                       <div class="row">
                     <div class="col-md-12 col-md-12">
                      <div class="col-md-4 "> 
-                          <label for="age">Holdings In Shares of Dr. Reddy's held by the relative*</label>
+                          <label for="age">Holdings In Shares*</label>
                           <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
                        </div>
                      <div class="col-md-4 col-xs-12"> 
-                          <label for="age">Holdings In ADRs of Dr. Reddy's held by the relative*</label>
+                          <label for="age">Holdings In ADRs*</label>
                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                       </div>
 
