@@ -1249,7 +1249,7 @@ Class Email extends Phalcon\Mvc\User\Component {
         $mail->addAddress($to, 'Volody');
         $mail->Subject = $subject;
         $mail->msgHTML($gethtml);
-        $mail->addAttachment($getfile[0]['pdfpath']);
+        $mail->addAttachment($getfile);
         //send the message, check for errors
         //print_R($mail);exit;
         if ($mail->Send()) {
