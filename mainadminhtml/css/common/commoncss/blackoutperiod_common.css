@@ -1279,6 +1279,11 @@ yx-axis
 	
 	/* ---------------------------------------- */
 
+
+.datetimepicker
+{
+	top: 0 !important;
+}
 /*@media only screen and (min-width: 1366px) { #search-box.header-search-input, #search-box1.header-search-input1 {
 
 padding:10.5px 7px 7.5px 40px; width: 105%;
