@@ -2098,10 +2098,11 @@ function addhtml(clicked)
 
 }
 
+
 function removehtml(clicked)
 {
 
-     var rmid = clicked;
+    var rmid = clicked;
 
     if(rmid == 'remvdiv')
     {
@@ -2120,6 +2121,4 @@ function removehtml(clicked)
     }
 
   
-
-
 }

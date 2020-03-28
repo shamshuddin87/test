@@ -13,8 +13,8 @@
 <div class="content">
     
     <!--    Total Number of Contracts Ends-->
-    <!-- My messages -->
     <div class="mainelementfom">
+    <!-- My messages -->
         <div>  <h1 class="h1_heading text-center"> Your Requests</h1> </div>
 
 

@@ -7,6 +7,16 @@ else
 if(actval=='dash')
 {website('.personal').removeClass('active');website('.relatives').addClass('active');website('.relativesform').show();website('.personaldetails').hide();website('.mymfr').hide();}
 else
+{}
+var action=url.searchParams.has("tab");if(action)
+{var actval=atob(url.searchParams.get("tab"));}
+else
+{}
+if(actval=='2')
+{website('.personal').removeClass('active');website('.relatives').addClass('active');website('.relativesform').show();website('.personaldetails').hide();website('.mymfr').hide();}
+else if(actval=='3')
+{website('.mfr').addClass('active');website('.relatives').removeClass('active');website('.personal').removeClass('active');website('.relativesform').hide();website('.personaldetails').hide();website('.mymfr').show();}
+else
 {}});website('.relativesform').hide();website('.personal').click(function(e){e.preventDefault();website(this).addClass('active');website('.relatives').removeClass('active');website('.mfr').removeClass('active');website('.personaldetails').show();website('.mymfr').hide();website('.relativesform').hide();});website('.relatives').click(function(e){e.preventDefault();website(this).addClass('active');website('.personal').removeClass('active');website('.mfr').removeClass('active');website('.relativesform').show();website('.mymfr').hide();website('.personaldetails').hide();});website('.mfr').click(function(e){e.preventDefault();website(this).addClass('active');website('.relatives').removeClass('active');website('.personal').removeClass('active');website('.relativesform').hide();website('.personaldetails').hide();website('.mymfr').show();});(function(replace){function floatLabel(inputType){replace(inputType).each(function(){var replacethis=replace(this);var text_value=replace(this).val();replacethis.focus(function(){replacethis.next().addClass("active");});replacethis.blur(function(){if(replacethis.val()===''||replacethis.val()==='blank'){replacethis.next().removeClass();}});if(text_value!=''){replacethis.next().addClass("active");}});replace("select").next().removeClass();}
 floatLabel(".floatLabel");})(jQuery);datepicker();function datepicker(){website('.bootdatepick').datetimepicker({weekStart:1,todayBtn:0,autoclose:1,todayHighlight:0,startView:2,minView:2,forceParse:0,format:"dd-mm-yyyy"}).on('change',function(e,date)
 {var getdate=website(this).val();var getid=website(this).closest('form').attr('id');});}
@@ -52,7 +62,7 @@ website.ajax({url:'employeemodule/relationdata',method:'POST',data:formdata,cont
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {website('#updateholdings2').modal('hide');if(response.logged===true)
-{getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
+{getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});var baseHref=getbaseurl();window.location.href=baseHref+'employeemodule?tab='+btoa(2);}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
@@ -62,7 +72,7 @@ website.ajax({url:'employeemodule/updaterelatives',method:'POST',data:formdata,c
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {website('#updateholdings3').modal('hide');if(response.logged===true)
-{website('#reledit').modal('hide');getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
+{website('#reledit').modal('hide');getrelationdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});var baseHref=getbaseurl();window.location.href=baseHref+'employeemodule?tab='+btoa(2);}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
@@ -166,13 +176,13 @@ website('body').on('click','.viewdetail',function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{getmfrdata();website('#mfrdelmodaledit').modal('hide');window.location.reload();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+{getmfrdata();website('#mfrdelmodaledit').modal('hide');new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});var baseHref=getbaseurl();window.location.href=baseHref+'employeemodule?tab='+btoa(3);}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}});});website('#savemfr').click(function(e){var mfrname=website('#mfrname').val();var mfrrelation=website('#mfrrelation').val();var pan=website('#adharpan').val();var address=website('#materialaddress').val();var transaction=website('#mfrtransaction').val();var clientid=website('#mfrclientid').val();website.ajax({url:'employeemodule/savemfr',data:{mfrname:mfrname,mfrrelation:mfrrelation,pan:pan,address:address,transaction:transaction,clientid:clientid},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{getmfrdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
+{getmfrdata();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});var baseHref=getbaseurl();window.location.href=baseHref+'employeemodule?tab='+btoa(3);}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}});});getmfrdata();function getmfrdata(){website.ajax({url:'employeemodule/getmfrdata',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
@@ -377,4 +387,12 @@ else{new PNotify({title:'Alert',text:response.message,type:'university',hide:tru
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
 {}});}
 function IsAlphaNumeric(e)
-{var regex=new RegExp("^[a-zA-Z0-9 ]+$");var key=String.fromCharCode(!event.charCode?event.which:event.charCode);if(!regex.test(key)){event.preventDefault();return false;}};
+{var regex=new RegExp("^[a-zA-Z0-9 ]+$");var key=String.fromCharCode(!event.charCode?event.which:event.charCode);if(!regex.test(key)){event.preventDefault();return false;}}
+website("#relationship").change(function(){let select=website("#relationship option:selected").val();if(select==4||select==6||select==8||select==9)
+{website("#relfemale").attr('checked',true);}
+else if(select==3||select==5||select==7||select==10)
+{website("#relmale").attr('checked',true);}
+else if(select==1||select==11)
+{website("#relother").attr('checked',true);}
+else
+{}});;

@@ -1,6 +1,6 @@
 website(document).ready(function()
 {
-     var url = new URL(window.location.href);
+    var url = new URL(window.location.href);
     var action = url.searchParams.has("from");
     //console.log(action);return false;
     if(action)
@@ -23,6 +23,47 @@ website(document).ready(function()
     {
 
     }
+
+    
+     var action = url.searchParams.has("tab");
+    
+    if(action)
+        {
+            var actval = atob(url.searchParams.get("tab"));
+             
+        }
+    else
+        {
+        }
+
+    if(actval == '2')
+    {
+
+        website('.personal').removeClass('active');
+        website('.relatives').addClass('active');
+        website('.relativesform').show();
+        website('.personaldetails').hide();
+        website('.mymfr').hide();
+          
+    }
+    else if(actval == '3')
+    {
+        website('.mfr').addClass('active');
+        website('.relatives').removeClass('active');
+        website('.personal').removeClass('active');
+        website('.relativesform').hide();
+        website('.personaldetails').hide();
+        website('.mymfr').show();
+     
+          
+    }
+    else
+    {
+
+    }
+
+     
+
 });
 
 
@@ -427,7 +468,10 @@ website('body').on('click','#yesdisclosures2',function(e)
                     styling: 'bootstrap3',
                     addclass: 'dark ',
                 }); 
-             window.location.reload();
+            var baseHref = getbaseurl(); 
+    
+           window.location.href=baseHref+'employeemodule?tab='+btoa(2);
+
             
  
          }
@@ -515,7 +559,11 @@ website('body').on('click','#yesdisclosures3',function(e)
                     addclass: 'dark ',
                 }); 
             
-              window.location.reload();
+      var baseHref = getbaseurl(); 
+    
+
+     window.location.href=baseHref+'employeemodule?tab='+btoa(2);
+
  
          }
          else
@@ -1249,7 +1297,7 @@ website('#upmfrmod').click(function(e) {
           {
               getmfrdata();
               website('#mfrdelmodaledit').modal('hide');
-              window.location.reload();
+             
                new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
@@ -1257,6 +1305,10 @@ website('#upmfrmod').click(function(e) {
                     styling: 'bootstrap3',
                     addclass: 'dark ',
                 }); 
+
+        var baseHref = getbaseurl(); 
+    
+        window.location.href=baseHref+'employeemodule?tab='+btoa(3);
             
  
          }
@@ -1310,7 +1362,9 @@ website('#savemfr').click(function(e) {
                     addclass: 'dark ',
                 }); 
 
-                 window.location.reload();
+        var baseHref = getbaseurl(); 
+    
+        window.location.href=baseHref+'employeemodule?tab='+btoa(3);
             
  
          }
@@ -2701,7 +2755,7 @@ var formdata = {id:delid}
 
 function IsAlphaNumeric(e) 
 {
-   var regex = new RegExp("^[a-zA-Z0-9 ]+$");
+    var regex = new RegExp("^[a-zA-Z0-9 ]+$");
     var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
     if (!regex.test(key)) {
        event.preventDefault();
@@ -2709,3 +2763,29 @@ function IsAlphaNumeric(e)
     }
 }
 
+
+website( "#relationship" ).change(function() {
+ 
+ let select = website( "#relationship option:selected" ).val();
+
+ 
+
+ if(select == 4 || select == 6 || select == 8 || select == 9 )
+ {
+  
+     
+     website("#relfemale").attr( 'checked', true );
+ } 
+ else if(select == 3 || select == 5 || select == 7 || select == 10 )
+ {
+    website("#relmale").attr( 'checked', true );
+ }
+  else if(select == 1 || select == 11  )
+ {
+    website("#relother").attr( 'checked', true );
+ }
+ else
+ {
+
+ }
+});
