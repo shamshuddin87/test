@@ -99,7 +99,7 @@ errorPlacement: function(error, element) {
                     website('.loginrightmn').removeClass('chmnright');
                     website('.progressnew').fadeOut();                    
                     //window.location.href=baseHref+'home';
-                    window.location.href=baseHref+'employeemodule';
+                    window.location.href=baseHref+'home';
                     website('.loginnowbtn').removeClass('disabled');
                     website('.progress-indeterminate').fadeOut();
 

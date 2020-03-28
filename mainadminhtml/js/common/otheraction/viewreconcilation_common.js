@@ -109,7 +109,7 @@ function getdataonload()
                     var relativename=response.panuser[i].relativename?response.panuser[i].relativename:'';
                     var relationship=response.panuser[i].relationship?response.panuser[i].relationship:'';
                     
-                    if(pan != pansheet)
+                    if(jQuery.inArray(response.panuser[i].panno, response.panlist)=='-1') // InArray
                     {
                         addhtmlnxt += '<tr class="counter" reconciid="'+response.panuser[i].id+'">';
                         addhtmlnxt += '<td width="15%">'+pan+'</td>';

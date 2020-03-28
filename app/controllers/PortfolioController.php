@@ -17,16 +17,18 @@ class PortfolioController extends ControllerBase
         $usergroup = $this->session->loginauthspuserfront['user_group_id'];
         $gmnlog = $this->session->loginauthspuserfront;
         $this->view->relativesinfo =$this->employeemodulecommon->getrelativedata($uid,$usergroup);
+       // demat Account Detail
+      
+
+      $demat = $this->portfoliocommon->getdematsstatus($uid,$usergroup);
+      if(!empty($demat))
+      {
+         $this->view->getdematsstatus=$this->portfoliocommon->getdematsstatus($uid,$usergroup);
+      }
+     
+       //print_r($getdematsstatus);exit;
         
-        
-        /*################  Phalcon Database name Fetching
-        $connection = $this->db->getDescriptor();
-        $connection = $connection['dbname'];
-        echo '<pre>';print_r($connection);exit; 
-        ###########################*/
-        
-        //$getmn = $this->session->orgdtl;
-        //echo '<pre>';print_r($getmn);exit;        
+            
     }
     
     public function storeaccnoAction()
@@ -39,7 +41,8 @@ class PortfolioController extends ControllerBase
          if($this->request->isAjax() == true)
          {
              $flag =0;
-            $accnodata= $this->request->getPost('accno');
+             $accnodata= $this->request->getPost('accno');
+             //print_r($accnodata);exit;
             $clhouse= $this->request->getPost('clhouse');
             for($i=0;$i<sizeof($accnodata);$i++)
             {
@@ -308,5 +311,34 @@ class PortfolioController extends ControllerBase
           }
         }   
 
+      }
+
+
+        public function zerodemataccAction()
+      {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $usergroup = $this->session->loginauthspuserfront['user_group_id'];
+        if($this->request->isPost() == true)
+        {
+          if($this->request->isAjax() == true)
+          {
+                $dematup= $this->request->getPost('dematup','trim');
+                // print_r($dematup);exit;
+                $getresponse = $this->portfoliocommon->zerodematacc($uid,$usergroup,$dematup);
+                if($getresponse['status']==true)
+                {
+                    $data = array("logged" => true,"message"=>"Record Saved Successfully");
+                    $this->response->setJsonContent($data);
+
+                  }
+                else
+                {
+                    $data = array("logged" => true,"message"=>$getresponse['message']);
+                    $this->response->setJsonContent($data);
+                }
+                  $this->response->send();
+          }
+        }
       }
    }

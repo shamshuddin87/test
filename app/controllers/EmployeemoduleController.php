@@ -44,9 +44,11 @@ class EmployeemoduleController extends ControllerBase
                 //print_r($this->request->getPost());exit;
                 $fname = $this->request->getPost('fname','trim');
                 $pan = $this->request->getPost('pan','trim');
+                
                 $aadhar = $this->request->getPost('aadhar','trim');
                 $dob = $this->request->getPost('dob','trim');
                 $sex = $this->request->getPost('sex','trim');
+                //print_r($sex);exit;
                 $address = $this->request->getPost('address','trim');
                 $edu = $this->request->getPost('eduqulfcn','trim');
                 $institute = $this->request->getPost('institute','trim');
@@ -55,6 +57,12 @@ class EmployeemoduleController extends ControllerBase
                 $legal_idntfr = $this->request->getPost('legal_idntfr','trim');
                 $legal_idntfctn_no = $this->request->getPost('legal_idntfctn_no','trim');
                 $rqid   = $this->request->getPost('rqid','trim');
+                $toemail   = $this->request->getPost('toemail','trim');
+
+               
+                
+
+
                 if(empty($pan))
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Pan Number');
@@ -64,6 +72,12 @@ class EmployeemoduleController extends ControllerBase
                 {
 
                    $data = array("logged" => false,'message' => 'Please Enter Mobile Number!!');
+                   $this->response->setJsonContent($data); 
+                }
+                 else if(strlen($mobile) < 10)
+                {
+
+                   $data = array("logged" => false,'message' => 'Your Mobile No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
                 }
                 else if(strlen($pan) < 10)
@@ -82,6 +96,18 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Birth Date Should Be In Past');
                     $this->response->setJsonContent($data);
                 }
+                else if(empty($aadhar))
+                {
+
+                   $data = array("logged" => false,'message' => 'Please Enter Aadhaar Number!!');
+                   $this->response->setJsonContent($data); 
+                }
+                 else if(strlen($aadhar) < 12)
+                {
+                   $data = array("logged" => false,'message' => 'Your Aadhaar No Should Be 12 Digit!!');
+                   $this->response->setJsonContent($data); 
+                }
+                
                 else if(empty($sex))
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Gender');
@@ -102,6 +128,7 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide address');
                     $this->response->setJsonContent($data);
                 }
+
                 else
                 {
                     //echo 'in else';exit;
@@ -132,18 +159,34 @@ class EmployeemoduleController extends ControllerBase
                     }
                     $newdob = date("d-m-Y", strtotime($dob));
                     $data=$this->request->getPost();
+                    //print_r($data);exit;
                     $check =  $this->employeemodulecommon->checkpersonalinfo($uid,$usergroup);
+
                     if($check == true)
                     {
+                        if(empty($filepath))
+                        {
+                            $filepath = $this->request->getPost('updtfile','trim');
+                        }
+
                         $result = $this->employeemodulecommon->updatemydetails($uid,$rqid,$usergroup,$data,$filepath);
+       
+                        $sendmail = $this->emailer->mailofpersonalinfo($data);
+                        
+                        //print_r($sendmail);exit;
                     }
                     else
                     {
+
+
+                        //print_r($toemail);exit;
                         $result = $this->employeemodulecommon->insmydetail($uid,$usergroup,$data,$filepath);
+                        $sendmail = $this->emailer->mailofpersonalinfo($data);
+                        //print_r($sendmail);exit;
                     }
                     
                     //print_r($result);exit;
-                    if($result['status']==true)
+                    if($result['status']== true && $sendmail['logged'] == true)
                     {
                         $data = array("logged" => true,'message' => $result['message']);
                         $this->response->setJsonContent($data);
@@ -391,15 +434,25 @@ class EmployeemoduleController extends ControllerBase
                 $fname   = $this->request->getPost('fname','trim');
                 $pan   = $this->request->getPost('pan','trim');
                 $dob   = $this->request->getPost('dob','trim');
+
                 $relationship   = $this->request->getPost('relationship','trim');
                 $sex   = $this->request->getPost('sex','trim');
                 $address   = $this->request->getPost('address','trim');
+                $aadhaar   = $this->request->getPost('aadhar','trim');
                 $file   = $this->request->getPost('file','trim');
+                $depnature   = $this->request->getPost('depnature','trim');
+                //print_r($reldata);exit;
                 if(empty($fname))
                 {
                     $data = array("logged" => false,'message' => 'Please Enter First Name!!');
                     $this->response->setJsonContent($data);
                 }
+                else if(empty($depnature))
+                {
+                     $data = array("logged" => false,'message' => 'Please Provide Nature of Dependency');
+                    $this->response->setJsonContent($data);
+                }
+               
                 else if(empty($pan))
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Pan Number');
@@ -409,6 +462,16 @@ class EmployeemoduleController extends ControllerBase
                 {
                    $data = array("logged" => false,'message' => 'Your Pan No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
+                }
+                   else if(empty($aadhaar)) 
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter Aadhar Number');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strlen($aadhaar) < 12) 
+                {
+                    $data = array("logged" => false,'message' => 'Your Aadhaar No Should Be 12 Digit!!');
+                    $this->response->setJsonContent($data);
                 }
                 
                 else if(empty($dob)) 
@@ -421,6 +484,7 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Birth Date Should Be In Past');
                     $this->response->setJsonContent($data);
                 }
+              
                 else if(empty($relationship))
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Relationship');
@@ -462,6 +526,7 @@ class EmployeemoduleController extends ControllerBase
                         }
                     }
                     $result = $this->employeemodulecommon->relativeinfo($uid,$usergroup,$reldata,$filepath);
+                    
                     if($result['status']==true)
                     {
                         $data = array("logged" => true,'message' =>$result['message']);
@@ -711,6 +776,11 @@ class EmployeemoduleController extends ControllerBase
                    $data = array("logged" => false,'message' => 'Your Pan No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
                 }
+                 else if(empty($aadhar)) 
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter Aadhar Number');
+                    $this->response->setJsonContent($data);
+                }
                 else if(empty($dob)) 
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
@@ -762,6 +832,7 @@ class EmployeemoduleController extends ControllerBase
                    {
                        $filepath = $prevfilepath;
                    }
+                   //print_r($updaterelative($data));exit;
                     $result = $this->employeemodulecommon->updaterelative($uid,$usergroup,$data,$releditid,$filepath);
                     if($result==true)
                     {
@@ -1323,25 +1394,42 @@ class EmployeemoduleController extends ControllerBase
                 $mfrrelation = $this->request->getPost('mfrrelation','trim');
                 $address = $this->request->getPost('address','trim');
                 $pan = $this->request->getPost('pan','trim');
+                $transaction = $this->request->getPost('transaction','trim');
+                $clientid = $this->request->getPost('clientid','trim');
                 
                 if($mfrname=='')
                 {
-                    $data = array("logged" => false,'message' => 'Please Select Name of the Related party');
+                    $data = array("logged" => false,'message' => 'Please Enter Name of the Person');
                     $this->response->setJsonContent($data);
                 }
                 else if($mfrrelation=='')
                 {
-                    $data = array("logged" => false,'message' => 'Please Select Nature of Relationship');
+                    $data = array("logged" => false,'message' => 'Please Enter Relationship');
                     $this->response->setJsonContent($data);
                 }
                 else if($pan=='')
                 {
-                    $data = array("logged" => false,'message' => 'Please Select PAN/Adhar');
+                    $data = array("logged" => false,'message' => 'Please Enter PAN/Adhar');
                     $this->response->setJsonContent($data);
+                }
+                 else if($transaction=='')
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter Nature of Transaction');
+                    $this->response->setJsonContent($data);
+                }
+                 else if($clientid=='')
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter DP ID/Client ID');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strlen($clientid) <16)
+                {
+                    $data = array("logged" => false,'message' => 'DP ID/Client ID should be 16 characters!!');
+                   $this->response->setJsonContent($data);
                 }
                 else
                 {
-                    $getres = $this->employeemodulecommon->insertmfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$pan,$address);
+                    $getres = $this->employeemodulecommon->insertmfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$pan,$address,$transaction,$clientid);
                     if($getres)
                     {
                         $data = array("logged" => true,'message' => 'Data Inserted Successfully..!!!');
@@ -1382,6 +1470,8 @@ class EmployeemoduleController extends ControllerBase
                 $mfrrelation = $this->request->getPost('mfrrelation','trim');
                 $panup = $this->request->getPost('panup','trim');
                 $addressup = $this->request->getPost('addressup','trim');
+                $transaction = $this->request->getPost('transaction','trim');
+                $clientid = $this->request->getPost('clientid','trim');
                 if($mfrname=='')
                 {
                     $data = array("logged" => false,'message' => 'Please Select Name of the Related party');
@@ -1397,9 +1487,24 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Select Pan/Adhar');
                     $this->response->setJsonContent($data);
                 }
+                  else if($transaction=='')
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter Nature of Transaction');
+                    $this->response->setJsonContent($data);
+                }
+                 else if($clientid=='')
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter DP ID/Client ID');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strlen($clientid) <16)
+                {
+                    $data = array("logged" => false,'message' => 'DP ID/Client ID should be 16 characters!!');
+                   $this->response->setJsonContent($data);
+                }
                 else
                 {
-                    $getres = $this->employeemodulecommon->updatemfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$mfreditid,$panup,$addressup);
+                    $getres = $this->employeemodulecommon->updatemfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$mfreditid,$panup,$addressup,$transaction,$clientid);
                     if($getres)
                     {
                         $data = array("logged" => true,'message' => 'Data Updated Successfully..!!!');

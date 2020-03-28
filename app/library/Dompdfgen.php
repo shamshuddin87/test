@@ -29,6 +29,8 @@ Class Dompdfgen extends Phalcon\Mvc\User\Component {
         else if($typeof=="configReport"){$path = $this->declarationDir.'/reportingexe';}
         else if($typeof=="misrecip"){$path = 'img/mis';}
         else if($typeof=="mispersnlinfo"){$path = 'img/mis';}
+        else if($typeof=="FormI"){$path = 'img/preclearance_request/form1';}
+        else if($typeof=="FormII"){$path = 'img/preclearance_request/form2';}
         else{$path='';}
 
         if($typeof=="configvcs"){$stylesheet = file_get_contents('css/pdf/pdf.css');}
@@ -44,6 +46,8 @@ Class Dompdfgen extends Phalcon\Mvc\User\Component {
         else if($typeof=="configNonReport"){$stylesheet = file_get_contents('css/pdf/nonreportingpdf.css');}
         else if($typeof=="misrecip"){$stylesheet = file_get_contents('css/pdf/misrecip.css');}
         else if($typeof=="mispersnlinfo"){$stylesheet = file_get_contents('css/pdf/mispersnlinfo.css');}
+        else if($typeof=="FormI"){$stylesheet = file_get_contents('css/pdf/preclerance.css');}
+         else if($typeof=="FormII"){$stylesheet = file_get_contents('css/pdf/preclerance.css');}
         else{$path='';$stylesheet='';}
         
         //echo $stylesheet; exit;
@@ -61,7 +65,7 @@ Class Dompdfgen extends Phalcon\Mvc\User\Component {
         $mpdf = new mPDF();
         $mpdf->SetProtection(array('print'));
         $mpdf->keep_table_proportions = false;
-        if($typeof=='configFormb' || $typeof=='configFormc' || $typeof=='configFormd') 
+        if($typeof=='configFormb' || $typeof=='configFormc' || $typeof=='configFormd' || $typeof=="annualdeclarationpdf" || $typeof=="mispersnlinfo") 
         {  
             $mpdf->AddPage('L');
         }

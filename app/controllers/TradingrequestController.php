@@ -19,6 +19,10 @@ class TradingrequestController extends ControllerBase
          $this->view->alldetails = $this->tradingrequestcommon->userdetails($uid,$usergroup);
          $this->view->relativeinfo = $this->tradingrequestcommon->getrelativeinfo($uid,$usergroup);
          $this->view->sectype = $this->tradingrequestcommon->securitytype();
+         
+
+         
+        
          if(isset($_GET["redirect"]))
          {
            $this->view->$redirecturl= $_GET["redirect"];
@@ -95,9 +99,14 @@ class TradingrequestController extends ControllerBase
                 $typeoftrans=$this->request->getPost('typeoftranss','trim');
                 $sectype=$this->request->getPost('sectypes','trim');
                 $noofshare=$this->request->getPost('noofshares','trim');
+                $approxprice=$this->request->getPost('approxprice','trim');
+                $broker=$this->request->getPost('broker','trim');
+                $place=$this->request->getPost('place','trim');
+                $datetrans =$this->request->getPost('datetrans','trim');
                 $typeofrequests=$this->request->getPost('typeofrequests');
+                $todaydate = date('d-m-Y');
 
-                 // print_r($typeofrequests);exit;
+                  
                 if(empty($idofcmp))
                 {
                     $data = array("logged" => false,'message' => 'Please Select Company..!!!');
@@ -123,8 +132,44 @@ class TradingrequestController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Select Type Of request...!!!');
                     $this->response->setJsonContent($data);
                 }
+                else if(empty($approxprice))
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter Approx Price or range');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                 else if(empty($broker))
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter Broker');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                 else if(empty($place))
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter Place');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                
                 else
                 {
+                    //print_r($typeofrequests);exit;
+                    if(!empty($datetrans[0]))
+                    {
+                        for($i=0;$i<count($datetrans);$i++)
+                        {
+                            if(strtotime($datetrans[$i]) > strtotime($todaydate))
+                            {
+                            $data = array("logged" => false,'message' => 'Date of transaction cannot be in future');
+                            $this->response->setJsonContent($data);
+                            $this->response->send();
+                            }
+                        }
+                    }
+                   
+                    $checkval = $this->tradingrequestcommon->checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans);
+                    //print_r($checkval);exit;    
+
                     if($typeofrequests==1 && $typeoftrans==2)
                     {
                         $checkopbal = $this->tradingrequestcommon->checkopeningbalance($uid,$usergroup,$idofcmp,$typeoftrans,$sectype,
@@ -132,6 +177,7 @@ class TradingrequestController extends ControllerBase
                         //echo '<pre>'; print_r($checkopbal); exit;
                         if($checkopbal['status'])
                         { 
+
                             $clsstatus=1;
                         }
                         else
@@ -147,14 +193,16 @@ class TradingrequestController extends ControllerBase
                     //print_r($clsstatus); exit;
                     if($clsstatus)
                     {
-                        $data = array("logged" => true,'message' => "You Can Create Request...!!!");
+                        
+                        $data = array("logged" => true,'message' => "You Can Create Request...!!!",'contratrd'=>$checkval);
                         $this->response->setJsonContent($data);
                     }
                     else
                     {
-                        $data = array("logged" => false,'message' => $checkopbal['msg']);
+                        $data = array("logged" => false,'message' => $checkopbal['msg'],'contratrd'=>$checkval);
                         $this->response->setJsonContent($data);
                     }
+                    //print_R($data);exit;
                 }
                 $this->response->send();
             }
@@ -181,10 +229,83 @@ class TradingrequestController extends ControllerBase
                 $nameofcmp  = $this->request->getPost('nameofcmp','trim');
                 $noofshare = $this->request->getPost('noofshare','trim');
                 $typeoftrans  = $this->request->getPost('typeoftrans','trim');
+                //print_r($typeoftrans);exit;
                 $typeofrequest=$this->request->getPost('typeofrequest','trim');
                 $selrelative=$this->request->getPost('selrelative','trim');
+
                 $reqname= $this->request->getPost('reqname','trim');
                 $sendreq=$this->request->getPost('sendreq','trim');
+                //print_r($sendreq);exit;
+                //$pdfpath = $this->request->getPost('link','trim');
+
+                $approxprice=$this->request->getPost('approxprice','trim');
+                $broker=$this->request->getPost('broker','trim');
+                $demataccountid=$this->request->getPost('demataccount','trim');
+                $place=$this->request->getPost('place','trim');
+                $datetrans=$this->request->getPost('datetrans','trim');
+                $transaction=$this->request->getPost('transaction','trim');
+                $sharestrans=$this->request->getPost('sharestrans','trim');
+
+                if($typeoftrans == 2)
+                {
+                    $nature = 'Sale';
+                    $relativeinfo = $this->tradingrequestcommon->getrelativesingle($selrelative);
+                    if(!empty($demataccountid))
+                    {
+                        $dematinfo = $this->tradingrequestcommon->relativedemat($demataccountid);
+                        $dp = $dematinfo['depository_participient'];
+                        $dpacc = $dematinfo['accountno'];
+                    }
+                    else
+                    {
+                        $dp = ' ';
+                        $dpacc = ' ';
+                    }
+                    
+                    $relativename = $relativeinfo['name'];
+                }
+                else if($typeoftrans == 1)
+                {
+                    $nature = 'Purchase';
+                    $relativename = ' ';
+                    //print_r($dematinfo);exit;
+                     if(!empty($demataccountid))
+                    {
+                          $dematinfo = $this->tradingrequestcommon->userdemat($demataccountid);
+                          $dp = $dematinfo['depository_participient'];
+                          $dpacc = $dematinfo['accountno'];
+
+                    }
+                    else
+                    {
+                        $dp = ' ';
+                        $dpacc = ' ';
+                    }
+                  
+                }
+                else
+                {
+                    $nature = ' ';
+                    $relativename = ' ';
+                    $dematinfo = ' ';
+                }
+                //print_r($dematinfo);exit;
+                
+               
+                
+                $personalinfo = $this->tradingrequestcommon->getpersonalinfo($uid,$usergroup);
+
+                $itmemberinfo = $this->tradingrequestcommon->userdetails($uid,$usergroup);
+                
+                $datetrans = explode(",", $datetrans);
+                $transaction = explode(",", $transaction);
+                $sharestrans = explode(",", $sharestrans);
+              
+
+
+
+                $checkval = $this->tradingrequestcommon->checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans);
+
                 $flag = 1;
                 
                 $checkval = $this->tradingrequestcommon->checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans);
@@ -210,12 +331,18 @@ class TradingrequestController extends ControllerBase
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
-                else if($checkval['status']=='false')
+                else if($checkval==1)
                 {
-                    $data = array("logged" => false,'message' => $checkval['mg']);
+                    $data = array("logged" => false,'message' => 'You Are Doing Different Trade Before Six Months Transaction');
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
+//                else if($checkval['status']=='false')
+//                {
+//                    $data = array("logged" => false,'message' => $checkval['mg']);
+//                    $this->response->setJsonContent($data);
+//                    $this->response->send();
+//                }
                 else if($typeofrequest==2 && empty($selrelative))
                 {
                     $data = array("logged" => false,'message' => 'Please Select Atleast One Relative');
@@ -242,7 +369,7 @@ class TradingrequestController extends ControllerBase
                 }
                 else if(empty($noofshare))
                 {
-                    $data = array("logged" => false,'message' => 'Please Insert Total No Of Shares');
+                    $data = array("logged" => false,'message' => 'Please Enter Total No Of Shares');
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
@@ -252,23 +379,30 @@ class TradingrequestController extends ControllerBase
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
+
+                
                 else
                 {
+
+                
+                $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccountid,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename);
+
+                $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form I','FormI');
                     //echo 'in else';exit;
                     if(!empty($sendreq))
                     {
                         $send_status=1;
                         $msg="Record Sent Successfully";
                         $getresult = $this->tradingrequestcommon->getblackoutperiod($uid,$usergroup);
-//                        $upsitrading = $this->tradingrequestcommon->getupsitradingblock($uid,$usergroup);
-//                        if(count($upsitrading)>0)
-//                        {
-//                            $flag = 0;
-//                            $data = array("logged" => false,'message' => 'Your trading window has been closed because you have been added to the UPSI recipeint list','type'=>'');
-//                            $this->response->setJsonContent($data);
-//                            $this->response->send();
-//                            exit;
-//                        }
+                        $upsitrading = $this->tradingrequestcommon->getupsitradingblock($uid,$usergroup);
+                        if(count($upsitrading)>0)
+                        {
+                            $flag = 0;
+                            $data = array("logged" => false,'message' => 'Your trading window has been closed because you have been added to the UPSI recipeint list','type'=>'');
+                            $this->response->setJsonContent($data);
+                            $this->response->send();
+                            exit;
+                        }
                         for($i=0;$i<sizeof($getresult);$i++)
                         {
                             if(!empty($getresult[$i]))
@@ -295,7 +429,9 @@ class TradingrequestController extends ControllerBase
 
                     if($flag == 1)
                     {
-                        $result = $this->tradingrequestcommon->createrequest($uid,$usergroup,$alldata,$send_status);
+                        
+                        $result = $this->tradingrequestcommon->createrequest($uid,$usergroup,$alldata,$send_status,$pdfpath);
+                        //print_r($result);exit;
                         if($result['status']==true)
                         {
                             $data = array("logged" => true,'message' =>$msg);
@@ -959,28 +1095,26 @@ class TradingrequestController extends ControllerBase
                 }
                 else
                 { 
+                    $data=$this->request->getPost();
                     $data['exceptinappr']=$exceptinappr;
+                    $reqid=$this->request->getPost('reqid','trim');  
+                    $data['typetrans']=$this->request->getPost('transtype','trim'); 
                     
-                    /* --------- Start FileUpload --------- */
-                    $file_name = $_FILES['fileToUpload']['name'];
-                    //echo $file_name;exit;
-                    $file_tmp = $_FILES['fileToUpload']['tmp_name'];
-                    $file_size = $_FILES['fileToUpload']['size'];
-                    $file_type = $_FILES['fileToUpload']['type'];
-                    $filename = pathinfo($_FILES['fileToUpload']['name'], PATHINFO_FILENAME);
-                    //echo $filename; exit;
-                    $file_ext = $this->validationcommon->getfileext($file_name);
-                    
-                    $upload_path = $this->cmpmodule."/tradingrequest/";  
-                    
-                    $large_imp_name = $filename.'-'.$uid.'-'.$time;
-                    //$large_imp_name = strtolower($large_imp_name);
-                    $target_file = $upload_path.$large_imp_name.".".$file_ext;
-                    /* --------- End FileUpload --------- */
-                    
-                    $result = @move_uploaded_file($file_tmp, $target_file);
-                    //echo $result;exit;
-                    
+                    $upload_path = $this->cmpmodule."/tradingrequest/"; 
+                    // print_r($upload_path);exit; 
+                    if(empty($_FILES["fileToUpload"]["name"]))
+                    {
+                         $target_file ='';
+                         $file='';  
+                         $result =true;
+                    }
+                    else
+                    {
+                        $target_file =  $upload_path.basename($_FILES["fileToUpload"]["name"]);
+                        $file=$_FILES['fileToUpload']['name'];    
+                        $result = move_uploaded_file($_FILES['fileToUpload']['tmp_name'],$target_file.$file);
+                        // print_r($result);exit;
+                    }
                     if ($result) 
                     {
                         $resp=$this->tradingrequestcommon->uploadtradingfile($uid,$usergroup,$reqid,$target_file,$data,$typeofbutton);
@@ -1284,6 +1418,296 @@ class TradingrequestController extends ControllerBase
             }
           }
      }
+
+
+    public function getfilecontentAction()
+    {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $uid.'*'.$user_group_id; exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $formtype = $this->request->getPost("formtype");
+
+                if($formtype == "form1")
+                {
+                    $pdf_content = file_get_contents("declaration_form/preclearance.html");
+                    //$pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','weaver','weaver');
+                }
+                else if($formtype == "form2")
+                {
+                     
+                    $pdf_content = file_get_contents("declaration_form/weaverform.html");
+                    //$pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','preclerance','preclerance');
+                }
+               
+               
+                
+                if(!empty($pdf_content))
+                {
+                    $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdf_content"=> $pdf_content);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" =>false,"message" => "PDF Not Generated");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+    
+    public function savecontratrdexceptnAction()
+    {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $usergroup = $this->session->loginauthspuserfront['user_group_id'];
+        $time = time();
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {   
+                $date=date('d-m-Y');
+                $alldata= $this->request->getPost();
+                //print_R($alldata);exit;
+                $approverid = $this->request->getPost('approverid','trim');
+                $sectype = $this->request->getPost('sectype','trim');
+                $idofcmp = $this->request->getPost('idofcmp','trim');
+                $nameofcmp  = $this->request->getPost('nameofcmp','trim');
+                $noofshare = $this->request->getPost('noofshare','trim');
+                $typeoftrans  = $this->request->getPost('typeoftrans','trim');
+                $typeofrequest = $this->request->getPost('typeofrequest','trim');
+                $selrelative = $this->request->getPost('selrelative','trim');
+                $reqname = $this->request->getPost('reqname','trim');
+                $typeofsave = $this->request->getPost('typeofsave','trim');
+                
+                /*----additional questions*/
+                $reasonoftrans = $this->request->getPost('reasonoftrans','trim');
+                $otherreason = $this->request->getPost('otherreason','trim');
+                $lasttransdate = $this->request->getPost('lasttransdate','trim');
+                $noofshareoftrans = $this->request->getPost('noofshareoftrans','trim');
+                $form2place = $this->request->getPost('form2place','trim');
+                //$path = $this->request->getPost('link','trim');
+                //print_r($path);exit;
+                $flag = 1;
+//                if($typeofrequest==3)
+//                {
+//                	   $uid =$this->request->getPost('dpuserid','trim');
+//                	   $usergroup=$this->request->getPost('dpusergroup','trim');
+//                }
+                // print_r($usergroup);exit;
+                $checkdemat = $this->tradingrequestcommon->checkdematacc($uid,$usergroup,$selrelative);
+              
+                //print_r($checkdemat);exit;
+                if(empty($approverid))
+                {
+                    $data = array("logged" => false,'message' => 'You Do Not Have Approval user To Sending Request Please  Contact To Admin User');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if(empty($checkdemat))
+                {
+                    $data = array("logged" => false,'message' => 'Please Update Your Demat Account Number');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if($typeofrequest==2 && empty($selrelative))
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Atleast One Relative');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if(empty($sectype))
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Security Type');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if(empty($idofcmp))
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Valid Company');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if(empty($nameofcmp))
+                {
+                    $data = array("logged" => false,'message' => 'Name Of Comapny Can Not Be Blank');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if(empty($noofshare))
+                {
+                    $data = array("logged" => false,'message' => 'Please Insert Total No Of Shares');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if(empty($typeoftrans)) 
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Type Of transaction');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if($reasonoftrans == 4 && empty($otherreason)) 
+                {
+                    $data = array("logged" => false,'message' => 'Please specify any other reason');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if(empty($reasonoftrans)) 
+                {
+                    $data = array("logged" => false,'message' => 'Please select reason');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if(empty($lasttransdate)) 
+                {
+                    $data = array("logged" => false,'message' => 'Please select Date of last purchase / sale');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if(strtotime($lasttransdate) > strtotime($date)) 
+                {
+                    $data = array("logged" => false,'message' => 'Date of last purchase / sale cannot be in future');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if(empty($noofshareoftrans)) 
+                {
+                    $data = array("logged" => false,'message' => 'Please Enter No. of shares / ADRs purchase/sold');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                
+                else
+                {
+                    $send_status=1;
+                    $msg = "Record Sent Successfully";
+                    $getresult = $this->tradingrequestcommon->getblackoutperiod($uid,$usergroup);
+                    //print_r($getresult);exit;
+                    for($i=0;$i<sizeof($getresult);$i++)
+                    {
+                        if(!empty($getresult[$i]))
+                        {
+                            $dateto = $getresult[$i]['dateto'];
+                            $datefrom = $getresult[$i]['datefrom'];
+                            if(strtotime($date) < strtotime($datefrom) || strtotime($date) > strtotime($dateto))
+                            {
+                                $flag = 1;
+                            }
+                            else
+                            {
+                                $flag = 0;
+                                break;
+                            }
+                        }
+                    }
+                    if($flag == 1)
+                    {
+                        $result = $this->tradingrequestcommon->savecontratrdexceptn($uid,$usergroup,$alldata,$send_status);
+                        if($result['status']==true)
+                        {
+                            $data = array("logged" => true,'message' =>$msg);
+                            $this->response->setJsonContent($data);
+                        }
+                        else
+                        {
+                            $data = array("logged" => false,'message' =>$result['message']);
+                            $this->response->setJsonContent($data);
+                        }
+                    }
+                    else
+                    {
+                        $data = array("logged" => false,'message' => 'Black Out Period');
+                        $this->response->setJsonContent($data);
+                    }
+                }
+
+            }
+            else
+            {
+                exit('No direct script access allowed');
+            }
+            
+            $this->response->send();
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+
+
+     public function fetchdematAction()
+    {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $usergroup = $this->session->loginauthspuserfront['user_group_id'];
+        $time = time();
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {   
+                $date=date('d-m-Y');
+                
+                //print_R($alldata);exit;
+                $typeofreq = $this->request->getPost('typeofreq','trim');
+               
+                if($typeofreq == 1)
+                {
+                     $result = $this->tradingrequestcommon->selfdematacc($uid);
+
+                }
+                else if($typeofreq == 2)
+                {
+                    $result = $this->tradingrequestcommon->relativedematacc($uid);
+                }
+               
+                   
+                if($result)
+                {
+                    $data = array("logged" => true,'message' =>"data fetched",'data'=>$result);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' =>"data not fetched");
+                    $this->response->setJsonContent($data);
+                }
+                   
+                $this->response->send();
+
+            }
+            else
+            {
+                exit('No direct script access allowed');
+            }
+            
+           
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+
+    
 
     
   }

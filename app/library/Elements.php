@@ -66,6 +66,14 @@ class Elements extends Component
         $valget =  preg_match('/[^a-zA-Z0-9-]+$/', $val);
         return $valget;
     }
+
+     public function panvalidation($val)
+    {
+        $valget =  preg_match('/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/', $val);
+        return $valget;
+    }
+
+
     public function pwdcharregex($val)
     {
         $pwdcharter = preg_match('/[^a-zA-Z0-9\@]+/', $val);

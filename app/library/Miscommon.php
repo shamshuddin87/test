@@ -3,7 +3,7 @@ use Phalcon\Mvc\User\Component;
 class Miscommon extends Component
 {
     
-     //############### fetching holding summary start ###############
+    //############### fetching holding summary start ###############
     public function fetchholdingsummary($getuserid,$user_group_id,$userid)
     {
         $connection = $this->dbtrd;
@@ -50,52 +50,65 @@ class Miscommon extends Component
      {
         $connection = $this->dbtrd;
         $compid = explode(',',$compid);
-        $getlist = array();
-        for($i=0;$i<sizeof($compid);$i++)
-        {
-            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
-                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
-                        WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='1' AND pr.`relative_id` = ''";
-            //echo $queryget;exit;
-            try
-            { 
-               $exeget = $connection->query($queryget);
-                $getnum = trim($exeget->numRows());
-                   $buyequity = 0;$sellequity = 0;
-                    
-                if($getnum>0)
-                {
-                    while($row = $exeget->fetch())
-                    {
-                          if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
-                            {
-                               $buyequity =  $buyequity + $row['no_of_share'];
-                            }
-                            else if($row['type_of_transaction']=='2')
-                            {
-                                $sellequity =  $sellequity + $row['no_of_share'];
-                            }
-                            else{ }
-                            $row2 = array('buyequity'=>$buyequity,'sellequity'=>$sellequity);
-                            $finalrw = array_merge($row,$row2);
-                   }
-                     $getlistt[] = array_push($getlist, $finalrw);
-                   
-               }
-                
-               else
-               {
-                    $finalrw = array();
-                   array_push($getlist, $finalrw);
-               }
-            }
-            catch (Exception $e)
-            {
-                $getlist = array();
-            }
-              
-        }
+        $getlist = '';
+//        for($i=0;$i<sizeof($compid);$i++)
+//        {
+//            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
+//                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
+//                        WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='1' AND pr.`relative_id` = ''";
+//            //echo $queryget;exit;
+//            try
+//            { 
+//               $exeget = $connection->query($queryget);
+//                $getnum = trim($exeget->numRows());
+//                   $buyequity = 0;$sellequity = 0;
+//                    
+//                if($getnum>0)
+//                {
+//                    while($row = $exeget->fetch())
+//                    {
+//                          if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
+//                            {
+//                               $buyequity =  $buyequity + $row['no_of_share'];
+//                            }
+//                            else if($row['type_of_transaction']=='2')
+//                            {
+//                                $sellequity =  $sellequity + $row['no_of_share'];
+//                            }
+//                            else{ }
+//                            $row2 = array('buyequity'=>$buyequity,'sellequity'=>$sellequity);
+//                            $finalrw = array_merge($row,$row2);
+//                   }
+//                     $getlistt[] = array_push($getlist, $finalrw);
+//                   
+//               }
+//                
+//               else
+//               {
+//                    $finalrw = array();
+//                   array_push($getlist, $finalrw);
+//               }
+//            }
+//            catch (Exception $e)
+//            {
+//                $getlist = array();
+//            }
+//              
+//        }
         //print_r($getlist);exit;
+        $queryget = "SELECT * FROM `personal_info` 
+                        WHERE `userid` = '".$userid."'";
+        $exeget = $connection->query($queryget);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            $row = $exeget->fetch();
+            $getlist = $row['sharehldng'];
+        }
+        else
+        {
+            $getlist = 0;
+        }
         return $getlist; 
     }
     
@@ -103,53 +116,66 @@ class Miscommon extends Component
      {
         $connection = $this->dbtrd;
         $compid = explode(',',$compid);
-         $getlist = array();
-        for($i=0;$i<sizeof($compid);$i++)
+         $getlist = '';
+//        for($i=0;$i<sizeof($compid);$i++)
+//        {
+//            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
+//                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
+//                        WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='2' AND pr.`relative_id` = ''";
+//            //echo $queryget;exit;
+//            try
+//            { 
+//               $exeget = $connection->query($queryget);
+//                $getnum = trim($exeget->numRows());
+//                   $buyprefer = 0;$sellprefer = 0;
+//                    
+//                if($getnum>0)
+//                {
+//                 
+//                    while($row = $exeget->fetch())
+//                    {
+//
+//                        if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
+//                        {
+//                           $buyprefer =  $buyprefer + $row['no_of_share'];
+//                        }
+//                        else if($row['type_of_transaction']=='2')
+//                        {
+//                            $sellprefer =  $sellprefer + $row['no_of_share'];
+//                        }
+//                        else{ }
+//                        $row2 = array('buyprefer'=>$buyprefer,'sellprefer'=>$sellprefer);
+//                        $finalrw = array_merge($row,$row2);
+//                         
+//                    }
+//                     $getlistt[] = array_push($getlist, $finalrw);
+//                   
+//               }
+//                
+//               else
+//               {
+//                    $finalrw = array();
+//                   array_push($getlist, $finalrw);
+//               }
+//            }
+//            catch (Exception $e)
+//            {
+//                $getlist = array();
+//            }
+//              
+//        }
+         $queryget = "SELECT * FROM `personal_info` 
+                        WHERE `userid` = '".$userid."'";
+        $exeget = $connection->query($queryget);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
         {
-            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
-                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
-                        WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='2' AND pr.`relative_id` = ''";
-            //echo $queryget;exit;
-            try
-            { 
-               $exeget = $connection->query($queryget);
-                $getnum = trim($exeget->numRows());
-                   $buyprefer = 0;$sellprefer = 0;
-                    
-                if($getnum>0)
-                {
-                 
-                    while($row = $exeget->fetch())
-                    {
-
-                        if( $row['type_of_transaction']=='1' || $row['type_of_transaction']=='3' || $row['type_of_transaction']=='4' )
-                        {
-                           $buyprefer =  $buyprefer + $row['no_of_share'];
-                        }
-                        else if($row['type_of_transaction']=='2')
-                        {
-                            $sellprefer =  $sellprefer + $row['no_of_share'];
-                        }
-                        else{ }
-                        $row2 = array('buyprefer'=>$buyprefer,'sellprefer'=>$sellprefer);
-                        $finalrw = array_merge($row,$row2);
-                         
-                    }
-                     $getlistt[] = array_push($getlist, $finalrw);
-                   
-               }
-                
-               else
-               {
-                    $finalrw = array();
-                   array_push($getlist, $finalrw);
-               }
-            }
-            catch (Exception $e)
-            {
-                $getlist = array();
-            }
-              
+            $row = $exeget->fetch();
+            $getlist = $row['adrshldng'];
+        }
+        else
+        {
+            $getlist = 0;
         }
         return $getlist; 
     }
@@ -662,8 +688,8 @@ class Miscommon extends Component
             LEFT JOIN `type_of_transaction` trans ON trans.`id` = pr.`type_of_transaction`
             LEFT JOIN `trading_days` trddays ON trddays.`user_id` = memb.`user_id`
             LEFT JOIN `listedcmpmodule` lst ON lst.`id`=pr.`id_of_company`
-            WHERE ts.`user_id` IN (".$grpusrs['ulstring'].") AND ts.`trading_status`=1 AND (ts.`excep_approv`=1) ".$query; 
-             // echo $queryget;  exit;
+            WHERE ts.`user_id` IN (".$grpusrs['ulstring'].") AND ts.`trading_status`=1 AND (ts.`excep_approv`=1 OR pr.`sent_contraexeaprvl`=1) ".$query; 
+            //echo $queryget;  exit;
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
 
@@ -1123,7 +1149,7 @@ class Miscommon extends Component
         return $getlist;
     }
 
-     public function fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
+    public function fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
     {
         $connection = $this->dbtrd;
         $getlist = array();
@@ -1135,6 +1161,7 @@ class Miscommon extends Component
                     FROM `it_memberlist` memb
                     LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
                     WHERE memb.wr_id IN (".$grpusrs['ulstring'].") AND (anualdecl.annualyear='".$annualyr."') AND anualdecl.send_status= 1";
+                    //echo $queryget;exit;
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
 
@@ -1175,7 +1202,7 @@ class Miscommon extends Component
             {
                 $getlist = array();
             }
-                //print_r($getlist);exit;
+            //print_r($getlist);exit;
             
         }
         catch (Exception $e)
@@ -1187,17 +1214,17 @@ class Miscommon extends Component
         return $getlist;
     }
 
-      public function fetchallannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
+    public function fetchallannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
     {
         $connection = $this->dbtrd;
         $getlist = array();
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryget = "SELECT anualdecl.annualyear,memb.`fullname`,anualdecl.sent_date,anualdecl.pdfpath 
+            $queryget = "SELECT anualdecl.`annualyear`,memb.`fullname`,anualdecl.`sent_date`,anualdecl.`pdfpath` 
             FROM `it_memberlist` memb 
-            LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id` = anualdecl.user_id 
-            WHERE memb.wr_id IN (".$grpusrs['ulstring'].")  AND (anualdecl.annualyear='".$annualyr."' OR anualdecl.annualyear IS NULL OR anualdecl.`send_status`=1)".$query;
+            LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id` = anualdecl.`user_id` 
+            WHERE memb.`wr_id` IN (".$grpusrs['ulstring'].")  AND (anualdecl.annualyear='".$annualyr."' OR anualdecl.annualyear IS NULL OR anualdecl.`send_status`=1)".$query;
             //echo $queryget;  exit;
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
@@ -1225,7 +1252,7 @@ class Miscommon extends Component
     }
 
 
-      public function fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
+    public function fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$query)
     {
         $connection = $this->dbtrd;
         $getlist = array();
@@ -1243,9 +1270,9 @@ class Miscommon extends Component
                     $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
                     FROM `it_memberlist` memb
                     LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
-                    WHERE memb.wr_id = '".$row['wr_id']."' AND (anualdecl.annualyear='".$annualyr."' OR anualdecl.annualyear IS NULL )".$query;
+                    WHERE memb.wr_id = '".$row['wr_id']."'".$query;
                     ;
-                     //echo $queryanual;
+                    // echo $queryanual;
                     $exeanual = $connection->query($queryanual);
                     $getnumanual = trim($exeanual->numRows());
                     if($getnumanual>0)
@@ -1376,12 +1403,16 @@ class Miscommon extends Component
                 $myhtml1.="<td>".$j."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['name']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['pan']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['legal_identifier']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['legal_identification_no']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['aadhar']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['dob']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['address']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['sex']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['education']."</td>";
                 $myhtml1.="<td>".$getuserinfo[$i]['institute']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['sharehldng']."</td>";
+                $myhtml1.="<td>".$getuserinfo[$i]['adrshldng']."</td>";
                 $myhtml1.="</tr>";
             }
         }
@@ -1400,12 +1431,16 @@ class Miscommon extends Component
                 $myhtml2.="<td>".$j."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['name']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['pan']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['legal_identifier']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['legal_identification_no']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['aadhar']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['dob']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['relationshipname']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['address']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['sex']."</td>";
                 $myhtml2.="<td>".$relativeinfo[$i]['education']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['sharehldng']."</td>";
+                $myhtml2.="<td>".$relativeinfo[$i]['adrshldng']."</td>";
                 $myhtml2.="</tr>";
             }
         }
@@ -1450,7 +1485,7 @@ class Miscommon extends Component
         }
         else
         {
-            $myhtml4.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
+            $myhtml4.='<tr><td colspan="4" style="text-align: center;">Data Not Found</td>';
         }
 
         if(sizeof($mfrdata) > 0)
@@ -1534,12 +1569,16 @@ class Miscommon extends Component
                 <th>Sr No</th>
                 <th>Name</th> 
                 <th>Pan</th>
+                <th>Any other legal identifier</th>
+                <th>Any other legal identification number</th>
                 <th>Aadhar</th>
                 <th>Dob</th>  
                 <th>Address</th>  
                 <th>Gender</th>    
                 <th>Education</th>                                                
                 <th>Institution</th>
+                <th>Holdings In Shares</th>
+                <th>Holdings In ADRs</th>
             </tr>
          ".$myhtml1."
          </table>
@@ -1551,12 +1590,16 @@ class Miscommon extends Component
                 <th>Sr No</th>
                 <th>Name</th> 
                 <th>Pan</th>
+                <th>Any other legal identifier</th>
+                <th>Any other legal identification number</th>
                 <th>Aadhar</th>
                 <th>Dob</th> 
                 <th>Relationship</th> 
                 <th>Address</th>  
                 <th>Gender</th>    
                 <th>Education</th>   
+                <th>Holdings In Shares</th>   
+                <th>Holdings In ADRs</th>   
             </tr>
          ".$myhtml2."
          </table>
@@ -1633,6 +1676,168 @@ class Miscommon extends Component
       </html>";
        // print_r($html); exit;
        return $html;
+    }
+
+
+    public function fetchallcontdisclsr($getuserid,$user_group_id,$query)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        try
+         {
+            $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+            $queryget = "SELECT  anualdecl.`date_added`,anualdecl.`annualyear`,memb.`fullname`,anualdecl.`sent_date`,anualdecl.`pdfpath` 
+            FROM `continuous_initial_declaration` anualdecl 
+            LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = anualdecl.`user_id`
+            WHERE memb.`wr_id` IN (".$grpusrs['ulstring'].")".$query;
+            //echo "this";echo $queryget;  exit;
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+            //echo "this";echo $getnum;  exit;
+            if($getnum>0)
+            {
+                //echo 'IN IF'; //exit;
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;
+                }
+                //echo '<pre>';print_r($getlist);exit;
+                
+            }else{
+                //echo 'IN else'; //exit;
+                $getlist = array();
+            }
+            //exit;
+            //echo '<pre>';print_r($getlist);exit;
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
+
+
+    public function fetchpendigcontdisclsr($getuserid,$user_group_id,$query)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $userid = array();
+        try
+         {
+            $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+            // $queryget = "SELECT memb.*
+            //         FROM `it_memberlist` memb
+            //         LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
+            //         WHERE memb.wr_id IN (".$grpusrs['ulstring'].") AND (anualdecl.annualyear='".$annualyr."') AND anualdecl.send_status= 1";
+            //         //echo $queryget;exit;
+            // $exeget = $connection->query($queryget);
+            // $getnum = trim($exeget->numRows());
+
+            // if($getnum>0)
+            // {
+            //     while($row = $exeget->fetch())
+            //     {
+            //         $userid[] = $row['wr_id'];
+            //     }
+            // }
+            // $grpusers = explode(',',$grpusrs['ulstring']);
+            // if(!empty($userid))
+            // {
+            //     $pendusrs = array_diff($grpusers, $userid);
+            //     $pendingusers = implode(',',$pendusrs);
+            // }
+            // else
+            // {
+            //     $pendingusers = $grpusrs['ulstring'];
+            // }
+            
+            $queryanual = "SELECT anualdecl.`date_added`,anualdecl.`annualyear`,memb.`fullname`,anualdecl.`sent_date`,anualdecl.`pdfpath`,anualdecl.`send_status`
+            FROM `continuous_initial_declaration` anualdecl 
+            LEFT JOIN `it_memberlist` memb ON memb.`wr_id`=anualdecl.`user_id`
+            WHERE memb.`wr_id` IN(".$grpusrs['ulstring'].") AND anualdecl.`send_status`= 0".$query;
+            ;
+            //echo $queryanual;exit;
+            $exeanual = $connection->query($queryanual);
+            $getnumanual = trim($exeanual->numRows());
+            if($getnumanual>0)
+            {
+                while($rowanual = $exeanual->fetch())
+                {
+                    $getlist[]=$rowanual;
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }
+            //print_r($getlist);exit;
+            
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
+
+
+    public function fetchmiscontdisclsr($getuserid,$user_group_id,$query)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        try
+         {
+            $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+            // $queryget = "SELECT * FROM `it_memberlist` WHERE `status`='1' AND wr_id IN (".$grpusrs['ulstring'].")";
+            // $exeget = $connection->query($queryget);
+            // $getnum = trim($exeget->numRows());
+
+            // if($getnum>0)
+            // {
+            //     while($row = $exeget->fetch())
+            //     {
+                    $queryanual = "SELECT anualdecl.`date_added`,anualdecl.`annualyear`,memb.`fullname`,anualdecl.`sent_date`,anualdecl.`pdfpath`,anualdecl.`send_status`
+                    FROM `continuous_initial_declaration` anualdecl 
+                    LEFT JOIN `it_memberlist` memb ON memb.`wr_id`=anualdecl.`user_id`
+                    WHERE memb.`wr_id` IN (".$grpusrs['ulstring'].")".$query;
+                    ;
+                    //echo $queryanual;exit;
+                    $exeanual = $connection->query($queryanual);
+                    $getnumanual = trim($exeanual->numRows());
+                    if($getnumanual>0)
+                    {
+                        while($rowanual = $exeanual->fetch())
+                        {
+                            // if($rowanual['annualyear']==$annualyr)
+                            // {
+                                $getlist[]=$rowanual;
+                            // }
+                            // else
+                            // {
+                            //     $rowanual['annualyear']='';
+                            //     $rowanual['pdfpath']='';
+                            //     $rowanual['sent_date']='';
+                            //     $getlist[]=$rowanual;
+                            // }
+                        }
+                    }
+                // }
+                //echo '<pre>';print_r($getlist);exit;
+                
+            // }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
     }
     
     

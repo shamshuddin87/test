@@ -67,7 +67,8 @@
           <th>Created Date</th>
           <th>File</th>
           <th>Audit Trail</th>
-          <th>Action <input type="checkbox" class="getallchkbox" name="getallchkbox" chkval="ALL" value="ALL" size="30px;"></th>
+<!--          <th>Reason</th>-->
+          <th><input type="checkbox" class="getallchkbox" name="getallchkbox" chkval="ALL" value="ALL" size="30px;"></th>
         </tr>
       </thead>
      <tbody class="viewreqtable" appendrow='1'></tbody>
@@ -219,6 +220,10 @@
                         <td><span class="reqstupdteddte"></span></td>
                     </tr>
                     <tr>
+                        <td>Application Copy :</td>
+                        <td><span class="pdfpath"></span></td>
+                    </tr>
+                    <tr>
                         <td>Sent for Approval On :</td>
                         <td><span class="reqstsendapprv"></span></td>
                     </tr>
@@ -245,5 +250,22 @@
 
 
       </div>
+    </div>
+</div>
+
+<div id="showexereason" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                    &times;</button>
+            <h4 class="modal-title">Reason
+                </h4>
+            </div>
+            <textarea rows="4" cols="50" id="exereason" readonly>
+            </textarea>
+
+        </div>
     </div>
 </div>

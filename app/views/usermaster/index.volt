@@ -147,6 +147,34 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                 </div>
                             </div>
                         </section>
+
+                        <section class="col col-md-4">
+                            <label class="control-label">L+1 First Name</label>
+                            <div class="input">
+                                <input type="text" id="l1firstname" name="l1firstname" class="form_fields form-control col-md-7 col-xs-12" onkeypress="return isAlphaNumeric_space(event,this);">
+                            </div>
+                        </section> 
+
+                        <section class="col col-md-4">
+                            <label class="control-label">L+1 Last Name</label>
+                            <div class="input">
+                                <input type="text" id="l1lastname" name="l1lastname" class="form_fields form-control col-md-7 col-xs-12" onkeypress="return isAlphaNumeric_space(event,this);">
+                            </div>
+                        </section>    
+
+                        <section class="col col-md-4">
+                            <label class="control-label">L+1 Email</label>
+                            <div class="input">
+                                <input type="email" id="l1email" name="l1email" class="form_fields form-control col-md-7 col-xs-12">
+                            </div>
+                        </section>                  
+                        
+                        <section class="col col-md-4">
+                            <label class="control-label">L+1 Employee ID</label>
+                            <div class="input">
+                                <input type="text" id="l1empid" name="l1empid" class="form_fields form-control col-md-7 col-xs-12" maxlength="9" pattern="[A-Za-z0-9]{9}" title="Please Enter 9 digit code" onkeypress="return isAlphaNumeric(event,this);">
+                            </div>
+                        </section>
                         
                         <section class="col col-md-4 ">
                             <label class="control-label">Type Of User *</label>
@@ -157,8 +185,8 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                     <option value="14">Approver</option>
                                 </select>
                             </div>
-                        </section>                        
-                        
+                        </section>  
+
                         <div class="clearelement"></div>  
                         <section class="col col-md-4">
                             <label class="control-label">Company Access *</label>
@@ -173,14 +201,18 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                         </section>
 
                         <section class="col col-md-4 col-xs-12">
-                            <div class="mainelem company_product">
+                            <div class="approvernamemain">
+                                <div class="mainelem company_product">
                                 <label class="control-label">Approver Name*</label>
                                 <input type="hidden" id="approvernm" name="approvernm" class="approvernm" value="">
                                 <div class="header-search-wrapper  floatnone find_box_company">
                                     <i class="fa fa-search"></i>
                                     <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft" placeholder="Select Approver" id="search-box" autocomplete="off"/>
-                                    <div id="live-search-header-wrapper" class="">
+                                    <div class="approvernameoption">
+                                        <div id="live-search-header-wrapper" class="">
                                         <ul class="live-searchul"></ul>
+                                    </div>
+                                    <div id="appendapp" style="text-align: left;"></div>
                                     </div>
                                     <div class="clearelement"></div>
                                     <div class="mainelementch">
@@ -196,7 +228,8 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                     </div>
                                 </div>
                             </div>
-                            <div id="appendapp" style="text-align: left;"></div>
+                            
+                            </div>
                         </section>
 
                         <section class="col col-md-4 ">
@@ -212,7 +245,17 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                             </div>
                         </section>
 
-                        
+                        <section class="col col-md-4">
+                            <label class="control-label">User Role*</label>
+                            <div class="input">
+                                <select id="roleid" name="roleid" class="form_fields form-control col-md-7 col-xs-12" required>
+                                <option value="">Select User Role</option>
+                                    <?php foreach ($rolelist as $key => $value) { ?> 
+                                    <option value="<?php echo $value['role_id'];?>"><?php echo $value['role_name'];?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </section>
                         
                         <!--<section class="col col-md-4 ">
                             <label class="control-label">Reminder Days *</label>
@@ -316,6 +359,29 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                             <input type="text" id="designation" name="designation" class="form_fields form-control col-md-7 col-xs-12" required>
                         </div>
                     </div>                    
+                    
+                    <div class="control-label form-group col-md-6">
+                        <span class="floatleft"><label>L+1 First Name</label></span>
+                        <input type="text" class="form-control" id="l1firstname" name="l1firstname" onkeypress="return isAlphaNumeric_space(event,this);">
+                    </div>
+
+                    <div class="control-label form-group col-md-6">
+                        <span class="floatleft"><label>L+1 Last Name</label></span>
+                        <input type="text" class="form-control" id="l1lastname" name="l1lastname" onkeypress="return isAlphaNumeric_space(event,this);">
+                    </div>
+
+                    <div class="control-label form-group col-md-6">
+                        <span class="floatleft"><label>L+1 Email</label></span>
+                            <input type="email" class="form-control" id="l1email" name="l1email">
+                    </div>
+
+                    <div class="control-label form-group col-md-6">
+                        <span class="floatleft"><label>L+1 Employee ID</label></span>
+                        <input type="text" class="form-control" id="l1empid" name="l1empid" maxlength="9" pattern="[A-Za-z0-9]{9}" title="Please Enter 9 digit code" onkeypress="return isAlphaNumeric(event,this);">
+                    </div>
+                   
+                    <div class="clearelement"></div>
+
                     <div class="control-label form-group col-md-12 typu">
                         <span class="floatleft"><label>Type Of User *</label></span>
                         <div class="input">
@@ -326,8 +392,6 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                             </select>
                         </div>
                     </div>
-                   
-                    <div class="clearelement"></div>
                     
                     <div class="control-label form-group col-lg-6 col-xs-12">
                         <span class="floatleft"><label>Company Access *</label></span>
@@ -361,6 +425,16 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                         </div>
                         <div id="myeditlist"></div>
                         <div id="appapnd" style="text-align: left;"></div>
+                    </div>
+
+                    <div class="control-label form-group col-md-6">
+                        <span class="floatleft"><label>User Role*</label></span>
+                        <select id="roleid" name="roleid" class="form_fields form-control col-md-7 col-xs-12" required>
+                            <option value="">Select User Role</option>
+                                <?php foreach ($rolelist as $key => $value) { ?> 
+                                    <option value="<?php echo $value['role_id'];?>"><?php echo $value['role_name'];?></option>
+                                <?php } ?>
+                        </select>
                     </div>
                     
                     <!--<div class="control-label form-group col-lg-6">

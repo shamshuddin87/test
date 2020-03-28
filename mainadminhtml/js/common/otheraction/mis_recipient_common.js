@@ -46,35 +46,45 @@ function getdataonload()
             
         for(var i = 0; i < response.resdta.length; i++) 
         {
-//            //------------------------- Table Fields Insertion START ------------------------
+            var addedondte = '';
+            var addedon = response.resdta[i].date_added;
+            if(addedon)
+            {
+                addedon = addedon.split(/[- :]/);
+                addedondte = addedon[2] + '-' + addedon[1] + '-' + addedon[0] + ' ' + addedon[3] + ':' + addedon[4]+ ':' + addedon[5];
+            }
+                
+            //------------------------- Table Fields Insertion START ------------------------
             var mobileno = response.resdta[i].mobileno?response.resdta[i].mobileno:''
             var email = response.resdta[i].email?response.resdta[i].email:''
             addhtmlnxt += '<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';
-            addhtmlnxt += '<td width="25%">'+response.resdta[i].fullname+'</td>';
-            addhtmlnxt += '<td width="25%">'+response.resdta[i].categoryname+'</td>';
-            addhtmlnxt += '<td width="25%">'+response.resdta[i].nameofentity+'</td>';
-            addhtmlnxt += '<td width="25%">'+response.resdta[i].name+'</td>';
-            addhtmlnxt += '<td width="25%">'+response.resdta[i].identityno+'</td>';
-            addhtmlnxt += '<td width="25%">'+response.resdta[i].phoneno+'</td>';
-            addhtmlnxt += '<td width="25%">'+mobileno+'</td>';
-            addhtmlnxt += '<td width="25%">'+response.resdta[i].designation+'</td>';
-            addhtmlnxt += '<td width="25%">'+email+'</td>';
+            
+            addhtmlnxt += '<td width="8%">'+response.resdta[i].categoryname+'</td>';
+            addhtmlnxt += '<td width="8%">'+response.resdta[i].nameofentity+'</td>';
+            addhtmlnxt += '<td width="8%">'+response.resdta[i].name+'</td>';
+            addhtmlnxt += '<td width="8%">'+response.resdta[i].identityno+'</td>';
+            addhtmlnxt += '<td width="8%">'+response.resdta[i].phoneno+'</td>';
+            addhtmlnxt += '<td width="8%">'+mobileno+'</td>';
+            addhtmlnxt += '<td width="8%">'+response.resdta[i].designation+'</td>';
+            addhtmlnxt += '<td width="8%">'+email+'</td>';
             if(response.resdta[i].filepath)
             {
-                addhtmlnxt += '<td width="25%"><a href="'+response.resdta[i].filepath+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';
+                addhtmlnxt += '<td width="8%"><a href="'+response.resdta[i].filepath+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';
             }
             else
             {
-                addhtmlnxt += '<td width="25%"></td>';
+                addhtmlnxt += '<td width="8%"></td>';
             }
             if(response.resdta[i].agreemntfile)
             {
-                addhtmlnxt += '<td width="25%"><a href="'+response.resdta[i].agreemntfile+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';
+                addhtmlnxt += '<td width="8%"><a href="'+response.resdta[i].agreemntfile+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';
             }
             else
             {
-                addhtmlnxt += '<td width="25%"></td>';
+                addhtmlnxt += '<td width="8%"></td>';
             }
+            addhtmlnxt += '<td width="8%">'+addedondte+'</td>';
+            addhtmlnxt += '<td width="8%">'+response.resdta[i].fullname+'</td>';
              
             addhtmlnxt += '</tr>';                        
             //------------------------ Table Fields Insertion END ------------------------

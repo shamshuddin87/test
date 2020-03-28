@@ -15,6 +15,17 @@
    website('.relativesform').show();
    website('.personaldetails').hide();
  });
+  
+  //show demat when clicked yes
+ let yeschecked = website("input[name='pastemp']:checked").val();
+ if(yeschecked == 1)
+ {
+      website("#showdemat").css('display','block');
+ }
+ else
+ {
+    website("#showdemat").css('display','none');
+ }
 
 
 datepicker();
@@ -42,7 +53,7 @@ var no=website('#noofacc').val();
 if(no<=10){
 var myhtml='<table class="table table-inverse" id="datableabhi"><tr><th>Account No </th><th>Depository Participient </th><th>Clearing House</th></tr>';
 for(var i=1;i<=no;i++){
-  myhtml+='<tr><td><input type="text" class="form-control  acsub" id="field_'+i+'" placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}"></td><td><input type="text" class="form-control  deppoparticipient" id="field2_'+i+'" placeholder="Depository Participient '+i+'"></td><td><input type="text" class="form-control  clearinghouse" id="field3_'+i+'" placeholder="Clearing House'+i+'"></td></tr>';
+  myhtml+='<tr><td style = "position:relative;"><input type="text" class="form-control acsub showhovertext3'+i+'" id="field_'+i+'" placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"> <span id= "showhovertext3'+i+'" class ="cssclass1 " style="display: none;z-index: 2;">  <ol type="a" style="padding: 5px 5px 5px 15px;"> <li>Demat account,  mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>   <li>In case of physical shares held in Dr. Reddy’s, please mention the Folio No.: (For eg. P12345)</li>  <li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held  </li>  </ol> </span></td><td><input type="text" class="form-control deppoparticipient  id="field2_'+i+'" placeholder="Depository Participient '+i+'" ></td><td><input type="text" class="form-control  clearinghouse" id="field3_'+i+'" placeholder="Clearing House'+i+'"></td></tr>';
 }
 myhtml+='</table>';
 myhtml+='<button type="button" class="btn btn-primary" id="subdemat">Submit</button>';
@@ -69,6 +80,7 @@ website("body").on("click","#subdemat",function(e) {
     { 
         var accno=website('#field_'+i).val();
         var dp=website('#field2_'+i).val();
+        //alert('#field2_'+i);return;
         var clhouse=website('#field3_'+i).val();
         var obj=
         {
@@ -149,6 +161,7 @@ function getuseraccno(){
              {
                 var htmlelements='';
                 var j=1;
+                website("#showdemat").css("display","block");
                  for(var i=0;i<response.data.length;i++)
                  {
                       //console.log(response.data[i].accountno);return false; 
@@ -315,7 +328,7 @@ if(relinfo!='')
   
    for(var i=1;i<=no;i++)
    {
-       myhtml+='<tr><td><input type="text" class="form-control relac" id="relfield_'+i+'"  placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}"></td><td><input type="text" class="form-control deppoparticipient" id="relfield2_'+i+'" placeholder="Depository Participient '+i+'"></td><td><input type="text" class="form-control clearinghouse" id="relfield3_'+i+'" placeholder="Clearing House'+i+'"></td></tr>';
+       myhtml+='<tr><td style = "position:relative;"><input type="text" class="form-control relac showhovertext4'+i+'" id="relfield_'+i+'"  placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"><span id= "showhovertext4'+i+'" class ="cssclass1 " style="display: none;z-index: 2;">  <ol type="a" style="padding: 5px 5px 5px 15px;"> <li>Demat account,  mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>   <li>In case of physical shares held in Dr. Reddy’s, please mention the Folio No.: (For eg. P12345)</li>  <li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held  </li>  </ol> </span></td><td><input type="text" class="form-control deppoparticipient showhovertext4'+i+'" id="relfield2_'+i+'" placeholder="Depository Participient '+i+'"  onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"></td><td><input type="text" class="form-control clearinghouse" id="relfield3_'+i+'" placeholder="Clearing House'+i+'"></td></tr>';
     }
        myhtml+='</table>'
        myhtml+='<section class=""><button type="button" class="btn btn-primary" id="subreldemat">Submit</button>';
@@ -662,3 +675,104 @@ website("body").on("click","#subreldemat",function(e){
  }
 
 });
+
+
+
+ website('body').on('click','.dematup',function(e){
+
+   var dematup=website(this).val();
+   // alert(dematup)
+   website.ajax({
+        url:'portfolio/zerodematacc',
+        data:{dematup:dematup},
+        method:'POST',
+        //contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, Cross domain checking
+        beforeSend: function()
+        {     },
+        uploadProgress: function(event, position, total, percentComplete)
+        {   },
+        success: function(response, textStatus, jqXHR)
+         {
+              //console.log(response);
+              website('#alertcommon #allalertmsg').html(response.message);
+                website('#alertcommon').modal('show');
+         },
+        complete: function(response)
+        {   },
+        error: function(jqXHR, textStatus, errorThrown)
+        {   }
+   });
+});
+
+
+function showsection(){
+
+
+var section = document.getElementById("showdemat");
+
+
+  if (section.style.display === "none") {
+    section.style.display = "block";
+  } 
+
+}
+
+function hidesection(){
+
+var section = document.getElementById("showdemat");
+
+  if (section.style.display === "block") 
+  {
+    section.style.display = "none";
+  } 
+}
+
+function boxshow(name)
+{
+
+ var classname = name.split(" ");
+ var length = classname.length;
+ 
+ if(length == 5)
+ {
+  website("#"+classname[4]).css("display","block");
+
+ }
+ else if(length == 3)
+ {
+  
+
+   website("#"+classname[2]).css("display","inline-block");
+
+ }
+
+
+ 
+  
+ 
+ 
+}
+
+function boxhide(name)
+{
+
+ var classname = name.split(" ");
+ var length = classname.length;
+ 
+ if(length == 5)
+ {
+  website("#"+classname[4]).css("display","none");
+
+ }
+ else if(length == 3)
+ {
+  
+
+   website("#"+classname[2]).css("display","none");
+ }
+}

@@ -1,7 +1,11 @@
 
-website('.relativesform').hide();website('.personal').click(function(e){e.preventDefault();website(this).addClass('active');website('.relatives').removeClass('active');website('.personaldetails').show();website('.relativesform').hide();});website('.relatives').click(function(e){e.preventDefault();website(this).addClass('active');website('.personal').removeClass('active');website('.relativesform').show();website('.personaldetails').hide();});datepicker();function datepicker(){website('.bootdatepick').datetimepicker({weekStart:1,todayBtn:0,autoclose:1,todayHighlight:0,startView:2,minView:2,forceParse:0,format:"dd-mm-yyyy"}).on('change',function(e,date)
+website('.relativesform').hide();website('.personal').click(function(e){e.preventDefault();website(this).addClass('active');website('.relatives').removeClass('active');website('.personaldetails').show();website('.relativesform').hide();});website('.relatives').click(function(e){e.preventDefault();website(this).addClass('active');website('.personal').removeClass('active');website('.relativesform').show();website('.personaldetails').hide();});let yeschecked=website("input[name='pastemp']:checked").val();if(yeschecked==1)
+{website("#showdemat").css('display','block');}
+else
+{website("#showdemat").css('display','none');}
+datepicker();function datepicker(){website('.bootdatepick').datetimepicker({weekStart:1,todayBtn:0,autoclose:1,todayHighlight:0,startView:2,minView:2,forceParse:0,format:"dd-mm-yyyy"}).on('change',function(e,date)
 {var getdate=website(this).val();var getid=website(this).closest('form').attr('id');});}
-website("body").on("click","#noofdmat",function(e){var no=website('#noofacc').val();if(no<=10){var myhtml='<table class="table table-inverse" id="datableabhi"><tr><th>Account No </th><th>Depository Participient </th><th>Clearing House</th></tr>';for(var i=1;i<=no;i++){myhtml+='<tr><td><input type="text" class="form-control  acsub" id="field_'+i+'" placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}"></td><td><input type="text" class="form-control  deppoparticipient" id="field2_'+i+'" placeholder="Depository Participient '+i+'"></td><td><input type="text" class="form-control  clearinghouse" id="field3_'+i+'" placeholder="Clearing House'+i+'"></td></tr>';}
+website("body").on("click","#noofdmat",function(e){var no=website('#noofacc').val();if(no<=10){var myhtml='<table class="table table-inverse" id="datableabhi"><tr><th>Account No </th><th>Depository Participient </th><th>Clearing House</th></tr>';for(var i=1;i<=no;i++){myhtml+='<tr><td style = "position:relative;"><input type="text" class="form-control acsub showhovertext3'+i+'" id="field_'+i+'" placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"> <span id= "showhovertext3'+i+'" class ="cssclass1 " style="display: none;z-index: 2;">  <ol type="a" style="padding: 5px 5px 5px 15px;"> <li>Demat account,  mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>   <li>In case of physical shares held in Dr. Reddy’s, please mention the Folio No.: (For eg. P12345)</li>  <li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held  </li>  </ol> </span></td><td><input type="text" class="form-control deppoparticipient  id="field2_'+i+'" placeholder="Depository Participient '+i+'" ></td><td><input type="text" class="form-control  clearinghouse" id="field3_'+i+'" placeholder="Clearing House'+i+'"></td></tr>';}
 myhtml+='</table>';myhtml+='<button type="button" class="btn btn-primary" id="subdemat">Submit</button>';website('.appendaccfield').html(myhtml);}
 else{new PNotify({title:'Alert',text:"No Of Accounts Must Be Less Than 10",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}});website("body").on("click","#subdemat",function(e){var len=website('.acsub').length;var mydata=[];for(var i=1;i<=len;i++)
 {var accno=website('#field_'+i).val();var dp=website('#field2_'+i).val();var clhouse=website('#field3_'+i).val();var obj={"accno":accno,"dp":dp,"clhouse":clhouse};mydata.push(obj);}
@@ -15,7 +19,7 @@ else{new PNotify({title:'Alert',text:response.message,type:'university',hide:tru
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{var htmlelements='';var j=1;for(var i=0;i<response.data.length;i++)
+{var htmlelements='';var j=1;website("#showdemat").css("display","block");for(var i=0;i<response.data.length;i++)
 {htmlelements+='<tr>';htmlelements+='<td>'+j+'</td>';htmlelements+='<td>'+response.data[i].accountno+'</td>';htmlelements+='<td>'+response.data[i].depository_participient+'</td>';htmlelements+='<td>'+response.data[i].clearing_house+'</td>';htmlelements+='<td><i class="fa fa-edit accedit" accno="'+response.data[i].accountno+'" rp="'+response.data[i].depository_participient+'" hc="'+response.data[i].clearing_house+'"  acountedit="'+response.data[i].id+'" ></i>'+'<i class="fa fa-trash accdel" acountdel="'+response.data[i].id+'" ></i></td>';htmlelements+='</tr>';j=j+1;}}
 else{htmlelements+='<tr>';htmlelements+='<td colspan="5" style="text-align:center;">Data Not Found</td>';htmlelements+='</tr>';}
 website('.accdetails').html(htmlelements);},complete:function(response)
@@ -39,7 +43,7 @@ else{new PNotify({title:'Alert',text:response.message,type:'university',hide:tru
 {}});})
 website("body").on("click",".relhtml",function(e){var noofacc=website('#reldematno').val();var relinfo=website('#relinfo').val();if(relinfo!='')
 {var no=website('#reldematno').val();if(no<=10){var myhtml=' <table class="table table-inverse" id="datableabhi"><tr><th>Account No </th><th>Depository Participient </th><th>Clearing House</th></tr>';for(var i=1;i<=no;i++)
-{myhtml+='<tr><td><input type="text" class="form-control relac" id="relfield_'+i+'"  placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}"></td><td><input type="text" class="form-control deppoparticipient" id="relfield2_'+i+'" placeholder="Depository Participient '+i+'"></td><td><input type="text" class="form-control clearinghouse" id="relfield3_'+i+'" placeholder="Clearing House'+i+'"></td></tr>';}
+{myhtml+='<tr><td style = "position:relative;"><input type="text" class="form-control relac showhovertext4'+i+'" id="relfield_'+i+'"  placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"><span id= "showhovertext4'+i+'" class ="cssclass1 " style="display: none;z-index: 2;">  <ol type="a" style="padding: 5px 5px 5px 15px;"> <li>Demat account,  mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>   <li>In case of physical shares held in Dr. Reddy’s, please mention the Folio No.: (For eg. P12345)</li>  <li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held  </li>  </ol> </span></td><td><input type="text" class="form-control deppoparticipient showhovertext4'+i+'" id="relfield2_'+i+'" placeholder="Depository Participient '+i+'"  onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"></td><td><input type="text" class="form-control clearinghouse" id="relfield3_'+i+'" placeholder="Clearing House'+i+'"></td></tr>';}
 myhtml+='</table>'
 myhtml+='<section class=""><button type="button" class="btn btn-primary" id="subreldemat">Submit</button>';website('.relfieldapnd').html(myhtml);}
 else{new PNotify({title:'Alert',text:"No Of Accounts Must Be Less Than 10",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}
@@ -87,4 +91,21 @@ if(myarr.length>=1)
 {if(response.logged==true){new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});relativeaccinfo();}
 else{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
-{}});}});;
+{}});}});website('body').on('click','.dematup',function(e){var dematup=website(this).val();website.ajax({url:'portfolio/zerodematacc',data:{dematup:dematup},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{website('#alertcommon #allalertmsg').html(response.message);website('#alertcommon').modal('show');},complete:function(response)
+{},error:function(jqXHR,textStatus,errorThrown)
+{}});});function showsection(){var section=document.getElementById("showdemat");if(section.style.display==="none"){section.style.display="block";}}
+function hidesection(){var section=document.getElementById("showdemat");if(section.style.display==="block")
+{section.style.display="none";}}
+function boxshow(name)
+{var classname=name.split(" ");var length=classname.length;if(length==5)
+{website("#"+classname[4]).css("display","block");}
+else if(length==3)
+{website("#"+classname[2]).css("display","inline-block");}}
+function boxhide(name)
+{var classname=name.split(" ");var length=classname.length;if(length==5)
+{website("#"+classname[4]).css("display","none");}
+else if(length==3)
+{website("#"+classname[2]).css("display","none");}};

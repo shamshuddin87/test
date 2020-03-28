@@ -517,11 +517,17 @@ website('body').on("click",".viewrequsttrail",function(e){
             /* for date_added end */
             
             
-            
-             
-            
            website('#Mymodalaudittrail .reqstcreateddte' ).html(ddmmyyadded+' '+timesadded);
            website('#Mymodalaudittrail .reqstupdteddte' ).html(ddmmyymodified+' '+timesmodified);
+            /* -----  Application copy ----*/
+            if(response.data[0].pdffilepath)
+            {
+               website('#Mymodalaudittrail .pdfpath').html('<a href="'+response.data[0].pdffilepath+'" target="_blank"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>'); 
+            }
+            else
+            {
+                website('#Mymodalaudittrail .pdfpath').html('');
+            }
            if(response.data[0].send_status == 1)
            {
                if(response.data[0].sendaprvl_date)

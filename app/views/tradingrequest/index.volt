@@ -1,6 +1,6 @@
 <?php $gmnlog = $this->session->loginauthspuserfront;
 
-
+    //print_r($selfdemat);exit;
 
  ?>
 
@@ -40,14 +40,14 @@
             <div class="create_button">
              <div class="top_margin">   
             <button type="button" class="btn btn-primary createreq">Create Request</button>
-            <input type="button"  id="sendmulreq" value="Send" class="btn btn-primary">
+<!--            <input type="button"  id="sendmulreq" value="Send" class="btn btn-primary">-->
             </div> 
                 <div class="cssfilter">               
                     <div class="control-label form-group">
                         <label>Status Filter</label>
                         <select id="filterstatus" name="filterstatus" class="form-control">
                             <option value="">All</option>
-                            <option value="drafted">Drafted</option>
+<!--                            <option value="drafted">Drafted</option>-->
                             <option value="sent_for_approval">Sent for approval</option>
                             <option value="not_approved">Not approved</option>
                             <option value="approved">Approved</option>
@@ -76,14 +76,14 @@
                             <th>Name Of Relative</th>
                             <th>Relationship</th>
                             <!--<th>Total Amount</th>-->
-                            <th>Request Status</th>
+<!--                            <th>Request Status</th>-->
                             <th>Approval Status</th>
                             <th>Trading Window</th>
                             <th>Created Date</th>
                             <!--<th>Updated Date</th>-->
                             <th>Trading Status</th>
                             <th>Audit Trail</th>
-                            <th>Action</th>
+<!--                            <th>Action</th>-->
                         </tr>
                     </thead>
                     <tbody class="reqtable" appendrow='1'></tbody>
@@ -146,7 +146,8 @@
             <div class="form-group">
                 <label for="">Select Type Of Request</label>
                 <select class="form-control" id="typeofrequest" name="typeofrequest">
-                    <option value="1" selected="selected">Self</option>
+                    <option value="" >Select Type of Request</option>
+                    <option value="1" >Self</option>
                     <option value="2">Relative</option>
                 </select>
             </div>
@@ -194,8 +195,69 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Approx price or range (shares/ADRs * market price)</label>
+               
+                <input type="text" class="form-control" id="sharesprice" name="sharesprice" placeholder="Approx price or range (shares/ADRs * market price)" >
+            </div>
+
+             
+
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Broker through which dealing will take place</label>
+               
+                <input type="text" class="form-control" id="broker" name="broker" placeholder="Broker through which dealing will take place" >
+            </div>
+
+            <div class="form-group">
+               
+                <label for="">Demat Account</label>
+                <select class="form-control" id="demataccount" name="demataccount">
+                <option value="">Select Demat Account</option>
+                          
+                </select>
+            </div>
+
+              <div class="form-group">
+                <label for="">Place</label>
+                 <input type="text" class="form-control " id="place" name="place" placeholder="Place" >
+               
+            </div>
+
+
+
+
+            <div class="form-group col-md-12" style="margin-left: -9px;">
+                <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>
+                <div id = "left" class="form-group col-md-4" style="margin-left: -9px;">
+                <label for="">Date</label>
+                <input type="text" class="form-control bootdatepick" id="dateoftrans[]" name="dateoftrans[]" placeholder="Date" >
+                </div>
+                <div id = "middle" class="form-group col-md-4">
+                 <label for="">Transaction</label>
+                <input type="text" class="form-control " id="trans[]" name="trans[]" placeholder="Transaction" >
+                </div>
+                <div id = "right" class="form-group col-md-4">
+                <label for="">No of Shares</label>
+                <input type="text" class="form-control " id="sharestrans[]" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">
+                </div>
+               
+            </div>
+
+             <div class = "appenddiv" id="appenddiv">
+            </div>
+
+            <div class="adddiv2section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+            <input type="button" id ="adddiv" class="btn btn-primary "  value="+" onclick="addhtml(this.id);">
+            <input type="button" id = "remvdiv" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+            <input type="hidden" class="append" plancntr="1">
+            </div>
+
+
+
+
             <input type="button" id ="sendrequest" name="sendreq" value="SEND" class="btn btn-primary sendrequst" style="float: right;">  
-            <input type="button"  name="draft" value="SAVE AS DRAFT" id="draftedreq" class="btn btn-primary reqdraft" style="float: right;"> 
+<!--            <input type="button"  name="draft" value="SAVE AS DRAFT" id="draftedreq" class="btn btn-primary reqdraft" style="float: right;"> -->
 
         </form>
     </div>
@@ -464,8 +526,11 @@
                     &times;</button>
                 <h4 class="modal-title">
                 </h4>
+                
             </div>
             <div class="modal-body">
+             <!-- <a id="pdflink" download><input type="button" class="btn btn-success"  value="Download"></a> -->
+
               <input type="hidden" id="approverid" name="approverid">
               <input type="hidden" id="reqname" name="reqname">
               <input type="hidden" id="typeofrequest" name="typeofrequest">
@@ -475,7 +540,17 @@
               <input type="hidden" id="nameofcmp" name="nameofcmp">
               <input type="hidden" id="noofshare" name="noofshare">
               <input type="hidden" id="typeoftrans" name="typeoftrans">
-              <input type="hidden" id="sendreq" name="sendreq">
+               <input type="hidden" id="sendreq" name="sendreq">
+              <input type="hidden" id="approxprice" name="approxprice">
+             <input type="hidden" id="broker" name="broker">
+             <input type="hidden" id="demataccount" name="demataccount">
+            <input type="hidden" id="place" name="place">
+           <input type="hidden" id="datetrans" name="datetrans">
+          <input type="hidden" id="transaction" name="sendreq">
+         <input type="hidden" id="sharestrans" name="sharestrans">
+
+
+
                 
               <h4 style="text-align: center;">Please confirm that you do not hold any UPSI Information</h4>
                
@@ -540,6 +615,10 @@
                         <td><span class="reqstupdteddte"></span></td>
                     </tr>
                     <tr>
+                        <td>Application Copy :</td>
+                        <td><span class="pdfpath"></span></td>
+                    </tr>
+                    <tr>
                         <td>Sent for Approval On :</td>
                         <td><span class="reqstsendapprv"></span></td>
                     </tr>
@@ -569,4 +648,118 @@
 </div>
 
 
+<div id="formI" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">
+                     &times;</button>
+                 
+         <div id = "appendformI">
+           
+         </div>    
+               
+        </div>
+            <div class="modal-footer" style="border-top:none;">
+              <button type="button" class="btn btn-primary" id="Yesexcreqst">Yes</button> 
+            <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="Noexcrequest">No</button>
+            </div>
+    </div>
+</div>
+</div>
+<div id="chckexcptnrequest" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+                  <div class="modal-body">
+                     <button type="button" class="close" data-dismiss="modal">
+                     &times;</button>
+                 <button type="button" class="btn btn-primary" id="pdflink" download value="Download" style="display:none;"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
+               <h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">This transaction is a contra trade within 6 months of previous trade. You will require an exceptional pre-clearance approval for such trade request. Also, you can raise this request only if you do not hold any UPSI. Please confirm if you want to send exception approval?</h5>
+               
+            </div>
+            <div class="modal-footer" style="border-top:none;">
+              <button type="button" class="btn btn-primary" id="Yesexcreqst">Yes</button> 
+            <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="Noexcrequest">No</button>
+            </div>
+    </div>
+</div>
+</div>
+<div id="exceptnresionmodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <h3>Please Enter Your Reason</h3>
+              <button type="button" class="close" data-dismiss="modal">
+                    &times;</button>
+            </div>
+            <div class="modal-body">
+           
+           <textarea  width="80%" id="reason"></textarea>
 
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" id="reasonexe">Submit</button> 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="reasonexceptn" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <h3>Additional Questions</h3>
+              <button type="button" class="close" data-dismiss="modal">
+                    &times;</button>
+            </div>
+            <div class="modal-body">
+            <div class="form-group">
+                <label for="">I intend to sell/purchase/exercise no. of shares/ADRs/options of the Company because of following reason(s)</label>
+                <select class="form-control" id="reasonoftrans" name="reasonoftrans" required>
+                    <option value="">Select Option</option>
+                    <option value="1">Medical Expenses for self / family Members</option>
+                    <option value="2">Repayment of existing Loan</option>
+                    <option value="3">Wedding /other family function</option>
+                    <option value="4">Education</option>
+                    <option value="5">Any other reason (Please specify)</option>
+                </select>
+            </div>
+                
+            <div class="form-group otherreason" style="display:none;">
+                <label for="">Any other reason*</label>
+                <input type="text" class="form-control" name="otherreason" id="otherreason" placeholder="Any other reason (Please specify)">
+            </div>
+                
+           <div class="form-group">
+                <label for="">Date of last purchase / sale</label>
+                <input type="text" class="form-control bootdatepick" name="lasttransdate" id="lasttransdate" readonly placeholder="Date of last purchase / sale" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="">No. of shares / ADRs purchase/sold</label>
+                <input type="text" class="form-control" name="noofshareoftrans" id="noofshareoftrans" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of shares / ADRs purchase/sold" required>
+            </div>
+                
+<!--
+            <div class="form-group">
+                <label for="">Place</label>
+                <input type="text" class="form-control" name="form2place" id="form2place"  placeholder="Place">
+            </div>
+-->
+
+            
+<!--
+           <textarea  width="80%" id="reasontrans"></textarea>
+           <input type="hidden" id = "reasonlink">
+-->
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" id="reasonexetrans">Submit</button> 
+            </div>
+        </div>
+    </div>
+</div>
+</div>

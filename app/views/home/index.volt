@@ -1,6 +1,8 @@
-	<?php $gmnlog = $this->session->loginauthspuserfront; ?>
+<?php $gmnlog = $this->session->loginauthspuserfront; 
+//print_r($gmnlog);exit;?>
+   
 
-<?php //echo"<pre>";print_r($gmnlog); exit;?> 
+
 <!-- Main content -->
 
 
@@ -17,9 +19,16 @@
 <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-xs-2">
                             <h1 class="page-header">Dashboard</h1>
+                             <input type="text" name="firstlogin" id="firstlogin" value="<?php echo $login['firstlogin'] ?>" style = "display: none;">
                         </div>
+                        <?php if(isset($upsiresult) && count($upsiresult) != 0){?>
+                        <div class="col col-xs-10">
+                           <!--  <div class="alertbox"><span><h4 style="display: inline-block;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> </h4> Alert! You hold UPSI and therefore you cannot trade in shares of Dr. Reddy's Laboratories Ltd until the UPSI ends / becomes public</span>
+                            </div> -->
+                        </div>
+                        <?php } ?>
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row boxes -->
@@ -124,6 +133,8 @@
                             </div>
                             </a>
                         </div>
+                      
+                         
                     </div>
                     <!-- /.row boxes -->
 
@@ -154,8 +165,8 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Equity Shares</th>
-                                                        <th>Preference Shares</th>
-                                                        <th>Debentures</th>
+                                                        <th>ADRs Shares</th>
+<!--                                                        <th>Debentures</th>-->
                                                     </tr>
                                                 </thead>
                                                 <tbody class ="holdingsummry">
@@ -429,31 +440,29 @@
         </div>
 
 <div class="col-md-2 col-sm-4 col-xl-6">
-            <a href="sensitiveinformation/infosharing">
-             <section class="col panel left-border6 panel-featured-left panel-featured-quartenary">
-                <div class="panel-body">
-                    <div class="widget-summary">
-                        <div class="widget-summary-col widget-summary-col-icon">
-                        <div class="summary-icon bg-four">
-                        <i class="fa fa-info-circle"></i>
-                        </div>
-                    </div>
-                            <div class="widget-summary-col">
-                               <div class="summary">
-                                  <h4 class="title">UPSI & Connected Person</h4>
-                            <!-- <div class="info">
-                            <strong class="amount">3765</strong>
-                            </div> -->
-                            </div>
-                                
-                            </div>
-                    </div>
-                </div>
-             </section>
-         </a>
-        </div>
-
-
+      <a href="sensitiveinformation/infosharing">
+       <section class="col panel left-border6 panel-featured-left panel-featured-quartenary">
+          <div class="panel-body">
+              <div class="widget-summary">
+                  <div class="widget-summary-col widget-summary-col-icon">
+                  <div class="summary-icon bg-four">
+                  <i class="fa fa-info-circle"></i>
+                  </div>
+              </div>
+                      <div class="widget-summary-col">
+                         <div class="summary">
+                            <h4 class="title">UPSI & Connected Person</h4>
+                      <!-- <div class="info">
+                      <strong class="amount">3765</strong>
+                      </div> -->
+                      </div>
+                          
+                      </div>
+              </div>
+          </div>
+       </section>
+   </a>
+ </div>
     </div>
             </div>
                 </div>
@@ -471,5 +480,33 @@
        </div>
       </div>
 
- 
-          
+
+        <div id="updateholdings" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-body">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>                    
+                     <h5 style="text-align: center;color: #000;margin: 45px 35px 25px 35px;line-height: 25px;">Please verify/update your personal information as given under ‘My Info’ first. You will not be allowed access until you verify your personal information</h5>
+                  </div>
+                  <div class="modal-footer" style="border-top:none; text-align: center;">
+                     <button type="button" class="btn btn-primary" id="yesdisclosures" onclick="disclosures(this.id);">Ok</button> 
+<!--<button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="nodisclosures" onclick="disclosures(this.id);">No</button> -->
+                  </div>
+               </div>
+            </div>
+        </div>
+
+ <!-- check personal details and demat account info at login Modal -->     
+<div id="declaration" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" style="text-align: center;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 style=" color: #36186e;">Hello</h1>
+                <h4 style="margin-bottom: 10px;margin-top: 5px;font-size: 20px;color: #8a8a8a;"> <?php echo $gmnlog['username'] ?>,</h4>
+                <div class="arng">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>          

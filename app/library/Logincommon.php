@@ -132,7 +132,7 @@ class Logincommon extends Component
                         'username' => trim($this->elements->htmldecode($robot['username'])),
                         'firstname' => trim($this->elements->htmldecode($robot['firstname'])),
                         'lastname' => trim($this->elements->htmldecode($robot['lastname'])),
-                        'email' => strtolower($robot['email']),'moduleaccess'=>$getdtl,
+                        'email' => strtolower($robot['email']), 'moduleaccess'=>$getdtl,
                         'master' => $robot['master_user_id'],'mastergroup' => $robot['master_group_id']
                         ));
                         //echo '<pre>'; print_r($setsession); exit;
@@ -268,6 +268,7 @@ class Logincommon extends Component
         }
         return $getlist;
     }
+
     public function loginusermnadmintoup($type,$getemail)
     {
         $connection = $this->dbtrd;
@@ -306,6 +307,41 @@ class Logincommon extends Component
         return $getlist;
         
     }
+
+    public function updatetlogin($getemail)
+    {
+        $connection = $this->db;
+        $getlist = '';
+
+        $check = "SELECT * from `web_register_user` where email =  '".$getemail."' AND `firstlogin` = 1 ";
+
+        $queryget = "UPDATE `web_register_user` SET `firstlogin` = '0' WHERE email =  '".$getemail."' " ;
+
+        $exeget = $connection->query($check);
+
+        $getnum = trim($exeget->numRows());
+
+        
+        if($getnum>0)
+        {
+           
+             $exe = $connection->query($queryget);
+               
+
+
+        }
+        else
+        {
+            return false;
+        }
+      
+       
+    }
+
+
+
     
+
+
     
 }							

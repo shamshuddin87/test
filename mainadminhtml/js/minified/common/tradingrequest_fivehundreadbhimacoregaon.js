@@ -21,15 +21,32 @@ addhtml+='</ul>';website('#tradinform #searchcmp').html(addhtml);},complete:func
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});}});}
 website("body").on("click",".topul",function(e){var id=website(this).attr('id');website('#idofcmp').val(id);var name=website(this).attr('name');website('#nameofcmp').val(name);website('#searchcmp').css("display","none");});website("body").on("click",".myupnaresh",function(e){var id=website(this).attr('id');website('#tradinformupdate #idofcmp').val(id);var name=website(this).attr('name');website('#tradinformupdate #nameofcmp').val(name);website('#tradinformupdate #searchcmp').css("display","none");});website('body').on('click','.sendrequst',function()
-{var approverids=website('#approverid').val();website('#checkappvlrequest #approverid').val(approverids);var reqnames=website('#reqname').val();website('#checkappvlrequest #reqname').val(reqnames);var typeofrequests=website('#typeofrequest').val();website('#checkappvlrequest #typeofrequest').val(typeofrequests);var selrelatives=website('#selrelative').val();website('#checkappvlrequest #selrelative').val(selrelatives);var idofcmps=website('#idofcmp').val();website('#checkappvlrequest #idofcmp').val(idofcmps);var nameofcmps=website('#nameofcmp').val();website('#checkappvlrequest #nameofcmp').val(nameofcmps);var noofshares=website('#noofshare').val();website('#checkappvlrequest #noofshare').val(noofshares);var sectypes=website('#sectypeid').val();website('#checkappvlrequest #sectype').val(sectypes);var typeoftranss=website('#typeoftrans').val();website('#checkappvlrequest #typeoftrans').val(typeoftranss);var sendreq=website('#sendrequest').val();website('#checkappvlrequest #sendreq').val(sendreq);website.ajax({url:'tradingrequest/checkclosebalval',data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{var approverids=website('#approverid').val();website('#checkappvlrequest #approverid').val(approverids);var reqnames=website('#reqname').val();website('#checkappvlrequest #reqname').val(reqnames);var typeofrequests=website('#typeofrequest').val();website('#checkappvlrequest #typeofrequest').val(typeofrequests);var selrelatives=website('#selrelative').val();website('#checkappvlrequest #selrelative').val(selrelatives);var idofcmps=website('#idofcmp').val();website('#checkappvlrequest #idofcmp').val(idofcmps);var nameofcmps=website('#nameofcmp').val();website('#checkappvlrequest #nameofcmp').val(nameofcmps);var noofshares=website('#noofshare').val();website('#checkappvlrequest #noofshare').val(noofshares);var sectypes=website('#sectypeid').val();website('#checkappvlrequest #sectype').val(sectypes);var typeoftranss=website('#typeoftrans').val();website('#checkappvlrequest #typeoftrans').val(typeoftranss);var sendreq=website('#sendrequest').val();website('#checkappvlrequest #sendreq').val(sendreq);var approxprice=website('#sharesprice').val();website('#checkappvlrequest #approxprice').val(approxprice);var broker=website('#broker').val();website('#checkappvlrequest #broker').val(broker);var demataccount=website('#demataccount').val();website('#checkappvlrequest #demataccount').val(demataccount);var place=website('#place').val();website('#checkappvlrequest #place').val(place);var datetrans=website("input[name='dateoftrans[]']").map(function(){return website(this).val();}).get();website('#checkappvlrequest #datetrans').val(datetrans);var transaction=website("input[name='trans[]']").map(function(){return website(this).val();}).get();website('#checkappvlrequest #transaction').val(transaction);var sharestrans=website("input[name='sharestrans[]']").map(function(){return website(this).val();}).get();website('#checkappvlrequest #sharestrans').val(sharestrans);website.ajax({url:'tradingrequest/checkclosebalval',data:{datetrans:datetrans,approxprice:approxprice,broker:broker,place:place,idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
-{if(response.logged===true)
-{website('#checkappvlrequest').modal('show');}
+{website('.preloder_wraper').fadeOut();if(response.logged===true)
+{if(response.contratrd['status']===true)
+{if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
+{new PNotify({title:'Alert',text:response.contratrd.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+else
+{website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest').modal('show');}}
+else
+{website('#checkappvlrequest').modal('show');}}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
-{}});});website('body').on('click','.reqdraft',function()
+{}});});function getform(formtype)
+{website.ajax({type:"POST",url:'tradingrequest/getfilecontent',data:{formtype:formtype},dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{website('.preloder_wraper').fadeIn();},success:function(response)
+{if(response.logged===true)
+{if(formtype=='form1')
+{website('#checkappvlrequest').modal('show');}
+else if(formtype=='form2')
+{website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send');website('#chckexcptnrequest #pdflink').attr('href',response.pdf_path);website('#chckexcptnrequest').modal('show');}}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function()
+{website('.preloder_wraper').fadeOut();}});}
+website('body').on('click','.reqdraft',function()
 {var approverids=website('#approverid').val();website('#checkappvlrequest #approverid').val(approverids);var reqnames=website('#reqname').val();website('#checkappvlrequest #reqname').val(reqnames);var typeofrequests=website('#typeofrequest').val();website('#checkappvlrequest #typeofrequest').val(typeofrequests);var selrelatives=website('#selrelative').val();website('#checkappvlrequest #selrelative').val(selrelatives);var idofcmps=website('#idofcmp').val();website('#checkappvlrequest #idofcmp').val(idofcmps);var nameofcmps=website('#nameofcmp').val();website('#checkappvlrequest #nameofcmp').val(nameofcmps);var noofshares=website('#noofshare').val();website('#checkappvlrequest #noofshare').val(noofshares);var sectypes=website('#sectypeid').val();website('#checkappvlrequest #sectype').val(sectypes);var typeoftranss=website('#typeoftrans').val();website('#checkappvlrequest #typeoftrans').val(typeoftranss);var sendreq=website('#sendrequest').val();website('#checkappvlrequest #sendreq').val(sendreq);website.ajax({url:'tradingrequest/checkclosebalval',data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
@@ -49,7 +66,7 @@ else
 {website('.preloder_wraper').fadeOut();},error:function()
 {}});}
 website('body').on('click','#Yesreqst',function(e)
-{var approverid=website('#checkappvlrequest #approverid').val();var reqname=website('#checkappvlrequest #reqname').val();var typeofrequest=website('#checkappvlrequest #typeofrequest').val();var selrelative=website('#checkappvlrequest #selrelative').val();var sectype=website('#checkappvlrequest #sectype').val();var idofcmp=website('#checkappvlrequest #idofcmp').val();var nameofcmp=website('#checkappvlrequest #nameofcmp').val();var noofshare=website('#checkappvlrequest #noofshare').val();var typeoftrans=website('#checkappvlrequest #typeoftrans').val();var sendreq=website('#checkappvlrequest #sendreq').val();var formdata={approverid:approverid,reqname:reqname,typeofrequest:typeofrequest,selrelative:selrelative,sectype:sectype,idofcmp:idofcmp,nameofcmp:nameofcmp,noofshare:noofshare,typeoftrans:typeoftrans,sendreq:sendreq};website.ajax({url:'tradingrequest/tradingrequests',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{var approverid=website('#checkappvlrequest #approverid').val();var reqname=website('#checkappvlrequest #reqname').val();var typeofrequest=website('#checkappvlrequest #typeofrequest').val();var selrelative=website('#checkappvlrequest #selrelative').val();var sectype=website('#checkappvlrequest #sectype').val();var idofcmp=website('#checkappvlrequest #idofcmp').val();var nameofcmp=website('#checkappvlrequest #nameofcmp').val();var noofshare=website('#checkappvlrequest #noofshare').val();var typeoftrans=website('#checkappvlrequest #typeoftrans').val();var sendreq=website('#checkappvlrequest #sendreq').val();var approxprice=website('#checkappvlrequest #approxprice').val();var broker=website('#checkappvlrequest #broker').val();var demataccount=website('#checkappvlrequest #demataccount').val();var place=website('#checkappvlrequest #place').val();var datetrans=website('#checkappvlrequest #datetrans').val();var transaction=website('#checkappvlrequest #transaction').val();var sharestrans=website('#checkappvlrequest #sharestrans').val();var link=website('#checkappvlrequest #pdflink').attr('href');var formdata={approxprice:approxprice,broker:broker,demataccount:demataccount,place:place,datetrans:datetrans,transaction:transaction,sharestrans:sharestrans,approverid:approverid,reqname:reqname,typeofrequest:typeofrequest,selrelative:selrelative,sectype:sectype,idofcmp:idofcmp,nameofcmp:nameofcmp,noofshare:noofshare,typeoftrans:typeoftrans,sendreq:sendreq,link:link};website.ajax({url:'tradingrequest/tradingrequests',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
@@ -100,11 +117,7 @@ var total_amount=response.data[i].total_amount?response.data[i].total_amount:'';
 {addhtmlnxt+='<td>'+j+' <input type="checkbox" class="sendchkbox" chkval="'+response.data[i].id+'" name="sendapprove" value="'+response.data[i].id+'"></td>';}
 else
 {addhtmlnxt+='<td>'+j+'</td>';}
-addhtmlnxt+='<td>'+sectype+'</td>';addhtmlnxt+='<td>'+name_of_company+'</td>';addhtmlnxt+='<td>'+type_of_transaction+'</td>';addhtmlnxt+='<td>'+no_of_shares+'</td>';addhtmlnxt+='<td>'+typeofrequest+'</td>';addhtmlnxt+='<td>'+nameofreq+'</td>';addhtmlnxt+='<td>'+relationship+'</td>';if(send_status==1)
-{addhtmlnxt+='<td>Sent</td>';}
-else
-{addhtmlnxt+='<td>Drafted</td>';}
-if(approved_status==1)
+addhtmlnxt+='<td>'+sectype+'</td>';addhtmlnxt+='<td>'+name_of_company+'</td>';addhtmlnxt+='<td>'+type_of_transaction+'</td>';addhtmlnxt+='<td>'+no_of_shares+'</td>';addhtmlnxt+='<td>'+typeofrequest+'</td>';addhtmlnxt+='<td>'+nameofreq+'</td>';addhtmlnxt+='<td>'+relationship+'</td>';if(approved_status==1)
 {addhtmlnxt+='<td><i class="fa fa-check-circle" style="font-size:15px;color:green;"></i></td>';}
 else if(approved_status==2)
 {addhtmlnxt+='<td class="rejmessage" mymessage="'+message+'"><i class="fa fa-times-circle" style="font-size:15px;color:red;" ></i></td>';}
@@ -121,11 +134,7 @@ else if(trading_status==0&&approved_status==1)
 {addhtmlnxt+='<td><i class="fa fa-line-chart" style="color:red;"></i></td>';}
 else
 {addhtmlnxt+='<td></td>';}}
-addhtmlnxt+='<td><i class="fa fa-bar-chart requsttrail" rqstid="'+response.data[i].id+'"></i></td>';if(send_status==1)
-{addhtmlnxt+='<td><i class="fa fa-ban" style="color:#F44336;"></i></td>';;}
-else
-{addhtmlnxt+='<td>';addhtmlnxt+='<i class="fa fa-edit editper" pereditid="'+response.data[i].id+'" style="font-size:15px;"></i>';addhtmlnxt+='<i class="fa fa-trash-o delreq" perdelid="'+response.data[i].id+'" style="font-size:15px; color:#F44336;"></i>';addhtmlnxt+='</td>';}
-addhtmlnxt+='</tr>';}}
+addhtmlnxt+='<td><i class="fa fa-bar-chart requsttrail" rqstid="'+response.data[i].id+'"></i></td>';addhtmlnxt+='</tr>';}}
 else
 {addhtmlnxt+='<tr><td colspan="13" style="text-align:center;"> No Data Found..!!!</td></tr>';}
 website(".reqtable").html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);},complete:function(response)
@@ -237,9 +246,24 @@ else
 {website('#updatemodal #selrel').css("display","none");}});}
 selecttypeofreq();function selecttypeofreq()
 {website("body").on("click","#typeofrequest",function(e){var typeofreq=website("#typeofrequest option:selected").val();if(typeofreq==2)
-{website('#selrel').css("display","block");}
+{website('#selrel').css("display","block");website.ajax({url:'tradingrequest/fetchdemat',data:{typeofreq:typeofreq},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{var addhtmlnxt='';if(response.logged==true)
+{for(var i=0;i<response.data.length;i++)
+{var id=response.data[i].id?response.data[i].id:'Not Found';var accno=response.data[i].accountno?response.data[i].accountno:'Not Found';var dp=response.data[i].depository_participient?response.data[i].depository_participient:'Not Found';addhtmlnxt+='<option value="'+id+'">'+accno+'</option>';}
+website('#demataccount').html(addhtmlnxt);}
+else{addhtmlnxt+=' ';}}});}
 else
-{website('#selrel').css("display","none");}});}
+{website('#selrel').css("display","none");website.ajax({url:'tradingrequest/fetchdemat',data:{typeofreq:typeofreq},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{var addhtmlnxt='';if(response.logged==true)
+{addhtmlnxt+=' <option value="">Select Demat Account</option>';for(var i=0;i<response.data.length;i++)
+{var id=response.data[i].id?response.data[i].id:'Not Found';var accno=response.data[i].accountno?response.data[i].accountno:'Not Found';var dp=response.data[i].depository_participient?response.data[i].depository_participient:'Not Found';addhtmlnxt+='<option value="'+id+'">'+accno+'</option>';}
+website('#demataccount').html(addhtmlnxt);}
+else
+{addhtmlnxt+=' ';}}});}});}
 website("body").on("click",".checkstatus",function(e){var reqid=website(this).attr('reqid');website.ajax({url:'tradingrequest/getsuccesstrade',data:{reqid:reqid},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
@@ -255,7 +279,11 @@ website.ajax({url:'tradingrequest/fetchreqtrail',data:formdata,method:'POST',con
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{dteadded=response.data[0].date_added.split("-");dteaddedspace=response.data[0].date_added.split(" ");ddmmyyadded=dteaddedspace[0];dteadded=dteaddedspace[0].split("-");ddmmyyadded=dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];timesadded=dteaddedspace[1];dtemodified=response.data[0].date_modified.split("-");dtemodifdspace=response.data[0].date_modified.split(" ");ddmmyymodified=dtemodifdspace[0];dtemodified=dtemodifdspace[0].split("-");ddmmyymodified=dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];timesmodified=dtemodifdspace[1];website('#Mymodalaudittrail .reqstcreateddte').html(ddmmyyadded+' '+timesadded);website('#Mymodalaudittrail .reqstupdteddte').html(ddmmyymodified+' '+timesmodified);if(response.data[0].send_status==1)
+{dteadded=response.data[0].date_added.split("-");dteaddedspace=response.data[0].date_added.split(" ");ddmmyyadded=dteaddedspace[0];dteadded=dteaddedspace[0].split("-");ddmmyyadded=dteadded[2]+'-'+dteadded[1]+'-'+dteadded[0];timesadded=dteaddedspace[1];dtemodified=response.data[0].date_modified.split("-");dtemodifdspace=response.data[0].date_modified.split(" ");ddmmyymodified=dtemodifdspace[0];dtemodified=dtemodifdspace[0].split("-");ddmmyymodified=dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];timesmodified=dtemodifdspace[1];website('#Mymodalaudittrail .reqstcreateddte').html(ddmmyyadded+' '+timesadded);website('#Mymodalaudittrail .reqstupdteddte').html(ddmmyymodified+' '+timesmodified);if(response.data[0].pdffilepath)
+{website('#Mymodalaudittrail .pdfpath').html('<a href="'+response.data[0].pdffilepath+'" target="_blank"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>');}
+else
+{website('#Mymodalaudittrail .pdfpath').html('');}
+if(response.data[0].send_status==1)
 {if(response.data[0].sendaprvl_date)
 {dtesendaprv=response.data[0].sendaprvl_date.split("-");dtesendaprvspace=response.data[0].sendaprvl_date.split(" ");ddmmyysendaprv=dtesendaprvspace[0];dtesendaprv=dtesendaprvspace[0].split("-");ddmmyysendaprv=dtesendaprv[2]+'-'+dtesendaprv[1]+'-'+dtesendaprv[0];timessendaprv=dtesendaprvspace[1];website('#Mymodalaudittrail .reqstsendapprv').html(ddmmyysendaprv+' '+timessendaprv);}}
 else
@@ -276,4 +304,35 @@ website('#Mymodalaudittrail').modal('show');}
 else
 {}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
-{}});});;
+{}});});website('body').on("click","#Yesexcreqst",function(e){var link=website('#chckexcptnrequest #pdflink').attr('href');website('#reasonexceptn #reasonlink').attr('link',link);website("#reasonexceptn").modal('show');});website('body').on('click','#Noexcrequest',function(e)
+{new PNotify({title:'Alert',text:'You cannot send request',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});var base_url=getbaseurl();window.location.href=base_url+'tradingrequest';setTimeout(function(){window.location.reload();},1000);});website('body').on('click','#reasonexetrans',function(e)
+{var reasonmsg=website("#reasontrans").val();var approverids=website('#approverid').val();var reqname=website('#reqname').val();var typeofrequests=website('#Mymodalreq #typeofrequest').val();if(typeofrequests==3)
+{var dpuserid=website("#dpuserid").val();var dpusergroup=website("#dpusergroup").val();}
+else
+{var dpuserid=website("#dpuserid").val();var dpusergroup=website("#dpusergroup").val();}
+var selrelatives=website('#Mymodalreq #selrelative').val();var idofcmps=website('#Mymodalreq #idofcmp').val();var nameofcmps=website('#Mymodalreq #nameofcmp').val();var noofshares=website('#Mymodalreq #noofshare').val();var sectypes=website('#Mymodalreq #sectypeid').val();var typeoftranss=website('#Mymodalreq #typeoftrans').val();var typeofsave=website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');var reasonoftrans=website("#reasonexceptn #reasonoftrans").val();var otherreason=website("#reasonexceptn #otherreason").val();var lasttransdate=website("#reasonexceptn #lasttransdate").val();var noofshareoftrans=website("#reasonexceptn #noofshareoftrans").val();var form2place=website("#Mymodalreq #place").val();var formdata={approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup,reasonoftrans:reasonoftrans,otherreason:otherreason,lasttransdate:lasttransdate,noofshareoftrans:noofshareoftrans,form2place:form2place}
+website.ajax({url:'tradingrequest/savecontratrdexceptn',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{var baseHref=getbaseurl();var redirecturl=baseHref+"exceptionreq";window.location.href=redirecturl;}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function()
+{}});});website('body').on('change','#reasonoftrans',function(e)
+{var reasontype=website(this).val();if(reasontype==5)
+{website('.otherreason').css('display','block');}
+else
+{website('.otherreason').css('display','none');}});function addhtml(clicked)
+{var id=clicked;if(id=='adddiv'){datepicker();var getlastid=website('.append').attr('plancntr');getlastid=++getlastid;var addhtmlnxt='';addhtmlnxt+='<div class=" form-group col-md-12 row'+getlastid+' "  id="row'+getlastid+'" >';addhtmlnxt+=' <div id = "left" class="form-group col-md-4" style="margin-left: -18px;">';addhtmlnxt+='<label for="">Date</label>';addhtmlnxt+=' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "middle" class="form-group col-md-4">';addhtmlnxt+='<label for="">Transaction</label>';addhtmlnxt+=' <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "right" class="form-group col-md-4">';addhtmlnxt+=' <label for="">No of Shares</label>';addhtmlnxt+='<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">';addhtmlnxt+=' </div>';addhtmlnxt+='</div>';let invalid='';website('input[name^="dateoftrans"]').each(function(){const date=website(this).val();if(!date.length)
+{invalid=true;}});if(!invalid)
+{website('.appenddiv').append(addhtmlnxt);website('.append').attr('plancntr',getlastid);}
+else
+{new PNotify({title:'Alert',text:'Please Fill All the Fields First',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}
+else{var addhtmlnxt='';}}
+function removehtml(clicked)
+{var rmid=clicked;if(rmid=='remvdiv')
+{var count=website('.append').attr('plancntr');if(count!=1)
+{website('.appenddiv #row'+count).remove();website('.append').attr('plancntr',parseInt(count)-1);}
+else
+{return false;}}};

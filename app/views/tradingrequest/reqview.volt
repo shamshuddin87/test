@@ -47,7 +47,7 @@ $gmnlog = $this->session->loginauthspuserfront;
                                 <label>Status Filter</label>
                                 <select id="filterstatus" name="filterstatus" class="form-control">
                                     <option value="" <?php if($status==''){ echo 'selected'; } ?> >All</option>
-                                    <option value="drafted" <?php if($status=='drafted'){ echo 'selected'; } ?> >Drafted</option>
+<!--                                    <option value="drafted" <?php if($status=='drafted'){ echo 'selected'; } ?> >Drafted</option>-->
                                     <option value="sent_for_approval" <?php if($status=='sent_for_approval'){ echo 'selected'; } ?> >Sent for approval</option>
                                     <option value="not_approved" <?php if($status=='not_approved'){ echo 'selected'; } ?> >Not approved</option>
                                     <option value="approved" <?php if($status=='approved'){ echo 'selected'; } ?> >Approved</option>
@@ -246,6 +246,10 @@ $gmnlog = $this->session->loginauthspuserfront;
                     <tr>
                         <td>Updated On :</td>
                         <td><span class="reqstupdteddte"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Application Copy :</td>
+                        <td><span class="pdfpath"></span></td>
                     </tr>
                     <tr>
                         <td>Sent for Approval On :</td>

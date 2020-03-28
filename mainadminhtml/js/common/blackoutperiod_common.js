@@ -34,7 +34,18 @@ website('#insertblackoutperiod').ajaxForm({
     {
         if(response.logged===true)
         {  
-            website('#myModalemail').modal('show');
+
+            //website('#myModalemail').modal('show');
+
+            new PNotify({title: 'Alert!!',
+                  text: response.message,
+                  type: 'university',
+                  hide: true,
+                  styling: 'bootstrap3',
+                  addclass: 'dark ',
+            }); 
+
+               setTimeout(function() {window.location.reload()}, 2000);
         }
         else
         {
@@ -386,8 +397,8 @@ website('body').on('click','.sendemail',function(e){
            if(response.logged === true)
            {
               //fetchmasterlist();
-               website('#myModalemail').modal('hide');
-              window.location.reload();
+              // website('#myModalemail').modal('hide');
+            
               //website('#Mymodaledit').fadeOut();
               new PNotify({title: 'Alert!!',
                   text: response.message,
@@ -396,6 +407,8 @@ website('body').on('click','.sendemail',function(e){
                   styling: 'bootstrap3',
                   addclass: 'dark ',
               }); 
+
+              window.location.reload();
            }
            else
            {    

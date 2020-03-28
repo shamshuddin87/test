@@ -62,16 +62,12 @@ class SensitiveinformationController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
+
                 $category   = $this->request->getPost('category','trim');
-                $othercate = '';
-                if($category == 16)
-                {
-                    $othercate = $this->request->getPost('othercategory','trim');
-                }
-                else if($category == 14)
-                {
-                    $othercate = $this->request->getPost('empcategory','trim');
-                }
+              
+                $othercate = $this->request->getPost('othercategory','trim');
+                $department = $this->request->getPost('empcategory','trim');
+                
                 $entity   = $this->request->getPost('entity','trim');
                 $name   = $this->request->getPost('name','trim');
                 $identitynum   = $this->request->getPost('identitynum','trim');
@@ -79,7 +75,26 @@ class SensitiveinformationController extends ControllerBase
                 $mobilenum   = $this->request->getPost('mobilenum','trim');
                 $designation   = $this->request->getPost('designation','trim');
                 $email   = $this->request->getPost('email','trim');
-                //$file   = $this->request->getPost('uplod','trim');
+                $pan   = $this->request->getPost('panentity','trim');
+
+
+               
+                $panvalidate = $this->elements->panvalidation($pan);
+                
+                if($panvalidate == false )
+                {
+                    $data = array("logged" => false,'message' => 'Please enter valid PAN number',);
+                    $this->response->setJsonContent($data);
+                    
+                }
+                else if(empty($email))
+                {
+                    $data = array("logged" => false,'message' => 'Please enter Email Address',);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                
                 $filepath = '';
                 $agreemntfilepath = '';
                 if(!empty($_FILES["upload"]))
@@ -123,7 +138,7 @@ class SensitiveinformationController extends ControllerBase
                         $agreemntfilepath = $upload_filepath;
                   }
                 //print_r($agreemntfilepath);exit;
-                  $getres = $this->sensitiveinformationcommon->insertrecipient($getuserid,$user_group_id,$category,$othercate,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath);
+                  $getres = $this->sensitiveinformationcommon->insertrecipient($getuserid,$user_group_id,$category,$othercate,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$pan,$department);
                     //echo "checking form data";print_r($getres); exit;      
                     if($getres)
                     {
@@ -134,9 +149,11 @@ class SensitiveinformationController extends ControllerBase
                     {
                         $data = array("logged" => false,'message' => "Record Not Added..!!");
                         $this->response->setJsonContent($data);
-                    }  
+                    }
+                }  
                 
                 $this->response->send();
+
             }
             else
             {
@@ -261,15 +278,10 @@ class SensitiveinformationController extends ControllerBase
             {
                 //echo "checking form data";print_r($this->request->getPost()); exit;
                 $category   = $this->request->getPost('category','trim');
-                $othrcategory = '';
-                if($category == 16)
-                {
-                    $othrcategory = $this->request->getPost('othercategory','trim');
-                }
-                else if($category == 14)
-                {
-                    $othrcategory = $this->request->getPost('empcategory','trim');
-                }
+                
+               $othrcategory = $this->request->getPost('othercategory','trim');
+               $department = $this->request->getPost('empcategory','trim');
+                
                 $entity   = $this->request->getPost('entity','trim');
                 $name   = $this->request->getPost('name','trim');
                 $identitynum   = $this->request->getPost('identitynum','trim');
@@ -280,10 +292,28 @@ class SensitiveinformationController extends ControllerBase
                 $identityfile   = $this->request->getPost('identityfile','trim');
                 $confiagrmnt   = $this->request->getPost('confiagrmnt','trim');
                 $id   = $this->request->getPost('tempid','trim');
+                $pan = $this->request->getPost('panentity','trim');
                 
                 //echo "checking form data";print_r($this->request->getPost()); exit;
                 $filepath = '';
                 $agreemntfilepath = '';
+                $panvalidate = $this->elements->panvalidation($pan);
+                //print_r($panvalidate);exit;
+                
+                if($panvalidate == false )
+                {
+
+                    $data = array("logged" => false,'message' => 'Please enter valid PAN number',);
+                    $this->response->setJsonContent($data);
+                    
+                }
+                else if(empty($email))
+                {
+                    $data = array("logged" => false,'message' => 'Please enter Email Address',);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
                 if(!empty($_FILES["upload"]))
                 {
                         $userfile_name = $_FILES['upload']['name'];
@@ -335,7 +365,7 @@ class SensitiveinformationController extends ControllerBase
                 //print_r($agreemntfilepath);exit;
                 
                 
-                    $getres = $this->sensitiveinformationcommon->updaterecipient($getuserid,$user_group_id,$category,$othrcategory,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$id);
+                $getres = $this->sensitiveinformationcommon->updaterecipient($getuserid,$user_group_id,$category,$othrcategory,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$id,$pan,$department);
                     
                     //echo "checking form data";print_r($getres); exit;      
                     if($getres)
@@ -347,7 +377,9 @@ class SensitiveinformationController extends ControllerBase
                     {
                         $data = array("logged" => false,'message' => "Record Not Updated..!!");
                         $this->response->setJsonContent($data);
-                    }
+                 
+                   }
+            }
                 
 
                 $this->response->send();
@@ -420,7 +452,10 @@ class SensitiveinformationController extends ControllerBase
         $cin = $this->session->memberdoccin;
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
         $firstname = $this->session->loginauthspuserfront['firstname'];
+        $nameoflogged = $this->session->loginauthspuserfront['username'];
+        //print_r($fullname);exit;
         $lastname = $this->session->loginauthspuserfront['lastname'];
+        $loggedemail = $this->session->loginauthspuserfront['email'];
         $timeago = time();
         $todaydate=date('d-m-Y');
         if($this->request->isPost() == true)
@@ -436,7 +471,11 @@ class SensitiveinformationController extends ControllerBase
                 $date1 =  date("d-m-Y", strtotime($date));
                 $stdate=new DateTime($date);
                 $time = $this->request->getPost('time_of_data','trim');
+                $email = $this->request->getPost('emailforsendmail','trim');
+
+                //print_r($email);exit;
                 $enddate   = $this->request->getPost('enddate','trim');
+                $upsiname = $this->request->getPost('selectupsi','trim');
                 $endchkdate= new DateTime($enddate);
                 $mytoday=new DateTime($todaydate);
                 if(!empty($enddate) )
@@ -456,6 +495,7 @@ class SensitiveinformationController extends ControllerBase
                 $file   = $this->request->getPost('upload','trim');
                 $category   = $this->request->getPost('category','trim');
                 $recipientid   = $this->request->getPost('recid','trim');
+                $recipienttype   = $this->request->getPost('rectype','trim');
                 $filepath = '';
                 //print_r($time);
                 if(empty($date))
@@ -483,11 +523,7 @@ class SensitiveinformationController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Time Cannot Exceed 24:59!!');
                     $this->response->setJsonContent($data);
                 }
-//                else if($file)
-//                {
-//                    $data = array("logged" => false,'message' => 'Please select Attachment!!');
-//                    $this->response->setJsonContent($data);
-//                }
+
                 else
                 {
                     $filepath = '';
@@ -536,9 +572,10 @@ class SensitiveinformationController extends ControllerBase
                         
                     }
                   //print_r($filepath);exit;
-                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$filepath);
+                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail,$nameoflogged);
+                  //print_r($getres);exit;
                     
-                  if($getres)
+                  if($getres == true)
                     {
                         $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
                         $this->response->setJsonContent($data);
@@ -894,25 +931,71 @@ class SensitiveinformationController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
+                $namelistemail = array();
                 $searchvallist = $this->request->getPost('searchvallist');
                 //echo  $searchvallist;exit;
                 $searchlist = $this->filter->sanitize($searchvallist, "trim");
                 $searchlist = $this->filter->sanitize($searchvallist, "string");
                 if(preg_match("/[A-Za-z]+/", $searchlist))
                 {
+
                     $getsearchkywo = $searchlist;
                     $limit = 10;
+                    $receipientlist = array();
+                    $receipientemailid = array();
+                    $softuserlist = array();
                     
-                    $userlist = array();
-                    $complist = array();
-                    $namelist = $this->sensitiveinformationcommon->namedetails($getuserid,$user_group_id,$getsearchkywo);  
+                    $receipientlist = $this->sensitiveinformationcommon->namedetails($getuserid,$user_group_id,$getsearchkywo);  
+                    //print_r($namelist);exit;
+                    foreach ($receipientlist as $n) 
+                    {
+                        if(!empty($n['email']))
+                        {
+                             $receipientemailid[] = $n['email'];
+                        }
+                      
+                    }
                     
-                    $getcount = count($namelist);
+                    $softuserlist = $this->sensitiveinformationcommon->itnamedetails($getuserid,$user_group_id,$getsearchkywo,$receipientemailid); 
+                    //print_r($softuserlist);exit;
+                    if(empty($receipientlist) && !empty($softuserlist))
+                    {
+                        $finallist = $softuserlist;
+                    }
+                    else if(!empty($receipientlist) && empty($softuserlist))
+                    {
+                        $finallist = $receipientlist;
+                    }
+                    else if(!empty($receipientlist) && !empty($softuserlist))
+                    {
+                        $finallist = array_merge($receipientlist,$softuserlist);
+                    }
+                    else
+                    {
+                        $finallist = array();
+                    }
+                    //print_r($finallist);exit;
+//                    $finallist1 = array_push($namelist,$namelist1);
+//                    $finallist1 = array_push($namelist,$namelist1);
+//                    $finallistnew = array_unique($namelist);
+//                    $finallist = array_shift($finallistnew);
+//                    print_r($finallist1);
+                    //print_r($abc);exit;
+
+                  
+                    if(!empty($finallist))
+                    {
+                        $getcount = count($finallist);
+                    }
+                    else
+                    {
+                        $getcount = 0;
+                    }
                     //echo $getcount; exit;
 
-                    if(!empty($namelist))
+                    if(!empty($finallist))
                     {
-                        $data = array("logged" => true,'message' => 'Found!!!' ,'data'=> $namelist,'count'=> $getcount);
+                        $data = array("logged" => true,'message' => 'Found!!!' ,'data'=> $finallist,'count'=> $getcount);
                         //echo '<pre>'; print_r($data); exit;
                         $this->response->setJsonContent($data);
                     }
@@ -1340,7 +1423,7 @@ class SensitiveinformationController extends ControllerBase
                     $userlist = array();
                     
                     $userlist = $this->sensitiveinformationcommon->userdetails($getuserid,$user_group_id,$getsearchkywo);  
-                    
+
                     $getcount = count($userlist);
                     //print_r($userlist); exit;
 

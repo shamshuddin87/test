@@ -21,3 +21,26 @@ button#noofdmat ,button.btn.btn-primary.relhtml {
 }
 
 .btn { border:1px solid #4a2880 !important; }
+
+.cssclass
+{
+	display: inline-block;
+    padding: 5px 10px;
+    background: #4a2982;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    left: 30%;
+    top: 2px;
+}
+
+.cssclass1
+{
+	padding: 5px 10px;
+    background: #4a2982;
+    color: rgb(255,255,255);
+    position: absolute;
+    width: 120%;
+    left: 0%;
+    top: 55px;
+
+}

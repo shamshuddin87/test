@@ -1,4 +1,4 @@
-website(document).ready(function()
+  website(document).ready(function()
 {
     getdataonload();
     website('.bootdatepick').datetimepicker({
@@ -112,7 +112,15 @@ function getdataonload()
             
         for(var i = 0; i < response.resdta.length; i++) 
         {
-            
+            var name = ''
+            if(response.resdta[i].recipienttype=='connected person')
+            {
+                name = response.resdta[i].name?response.resdta[i].name:'';
+            }
+            else if(response.resdta[i].recipienttype=='userlist')
+            {
+                name = response.resdta[i].username?response.resdta[i].username:'';
+            }
             var category = response.resdta[i].category_name?response.resdta[i].category_name:'';
             var enddate = response.resdta[i].enddate?response.resdta[i].enddate:'';
             var datefrom = response.resdta[i].sharingdate;
@@ -123,7 +131,7 @@ function getdataonload()
 
 //            //------------------------- Table Fields Insertion START ------------------------
             addhtmlnxt += '<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';
-            addhtmlnxt += '<td width="10%">'+response.resdta[i].name+'</td>';
+            addhtmlnxt += '<td width="10%">'+name+'</td>';
             if(response.resdta[i].category == 16)
             {
                 category = response.resdta[i].othercategory?response.resdta[i].othercategory:'';
@@ -149,7 +157,7 @@ function getdataonload()
             addhtmlnxt += '<td width="10%">'+response.resdta[i].fullname+'</td>';
             addhtmlnxt += '<td width="25%">';
 
-            if(response.getaccess[0].upsi_infoshare_delete==1)
+            if(response.getaccess[0].upsi_infoshare_delete && response.getaccess[0].upsi_infoshare_delete==1)
             {
                 addhtmlnxt += '<i class="fa fa-trash-o faicon floatleft deleterestrictedcmp" title="Delete entry" aprvllistid="'+response.resdta[i].id+'" ></i>';
             }
@@ -170,9 +178,9 @@ function getdataonload()
             //------------------------ Table Fields Insertion END ------------------------
             //hide edit field <i class="fa fa-edit faicon floatleft editrestrictedcmp" title="Edit entry" aprvllistid="'+response.resdta[i].id+'"></i>
         }
-	             if(response.getaccess[0].upsi_infoshare_add==1)
+	             if(response.getaccess[0].upsi_infoshare_add && response.getaccess[0].upsi_infoshare_add==1)
 	              {
-	              	   // alert(1);
+	              	   
 	                  website('.formelementmain').css('display','block');
 
                  
@@ -202,16 +210,9 @@ function getdataonload()
 	              }       
 	              else
 	              {
-	              	    // alert();
+	              	    
 	                    website('.table-responsive.table_wraper ').css('display','none');
 
-                        //   new PNotify({title: 'You Do Not Have Access To View This Section',
-                        //   text:"Please Contact To Your Admin",
-                        //   type: 'university',
-                        //   hide: true,
-                        //   styling: 'bootstrap3',
-                        //   addclass: 'dark ',
-                        // });
                          website('#alertcommon #allalertmsg').html("You Do Not Have Access To View This Section");
                          website('#alertcommon').modal('show');
 	              }      
@@ -231,13 +232,6 @@ function getdataonload()
 	              	    // alert();
 	                    website('.formelementmain').css('display','none');
                       
-                        //  new PNotify({title: 'You Do Not Have Access To Add Info Sharing',
-                        //   text:"Please Contact To Your Admin",
-                        //   type: 'university',
-                        //   hide: true,
-                        //   styling: 'bootstrap3',
-                        //   addclass: 'dark ',
-                        // });
                         website('#alertcommon #allalertmsg').html("You Do Not Have Access To Add Info Sharing");
                         website('#alertcommon').modal('show');
 	              }      
@@ -601,8 +595,8 @@ function doSearch(getvalue)
       //async:true, /*Cross domain checking*/
       beforeSend: function() 
       {
-                website('#live-search-header-wrapper').fadeIn();
-        website('#live-search-header-wrapper ul').html("<li>Please wait...</li>");
+            website('#live-search-header-wrapper').fadeIn();
+            website('#live-search-header-wrapper ul').html("<li>Please wait...</li>");
                 website('.mainprogressbarforall .progress').fadeIn();
                 website('.filtr-container').html("");
                 website('.filtr-container').removeAttr("style");
@@ -611,7 +605,7 @@ function doSearch(getvalue)
       },
       uploadProgress: function(event, position, total, percentComplete) 
       {
-                website('#live-search-header-wrapper').fadeIn();
+        website('#live-search-header-wrapper').fadeIn();
         website('#live-search-header-wrapper ul').html("<li>Please wait...</li>");
                 website('.mainprogressbarforall .progress').fadeIn();
                 website(".mainprogressbarforall .progress .progress-bar").width(percentComplete+'%');
@@ -625,38 +619,61 @@ function doSearch(getvalue)
                 
         if (response.logged == true && response.data.length>=1) 
                 {         
-          //console.log(response.data);return false;
+          //console.log(response.data);
           for(var i = 0; i < response.data.length; i++) 
           {   
             var categoryname = ''; 
-            if(response.data[i].category == '16')
+            var name = ''; 
+            var category = ''; 
+            var rectype = '';
+
+            if(response.data[i].category != null)
             {
-                 categoryname = response.data[i].othercategory;
+                  rectype = 'connected person';
+                  if(response.data[i].category == '16')
+                  {
+                       categoryname = response.data[i].othercategory;
+                        name = response.data[i].name;
+                         email = response.data[i].email;
+                          category = response.data[i].category;
+                            id = response.data[i].id;
+                  }
+                  else if(response.data[i].category == '14')
+                  {
+                       categoryname = response.data[i].categoryname;
+                        name = response.data[i].name;
+                         email = response.data[i].email;
+                          category = response.data[i].category;
+                            id = response.data[i].id;
+                  }
+                  else
+                  {
+                    categoryname = response.data[i].categoryname;
+                     name = response.data[i].name;
+                      email = response.data[i].email;
+                       category = response.data[i].category;
+                         id = response.data[i].id;
+                  }
+
+
             }
             else
             {
-                 categoryname = response.data[i].categoryname;
+              rectype = 'userlist';
+              categoryname ='Employee';
+              name = response.data[i].fullname;
+              category = 14;
+              id = response.data[i].wr_id;
+              email = response.data[i].email;
             }
-            if(i==0)
-            {
-             
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'" categoryname="'+categoryname+'" class="topul validatorsid">'+response.data[i].name;
+
+
+
+           
+              addhtml += '<li rec_id="'+id+'" rec_type="'+rectype+'" name="'+name+'" category ="'+category+'"  email ="'+email+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
-            }
-            else if(i==((response.data.length)-1))
-            {
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'"  class="bottomul validatorsid">'+response.data[i].name;
-              //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
-              addhtml += '<div class="clearelement"></div></li>';
-              
-            }
-            else
-            {
-              addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+response.data[i].name;
-              //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
-              addhtml += '<div class="clearelement"></div></li>';
-            }
+            
           }
           website('#live-search-header-wrapper ul').html(addhtml);
           //window.location.reload();
@@ -714,10 +731,10 @@ function doSearchforedit(getvalue)
       },
       uploadProgress: function(event, position, total, percentComplete) 
       {
-                website('#Mymodaledit #live-search-header-wrapper').fadeIn();
+        website('#Mymodaledit #live-search-header-wrapper').fadeIn();
         website('#Mymodaledit #live-search-header-wrapper ul').html("<li>Please wait...</li>");
-                website('#Mymodaledit .mainprogressbarforall .progress').fadeIn();
-                website("#Mymodaledit .mainprogressbarforall .progress .progress-bar").width(percentComplete+'%');
+        website('#Mymodaledit .mainprogressbarforall .progress').fadeIn();
+        website("#Mymodaledit .mainprogressbarforall .progress .progress-bar").width(percentComplete+'%');
                 
       },
       success: function(response, textStatus, jqXHR) 
@@ -773,20 +790,28 @@ function doSearchforedit(getvalue)
   }
   
 }
-/* ------- operation on companydatali li start ------- */ 
+
+/* ------- operation on onclick on search list  ------- */ 
 
     website('body').on('click','.validatorsid',function(e){
+
    
        var recid = website(this).attr('rec_id');
+       var rectype = website(this).attr('rec_type');
        var name = website(this).attr('name');
        var cate = website(this).attr('category');
        var categoryname = website(this).attr('categoryname');
+       var email = website(this).attr('email');
+       
+       
         
        website('#insertinfosharing #search-box').val(name);
        website('#search-box').attr('recid',recid);
        website('#search-box').attr('recname',name);
        website('#insertinfosharing #recid').val(recid);
+       website('#insertinfosharing #rectype').val(rectype);
        website('#insertinfosharing #category').val(cate);
+       website('#insertinfosharing #emailforsendmail').val(email);
        website('#live-search-header-wrapper').fadeOut();       
        
        website('#insertinfosharing #name').val(name);

@@ -89,7 +89,11 @@ function getallupsietails()
                     {
                         htmlelements+='<i class="fa fa-edit upedit" upsiid="'+response.data[i][0]+'" ></i>';
                     }
-                    htmlelements+='<i class="fa fa-trash delups" delupsiid="'+response.data[i][0]+'"></i></td>';
+                    if(response.usergrp == '14' || response.usergrp == '2')
+                    {
+                        htmlelements+='<i class="fa fa-trash delups" delupsiid="'+response.data[i][0]+'"></i></td>';
+                    }
+                   
                     htmlelements+='</tr>';
                  }
             }
@@ -165,6 +169,29 @@ website('body').on('click','.upedit',function(e){
                       
                     }
                 }
+
+                // console.log(response);
+                if(response.data.projectowner == response.loggedinuser)
+                {
+                    // console.log('in iff'); 
+                    website("#upsimodel #upname").attr("readonly","readonly");
+                    website("#upsimodel #projdesc").attr("readonly","readonly");
+                    website(".searchowner").attr("readonly","readonly");
+                    website("#upsimodel #pstartdte").attr("disabled","disabled");
+                    website("#upsimodel #enddate").attr("disabled","disabled");
+
+                   
+
+                }
+                else
+                {
+                    website("#upsimodel #upname").removeAttr("readonly");
+                    website("#upsimodel #projdesc").removeAttr("readonly");
+                    website(".searchowner").removeAttr("readonly");
+                    website("#upsimodel #pstartdte").removeAttr("disabled");
+                    website("#upsimodel #enddate").removeAttr("disabled");
+                }
+
                 var upupsnm = response.data['upsitype']?response.data['upsitype']:'';
                 var projstartdate = response.data['projstartdate']?response.data['projstartdate']:'';
                 var enddate = response.data['enddate']?response.data['enddate']:'';
@@ -177,9 +204,11 @@ website('body').on('click','.upedit',function(e){
                 
                 website('#upsimodel #pstartdte').val(projstartdate);
                 website('#upsimodel #cmppstartdte').val(projstartdate);
+                 website('#upsimodel #pstartdtecopy').val(projstartdate);
                 
                 website('#upsimodel #enddate').val(enddate);
                 website('#upsimodel #cmpenddate').val(enddate);
+                 website('#upsimodel #enddatecopy').val(enddate);
                 
                 website('#upsimodel #ownerid').val(projectownerid);
                 website('#upsimodel #cmpownerid').val(projectownerid);
@@ -206,18 +235,27 @@ website('body').on('click','.upedit',function(e){
    
 });
 
+
+
+// website('body').on('click','#upbtn',function(e){
+//     website('#modaltradingwindowclose #tradingwindowno').attr('action','update');
+//     website('#modaltradingwindowclose').modal('show');
+//     //website('#addupsimast').submit();
+// });
+
 website('#updateupsimast').ajaxForm({
     //data:formdata,
     //contentType:'application/x-www-form-urlencoded; charset=UTF-8',
     dataType:"json",
     beforeSend: function() 
-    {   },
+    {   website('.preloder_wraper').fadeIn(); },
     uploadProgress: function(event, position, total, percentComplete) 
     {   },
     success: function(response, textStatus, jqXHR) 
     {
          if(response.logged === true)
          {
+            //website('#modaltradingwindowclose').modal('hide');
             website("#upsimodel").modal('hide');
             new PNotify({title: 'Alert',
             text: response.message,
@@ -240,10 +278,11 @@ website('#updateupsimast').ajaxForm({
          }
     },
     complete: function(response) 
-    {   },
+    {   website('.preloder_wraper').fadeOut(); },
     error: function() 
-    {   }
+    {  website('.preloder_wraper').fadeOut(); }
 });
+
 
 website('body').on('click','.delups',function(e){ 
   var delid = website(this).attr('delupsiid');
@@ -328,20 +367,99 @@ formdata={delid:delid};
     }
     else
     {
-        console.log('in else');
         website('#updateupsimast #connectdps').attr('required','required');
         website('#updateupsimast #dpsmodel').css('display','block');
     }       
 });
 
 website('body').on('click','.addupsitype',function(e){
-    website('#addupsimast').submit();
+
+    var title = website("#addupsimast #upnm").val();
+    var startdt = website("#addupsimast #pstartdte").val();
+    var owner = website("#addupsimast #owner").val();
+    
+    if(!title)
+    {
+         new PNotify({title: 'Alert',
+                    text: 'Please Enter title of UPSI',
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                 });
+    }
+    else if(!startdt)
+    {
+        new PNotify({title: 'Alert',
+                    text: 'Please Enter start date of UPSI',
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                 });
+  
+    }
+    else if(!owner)
+    {
+        new PNotify({title: 'Alert',
+                    text: 'Please Select owner of UPSI',
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                 });
+  
+    }
+    else
+    {
+        website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');
+        website('#modaltradingwindowclose #tradingwindowyes').attr('action','insert');
+        website('#modaltradingwindowclose').modal('show');
+    }
+
+   
+   
+    //website('#addupsimast').submit();
 });
 
 //website('body').on('click','#tradingacc',function(e){
 //    website('#addupsimast').submit();
 //   
 //});
+
+website('body').on('click','#tradingwindowno',function(e){
+    var actiontype = website(this).attr('action');
+    if(actiontype == 'insert')
+    {
+        website('#addupsimast').submit();
+    }
+    // else if(actiontype == 'update')
+    // {
+    //     website('#updateupsimast').submit();
+    // }
+
+   
+});
+
+ function pageRedirect() {
+        window.location.replace("blackoutperiod");
+    }      
+   
+
+website('body').on('click','#tradingwindowyes',function(e){
+    var actiontype = website(this).attr('action');
+    if(actiontype == 'insert')
+    {
+        website('#addupsimast').submit();
+    }
+    // else if(actiontype == 'update')
+    // {
+    //     website('#updateupsimast').submit();
+    // }
+
+   
+});
+
 
 website('body').on('click','#tradingrej',function(e){
          
@@ -364,6 +482,7 @@ website('body').on('click','#tradingrej',function(e){
          if(response.logged === true)
          {
             website('#modaltradingwindow').modal('hide');
+             website('#modaltradingwindowclose').modal('hide');
               new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',

@@ -18,6 +18,7 @@ website(document).ready(function()
         var getid = website(this).closest('form').attr('id');
     });
     
+
 });
 
    website('#insertrecipient').ajaxForm({
@@ -83,16 +84,18 @@ function getdataonload()
         if(response.logged===true)
         {
             
-           // console.log(response.getaccess[0]); return false;
+          // console.log(response.resdta); return false;
         var addhtmlnxt='';
             
         for(var i = 0; i < response.resdta.length; i++) 
         {
            //------------------------- Table Fields Insertion START ------------------------
             
+            var pannumber = response.resdta[i].pannumber?response.resdta[i].pannumber:''
             var mobileno = response.resdta[i].mobileno?response.resdta[i].mobileno:''
             var email = response.resdta[i].email?response.resdta[i].email:''
             addhtmlnxt += '<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';
+
             if(response.resdta[i].category == 16)
             {
                 var category = response.resdta[i].othercategory?response.resdta[i].othercategory:'';
@@ -104,6 +107,7 @@ function getdataonload()
             
             addhtmlnxt += '<td>'+category+'</td>';
             addhtmlnxt += '<td>'+response.resdta[i].nameofentity+'</td>';
+            addhtmlnxt += '<td>'+pannumber+'</td>';
             addhtmlnxt += '<td>'+response.resdta[i].name+'</td>';
             addhtmlnxt += '<td>'+response.resdta[i].identityno+'</td>';
             //addhtmlnxt += '<td>'+response.resdta[i].phoneno+'</td>';
@@ -130,6 +134,7 @@ function getdataonload()
 
             if(response.getaccess[0]['upsi_conn_per_edit']==1)
             {
+           
                 addhtmlnxt+='<i class="fa fa-edit faicon floatleft editrestrictedcmp" title="Edit entry" aprvllistid="'+response.resdta[i].id+'"> </i>';
             }
             else
@@ -260,22 +265,29 @@ var id = website(this).attr('aprvllistid');
       {
         if(response.logged===true)
         {
-            //console.log(response.data);return false;
+            //console.log(response.data);
+            myeditmodalhtml(response.data['0'].category);
             var appendhtml= '';  
             
             website("#Mymodaledit #category").val(response.data['0'].category);
             if(response.data['0'].category == 16)
             {
-                   var html = '<section class="col col-md-6 col-xs-6"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
+              
+                   var html = '<div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div>';
                    website('#Mymodaledit .othercateedit').html(html);
                    website("#Mymodaledit #othercategory").val(response.data['0'].othercategory);
+                    website("#Mymodaledit .nameofemployee").addClass('col-md-4').removeClass('col-md-12');
+
+                  
+                  
             }
             else if(response.data['0'].category == 14)
             {
-                   var html = '<section class="col col-md-6 col-xs-6"><div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
+                   var html = '<div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div>';
                    website('#Mymodaledit .employeecateedit').html(html);
-                   website("#Mymodaledit #empcategory").val(response.data['0'].othercategory);
+                   website("#Mymodaledit #empcategory").val(response.data['0'].department);
                    website("#Mymodaledit #entity").attr("readonly",true);
+                    website("#Mymodaledit .nameofemployee").addClass('col-md-4').removeClass('col-md-12');
             }
             else
             {
@@ -283,6 +295,8 @@ var id = website(this).attr('aprvllistid');
                     website('#Mymodaledit .empcateedit').css('display','none');
                     website('#Mymodaledit #othercategory').removeAttr('required');
                     website('#Mymodaledit #empcategory').removeAttr('required');
+                     website("#Mymodaledit .nameofemployee").addClass('col-md-12').removeClass('col-md-4');
+
             }
             website("#Mymodaledit #entity").val(response.data['0'].nameofentity);
             website("#Mymodaledit #name").val(response.data['0'].name);
@@ -291,11 +305,13 @@ var id = website(this).attr('aprvllistid');
             website("#Mymodaledit #mobilenum").val(response.data['0'].mobileno);
             website("#Mymodaledit #designation").val(response.data['0'].designation);
             website("#Mymodaledit #email").val(response.data['0'].email);
+            website("#Mymodaledit #panentity").val(response.data['0'].pannumber);
             
            
             website('#updaterecipient #tempid').val(id);
             website('#updaterecipient #confiagrmnt').val(response.data['0'].agreemntfile);
             website('#updaterecipient #identityfile').val(response.data['0'].filepath);
+         
             website('#Mymodaledit').modal('show');
             
      }
@@ -309,7 +325,7 @@ var id = website(this).attr('aprvllistid');
     error: function(jqXHR, textStatus, errorThrown)
     {}
   });
-    
+  
     
 });
 
@@ -325,6 +341,7 @@ website('#updaterecipient').ajaxForm({
         { website('.preloder_wraper').fadeIn();},
         success: function(response, textStatus, jqXHR) 
         {
+            website('.preloder_wraper').fadeOut();
            if(response.logged === true)
            {
               //fetchmasterlist();
@@ -421,8 +438,12 @@ website('body').on('click','.yesconfirm', function(){
     });
 });
 
+
 website('body').on('change','#category',function(){
     var id = website(this).val();
+         
+        //  
+
     if(id == 16)
     {
         website('#insertrecipient .employeecate').css('display','none');
@@ -430,16 +451,31 @@ website('body').on('change','#category',function(){
         var html = '<section class="col col-md-4 col-xs-12"><div class="input"><label class="control-label">Name of Other Category*</label><input type="text" id="othercategory" name="othercategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
         website('#insertrecipient .othercate').html(html);
         website('#insertrecipient #entity').val("");
+      
         website('#insertrecipient #entity').attr("readonly",false);
+        website('#insertrecipient #name').removeAttr('placeholder');
+        website('#insertrecipient #name').removeAttr('searchemp');
+         website('#insertrecipient #searchuser').css("display", "none");
+        
+         
     }
     else if(id == 14)
     {
         website('#insertrecipient .othercate').css('display','none');
         website('#insertrecipient .employeecate').css('display','block');
+      
         var html = '<section class="col col-md-4 col-xs-12"><div class="input"><label class="control-label">Name of Department*</label><input type="text" id="empcategory" name="empcategory" class="form_fields form-control col-md-7 col-xs-12"  required> </div></section>';
         website('#insertrecipient .employeecate').html(html);
         website('#insertrecipient #entity').val("Dr Reddy's Laboratories Ltd.");
         website('#insertrecipient #entity').attr("readonly",true);
+        website('#insertrecipient #name').attr('placeholder',"Search");
+        website('#insertrecipient #name').attr('searchemp','searchemp');
+         onkeysearchuser();
+        
+       
+        
+       
+       
     }
     else
     {
@@ -447,15 +483,25 @@ website('body').on('change','#category',function(){
         website('#insertrecipient .employeecate').css('display','none');
         website('#insertrecipient #othercategory').removeAttr('required');
         website('#insertrecipient #empcategory').removeAttr('required');
+        
         website('#insertrecipient #entity').val("");
         website('#insertrecipient #entity').attr("readonly",false);
+        website('#insertrecipient #name').removeAttr('placeholder');
+         website('#insertrecipient #name').removeAttr('searchemp');
+        website('#insertrecipient #searchuser').css("display", "none");
+        
+         
     }
     
 });
 
-website('body').on('change','#Mymodaledit #category',function(){
-    var id = website(this).val();
-    if(id == 16)
+
+
+
+function myeditmodalhtml(id)
+{
+
+if(id == 16)
     {
         website('#Mymodaledit .employeecateedit').css('display','none');
         website('#Mymodaledit .othercateedit').css('display','block');
@@ -463,6 +509,8 @@ website('body').on('change','#Mymodaledit #category',function(){
         website('#Mymodaledit .othercateedit').html(html);
         website('#Mymodaledit #entity').val("");
         website('#Mymodaledit #entity').attr("readonly",false);
+         website('#Mymodaledit #name').removeAttr('searchemp');
+        
     }
     else if(id == 14)
     {
@@ -472,6 +520,11 @@ website('body').on('change','#Mymodaledit #category',function(){
         website('#Mymodaledit .employeecateedit').html(html);
         website('#Mymodaledit #entity').val("Dr Reddy's Laboratories Ltd.");
         website('#Mymodaledit #entity').attr("readonly",true);
+       
+        website('#Mymodaledit #name').attr('searchemp','searchemp');
+        onkeysearchusermodal();
+        
+
     }
     else
     {
@@ -482,20 +535,27 @@ website('body').on('change','#Mymodaledit #category',function(){
         website('#Mymodaledit #empcategory').removeAttr('required');
         website('#Mymodaledit #entity').val("");
         website('#Mymodaledit #entity').attr("readonly",false);
-    }
-});
+         website('#Mymodaledit #name').removeAttr('searchemp');
+        
+}
+}
+
 
 //-----------------------------------on key up search user----------------------
-onkeysearchuser();
+
 function onkeysearchuser() { 
     website('#insertrecipient #searchuser').css("display", "none");
     website("#name").keyup(function(){
+        
 
         var search=website('#insertrecipient #name').val();
+        var searchuser =  website('#insertrecipient #name').attr('searchemp');
+       
+        
         var addhtml='';
         website('#insertrecipient #searchuser').html("");
         var formdata = {search:search};
-        if(search == '')
+        if(search == '' || !searchuser )
         {
             website('#insertrecipient #searchuser').css("display", "none");
         }
@@ -517,11 +577,13 @@ function onkeysearchuser() {
                     addhtml+='<ul>';
                     if(response.logged==true)
                     {
+                        console.log(response.data);
                         website('#insertrecipient #searchuser').css("display", "block");
                           
                         for(var i=0;i<response.data.length;i++)
-                        {
-                            addhtml+='<li wruid="'+response.data[i].wr_id+'" name="'+response.data[i].fullname+'" pan="'+response.data[i].pan+'" class="topul validatorsid">'+response.data[i].fullname+'</li>';
+                        {   
+
+                            addhtml+='<li wruid="'+response.data[i].wr_id+'" name="'+response.data[i].fullname+'" pan="'+response.data[i].pan+'" email="'+response.data[i].email+'" class="topul validatorsid">'+response.data[i].fullname+'</li>';
                         }
                     }
                     else
@@ -546,31 +608,51 @@ website("body").on("click",".topul",function(e){
     var name = website(this).attr('name');
     var pan = website(this).attr('pan');
 
-    if(pan && pan !== "null")
+    var email = website(this).attr('email');
+    if(pan && email )
     {
-        website('#insertrecipient #identitynum').val(pan);
-        website('#insertrecipient #identitynum').attr('readonly',true);
+     
+        if(pan != "null")
+        {
+            website('#insertrecipient #identitynum').val(pan);
+
+            website('#insertrecipient #identitynum').attr('readonly',true);
+            
+        }
+        if(email != "null")
+        {  
+         
+          website('#insertrecipient #email').val(email);
+          website('#insertrecipient #email').attr('readonly',true);
+        }
+         
+       
     }
     else
+
     {
-        website('#insertrecipient #identitynum').val("");
+      
+        website('#insertrecipient #identitynum').val('');
         website('#insertrecipient #identitynum').attr('readonly',false);
+        website('#insertrecipient #email').val('');
+        website('#insertrecipient #email').attr('readonly',false);
     }
     website('#insertrecipient #name').val(name);
     website('#insertrecipient #searchuser').css("display", "none");
 });
 
 
-onkeysearchusermodal();
+
 function onkeysearchusermodal(){ 
     website('#Mymodaledit #searchuser').css("display", "none");
     website("#Mymodaledit #name").keyup(function(){
 
         var search = website('#Mymodaledit #name').val();
+         var searchuser =  website('#Mymodaledit #name').attr('searchemp');
         var addhtml = '';
         website('#Mymodaledit #searchuser').html("");
         var formdata = {search:search};
-        if(search == '') {
+        if(search == '' || !searchuser) {
             website('#Mymodaledit #searchuser').css("display", "none");
         }
         else
@@ -632,6 +714,27 @@ website("body").on("click",".myupmodal",function(e){
     website('#Mymodaledit #name').val(name);
     website('#Mymodaledit #searchuser').css("display", "none");
 });
+
+
+/* ----------------------------- PAN VALIDATION ------------------------*/
+
+
+
+website(document).ready(function(){
+    
+    website('#panentity').keyup(function(e){
+    website(this).val(website(this).val().toUpperCase());
+   
+    });
+
+    website('#updaterecipient #panentity').keyup(function(e){
+    website(this).val(website(this).val().toUpperCase());
+   
+    });
+});
+
+
+
 
 function numberalphOnly() 
 {

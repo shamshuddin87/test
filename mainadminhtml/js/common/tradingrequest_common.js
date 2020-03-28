@@ -78,6 +78,7 @@ website('body').on('click','.go_button', function(e)
         website('#Mymodalreq').modal('show');
     });
 
+
 website("#pricepershare").keyup(function(){
    var noofshare=website('#noofshare').val();
    var pricepershare=website('#pricepershare').val();
@@ -160,6 +161,7 @@ website('#nameofcmp').val(name);
   website('#searchcmp').css("display", "none");
 });
 
+
 website("body").on("click",".myupnaresh",function(e){
 
    var id=website(this).attr('id');
@@ -169,6 +171,8 @@ website("body").on("click",".myupnaresh",function(e){
   website('#tradinformupdate #nameofcmp').val(name);
   website('#tradinformupdate #searchcmp').css("display", "none");
 });
+
+
  //##############################################AJAX FORM########################################################
 website('body').on('click','.sendrequst',function()
 {   
@@ -193,10 +197,40 @@ website('body').on('click','.sendrequst',function()
     website('#checkappvlrequest #typeoftrans').val(typeoftranss);
     var sendreq = website('#sendrequest').val();
     website('#checkappvlrequest #sendreq').val(sendreq);
+
+    var approxprice = website('#sharesprice').val();
+
+    website('#checkappvlrequest #approxprice').val(approxprice);
+
+    var broker = website('#broker').val();
+    website('#checkappvlrequest #broker').val(broker);
+
+     var demataccount = website('#demataccount').val();
+    website('#checkappvlrequest #demataccount').val(demataccount);
+
+     var place = website('#place').val();
+    website('#checkappvlrequest #place').val(place);
+
+    var datetrans = website("input[name='dateoftrans[]']")
+              .map(function(){return website(this).val();}).get();
+    //console.log(datetrans);
+    website('#checkappvlrequest #datetrans').val(datetrans);
+
+     var transaction = website("input[name='trans[]']")
+              .map(function(){return website(this).val();}).get();
+    
+    website('#checkappvlrequest #transaction').val(transaction);
+
+     var sharestrans =website("input[name='sharestrans[]']")
+              .map(function(){return website(this).val();}).get();
+      
+    website('#checkappvlrequest #sharestrans').val(sharestrans);
+
+ 
     
     website.ajax({
         url:'tradingrequest/checkclosebalval',
-        data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},
+        data:{datetrans:datetrans,approxprice:approxprice,broker:broker,place:place,idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -210,12 +244,42 @@ website('body').on('click','.sendrequst',function()
         {   },
         success: function(response, textStatus, jqXHR)
         {
+            website('.preloder_wraper').fadeOut();
             if(response.logged === true)
             {
-                website('#checkappvlrequest').modal('show');
+
+
+                if(response.contratrd['status'] === true)
+                {
+                   // console.log(response.contratrd);
+                 
+                    if(response.contratrd['message']=='Please Complete Your Latest Trade..!!')
+                    {
+
+                        new PNotify({title: 'Alert',
+                            text: response.contratrd.message,
+                            type: 'university',
+                            hide: true,
+                            styling: 'bootstrap3',
+                            addclass: 'dark ',
+                      });  
+                    }
+                    else
+                    {
+                      //form 2
+                        website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
+                        website('#chckexcptnrequest').modal('show');
+                    }
+                }
+                else
+                {
+                  //form 1
+                  website('#checkappvlrequest').modal('show');
+                }
             }
             else
             {    
+
                 new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
@@ -231,6 +295,50 @@ website('body').on('click','.sendrequst',function()
         {   }
     });
 });
+
+
+function getform(formtype)
+{
+    website.ajax({
+        type:"POST",
+        url:'tradingrequest/getfilecontent',
+        data:{formtype:formtype},
+        dataType:"json",
+        beforeSend: function()
+        { website('.preloder_wraper').fadeIn();  },
+        uploadProgress: function(event, position, total, percentComplete)
+        {  website('.preloder_wraper').fadeIn(); },
+        success: function(response) 
+        {
+            //console.log(response); return false;
+            if(response.logged===true)
+            {
+                if(formtype == 'form1')
+                {
+
+                  //website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);
+                  website('#checkappvlrequest').modal('show');
+                  
+                    
+                }
+                else if(formtype == 'form2')
+                {
+
+                    website('#chckexcptnrequest #Yesexcreqst').attr('requesttype','send'); 
+                    website('#chckexcptnrequest #pdflink').attr('href',response.pdf_path);
+                    website('#chckexcptnrequest').modal('show');
+                }
+            }
+        },
+        complete: function(response)
+        { website('.preloder_wraper').fadeOut();  },
+        error: function() 
+        { website('.preloder_wraper').fadeOut();  }
+    });
+}
+
+
+
 
 website('body').on('click','.reqdraft',function()
 {
@@ -375,8 +483,19 @@ website('body').on('click','#Yesreqst',function(e)
     var noofshare = website('#checkappvlrequest #noofshare').val();
     var typeoftrans = website('#checkappvlrequest #typeoftrans').val();
     var sendreq = website('#checkappvlrequest #sendreq').val();
+    var approxprice = website('#checkappvlrequest #approxprice').val();
+    var broker = website('#checkappvlrequest #broker').val();
+    var demataccount = website('#checkappvlrequest #demataccount').val();
+    var place = website('#checkappvlrequest #place').val();
+    var datetrans = website('#checkappvlrequest #datetrans').val();
+    var transaction = website('#checkappvlrequest #transaction').val();
+    var sharestrans = website('#checkappvlrequest #sharestrans').val();
+   
 
-    var formdata = {approverid:approverid,reqname:reqname,typeofrequest:typeofrequest,selrelative:selrelative,sectype:sectype,idofcmp:idofcmp,nameofcmp:nameofcmp,noofshare:noofshare,typeoftrans:typeoftrans,sendreq:sendreq};
+    var link = website('#checkappvlrequest #pdflink').attr('href');
+
+
+    var formdata = {approxprice:approxprice,broker:broker,demataccount:demataccount,place:place,datetrans:datetrans,transaction:transaction,sharestrans:sharestrans,approverid:approverid,reqname:reqname,typeofrequest:typeofrequest,selrelative:selrelative,sectype:sectype,idofcmp:idofcmp,nameofcmp:nameofcmp,noofshare:noofshare,typeoftrans:typeoftrans,sendreq:sendreq,link:link};
     website.ajax({
       url:'tradingrequest/tradingrequests',
       data:formdata,
@@ -393,7 +512,7 @@ website('body').on('click','#Yesreqst',function(e)
       {  website('.preloder_wraper').fadeIn();  },
       success: function(response, textStatus, jqXHR)
       {
-           if(response.logged === true)
+        if(response.logged === true)
          {
             new PNotify({title: 'Alert',
                     text: response.message,
@@ -406,7 +525,7 @@ website('body').on('click','#Yesreqst',function(e)
               
          }
          else
-         {    
+         {      
             new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
@@ -457,6 +576,7 @@ website('#uploadtrade').ajaxForm({
                             styling: 'bootstrap3',
                             addclass: 'dark ',
                           }); 
+//                      website("#exceptnresionmodal").modal('show');
                   }
                   else if(response.message=="limit exception")
                   {
@@ -470,7 +590,7 @@ website('#uploadtrade').ajaxForm({
                             styling: 'bootstrap3',
                             addclass: 'dark ',
                           }); 
-
+//                      website("#exceptnresionmodal").modal('show');
                   }
                   else
                   {
@@ -675,14 +795,14 @@ function getalltradingrequest(url_status)
                     //addhtmlnxt += '<td width="15%">'+price_per_share+'</td>';
                     //addhtmlnxt += '<td width="15%">'+total_amount+'</td>';
 
-                    if(send_status==1)
-                    {
-                        addhtmlnxt += '<td>Sent</td>';
-                    }
-                    else
-                    {
-                        addhtmlnxt += '<td>Drafted</td>';
-                    }
+//                    if(send_status==1)
+//                    {
+//                        addhtmlnxt += '<td>Sent</td>';
+//                    }
+//                    else
+//                    {
+//                        addhtmlnxt += '<td>Drafted</td>';
+//                    }
 
 
                     if(approved_status==1)
@@ -736,17 +856,17 @@ function getalltradingrequest(url_status)
                     }
 
                     addhtmlnxt+='<td><i class="fa fa-bar-chart requsttrail" rqstid="'+response.data[i].id+'"></i></td>';
-                    if(send_status==1)
-                    { 
-                        addhtmlnxt+='<td><i class="fa fa-ban" style="color:#F44336;"></i></td>';;
-                    }
-                    else
-                    {
-                        addhtmlnxt+='<td>';
-                        addhtmlnxt += '<i class="fa fa-edit editper" pereditid="'+response.data[i].id+'" style="font-size:15px;"></i>';
-                        addhtmlnxt += '<i class="fa fa-trash-o delreq" perdelid="'+response.data[i].id+'" style="font-size:15px; color:#F44336;"></i>';
-                        addhtmlnxt += '</td>';
-                    }
+//                    if(send_status==1)
+//                    { 
+//                        addhtmlnxt+='<td><i class="fa fa-ban" style="color:#F44336;"></i></td>';;
+//                    }
+//                    else
+//                    {
+//                        addhtmlnxt+='<td>';
+//                        addhtmlnxt += '<i class="fa fa-edit editper" pereditid="'+response.data[i].id+'" style="font-size:15px;"></i>';
+//                        addhtmlnxt += '<i class="fa fa-trash-o delreq" perdelid="'+response.data[i].id+'" style="font-size:15px; color:#F44336;"></i>';
+//                        addhtmlnxt += '</td>';
+//                    }
 
                     addhtmlnxt+='</tr>';
                 }                          
@@ -1407,6 +1527,7 @@ function hidereldropdown(){
 
 }
 selecttypeofreqonmodal();
+
 function selecttypeofreqonmodal()
 {
 website("body").on("click","#updatemodal #typeofrequest",function(e){
@@ -1421,21 +1542,122 @@ else
 }
 });
 }
+
 selecttypeofreq();
+
 function selecttypeofreq()
 {
 website("body").on("click","#typeofrequest",function(e){
 var typeofreq=website( "#typeofrequest option:selected" ).val(); 
+
 if(typeofreq==2)
 {
   website('#selrel').css("display", "block");
+
+   website.ajax({
+                  url:'tradingrequest/fetchdemat',
+                  data:{typeofreq:typeofreq},
+                  method:'POST',
+                  contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+                  dataType:"json",
+                  cache:false,
+                  beforeSend: function()
+                  { 
+                     
+
+                   },
+                   uploadProgress: function(event, position, total, percentComplete)
+                   { 
+                   },
+                   success: function(response, textStatus, jqXHR) 
+                   {
+                     var addhtmlnxt ='';
+                      if(response.logged==true)
+                      {
+                        //console.log(response);
+                         //addhtmlnxt+=' <option value="">Select Demat Account</option>';
+                         for(var i=0;i<response.data.length;i++)
+                         {
+                           var id=response.data[i].id?response.data[i].id:'Not Found';
+                           var accno=response.data[i].accountno?response.data[i].accountno:'Not Found';
+                           var dp=response.data[i].depository_participient?response.data[i].depository_participient:'Not Found';
+                           
+                          
+                           addhtmlnxt+='<option value="'+id+'">'+accno+'</option>';
+
+                          
+                          
+
+                          
+                          }
+                            // console.log(addhtmlnxt);return false;
+                              website('#demataccount').html(addhtmlnxt);
+                             
+
+                      }
+                      else{
+                           addhtmlnxt+=' ';
+                      }
+
+                   
+                   }
+    });
 }
 else
 {
    website('#selrel').css("display", "none");
+   
+   website.ajax({
+                  url:'tradingrequest/fetchdemat',
+                  data:{typeofreq:typeofreq},
+                  method:'POST',
+                  contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+                  dataType:"json",
+                  cache:false,
+                  beforeSend: function()
+                  { 
+                     
+
+                   },
+                   uploadProgress: function(event, position, total, percentComplete)
+                   { 
+                   },
+                   success: function(response, textStatus, jqXHR) 
+                   {
+                     var addhtmlnxt ='';
+                      if(response.logged==true)
+                      {
+                         //console.log(response);
+                          addhtmlnxt+=' <option value="">Select Demat Account</option>';
+                         for(var i=0;i<response.data.length;i++)
+                         {
+                           var id=response.data[i].id?response.data[i].id:'Not Found';
+                           var accno=response.data[i].accountno?response.data[i].accountno:'Not Found';
+                           var dp=response.data[i].depository_participient?response.data[i].depository_participient:'Not Found';
+                           
+                          
+                           addhtmlnxt+='<option value="'+id+'">'+accno+'</option>';
+                            //website("#dpdemat").val(dp);
+                          
+                          
+                          }
+                          
+                          website('#demataccount').html(addhtmlnxt);
+
+                      }
+                      else
+                      {
+                                     addhtmlnxt+=' ';
+                      }
+
+                   
+                   }
+    });
+
 }
 });
 }
+
 website("body").on("click",".checkstatus",function(e){
 
 var reqid=website(this).attr('reqid');
@@ -1572,15 +1794,20 @@ website('body').on("click",".requsttrail",function(e){
                      ddmmyymodified = dtemodified[2]+'-'+dtemodified[1]+'-'+dtemodified[0];
                      timesmodified = dtemodifdspace[1];
             /* for date_added end */
-            
-            
-            
-             
-            
-            
+                    
                     
            website('#Mymodalaudittrail .reqstcreateddte' ).html(ddmmyyadded+' '+timesadded);
            website('#Mymodalaudittrail .reqstupdteddte' ).html(ddmmyymodified+' '+timesmodified);
+            
+            /* -----  Application copy ----*/
+            if(response.data[0].pdffilepath)
+            {
+               website('#Mymodalaudittrail .pdfpath').html('<a href="'+response.data[0].pdffilepath+'" target="_blank"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>'); 
+            }
+            else
+            {
+                website('#Mymodalaudittrail .pdfpath').html('');
+            }
            if(response.data[0].send_status == 1)
            {
                if(response.data[0].sendaprvl_date)
@@ -1673,3 +1900,226 @@ website('body').on("click",".requsttrail",function(e){
     {}
   }); 
 });
+
+website('body').on("click","#Yesexcreqst",function(e){
+  var link =  website('#chckexcptnrequest #pdflink').attr('href');
+
+  website('#reasonexceptn #reasonlink').attr('link',link);
+  website("#reasonexceptn").modal('show');
+
+});
+
+website('body').on('click','#Noexcrequest',function(e)
+{
+    new PNotify({title: 'Alert',
+              text: 'You cannot send request',
+              type: 'university',
+              hide: true,
+              styling: 'bootstrap3',
+              addclass: 'dark ',
+                });
+      var base_url = getbaseurl();
+      window.location.href = base_url+'tradingrequest';
+    setTimeout(function(){window.location.reload();}, 1000);
+});
+
+//website('body').on('click','#reasonexe',function(e)
+//{
+//    var reasonmsg = website("#reason").val();
+//    var status = website("#uploadtrade #reasonexe").val(reasonmsg);
+//    if(status)
+//    {
+//        website("#exceptnresionmodal").modal('hide');
+//    }
+//});
+
+website('body').on('click','#reasonexetrans',function(e)
+{
+    var reasonmsg = website("#reasontrans").val();
+    var approverids = website('#approverid').val();
+    var reqname = website('#reqname').val();
+    var typeofrequests = website('#Mymodalreq #typeofrequest').val();
+    
+    if(typeofrequests==3)
+    {
+        var dpuserid=website("#dpuserid").val();
+        var dpusergroup=website("#dpusergroup").val();
+
+    }
+    else
+    {
+       var dpuserid=website("#dpuserid").val();
+       var dpusergroup=website("#dpusergroup").val();
+    }
+    var selrelatives = website('#Mymodalreq #selrelative').val();
+    var idofcmps = website('#Mymodalreq #idofcmp').val();
+    var nameofcmps = website('#Mymodalreq #nameofcmp').val();
+    var noofshares = website('#Mymodalreq #noofshare').val();
+    var sectypes = website('#Mymodalreq #sectypeid').val();
+    var typeoftranss = website('#Mymodalreq #typeoftrans').val();
+    var typeofsave = website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');
+    
+    /*----additional questions*/
+    var reasonoftrans = website("#reasonexceptn #reasonoftrans").val();
+    var otherreason = website("#reasonexceptn #otherreason").val();
+    var lasttransdate = website("#reasonexceptn #lasttransdate").val();
+    var noofshareoftrans = website("#reasonexceptn #noofshareoftrans").val();
+    var form2place = website("#Mymodalreq #place").val();
+    
+    var formdata = {approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup,reasonoftrans:reasonoftrans,otherreason:otherreason,lasttransdate:lasttransdate,noofshareoftrans:noofshareoftrans,form2place:form2place}
+    website.ajax({
+        url:'tradingrequest/savecontratrdexceptn',
+        data:formdata,
+        method:'POST',
+        //contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, /*Cross domain checking*/
+        beforeSend: function()
+        { website('.preloder_wraper').fadeIn();   },
+        uploadProgress: function(event, position, total, percentComplete)
+        {   },
+        success: function(response, textStatus, jqXHR)
+        {
+            if(response.logged === true)
+            {
+                 var baseHref = getbaseurl();
+                 var redirecturl=baseHref+"exceptionreq";
+                 window.location.href =redirecturl;
+                
+            }
+            else
+            {    
+                new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+              });  
+            }
+        },
+        complete: function(response) 
+        {   website('.preloder_wraper').fadeOut();   },
+        error: function() 
+        {   }
+    });
+});
+
+website('body').on('change','#reasonoftrans', function(e) 
+{
+    var reasontype = website(this).val();
+    if(reasontype == 5)
+    {
+        website('.otherreason').css('display','block');
+    }
+    else
+    {
+        website('.otherreason').css('display','none');
+    }
+});
+
+
+
+function addhtml(clicked)
+{
+    
+    var id = clicked;
+    
+   
+     //alert(datepre);
+    if(id == 'adddiv') {
+         
+        datepicker();
+        var getlastid = website('.append').attr('plancntr');
+
+         getlastid = ++getlastid;
+         var addhtmlnxt='';
+
+        
+        addhtmlnxt += '<div class=" form-group col-md-12 row'+getlastid+' "  id="row'+getlastid+'" >';
+         // addhtmlnxt += ' <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>';
+        addhtmlnxt += ' <div id = "left" class="form-group col-md-4" style="margin-left: -18px;">';
+        addhtmlnxt += '<label for="">Date</label>';
+        addhtmlnxt += ' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" >';
+        addhtmlnxt += '</div>';
+        addhtmlnxt += ' <div id = "middle" class="form-group col-md-4">';
+        addhtmlnxt += '<label for="">Transaction</label>';
+        addhtmlnxt += ' <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >';
+        
+        
+        addhtmlnxt += '</div>';
+        addhtmlnxt +=' <div id = "right" class="form-group col-md-4">';
+        addhtmlnxt += ' <label for="">No of Shares</label>';
+        addhtmlnxt += '<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">';
+        addhtmlnxt += ' </div>';
+        
+
+        addhtmlnxt += '</div>';
+        
+        let invalid = '';
+        website('input[name^="dateoftrans"]').each(function() {
+     
+        const date = website(this).val();
+        if(!date.length )
+        {
+           invalid = true;
+        }
+       
+        });
+
+        if(!invalid)
+        {
+          website('.appenddiv').append(addhtmlnxt);
+          website('.append').attr('plancntr',getlastid);
+        }
+        else
+        {
+            new PNotify({title: 'Alert',
+                    text: 'Please Fill All the Fields First',
+                    type: 'university',
+                    hide: true, 
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+            });  
+            
+        }
+       
+       
+      }
+      else{
+      
+       var addhtmlnxt='';
+      
+      }
+     
+
+}
+
+function removehtml(clicked)
+{
+
+     var rmid = clicked;
+
+    if(rmid == 'remvdiv')
+    {
+
+
+        var count = website('.append').attr('plancntr');
+        if(count != 1)
+        {
+              website('.appenddiv #row'+count).remove();
+              website('.append').attr('plancntr',parseInt(count)-1);
+        }
+        else
+        {
+             return false;
+        }
+    }
+
+  
+
+
+}

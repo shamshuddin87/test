@@ -54,7 +54,7 @@ class UpsimasterController extends ControllerBase
 
                     if($result)
                     {
-                        $data = array("logged"=>true, 'message'=>'Type of Upsi Added successfully');
+                        $data = array("logged"=>true, 'message'=>'UPSI Created');
                         $this->response->setJsonContent($data);
                     }
                     else
@@ -141,12 +141,13 @@ class UpsimasterController extends ControllerBase
                 $getusername = '';
                 $upsiid = $this->request->getPost('upsiid');
                 $result = $this->upsicommon->getsingleupsi($upsiid);
+                //print_r($result);exit;
                 $dpuser = $result['connecteddps'];
                 $getusername = $this->upsicommon->fetchdpuser($dpuser);
                 // print_r($result);exit;
                 if(!empty($result))
                 {
-                    $data = array("logged"=>true,"message"=>'Data fetch successfully',"data"=>$result,'dpusers'=>$getusername);
+                    $data = array("logged"=>true,"message"=>'Data fetch successfully',"data"=>$result,'dpusers'=>$getusername,'loggedinuser' => $getuserid);
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -176,20 +177,25 @@ class UpsimasterController extends ControllerBase
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
         $firstname = $this->session->loginauthspuserfront['firstname'];
         $lastname = $this->session->loginauthspuserfront['lastname'];
+        $username = $this->session->loginauthspuserfront['username'];
+        
+       
+
         $timeago = time();
         if($this->request->isPost() == true)
         {
             if($this->request->isAjax() == true)
             {
                 $updatedata = $this->request->getPost();
-                if((!array_key_exists("connectdps",$updatedata) && !array_key_exists("upalldps",$updatedata)) && empty($_FILES['connecteddps']))
-                {
-                    $data = array("logged" => false,'message' => 'Please Select Atleast One Connected Dp OR upload file' );
-                    $this->response->setJsonContent($data);
-                }
-                else
-                {
-                    //
+                //print_r($updatedata);exit;
+                // if((!array_key_exists("connectdps",$updatedata) && !array_key_exists("upalldps",$updatedata)) && empty($_FILES['connecteddps']))
+                // {
+                //     $data = array("logged" => false,'message' => 'Please Select Atleast One Connected Dp OR upload file' );
+                //     $this->response->setJsonContent($data);
+                // }
+                // else
+                // {
+                  
                     $exceldpids = array();
                     if(!empty($_FILES['connecteddps']))
                     {
@@ -214,10 +220,25 @@ class UpsimasterController extends ControllerBase
                         //echo 'here';exit;
                         
                         $exceldpids = $this->phpimportexpogen->FetchconnectedDP($getuserid,$user_group_id,$large_impfile_location);
-                    }    
-                    //print_r($exceldpids);exit;    
-                    $result = $this->upsicommon->updateupsi($getuserid,$user_group_id,$updatedata,$exceldpids);
-                    // print_r($result);exit;
+                       //print_r($exceldpids);exit;
+                        if($exceldpids)
+                        {
+
+                            $result = $this->upsicommon->updateupsi($getuserid,$user_group_id,$updatedata,$exceldpids,$username);
+                        }
+                        else
+                        {
+                            $data = array("logged"=>false,"message"=>'Email id is not valid.');
+                            $this->response->setJsonContent($data);
+                            $this->response->send();
+                            exit;
+                        }
+                    }
+                    else
+                    {
+                        $result = $this->upsicommon->updateupsi($getuserid,$user_group_id,$updatedata,$exceldpids,$username);
+                    }
+                    
                     if($result)
                     {
                         $data = array("logged"=>true,"message"=>'Data Updated successfully..!!!');
@@ -225,11 +246,9 @@ class UpsimasterController extends ControllerBase
                     }
                     else
                     {
-                        $data = array("logged"=>false,"message"=>'Data Not Updated successfully..!!!');
+                        $data = array("logged"=>false,"message"=>'Data Not Updated..!!!');
                         $this->response->setJsonContent($data);
                     }
-                }
-                
                 
                 $this->response->send();
             }
