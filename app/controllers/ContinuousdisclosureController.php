@@ -282,6 +282,8 @@ class ContinuousdisclosureController extends ControllerBase
                 if(!empty($pdfpath))
                 {
                       $savedata = $this->continuousdisclosurecommon->saveinitialdeclare($uid,$user_group_id,$pdfpath,$annualyear,$uniqueid,$sendtype);
+                      $getuserapprove = $this->insidercommon->fetchiddata($usergroup,'it_memberlist','wr_id',$uid);
+                      $sendmail= $this->continuousdisclosurecommon->sendmailtoapprover($reqid,$getuserapprove['approvid'],$getuserapprove['fullname'],$pdfpath);
                       $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdfpath"=>$pdfpath);
                       $this->response->setJsonContent($data);
                 }
@@ -543,7 +545,7 @@ class ContinuousdisclosureController extends ControllerBase
                 $reqid=$this->request->getPost('reqid','trim');  
                 $getuserapprove = $this->insidercommon->fetchiddata($usergroup,'it_memberlist','wr_id',$uid);
                 $getfile= $this->continuousdisclosurecommon->getreqfile($reqid);
-                $sendmail= $this->continuousdisclosurecommon->sendmailtoapprover($reqid,$getuserapprove['approvid'],$getuserapprove['fullname'],$getfile);
+                $sendmail= $this->continuousdisclosurecommon->sendmailtoapprover($reqid,$getuserapprove['approvid'],$getuserapprove['fullname'],$getfile[0]['pdfpath']);
                 // print_r($getfile[0]['pdfpath']);exit;
                 if($sendmail==true)
                 {

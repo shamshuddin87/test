@@ -256,9 +256,8 @@
         </div>
          <div class="belowleveluserdetcss">
           
-          <h2 class="h2_heading">B. Details of Relatives</h2>
-          
-                 <h3 class="h3_heading">I.  List of Relatives</h3>
+          <h2 class="h2_heading">B. Details of Relatives</h2>          
+          <h3 class="h3_heading">I.  List of Relatives</h3>
         <div class="overflowXscroll">
           <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
@@ -636,7 +635,7 @@
                        <option value="">Select Option</option>
                        <option value="1">Member</option>
                        <option value="2">Director</option>
-                       <option value="3">Member And Director</option>
+                      
                     </select>
                      </div>
                      </td>
@@ -699,7 +698,7 @@
                </td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" value="Percentage of Shares alongwith relative(%)" readonly="readonly">
+               <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" value="holding 2% above shares" readonly="readonly">
                <!-- <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" value="holding above 2% shares" readonly="readonly"> -->
                
                </div>
@@ -1086,7 +1085,8 @@
                        <option value="">Select Option</option>
                        <option value="1">Member</option>
                        <option value="2">Director</option>
-                       <option value="3">Member And Director</option>
+                        <option value="3">Director And Member</option>
+                      
                     </select>
                      </div>
                 </td>
@@ -1161,7 +1161,7 @@
                    </td>
                    <td> 
                    <div class="input">
-                   <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" >
+                   <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
                    </div>
                    </td>
                    <td>
@@ -1201,7 +1201,7 @@
                 <tr>
                 <td colspan="6">
                     <div class="">
-                    <label style="padding-left: 27px;">iv. Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company?</label>
+                    <label style="padding-left: 27px;">iv. Is any of your relatives holding controlling interest i.e. 20% or more of the paid up share capital in any company??</label>
                     <label style="color: #000;"><input type="radio" id = "showsec4" name = "showsec4" value="Yes" onclick="showsection(this.id);"> Yes</label>
                     <label style="color: #000;"><input type="radio"  id = "hidesec4" name="showsec4"   value="No"  onclick="hidesection(this.id)">No</label>
                    </div>
