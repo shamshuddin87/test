@@ -439,8 +439,8 @@ function addhtml(clicked)
                 addhtmlnxt += '<option value='+value['id']+'>'+value['name']+'</option>';    
 
               });
-         addhtmlnxt += '<td><div class="input">  <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" value="holding above 2% shares" readonly="readonly">  </div></td> ';
-         addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></div></td>';
+         addhtmlnxt += '<td><div class="input">  <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" value="holding above 2% shares" readonly="readonly" placeholder="Company Name">  </div></td> ';
+         addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="holding above 2% shares" readonly="readonly"></div></td>';
           addhtmlnxt+='<td> <div class="input"> <select id="d9ques4" name="d9ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt+=' <td><div class="input">   <select id="d9ques5" name="d9ques5[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt +='</tr>';

@@ -1156,12 +1156,12 @@
                    </td>
                    <td> 
                    <div class="input">
-                   <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" value="holding above 2% shares" readonly="readonly">
+                   <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" placeholder="Company Name" >
                        </div>
                    </td>
                    <td> 
                    <div class="input">
-                   <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
+                   <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]"  value="holding above 2% shares" readonly="readonly" >
                    </div>
                    </td>
                    <td>
