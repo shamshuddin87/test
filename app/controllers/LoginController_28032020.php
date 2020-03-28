@@ -59,9 +59,6 @@ class LoginController extends ControllerBase
 					$getemail 	=	strtolower($youremailch);
                     
                     $getdata = $this->logincommon->checkuserlogin($getemail,$pwd);
-
-                    $resetlogin = $this->logincommon->updatetlogin($getemail);
-
                     //$getdata = $this->logincommon->checkusermylogin($getemail,$pwd);
                     //echo '<pre>';print_r($getdata);exit;
                     if($getdata['logged']==true)
@@ -145,14 +142,16 @@ class LoginController extends ControllerBase
     
 	public function logoutAction()
     {
-        $fgnm = 'login';        
+        $fgnm = 'login';  //$fgnm = 'login/thankyou';      
 		$this->session->destroy();
 		$this->session->remove('loginauthspuserfront');
+/*--------------------------------VIDM AND SAP-----------------------------------*/
+        unset($_COOKIE['SimpleSAMLAuthToken']);
+        unset($_COOKIE['email']);
+        setcookie('SimpleSAMLAuthToken', null, -1, '/');
+        setcookie('email', null, -1, '/');
+/*--------------------------------VIDM AND SAP-----------------------------------*/
 		return $this->response->redirect($fgnm);
 	}
-    
-    
-    
-    
 }
 ?>
