@@ -231,13 +231,14 @@ class Sensitiveinformationcommon extends Component
             //print_r($exeprev);exit;
             $lastid    = $connection->lastInsertId();
             $notific= $this->notificationcommon->upsisharingnotify($getuserid,$lastid,"6");
-           
-            
+            /* --- Get Project Owner Name  ---- */
+            $projctowner = $this->sensitiveinformationcommon->fetchProjectOwner($upsitypeid);
+            //print_r($projctowner);exit;
            
             
             
 
-            $sendmail = $this->emailer->mailofnewupsisharing($emailrec,$sharingdate,$upsiname,$name,$category);
+            $sendmail = $this->emailer->mailofnewupsisharing($emailrec,$sharingdate,$upsiname,$name,$category,$projctowner);
             //echo "hello";exit;
              $notifymail =$this->emailer->notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek,$nameoflogged);
 
@@ -827,7 +828,40 @@ class Sensitiveinformationcommon extends Component
     }
     /* ---------- Search for user masters End ---------- */
     
-    
+    public function fetchProjectOwner($upsitypeid)
+    {
+        $connection = $this->dbtrd;
+
+        $queryget = "SELECT upsi.*,memb.`fullname` from `upsimaster` upsi 
+        LEFT JOIN `it_memberlist` memb on memb.`wr_id` = upsi.`projectowner`
+        WHERE  upsi.`id`=  '".$upsitypeid."' ";
+        // echo $queryget;exit;
+        try
+        {
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist = $row['fullname'];
+                }   
+                //echo '<pre>';print_r($getlist);exit;
+            }
+            else
+            {
+                $getlist = '';
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
 }
 
 

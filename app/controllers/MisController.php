@@ -1453,8 +1453,9 @@ class MisController extends ControllerBase
                 $accountinfo = $this->miscommon->getaccnoinfo($userid);
                 $relativeaccount = $this->miscommon->getrelinfo($userid);
                 $mfrdata = $this->miscommon->getmfrdataformis($userid);
-                //print_r($getuserinfo);exit;
-                $gethtml=$this->miscommon->allDesgntdPersnHtml($getuserinfo,$relativeinfo,$accountinfo,$relativeaccount,$mfrdata,$getres,$result);
+                $pastemp = $this->approvelperinfocommon->getpastemployer($userid,'');
+                //print_r($pastemp);exit;
+                $gethtml=$this->miscommon->allDesgntdPersnHtml($getuserinfo,$relativeinfo,$accountinfo,$relativeaccount,$mfrdata,$getres,$result,$pastemp);
                 $genfile =$this->dompdfgen->getpdf($gethtml,"misdesgntdpersn","mis","mispersnlinfo");
                 //print_r($genfile);exit;
                 if(!empty($genfile))

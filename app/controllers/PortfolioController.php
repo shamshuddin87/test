@@ -43,7 +43,7 @@ class PortfolioController extends ControllerBase
              $flag =0;
              $accnodata= $this->request->getPost('accno');
              //print_r($accnodata);exit;
-            $clhouse= $this->request->getPost('clhouse');
+            //$clhouse= $this->request->getPost('clhouse');
             for($i=0;$i<sizeof($accnodata);$i++)
             {
                if(strlen($accnodata[$i]['accno'])<16)

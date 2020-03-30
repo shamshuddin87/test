@@ -1389,9 +1389,9 @@ class Miscommon extends Component
     }
 
 
-    public function allDesgntdPersnHtml($getuserinfo,$relativeinfo,$accountinfo,$relativeaccount,$mfrdata,$getres,$result)
+    public function allDesgntdPersnHtml($getuserinfo,$relativeinfo,$accountinfo,$relativeaccount,$mfrdata,$getres,$result,$pastemp)
     {
-        $myhtml1 = '';$myhtml2 = '';$myhtml3 = '';$myhtml4 = '';$myhtml5 = '';$myhtml6 = '';$myhtml7 = '';
+        $myhtml1 = '';$myhtml2 = '';$myhtml3 = '';$myhtml4 = '';$myhtml5 = '';$myhtml6 = '';$myhtml7 = '';$myhtml8 = '';
         //print_r($result);exit;
         if(sizeof($getuserinfo) > 0)
         {
@@ -1448,7 +1448,26 @@ class Miscommon extends Component
         {
             $myhtml2.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
         }
-
+        
+        if(sizeof($pastemp) > 0)
+        {
+            for($i=0; $i < sizeof($pastemp); $i++)
+            {
+                //print_r($pastemp[$i]);exit;
+                $j=$i+1;
+                $myhtml8.="<tr>";
+                $myhtml8.="<td>".$j."</td>";
+                $myhtml8.="<td>".$pastemp[$i]['emp_name']."</td>";
+                $myhtml8.="<td>".$pastemp[$i]['emp_desigtn']."</td>";
+                $myhtml8.="<td>".$pastemp[$i]['startdate']."</td>";
+                $myhtml8.="<td>".$pastemp[$i]['enddate']."</td>";
+                $myhtml8.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml8.='<tr><td colspan="5" style="text-align: center;">Data Not Found</td>';
+        }
 
         if(sizeof($accountinfo) > 0)
         {
@@ -1582,7 +1601,7 @@ class Miscommon extends Component
             </tr>
          ".$myhtml1."
          </table>
-         <br>
+         <br> 
          <h3 style='text-align:center;'>Designated Person's Relative Information</h3>
          <br>
          <table>
@@ -1602,6 +1621,19 @@ class Miscommon extends Component
                 <th>Holdings In ADRs</th>   
             </tr>
          ".$myhtml2."
+         </table>
+         <br>
+         <h3 style='text-align:center;'>Past Employer Details</h3>
+         <br>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Employer Name</th> 
+                <th>Designation Served</th>
+                <th>Start Date</th>
+                <th>End Date</th>   
+            </tr>
+         ".$myhtml8."
          </table>
          <br>
          <h3 style='text-align:center;'>Designated Person's Demat Accounts</h3>

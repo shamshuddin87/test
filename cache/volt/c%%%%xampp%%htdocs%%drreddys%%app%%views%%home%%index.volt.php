@@ -33,6 +33,7 @@
                     </div>
                     <!-- /.row boxes -->
                     <div class="row">
+<!--
                         <div class="col-lg-3 col-md-6" id="restcomplist">
                             <a href="restrictedcompany/companytradingperiod">
                             <div class="panel panel-primary">
@@ -58,6 +59,7 @@
                             </a>
                         </div>
                  
+-->
                         <div class="col-lg-3 col-md-6" id="pendappvl">
                         
                             <a href="tradingrequest?status=<?php print_r(base64_encode('not_approved'));?>">

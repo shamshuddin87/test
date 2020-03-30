@@ -85,7 +85,7 @@
          <th>Sr No</th>
          <th>Account No</th> 
           <th>Depository Participient</th>
-          <th>Clearing House</th>
+<!--          <th>Clearing House</th>-->
          <th>Actions</th>                                                 
         </tr>
      </thead>
@@ -133,8 +133,8 @@
             <span id= "showhovertext" class ="cssclass " style="display: none;z-index: 2;">
             <ol type="a" style="padding: 5px 5px 5px 15px;">
               <li>Demat account, mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>
-              <li>In case of physical shares held in Dr. Reddy’s, please mention the Folio No.: (For eg. P12345)</li>
               <li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held</li>
+              <li>In case your Demat account no. is less than 16 digits then prefix the relevant number of '0's</li>
             </ol>
         </span>
         </div>    
@@ -146,10 +146,12 @@
            
         </div>  
         
+<!--
         <div class="col-md-12 list_co">
           <label class="modal-title">Clearing House</label>
              <input type="text" id="clhouse" name="clhouse" class="form_fields form-control col-md-7 col-xs-12" required="required" >
         </div>  
+-->
          <div class="col-md-12"> 
           <button type="button"  style="float:right;" class="btn btn-primary upacc" btnedit="">Update</button></div>
          </div>
@@ -205,7 +207,7 @@
               <th>Name</th>
               <th>Account No</th> 
                <th>Depository Participient</th>
-               <th>Clearing House</th>
+<!--               <th>Clearing House</th>-->
                <th>Actions</th>                                                 
              </tr>
            </thead>
@@ -255,8 +257,8 @@
               <span id= "showhovertext1" class ="cssclass " style="display: none;z-index: 2;">
             <ol type="a" style="padding: 5px 5px 5px 15px;">
               <li>Demat account, mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>
-              <li>In case of physical shares held in Dr. Reddy’s, please mention the Folio No.: (For eg. P12345)</li>
               <li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held</li>
+              <li>In case your Demat account no. is less than 16 digits then prefix the relevant number of '0's</li>
             </ol>
         </span>
         </div>    
@@ -269,10 +271,12 @@
         </div>  
           
         
+<!--
         <div class="col-md-12 list_co">
           <label class="modal-title">Clearing House</label>
              <input type="text" id="relclhouse" name="relclhouse" class="form_fields form-control col-md-7 col-xs-12" required="required" >
         </div>  
+-->
          </div>
           <button type="button"  style="float:right;" class="btn btn-primary relupacc" btnedit="">Update</button>
       </div>

@@ -62,12 +62,26 @@
             </li>
           
             <!-- <?php if($gettypm['user_group_id']=='2'){ ?> -->
+                
+            <li>
+               <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a> 
+               <ul class="nav child_menu">
+                  <li>
+                     <a href="sensitiveinformation/recipient"><i class="" id="cmp_mst"></i>Connected Person</a>
+                  </li>
+                  <li>
+                     <a href="sensitiveinformation/upsi_infosharing"><i class=""></i>Information Sharing</a>
+                  </li>
+               </ul>
+            </li>
             <li>
                <a href="companymodule"><i class="fa fa-file-excel-o" ></i>Listed Company Module</a>
             </li>
+<!--
             <li>
                <a href="approvelperinfo"><i class="fa fa-eye"></i>View Personal Info</a>
             </li>
+-->
             <li>
                <a href="tradingrequest/reqview"><i class="fa fa-eye" id="viewreq"></i>View request</a>
             </li>
@@ -84,17 +98,7 @@
                   <li><a href="adminmodule/autoaprove"><i class=""></i>Auto Approval Shares</a></li>
                </ul>
             </li>
-            <li>
-               <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a> 
-               <ul class="nav child_menu">
-                  <li>
-                     <a href="sensitiveinformation/recipient"><i class="" id="cmp_mst"></i>Connected Person</a>
-                  </li>
-                  <li>
-                     <a href="sensitiveinformation/upsi_infosharing"><i class=""></i>Information Sharing</a>
-                  </li>
-               </ul>
-            </li>
+            
             <li>
                <a class="click_board click_board3" ><i class="fa fa-line-chart fa-5x"></i> Holding Summary<span class="fa fa-chevron-down"></span></a>
                <ul class="nav child_menu">
@@ -111,14 +115,18 @@
             <li>
                <a href="blackoutperiod"><i class="fa fa-ban fa-5x" id="cmp_mst"></i>Trading Window</a>
             </li>
+<!--
             <li>
                <a href="tradingplan"><i class="fa fa-edit fa-5x" id="cmp_mst"></i>Trading Plan</a>
             </li>
+-->
             <?php  } ?> 
             <!--  <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='2') {?> -->
+<!--
             <li>
                <a href="tradingplan/planreqstview"><i class="fa fa-eye" id="cmp_mst"></i>View Trade Plan</a>
             </li>
+-->
             <!--   <?php } ?> -->
             <?php } ?>
             <!-----------------------------------EMPLOYEE MODULE--------------------------------------->
@@ -145,35 +153,7 @@
                </ul>
             </li>
             <?php } ?>
-            <ul class="nav side-menu">
-               <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='7') {?>
-               <li>
-                  <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> My Info<span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                     <li><a href="employeemodule"><i class="" id="cmp_mst"></i>Personal information</a></li>
-                     <li><a href="portfolio"><i class=""></i>Demat Accounts</a></li>
-                     <li><a href="continuousdisclosure"><i class=""></i>Continuous Disclosure</a></li>
-                     <li><a href="tradingrequest"><i class=""></i>Request</a></li>
-                     <!--     <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li>  -->  
-                     <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2'){?>
-                     <li><a href="tradingrequest/reqview"><i class="" id="viewreq"></i>View request</a></li>
-                     <?php } ?>
-                     <li><a href="exceptionreq"><i class=""></i>Exception Request</a></li>
-                     <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2'){?>
-                     <li><a href="exceptionreq/exception_req"><i class=""></i>View Exception request</a></li>
-                     <li> <a href="approvelperinfo"><i class=""></i>View Personal Info Request</a></li>
-                     <?php } ?>
-                     <li><a href="holdingstatement"><i class=""></i>Holding Statement</a></li>
-                     <li><a href="declarationform"><i class=""></i>Declaration Form</a></li>
-                     <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li>
-                     <?php if($userlevel['role_id']<5){ ?>
-                     <li><a href="annualdeclaration"><i class=""></i>Self Declaration</a></li>
-                     <?php } else { ?>
-                     <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>
-                     <?php } ?>    
-                  </ul>
-               </li>
-               <li>
+                <li>
                   <a class="click_board click_board3" href="javascript:;"><i class="fa fa-share-alt"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                      <?php if($gettypm['user_group_id'] !='7') {?>
@@ -189,6 +169,37 @@
                      </li>
                   </ul>
                </li>
+            <ul class="nav side-menu">
+               <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='7') {?>
+               <li>
+                  <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> My Info<span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                     <li><a href="employeemodule"><i class="" id="cmp_mst"></i>Personal information</a></li>
+                     <li><a href="portfolio"><i class=""></i>Demat Accounts</a></li>
+                     <li><a href="continuousdisclosure"><i class=""></i>Continuous Disclosure</a></li>
+                     <li><a href="tradingrequest"><i class=""></i>Request for Pre-clearance</a></li>
+                     <!--     <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li>  -->  
+                     <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2'){?>
+                     <li><a href="tradingrequest/reqview"><i class="" id="viewreq"></i>View request</a></li>
+                     <?php } ?>
+                     <li><a href="exceptionreq"><i class=""></i>Exception Request</a></li>
+                     <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2'){?>
+                     <li><a href="exceptionreq/exception_req"><i class=""></i>View Exception request</a></li>
+<!--                     <li> <a href="approvelperinfo"><i class=""></i>View Personal Info Request</a></li>-->
+                     <?php } ?>
+<!--
+                     <li><a href="holdingstatement"><i class=""></i>Holding Statement</a></li>
+                     <li><a href="declarationform"><i class=""></i>Declaration Form</a></li>
+-->
+                     <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li>
+                     <?php if($userlevel['role_id']<5){ ?>
+                     <li><a href="annualdeclaration"><i class=""></i>Self Declaration</a></li>
+                     <?php } else { ?>
+                     <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>
+                     <?php } ?>    
+                  </ul>
+               </li>
+               
                <li>
                   <a class="click_board click_board3" ><i class="fa fa-line-chart fa-5x"></i>Share Holding Summary<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
@@ -203,9 +214,11 @@
                <li>
                   <a href="blackoutperiod"><i class="fa fa-ban fa-5x" id="cmp_mst"></i>Trading Window</a>
                </li>
+<!--
                <li>
                   <a href="tradingplan"><i class="fa fa-edit fa-5x" id="cmp_mst"></i>Trading Plan</a>
                </li>
+-->
                <?php } ?>
                <?php if($gettypm['user_group_id']=='2'){  ?>
                <li>
