@@ -63,8 +63,8 @@
                <!-- <div class="col-md-12"> -->
                <!-- <label for="fname">Full Name:</label> -->
                <input type="hidden" id="fname" name="fname" placeholder="Your name.." value="<?php echo($userdetails[0]['fullname']) ?>">
-                <input type="hidden" id="lname" name="lname" placeholder="Your name.." value="<?php echo($userdetails[0]['lastname']) ?>">
-                 <input type="hidden" id="ecode" name="ecode" placeholder="Your name.." value="<?php echo($userdetails[0]['employeecode']) ?>">
+              <input type="hidden" id="lname" name="lname" placeholder="Your name.." value="<?php echo($userdetails[0]['lastname']) ?>">
+              <input type="hidden" id="ecode" name="ecode" placeholder="Your name.." value="<?php echo($userdetails[0]['employeecode']) ?>">
 
                 <input type="hidden" id="toemail" name="toemail" placeholder="" value="<?php echo($userdetails[0]['email']) ?> ">
 
@@ -531,9 +531,11 @@
                     <div class="row">
                      <div class="col-md-4"> 
                         <label style="display: block;" for="sex">Gender*</label>
-                        <input type="radio" id="1_sex" name="sex" value="Male" />Male
-                        <input type="radio" id="1_sex" name="sex"  value="Female">Female 
-                        <input type="radio" id="1_sex" name="sex"  value="Other">Other 
+
+                        <input class = "relgender" type="radio" id="relmale" name="sex" value="Male" />Male
+                        <input class = "relgender" type="radio" id="relfemale" name="sex"  value="Female"  >Female 
+                        <input class = "relgender"type="radio" id="relother" name="sex"  value="Other"  >Other 
+
                      </div>
                      <div class="col-md-4">
                         <label>Address*</label>
