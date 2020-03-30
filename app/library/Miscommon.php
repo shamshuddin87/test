@@ -1085,7 +1085,7 @@ class Miscommon extends Component
         return $getlist;
     }
 
-        public function fetchinitlpendig($getuserid,$user_group_id,$query)
+    public function fetchinitlpendig($getuserid,$user_group_id,$query)
     {
         $connection = $this->dbtrd;
         $getlist = array();
@@ -1183,7 +1183,7 @@ class Miscommon extends Component
                 $pendingusers = $grpusrs['ulstring'];
             }
             
-            $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
+            $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,memb.`email`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
             FROM `it_memberlist` memb
             LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
             WHERE memb.wr_id IN(".$pendingusers.")".$query;
@@ -1221,7 +1221,7 @@ class Miscommon extends Component
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryget = "SELECT anualdecl.`annualyear`,memb.`fullname`,anualdecl.`sent_date`,anualdecl.`pdfpath` 
+            $queryget = "SELECT anualdecl.`annualyear`,memb.`fullname`,memb.`email`,anualdecl.`sent_date`,anualdecl.`pdfpath` 
             FROM `it_memberlist` memb 
             LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id` = anualdecl.`user_id` 
             WHERE memb.`wr_id` IN (".$grpusrs['ulstring'].")  AND (anualdecl.annualyear='".$annualyr."' OR anualdecl.annualyear IS NULL OR anualdecl.`send_status`=1)".$query;
@@ -1267,7 +1267,7 @@ class Miscommon extends Component
             {
                 while($row = $exeget->fetch())
                 {
-                    $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
+                    $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,memb.`email`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
                     FROM `it_memberlist` memb
                     LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
                     WHERE memb.wr_id = '".$row['wr_id']."'".$query;

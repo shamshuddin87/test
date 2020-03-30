@@ -1134,7 +1134,7 @@ function getpdfdata(uniqueid)
                             dematacc += '<td width="25%">'+j+'</td>';
                             dematacc += '<td width="25%">'+response.dematdetail[i]['accountno']+'</td>';
                             dematacc += '<td width="25%">'+response.dematdetail[i]['depository_participient']+'</td>';
-                            dematacc += '<td width="25%">'+response.dematdetail[i]['clearing_house']+'</td>';
+//                            dematacc += '<td width="25%">'+response.dematdetail[i]['clearing_house']+'</td>';
                             dematacc += '</tr>'; 
                         }
                     }

@@ -510,7 +510,7 @@
                 <th>Sr No.</th>
                 <th>Demat Account No.</th>
                 <th>Name of Depository Participant</th>
-                <th>Name of Clearing House</th>
+<!--                <th>Name of Clearing House</th>-->
             </tr>
             </thead>
             <tbody>
@@ -520,7 +520,7 @@
                  <td><?php echo $j;?></td>
                  <td><?php echo $dematdetail[$i]['accountno'];?></td>
                  <td><?php echo $dematdetail[$i]['depository_participient'];?></td>
-                 <td><?php echo $dematdetail[$i]['clearing_house'];?></td>
+<!--                 <td><?php echo $dematdetail[$i]['clearing_house'];?></td>-->
                 </tr>
                <?php } } else { ?>
                 <tr>
@@ -619,7 +619,7 @@
                      <td style="width: 15%"><label class="control-label">No. of Shares held</label></td>
                      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                      <td>
-                        <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+                        <label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                      </td>
                   </tr>
                   <tr>
@@ -686,7 +686,7 @@
                <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative <span>(%)</span></label></td>
                <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                <td>
-               <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+               <label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                </td>
                </tr>
                <tr>
@@ -752,7 +752,7 @@
                 <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
                <td style="width: 22%">  <label class="control-label">Company Name</label></td>
                <td style="width: 16%">  <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-               <td>    <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+               <td>    <label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
                </tr>
                <tr>
                <td style="border-right: 1px solid #f7f7f7"></td>
@@ -813,7 +813,7 @@
                      <td style="border-right: 1px solid #f7f7f7; width: 2.5%;"></td>
                      <td style="width: 22%;"><label class="control-label">Company Name</label></td>
                      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-                     <td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+                     <td><label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
                   </tr>
                   <tr>
                      <td style="border-right: 1px solid #f7f7f7"></td>
@@ -1056,7 +1056,7 @@
                 <td  style="width: 15%"><label class="control-label">No. of Shares held</label></td>
                <td style="width: 15%"> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                <td>
-               <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+               <label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                </td>
                </tr>
 
@@ -1137,7 +1137,7 @@
                   <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative <span>(%)</span></label></td>
                   <td style="width: 15%">    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                   <td style="width: 15%">
-                  <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+                  <label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                   </td>
                </tr>
                <tr>
@@ -1156,12 +1156,12 @@
                    </td>
                    <td> 
                    <div class="input">
-                   <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" value="holding above 2% shares" readonly="readonly">
+                   <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" placeholder="Company Name" >
                        </div>
                    </td>
                    <td> 
                    <div class="input">
-                   <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
+                   <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]"  value="holding above 2% shares" readonly="readonly" >
                    </div>
                    </td>
                    <td>
@@ -1219,7 +1219,7 @@
                 <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
                <td style="width: 22%">  <label class="control-label">Company Name</label></td>
                <td style="width: 16%">  <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
-               <td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+               <td><label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
                </tr>
                <tr>
                <td style="border-right: 1px solid #f7f7f7"></td>
@@ -1305,7 +1305,7 @@
                <td style="width: 22%"><label class="control-label">Company Name</label></td>
                <td>    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                <td>
-               <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+               <label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                </td>
                </tr>
 
