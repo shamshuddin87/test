@@ -51,9 +51,9 @@ website('.bootdatepick').datetimepicker({
 website("body").on("click","#noofdmat",function(e) {
 var no=website('#noofacc').val();
 if(no<=10){
-var myhtml='<table class="table table-inverse" id="datableabhi"><tr><th>Account No </th><th>Depository Participient </th></tr>';
+var myhtml='<table class="table table-inverse" id="datableabhi"><tr><th>Account No </th><th>Depository Participant </th></tr>';
 for(var i=1;i<=no;i++){
-  myhtml+='<tr><td style = "position:relative;"><input type="text" class="form-control acsub showhovertext3'+i+'" id="field_'+i+'" placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"> <span id= "showhovertext3'+i+'" class ="cssclass1 " style="display: none;z-index: 2;">  <ol type="a" style="padding: 5px 5px 5px 15px;"> <li>Demat account,  mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>   <li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held  </li><li>In case your Demat account no. is less than 16 digits then prefix the relevant number of "0"s</li>  </ol> </span></td><td><input type="text" class="form-control deppoparticipient"  id="field2_'+i+'" placeholder="Depository Participient '+i+'" ></td></tr>';
+  myhtml+='<tr><td style = "position:relative;"><input type="text" class="form-control acsub showhovertext3'+i+'" id="field_'+i+'" placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"> <span id= "showhovertext3'+i+'" class ="cssclass1 " style="display: none;z-index: 2;">  <ol type="a" style="padding: 5px 5px 5px 15px;"> <li>Demat account,  mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>   <li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held  </li><li>In case your Demat account no. is less than 16 digits then prefix the relevant number of "0"s</li>  </ol> </span></td><td><input type="text" class="form-control deppoparticipient"  id="field2_'+i+'" placeholder="Depository Participant '+i+'" ></td></tr>';
 }
 myhtml+='</table>';
 myhtml+='<button type="button" class="btn btn-primary" id="subdemat">Submit</button>';
@@ -308,7 +308,7 @@ var editid=website(this).attr('btnedit');
   //      <tr>
   //        <th>Sr No</th>
   //        <th>Account No</th> 
-  //         <th>Depository Participient</th>
+  //         <th>Depository Participant</th>
   //         <th>Clearing House</th>
   //        <th>Actions</th>                                                 
   //       </tr>
@@ -323,11 +323,11 @@ if(relinfo!='')
 
 	var no=website('#reldematno').val();
 	if(no<=10){
-    var myhtml=' <table class="table table-inverse" id="datableabhi"><tr><th>Account No </th><th>Depository Participient </th></tr>';
+    var myhtml=' <table class="table table-inverse" id="datableabhi"><tr><th>Account No </th><th>Depository Participant </th></tr>';
   
    for(var i=1;i<=no;i++)
    {
-       myhtml+='<tr><td style = "position:relative;"><input type="text" class="form-control relac showhovertext4'+i+'" id="relfield_'+i+'"  placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"><span id= "showhovertext4'+i+'" class ="cssclass1 " style="display: none;z-index: 2;">  <ol type="a" style="padding: 5px 5px 5px 15px;"> <li>Demat account,  mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li><li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held  </li><li>In case your Demat account no. is less than 16 digits then prefix the relevant number of "0"s</li>  </ol> </span></td><td><input type="text" class="form-control deppoparticipient showhovertext4'+i+'" id="relfield2_'+i+'" placeholder="Depository Participient '+i+'"  onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"></td></tr>';
+       myhtml+='<tr><td style = "position:relative;"><input type="text" class="form-control relac showhovertext4'+i+'" id="relfield_'+i+'"  placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"><span id= "showhovertext4'+i+'" class ="cssclass1 " style="display: none;z-index: 2;">  <ol type="a" style="padding: 5px 5px 5px 15px;"> <li>Demat account,  mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li><li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held  </li><li>In case your Demat account no. is less than 16 digits then prefix the relevant number of "0"s</li>  </ol> </span></td><td><input type="text" class="form-control deppoparticipient showhovertext4'+i+'" id="relfield2_'+i+'" placeholder="Depository Participant '+i+'"  onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"></td></tr>';
     }
        myhtml+='</table>'
        myhtml+='<section class=""><button type="button" class="btn btn-primary" id="subreldemat">Submit</button>';

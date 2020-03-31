@@ -1,6 +1,13 @@
 
 website(document).ready(function()
-{loadnoofsec();});function addhtml(clicked)
+{loadnoofsec();FetchSubsidiries();});function FetchSubsidiries()
+{website.ajax({url:'annualdeclaration/FetchSubsidiries',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{var html='';website('.tooltip').html(response.data);website('.tooltip').css('display','block');},complete:function(response)
+{},error:function(jqXHR,textStatus,errorThrown)
+{}});}
+function addhtml(clicked)
 {website.ajax({url:'annualdeclaration/fetchrelative',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)

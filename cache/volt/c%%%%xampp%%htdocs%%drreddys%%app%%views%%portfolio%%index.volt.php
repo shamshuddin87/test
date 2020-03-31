@@ -84,7 +84,7 @@
        <tr>
          <th>Sr No</th>
          <th>Account No</th> 
-          <th>Depository Participient</th>
+          <th>Depository Participant</th>
 <!--          <th>Clearing House</th>-->
          <th>Actions</th>                                                 
         </tr>
@@ -141,7 +141,7 @@
           
         
         <div class="col-md-12 list_co">
-          <label class="modal-title">Depository Participient</label>
+          <label class="modal-title">Depository Participant</label>
              <input type="text" id="dpar" name="dpar" class="form_fields form-control col-md-7 col-xs-12 " required="required">
            
         </div>  
@@ -206,7 +206,7 @@
                <th>Sr No</th>
               <th>Name</th>
               <th>Account No</th> 
-               <th>Depository Participient</th>
+               <th>Depository Participant</th>
 <!--               <th>Clearing House</th>-->
                <th>Actions</th>                                                 
              </tr>
@@ -264,7 +264,7 @@
         </div>    
         
         <div class="col-md-12 list_co">
-          <label class="modal-title">Depository Participient</label>
+          <label class="modal-title">Depository Participant</label>
             <input type="text" id="dparrel" name="dparrel" class="form_fields form-control col-md-7 col-xs-12 " required="required" >
 
              

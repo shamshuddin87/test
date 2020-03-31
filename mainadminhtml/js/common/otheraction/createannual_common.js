@@ -1,10 +1,46 @@
 website(document).ready(function()
 {
-   loadnoofsec();
-
-  
-    
+    loadnoofsec();
+    FetchSubsidiries();
 });
+
+function FetchSubsidiries()
+{
+        website.ajax({
+          url:'annualdeclaration/FetchSubsidiries',
+          //data:formdata,
+          method:'POST',
+          //contentType:'json',
+          contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+          //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+          dataType:"json",
+          cache:false,
+          //async:true, /*Cross domain checking*/
+          beforeSend: function()
+          {   },
+          uploadProgress: function(event, position, total, percentComplete)
+          {   },
+          success: function(response, textStatus, jqXHR)
+          {
+              var html = '';
+//              for(var i=0;i<response.data.length;i++)
+//              {
+//                  var j = i;
+//                  j++;
+//                  html+= '<table><tr><td>'+j+'</td><td>'+response.data[i].subsidiaryname+'</td></tr></table>';
+//                  //console.log(html);
+//                  
+//              }
+              //html1 =  html.replace( /(<([^>]+)>)/ig, '');
+              website('.tooltip').html(response.data);
+              website('.tooltip').css('display','block');
+          },
+          complete: function(response)
+          {   },
+          error: function(jqXHR, textStatus, errorThrown)
+          {   }
+    });
+}
 
 function addhtml(clicked)
 {
