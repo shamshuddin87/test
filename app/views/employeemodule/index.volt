@@ -27,7 +27,7 @@
          </div>
          <div class="col-md-3 col-xs-12 register">
             <button class="btn mfr">
-            Other MFR  
+             Material Financial Relationship  
             </button>
             <!-- <span class="tooltiptext_bg">The term “material financial relationship” shall mean a relationship in which one person is a recipient of any kind of payment such as by way of a loan or gift during the immediately preceding twelve months, equivalent to at least 25% of such payer’s annual income but shall exclude relationships in which the payment is based on arm’s length transactions</span> -->
          </div>
@@ -85,8 +85,8 @@
                   <input type="text" id="legal_idntfr" name="legal_idntfr" value="<?php echo($personaldetails['legal_identifier']) ?>" placeholder="Any other legal identifier">
                </div>
                <div class="col-md-4 col-xs-12">
-                    <div class="tooltip_div">
-                     <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                   <div class="tooltip_div">
+                     <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfctn_no">Any other legal identification number</label>
                   <input type="text" id="legal_idntfctn_no" value="<?php echo($personaldetails['legal_identification_no']) ?>" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
@@ -95,9 +95,9 @@
                   <label for="aadhar">Aadhaar*</label>
                   <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<?php echo($personaldetails['aadhar']) ?>" maxlength="12" pattern="[0-9]{12}">
                </div>
-               <div class="col-md-4 col-xs-12">
+              <div class="col-md-4 col-xs-12">
                   <label for="Dob">DOB*</label>
-                  <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="bootdatepick" placeholder="DOB">
+                  <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="bootdatepick" placeholder="DOB" readonly>
                </div>
                 
                <div class="col-md-12 col-xs-12"> 
@@ -183,9 +183,9 @@
                   <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
                   <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Any other legal identifier" >
                </div>
-               <div class="col-md-4 col-xs-12">
+                <div class="col-md-4 col-xs-12">
                    <div class="tooltip_div">
-                     <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                     <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfctn_no">Any other legal identification number</label>
                   <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
@@ -194,11 +194,10 @@
                   <label for="aadhar">Aadhaar*</label>
                   <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
                </div>
-               <div class="col-md-4 col-xs-12">
+              <div class="col-md-4 col-xs-12">
                   <label for="Dob">Dob*</label>
-                  <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="dob">
+                  <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="dob" readonly>
                </div>
-                
                <div class="col-md-12 col-xs-12"> 
                    <div class="col-md-4 col-xs-12"> 
                         <label class="gender" for="sex">Gender*</label>
@@ -256,6 +255,16 @@
                   <input class="btn btn-primary" type="button" name="confirmpersonalinfo" value="Submit" id="confirmpersonalinfo" onclick="confirmdisclosure(this.id)"  style="float: right;">
                </div>
             </form>
+             <div class="tablitiledesc">
+            <div class="note">
+              <strong>Note : </strong><br/>
+                <ol type="1" style="display: inline-block;padding: 5px 15px;">
+                  <li>I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too.</li>
+                  <li>Once your personal information is filled please send 'Declaration form' to the Compliance Officer. <a href="annualdeclaration" style="color:red;">Click here.</a></li>
+                </ol>
+
+            </div>
+            </div>
          </div>
          <!-- My messages -->
          <h3 style="text-align: center;">Add Past Employer</h3>
@@ -315,16 +324,7 @@
                   </div>
                </div>
             </div>
-             <div class="tablitiledesc">
-                    <div class="note">
-                      <strong>Note : </strong><br/>
-                        <ol type="1" style="display: inline-block;padding: 5px 15px;">
-                          <li>I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too.</li>
-                          <li>Once your personal information is filled please send 'Declaration form' to the Compliance Officer. <a href="annualdeclaration">Click here.</a></li>
-                        </ol>
-
-                    </div>
-            </div>
+             
             <div class="clearelement"></div>
 
             <!------------------------------------MODAL BOX FOR EDIT------------------------------------------>
@@ -356,7 +356,7 @@
 
                            <div class="col-md-6">
                                <div class="tooltip_div">
-                                 <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                 <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                </div>
                               <label for="legal_idntfctn_no">Any other legal identification number</label>
                               <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
@@ -366,7 +366,7 @@
                            
                            <div class="col-md-6">
                               <label for="Dob">Dob*</label>
-                              <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="dob">
+                              <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="dob" readonly>
                            </div>
                            <div class="col-md-6"> 
                               <label class="gender" for="sex">Gender*</label>
@@ -458,7 +458,7 @@
                       <div class="col-md-4">
                         <label>Relationship*</label >
                         <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
-                           <option value="1">HUF</option>
+                          
                            <option value="2">Spouse</option>
                            <option value="3">Father</option>
                            <option value="4">Mother</option>
@@ -468,6 +468,7 @@
                            <option value="8">Daughter</option>
                            <option value="9">Son's Wife</option>
                            <option value="10">Daughter's Husband</option>
+                            <option value="1">HUF</option>
                            <option value="11">Others</option>
                         </select>
                      </div>  
@@ -501,7 +502,7 @@
                     </div>
                      <div class="col-md-4">
                          <div class="tooltip_div">
-                                 <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                 <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                </div>
                         <label for="legal_idntfctn_no">Any other legal identification number</label>
                         <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);"  placeholder="Any other legal identification number">
@@ -515,7 +516,7 @@
                      </div>
                      <div class="col-md-4">
                         <label>DOB*</label>
-                        <input type="text"  id="1_dob" name="dob" class="bootdatepick" placeholder="DOB">
+                        <input type="text"  id="1_dob" name="dob" class="bootdatepick" placeholder="DOB" readonly>
                      </div>
                      <div class="col-md-4">
                          <div class="tooltip_div">
@@ -658,7 +659,7 @@
                             <div class="col-md-6">
                               <label for="relationship">Relationship*</label>
                               <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
-                                 <option value="1">HUF</option>
+                               
                                  <option value="2">Spouse</option>
                                  <option value="3">Father</option>
                                  <option value="4">Mother</option>
@@ -668,6 +669,7 @@
                                  <option value="8">Daughter</option>
                                  <option value="9">Son's Wife</option>
                                  <option value="10">Daughter's Husband</option>
+                                   <option value="1">HUF</option>
                                  <option value="11">Others</option>
                               </select>
                            </div>
@@ -704,7 +706,7 @@
                             </div>
                              <div class="col-md-6">
                                  <div class="tooltip_div">
-                                 <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                 <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                </div>
                                 <label for="legal_idntfctn_no">Any other legal identification number</label>
                                 <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
@@ -793,7 +795,7 @@
          <div class="row relativesform mymfr" style="display: none;">
            <h3 class="col col-xs-6" style="margin-top: 30px;">Financial Relationship Details</h3>
             <div class="tooltip_div col col-xs-6" style="margin-top: 30px;">
-               <a href="javascript:void(0);" data="The term “material financial relationship” shall mean a relationship in which one person is a recipient of any kind of payment such as by way of a loan or gift during the immediately preceding twelve months, equivalent to at least 25% of such payer’s annual income but shall exclude relationships in which the payment is based on arm’s length transactions" class="tooltip_c">what is material financial relationship <abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+               <a href="javascript:void(0);" data="The term “material financial relationship” shall mean a relationship in which one person is a recipient of any kind of payment such as by way of a loan or gift during the immediately preceding twelve months, equivalent to at least 25% of designated person’s annual income but shall exclude relationships in which the payment is based on arm’s length transactions" class="tooltip_c">what is material financial relationship <abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
             </div>
             <div class="col col-xs-12">
               <div class="input-group row">
@@ -842,7 +844,7 @@
             </div>
             <!---------------------------------------------------------------------------------------------->
             <!----TABLE OF INSERTED DATA------------------------------------------------------------------>
-            <h4 class="mfrdetails">Other MFR</h4>
+            <h4 class="mfrdetails">Material Financial Relationship</h4>
             <table class="table table-inverse" id="datableabhi">
                <thead>
                   <tr>
@@ -880,24 +882,24 @@
             </div>
          </div>
               
-          <div id="updateholdings1" class="modal fade" role="dialog">
+           <div id="updateholdings1" class="modal fade" role="dialog">
             <div class="modal-dialog">
                <div class="modal-content">
                   <div class="modal-body">
 
                      <button type="button" class="close" data-dismiss="modal">
                      &times;</button>                    
-                     <h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Please confirm whether you have submitted necessary disclosures under Insider Trading Regulations to the Compliance officer</h5>
+                     <h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">If you have updated your holdings, then please confirm whether you have submitted necessary disclosures under Insider Trading Regulations to the Compliance officer.</h5>
                   </div>
                   <div class="modal-footer" style="border-top:none;">
-                     <button type="button" class="btn btn-primary" id="yesdisclosures1">Yes</button> 
-                      <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="nodisclosures1" onclick="nodisclosures(this.id);">No</button>
+                     <button type="button" class="btn btn-primary" id="yesdisclosures1">I understand</button> 
+<!--                      <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="nodisclosures1" onclick="nodisclosures(this.id);">No</button>-->
                   </div>
                </div>
             </div>
          </div>
 
-          <div id="updateholdings2" class="modal fade" role="dialog">
+           <div id="updateholdings2" class="modal fade" role="dialog">
             <div class="modal-dialog">
                <div class="modal-content">
                   <div class="modal-body">
