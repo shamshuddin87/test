@@ -3,7 +3,7 @@ website('body').on('change','#noofrows',function(e)
 {getuserlistonload();});website('body').on('click','.paginationmn li',function(e)
 {var rscrntpg=website(this).attr('p');website('.panel.panel-white #pagenum').val(rscrntpg);getuserlistonload();});website('body').on('click','.go_button',function(e)
 {var rscrntpg=website('.gotobtn').val();website('.panel.panel-white #pagenum').val(rscrntpg);getuserlistonload();});getuserlistonload();function getuserlistonload()
-{var noofrows=website('#noofrows').val();var pagenum=website('#pagenum').val();var formdata={noofrows:noofrows,pagenum:pagenum};website.ajax({url:'adminmodule/fetchuser',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{var noofrows=website('#noofrows').val();var pagenum=website('#pagenum').val();var searchby=website('#srch').val();var formdata={noofrows:noofrows,pagenum:pagenum,searchby:searchby};website.ajax({url:'adminmodule/fetchuser',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
@@ -16,4 +16,4 @@ else
 website('.appendrow').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});}
-website('body').on('click','.useraccess',function(e){var userid=website(this).attr('tempid');var baseHref=getbaseurl();var encodedString=btoa(userid);var myurl=baseHref+"adminmodule/accesstouser?userid="+encodedString;location.replace(myurl);});;
+website('body').on('click','.useraccess',function(e){var userid=website(this).attr('tempid');var baseHref=getbaseurl();var encodedString=btoa(userid);var myurl=baseHref+"adminmodule/accesstouser?userid="+encodedString;location.replace(myurl);});website("#srch").on("keyup",function(){var search=website('#srch').val();getuserlistonload();});;

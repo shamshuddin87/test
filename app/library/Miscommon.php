@@ -1602,6 +1602,19 @@ class Miscommon extends Component
          ".$myhtml1."
          </table>
          <br> 
+         <h3 style='text-align:center;'>Past Employer Details</h3>
+         <br>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Employer Name</th> 
+                <th>Designation Served</th>
+                <th>Start Date</th>
+                <th>End Date</th>   
+            </tr>
+         ".$myhtml8."
+         </table>
+         <br>
          <h3 style='text-align:center;'>Designated Person's Relative Information</h3>
          <br>
          <table>
@@ -1623,19 +1636,7 @@ class Miscommon extends Component
          ".$myhtml2."
          </table>
          <br>
-         <h3 style='text-align:center;'>Past Employer Details</h3>
-         <br>
-         <table>
-            <tr>
-                <th>Sr No</th>
-                <th>Employer Name</th> 
-                <th>Designation Served</th>
-                <th>Start Date</th>
-                <th>End Date</th>   
-            </tr>
-         ".$myhtml8."
-         </table>
-         <br>
+         
          <h3 style='text-align:center;'>Designated Person's Demat Accounts</h3>
          <br>
          <table>

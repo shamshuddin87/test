@@ -21,6 +21,9 @@
                <option value="50">50</option><option value="100">100</option>
               </select> 
            <span>Entries</span>
+                <div class="top_margin">
+                <input type="text" placeholder="Search By User Name" id="srch" status="0">
+            </div>
        </div>    
             <div class="containergrid">
                 <input type="hidden" class="compnynmad" value="<?php echo $companynmdept;?>">

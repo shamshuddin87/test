@@ -64,6 +64,36 @@ $condeptsess = $this->session->contractdepartment;
   </table>
   </div>
  
+<div class="table-responsive design_info itntfr" id="pastemp" itntfr="pastemp">
+         <h3 style="text-align: center;" >Past Employer Details</h3>
+         <div class="cssnumrws">
+           <span>Show</span>
+            <select id="noofrows" name="noofrows" class="noofrows">
+               <option value="10">10</option><option value="25">25</option>
+                <option value="50">50</option><option value="100">100</option>
+            </select> 
+            <span>Entries</span>
+        </div>   
+         <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>Employer Name</th>
+                            <th>Designation Served</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <!-- <th>Action</th>  -->
+                        </tr>
+                    </thead>
+                    <tbody class="appendviewemplyee">
+                    </tbody>
+                </table>
+      <div class="panel panel-white">
+            <div class="paginationmn" id="acc7"></div>
+            <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
+        </div>
+    
+    </div>
 
 <div class="table-responsive design_info">
  <h3 style="text-align: center;">Designated Person's Relative Information</h3>
@@ -110,36 +140,7 @@ $condeptsess = $this->session->contractdepartment;
  </table>
  </div> 
 
-    <div class="table-responsive design_info itntfr" id="pastemp" itntfr="pastemp">
-         <h3 style="text-align: center;" >Past Employer Details</h3>
-         <div class="cssnumrws">
-           <span>Show</span>
-            <select id="noofrows" name="noofrows" class="noofrows">
-               <option value="10">10</option><option value="25">25</option>
-                <option value="50">50</option><option value="100">100</option>
-            </select> 
-            <span>Entries</span>
-        </div>   
-         <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
-                    <thead>
-                        <tr>
-                            <th>Sr No</th>
-                            <th>Employer Name</th>
-                            <th>Designation Served</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <!-- <th>Action</th>  -->
-                        </tr>
-                    </thead>
-                    <tbody class="appendviewemplyee">
-                    </tbody>
-                </table>
-      <div class="panel panel-white">
-            <div class="paginationmn" id="acc7"></div>
-            <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
-        </div>
     
-    </div>
 
 <div class="table-responsive design_info">
 <h3 style="text-align: center;">Designated Person's Demat Accounts</h3>

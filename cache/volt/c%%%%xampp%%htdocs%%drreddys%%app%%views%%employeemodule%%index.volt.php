@@ -27,7 +27,7 @@
          </div>
          <div class="col-md-3 col-xs-12 register">
             <button class="btn mfr">
-            Other MFR  
+            Material Financial Relationship  
             </button>
             <!-- <span class="tooltiptext_bg">The term “material financial relationship” shall mean a relationship in which one person is a recipient of any kind of payment such as by way of a loan or gift during the immediately preceding twelve months, equivalent to at least 25% of such payer’s annual income but shall exclude relationships in which the payment is based on arm’s length transactions</span> -->
          </div>
@@ -185,7 +185,7 @@
                </div>
                <div class="col-md-4 col-xs-12">
                    <div class="tooltip_div">
-                     <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                     <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                    </div>
                   <label for="legal_idntfctn_no">Any other legal identification number</label>
                   <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
@@ -358,7 +358,7 @@
 
                            <div class="col-md-6">
                                <div class="tooltip_div">
-                                 <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                 <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                </div>
                               <label for="legal_idntfctn_no">Any other legal identification number</label>
                               <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
@@ -460,7 +460,6 @@
                       <div class="col-md-4">
                         <label>Relationship*</label >
                         <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
-                           <option value="1">HUF</option>
                            <option value="2">Spouse</option>
                            <option value="3">Father</option>
                            <option value="4">Mother</option>
@@ -470,6 +469,7 @@
                            <option value="8">Daughter</option>
                            <option value="9">Son's Wife</option>
                            <option value="10">Daughter's Husband</option>
+                           <option value="1">HUF</option>
                            <option value="11">Others</option>
                         </select>
                      </div>  
@@ -503,7 +503,7 @@
                     </div>
                      <div class="col-md-4">
                          <div class="tooltip_div">
-                                 <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                 <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                </div>
                         <label for="legal_idntfctn_no">Any other legal identification number</label>
                         <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);"  placeholder="Any other legal identification number">
@@ -526,9 +526,18 @@
                         <label>Educational Qualification</label>
                         <input type="text" id="eduqulfcn" name="eduqulfcn" placeholder="Educational Qualification">
                      </div>
+                                        
                     </div>
                       
                     <div class="row">
+                        
+<!--
+                    <div class="col-md-4">
+                      <label for="age">Institute From Which Acquired*</label>
+                      <input type="text" id="institute" name="institute" value="" placeholder="Institute From Which Acquired">
+                    </div>
+-->
+                        
                      <div class="col-md-4"> 
                         <label style="display: block;" for="sex">Gender*</label>
 
@@ -541,13 +550,18 @@
                         <label>Address*</label>
                         <textarea class="" placeholder="Address" id="addr"  name="address" type="text"></textarea>
                      </div>
-                     <div class="col-md-4">
+                     
+                        <div class="col-md-4">
                         <label class="control-label">Upload Identity Proof</label>
                         <input type="file" name="file[]" id="file" >
                      </div>
+                        
                     </div>
                       <div class="row">
-                    <div class="col-md-12 col-md-12">
+                    
+<!--                    <div class="col-md-12 col-md-12">-->
+                        
+                        
                      <div class="col-md-4 "> 
                           <label for="age">Holdings In Shares*</label>
                           <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
@@ -556,20 +570,20 @@
                           <label for="age">Holdings In ADRs*</label>
                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                       </div>
-
-                      <div class="col-md-4 col-xs-12 "> 
+                          
+                    <div class="col-md-4 col-xs-12 "> 
                       <label for="age">Occupation</label>
                      <input type="text" id="reloccupation" name="reloccupation" placeholder="Occupation" >
                     </div>
+
+                     </div>
+                    <div class="row">      
+                    
 
                 <div class="col-md-4 col-xs-12 "> 
                   <label for="age">Name of Companies/Firm</label>
                   <input type="text" id="relcompany" name="relcompany"  placeholder="Name of Companies/Firm " >
                </div>
-
-
-
-                    </div>
                      </div>
                      <div class="col-md-12">
                         <input class="btn btn-primary" type="button" name="relsub" value="Submit" id="relsub" onclick="confirmdisclosure(this.id)" style="float: right;">
@@ -593,10 +607,10 @@
                         <th>Relationship</th>
                         <th>Name</th>
                         <th>Pan</th>
-                        <th>Aadhaar</th>
+<!--                        <th>Aadhaar</th>-->
                         <!--      <th>Age</th>-->
                         <th>Date</th>
-                        <th>Qualification</th>
+<!--                        <th>Qualification</th>-->
                         <th>File</th>
                         <th>Holding in Shares</th>
                         <th>Holding in ADRs</th>
@@ -640,7 +654,6 @@
                             <div class="col-md-6">
                               <label for="relationship">Relationship*</label>
                               <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
-                                 <option value="1">HUF</option>
                                  <option value="2">Spouse</option>
                                  <option value="3">Father</option>
                                  <option value="4">Mother</option>
@@ -650,6 +663,7 @@
                                  <option value="8">Daughter</option>
                                  <option value="9">Son's Wife</option>
                                  <option value="10">Daughter's Husband</option>
+                                 <option value="1">HUF</option>
                                  <option value="11">Others</option>
                               </select>
                            </div>
@@ -686,7 +700,7 @@
                             </div>
                              <div class="col-md-6">
                                  <div class="tooltip_div">
-                                 <a href="javascript:void(0);" data="only for overseas employees (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                 <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                </div>
                                 <label for="legal_idntfctn_no">Any other legal identification number</label>
                                 <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
@@ -805,7 +819,7 @@
             </div>
             <!---------------------------------------------------------------------------------------------->
             <!----TABLE OF INSERTED DATA------------------------------------------------------------------>
-            <h4 class="mfrdetails">Other MFR</h4>
+            <h4 class="mfrdetails">Material Financial Relationship</h4>
             <table class="table table-inverse" id="datableabhi">
                <thead>
                   <tr>

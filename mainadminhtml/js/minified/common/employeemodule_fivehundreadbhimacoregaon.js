@@ -132,7 +132,7 @@ website('body').on('click','.addrelinfo',function(e){var myform=website(this).at
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {var j=1;var myhtml='';for(var i=0;i<response.data.length;i++)
-{var education=response.data[i].education?response.data[i].education:'';var sharehldng=response.data[i].sharehldng?response.data[i].sharehldng:'';var adrshldng=response.data[i].adrshldng?response.data[i].adrshldng:'';myhtml+='<tr>';myhtml+='<td>'+j+'</td>';myhtml+='<td>'+response.data[i].relationshipname+'</td>';myhtml+='<td>'+response.data[i].name+'</td>';myhtml+='<td>'+response.data[i].pan+'</td>';myhtml+='<td>'+response.data[i].aadhar+'</td>';myhtml+='<td>'+response.data[i].dob+'</td>';myhtml+='<td>'+education+'</td>';if(response.data[i].filepath)
+{var education=response.data[i].education?response.data[i].education:'';var sharehldng=response.data[i].sharehldng?response.data[i].sharehldng:'';var adrshldng=response.data[i].adrshldng?response.data[i].adrshldng:'';myhtml+='<tr>';myhtml+='<td>'+j+'</td>';myhtml+='<td>'+response.data[i].relationshipname+'</td>';myhtml+='<td>'+response.data[i].name+'</td>';myhtml+='<td>'+response.data[i].pan+'</td>';myhtml+='<td>'+response.data[i].dob+'</td>';if(response.data[i].filepath)
 {myhtml+='<td><a href="'+response.data[i].filepath+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';}
 else
 {myhtml+='<td></td>';}

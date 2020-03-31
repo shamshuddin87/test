@@ -130,6 +130,23 @@
             <!--   <?php } ?> -->
             <?php } ?>
             <!-----------------------------------EMPLOYEE MODULE--------------------------------------->
+            <li>
+                  <a class="click_board click_board3" href="javascript:;"><i class="fa fa-share-alt"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                     <?php if($gettypm['user_group_id'] !='7') {?>
+                     <li>
+                        <a href="sensitiveinformation/recipient"><i class="" id="cmp_mst"></i>Connected Person</a>
+                     </li>
+                     <?php } ?>
+                     <li>
+                        <a href="sensitiveinformation/upsi_infosharing">
+                           <i class=""></i>
+                           <p>Information Sharing</p>
+                        </a>
+                     </li>
+                  </ul>
+               </li>
+                
             <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='2') {?>
             <li>
                <a class="click_board click_board3" href="javascript:;"><i class="glyphicon glyphicon-cog"></i>MIS<span class="fa fa-chevron-down"></span></a>
@@ -146,29 +163,14 @@
                   <li><a href="mis/mis_initialdiscsr"><i class=""></i>Initial Disclosures</a></li>
                   <li><a href="mis/mis_formc"><i class=""></i>Form C</a></li>
                   <li><a href="mis/mis_confirmtrade"><i class=""></i>Confirmation of Trade</a></li>
-                  <li><a href="mis/mis_formpct"><i class=""></i>Form PCT</a></li>
+<!--                  <li><a href="mis/mis_formpct"><i class=""></i>Form PCT</a></li>-->
                   <li><a href="mis/mis_nonexetrade"><i class=""></i>Non-Execution of Trade</a></li>
                   <li><a href="mis/mis_contratrd"><i class=""></i>Contra Trade</a></li>
                   <li><a href="mis/mis_changedesprsn"><i class=""></i>Change in Designated Persons</a></li>
                </ul>
             </li>
             <?php } ?>
-                <li>
-                  <a class="click_board click_board3" href="javascript:;"><i class="fa fa-share-alt"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                     <?php if($gettypm['user_group_id'] !='7') {?>
-                     <li>
-                        <a href="sensitiveinformation/recipient"><i class="" id="cmp_mst"></i>Connected Person</a>
-                     </li>
-                     <?php } ?>
-                     <li>
-                        <a href="sensitiveinformation/upsi_infosharing">
-                           <i class=""></i>
-                           <p>Information Sharing</p>
-                        </a>
-                     </li>
-                  </ul>
-               </li>
+                
             <ul class="nav side-menu">
                <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='7') {?>
                <li>
@@ -343,6 +345,7 @@
             </li>
             <!-- profile div end -->
             <!--notification open div-->
+<!--
             <?php if(!empty($notification)) {
                echo '<li role="presentation" class="dropdown"><a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">'.count($notification).'<i class="fa fa-bell"></i></a>';
                }else{
@@ -375,6 +378,7 @@
                   </a>
                </li>
             </ul>
+-->
             </li>
             <!--notification div close-->
             <!-- search div start -->

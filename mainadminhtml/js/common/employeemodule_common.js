@@ -990,10 +990,10 @@ website.ajax({
                    myhtml+='<td>'+response.data[i].relationshipname+'</td>';
                    myhtml+='<td>'+response.data[i].name+'</td>';
                    myhtml+='<td>'+response.data[i].pan+'</td>';
-                   myhtml+='<td>'+response.data[i].aadhar+'</td>';
+//                   myhtml+='<td>'+response.data[i].aadhar+'</td>';
 //                   myhtml+='<td>'+response.data[i].age+'</td>';
                    myhtml+='<td>'+response.data[i].dob+'</td>';
-                   myhtml+='<td>'+education+'</td>';
+//                   myhtml+='<td>'+education+'</td>';
                    if(response.data[i].filepath)
                    {
                      myhtml+='<td><a href="'+response.data[i].filepath+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';

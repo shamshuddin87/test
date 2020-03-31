@@ -10,7 +10,10 @@
    $mfrdetail = $this->annualdeclarationcommon->FetchMfrDetail($uid);
    $reldetail = $this->annualdeclarationcommon->FetchRelativeDetail($uid);
    $relDematdetail = $this->annualdeclarationcommon->FetchRelDematDetail($uid);
-   //echo "company is ";print_r($uniqueid);exit;
+
+   /* ---- subsidiaries List -----*/
+   $subsidiaries = $this->annualdeclarationcommon->FetchSubsidiaries();
+   //echo "company is ";print_r($subsidiaries);exit;
    ?>
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
@@ -23,8 +26,14 @@
 
       <div class="col col-xs-6"><h1 class="h1_heading ">Annual Declaration</h1></div>
       <div class="create_button  col col-xs-6">
-        <div class="tooltip_div">
-           <a href="javascript:void(0);" data="List Of Company" class="tooltip_c right btn btn-primary ">Dr Reddy's subsidiaries</a>
+        <div class="tooltip_div">  
+            <span id="content1">The first line.</span><span id="content2">The second line.</span>
+           <a href="javascript:void(0);" data="<?php for($i=0;$i<sizeof($subsidiaries);$i++){ $j = $i;$j++; ?>
+                 <?php echo $j;?>
+                 <?php echo "<br>";?>
+                 <?php echo $subsidiaries[$i]['subsidiaryname'];?>
+                 <?php echo "<br>";?>
+                <?php } ?>" class="tooltip_c right btn btn-primary ">Dr Reddy's subsidiaries</a>
        </div> 
      </div>
    </div>
@@ -1400,6 +1409,8 @@
    <div class="modal-dialog">
       <div class="modal-content" style="width:950px;">
          <div class="modal-header">
+             <input type="hidden" name="annualyear" id="annualyear" value="2020">
+<!--
              <?php 
                 $current_year = date('Y'); 
                 $earliest_year = 2025; 
@@ -1411,6 +1422,7 @@
                 <?php } ?>
              ?> 
             </select>
+-->
 
           
             <button type="button" class="close" data-dismiss="modal">&times;</button>
