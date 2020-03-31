@@ -1134,7 +1134,7 @@ function getpdfdata(uniqueid)
                             dematacc += '<td width="25%">'+j+'</td>';
                             dematacc += '<td width="25%">'+response.dematdetail[i]['accountno']+'</td>';
                             dematacc += '<td width="25%">'+response.dematdetail[i]['depository_participient']+'</td>';
-                            dematacc += '<td width="25%">'+response.dematdetail[i]['clearing_house']+'</td>';
+//                            dematacc += '<td width="25%">'+response.dematdetail[i]['clearing_house']+'</td>';
                             dematacc += '</tr>'; 
                         }
                     }
@@ -1185,6 +1185,7 @@ function getpdfdata(uniqueid)
                 }
                 
                 /*---- Relative Demat detail ----*/
+                console.log(response.relDematdetail.length);
                 if(response.relDematdetail.length>0)
                 {
                     for(var i=0;i<response.relDematdetail.length;i++)
@@ -1195,9 +1196,9 @@ function getpdfdata(uniqueid)
                             j++;
                             reldemat += '<tr class="counter">';
                             reldemat += '<td>'+j+'</td>';
-                            reldemat += '<td>'+response.reldetail[i]['accountno']+'</td>';
-                            reldemat += '<td>'+response.reldetail[i]['depository_participient']+'</td>';
-                            reldemat += '<td>'+response.reldetail[i]['clearing_house']+'</td>';
+                            reldemat += '<td>'+response.relDematdetail[i]['accountno']+'</td>';
+                            reldemat += '<td>'+response.relDematdetail[i]['depository_participient']+'</td>';
+//                            reldemat += '<td>'+response.reldetail[i]['clearing_house']+'</td>';
                             reldemat += '</tr>'; 
                         }
                     }

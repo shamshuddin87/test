@@ -469,8 +469,9 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
             
             $nwexcl[] = array('0' => $j,
                             '1' => $tblrow['fullname'],
-                            '2'=> $annualyr,
-                            '3' => $sentdate,
+                            '2' => $tblrow['email'],
+                            '3'=> $annualyr,
+                            '4' => $sentdate,
                         );
             $j++;
         }

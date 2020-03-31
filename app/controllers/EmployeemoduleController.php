@@ -91,9 +91,9 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
                     $this->response->setJsonContent($data);
                 }
-                else if(strtotime($dob)>strtotime($date))
+                else if(strtotime($dob)>=strtotime($date))
                 {
-                    $data = array("logged" => false,'message' => 'Birth Date Should Be In Past');
+                    $data = array("logged" => false,'message' => 'Birth Date cannot be in future and current date');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($aadhar))
@@ -259,9 +259,9 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
                     $this->response->setJsonContent($data);
                 }
-                else if(strtotime($dob)>strtotime($date))
+                else if(strtotime($dob)>=strtotime($date))
                 {
-                    $data = array("logged" => false,'message' => 'Birth Date Should Be In Past');
+                    $data = array("logged" => false,'message' => 'Birth Date cannot be in future and current date');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($sex))
@@ -480,9 +480,9 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
                     $this->response->setJsonContent($data);
                 }
-                else if(strtotime($dob)>strtotime($date))
+                else if(strtotime($dob)>=strtotime($date))
                 {
-                    $data = array("logged" => false,'message' => 'Birth Date Should Be In Past');
+                    $data = array("logged" => false,'message' => 'Birth Date cannot be in future and current date');
                     $this->response->setJsonContent($data);
                 }
               
@@ -798,9 +798,9 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
                     $this->response->setJsonContent($data);
                 }
-                else if(strtotime($dob)>strtotime($date))
+                else if(strtotime($dob)>=strtotime($date))
                 {
-                    $data = array("logged" => false,'message' => 'Birth Date Should Be In Past');
+                    $data = array("logged" => false,'message' => 'Birth Date cannot be in future and current date');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($sex))

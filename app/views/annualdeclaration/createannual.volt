@@ -10,7 +10,10 @@
    $mfrdetail = $this->annualdeclarationcommon->FetchMfrDetail($uid);
    $reldetail = $this->annualdeclarationcommon->FetchRelativeDetail($uid);
    $relDematdetail = $this->annualdeclarationcommon->FetchRelDematDetail($uid);
-   //echo "company is ";print_r($uniqueid);exit;
+
+   /* ---- subsidiaries List -----*/
+   $subsidiaries = $this->annualdeclarationcommon->FetchSubsidiaries();
+   //echo "company is ";print_r($subsidiaries);exit;
    ?>
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
@@ -23,7 +26,7 @@
 
       <div class="col col-xs-6"><h1 class="h1_heading ">Annual Declaration</h1></div>
       <div class="create_button  col col-xs-6">
-        <div class="tooltip_div">
+        <div class="tooltip_div">  
            <a href="javascript:void(0);" data="List Of Company" class="tooltip_c right btn btn-primary ">Dr Reddy's subsidiaries</a>
        </div> 
      </div>
@@ -510,7 +513,7 @@
                 <th>Sr No.</th>
                 <th>Demat Account No.</th>
                 <th>Name of Depository Participant</th>
-                <th>Name of Clearing House</th>
+<!--                <th>Name of Clearing House</th>-->
             </tr>
             </thead>
             <tbody>
@@ -520,7 +523,7 @@
                  <td><?php echo $j;?></td>
                  <td><?php echo $dematdetail[$i]['accountno'];?></td>
                  <td><?php echo $dematdetail[$i]['depository_participient'];?></td>
-                 <td><?php echo $dematdetail[$i]['clearing_house'];?></td>
+<!--                 <td><?php echo $dematdetail[$i]['clearing_house'];?></td>-->
                 </tr>
                <?php } } else { ?>
                 <tr>
@@ -608,7 +611,7 @@
                   <tr>
                      <td colspan="6">
                         <div class="">
-                           <label style="padding-left: 27px;">ii. Private/Public Company <span>(Note - please disclose even if you hold 1 share in the company)</span></label>
+                           <label style="padding-left: 27px;">ii. Private/Public Company <span>(Note - please disclose even if you hold 1 share in the private company)</span></label>
                         </div>
                      </td>
                   </tr>
@@ -619,7 +622,7 @@
                      <td style="width: 15%"><label class="control-label">No. of Shares held</label></td>
                      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                      <td>
-                        <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+                        <label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                      </td>
                   </tr>
                   <tr>
@@ -686,7 +689,7 @@
                <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative <span>(%)</span></label></td>
                <td>    <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
                <td>
-               <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+               <label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                </td>
                </tr>
                <tr>
@@ -752,7 +755,7 @@
                 <td style="border-right: 1px solid #f7f7f7; width: 2.5%"></td>  
                <td style="width: 22%">  <label class="control-label">Company Name</label></td>
                <td style="width: 16%">  <label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-               <td>    <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+               <td>    <label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
                </tr>
                <tr>
                <td style="border-right: 1px solid #f7f7f7"></td>
@@ -813,7 +816,7 @@
                      <td style="border-right: 1px solid #f7f7f7; width: 2.5%;"></td>
                      <td style="width: 22%;"><label class="control-label">Company Name</label></td>
                      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-                     <td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+                     <td><label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
                   </tr>
                   <tr>
                      <td style="border-right: 1px solid #f7f7f7"></td>
@@ -1043,7 +1046,7 @@
                <tr>
                <td colspan="7">
                <div class="">
-              <label  style="padding-left: 27px;" class="">ii. Private/Public Company. <span>(Note - please disclose even if the relatives hold 1 share in the company)</span></label>
+              <label  style="padding-left: 27px;" class="">ii. Private/Public Company. <span>(Note - please disclose even if the relatives hold 1 share in the private company)</span></label>
                </div>
                </td>
                </tr>
@@ -1056,7 +1059,7 @@
                 <td  style="width: 15%"><label class="control-label">No. of Shares held</label></td>
                <td style="width: 15%"> <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                <td>
-               <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+               <label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                </td>
                </tr>
 
@@ -1137,7 +1140,7 @@
                   <td style="width: 16%">  <label class="control-label">Percentage of Shares alongwith relative <span>(%)</span></label></td>
                   <td style="width: 15%">    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                   <td style="width: 15%">
-                  <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+                  <label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                   </td>
                </tr>
                <tr>
@@ -1219,7 +1222,7 @@
                 <td style="width: 20%">  <label class="control-label">Relative Name</label></td>
                <td style="width: 22%">  <label class="control-label">Company Name</label></td>
                <td style="width: 16%">  <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
-               <td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
+               <td><label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
                </tr>
                <tr>
                <td style="border-right: 1px solid #f7f7f7"></td>
@@ -1305,7 +1308,7 @@
                <td style="width: 22%"><label class="control-label">Company Name</label></td>
                <td>    <label class="control-label">Can this relative significantly influence the decision making of this company?</label></td>
                <td>
-               <label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
+               <label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label> 
                </td>
                </tr>
 
@@ -1400,6 +1403,8 @@
    <div class="modal-dialog">
       <div class="modal-content" style="width:950px;">
          <div class="modal-header">
+             <input type="hidden" name="annualyear" id="annualyear" value="2020">
+<!--
              <?php 
                 $current_year = date('Y'); 
                 $earliest_year = 2025; 
@@ -1411,6 +1416,7 @@
                 <?php } ?>
              ?> 
             </select>
+-->
 
           
             <button type="button" class="close" data-dismiss="modal">&times;</button>

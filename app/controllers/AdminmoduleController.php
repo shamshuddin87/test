@@ -303,11 +303,12 @@ class AdminmoduleController extends ControllerBase
                     $pagedata=$this->request->getPost();
                     // print_r($pagedata);exit;
                  
-                    $noofrows=$pagedata['noofrows'];
-                    $pagenum=$pagedata['pagenum'];
+                    $noofrows = $pagedata['noofrows'];
+                    $pagenum = $pagedata['pagenum'];
+                    $searchby = $pagedata['searchby'];
                     $rsstrt = ($pagenum-1) * $noofrows;
-                    $rslmt = 'ORDER BY ID DESC LIMIT '.$rsstrt.','.$noofrows;
-                    $mainqry='';
+                    $rslmt = ' AND `fullname` LIKE "%'.$searchby.'%" ORDER BY ID DESC LIMIT '.$rsstrt.','.$noofrows;
+                    $mainqry=' AND `fullname` LIKE "%'.$searchby.'%"';
 
                     $resultcount = $this->adminmodulecommon->userdetails($getuserid,$usergroup,$mainqry);
                    
