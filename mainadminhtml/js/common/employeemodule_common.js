@@ -436,9 +436,11 @@ website('body').on('click','#yesdisclosures2',function(e)
    var adrsholdng =  website("#getdata_1 #adrsholdng").val();
    var reloccupation =  website("#getdata_1 #reloccupation").val();
    var relcompany =  website("#getdata_1 #relcompany").val();
+    var relinstitute =  website("#getdata_1 #relinstitute").val();
+     var relmobno =  website("#getdata_1 #relmobno").val();
 
 
-  var formdata = {relationship:relationship,fname:fname,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,reloccupation:reloccupation,relcompany:relcompany,depnature:depnature}
+  var formdata = {relmobno:relmobno,relinstitute:relinstitute,relationship:relationship,fname:fname,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,reloccupation:reloccupation,relcompany:relcompany,depnature:depnature}
    website.ajax({
         url:'employeemodule/relationdata',
         
@@ -521,9 +523,12 @@ website('body').on('click','#yesdisclosures3',function(e)
      var adrsholdng =  website("#reledit #adrsholdng").val();
      var occupation =  website("#reledit #reloccupationup").val();
      var company =  website("#reledit #relcompanyup").val();
+      var relinstituteup =  website("#reledit #relinstituteup").val();
+        var relmobnoup =  website("#reledit #relmobnoup").val();
 
 
-     var formdata = {releditid:releditid,relationship:relationship,name:name,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,reloccupationup:occupation,relcompanyup:company,depnature:depnature}
+
+     var formdata = {relmobnoup:relmobnoup,relinstituteup:relinstituteup,releditid:releditid,relationship:relationship,name:name,pan:pan,aadhar:aadhar,dob:dob,sex:sex,address:address,eduqulfcn:eduqulfcn,file:file,legal_idntfr:legal_idntfr,legal_idntfctn_no:legal_idntfctn_no,shareholdng:shareholdng,adrsholdng:adrsholdng,reloccupationup:occupation,relcompanyup:company,depnature:depnature}
 
        website.ajax({
 
@@ -991,7 +996,7 @@ website.ajax({
                    myhtml+='<td>'+response.data[i].name+'</td>';
                    myhtml+='<td>'+response.data[i].pan+'</td>';
                    myhtml+='<td>'+response.data[i].aadhar+'</td>';
-//                   myhtml+='<td>'+response.data[i].age+'</td>';
+                   myhtml+='<td>'+response.data[i].mobile+'</td>';
                    myhtml+='<td>'+response.data[i].dob+'</td>';
                    myhtml+='<td>'+education+'</td>';
                    if(response.data[i].filepath)
@@ -1118,6 +1123,8 @@ website('body').on('click','.editrel',function()
                var dependantnature=response.data.dependency_nature?response.data.dependency_nature:"";
                var occupation=response.data.occupation?response.data.occupation:"";
                var company=response.data.company?response.data.company:"";
+                var mobile=response.data.mobile?response.data.mobile:"";
+                 var institute=response.data.institute?response.data.institute:"";
                var filepath=response.data.filepath
                jQuery("#reledit input[value='"+sex+"']").attr('checked', true);
                 website('#reledit #name').val(name);
@@ -1137,6 +1144,8 @@ website('body').on('click','.editrel',function()
                 website('#reledit #legal_idntfctn_no').val(legal_idntfctn_no);
                 website('#reledit #reloccupationup').val(occupation);
                 website('#reledit #relcompanyup').val(company);
+                 website('#reledit #relinstituteup').val(institute);
+                  website('#reledit #relmobnoup').val(mobile);
                dependantnature = dependantnature.split(",");
                website.each(dependantnature, function( key, value ) {
                    website('#reledit #depnature option[value="' + value + '"]').attr('selected','selected');
@@ -1277,9 +1286,10 @@ website('#upmfrmod').click(function(e) {
   var mfrrelation= website('#mfrrelationup').val();
    var transaction= website('#mfrtransactionup').val();
   var clientid= website('#mfrclientidup').val();
+  var mobile= website('#mfrmobileup').val();
   website.ajax({
         url:'employeemodule/updatemfr',
-        data:{mfrname:mfrname,mfrrelation:mfrrelation,mfreditid:mfreditid,panup:panup,addressup:addressup,transaction:transaction,clientid:clientid},
+        data:{mobile:mobile,mfrname:mfrname,mfrrelation:mfrrelation,mfreditid:mfreditid,panup:panup,addressup:addressup,transaction:transaction,clientid:clientid},
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -1334,9 +1344,10 @@ website('#savemfr').click(function(e) {
   var address= website('#materialaddress').val();
   var transaction= website('#mfrtransaction').val();
   var clientid= website('#mfrclientid').val();
+   var mobile= website('#mfrmobile').val();
  website.ajax({
         url:'employeemodule/savemfr',
-        data:{mfrname:mfrname,mfrrelation:mfrrelation,pan:pan,address:address,transaction:transaction,clientid:clientid},
+        data:{mobile:mobile,mfrname:mfrname,mfrrelation:mfrrelation,pan:pan,address:address,transaction:transaction,clientid:clientid},
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -1412,6 +1423,7 @@ website.ajax({
                    myhtml+='<td>'+response.data[i].related_party+'</td>';
                    myhtml+='<td>'+response.data[i].pan+'</td>';
                    myhtml+='<td>'+response.data[i].relationship+'</td>';
+                    myhtml+='<td>'+response.data[i].mobile+'</td>';
                    myhtml+='<td>'+response.data[i].address+'</td>';
                    myhtml+='<td><i class="fa fa-edit mymfredit"  mfredit="'+response.data[i].id+'" style="font-size:20px;"></i><i class="fa fa-trash delmfr"  mfrdel="'+response.data[i].id+'" style="font-size:20px;"></i></td>';
                    myhtml+='</tr>';
@@ -1466,12 +1478,14 @@ website('body').on('click','.mymfredit',function(e){//on click submit button get
               var mrfaddress = response.data[0].address;
               var transaction = response.data[0].transaction;
               var clientid = response.data[0].clientid;
+                var mobile = response.data[0].mobile;
               website('#mfrnameup').val(mfrnameu);
               website('#mfrrelationup').val(mfrrel);
               website('#adharpanup').val(mrfpan);
               website('#materialaddressup').val(mrfaddress);
               website('#mfrtransactionup').val(transaction);
               website('#mfrclientidup').val(clientid);
+               website('#mfrmobileup').val(mobile);
               website('#mfreditid').val(editid);
               website('#mfrdelmodaledit').modal('show');
               

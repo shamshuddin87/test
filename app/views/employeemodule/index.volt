@@ -524,10 +524,34 @@
                         <label>Educational Qualification</label>
                         <input type="text" id="eduqulfcn" name="eduqulfcn" placeholder="Educational Qualification">
                      </div>
+
+
                     </div>
                       
                     <div class="row">
-                     <div class="col-md-4"> 
+
+                    <div class="col-md-4 col-xs-12">
+                      <label for="institute">Institute From Which Acquired</label>
+                      <input type="text" id="relinstitute" name="relinstitute" placeholder="Institute From Which Acquired">
+                   </div>
+
+
+                    <div class="col-md-4  "> 
+                    <label for="control-label">Mobile No*</label>
+           
+                        <input type="text"  id="relmobno" name="relmobno" placeholder="Mobile No"onkeypress='return event.charCode >= 48 && event.charCode <= 57'  maxlength="10"  >
+   
+                        </div>
+                    
+                     <div class="col-md-4">
+                        <label>Address*</label>
+                        <textarea class="" placeholder="Address" id="addr"  name="address" type="text"></textarea>
+                     </div>
+                   
+                    </div>
+                      <div class="row">
+
+                         <div class="col-md-4"> 
                         <label style="display: block;" for="sex">Gender*</label>
 
                         <input class = "relgender" type="radio" id="relmale" name="sex" value="Male" />Male
@@ -535,17 +559,21 @@
                         <input class = "relgender"type="radio" id="relother" name="sex"  value="Other"  >Other 
 
                      </div>
-                     <div class="col-md-4">
-                        <label>Address*</label>
-                        <textarea class="" placeholder="Address" id="addr"  name="address" type="text"></textarea>
-                     </div>
-                     <div class="col-md-4">
+
+                     <div class="col-md-4 col-xs-12 "> 
+                      <label for="age">Occupation</label>
+                     <input type="text" id="reloccupation" name="reloccupation" placeholder="Occupation" >
+                    </div>
+
+                <div class="col-md-4 col-xs-12 "> 
+                  <label for="age">Name of Companies/Firm</label>
+                  <input type="text" id="relcompany" name="relcompany"  placeholder="Name of Companies/Firm " >
+               </div>
+                    <div class="col-md-12 col-md-12">
+                        <div class="col-md-4">
                         <label class="control-label">Upload Identity Proof</label>
                         <input type="file" name="file[]" id="file" >
                      </div>
-                    </div>
-                      <div class="row">
-                    <div class="col-md-12 col-md-12">
                      <div class="col-md-4 "> 
                           <label for="age">Holdings In Shares*</label>
                           <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
@@ -555,15 +583,7 @@
                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                       </div>
 
-                      <div class="col-md-4 col-xs-12 "> 
-                      <label for="age">Occupation</label>
-                     <input type="text" id="reloccupation" name="reloccupation" placeholder="Occupation" >
-                    </div>
-
-                <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Name of Companies/Firm</label>
-                  <input type="text" id="relcompany" name="relcompany"  placeholder="Name of Companies/Firm " >
-               </div>
+                      
 
 
 
@@ -592,7 +612,7 @@
                         <th>Name</th>
                         <th>Pan</th>
                         <th>Aadhaar</th>
-                        <!--      <th>Age</th>-->
+                         <th>Mobile No</th>
                         <th>Date</th>
                         <th>Qualification</th>
                         <th>File</th>
@@ -697,28 +717,38 @@
                               <label for="Dob">DOB*</label>
                               <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="DOB" readonly>
                            </div>
-                           <div class="col-md-12" style="margin-bottom: 15px;">
+                           <div class="col-md-6" style="margin-bottom: 15px;">
                                <label style="display: block;" for="sex">Gender*</label>
                               <input type="radio" id="sex" name="sex" value="Male" checked/>Male
                               <input type="radio" id="sex" name="sex"  value="Female"/>Female
                               <input type="radio" id="sex" name="sex"  value="Other"/>Other
                            </div>
-                           
-                           <div class="col-md-12"> 
-                              <label for="subject">Address*</label>
-                              <textarea id="address" name="address" placeholder="Write address.." style="height:100px"></textarea>
-                           </div>
-                           <div class="col-md-6">
+                            <div class="col-md-6">
                               <div class="tooltip_div">
                                 <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
                               </div>
                               <label for="age">Educational Qualification</label>
                               <input type="text" id="eduqulfcn" name="eduqulfcn" placeholder="Educational Qualification">
                            </div>
-                           <div class="col-md-6">
-                              <label class="control-label">Upload Identity Proof</label>
-                              <input type="file" name="file" id="file" >
+                            <div class="col-md-6 col-xs-12">
+                            <label for="institute">Institute From Which Acquired</label>
+                           <input type="text" id="relinstituteup" name="relinstituteup" placeholder="Institute From Which Acquired">
                            </div>
+                           
+                         
+                             <div class="col-md-6 col-xs-12 " style="margin-top: 0px;"> 
+                            <label for="age">Mobile No*</label>
+           
+                              <input type="text"  id="relmobnoup" name="relmobnoup" placeholder="Mobile No" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  maxlength="10"  >
+   
+                                </div>
+
+                           
+                           <div class="col-md-12"> 
+                              <label for="subject">Address*</label>
+                              <textarea id="address" name="address" placeholder="Write address.." style="height:100px"></textarea>
+                           </div>
+                          
                            <div class="row">
                             <div class="col-md-12">
                             <div class="col-md-6">
@@ -740,7 +770,10 @@
                             <label for="age">Name of Companies/Firm</label>
                             <input type="text" id="relcompanyup" name="relcompanyup"  placeholder="Name of Companies/Firm " >
                             </div>
-
+                               <div class="col-md-6">
+                              <label class="control-label">Upload Identity Proof</label>
+                              <input type="file" name="file" id="file" >
+                           </div>
                             </div>
                           </div>
                            <div class="col-md-12"> 
@@ -790,6 +823,12 @@
                   
                </div>
 
+                 <div class="col-md-6">
+                  <label>Mobile No*</label>
+                  <input type="text" placeholder="Mobile No " id="mfrmobile"  maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                  
+               </div>
+
                 <div class="col-md-6">
                   <label>Address</label>
                   <textarea id="materialaddress" placeholder="Write address.." style="height:100px"></textarea>
@@ -811,6 +850,7 @@
                      <th>Name of the Person</th>
                      <th>Identity Number</th>
                      <th>Relationship</th>
+                      <th>Mobile No</th>
                      <th>Address</th>
                      <th> Action </th>
                   </tr>
@@ -928,6 +968,12 @@
                 <div class="col-md-6">
                   <label>DP ID/Client ID*</label>
                   <input type="text" placeholder="DP ID/Client ID " id="mfrclientidup" onkeypress="return isAlphaNumeric(event,this.value); "maxlength="16" pattern="[A-Za-z0-9]{16}">
+                  
+               </div>
+
+               <div class="col-md-6">
+                  <label>Mobile No*</label>
+                  <input type="text" placeholder="Mobile No " id="mfrmobileup"  maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                   
                </div>
 
