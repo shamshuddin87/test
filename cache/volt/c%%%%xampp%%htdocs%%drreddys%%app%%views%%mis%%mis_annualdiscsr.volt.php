@@ -22,7 +22,17 @@ $current_year =  date("Y");
                        
                         <div class="clearelement"></div>        
                       
-                        
+                        <section class="col col-md-12 col-xs-12">
+                            <label class="control-label">Select Year</label>
+                            <select class="annualyear" id="annualyear">
+                                <?php for ($i = 0 ; $i < 6 ; $i++) { ?>
+                                <option value="<?php echo($current_year + $i);  ?>"> <?php echo($current_year + $i);  ?>
+                                </option>
+                                <?php
+                                }
+                            ?>
+                                </select>
+                        </section>
 
 
                         <div class="clearelement"></div>                   
@@ -69,23 +79,14 @@ $current_year =  date("Y");
 
 
         <div class="otherfilter">
-        <div class="cssfilter"> 
-        <div class="control-label form-group">
-            <label>Select Year</label>
-            <select class="annualyear form-control" id="annualyear">
-                <?php for ($i = 0 ; $i < 3 ; $i++) { ?>
-                    <option value="<?php echo($current_year + $i);  ?>"> <?php echo($current_year + $i);  ?></option>
-                <?php } ?>
-            </select>
-        </div>
-        </div>
+
         <div class="cssfilter">               
             <div class="control-label form-group">
                 <label>Status Filter</label>
                 <select id="filterstatus" name="filterstatus" class="form-control">
                     <option value="">All</option>
                     <option value="pending">Pending</option>
-                    <option value="sent_for_approval">Received</option>
+                    <option value="sent_for_approval">Sent for approval</option>
                 </select>
             </div>
         </div>
@@ -107,7 +108,7 @@ $current_year =  date("Y");
                     <th>Name</th> 
                     <!-- <th>Employee ID</th>  -->
                     <th>Year</th>
-                    <th>Date of receipt</th>
+                    <th>Due for receipt</th>
                     <th>File</th>
                 </tr>
              </thead>
