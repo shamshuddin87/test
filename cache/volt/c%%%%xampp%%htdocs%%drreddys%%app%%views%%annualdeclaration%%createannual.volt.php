@@ -27,13 +27,7 @@
       <div class="col col-xs-6"><h1 class="h1_heading ">Annual Declaration</h1></div>
       <div class="create_button  col col-xs-6">
         <div class="tooltip_div">  
-            <span id="content1">The first line.</span><span id="content2">The second line.</span>
-           <a href="javascript:void(0);" data="<?php for($i=0;$i<sizeof($subsidiaries);$i++){ $j = $i;$j++; ?>
-                 <?php echo $j;?>
-                 <?php echo "<br>";?>
-                 <?php echo $subsidiaries[$i]['subsidiaryname'];?>
-                 <?php echo "<br>";?>
-                <?php } ?>" class="tooltip_c right btn btn-primary ">Dr Reddy's subsidiaries</a>
+           <a href="javascript:void(0);" data="List Of Company" class="tooltip_c right btn btn-primary ">Dr Reddy's subsidiaries</a>
        </div> 
      </div>
    </div>
@@ -344,10 +338,10 @@
         <div style="color: #000">
           <p><b>The above information is true to the best of my knowledge and belief.</b></p>
         <ul style="list-style: none;">
-          <li style="position: relative;"><span style="position: absolute;left: -20px;">b) </span> I will keep the Corporate Secretarial team informed about any change(s) in the above declaration. </li>
-          <li style="position: relative;"><span style="position: absolute;left: -20px;">c) </span> I have complied with the Company’s Code of Conduct to Regulate, Monitor and Report Trading. </li>
-          <li style="position: relative;"><span style="position: absolute;left: -20px;">d) </span> I have not / will not share any unpublished price sensitive information (confidential information) regarding company’s operations with any one.  </li>
-          <li style="position: relative;"><span style="position: absolute;left: -20px;">e) </span> I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">a) </span> I will keep the Corporate Secretarial team informed about any change(s) in the above declaration. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">b) </span> I have complied with the Company’s Code of Conduct to Regulate, Monitor and Report Trading. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">c) </span> I have not / will not share any unpublished price sensitive information (confidential information) regarding company’s operations with any one.  </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">d) </span> I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too. </li>
         </ul>
         <p><b>This is a computer generated document and does not require signature.        </b></p>
         </div>
@@ -1284,10 +1278,10 @@
                 <div style="color: #000">
           <p><b>The above information is true to the best of my knowledge and belief.</b></p>
         <ul style="list-style: none;">
-          <li style="position: relative;"><span style="position: absolute;left: -20px;">b) </span> I will keep the Corporate Secretarial team informed about any change(s) in the above declaration. </li>
-          <li style="position: relative;"><span style="position: absolute;left: -20px;">c) </span> I have complied with the Company’s Code of Conduct to Regulate, Monitor and Report Trading. </li>
-          <li style="position: relative;"><span style="position: absolute;left: -20px;">d) </span> I have not / will not share any unpublished price sensitive information (confidential information) regarding company’s operations with any one.  </li>
-          <li style="position: relative;"><span style="position: absolute;left: -20px;">e) </span> I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">a) </span> I will keep the Corporate Secretarial team informed about any change(s) in the above declaration. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">b) </span> I have complied with the Company’s Code of Conduct to Regulate, Monitor and Report Trading. </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">c) </span> I have not / will not share any unpublished price sensitive information (confidential information) regarding company’s operations with any one.  </li>
+          <li style="position: relative;"><span style="position: absolute;left: -20px;">d) </span> I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too. </li>
         </ul>
         <p><b>This is a computer generated document and does not require signature.        </b></p>
         </div>

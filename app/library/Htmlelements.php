@@ -338,10 +338,7 @@ public function sendforapproval($subject,$userids,$emailconstent)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Contract Approval</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
+                
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -435,10 +432,6 @@ public function sendforapprovallegal($subject,$userids,$emailconstent)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Contract Approval</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -535,10 +528,6 @@ public function sendforlegalapproval($subject,$emaildata)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Volody</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -628,10 +617,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Volody</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -842,10 +827,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                         <div style="    text-shadow: 1px 0px 2px #626262;
         color: #626262;">Request Approval</div>
                     </div>
-                    <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-        color: #626262;
-
-        text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                      <div style="clear:both;"></div>
                 </div>
             <div style="    background-color: #f2f2f2;
@@ -929,10 +910,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Request Approval</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1013,10 +990,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                         <div style="    text-shadow: 1px 0px 2px #626262;
         color: #626262;">Request Approval</div>
                     </div>
-                    <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-        color: #626262;
-
-        text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                      <div style="clear:both;"></div>
                 </div>
             <div style="    background-color: #f2f2f2;
@@ -1101,10 +1074,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Request Approval</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1185,10 +1154,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Final Submit Request</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1274,10 +1239,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Trading Plan Request</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1359,10 +1320,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Trading Plan Request</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1409,7 +1366,7 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
     <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
     <div style="text-shadow: 1px 0px 2px #626262;color: #626262;">Volody</div>
     </div>
-    <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;color: #626262;text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
+    
     <div style="clear:both;"></div></div>
 
     <div class="main">
@@ -1453,7 +1410,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
     <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
     <div style="text-shadow: 1px 0px 2px #626262;color: #626262;">Volody</div>
     </div>
-    <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;color: #626262;text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
     <div style="clear:both;"></div></div>
 
     <div class="main">
@@ -1529,10 +1485,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                         <div style="    text-shadow: 1px 0px 2px #626262;
         color: #626262;"></div>
                     </div>
-                    <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-        color: #626262;
-
-        text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                      <div style="clear:both;"></div>
                 </div>
             <div style="    background-color: #f2f2f2;
@@ -1610,10 +1562,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Form B Request</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1689,10 +1637,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Form B</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1768,10 +1712,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Form C Request</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1847,10 +1787,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Form C</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1927,10 +1863,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Form D Request</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;

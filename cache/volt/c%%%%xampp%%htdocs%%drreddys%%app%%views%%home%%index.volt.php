@@ -60,6 +60,7 @@
                         </div>
                  
 -->
+<!--
                         <div class="col-lg-3 col-md-6" id="pendappvl">
                         
                             <a href="tradingrequest?status=<?php print_r(base64_encode('not_approved'));?>">
@@ -135,6 +136,7 @@
                             </div>
                             </a>
                         </div>
+-->
                       
                          
                     </div>
@@ -145,14 +147,14 @@
                         
                         <!-- <div class="col-md-7"><h1 class="page-header">Holding Statement</h1></div> -->
 
-                        <div class="col-lg-7 col-sm-12 holding_1024">
+                        <!--<div class="col-lg-7 col-sm-12 holding_1024">
                             <h1 class="page-header">Holding Summary</h1>
                             <div class="panel panel-default holding">
                                 <!-- /.panel-heading -->
-                                <div class="panel-heading">
+                                <!--<div class="panel-heading">
                                 </div>
                                 <!-- /.panel-body -->
-                                <div class="panel-body">
+                                <!--<div class="panel-body">
                                     <div class="table-responsive">
                                         <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                                             <div class="row"></div>
@@ -169,7 +171,7 @@
                                                         <th>Equity Shares</th>
                                                         <th>ADRs Shares</th>
 <!--                                                        <th>Debentures</th>-->
-                                                    </tr>
+                                                    <!--</tr>
                                                 </thead>
                                                 <tbody class ="holdingsummry">
 
@@ -189,6 +191,7 @@
                         
                         
                      <!--pending task-->
+<!--
                      <div class="col-md-5 bg-task">
                              <h1 class="page-header">Pending Task</h1>
                               
@@ -247,6 +250,7 @@
                         <?php } ?>
                               </ul> 
                      </div>
+-->
 
                      <!-- <div class="col-md-5"><h1>Pending Task</h1></div> -->
                      <!--  <div class="col-md-5 bg-task">
@@ -317,6 +321,7 @@
 
                   <!-- last boxes -->
                 <div class="row">
+<!--
                   <div class="container-fluid">      
                     <div class="boxes">
                                  <div class="col-container">
@@ -334,17 +339,21 @@
                             <div class="summary">
                          <h4 class="title center cre">Create Request for Approval</a></h4>
                        <div class="info">
-<!-- <strong class="amount">1281</strong>
-<span class="text-primary">(14 unread)</span> -->
+ <strong class="amount">1281</strong>
+<span class="text-primary">(14 unread)</span> 
         </div>
             </div>
             
                 </div>
                       </div>
                           </div>
+-->
+<!--
                             </section>
                          </a>
                             </div>
+-->
+<!--
                                 <div class="col-md-2 col-sm-4 col-xl-6">
                                     <a href="holdingstatement">
                                     <section class="col panel left-border2 panel-featured-left panel-featured-secondary">
@@ -358,9 +367,9 @@
                                                       <div class="widget-summary-col">
                                                      <div class="summary">
                                                          <h4 class="title">Update Holding Statement</h4>
-                                                <!-- <div class="info">
+                                                 <div class="info">
                                                 <strong class="amount">$ 14,890.30</strong>
-                                                </div> -->
+                                                </div> 
                                                        </div>
                                                     
                                                   </div>
@@ -369,6 +378,8 @@
                                             </section>
                                         </a>
                                             </div>
+-->
+<!--
                              <div class="col-md-2 col-sm-4 col-xl-6">
                                  <section class="col panel left-border3 panel-featured-left panel-featured-tertiary">
                                      <div class="panel-body">
@@ -381,9 +392,9 @@
                                      <div class="widget-summary-col">
                                         <div class="summary">
                              <h4 class="title">Trade Exception approval</h4>
-                            <!-- <div class="info">
+                             <div class="info">
                             <strong class="amount">38</strong>
-                            </div> -->
+                            </div> 
                                </div>
                                    
                             </div>
@@ -391,7 +402,9 @@
                     </div>
             </section>
         </div>
+-->
                             
+<!--
           <div class="col-md-2 col-sm-4 col-xl-6">
              <section class="col panel left-border4 panel-featured-left panel-featured-quartenary">
                 <div class="panel-body">
@@ -404,9 +417,9 @@
                             <div class="widget-summary-col">
                                <div class="summary">
                                   <h4 class="title">Pending From Subordinates</h4>
-                            <!-- <div class="info">
+                             <div class="info">
                             <strong class="amount">3765</strong>
-                            </div> -->
+                            </div> 
                             </div>
                                 
                             </div>
@@ -414,8 +427,10 @@
                 </div>
              </section>
         </div>
+-->
 
 
+<!--
         <div class="col-md-2 col-sm-4 col-xl-6">
             <a href="holdingstatement">
              <section class="col panel left-border5 panel-featured-left panel-featured-quartenary">
@@ -429,9 +444,9 @@
                             <div class="widget-summary-col">
                                <div class="summary">
                                   <h4 class="title">Check Holding Statement</h4>
-                            <!-- <div class="info">
+                             <div class="info">
                             <strong class="amount">3765</strong>
-                            </div> -->
+                            </div> 
                             </div>
                                
                             </div>
@@ -440,7 +455,9 @@
              </section>
          </a>
         </div>
+-->
 
+<!--
 <div class="col-md-2 col-sm-4 col-xl-6">
       <a href="sensitiveinformation/infosharing">
        <section class="col panel left-border6 panel-featured-left panel-featured-quartenary">
@@ -454,9 +471,9 @@
                       <div class="widget-summary-col">
                          <div class="summary">
                             <h4 class="title">UPSI & Connected Person</h4>
-                      <!-- <div class="info">
+                       <div class="info">
                       <strong class="amount">3765</strong>
-                      </div> -->
+                      </div> 
                       </div>
                           
                       </div>
@@ -465,6 +482,7 @@
        </section>
    </a>
  </div>
+-->
     </div>
             </div>
                 </div>
