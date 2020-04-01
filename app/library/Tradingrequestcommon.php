@@ -1280,8 +1280,8 @@ function checktypeofreq($uid,$usergroup,$data)
                             WHERE `companyid`='".$vid."' "; 
 
                             $execompinfo = $connection->query($querysql);
-                            $execmp = $execompinfo->fetch();
-                            while($row = $execmp->fetch())
+                            //$execmp = $execompinfo->fetch();
+                            while($row = $execompinfo->fetch())
                             {
                                 $getlist[] = $row;
                             }

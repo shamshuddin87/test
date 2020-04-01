@@ -32,8 +32,8 @@ function FetchSubsidiries()
 //                  
 //              }
               //html1 =  html.replace( /(<([^>]+)>)/ig, '');
-              website('.tooltip').html(response.data);
-              website('.tooltip').css('display','block');
+              website('#tooltip').attr('data',response.data);
+              //website('.tooltip').css('display','block');
           },
           complete: function(response)
           {   },
