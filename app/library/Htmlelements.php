@@ -1952,17 +1952,15 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                 </div>
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
-        <p>Dear All</p>,
-        <p>Please note that the trading window is closed from '.$dayOfWeek.','.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.', '.$emaildata['blckoutto'].' both days inclusive on account of '.$emaildata['reason'].'.
+        <p>Dear All,</p>
+        <p>Please note that the trading window is closed from '.$dayOfWeek.', '.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.', '.$emaildata['blckoutto'].' both days inclusive on account of '.$emaildata['reason'].'.
         </p>';
         $html.="<p>Under the Securities and Exchange Board of India (Prohibition of Insider Trading) Regulations 2015, (Insider Trading Regulations) buying, selling or dealing in the securities of the company by its directors/employees on the knowledge of any inside, unpublished price-sensitive information is prohibited and doing so is an offense. The Directors and employees of the Company and their immediate relatives are not permitted to trade in the Company's shares/ADRs during the period, as may be notified in this behalf and/or till such price-sensitive information is disseminated to the public at large.
 
               </p>
-        <p>Under the revised Insider Trading Regulations and Company's revised Code of Conduct to regulate, monitor and report trading by designated persons (the Code), the trading restriction period can be made applicable from the end of every quarter till 48 hours after the declaration of financial results or such other period as may be notified in this behalf. Accordingly, it is hereby informed that the Trading Window for buying, selling or dealing in the securities of the Company by the designated persons (including their immediate relatives) will be closed from from '.$dayOfWeek.' '.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.' '.$emaildata['blckoutto'].' for '.$emaildata['reason'].'.
+        <p>Under the revised Insider Trading Regulations and Company's revised Code of Conduct to regulate, monitor and report trading by designated persons (the Code), the trading restriction period can be made applicable from the end of every quarter till 48 hours after the declaration of financial results or such other period as may be notified in this behalf. Accordingly, it is hereby informed that the Trading Window for buying, selling or dealing in the securities of the Company by the designated persons (including their immediate relatives) will be closed from from ".$dayOfWeek.", ".$emaildata['blckoutfrom']." to ".$dayOfWeek1.", ".$emaildata['blckoutto']." for ".$emaildata['reason'].".
            </p>";
-            $html.='<p>Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.
-
-           </p>
+            $html.='<p>Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.</p>
 
             <p>Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.
 
@@ -2344,7 +2342,8 @@ public function mailofupdatedp($tomail,$tousername,$pstartdate,$enddate,$today,$
      return $html;
 }
 
-    
+
+ 
 public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projctowner)
   {   
        $title ="You have been added to digital database of Dr. Reddy's Laboratories Ltd";
@@ -2438,6 +2437,8 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
 
      return $html;
 }
+
+
 
 public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projctowner)
   {   
@@ -2536,6 +2537,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
 
      return $html;
 }
+
 
    
 public function mailofpersonalinfo($data)
@@ -2704,9 +2706,6 @@ public function mailofpersonalinfo($data)
          </td>
       </tr>
 
-
-
-     
       <tr>
           <td style="padding:0px 0 20px 0; background: #f7f7f7; padding: 10px;" colspan="2">
           <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -2754,6 +2753,7 @@ public function mailofpersonalinfo($data)
 
      return $html;
 }
+
 
 public function notifyupsi($addedby,$addedbyemail,$title,$desc,$todaydate,$dayOfWeek)
   {   

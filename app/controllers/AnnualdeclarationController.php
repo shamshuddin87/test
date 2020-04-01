@@ -820,7 +820,7 @@ class AnnualdeclarationController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
-                //print_R($this->request->getPost());exit;
+                //print_R($this->request->getPost());exit;  
                 $date=date('d-m-Y');
                 $d1ques1 = $this->request->getPost('d1ques1');
                 $d1ques2 = $this->request->getPost('d1ques2');
@@ -874,13 +874,23 @@ class AnnualdeclarationController extends ControllerBase
                 $d10ques2 = $this->request->getPost('d10ques2');
                 $d10ques3 = $this->request->getPost('d10ques3');
                 $d10ques4 = $this->request->getPost('d10ques4');
+                
+                
+                $persnholdg = $this->request->getPost('showsec3');
+                $reltvholdg = $this->request->getPost('showsec4');
 
                 $uniqid = uniqid();
                
                 //print_r($company);print_r($decision);
-
-                if($d1ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '')
+                if(!$persnholdg && !$reltvholdg)
                 {
+                    $data = array("logged" => false,'message' => "Please complete the form");
+                    $this->response->setJsonContent($data);  
+                }
+                else
+                {
+                    if($d1ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '' || $d2ques1 != '')
+                    {
                         //echo 'in flag 1';exit;
                     $getres1 = $this->annualdeclarationcommon->inannualselfcompany($getuserid,$d1ques1,$d1ques2,$d1ques3,$uniqid);
                      
@@ -917,6 +927,8 @@ class AnnualdeclarationController extends ControllerBase
                         }
                     
                     }
+                }
+                
 
                       $this->response->send();
 
