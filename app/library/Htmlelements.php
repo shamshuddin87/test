@@ -2344,7 +2344,8 @@ public function mailofupdatedp($tomail,$tousername,$pstartdate,$enddate,$today,$
      return $html;
 }
 
-    
+
+ 
 public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projctowner)
   {   
        $title ="You have been added to digital database of Dr. Reddy's Laboratories Ltd";
@@ -2438,6 +2439,8 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
 
      return $html;
 }
+
+
 
 public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projctowner)
   {   
@@ -2536,6 +2539,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
 
      return $html;
 }
+
 
    
 public function mailofpersonalinfo($data)
@@ -2704,9 +2708,6 @@ public function mailofpersonalinfo($data)
          </td>
       </tr>
 
-
-
-     
       <tr>
           <td style="padding:0px 0 20px 0; background: #f7f7f7; padding: 10px;" colspan="2">
           <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -2754,6 +2755,7 @@ public function mailofpersonalinfo($data)
 
      return $html;
 }
+
 
 public function notifyupsi($addedby,$addedbyemail,$title,$desc,$todaydate,$dayOfWeek)
   {   
