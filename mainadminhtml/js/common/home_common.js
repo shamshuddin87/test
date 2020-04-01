@@ -538,8 +538,6 @@ function disclosures(id)
       success: function(response, textStatus, jqXHR)
       {
 
-         
-
         if(response.logged===true)
         {
            
@@ -548,7 +546,7 @@ function disclosures(id)
        else
        {
           
-      }
+       }
     },
     complete: function(response)
     {},
@@ -559,7 +557,7 @@ function disclosures(id)
    
   }
   else if(id == "nodisclosures")
-  {
+  { 
     
     website('#updateholdings').modal('hide'); 
     website.ajax({
