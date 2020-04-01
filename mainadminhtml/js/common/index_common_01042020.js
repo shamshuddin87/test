@@ -6,60 +6,6 @@
 
 }*/
 website(document).ready(function() {
-
-/////////////////////////////////////////////START: AUTO-VIDM LOGIN/////////////////////////////////////////////////////////////////
-
-var username = website('#ValidateLogin #username').val();
-//console.log(''); return false;
-if(username!='')
-{ 
-        formdata = {username:username};
-        website.ajax({
-        type: "POST",
-        url: "login/autovidmlogin",
-        data: formdata,
-        cache: false,
-        dataType:"json",
-        beforeSend: function() 
-        { website('.preloder_wraper').fadeIn(); },
-        
-        uploadProgress: function(event, position, total, percentComplete) 
-        {website('.mainprogressbarforall').fadeIn('slow');},
-        success: function(response, textStatus, jqXHR)
-        {
-           
-            if (response.logged === true) 
-            {
-                //alert('i m here');
-                //alert(username); return false;
-                var baseHref = getbaseurl();
-               
-                  window.location.href=baseHref+'home';
-                // window.location.href=baseHref+'selectcompany?moc=vcs';
-                
-            } 
-            else if (response.logged === false) 
-            {
-                //window.location.href=baseHref+'login';
-                website('.geterrorelemttxt').html(response.message);
-                website('.errorelement').fadeIn('slow');
-                setTimeout(function() {website('.errormain').html(''); }, 5000) ;
-                
-                website('#ad_login').fadeOut();
-                website('#login').fadeIn();                
-                
-            }   
-            
-        },
-        complete: function(response) 
-        { website('.preloder_wraper').fadeOut();    },
-        error: function() 
-        {   }
-    });
-   }
-/////////////////////////////////////////////END: AUTO-VIDM LOGIN/////////////////////////////////////////////////////////////////
-
-
 website.validator.addMethod("validEmail", 
 function(value, element) 
 {

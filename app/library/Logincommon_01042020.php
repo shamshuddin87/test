@@ -339,78 +339,7 @@ class Logincommon extends Component
     }
 
 
-public function setvidmsession($getemail)
-    {
-        $timeago = time();
-        $connection = $this->db;
 
-        $getinfo = "SELECT we.*
-                    FROM `web_register_user` we 
-                    WHERE LOWER(we.`email`) = '".$getemail."' ";
-       // echo $getinfo;exit;
-
-        try
-        {
-            $result_get = $connection->query($getinfo);
-            $getnum = trim($result_get->numRows());
-            //echo $getnum;exit;
-            if($getnum!=0)
-            {
-                    
-                    $robot = $result_get->fetch();
-                    //echo '<pre>';print_r($robot);exit;
-                    $getuserid = $robot['user_id'];
-                    $dir_uname = $robot['username'];
-                    
-                    $this->elements->createdirectoryofuser($getuserid,$dir_uname);
-                    //print_r('asdas');exit;
-                     
-                    // ------------------ ModuleData Start ------------------
-                        $mnhgh = array('uid'=>$robot['user_id']);
-                        $getdtl = $this->fetchModulemlp($mnhgh);
-                        
-                    // ------------------ ModuleData End ------------------
-                        
-                
-                    /* =================== SET Values In Session START =================== */
-                        $setsession = $this->session->set('loginauthspuserfront',array(
-                            'id' => trim($robot['user_id']),
-                            'user_group_id' => trim($robot['user_group_id']),
-                            'username' => trim($this->elements->htmldecode($robot['username'])),
-                            'firstname' => trim($this->elements->htmldecode($robot['firstname'])),
-                            'lastname' => trim($this->elements->htmldecode($robot['lastname'])),
-                            'email' => strtolower($robot['email']),
-                            'moduleaccess'=>$getdtl,
-                            'master' => trim($robot['master_user_id']),
-                            'mastergroup' => trim($robot['master_group_id'])
-                        ));
-                        //echo '<pre>'; print_r($setsession); exit;
-                    /* =================== SET Values In Session END =================== */
-                        //exit;
-
-                    // ----- Start UpdateLogin -----
-                        $updatetimelogin = "UPDATE `web_register_user` SET 
-                            `date_modified`=NOW(), `timeago`='".$timeago."'
-                            WHERE `user_id`='".$robot['user_id']."' ";
-                        $connection->query($updatetimelogin);
-                    // ----- End UpdateLogin -----
-
-
-                    $data = array("logged" => true, 'message'=>'Login Successfully', 'user_group_id'=>$robot['user_group_id'], 'fieldname'=>'loginpage');
-                    //echo $dir_uname; exit;
-            }
-            else
-            {
-                $data = array("logged" => false,'message' => 'User Not Found in Application', 'user_group_id' => '','fieldname'=>'loginpage');
-                //echo '<pre>';print_r($data);exit;
-            } 
-        }
-        catch (Exception $e) {
-            $data = array("logged" => false,'message' => 'Login Failure', 'user_group_id' => '','fieldname'=>'loginpage');
-        }
-            
-        return $data; 
-    }
     
 
 
