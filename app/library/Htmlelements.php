@@ -192,8 +192,8 @@ class Htmlelements extends Component
             <div style="background:#f8f8f8;width:80%;height:45px;border-radius:3px">
               <div style="border:0;outline:0;color:#333;background:0;width:100%;padding-top:13px">
                 <span style="width:35%;float:left;text-align:center;color:#5d5d5d;font-size:14px;font-weight:600">Login Url :</span>
-                <a href="https://www.volody.com/user/" style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;text-decoration:none;font-weight:600" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=https://www.volody.com/user/&amp;source=gmail&amp;ust=1517468278757000&amp;usg=AFQjCNFqTVDabRm7DZR1AUnQ5zLi-ncSOw">
-                https://www.volody.com/user/</a></div>
+                <a href="https://insiders.volody.com/drreddys/" style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;text-decoration:none;font-weight:600" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=https://insiders.volody.com/drreddys/&amp;source=gmail&amp;ust=1517468278757000&amp;usg=AFQjCNFqTVDabRm7DZR1AUnQ5zLi-ncSOw">
+                https://insiders.volody.com/drreddys/</a></div>
               </div>
               <div style="background:#f8f8f8;width:80%;height:45px;border-radius:3px;margin-top:15px">
                 <div style="border:0;outline:0;color:#333;background:0;width:100%;padding-top:13px;font-weight:600">
@@ -215,7 +215,7 @@ class Htmlelements extends Component
       <tr>
         <td colspan="2" align="center">
         <div style="padding:40px 0 50px 0; background: #fff;">
-        <a href="https://www.volody.com/user/" style="background:#27b16d;border-radius:3px;padding:12px 40px;color:#fff;font-size:16px;text-decoration:none;letter-spacing:1px" target="_blank" data-saferedirecturl="">Login Now!</a>
+        <a href="https://insiders.volody.com/drreddys/" style="background:#27b16d;border-radius:3px;padding:12px 40px;color:#fff;font-size:16px;text-decoration:none;letter-spacing:1px" target="_blank" data-saferedirecturl="">Login Now!</a>
         </div>
         </td>
       </tr>
