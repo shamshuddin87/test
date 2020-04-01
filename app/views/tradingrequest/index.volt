@@ -174,8 +174,8 @@
 
             <div class="form-group">
                 <label for="exampleFormControlInput1">Name Of Company</label>
-                <input type="hidden" class="form-control" id="idofcmp" name="idofcmp" value="">
-                <input type="text" class="form-control" id="nameofcmp" name="nameofcmp" placeholder="Search..." >
+                <input type="hidden" class="form-control" id="idofcmp" name="idofcmp" value="1">
+                <input type="text" class="form-control" id="nameofcmp" name="nameofcmp" value="Dr Reddy's Laboratories Ltd" readonly>
             </div>
 
             <div id="searchcmp"></div>

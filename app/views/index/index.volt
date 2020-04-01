@@ -18,7 +18,7 @@
             <!-- <div class="thumbnail"><img src="img/board-meeting-left.png" class="thmbimgbtn"></div> -->
 			<div class="maininputcl">
                 <i class="fa fa-user icon_po" aria-hidden="true"></i>
-				<input type="text" placeholder="Username" required="" id="username" name="youremail" value=""/>
+				<input type="text" placeholder="Username" required="" id="username" name="youremail" value="<?php echo $vidmemail; ?>"/>
 			</div>
 			<div class="maininputcl">
                 <i class="fa fa-lock icon_po" aria-hidden="true"></i>

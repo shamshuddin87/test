@@ -87,13 +87,13 @@ $gmnlog = $this->session->loginauthspuserfront;
                     </div>
                     <div class="panel panel-white">
 
-                        <div class="cssnumrws count_page">
-                           <span>Show</span>
-                                <select id="noofrows" name="noofrows" class="noofrows">
+                        <div class="cssnumrws count_page form-inline">
+                           <label>Show</label>
+                                <select id="noofrows" name="noofrows" class="noofrows form-control">
                                     <option value="10">10</option><option value="25">25</option>
                                     <option value="50">50</option><option value="100">100</option>
                                 </select> 
-                        <span>Entries</span>
+                        <label>Entries</label>
                     </div>
 
                         <div class="paginationmn"></div>
