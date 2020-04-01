@@ -12,7 +12,7 @@
    $relDematdetail = $this->annualdeclarationcommon->FetchRelDematDetail($uid);
 
    /* ---- subsidiaries List -----*/
-   $subsidiaries = $this->annualdeclarationcommon->FetchSubsidiaries();
+   //$subsidiaries = $this->annualdeclarationcommon->FetchSubsidiaries();
    //echo "company is ";print_r($subsidiaries);exit;
    ?>
 <!-- Main content -->

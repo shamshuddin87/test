@@ -2490,7 +2490,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
         <p>Dear '.$toname.'</p>';
-        $html.="<p>Please note that you have received information pertaining to '.$upsiname.' of Dr. Reddy's Laboratories Limited on '.$sharingdate.'.";
+        $html.="<p>Please note that you have received information pertaining to ".$upsiname." of Dr. Reddy's Laboratories Limited on ".$sharingdate.". ";
         $html.='Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time (hereinafter referred to as "Insider Trading Regulations")..</p>
         
                 <div class="main">
@@ -2501,7 +2501,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
 
                       $html.="<li>Since this UPSI is being shared with you, you are deemed to be an insider as defined in Insider Trading Regulations. No insider shall trade / deal in Company's securities when in possession of UPSI pursuant to Insider Trading Regulations.</li>
 
-                      <li>You are required to ensure compliance with the Insider Trading Regulations and Company’s Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons, including duties, responsibilities and liabilities related to misuse or unwarranted use of such UPSI.</li>";
+                      <li>You are required to ensure compliance with the Insider Trading Regulations and Company's Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons, including duties, responsibilities and liabilities related to misuse or unwarranted use of such UPSI.</li>";
 
                       $html.="<li>You are required to share with ".$projctowner." the following information regarding your entity / persons (internal/external) to whom such information is being further shared by you for Legitimate Purposes, performance of duties or discharge of his / her legal obligations, as defined in Insider Trading Regulations, after obtaining prior written / email permission from ".$projctowner.". The ".$projctowner." is responsible to make entries in the structured digital database maintained by the Company for UPSI under Insider Trading Regulations. So whenever you share this UPSI:";
                         $html.='<ol>
@@ -2574,10 +2574,10 @@ public function mailofpersonalinfo($data)
      
       <tr>
          <td  colspan="2" style="padding-top: 20px;padding-left: 20px; background: #fff;">
-          <p>Dear '.$data['fname'].',</p>
-          <p>You have updated Personal Information section of ‘personal information’ under ‘My info’. This is for your information..</p>
+          <p>Dear '.$data['fname'].',</p>';
+          $html.="<p>You have updated Personal Information section of 'personal information' under 'My info'. This is for your information..</p>";
        
-         </td>
+         $html.='</td>
       </tr>
 
       <tr>
