@@ -1952,15 +1952,15 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                 </div>
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
-        <p>Dear All</p>
-        <p>Please note that the trading window is closed from '.$dayOfWeek.' '.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.' '.$emaildata['blckoutto'].' both days inclusive on account of '.$emaildata['reason'].'.
-        </p>
-        <p>Under the Securities and Exchange Board of India (Prohibition of Insider Trading) Regulations 2015, (Insider Trading Regulations) buying, selling or dealing in the securities of the company by its directors/employees on the knowledge of any inside, unpublished price-sensitive information is prohibited and doing so is an offense. The Directors and employees of the Company and their immediate relatives are not permitted to trade in the Company’s shares/ADRs during the period, as may be notified in this behalf and/or till such price-sensitive information is disseminated to the public at large.
+        <p>Dear All</p>,
+        <p>Please note that the trading window is closed from '.$dayOfWeek.','.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.', '.$emaildata['blckoutto'].' both days inclusive on account of '.$emaildata['reason'].'.
+        </p>';
+        $html.="<p>Under the Securities and Exchange Board of India (Prohibition of Insider Trading) Regulations 2015, (Insider Trading Regulations) buying, selling or dealing in the securities of the company by its directors/employees on the knowledge of any inside, unpublished price-sensitive information is prohibited and doing so is an offense. The Directors and employees of the Company and their immediate relatives are not permitted to trade in the Company's shares/ADRs during the period, as may be notified in this behalf and/or till such price-sensitive information is disseminated to the public at large.
 
               </p>
-        <p>Under the revised Insider Trading Regulations and Company’s revised Code of Conduct to regulate, monitor and report trading by designated persons (the Code), the trading restriction period can be made applicable from the end of every quarter till 48 hours after the declaration of financial results or such other period as may be notified in this behalf. Accordingly, it is hereby informed that the Trading Window for buying, selling or dealing in the securities of the Company by the designated persons (including their immediate relatives) will be closed from from '.$dayOfWeek.' '.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.' '.$emaildata['blckoutto'].' for '.$emaildata['reason'].'.
-           </p>
-            <p>Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.
+        <p>Under the revised Insider Trading Regulations and Company's revised Code of Conduct to regulate, monitor and report trading by designated persons (the Code), the trading restriction period can be made applicable from the end of every quarter till 48 hours after the declaration of financial results or such other period as may be notified in this behalf. Accordingly, it is hereby informed that the Trading Window for buying, selling or dealing in the securities of the Company by the designated persons (including their immediate relatives) will be closed from from '.$dayOfWeek.' '.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.' '.$emaildata['blckoutto'].' for '.$emaildata['reason'].'.
+           </p>";
+            $html.='<p>Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.
 
            </p>
 
@@ -2490,7 +2490,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
         <p>Dear '.$toname.'</p>';
-        $html.="<p>Please note that you have received information pertaining to '.$upsiname.' of Dr. Reddy's Laboratories Limited on '$sharingdate'.";
+        $html.="<p>Please note that you have received information pertaining to ".$upsiname." of Dr. Reddy's Laboratories Limited on ".$sharingdate.". ";
         $html.='Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time (hereinafter referred to as "Insider Trading Regulations").</p>
         
                 <div class="main">
@@ -2501,7 +2501,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
 
                       $html.="<li>Since this UPSI is being shared with you, you are deemed to be an insider as defined in Insider Trading Regulations. No insider shall trade / deal in Company's securities when in possession of UPSI pursuant to Insider Trading Regulations.</li>
 
-                      <li>You are required to ensure compliance with the Insider Trading Regulations and your Company’s Code offor Intermediaries and Fiduciaries to Regulate, Monitor and Report Trading by Designated Persons, including duties, responsibilities and liabilities related to misuse or unwarranted use of such UPSI, as prescribed under the Insider Trading Regulations.</li>";
+                      <li>You are required to ensure compliance with the Insider Trading Regulations and your Company's Code offor Intermediaries and Fiduciaries to Regulate, Monitor and Report Trading by Designated Persons, including duties, responsibilities and liabilities related to misuse or unwarranted use of such UPSI, as prescribed under the Insider Trading Regulations.</li>";
 
                       $html.="<li>You are required to share with ".$projctowner." the following information regarding your entity by you for Legitimate Purposes, performance of duties or discharge of his / her legal obligations, as defined in Insider Trading Regulations. The ".$projctowner." is responsible to make entries in the structured digital database maintained by the Company for UPSI under Insider Trading Regulations.";
                         $html.='<ol>
@@ -2574,10 +2574,10 @@ public function mailofpersonalinfo($data)
      
       <tr>
          <td  colspan="2" style="padding-top: 20px;padding-left: 20px; background: #fff;">
-          <p>Dear '.$data['fname'].',</p>
-          <p>You have updated Personal Information section of ‘personal information’ under ‘My info’. This is for your information..</p>
+          <p>Dear '.$data['fname'].',</p>';
+          $html.="<p>You have updated Personal Information section of 'personal information' under 'My info'. This is for your information..</p>";
        
-         </td>
+         $html.='</td>
       </tr>
 
       <tr>
@@ -2904,9 +2904,9 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
         
        $html=' <div>
           <table style=" border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
-           <tr>
-              <td>Dr. Reddy’s Laboratories Limited</td>
-              <td><img src="img/dr reddy logo BnW"></td>                        
+           <tr>';
+              $html.="<td>Dr. Reddy's Laboratories Limited</td>";
+              $html.='<td><img src="img/dr reddy logo BnW"></td>                        
             </tr>
           </table>
 
@@ -2919,9 +2919,9 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
           <br/>
 
           <p style="text-align: left;">
-            The Compliance Officer<br/>
-            <b>Dr. Reddy’s Laboratories Limited</b><br/>
-            Hyderabad
+            The Compliance Officer<br/>';
+            $html.="<b>Dr. Reddy's Laboratories Limited</b><br/>";
+            $html.='Hyderabad
           </p>
 
           <br/>
@@ -3039,9 +3039,9 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
          //echo "<pre>";print_r($datetrans);exit;
             $html='<div>
   <table style="  border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
-   <tr>
-      <td>Dr. Reddy’s Laboratories Limited</td>
-      <td><img src="img/dr reddy logo BnW"></td>                        
+   <tr>';
+      $html.="<td>Dr. Reddy's Laboratories Limited</td>";
+      $html.='<td><img src="img/dr reddy logo BnW"></td>                        
     </tr>
   </table>
 
@@ -3054,16 +3054,16 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
   <br/>
 
   <p style="text-align: left;">
-    The Compliance Officer<br/>
-    <b>Dr. Reddy’s Laboratories Limited</b><br/>
-    Hyderabad
+    The Compliance Officer<br/>';
+    $html.="<b>Dr. Reddy's Laboratories Limited</b><br/>";
+    $html.="Hyderabad
   </p>
 
   <br/>
 
   <p>Dear Sir,<br/><br/>
-   I/we am/are desirous of dealing in the shares / ADRs of the Company.  In terms of the Company’s Code, I/we seek your approval for the trade as detailed below:
-  </p>
+   I/we am/are desirous of dealing in the shares / ADRs of the Company.  In terms of the Company's Code, I/we seek your approval for the trade as detailed below:";
+  $html.='</p>
 
   <br/>
 
@@ -3108,9 +3108,9 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
       <td style="border: 1px solid #000; " width="40%">DP name with whom the demat account is maintained along with DP ID and Client ID / Folio no.</td>
       <td style="border: 1px solid #000; "  width="60%">'.$dp.' '.$dpacc.'</td>
     </tr>    
-     <tr>
-      <td style="border: 1px solid #000; " width="40%">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</td>
-      <td style="border: 1px solid #000;padding: 0;" width="60%">
+     <tr>';
+      $html.='<td style="border: 1px solid #000; " width="40%">';$html.="Provide, details, of any transaction done in Company's Security in the last Six months (Except exercise of stock options)</td>";
+      $html.='<td style="border: 1px solid #000;padding: 0;" width="60%">
       <table style="width:100%;" width="100%">
        <tr>
         <th style="background: none;color: #000;width:30%; min-width=30%;" width="30%">Date</th>
