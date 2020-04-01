@@ -227,13 +227,13 @@ else{
 <!--------------------------------------------Table For Created Request------------------------------------------------>
  <div class="">
   <h3 class="h1_heading text-center">Your Exception Requests</h3>
-  <div class="cssnumrws">
-   <span>Show</span>
-     <select id="noofrows" name="noofrows" class="noofrows">
+  <div class="cssnumrws form-inline">
+   <label>Show</label>
+     <select id="noofrows" name="noofrows" class="noofrows form-control">
        <option value="10">10</option><option value="25">25</option>
         <option value="50">50</option><option value="100">100</option>
         </select> 
-        <span>Entries</span>
+        <label>Entries</label>
         </div> 
        <div class="table-responsive">    
         <table class="table table-inverse mytable" id="datablerushi" typage="reqview">

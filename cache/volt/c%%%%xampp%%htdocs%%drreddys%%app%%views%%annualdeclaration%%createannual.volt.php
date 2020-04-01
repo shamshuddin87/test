@@ -12,7 +12,7 @@
    $relDematdetail = $this->annualdeclarationcommon->FetchRelDematDetail($uid);
 
    /* ---- subsidiaries List -----*/
-   $subsidiaries = $this->annualdeclarationcommon->FetchSubsidiaries();
+   //$subsidiaries = $this->annualdeclarationcommon->FetchSubsidiaries();
    //echo "company is ";print_r($subsidiaries);exit;
    ?>
 <!-- Main content -->
@@ -26,8 +26,9 @@
 
       <div class="col col-xs-6"><h1 class="h1_heading ">Annual Declaration</h1></div>
       <div class="create_button  col col-xs-6">
-        <div class="tooltip_div">  
-           <a href="javascript:void(0);" id="tooltip" data="List Of Company" class="tooltip_c right btn btn-primary ">Dr Reddy's subsidiaries</a>
+        <div class="compnamedata_div">  
+           <a href="javascript:void(0);"  class="compnamedata_btn right btn btn-primary ">Dr Reddy's subsidiaries</a>
+           <div id="compnamedata" class="compnamedata"></div>
        </div> 
      </div>
    </div>

@@ -117,16 +117,18 @@ button.formcpdf, button.down_load { background:#36186e; color: #fff !important; 
 .eye { padding-right: 0px !important;  } 
 .eye i.fa.fa-eye, .eye i.fa-file-pdf-o { font-size: 18px;text-align: right; line-height: 60px; cursor: pointer;}
 .board { font-weight: bold; font-style: normal; padding: 2px 0;}
-.nav_bg { background-color:#fff !important; float: left !important; padding: 10px; }
+.nav_bg { background-color:#fff !important; float: left !important; padding: 5px; }
 .nav_bg img {
     vertical-align: top !important;
     position: absolute;
     top: -4px;
-    left: 45px;
+    left: 10px;
 }
 i.responsive img {
-    position: absolute;
+        position: absolute;
     left: 0;
+    width: 50px;
+    top: 3px;
 }
 .hdrun {border-radius: 50%;border: 1px solid #777;padding: 5px;width: 30px;height: 30px;text-align: center;margin-right: 7px;}
 .cssnumrws { color: #000; margin:10px 0;} 

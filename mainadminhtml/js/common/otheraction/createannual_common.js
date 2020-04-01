@@ -32,7 +32,7 @@ function FetchSubsidiries()
 //                  
 //              }
               //html1 =  html.replace( /(<([^>]+)>)/ig, '');
-              website('#tooltip').attr('data',response.data);
+              website('#compnamedata').html(response.data);
               //website('.tooltip').css('display','block');
           },
           complete: function(response)
@@ -73,7 +73,7 @@ function addhtml(clicked)
          getlastid = ++getlastid;
          var addhtmlnxt='';
 
-        
+       
          addhtmlnxt += '<div class="row'+getlastid+' append_row3"  id="row'+getlastid+'" >';
           addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
@@ -83,8 +83,8 @@ function addhtml(clicked)
           addhtmlnxt += '<td><label class="control-label">Can you significantly influence the decision making of this company?</label>';
             addhtmlnxt += '</td>';
           addhtmlnxt += '<td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';
-        
-        
+       
+       
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
@@ -98,13 +98,13 @@ function addhtml(clicked)
 
            addhtmlnxt += '</div>';
 
-      
+     
          website('.appenddiv1').append(addhtmlnxt);
        
          website('.appendd1').attr('plancntr',getlastid);
       }
       else if(id == 'adddiv2'){
-      
+     
        var getlastid = website('.appendd2').attr('plancntr');
 
          getlastid = ++getlastid;
@@ -120,14 +120,14 @@ function addhtml(clicked)
           addhtmlnxt += '<td><label class="control-label">Can you significantly influence the decision making of this firm?</label>';
             addhtmlnxt +='</td>';
           addhtmlnxt += '<td><label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';
-        
-        
+       
+       
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
           addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>';
 
-        
+       
          addhtmlnxt += '<td><div class="input">  <input type="text" class="form-control inputbox4" id="d2ques1" name="d2ques1[]" >  </div></td> ';
          addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d2ques2" name="d2ques2[]" value="Partner" readonly="readonly"></div></td>';
           addhtmlnxt+='<td> <div class="input"> <select id="d2ques3" name="d2ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
@@ -136,7 +136,7 @@ function addhtml(clicked)
           addhtmlnxt +='</table>';
          addhtmlnxt += '</div>';
 
-      
+     
          website('.appenddiv2').append(addhtmlnxt);
        
         website('.appendd2').attr('plancntr',getlastid);
@@ -144,7 +144,7 @@ function addhtml(clicked)
 
 
       } else if(id == 'adddiv3'){
-      
+     
        var getlastid = website('.appendd3').attr('plancntr');
 
          getlastid = ++getlastid;
@@ -162,14 +162,14 @@ function addhtml(clicked)
           addhtmlnxt += '<td><label class="control-label">Can you significantly influence the decision making of this company?</label>';
             addhtmlnxt +='</td>';
           addhtmlnxt += '<td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';
-        
-        
+       
+       
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
           addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>';
 
-        
+       
          addhtmlnxt += '<td><div class="input">  <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" >  </div></td> ';
          addhtmlnxt+=' <td><div class="input">  <select class="form-control inputbox4" id="d3ques2" rownum="row'+getlastid+'" name="d3ques2[]"><option value="">Select Option</option><option value="1">Member</option><option value="2">Director</option>/select></div></td>';
           addhtmlnxt+='<td><input type="text" class="form-control inputbox4" id="d3ques5" name="d3ques5[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></td>';
@@ -177,10 +177,10 @@ function addhtml(clicked)
           addhtmlnxt+=' <td><div class="input">   <select id="d3ques4" name="d3ques4[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt +='</table>';
-        
+       
          addhtmlnxt += '</div>';
 
-      
+     
          website('.appenddiv3').append(addhtmlnxt);
        
         website('.appendd3').attr('plancntr',getlastid);
@@ -191,7 +191,7 @@ function addhtml(clicked)
       }
 
       else if(id == 'adddiv4'){
-      
+     
        var getlastid = website('.appendd4').attr('plancntr');
 
          getlastid = ++getlastid;
@@ -208,25 +208,25 @@ function addhtml(clicked)
           addhtmlnxt += '<td><label class="control-label">Can you significantly influence the decision making of this company?</label>';
             addhtmlnxt +='</td>';
           addhtmlnxt += '<td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';
-        
-        
+       
+       
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
           addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>';
 
-        
+       
          addhtmlnxt += '<td><div class="input">  <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" value="Company Name"  >  </div></td> ';
          addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" value="holding 2% above shares" readonly="readonly" ></div></td>';
           addhtmlnxt+='<td> <div class="input"> <select id="d4ques3" name="d4ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt+=' <td><div class="input">   <select id="d4ques4" name="d4ques4[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt +='</table>';
-        
+       
        
          addhtmlnxt += '</div>';
 
-      
+     
          website('.appenddiv4').append(addhtmlnxt);
        
         website('.appendd4').attr('plancntr',getlastid);
@@ -253,23 +253,23 @@ function addhtml(clicked)
           addhtmlnxt += '<td><label class="control-label">Can this relative significantly influence the decision making of this company?</label>';
             addhtmlnxt +='</td>';
           addhtmlnxt += '<td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';
-        
-        
+       
+       
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
           addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>';
 
-        
+       
          addhtmlnxt += '<td><div class="input"> <select id="d5ques1" name="d5ques1[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >';
-           addhtmlnxt +='<option value="">Select Option </option>';   
+           addhtmlnxt +='<option value="">Select Option </option>';  
           website.each(response.resdta, function (index, value) {
 
                 addhtmlnxt += '<option value='+value['id']+'>'+value['name']+'</option>';    
 
               });
-        
-        
+       
+       
          //addhtmlnxt+=' <option value="Yes">Yes</option> <option value="No">No</option>';
          addhtmlnxt+=' </select>  </div></td> ';
          addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d5ques2" name="d5ques2[]" ></div></td>';
@@ -277,10 +277,10 @@ function addhtml(clicked)
           addhtmlnxt+=' <td><div class="input">   <select id="d5ques4" name="d5ques4[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt +='</table>';
-        
+       
          addhtmlnxt += '</div>';
 
-      
+     
          website('.appenddiv5').append(addhtmlnxt);
        
         website('.appendd5').attr('plancntr',getlastid);
@@ -292,7 +292,7 @@ function addhtml(clicked)
 
        else if(id == 'adddiv6')
        {
-      
+     
        var getlastid = website('.appendd6').attr('plancntr');
 
          getlastid = ++getlastid;
@@ -312,15 +312,15 @@ function addhtml(clicked)
           addhtmlnxt += '<td><label class="control-label">Can this relative significantly influence the decision making of this firm?</label>';
             addhtmlnxt +='</td>';
           addhtmlnxt += '<td><label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';
-        
-        
+       
+       
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
           addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;"></td>';
 
         addhtmlnxt += '<td><div class="input"> <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >';
-           addhtmlnxt +='<option value="">Select Option </option>';   
+           addhtmlnxt +='<option value="">Select Option </option>';  
           website.each(response.resdta, function (index, value) {
 
                 addhtmlnxt += '<option value='+value['id']+'>'+value['name']+'</option>';    
@@ -333,10 +333,10 @@ function addhtml(clicked)
           addhtmlnxt+=' <td><div class="input">   <select id="d6ques5" name="d6ques5[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt +='</table>';
-        
+       
         addhtmlnxt += '</div>';
 
-      
+     
          website('.appenddiv6').append(addhtmlnxt);
        
         website('.appendd6').attr('plancntr',getlastid);
@@ -346,7 +346,7 @@ function addhtml(clicked)
 
        else if(id == 'adddiv7')
        {
-      
+     
        var getlastid = website('.appendd7').attr('plancntr');
 
          getlastid = ++getlastid;
@@ -367,15 +367,15 @@ function addhtml(clicked)
           addhtmlnxt += '<td style="width: 15%"><label class="control-label">Can this relative significantly influence the decision making of this company?</label>';
             addhtmlnxt +='</td>';
           addhtmlnxt += '<td><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';
-        
-        
+       
+       
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
           addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;"></td>';
 
         addhtmlnxt += '<td><div class="input"> <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >';
-        addhtmlnxt += '<option value="">Select Option </option>';   
+        addhtmlnxt += '<option value="">Select Option </option>';  
           website.each(response.resdta, function (index, value) {
 
                 addhtmlnxt += '<option value='+value['id']+'>'+value['name']+'</option>';    
@@ -389,10 +389,10 @@ function addhtml(clicked)
           addhtmlnxt+=' <td><div class="input">   <select id="d7ques4" name="d7ques4[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt +='</table>';
-      
+     
          addhtmlnxt += '</div>';
 
-      
+     
          website('.appenddiv7').append(addhtmlnxt);
        
          website('.appendd7').attr('plancntr',getlastid);
@@ -400,7 +400,7 @@ function addhtml(clicked)
            loadnoofsec();
 
       }
-          
+         
        else if(id == 'adddiv8')
        {
        var getlastid = website('.appendd8').attr('plancntr');
@@ -419,7 +419,7 @@ function addhtml(clicked)
           addhtmlnxt += '</td>';
           addhtmlnxt += "<td><label class='control-label'>Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>";
             addhtmlnxt +='</td>';
-        
+       
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
@@ -430,10 +430,10 @@ function addhtml(clicked)
           addhtmlnxt+=' <td><div class="input">   <select id="d8ques3" name="d8ques3[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt +='</table>';
-      
+     
          addhtmlnxt += '</div>';
 
-      
+     
          website('.appenddiv8').append(addhtmlnxt);
        
          website('.appendd8').attr('plancntr',getlastid);
@@ -441,7 +441,7 @@ function addhtml(clicked)
 
 
       }
-          
+         
        else if(id == 'adddiv9')
        {
        var getlastid = website('.appendd9').attr('plancntr');
@@ -461,15 +461,15 @@ function addhtml(clicked)
           addhtmlnxt += '<td style="width: 15%"><label class="control-label">Can you significantly influence the decision making of this company?</label>';
             addhtmlnxt +='</td>';
           addhtmlnxt += '<td style="width: 15%"><label class="control-label">Do this company have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';
-        
-        
+       
+       
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
           addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>';
 
         addhtmlnxt += '<td><div class="input"> <select id="d9ques1" name="d9ques1[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >';
-        addhtmlnxt += '<option value="">Select Option </option>';   
+        addhtmlnxt += '<option value="">Select Option </option>';  
           website.each(response.resdta, function (index, value) {
 
                 addhtmlnxt += '<option value='+value['id']+'>'+value['name']+'</option>';    
@@ -481,11 +481,11 @@ function addhtml(clicked)
           addhtmlnxt+=' <td><div class="input">   <select id="d9ques5" name="d9ques5[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt +='</table>';
-        
+       
        
          addhtmlnxt += '</div>';
 
-      
+     
          website('.appenddiv9').append(addhtmlnxt);
        
          website('.appendd9').attr('plancntr',getlastid);
@@ -493,8 +493,8 @@ function addhtml(clicked)
 
 
       }
-          
-          
+         
+         
       else if(id == 'adddiv10')
        {
        var getlastid = website('.appendd10').attr('plancntr');
@@ -514,13 +514,13 @@ function addhtml(clicked)
           addhtmlnxt += '</td>';
           addhtmlnxt += "<td><label class='control-label'>Do this company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label>";
             addhtmlnxt +='</td>';
-        
+       
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
           addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>';
            addhtmlnxt += '<td><div class="input"> <select id="d10ques1" name="d10ques1[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >';
-        addhtmlnxt += '<option value="">Select Option </option>';   
+        addhtmlnxt += '<option value="">Select Option </option>';  
           website.each(response.resdta, function (index, value) {
 
                 addhtmlnxt += '<option value='+value['id']+'>'+value['name']+'</option>';    
@@ -531,10 +531,10 @@ function addhtml(clicked)
           addhtmlnxt+=' <td><div class="input">   <select id="d10ques4" name="d10ques4[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt +='</table>';
-      
+     
          addhtmlnxt += '</div>';
 
-      
+     
          website('.appenddiv10').append(addhtmlnxt);
        
          website('.appendd10').attr('plancntr',getlastid);
@@ -544,9 +544,9 @@ function addhtml(clicked)
       }
 
       else{
-      
+     
        var addhtmlnxt='';
-      
+     
       }
       },
         complete: function(response)
@@ -654,7 +654,7 @@ function removehtml(clicked)
              return false;
         }
     }
-    
+   
      else if(rmid == 'remvdiv8'){
 
 
@@ -718,36 +718,36 @@ var reltvhldng = document.getElementById("test3");
 
 if(id == 'showsec1')
 {
-    if (x.style.display === "none") 
+    if (x.style.display === "none")
     {
         x.style.display = "block";
-    } 
+    }
 }
-    
+   
 else if(id == 'showsec2')
 {
-    if (y.style.display === "none") 
+    if (y.style.display === "none")
     {
         y.style.display = "block";
-    } 
+    }
 }
-    
+   
 else if(id == 'showsec3')
 {
-    if (selfhldng.style.display === "none") 
+    if (selfhldng.style.display === "none")
     {
         selfhldng.style.display = "block";
-    } 
+    }
 }
-    
+   
 else if(id == 'showsec4')
 {
-    if (reltvhldng.style.display === "none") 
+    if (reltvhldng.style.display === "none")
     {
         reltvhldng.style.display = "block";
-    } 
+    }
 }
-    
+   
 //if(id == 'showsec1'){
 //
 //  if (x.style.display === "none") {
@@ -768,13 +768,13 @@ else if(id == 'showsec4')
 //else if(id == 'showsec3'){
 //if (selfhldng.style.display === "none") {
 //    selfhldng.style.display = "block";
-//  } 
+//  }
 //
 //}
 //    else if(id == 'showsec4'){
 //if (reltvhldng.style.display === "none") {
 //    reltvhldng.style.display = "block";
-//  } 
+//  }
 //
 //}
 
@@ -788,38 +788,38 @@ function hidesection(id)
     var reltvhldng = document.getElementById("test3");
     if(id == 'hidesec1')
     {
-        if (x.style.display === "block") 
+        if (x.style.display === "block")
         {
             x.style.display = "none";
-        } 
+        }
     }
     else if(id == 'hidesec2')
     {
-        if (y.style.display === "block") 
+        if (y.style.display === "block")
         {
             y.style.display = "none";
-        } 
+        }
     }
     else if(id == 'hidesec3')
     {
-        if (selfhldng.style.display === "block") 
+        if (selfhldng.style.display === "block")
         {
             selfhldng.style.display = "none";
-        } 
+        }
     }
     else if(id == 'hidesec4')
     {
-        if (reltvhldng.style.display === "block") 
+        if (reltvhldng.style.display === "block")
         {
             reltvhldng.style.display = "none";
-        } 
+        }
     }
 }
  
 function annualmodal(uniqueid){
 
    // website('#Mymodaldeclara').modal('show');
-    
+   
     var uniqueid = uniqueid;
 
     website.ajax({
@@ -837,14 +837,14 @@ function annualmodal(uniqueid){
           },
           uploadProgress: function(event, position, total, percentComplete)
           {
-              
+             
           },
-          success: function(response) 
+          success: function(response)
           {
                 //console.log(response); return false;
               if(response.logged===true)
               {
-                
+               
                   website('.modalform').html(response.pdf_content);
 
 
@@ -856,9 +856,9 @@ function annualmodal(uniqueid){
              
                website('.preloder_wraper').fadeOut();
           },
-          error: function() 
+          error: function()
           {
-              
+             
           }
 });
 }
@@ -883,7 +883,7 @@ function getpdfdata(uniqueid)
         uploadProgress: function(event, position, total, percentComplete)
         {   },
         success: function(response, textStatus, jqXHR)
-        { 
+        {
         if(response.logged==true)
         {
             var addhtmlnxt='';
@@ -907,7 +907,7 @@ function getpdfdata(uniqueid)
                 website("#uniqueid").val(uniqueid);
 
                 if(response.selfcompany != 0)
-                { 
+                {
 
                     for(var i=0;i<response.selfcompany.length;i++)
                     {
@@ -915,12 +915,12 @@ function getpdfdata(uniqueid)
                         addhtmlnxt += '<td width="25%">'+response.selfcompany[i]['company']+'</td>';
                         addhtmlnxt += '<td width="25%">'+response.selfcompany[i]['decision']+'</td>';
                         addhtmlnxt += '<td width="25%">'+response.selfcompany[i]['transaction']+'</td>';
-                        addhtmlnxt += '</tr>';     
+                        addhtmlnxt += '</tr>';    
                     }
                 }
 
                 if(response.selffirm != 0)
-                { 
+                {
                     for(var i=0;i<response.selffirm.length;i++)
                     {
                         addhtmlnxt1 += '<tr class="counter">';
@@ -928,12 +928,12 @@ function getpdfdata(uniqueid)
                         addhtmlnxt1 += '<td width="25%">'+response.selffirm[i]['interest']+'</td>';
                         addhtmlnxt1 += '<td width="25%">'+response.selffirm[i]['decision']+'</td>';
                         addhtmlnxt1 += '<td width="25%">'+response.selffirm[i]['transaction']+'</td>'
-                        addhtmlnxt += '</tr>';     
+                        addhtmlnxt += '</tr>';    
                     }
                 }
 
                 if(response.selfpubpri != 0)
-                { 
+                {
 
                     for(var i=0;i<response.selfpubpri.length;i++)
                     {
@@ -956,13 +956,13 @@ function getpdfdata(uniqueid)
                         addhtmlnxt2 += '<td width="25%">'+response.selfpubpri[i]['noofshare']+'</td>';
                         addhtmlnxt2 += '<td width="25%">'+response.selfpubpri[i]['decision']+'</td>';
                         addhtmlnxt2 += '<td width="25%">'+response.selfpubpri[i]['transaction']+'</td>'
-                        addhtmlnxt += '</tr>';     
+                        addhtmlnxt += '</tr>';    
 
                     }
                 }
 
                 if(response.selfpubshare != 0)
-                { 
+                {
 
                     for(var i=0;i<response.selfpubshare.length;i++)
                     {
@@ -971,10 +971,10 @@ function getpdfdata(uniqueid)
                         addhtmlnxt3 += '<td width="25%">'+response.selfpubshare[i]['interest']+'</td>';
                         addhtmlnxt3 += '<td width="25%">'+response.selfpubshare[i]['decision']+'</td>';
                         addhtmlnxt3 += '<td width="25%">'+response.selfpubshare[i]['transaction']+'</td>';
-                        addhtmlnxt += '</tr>';     
+                        addhtmlnxt += '</tr>';    
                     }
                 }
-                
+               
                 if(response.selfholdngshare != 0)
                 {
                      for(var i=0;i<response.selfholdngshare.length;i++)
@@ -983,12 +983,12 @@ function getpdfdata(uniqueid)
                         addhtmlnxt7 += '<td width="25%">'+response.selfholdngshare[i]['cmpname']+'</td>';
                         addhtmlnxt7 += '<td width="25%">'+response.selfholdngshare[i]['isdecisionmaking']+'</td>';
                         addhtmlnxt7 += '<td width="25%">'+response.selfholdngshare[i]['isfincltrans']+'</td>';
-                        addhtmlnxt7 += '</tr>';     
+                        addhtmlnxt7 += '</tr>';    
                     }
                 }
-                
+               
                 if(response.relative != 0)
-                { 
+                {
 
                     for(var i=0;i<response.relative.length;i++)
                     {
@@ -999,13 +999,13 @@ function getpdfdata(uniqueid)
                             addhtmlnxt4 += '<td width="25%">'+response.relative[i]['company']+'</td>';
                             addhtmlnxt4 += '<td width="25%">'+response.relative[i]['decision']+'</td>';
                             addhtmlnxt4 += '<td width="25%">'+response.relative[i]['transaction']+'</td>'
-                            addhtmlnxt += '</tr>';   
+                            addhtmlnxt += '</tr>';  
                         }
                      }
                 }
-                
+               
                 if(response.relativefirm != 0)
-                { 
+                {
 
                     for(var i=0;i<response.relativefirm.length;i++)
                     {
@@ -1017,13 +1017,13 @@ function getpdfdata(uniqueid)
                             addhtmlnxt5 += '<td width="25%">'+response.relativefirm[i]['interest']+'</td>';
                             addhtmlnxt5 += '<td width="25%">'+response.relativefirm[i]['decision']+'</td>';
                             addhtmlnxt5 += '<td width="25%">'+response.relativefirm[i]['transaction']+'</td>'
-                            addhtmlnxt += '</tr>'; 
+                            addhtmlnxt += '</tr>';
                         }
                     }
                 }
 
                 if(response.relativepubpri != 0)
-                { 
+                {
 
                     for(var i=0;i<response.relativepubpri.length;i++)
                     {
@@ -1049,11 +1049,11 @@ function getpdfdata(uniqueid)
                             addhtmlnxt6 += '<td width="25%">'+response.relativepubpri[i]['noofshare']+'</td>';
                             addhtmlnxt6 += '<td width="25%">'+response.relativepubpri[i]['decision']+'</td>';
                             addhtmlnxt6 += '<td width="25%">'+response.relativepubpri[i]['transaction']+'</td>'
-                            addhtmlnxt6 += '</tr>';     
+                            addhtmlnxt6 += '</tr>';    
                         }
                     }
                 }
-                
+               
                 if(response.relativepubshare != 0)
                 {
                     for(var i=0;i<response.relativepubshare.length;i++)
@@ -1066,11 +1066,11 @@ function getpdfdata(uniqueid)
                             addhtmlnxt8 += '<td width="25%">'+response.relativepubshare[i]['interest']+'</td>';
                             addhtmlnxt8 += '<td width="25%">'+response.relativepubshare[i]['decision']+'</td>';
                             addhtmlnxt8 += '<td width="25%">'+response.relativepubshare[i]['transaction']+'</td>';
-                            addhtmlnxt8 += '</tr>';     
+                            addhtmlnxt8 += '</tr>';    
                         }
                     }
                 }
-                
+               
                 if(response.relativeholdngshare != 0)
                 {
                     for(var i=0;i<response.relativeholdngshare.length;i++)
@@ -1082,9 +1082,9 @@ function getpdfdata(uniqueid)
                             addhtmlnxt9 += '<td width="25%">'+response.relativeholdngshare[i]['cmpname']+'</td>';
                             addhtmlnxt9 += '<td width="25%">'+response.relativeholdngshare[i]['isdecisionmaking']+'</td>';
                             addhtmlnxt9 += '<td width="25%">'+response.relativeholdngshare[i]['isfincltrans']+'</td>';
-                            addhtmlnxt9 += '</tr>'; 
+                            addhtmlnxt9 += '</tr>';
                         }
-                            
+                           
                     }
                 }
                 /*---- Personal detail ----*/
@@ -1105,7 +1105,7 @@ function getpdfdata(uniqueid)
                     website('.noofshare').html(response.personaldetail['sharehldng']);
                     website('.adrsshare').html(response.personaldetail['adrshldng']);
                 }
-                
+               
                 /*---- Past Employer ----*/
                 if(response.empdetail.length>0)
                 {
@@ -1121,17 +1121,17 @@ function getpdfdata(uniqueid)
                             pastemp += '<td width="25%">'+response.empdetail[i]['emp_desigtn']+'</td>';
                             pastemp += '<td width="25%">'+response.empdetail[i]['startdate']+'</td>';
                             pastemp += '<td width="25%">'+response.empdetail[i]['enddate']+'</td>';
-                            pastemp += '</tr>'; 
+                            pastemp += '</tr>';
                         }
                     }
-                    
+                   
                 }
                 else
                 {
                     pastemp = '<tr><td colspan ="5">No Data Found..</td></tr>';
                 }
-                
-                
+               
+               
                 /*---- MFR ----*/
                 if(response.mfrdetail.length>0)
                 {
@@ -1147,16 +1147,16 @@ function getpdfdata(uniqueid)
                             mfr += '<td width="25%">'+response.mfrdetail[i]['pan']+'</td>';
                             mfr += '<td width="25%">'+response.mfrdetail[i]['relationship']+'</td>';
                             mfr += '<td width="25%">'+response.mfrdetail[i]['address']+'</td>';
-                            mfr += '</tr>'; 
+                            mfr += '</tr>';
                         }
                     }
-                    
+                   
                 }
                 else
                 {
                     mfr = '<tr><td colspan ="5">No Data Found..</td></tr>';
                 }
-                
+               
                 /*---- Demat Account ----*/
                 if(response.dematdetail.length>0)
                 {
@@ -1171,16 +1171,16 @@ function getpdfdata(uniqueid)
                             dematacc += '<td width="25%">'+response.dematdetail[i]['accountno']+'</td>';
                             dematacc += '<td width="25%">'+response.dematdetail[i]['depository_participient']+'</td>';
 //                            dematacc += '<td width="25%">'+response.dematdetail[i]['clearing_house']+'</td>';
-                            dematacc += '</tr>'; 
+                            dematacc += '</tr>';
                         }
                     }
-                    
+                   
                 }
                 else
                 {
                     dematacc = '<tr><td colspan ="4">No Data Found..</td></tr>';
                 }
-                
+               
                 /*---- Relative detail ----*/
                 if(response.reldetail.length>0)
                 {
@@ -1195,8 +1195,8 @@ function getpdfdata(uniqueid)
                             reldetail += '<td>'+j+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['name']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['relationshipname']+'</td>';
-                            if(response.reldetail[i]['dependency_nature']!='') 
-                            { 
+                            if(response.reldetail[i]['dependency_nature']!='')
+                            {
                                 deptype =response.reldetail[i]['dependency_nature'].toString(',');
                             }
                             reldetail += '<td>'+deptype+'</td>';
@@ -1210,16 +1210,16 @@ function getpdfdata(uniqueid)
                             reldetail += '<td>'+response.reldetail[i]['education']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['sharehldng']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['adrshldng']+'</td>';
-                            reldetail += '</tr>'; 
+                            reldetail += '</tr>';
                         }
                     }
-                    
+                   
                 }
                 else
                 {
                     reldetail = '<tr><td colspan ="14">No Data Found..</td></tr>';
                 }
-                
+               
                 /*---- Relative Demat detail ----*/
                 console.log(response.relDematdetail.length);
                 if(response.relDematdetail.length>0)
@@ -1235,26 +1235,26 @@ function getpdfdata(uniqueid)
                             reldemat += '<td>'+response.relDematdetail[i]['accountno']+'</td>';
                             reldemat += '<td>'+response.relDematdetail[i]['depository_participient']+'</td>';
 //                            reldemat += '<td>'+response.reldetail[i]['clearing_house']+'</td>';
-                            reldemat += '</tr>'; 
+                            reldemat += '</tr>';
                         }
                     }
-                    
+                   
                 }
                 else
                 {
                     reldemat = '<tr><td colspan ="14">No Data Found..</td></tr>';
                 }
-                
-                website('.selfcompany').html(addhtmlnxt); 
-                website('.selffirm').html(addhtmlnxt1); 
-                website('.selfpubpri').html(addhtmlnxt2); 
-                website('.selfpubshare').html(addhtmlnxt3); 
-                website('.selfholdcontrl').html(addhtmlnxt7); 
-                website('.relative').html(addhtmlnxt4); 
-                website('.relativefirm').html(addhtmlnxt5); 
-                website('.relativepubpri').html(addhtmlnxt6); 
-                website('.relativepubshare').html(addhtmlnxt8); 
-                website('.relativeholdngcontrl').html(addhtmlnxt9); 
+               
+                website('.selfcompany').html(addhtmlnxt);
+                website('.selffirm').html(addhtmlnxt1);
+                website('.selfpubpri').html(addhtmlnxt2);
+                website('.selfpubshare').html(addhtmlnxt3);
+                website('.selfholdcontrl').html(addhtmlnxt7);
+                website('.relative').html(addhtmlnxt4);
+                website('.relativefirm').html(addhtmlnxt5);
+                website('.relativepubpri').html(addhtmlnxt6);
+                website('.relativepubshare').html(addhtmlnxt8);
+                website('.relativeholdngcontrl').html(addhtmlnxt9);
                 website('.pastemp').html(pastemp);
                 website('.mfr').html(mfr);
                 website('.dematacc').html(dematacc);
@@ -1275,7 +1275,7 @@ function getpdfdata(uniqueid)
     }
 
     },
-    complete: function(response) 
+    complete: function(response)
     {
     website('.preloder_wraper').fadeOut();
     },
@@ -1286,8 +1286,8 @@ function getpdfdata(uniqueid)
 
   website('#insertannual').ajaxForm({
 
-    
-      
+   
+     
       //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
       dataType:"json",
       beforeSend: function()
@@ -1298,7 +1298,7 @@ function getpdfdata(uniqueid)
       uploadProgress: function(event, position, total, percentComplete)
       {  website('.preloder_wraper').fadeIn(); },
       success: function(response, textStatus, jqXHR)
-      { 
+      {
         if(response.logged===true)
         {  
          
@@ -1316,7 +1316,7 @@ function getpdfdata(uniqueid)
            
          
            
-            
+           
         }else{
           new PNotify({title: 'Record Not Added',
             text: response.message,
@@ -1347,7 +1347,7 @@ website('body').on('click','.sendtype', function(e)
     //alert(uniqueid);
    
     var annualyear=website('#annualyear').val();
-    
+   
     // var formbid = website('#modaldocument #formbid').val();
     var formData = {htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid,sendtype:sendtype};
     website.ajax({
@@ -1364,11 +1364,11 @@ website('body').on('click','.sendtype', function(e)
         },
         uploadProgress: function(event, position, total, percentComplete)
         {
-            
+           
         },
-        success: function(response) 
+        success: function(response)
         {
-            // console.log(response.pdfpath); 
+            // console.log(response.pdfpath);
             if(response.logged===true)
             {
               website('#sendtoco').modal('hide');  
@@ -1379,7 +1379,7 @@ website('body').on('click','.sendtype', function(e)
                   window.location.href = "annualdeclaration";
 //              }
 
-              
+             
             }
             else
             {
@@ -1391,9 +1391,9 @@ website('body').on('click','.sendtype', function(e)
             website('.preloder_wraper').fadeOut();
             //window.location.reload();
         },
-        error: function() 
+        error: function()
         {
-            
+           
         }
     });
 });
@@ -1418,7 +1418,7 @@ function loadnoofsec()
             website('#d3ques5').val('');
         }
     });
-    
+   
     website("#appenddiv3 #d3ques2").change(function() {
         var value = website(this).val();
         var rownum = website(this).attr('rownum');
@@ -1432,7 +1432,7 @@ function loadnoofsec()
             website('#'+rownum+' #d3ques5').val('');
         }
     });
-    
+   
     website("#d7ques6").change(function() {
         var value = website(this).val();
         if(value == 1 || value == 3)
@@ -1445,7 +1445,7 @@ function loadnoofsec()
             website('#d7ques5').val('');
         }
     });
-    
+   
     website("#appenddiv7 #d7ques6").change(function() {
         var value = website(this).val();
         var rownum = website(this).attr('rownum');
@@ -1468,4 +1468,3 @@ website('body').on('click','#submituserdata', function(e)
     website('.modalform').html(pdfdata);
     website('#Mymodaldeclara').modal('show');
 });
-

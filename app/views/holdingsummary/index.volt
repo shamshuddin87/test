@@ -25,17 +25,18 @@ $condeptsess = $this->session->contractdepartment;
     </div>
     
     <div class="bg_white">
+   <div class="table-responsive table_wraper">
+    <div class="cssnumrws form-inline">
+      
     <div class="opening">
                         <button class="btn openingblnc">Opening Balance</button>
                     </div>
-   <div class="table-responsive table_wraper">
-    <div class="cssnumrws">
-       <span>Show</span>
-        <select id="noofrows" name="noofrows" class="noofrows">
+       <label>Show</label>
+        <select id="noofrows" name="noofrows" class="noofrows form-control">
            <option value="10">10</option><option value="25">25</option>
             <option value="50">50</option><option value="100">100</option>
         </select> 
-        <span>Entries</span>
+        <label>Entries</label>
         </div> 
         <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "" border="1">
             <thead>

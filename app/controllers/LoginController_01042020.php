@@ -20,36 +20,6 @@ class LoginController extends ControllerBase
     {
 		
     }
-
-
-    public function autovidmloginAction()
-    {
-        $this->view->disable();
-        if($this->request->isPost() == true)
-        {
-            $vidm_loggedemail = $this->request->getPost('username','trim');
-           // echo"<pre>";print_r($azure_loggedemail);exit;
-
-            $getdata = $this->logincommon->setvidmsession($vidm_loggedemail);
-            //echo"<pre>";print_r($getdata);exit;
-
-            if($getdata['logged']==true)
-            {
-                $data = array("logged" => true,'message' => $getdata['message'], 'user_grp_id' => $getdata['user_group_id'],'fieldname'=>'loginpage');
-                //print_r($data);exit;
-                $this->response->setJsonContent($data);
-            }
-            else
-            {
-                $data = array("logged" => false,'message' => $getdata['message'], 'user_grp_id' => '','fieldname'=>'loginpage');
-                $this->response->setJsonContent($data);
-            }
-            $this->response->send();
-            //$connection->close();
-            //echo $username; exit;
-        }
-    }
-
 	public function loginchecAction()
     {
 		$connection = $this->db;

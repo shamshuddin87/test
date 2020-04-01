@@ -17,15 +17,15 @@ $current_year =  date("Y");
     <h1 class="h1_heading text-center" style="text-align: center;">Form C</h1>
 <div class="table-responsive design_info itntfr" id="annualdisc" itntfr="annualdisc" >
 <!--  <input type="hidden" name="" id="redirecturl" value="<?php echo $redirecturl; ?>" >      -->
-        <div class="cssnumrws col-md-12">
-           <span>Show</span>
-            <select id="noofrows" name="noofrows" class="noofrows">
+        <div class="cssnumrws  form-inline col-md-12">
+           <label>Show</label>
+            <select id="noofrows" name="noofrows" class="noofrows form-control">
                <option value="10">10</option><option value="25">25</option>
                 <option value="50">50</option><option value="100">100</option>
              </select> 
-        <span>Entries</span>
+        <label>Entries</label>
             <div style="float: right;">
-                <input type="text" placeholder="Search By Name" id="srch" status="0">
+                <input type="text" placeholder="Search By Name" id="srch" class=" form-control" status="0">
             </div>
         </div>
         <div class="cssfilter">               
