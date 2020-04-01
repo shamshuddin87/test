@@ -1256,14 +1256,14 @@ class AnnualdeclarationController extends ControllerBase
             {
                 $subsidiaries = $this->annualdeclarationcommon->FetchSubsidiaries();
                 $html = '';
-                $html.= '<table>';
+                $html.= '<table width="100%">';
                 for($i=0;$i<sizeof($subsidiaries);$i++)
                 {
                     $j = $i;
                     $j++;
                     $html.= '<tr>';
-                    $html.= '<td>'.$j.'</td>';
-                    $html.= '<td>'.$subsidiaries[$i]['subsidiaryname'].'</td>';
+                    $html.= '<td width="10%">'.$j.'</td>';
+                    $html.= '<td width="90%">'.$subsidiaries[$i]['subsidiaryname'].'</td>';
                     $html.= '</tr>';
                 }
                 $html.= '</table>';

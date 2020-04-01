@@ -91,7 +91,7 @@
                      <section class="col col-md-6 col-xs-6">
                         <div class="input">
                            <label class="control-label">UPSI Description</label>
-                           <textarea name="projdesc" id="projdesc" class="projdesc" style="margin: 0px;width: 475px;height: 73px;"></textarea>
+                           <textarea name="projdesc" id="projdesc" class="projdesc  form-control" style="margin: 0px;width: 475px;height: 73px;"></textarea>
                         </div>
                      </section>
                   </form>
@@ -110,15 +110,15 @@
          <!--table start-->
          <div class="containergrid formcss">
             <div class="panel panel-primary">
-               <div class="cssnumrws">
-                  <span>Show</span>
-                  <select id="noofrows" name="noofrows" class="noofrows">
+               <div class="cssnumrws form-inline">
+                  <label>Show</label>
+                  <select id="noofrows" name="noofrows" class="noofrows form-control">
                      <option value="10">10</option>
                      <option value="25">25</option>
                      <option value="50">50</option>
                      <option value="100">100</option>
                   </select>
-                  <span>Entries</span>
+                  <label>Entries</label>
                </div>
                <div class="table-responsive">
                   <table class="table table-inverse" id="datableabhi">

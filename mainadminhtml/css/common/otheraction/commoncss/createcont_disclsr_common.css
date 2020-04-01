@@ -40,8 +40,8 @@ color:#bababa; border:1px solid #bababa; cursor: default;}
 
 .typography.form_pad {
   /*  background: #fff;*/
-    padding: 19px 12px;
-    box-shadow: 2px 3px 5px #ccc;
+    /*padding: 19px 12px;
+    box-shadow: 2px 3px 5px #ccc;*/
     margin: 10px 0;
 }
 input#d2ques1 {
@@ -143,6 +143,7 @@ a.tooltip_c {
 {
         position: relative;
     padding: 15px;
+    background: #fff;
     border: 1px solid rgb(216, 216, 216);
     box-shadow: 0 0 10px #00000059;
         margin-bottom: 20px;

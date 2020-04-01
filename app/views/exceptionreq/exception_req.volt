@@ -36,15 +36,17 @@
 <div class=""><h1 class="h1_heading text-center"> Approve Exception Requests</h1></div>
   <div class="box_outer row col-md-12 col-xs-12 col-sm-12 row personaldetails" style="display: block;">
 <!--  <h3>Approve Exception Requests</h3> -->
-<input type="button"  id="exceptapproval" value="Approve" class="btn btn-primary" style="float: right;"></button>
+
+  <div class="cssnumrws form-inline">
+    <input type="button"  id="exceptapproval" value="Approve" class="btn btn-primary" style="float: right;"></button>
  <input type="hidden" name="" id="redirecturl" value="" >
-  <div class="cssnumrws">
-   <span>Show</span>
-     <select id="noofrows" name="noofrows" class="noofrows">
+ 
+   <label>Show</label>
+     <select id="noofrows" name="noofrows" class="noofrows form-control">
        <option value="10">10</option><option value="25">25</option>
         <option value="50">50</option><option value="100">100</option>
         </select> 
-        <span>Entries</span>
+        <label>Entries</label>
         </div> 
         <div class="table-responsive">   
         <table class="table table-inverse" id="datablerushi">

@@ -9,7 +9,7 @@ getMisData();});getMisData();function getMisData()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{var frnhtml='<span>Total no of Designated Person</span> <h1 style="color:#bd0111;">'+response.count+'</h1>';website('#noofusers').html(frnhtml);website('.appendrow').html(response.mishtml);}
+{var frnhtml='<span>Total no of Designated Person <h1 style="color:#bd0111;">'+response.count+'</h1></span>';website('#noofusers').html(frnhtml);website('.appendrow').html(response.mishtml);}
 else
 {var frnhtml='<span>Total no of Designated Person</span> <h1 style="color:#bd0111;">'+response.count+'</h1>';website('#noofusers').html(frnhtml);website('.appendrow').html('<tr><td colspan="4">No data found...!!!</td></tr>');}
 website('#mis1').html(response.pgnhtml);},complete:function(response)

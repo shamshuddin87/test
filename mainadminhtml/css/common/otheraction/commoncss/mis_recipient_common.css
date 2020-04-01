@@ -130,3 +130,12 @@ label.control-label { color: #000; }
     min-height: 0.01%;
 }
 
+.dataTables_wrapper .dataTables_filter {
+    float: right;
+    text-align: left;
+}
+
+.dataTables_filter
+{
+    width: 40%;
+}

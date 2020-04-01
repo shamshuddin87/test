@@ -13,8 +13,8 @@
 <div class="content">
     
     <!--    Total Number of Contracts Ends-->
-    <!-- My messages -->
     <div class="mainelementfom">
+    <!-- My messages -->
         <div>  <h1 class="h1_heading text-center"> Your Requests</h1> </div>
 
 
@@ -28,13 +28,13 @@
        
         <!-- ------------------- Start Table For Created Request ------------------- -->
          <div class="bg_white">
-            <div class="cssnumrws">
-                <span>Show</span>
-                <select id="noofrows" name="noofrows" class="noofrows">
+            <div class="cssnumrws form-inline">
+                <label>Show</label>
+                <select id="noofrows" name="noofrows" class="noofrows form-control">
                     <option value="10">10</option><option value="25">25</option>
                     <option value="50">50</option><option value="100">100</option>
                 </select> 
-                <span>Entries</span>
+                <label>Entries</label>
             </div> 
              <!-- start: added for status filter -->
             <div class="create_button">

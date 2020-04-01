@@ -17,21 +17,21 @@ $current_year =  date("Y");
     <h1 class="h1_heading text-center" style="text-align: center;">Contra Trade</h1>
 <div class="table-responsive design_info itntfr" id="annualdisc" itntfr="annualdisc" >
         
-        <div class="cssnumrws">
-           <span>Show</span>
-            <select id="noofrows" name="noofrows" class="noofrows">
+        <div class="cssnumrws form-inline ">
+           <label>Show</label>
+            <select id="noofrows" name="noofrows" class="noofrows  form-control">
                <option value="10">10</option><option value="25">25</option>
                 <option value="50">50</option><option value="100">100</option>
              </select> 
-        <span>Entries</span>
+        <label>Entries</label>
             <div style="float: right;">
-                <input type="text" placeholder="Search By Name" id="srch" status="0">
+                <input type="text" placeholder="Search By Name" class=" form-control" id="srch" status="0">
             </div>
         </div>
-        <div class="srcfac" style="float: right;">
-            <input type="text" class="bootdatepick" id="date1"  placeholder="Start Date"  readonly="readonly"/>
-            <input type="text" class="bootdatepick" id="date2" placeholder="End Date" readonly="readonly"/>
-            <input type="button" id="dtrange" class="btn btn-primary" Value="Search"/>
+        <div class="srcfac  form-inline " style="float: right;">
+            <input type="text" class="bootdatepick form-control" id="date1"  placeholder="Start Date"  readonly="readonly"/>
+            <input type="text" class="bootdatepick form-control" id="date2" placeholder="End Date" readonly="readonly"/>
+            <input type="button" id="dtrange" class="btn btn-primary form-control" Value="Search"/>
         </div>
         <table class="table table-inverse" id="datableabhi7">
              <thead>

@@ -14,14 +14,13 @@ $condeptsess = $this->session->contractdepartment;
 <!-- My messages -->
 <div class="mainelementfom">
      
-
+<div style="position: relative;">
     <h1 class="h1_heading text-center">MIS REPORT</h1>
-
-    <p id="noofusers">
-        
-    </p>
+    <p id="noofusers"></p>
+</div>
+    
     <div class="containergrid">       
-        <div class="formcss">                           
+        <div class="formcss ">                           
             <div class="typography form_pad">
                    
              <div class="clearelement"></div>
@@ -30,18 +29,20 @@ $condeptsess = $this->session->contractdepartment;
     </div>
     
 
-     <div class="cssnumrws">
-       <span>Show</span>
-        <select id="noofrows" name="noofrows" class="noofrows">
+     <div class="cssnumrws form-inline">
+       <label>Show</label>
+        <select id="noofrows" name="noofrows" class="noofrows form-control">
            <option value="10">10</option><option value="25">25</option>
             <option value="50">50</option><option value="100">100</option>
-         </select> 
-      
-        <span>Entries</span>
+         </select>       
+        <label>Entries</label>
+
+        
             <div class="top_margin">
-                <input type="text" placeholder="Search By User Name" id="srch" status="0">
+                <input type="text" placeholder="Search By User Name" class="form-control" id="srch" status="0">
             </div>
         </div> 
+
        
 
         <div class="table-responsive table_wraper">

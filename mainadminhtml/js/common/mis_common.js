@@ -54,7 +54,7 @@ function getMisData()
             if(response.logged===true)
             { 
                 //alert(response.count)
-                var frnhtml='<span>Total no of Designated Person</span> <h1 style="color:#bd0111;">'+response.count+'</h1>';
+                var frnhtml='<span>Total no of Designated Person <h1 style="color:#bd0111;">'+response.count+'</h1></span>';
                 website('#noofusers').html(frnhtml);
                 
                 website('.appendrow').html(response.mishtml);           
