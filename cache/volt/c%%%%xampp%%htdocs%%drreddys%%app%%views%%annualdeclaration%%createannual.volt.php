@@ -27,7 +27,7 @@
       <div class="col col-xs-6"><h1 class="h1_heading ">Annual Declaration</h1></div>
       <div class="create_button  col col-xs-6">
         <div class="tooltip_div">  
-           <a href="javascript:void(0);" data="List Of Company" class="tooltip_c right btn btn-primary ">Dr Reddy's subsidiaries</a>
+           <a href="javascript:void(0);" id="tooltip" data="List Of Company" class="tooltip_c right btn btn-primary ">Dr Reddy's subsidiaries</a>
        </div> 
      </div>
    </div>
