@@ -1085,7 +1085,7 @@ class Miscommon extends Component
         return $getlist;
     }
 
-        public function fetchinitlpendig($getuserid,$user_group_id,$query)
+    public function fetchinitlpendig($getuserid,$user_group_id,$query)
     {
         $connection = $this->dbtrd;
         $getlist = array();
@@ -1183,7 +1183,7 @@ class Miscommon extends Component
                 $pendingusers = $grpusrs['ulstring'];
             }
             
-            $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
+            $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,memb.`email`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
             FROM `it_memberlist` memb
             LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
             WHERE memb.wr_id IN(".$pendingusers.")".$query;
@@ -1221,7 +1221,7 @@ class Miscommon extends Component
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryget = "SELECT anualdecl.`annualyear`,memb.`fullname`,anualdecl.`sent_date`,anualdecl.`pdfpath` 
+            $queryget = "SELECT anualdecl.`annualyear`,memb.`fullname`,memb.`email`,anualdecl.`sent_date`,anualdecl.`pdfpath` 
             FROM `it_memberlist` memb 
             LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id` = anualdecl.`user_id` 
             WHERE memb.`wr_id` IN (".$grpusrs['ulstring'].")  AND (anualdecl.annualyear='".$annualyr."' OR anualdecl.annualyear IS NULL OR anualdecl.`send_status`=1)".$query;
@@ -1267,7 +1267,7 @@ class Miscommon extends Component
             {
                 while($row = $exeget->fetch())
                 {
-                    $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
+                    $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,memb.`email`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
                     FROM `it_memberlist` memb
                     LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
                     WHERE memb.wr_id = '".$row['wr_id']."'".$query;
@@ -1389,9 +1389,9 @@ class Miscommon extends Component
     }
 
 
-    public function allDesgntdPersnHtml($getuserinfo,$relativeinfo,$accountinfo,$relativeaccount,$mfrdata,$getres,$result)
+    public function allDesgntdPersnHtml($getuserinfo,$relativeinfo,$accountinfo,$relativeaccount,$mfrdata,$getres,$result,$pastemp)
     {
-        $myhtml1 = '';$myhtml2 = '';$myhtml3 = '';$myhtml4 = '';$myhtml5 = '';$myhtml6 = '';$myhtml7 = '';
+        $myhtml1 = '';$myhtml2 = '';$myhtml3 = '';$myhtml4 = '';$myhtml5 = '';$myhtml6 = '';$myhtml7 = '';$myhtml8 = '';
         //print_r($result);exit;
         if(sizeof($getuserinfo) > 0)
         {
@@ -1448,7 +1448,26 @@ class Miscommon extends Component
         {
             $myhtml2.='<tr><td colspan="8" style="text-align: center;">Data Not Found</td>';
         }
-
+        
+        if(sizeof($pastemp) > 0)
+        {
+            for($i=0; $i < sizeof($pastemp); $i++)
+            {
+                //print_r($pastemp[$i]);exit;
+                $j=$i+1;
+                $myhtml8.="<tr>";
+                $myhtml8.="<td>".$j."</td>";
+                $myhtml8.="<td>".$pastemp[$i]['emp_name']."</td>";
+                $myhtml8.="<td>".$pastemp[$i]['emp_desigtn']."</td>";
+                $myhtml8.="<td>".$pastemp[$i]['startdate']."</td>";
+                $myhtml8.="<td>".$pastemp[$i]['enddate']."</td>";
+                $myhtml8.="</tr>";
+            }
+        }
+        else
+        {
+            $myhtml8.='<tr><td colspan="5" style="text-align: center;">Data Not Found</td>';
+        }
 
         if(sizeof($accountinfo) > 0)
         {
@@ -1582,6 +1601,19 @@ class Miscommon extends Component
             </tr>
          ".$myhtml1."
          </table>
+         <br> 
+         <h3 style='text-align:center;'>Past Employer Details</h3>
+         <br>
+         <table>
+            <tr>
+                <th>Sr No</th>
+                <th>Employer Name</th> 
+                <th>Designation Served</th>
+                <th>Start Date</th>
+                <th>End Date</th>   
+            </tr>
+         ".$myhtml8."
+         </table>
          <br>
          <h3 style='text-align:center;'>Designated Person's Relative Information</h3>
          <br>
@@ -1604,6 +1636,7 @@ class Miscommon extends Component
          ".$myhtml2."
          </table>
          <br>
+         
          <h3 style='text-align:center;'>Designated Person's Demat Accounts</h3>
          <br>
          <table>

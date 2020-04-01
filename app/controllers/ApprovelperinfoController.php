@@ -257,23 +257,23 @@ class ApprovelperinfoController extends ControllerBase
                     $getres = $this->approvelperinfocommon->getpastemployer($getuser,$mainquery);
                  
                     /* start pagination */
-                    // $rsstrt = ($pagenum-1) * $noofrows;
-                    // $rslmt =' LIMIT '.$rsstrt.','.$noofrows;
-                    // $rscnt=count($getres);
-                    // $rspgs = ceil($rscnt/$noofrows);
-                    // $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
-                    // $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                     $rsstrt = ($pagenum-1) * $noofrows;
+                     $rslmt =' LIMIT '.$rsstrt.','.$noofrows;
+                     $rscnt=count($getres);
+                     $rspgs = ceil($rscnt/$noofrows);
+                     $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                     $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
                     // // print_r($rslmt);exit;
                     $getresult = $this->approvelperinfocommon->getpastemployer($getuser,$mainquery);
                     //print_r($getresult);exit;
                     if($getres)
                     {
-                        $data = array("logged" => true,'message' => 'Record Added','resdta' => $getresult,'pgnhtml'=>'');
+                        $data = array("logged" => true,'message' => 'Record Added','resdta' => $getresult,'pgnhtml'=>$pgnhtml);
                         $this->response->setJsonContent($data);
                     }
                     else
                     {
-                        $data = array("logged" => false,'message' => "Record Not Added..!!",'pgnhtml'=>'');
+                        $data = array("logged" => false,'message' => "Record Not Added..!!",'pgnhtml'=>$pgnhtml);
                         $this->response->setJsonContent($data);
                     }
 

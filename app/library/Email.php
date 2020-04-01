@@ -1389,17 +1389,17 @@ Class Email extends Phalcon\Mvc\User\Component {
        
     }
 
-    public function mailofnewupsisharing($uniquemail,$sharingdate,$upsiname,$toname,$category)
+    public function mailofnewupsisharing($uniquemail,$sharingdate,$upsiname,$toname,$category,$projctowner)
     {
 
         //print_r($category);exit;
         if($category == 14)
         {
-             $gethtml = $this->htmlelements->internalmember($uniquemail,$sharingdate,$upsiname,$toname);
+             $gethtml = $this->htmlelements->internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projctowner);
         }
         else
         {
-            $gethtml = $this->htmlelements->externalmember($uniquemail,$sharingdate,$upsiname,$toname);
+            $gethtml = $this->htmlelements->externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projctowner);
             //print_r($gethtml);exit;
         }
        

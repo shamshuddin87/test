@@ -1,10 +1,46 @@
 website(document).ready(function()
 {
-   loadnoofsec();
-
-  
-    
+    loadnoofsec();
+    FetchSubsidiries();
 });
+
+function FetchSubsidiries()
+{
+        website.ajax({
+          url:'annualdeclaration/FetchSubsidiries',
+          //data:formdata,
+          method:'POST',
+          //contentType:'json',
+          contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+          //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+          dataType:"json",
+          cache:false,
+          //async:true, /*Cross domain checking*/
+          beforeSend: function()
+          {   },
+          uploadProgress: function(event, position, total, percentComplete)
+          {   },
+          success: function(response, textStatus, jqXHR)
+          {
+              var html = '';
+//              for(var i=0;i<response.data.length;i++)
+//              {
+//                  var j = i;
+//                  j++;
+//                  html+= '<table><tr><td>'+j+'</td><td>'+response.data[i].subsidiaryname+'</td></tr></table>';
+//                  //console.log(html);
+//                  
+//              }
+              //html1 =  html.replace( /(<([^>]+)>)/ig, '');
+              website('.tooltip').html(response.data);
+              website('.tooltip').css('display','block');
+          },
+          complete: function(response)
+          {   },
+          error: function(jqXHR, textStatus, errorThrown)
+          {   }
+    });
+}
 
 function addhtml(clicked)
 {
@@ -439,8 +475,8 @@ function addhtml(clicked)
                 addhtmlnxt += '<option value='+value['id']+'>'+value['name']+'</option>';    
 
               });
-         addhtmlnxt += '<td><div class="input">  <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" value="holding above 2% shares" readonly="readonly">  </div></td> ';
-         addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></div></td>';
+         addhtmlnxt += '<td><div class="input">  <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" value="holding above 2% shares" readonly="readonly" placeholder="Company Name">  </div></td> ';
+         addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="holding above 2% shares" readonly="readonly"></div></td>';
           addhtmlnxt+='<td> <div class="input"> <select id="d9ques4" name="d9ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt+=' <td><div class="input">   <select id="d9ques5" name="d9ques5[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt +='</tr>';
@@ -1134,7 +1170,7 @@ function getpdfdata(uniqueid)
                             dematacc += '<td width="25%">'+j+'</td>';
                             dematacc += '<td width="25%">'+response.dematdetail[i]['accountno']+'</td>';
                             dematacc += '<td width="25%">'+response.dematdetail[i]['depository_participient']+'</td>';
-                            dematacc += '<td width="25%">'+response.dematdetail[i]['clearing_house']+'</td>';
+//                            dematacc += '<td width="25%">'+response.dematdetail[i]['clearing_house']+'</td>';
                             dematacc += '</tr>'; 
                         }
                     }
@@ -1185,6 +1221,7 @@ function getpdfdata(uniqueid)
                 }
                 
                 /*---- Relative Demat detail ----*/
+                console.log(response.relDematdetail.length);
                 if(response.relDematdetail.length>0)
                 {
                     for(var i=0;i<response.relDematdetail.length;i++)
@@ -1195,9 +1232,9 @@ function getpdfdata(uniqueid)
                             j++;
                             reldemat += '<tr class="counter">';
                             reldemat += '<td>'+j+'</td>';
-                            reldemat += '<td>'+response.reldetail[i]['accountno']+'</td>';
-                            reldemat += '<td>'+response.reldetail[i]['depository_participient']+'</td>';
-                            reldemat += '<td>'+response.reldetail[i]['clearing_house']+'</td>';
+                            reldemat += '<td>'+response.relDematdetail[i]['accountno']+'</td>';
+                            reldemat += '<td>'+response.relDematdetail[i]['depository_participient']+'</td>';
+//                            reldemat += '<td>'+response.reldetail[i]['clearing_house']+'</td>';
                             reldemat += '</tr>'; 
                         }
                     }

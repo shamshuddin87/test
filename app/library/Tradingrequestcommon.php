@@ -1281,7 +1281,10 @@ function checktypeofreq($uid,$usergroup,$data)
 
                             $execompinfo = $connection->query($querysql);
                             $execmp = $execompinfo->fetch();
-                            $getlist[] = $execmp;
+                            while($row = $execmp->fetch())
+                            {
+                                $getlist[] = $row;
+                            }
 
                         }
                         //$getlist[] = $row;

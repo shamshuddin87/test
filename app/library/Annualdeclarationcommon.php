@@ -2063,5 +2063,34 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
        
 
     }
+    
+    
+    public function FetchSubsidiaries()
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `subsidiarylist`
+        WHERE `status`='1'";
+        //print_r($query);exit; 
+        try{
+        $exeget = $connection->query($query);
+        $getnum = trim($exeget->numRows());
+        if($getnum>0)
+        {
+            while($row = $exeget->fetch())
+            { 
+                $getlist[] = $row; 
+            }
+        }
+        else
+        {  $getlist = array(); }
+        }
+
+
+        catch (Exception $e)
+        {   $getlist = array(); }
+
+        return $getlist;
+    }
 
 }

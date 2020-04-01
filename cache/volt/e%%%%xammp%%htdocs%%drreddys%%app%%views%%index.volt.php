@@ -70,8 +70,9 @@ header("Pragma: no-cache");
   <body tabindex="1" class="nav-sm loadingInProgress  <?php echo ($getcontrollername=='index' || $getcontrollername=='login') ? 'login-cover' : $getcontrollername.'_bodymncl '; ?>" >
 <?php } ?>
 
+<?php if ($getcontrollername != 'annualdeclaration') { ?>
 <body tabindex="1" class="nav-md loadingInProgress  <?php echo ($getcontrollername=='index' || $getcontrollername=='login') ? 'login-cover' : $getcontrollername.'_bodymncl '; ?>" ><!--bg-purple-->
-
+<?php } ?>
 
 
 <?php if ($getcontrollername != 'highlight' && $getcontrollername != 'agendapdflink') { ?>

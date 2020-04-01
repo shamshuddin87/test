@@ -2,7 +2,7 @@
 float: left;width: 80%; height: 100%;margin-top: 12px;padding: 80px;margin-left: 87px;}
 .selfacc{margin:10px;}
 .acc h3 { color: #000;}
-.relfieldapnd { float: left;margin: 39px 0;}
+.relfieldapnd { /*float: left;*/margin: 39px 0;}
 button.btn.btn-primary.relhtml { margin-top: 22px; color: #fff;}
 .relac, { margin: 10px 0;}
 .acc h4 { color: #000;}
