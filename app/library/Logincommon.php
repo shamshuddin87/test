@@ -313,7 +313,7 @@ class Logincommon extends Component
         $connection = $this->db;
         $getlist = '';
 
-        $check = "SELECT * from `web_register_user` where email =  '".$getemail."' AND `firstlogin` = 1 ";
+        $check = "SELECT * from `web_register_user` where email =  '".$getemail."' AND `firstlogin` = '1'  ";
 
         $queryget = "UPDATE `web_register_user` SET `firstlogin` = '0' WHERE email =  '".$getemail."' " ;
 
