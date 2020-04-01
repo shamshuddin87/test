@@ -17,8 +17,8 @@ class Portfoliocommon extends Component
 
            
 
-	           $query="INSERT INTO user_demat_accounts (user_id, user_group_id, accountno,depository_participient,clearing_house, date_added,date_modified,timeago)
-	           VALUES ('".$uid."', '".$usergroup."', '".$accnodata[$i]['accno']."','".$accnodata[$i]['dp']."','".$accnodata[$i]['clhouse']."', NOW(),NOW(),
+	           $query="INSERT INTO user_demat_accounts (user_id, user_group_id, accountno,depository_participient, date_added,date_modified,timeago)
+	           VALUES ('".$uid."', '".$usergroup."', '".$accnodata[$i]['accno']."','".$accnodata[$i]['dp']."', NOW(),NOW(),
              '".$time."');";
 	           $exessa= $connection->query($query);
 
@@ -140,8 +140,8 @@ class Portfoliocommon extends Component
             for($i=0;$i<sizeof($accno);$i++)
            {
 
-             $query="INSERT INTO relative_demat_accounts (parent_user_id, parent_user_group_id,rel_user_id, accountno,depository_participient,clearing_house,date_added,date_modified,timeago)
-             VALUES ('".$uid."', '".$usergroup."', '".$relitiveid."', '".$accno[$i]['relativeacc']."','".$accno[$i]['dp']."','".$accno[$i]['ch']."',NOW(),NOW(),'".$time."');";
+             $query="INSERT INTO relative_demat_accounts (parent_user_id, parent_user_group_id,rel_user_id, accountno,depository_participient,date_added,date_modified,timeago)
+             VALUES ('".$uid."', '".$usergroup."', '".$relitiveid."', '".$accno[$i]['relativeacc']."','".$accno[$i]['dp']."',NOW(),NOW(),'".$time."');";
            // print_r($query);exit;
              $exessa= $connection->query($query);
 

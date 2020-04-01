@@ -20,10 +20,11 @@ getuserlistonload();
 function getuserlistonload()
 {
    var noofrows = website('#noofrows').val(); 
-    var pagenum = website('#pagenum').val();
+   var pagenum = website('#pagenum').val();
+   var searchby = website('#srch').val();
     // var chkclk = '';
     // var numofdata = 'all';
-    var formdata = {noofrows:noofrows,pagenum:pagenum};
+    var formdata = {noofrows:noofrows,pagenum:pagenum,searchby:searchby};
     website.ajax({
         url:'adminmodule/fetchuser',
         data:formdata,
@@ -110,4 +111,16 @@ var encodedString = btoa(userid);
 var myurl=baseHref+"adminmodule/accesstouser?userid="+encodedString;
 location.replace(myurl);
 // alert(baseHref);
+});
+
+
+website("#srch").on("keyup", function() {
+    var search=website('#srch').val();
+//    var pagenum = website('#pagenum').val();
+//    website('#srch').attr('status','0');
+//    if(pagenum!=1)
+//    {
+//        website('#pagenum').val(1);
+//    }
+    getuserlistonload();
 });

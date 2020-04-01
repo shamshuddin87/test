@@ -2031,8 +2031,7 @@ function addhtml(clicked)
    
      //alert(datepre);
     if(id == 'adddiv') {
-         
-        datepicker();
+        
         var getlastid = website('.append').attr('plancntr');
 
          getlastid = ++getlastid;
@@ -2086,7 +2085,7 @@ function addhtml(clicked)
             });  
             
         }
-       
+       datepicker();
        
       }
       else{
@@ -2098,10 +2097,11 @@ function addhtml(clicked)
 
 }
 
+
 function removehtml(clicked)
 {
 
-     var rmid = clicked;
+    var rmid = clicked;
 
     if(rmid == 'remvdiv')
     {
@@ -2120,6 +2120,4 @@ function removehtml(clicked)
     }
 
   
-
-
 }

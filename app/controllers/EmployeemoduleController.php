@@ -91,9 +91,9 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
                     $this->response->setJsonContent($data);
                 }
-                else if(strtotime($dob)>strtotime($date))
+                else if(strtotime($dob)>=strtotime($date))
                 {
-                    $data = array("logged" => false,'message' => 'Birth Date Should Be In Past');
+                    $data = array("logged" => false,'message' => 'Birth Date cannot be in future and current date');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($aadhar))
@@ -259,9 +259,9 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
                     $this->response->setJsonContent($data);
                 }
-                else if(strtotime($dob)>strtotime($date))
+                else if(strtotime($dob)>=strtotime($date))
                 {
-                    $data = array("logged" => false,'message' => 'Birth Date Should Be In Past');
+                    $data = array("logged" => false,'message' => 'Birth Date cannot be in future and current date');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($sex))
@@ -441,7 +441,8 @@ class EmployeemoduleController extends ControllerBase
                 $aadhaar   = $this->request->getPost('aadhar','trim');
                 $file   = $this->request->getPost('file','trim');
                 $depnature   = $this->request->getPost('depnature','trim');
-                //print_r($reldata);exit;
+                $mobno   = $this->request->getPost('relmobno','trim');
+                //print_r($mobno);exit;
                 if(empty($fname))
                 {
                     $data = array("logged" => false,'message' => 'Please Enter First Name!!');
@@ -479,15 +480,25 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
                     $this->response->setJsonContent($data);
                 }
-                else if(strtotime($dob)>strtotime($date))
+                else if(strtotime($dob)>=strtotime($date))
                 {
-                    $data = array("logged" => false,'message' => 'Birth Date Should Be In Past');
+                    $data = array("logged" => false,'message' => 'Birth Date cannot be in future and current date');
                     $this->response->setJsonContent($data);
                 }
               
                 else if(empty($relationship))
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Relationship');
+                    $this->response->setJsonContent($data);
+                }
+                  else if(empty($mobno))
+                {
+                    $data = array("logged" => false,'message' => 'Please Provide Mobile No');
+                    $this->response->setJsonContent($data);
+                }
+                 else if(strlen($mobno) < 10)
+                {
+                    $data = array("logged" => false,'message' => 'Please Provide Valid Mobile No');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($sex))
@@ -760,6 +771,7 @@ class EmployeemoduleController extends ControllerBase
                 $relationship = $this->request->getPost('relationship','trim');
                 $releditid = $this->request->getPost('releditid','trim');
                 $prevfilepath = $this->request->getPost('filepath','trim');
+                $mobno   = $this->request->getPost('relmobnoup','trim');
                 
                 if(empty($name))
                 { 
@@ -786,9 +798,9 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
                     $this->response->setJsonContent($data);
                 }
-                else if(strtotime($dob)>strtotime($date))
+                else if(strtotime($dob)>=strtotime($date))
                 {
-                    $data = array("logged" => false,'message' => 'Birth Date Should Be In Past');
+                    $data = array("logged" => false,'message' => 'Birth Date cannot be in future and current date');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($sex))
@@ -799,6 +811,16 @@ class EmployeemoduleController extends ControllerBase
                 else if(empty($relationship))
                 {
                     $data = array("logged" => false,'message' => 'Please Insert Relationnship');
+                    $this->response->setJsonContent($data);
+                }
+                  else if(empty($mobno))
+                {
+                    $data = array("logged" => false,'message' => 'Please Provide Mobile No');
+                    $this->response->setJsonContent($data);
+                }
+                 else if(strlen($mobno) < 10)
+                {
+                    $data = array("logged" => false,'message' => 'Please Provide Valid Mobile No');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($address))
@@ -1396,6 +1418,7 @@ class EmployeemoduleController extends ControllerBase
                 $pan = $this->request->getPost('pan','trim');
                 $transaction = $this->request->getPost('transaction','trim');
                 $clientid = $this->request->getPost('clientid','trim');
+                $mobile = $this->request->getPost('mobile','trim');
                 
                 if($mfrname=='')
                 {
@@ -1427,9 +1450,19 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'DP ID/Client ID should be 16 characters!!');
                    $this->response->setJsonContent($data);
                 }
+                  else if(empty($mobile))
+                {
+                    $data = array("logged" => false,'message' => 'Please Provide Mobile No');
+                    $this->response->setJsonContent($data);
+                }
+                 else if(strlen($mobile) < 10)
+                {
+                    $data = array("logged" => false,'message' => 'Please Provide Valid Mobile No');
+                    $this->response->setJsonContent($data);
+                }
                 else
                 {
-                    $getres = $this->employeemodulecommon->insertmfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$pan,$address,$transaction,$clientid);
+                    $getres = $this->employeemodulecommon->insertmfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$pan,$address,$transaction,$clientid,$mobile);
                     if($getres)
                     {
                         $data = array("logged" => true,'message' => 'Data Inserted Successfully..!!!');
@@ -1472,6 +1505,7 @@ class EmployeemoduleController extends ControllerBase
                 $addressup = $this->request->getPost('addressup','trim');
                 $transaction = $this->request->getPost('transaction','trim');
                 $clientid = $this->request->getPost('clientid','trim');
+                  $mobile = $this->request->getPost('mobile','trim');
                 if($mfrname=='')
                 {
                     $data = array("logged" => false,'message' => 'Please Select Name of the Related party');
@@ -1502,9 +1536,19 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'DP ID/Client ID should be 16 characters!!');
                    $this->response->setJsonContent($data);
                 }
+                  else if(empty($mobile))
+                {
+                    $data = array("logged" => false,'message' => 'Please Provide Mobile No');
+                    $this->response->setJsonContent($data);
+                }
+                 else if(strlen($mobile) < 10)
+                {
+                    $data = array("logged" => false,'message' => 'Please Provide Valid Mobile No');
+                    $this->response->setJsonContent($data);
+                }
                 else
                 {
-                    $getres = $this->employeemodulecommon->updatemfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$mfreditid,$panup,$addressup,$transaction,$clientid);
+                    $getres = $this->employeemodulecommon->updatemfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$mfreditid,$panup,$addressup,$transaction,$clientid,$mobile);
                     if($getres)
                     {
                         $data = array("logged" => true,'message' => 'Data Updated Successfully..!!!');

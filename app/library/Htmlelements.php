@@ -338,10 +338,7 @@ public function sendforapproval($subject,$userids,$emailconstent)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Contract Approval</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
+                
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -435,10 +432,6 @@ public function sendforapprovallegal($subject,$userids,$emailconstent)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Contract Approval</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -535,10 +528,6 @@ public function sendforlegalapproval($subject,$emaildata)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Volody</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -628,10 +617,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Volody</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -842,10 +827,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                         <div style="    text-shadow: 1px 0px 2px #626262;
         color: #626262;">Request Approval</div>
                     </div>
-                    <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-        color: #626262;
-
-        text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                      <div style="clear:both;"></div>
                 </div>
             <div style="    background-color: #f2f2f2;
@@ -929,10 +910,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Request Approval</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1013,10 +990,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                         <div style="    text-shadow: 1px 0px 2px #626262;
         color: #626262;">Request Approval</div>
                     </div>
-                    <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-        color: #626262;
-
-        text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                      <div style="clear:both;"></div>
                 </div>
             <div style="    background-color: #f2f2f2;
@@ -1101,10 +1074,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Request Approval</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1185,10 +1154,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Final Submit Request</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1274,10 +1239,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Trading Plan Request</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1359,10 +1320,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Trading Plan Request</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1409,7 +1366,7 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
     <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
     <div style="text-shadow: 1px 0px 2px #626262;color: #626262;">Volody</div>
     </div>
-    <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;color: #626262;text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
+    
     <div style="clear:both;"></div></div>
 
     <div class="main">
@@ -1453,7 +1410,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
     <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
     <div style="text-shadow: 1px 0px 2px #626262;color: #626262;">Volody</div>
     </div>
-    <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;color: #626262;text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
     <div style="clear:both;"></div></div>
 
     <div class="main">
@@ -1529,10 +1485,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                         <div style="    text-shadow: 1px 0px 2px #626262;
         color: #626262;"></div>
                     </div>
-                    <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-        color: #626262;
-
-        text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                      <div style="clear:both;"></div>
                 </div>
             <div style="    background-color: #f2f2f2;
@@ -1610,10 +1562,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Form B Request</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1689,10 +1637,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Form B</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1768,10 +1712,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Form C Request</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1847,10 +1787,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Form C</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -1927,10 +1863,6 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="    text-shadow: 1px 0px 2px #626262;
     color: #626262;">Form D Request</div>
                 </div>
-                <div class="head_text" style="padding: 10px 20px 10px 20px;text-align: center;border-bottom: 2px dotted #ccc;font-size: 11px;
-    color: #626262;
-
-    text-shadow: 1px 1px 10px #fff;"> If opportunity doesnt Knock break the door. </div>
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -2413,7 +2345,7 @@ public function mailofupdatedp($tomail,$tousername,$pstartdate,$enddate,$today,$
 }
 
     
-public function internalmember($uniquemail,$sharingdate,$upsiname,$toname)
+public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projctowner)
   {   
        $title ="You have been added to digital database of Dr. Reddy's Laboratories Ltd";
             $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -2463,20 +2395,20 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname)
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
         <p>Dear '.$toname.'</p>
-        <p>Please note that you have received information pertaining to '.$upsiname.' on '.$sharingdate.'. Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time (hereinafter referred to as “Insider Trading Regulations”).</p>
+        <p>Please note that you have received information pertaining to '.$upsiname.' on '.$sharingdate.'. Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time (hereinafter referred to as "Insider Trading Regulations").</p>
         
                 <div class="main">
                     <div style="">Accordingly, you are requested to ensure the below:</div>
 
                     <ol type="a">
-                      <li>Such UPSI should not be shared with any one and should be kept confidential until the same is made generally available / public by the Company.</li>
+                      <li>Such UPSI should not be shared with any one and should be kept confidential until the same is made generally available / public by the Company.</li>';
 
-                      <li>Since this UPSI is being shared with you, you are deemed to be an insider as defined in Insider Trading Regulations. No insider or his/her immediate relative shall trade / deal in Company’s securities when in possession of UPSI pursuant to Insider Trading Regulations.</li>
+                      $html.="<li>Since this UPSI is being shared with you, you are deemed to be an insider as defined in Insider Trading Regulations. No insider or his/her immediate relative shall trade / deal in Company's securities when in possession of UPSI pursuant to Insider Trading Regulations.</li>";
 
-                      <li>You are required to ensure compliance with the Insider Trading Regulations including duties, responsibilities and liabilities related to misuse or unwarranted use of such UPSI.</li>
+                      $html.='<li>You are required to ensure compliance with the Insider Trading Regulations including duties, responsibilities and liabilities related to misuse or unwarranted use of such UPSI.</li>';
 
-                      <li>You are required to share with (Project Owner name) the following information of the entity / persons (internal/external) to whom such information is being further shared by you for Legitimate Purposes, performance of duties or discharge of his / her legal obligations, as defined in Insider Trading Regulations, after obtaining prior written / email permission from (Project owner). The (Project owner) is responsible to make entries in the structured digital database maintained by the Company for UPSI under Insider Trading Regulations. So whenever you share this UPSI:
-                        <ol>
+                      $html.="<li>You are required to share with ".$projctowner." the following information of the entity / persons (internal/external) to whom such information is being further shared by you for Legitimate Purposes, performance of duties or discharge of his / her legal obligations, as defined in Insider Trading Regulations, after obtaining prior written / email permission from ".$projctowner.". The ".$projctowner." is responsible to make entries in the structured digital database maintained by the Company for UPSI under Insider Trading Regulations. So whenever you share this UPSI:";
+                        $html.='<ol>
                           <li>Such person, entity with whom UPSI is being shared shall also be deemed to be an insider, for the purpose Insider Trading Regulations.</li>
                           <li>You are requested to share with us the below details of the person, entity with whom the UPSI is being shared:</li>
                           <ul type="circul">
@@ -2486,15 +2418,15 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname)
                             <li>Permanent Account Number (PAN) or any other identifier authorized by law where PAN is not available.</li>
                           </ul>
                         </ol>
-                      </li>
+                      </li>';
 
-                      <li>The Company is expected to maintain a database of the UPSI provided to such persons, entity. The Company may disclose the said information a) as permitted or required by applicable laws or regulatory requirements. In such a case, we will endeavour to disclose only the requested information under the circumstances; b) as part of the Company’s reporting or disclosure obligations, if any.</li>
-                    </ol>
+                      $html.="<li>The Company is expected to maintain a database of the UPSI provided to such persons, entity. The Company may disclose the said information a) as permitted or required by applicable laws or regulatory requirements. In such a case, we will endeavour to disclose only the requested information under the circumstances; b) as part of the Company's reporting or disclosure obligations, if any.</li>
+                    </ol>";
                    
                     
                    
                      
-                </div>
+                $html.='</div>
             </div>
         </div>
 
@@ -2507,7 +2439,7 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname)
      return $html;
 }
 
-public function externalmember($uniquemail,$sharingdate,$upsiname,$toname)
+public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projctowner)
   {   
        //echo "<pre>";print_r($userids);exit;
     $title ="You have been added to digital database of Dr. Reddy's Laboratories Ltd";
@@ -2557,21 +2489,22 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname)
                 </div>
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
-        <p>Dear '.$toname.'</p>
-        <p>Please note that you have received information pertaining to '.$upsiname.' of Dr. Reddy’s Laboratories Limited on '.$sharingdate.'. Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time (hereinafter referred to as “Insider Trading Regulations”)..</p>
+        <p>Dear '.$toname.'</p>';
+        $html.="<p>Please note that you have received information pertaining to '.$upsiname.' of Dr. Reddy's Laboratories Limited on '.$sharingdate.'.";
+        $html.='Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time (hereinafter referred to as "Insider Trading Regulations")..</p>
         
                 <div class="main">
                     <div style="">Accordingly, you are requested to ensure the below:</div>
 
                     <ol type="a">
-                      <li>In addition to the Confidentiality and Non-Disclosure agreements, such UPSI should not be shared with any one and should be kept confidential until the same is made generally available / public by the Company..</li>
+                      <li>In addition to the Confidentiality and Non-Disclosure agreements, such UPSI should not be shared with any one and should be kept confidential until the same is made generally available / public by the Company..</li>';
 
-                      <li>Since this UPSI is being shared with you, you are deemed to be an insider as defined in Insider Trading Regulations. No insider shall trade / deal in Company’s securities when in possession of UPSI pursuant to Insider Trading Regulations.</li>
+                      $html.="<li>Since this UPSI is being shared with you, you are deemed to be an insider as defined in Insider Trading Regulations. No insider shall trade / deal in Company's securities when in possession of UPSI pursuant to Insider Trading Regulations.</li>
 
-                      <li>You are required to ensure compliance with the Insider Trading Regulations and Company’s Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons, including duties, responsibilities and liabilities related to misuse or unwarranted use of such UPSI.</li>
+                      <li>You are required to ensure compliance with the Insider Trading Regulations and Company’s Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons, including duties, responsibilities and liabilities related to misuse or unwarranted use of such UPSI.</li>";
 
-                      <li>You are required to share with (Project Owner name) the following information regarding your entity / persons (internal/external) to whom such information is being further shared by you for Legitimate Purposes, performance of duties or discharge of his / her legal obligations, as defined in Insider Trading Regulations, after obtaining prior written / email permission from (Project owner). The (Project owner) is responsible to make entries in the structured digital database maintained by the Company for UPSI under Insider Trading Regulations. So whenever you share this UPSI:
-                        <ol>
+                      $html.="<li>You are required to share with ".$projctowner." the following information regarding your entity / persons (internal/external) to whom such information is being further shared by you for Legitimate Purposes, performance of duties or discharge of his / her legal obligations, as defined in Insider Trading Regulations, after obtaining prior written / email permission from ".$projctowner.". The ".$projctowner." is responsible to make entries in the structured digital database maintained by the Company for UPSI under Insider Trading Regulations. So whenever you share this UPSI:";
+                        $html.='<ol>
                           <li>Such person, entity with whom UPSI is being shared shall also be deemed to be an insider, for the purpose Insider Trading Regulations.</li>
                           <li>You are requested to share with us the below details of the person, entity with whom the UPSI is being shared:</li>
                           <ul type="circul">
@@ -2583,10 +2516,10 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname)
                         </ol>
                       </li>
 
-                      <li>At your end, kindly ensure that your entity maintains the details under the Schedule C of the Insider Trading Regulations and maintain a list of persons having access to UPSI along with their PANs or other unique identifier (incase PAN is not available) in accordance with Regulation 9A(2)(d) of the said Regulations.</li>
+                      <li>At your end, kindly ensure that your entity maintains the details under the Schedule C of the Insider Trading Regulations and maintain a list of persons having access to UPSI along with their PANs or other unique identifier (incase PAN is not available) in accordance with Regulation 9A(2)(d) of the said Regulations.</li>';
                       
-                       <li>The Company is expected to maintain a database of the UPSI provided to such entities. The Company may disclose the said information a) as permitted or required by applicable laws or regulatory requirements. In such a case, we will endeavour to disclose only the requested information under the circumstances; b) as part of the Company’s reporting or disclosure obligations, if any.</li>
-                    </ol>
+                       $html.="<li>The Company is expected to maintain a database of the UPSI provided to such entities. The Company may disclose the said information a) as permitted or required by applicable laws or regulatory requirements. In such a case, we will endeavour to disclose only the requested information under the circumstances; b) as part of the Company's reporting or disclosure obligations, if any.</li>";
+                    $html.='</ol>
                    
                     
                     

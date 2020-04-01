@@ -11,6 +11,8 @@ website('body').on('click','.paginationmn li', function(e)
     {   getholdingmis();   }
     else if(rsitntfr=='relativemis')
     {   relativeholdingmis();   }
+    else if(rsitntfr=='pastemp')
+    {   getpastemployer(); }
 });
 website('body').on('change','#noofrows', function(e) 
 {
@@ -19,7 +21,9 @@ website('body').on('change','#noofrows', function(e)
     if(rsitntfr=='personmis')
     {   getholdingmis();   } 
     else if(rsitntfr=='relativemis')
-    {   relativeholdingmis();   }   
+    {   relativeholdingmis();   }
+    else if(rsitntfr=='pastemp')
+    {   getpastemployer();  } 
 });
 website('body').on('click','.go_button', function(e) 
 {
@@ -31,7 +35,9 @@ website('body').on('click','.go_button', function(e)
     if(rsitntfr=='personmis')
     {   getholdingmis();   }
     else if(rsitntfr=='relativemis')
-    {   relativeholdingmis();   }    
+    {   relativeholdingmis();   }
+    else if(rsitntfr=='pastemp')
+    {   getpastemployer();  }
 });
 /* ===================== Pagination End ===================== */
 
@@ -257,3 +263,68 @@ website('.genfile').on('click', function(e) {
         {   }
     });
 });
+
+getpastemployer();
+function getpastemployer()
+{
+    var noofrows = website('#noofrows').val(); 
+    var pagenum = website('#pagenum').val();
+    var persnid = website('#personid').val();
+    var getuserid=website('#userid').val();
+    var formdata = {persnid:persnid,noofrows:noofrows,pagenum:pagenum,getuserid:getuserid}
+    website.ajax({
+      url:'approvelperinfo/getpastemployer',
+      data:formdata,
+      method:'POST',
+      //contentType:'json',
+      contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+      //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+      dataType:"json",
+      cache:false,
+      //async:true, /*Cross domain checking*/
+      beforeSend: function()
+      {   },
+      uploadProgress: function(event, position, total, percentComplete)
+      {   },
+      success: function(response, textStatus, jqXHR)
+      {
+          if(response.logged === true)
+          { 
+             var addhtmlnxt='';
+              for(var i = 0; i < response.resdta.length; i++) 
+              {
+                var emp_name=response.resdta[i].emp_name?response.resdta[i].emp_name:''; 
+                var emp_desigtn=response.resdta[i].emp_desigtn?response.resdta[i].emp_desigtn:'';
+                var startdate=response.resdta[i].startdate?response.resdta[i].startdate:'';
+                var enddate=response.resdta[i].enddate?response.resdta[i].enddate:'';
+                var j=i+1;
+                                     
+                //------------------------- Table Fields Insertion START ------------------------
+                 
+                        addhtmlnxt += '<tr class="counter" empid="'+response.resdta[i].id+'" >';
+                        addhtmlnxt += '<td width="20%">'+j+'</td>';
+                        addhtmlnxt += '<td width="20%">'+emp_name+'</td>';
+                        addhtmlnxt += '<td width="20%">'+emp_desigtn+'</td>';
+                        addhtmlnxt += '<td width="20%">'+startdate+'</td>';
+                        addhtmlnxt += '<td width="20%">'+enddate+'</td>';
+                        // addhtmlnxt += '<td width="20%" ><i class="fa fa-edit faicon floatleft editemp" title="Edit entry" empid="'+response.resdta[i].id+'" ></i><i class="fa fa-trash-o faicon floatleft deleteemp" title="Delete entry" empid="'+response.resdta[i].id+'" ></i></td>';  
+                        addhtmlnxt += '</tr>';
+                        
+                //------------------------ Table Fields Insertion END ------------------------
+             }
+
+              website('.appendviewemplyee').html(addhtmlnxt);
+               website('#acc7').html(response.pgnhtml);
+             
+          }
+          else
+           {
+                website('#acc7').html(response.pgnhtml);
+           }
+      },
+      complete: function(response)
+      {  website('.preloder_wraper').fadeOut(); },
+      error: function(jqXHR, textStatus, errorThrown)
+      {   }
+});
+}

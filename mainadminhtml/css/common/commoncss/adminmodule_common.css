@@ -426,7 +426,14 @@ div#appendapp {width: 100%;line-height: 30px; background: #ccc; overflow: auto; 
     cursor: pointer;
 }
 
-
-
+.top_margin {
+    float: right;
+}
+input#srch {
+    padding: 4px;
+    border-radius: 3px;
+    border: none;
+    border: 1px solid #ccc;
+}
 
 

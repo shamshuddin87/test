@@ -1241,5 +1241,56 @@ class AnnualdeclarationController extends ControllerBase
         }
 
     }
+    
+    public function FetchSubsidiriesAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $cin;exit;
+        $timeago = time();
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $subsidiaries = $this->annualdeclarationcommon->FetchSubsidiaries();
+                $html = '';
+                $html.= '<table>';
+                for($i=0;$i<sizeof($subsidiaries);$i++)
+                {
+                    $j = $i;
+                    $j++;
+                    $html.= '<tr>';
+                    $html.= '<td>'.$j.'</td>';
+                    $html.= '<td>'.$subsidiaries[$i]['subsidiaryname'].'</td>';
+                    $html.= '</tr>';
+                }
+                $html.= '</table>';
+                //print_r($html);exit;
+                if($html)
+                {
+                    $data  = array('logged' => true, 'data' => $html);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data  = array('logged' => true, 'data' => ''); 
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed to this area');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
    
 }
