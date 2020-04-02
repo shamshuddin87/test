@@ -820,8 +820,8 @@
                </div>
 
                 <div class="col-md-6">
-                  <label>DP ID/Client ID*</label>
-                  <input type="text" placeholder="DP ID/Client ID " id="mfrclientid" onkeypress="return isAlphaNumeric(event);" maxlength="16">
+                  <label>Demat Account No*</label>
+                  <input type="text" placeholder="Demat Account No" id="mfrclientid" onkeypress="return isAlphaNumeric(event);" maxlength="16">
                   
                </div>
 
