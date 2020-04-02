@@ -32,6 +32,7 @@ class LoginController extends ControllerBase
 
             $getdata = $this->logincommon->setvidmsession($vidm_loggedemail);
             //echo"<pre>";print_r($getdata);exit;
+            $resetlogin = $this->logincommon->updatetlogin($vidm_loggedemail);
 
             if($getdata['logged']==true)
             {
