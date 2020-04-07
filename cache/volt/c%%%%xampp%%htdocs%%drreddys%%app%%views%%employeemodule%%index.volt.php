@@ -968,8 +968,8 @@
                </div>
 
                 <div class="col-md-6">
-                  <label>DP ID/Client ID*</label>
-                  <input type="text" placeholder="DP ID/Client ID " id="mfrclientidup" onkeypress="return isAlphaNumeric(event,this.value); "maxlength="16" pattern="[A-Za-z0-9]{16}">
+                  <label>Demat Account No*</label>
+                  <input type="text" placeholder="Demat Account No" id="mfrclientidup" onkeypress="return isAlphaNumeric(event,this.value); "maxlength="16" pattern="[A-Za-z0-9]{16}">
                   
                </div>
 
