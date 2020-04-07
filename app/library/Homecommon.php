@@ -392,7 +392,7 @@ class Homecommon extends Component
     {
         $connection = $this->db;
         $getlist = '';
-        $queryget = "UPDATE `web_register_user` SET firstlogin = 1 where user_id = '".$getuserid."' ";
+        $queryget = "UPDATE `web_register_user` SET firstlogin = '1' where user_id = '".$getuserid."' ";
 
         $exeget = $connection->query($queryget);
         $getnum = trim($exeget->numRows());
