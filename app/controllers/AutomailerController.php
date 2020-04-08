@@ -278,9 +278,9 @@ class AutomailerController extends ControllerBase
 
         
         /* ------------------------ Start ------------------------ */
-        /*$sendremindfrprsnlinfo = $this->remindrofprsnlinfo();*/
-        /*$sendremindfrhldngstmnt = $this->remindrofhldngstmnt();*/
-        /*$sendremindfrtradewindow = $this->remindroftradewindow();*/
+        //$sendremindfrprsnlinfo = $this->remindrofprsnlinfo();
+        //$sendremindfrhldngstmnt = $this->remindrofhldngstmnt();
+        //$sendremindfrtradewindow = $this->remindroftradewindow();
         /* ------------------------ End ------------------------ */
         
         exit;

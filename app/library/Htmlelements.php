@@ -2558,18 +2558,11 @@ public function mailofpersonalinfo($data)
 
        <tr>
             <td style="padding:20px 0 20px 0px; background: #f8f8f8;width:50%;" align="center">
-               <a href="https://www.volody.com/" target="_blank" style="border:0; outline:0;">  
-                <img src="https://www.volody.com/mainadmin/img/emailer/logo.png" border="0"/>
-               </a>
+               
             </td>
 
             <td align="center" style="background: #f8f8f8;width:50%;">
-                <a href="https://www.facebook.com/VolodySoftware/" style="text-decoration: none; padding-right: 15px;">
-                  <img src="https://www.volody.com/companysecretary/gstemailer/images/facebook.png" alt="" />
-                </a>
-                <a href="https://www.youtube.com/channel/UCV8kLW489Q-iw16n_nxAmAg" style="text-decoration: none;">
-                  <img src="https://www.volody.com/companysecretary/gstemailer/images/youtube.png" alt="" />
-                </a>
+                
             </td>
        </tr>
 
@@ -2663,17 +2656,11 @@ public function mailofpersonalinfo($data)
             <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
               <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
                 <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Institute:</span>
-                <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['eduqulfcn'].'</span>
-              </div>
-            </div>
-
-            <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
-              <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
-                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Password :</span>
                 <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['institute'].'</span>
               </div>
             </div>
 
+            
             <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
               <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;display:flex">
                 <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px;font-weight:600">Address:</span>
@@ -2717,13 +2704,13 @@ public function mailofpersonalinfo($data)
 
               <tr>
                   <td align="center" style="width:340px">
-                  <img src="'.$baseurl.'/mainadminhtml/img/emailer/phone.png" style="display:block; border:0"/>
+                  
                   <p style="margin:5px 0 0; color:#333; font-family:\'Roboto\',Arial,Helvetica,sans-serif; font-size:15px;">+91 8080809301</p>
                   </td>
 
 
                   <td align="center" style="width:340px">
-                    <img src="'.$baseurl.'/mainadminhtml/img/emailer/gmailicon.png" style="display:block; border:0"/>
+                    
                     <p style="margin:5px 0 0; font-family:\'Roboto\',Arial,Helvetica,sans-serif; font-size:15px;"><a href="mailto:care@pretr.com" style="color:#333; text-decoration:none; border:0; outline:0;"> connect@volody.in</a></p>
                   </td>
               </tr>
@@ -2734,7 +2721,7 @@ public function mailofpersonalinfo($data)
 
       <tr>
            <td align="center" colspan="2" style="max-width:100%; line-height:25px; background: #333;">
-           <p style="margin:0px; padding:8px 0 8px 0;  color:#fff; font-size:12px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">© 2019-20 Volody Products Pvt Ltd. - volody.com </p>
+           <p style="margin:0px; padding:8px 0 8px 0;  color:#fff; font-size:12px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">2020-21 Volody Products Pvt Ltd. - volody.com </p>
             </td>
       </tr>
 
