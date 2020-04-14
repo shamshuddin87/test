@@ -1,4 +1,4 @@
-<?php $gmnlog = $this->session->loginauthspuserfront;
+    <?php $gmnlog = $this->session->loginauthspuserfront;
 
     //print_r($selfdemat);exit;
 
@@ -218,7 +218,7 @@
                 </select>
             </div>
 
-              <div class="form-group">
+            <div class="form-group">
                 <label for="">Place</label>
                  <input type="text" class="form-control " id="place" name="place" placeholder="Place" >
                
