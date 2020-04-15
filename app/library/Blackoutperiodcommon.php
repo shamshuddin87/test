@@ -86,8 +86,8 @@ class Blackoutperiodcommon extends Component
         try
         {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryselect = "SELECT bcmp.*,cmp.companyname FROM `blackoutperiod_cmp` bcmp
-                            LEFT JOIN `companylist` cmp ON cmp.id = bcmp.companyid
+            $queryselect = "SELECT bcmp.*,cmp.`companyname` FROM `blackoutperiod_cmp` bcmp
+                            LEFT JOIN `companylist` cmp ON cmp.`id` = bcmp.`companyid`
                             WHERE bcmp.`user_id` IN (".$grpusrs['ulstring'].")";
             //echo $queryselect;exit;
             $exeget = $connection->query($queryselect);

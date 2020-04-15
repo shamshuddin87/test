@@ -3098,20 +3098,20 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
      <tr>';
       $html.='<td style="border: 1px solid #000; " width="40%">';$html.="Provide, details, of any transaction done in Company's Security in the last Six months (Except exercise of stock options)</td>";
       $html.='<td style="border: 1px solid #000;padding: 0;" width="60%">
-      <table style="width:100%;" width="100%">
+      <table style="width:100%;border: 2px solid #fff;" width="100%">
        <tr>
-        <th style="background: none;color: #000;width:30%; min-width=30%;" width="30%">Date</th>
-        <th style="background: none;color: #000;width:17pt; min-width=35%;" width="35%">Transaction</th>
-        <th style="background: none;color: #000;width:35%; min-width=35%;" width="35%">No. of shares</th>
+        <th style="border: 1px solid;padding: 5px;background: none;color: #000;width:30%; min-width=30%;" width="30%">Date</th>
+        <th style="border: 1px solid;padding: 5px;background: none;color: #000;width:17pt; min-width=35%;" width="35%">Transaction</th>
+        <th style="border: 1px solid;padding: 5px;background: none;color: #000;width:35%; min-width=35%;" width="35%">No. of shares</th>
         </tr>';
         if(count($datetrans) != 0)
         {
         for($i= 0 ;$i<count($datetrans);$i++)
         { 
           $html.= '<tr>
-          <td width="30%">'.$datetrans[$i].'</td>
-          <td width="35%">'. $transaction[$i].'</td>
-          <td width="35%">'.$sharestrans[$i].'</td>
+          <td style="border: 1px solid;padding: 5px;" width="30%">'.$datetrans[$i].'</td>
+          <td style="border: 1px solid;padding: 5px;" width="35%">'. $transaction[$i].'</td>
+          <td style="border: 1px solid;padding: 5px;" width="35%">'.$sharestrans[$i].'</td>
           </tr>';
          }}
       $html.= '</table>

@@ -15,10 +15,13 @@ class HomeController extends ControllerBase
     {     
         $uid = $this->session->loginauthspuserfront['id'];
         $gmnlog = $this->session->loginauthspuserfront;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
         
         $this->view->login = $this->homecommon->fetchfirstlogin($uid);
         $checkupsi  = $this->homecommon->upsiholding($uid);
-        //print_r($checkupsi);exit;
+        $grpusrs = $this->insidercommon->getGroupUsers($uid,$user_group_id);
+        $getres = $this->blackoutperiodcommon->fetchblackoutperiod($uid,$user_group_id);
+        //print_r($getres);exit;
         $date=date('d-m-Y');
 
         if(!empty($checkupsi))
@@ -45,6 +48,8 @@ class HomeController extends ControllerBase
            
         }
         }
+
+       
        
 
         $this->view->upsiresult = $upsiresult;
