@@ -32,6 +32,35 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row boxes -->
+
+                    <div class="row">
+                        <div class="col-xs-6"></div>
+                        <div class="col-xs-6">
+                            <div class="announcementdiv">
+                                <h4>Announcement</h4>
+                                <ul>
+                                    <li>
+                                        <div class="announcementli">
+                                            <a href="">
+                                               <h6>Trading Window Closure</h6>
+                                               <p>No New Window Closure..!!</p>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="announcementli">
+                                            <a href="">
+                                               <h6>Trading Window Closure</h6>
+                                               <p>No New Window Closure..!!</p>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="row">
 <!--
                         <div class="col-lg-3 col-md-6" id="restcomplist">
