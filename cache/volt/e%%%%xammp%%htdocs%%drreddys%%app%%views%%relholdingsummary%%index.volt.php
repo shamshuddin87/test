@@ -15,7 +15,7 @@ $condeptsess = $this->session->contractdepartment;
 <div class="mainelementfom">
      
 
-    <h1 class="h1_heading text-center">Holding Summary</h1>
+    <h1 class="h1_heading text-center">Relatives Holding Summary</h1>
     <div class="containergrid">       
         <div class="formcss">                           
             <div class="typography form_pad">
@@ -27,7 +27,6 @@ $condeptsess = $this->session->contractdepartment;
     <div class="bg_white">
    <div class="table-responsive table_wraper">
     <div class="cssnumrws form-inline">
-      
     <div class="opening">
                         <button class="btn openingblnc">Opening Balance</button>
                     </div>
@@ -41,24 +40,24 @@ $condeptsess = $this->session->contractdepartment;
         <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "" border="1">
             <thead>
                         <tr>
-                            <th width="20%" rowspan="2">Company</th>
-                            <th width="20%" colspan="2" style="text-align: center;">Opening Balance</th>
-                            <th width="20%" colspan="2" style="text-align: center;">Buy/Sell</th>
-                            <th width="10%" rowspan="2">Esop</th>
-                            <th width="20%" colspan="2" style="text-align: center;">Closing Balance</th>
-                            <th width="10%" rowspan="3">Action</th>
+                            <th rowspan="2">Relationship</th>
+                            <th colspan="2" style="text-align: center;">Opening Balance</th>
+                            <th colspan="2" style="text-align: center;">Buy/Sell</th>
+                           <!--  <th rowspan="2">Esop</th> -->
+                            <th colspan="2" style="text-align: center;">Closing Balance</th>
+                            <th rowspan="3">Action</th>
                         </tr>
                         <tr>
                             
-                            <th width="10%">Equity</th>
-                            <th width="10%">ADRs</th>
-                           <!--  <th>Debenture</th> -->
-                            <th width="10%">Equity</th>
-                            <th width="10%">ADRs</th>
-                            <!-- <th>Debenture</th> -->
-                            <th width="10%">Equity</th>
-                            <th width="10%">ADRs</th>
-                         <!--    <th>Debenture</th> -->
+                            <th>Equity</th>
+                            <th>ADRs</th>
+                          <!--   <th>Debenture</th> -->
+                            <th>Equity</th>
+                            <th>ADRs</th>
+                          <!--   <th>Debenture</th> -->
+                            <th>Equity</th>
+                            <th>ADRs</th>
+                          <!--   <th>Debenture</th> -->
                             
                         </tr>
              </thead>
@@ -118,54 +117,48 @@ $condeptsess = $this->session->contractdepartment;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title col-md-6">Add Opening Balance</h4>
+        <h4 class="modal-title">Add Relationship</h4>
       </div>
         <div class="modal-body">
-            <form action="holdingsummary/insertholdingsummry" autocomplete="off" id="insertholdingsummry" class="nishana" method="post" enctype="multipart/form-data">
+            <form action="relholdingsummary/insertholdingsummry" autocomplete="off" id="insertholdingsummry" class="nishana" method="post" enctype="multipart/form-data">
            
-                <input type="hidden" name="compid" class="compid" id="compid" value="">
-                
-                        <!-- <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                          <div class="mainelem company_product">
-                            <label class="control-label">Search Listed Company Name*</label>
-                            <div class="header-search-wrapper  floatnone find_box_company">
-                          <i class="fa fa-search"></i>
-                          <input type="text" name="getvalueofsearch" class="header-search-input z-depth-2 floatleft" placeholder="Select Name" id="search-box" autocomplete="off"/>
-                          <div id="live-search-header-wrapper" class="">
-                            <ul class="live-searchul"></ul>
-                          </div>
-                          <div class="clearelement"></div>
-                          <div class="mainelementch">
+                <input type="hidden" name="relid" class="relid" id="relid" value="">
+                  <section class="col col-md-6 col-xs-6">
+              <label class="control-label">Select Relationship</label>
+            <div class="input">
+                <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12 validatorsid"  
+                 onchange="GetSelectedTextValue(this)" required>
+                  <option value="1">HUF</option>
+                  <option value="2">Spouse</option>
+                  <option value="3">Father</option>
+                  <option value="4">Mother</option>
+                  <option value="5">Brother</option>
+                  <option value="6">Sister</option>
+                   <option value="7">Son</option>
+                  <option value="8">Daughter</option>
+                  <option value="9">Son's Wife</option>
+                  <option value="10">Daughter's Husband</option>
+                  <option value="11">Others</option>
+                </select>
+            </div>
+        </section>
+          
 
-                            <div class="clearelement"></div>
-                          </div>
-                        </div>
-                        <div class="header-search-wrapper hide-on-med-and-down services_search find_box_company" style="display: none;">
-                          <i class="fa fa-search"></i>
-                          <input type="text" name="getvalueofsearch" class="header-search-input1 z-depth-2 floatleft" placeholder="Explore Resolutions" id="search-box1"/>
-                          <div class="clearelement"></div>
-                          <div id="live-search-header-wrapper1" class=""><ul class="live-searchul1"></ul></div>
-                        </div>
-                       </div>
-                            </div>
-                    </section> -->
-
-                     <!--  <section class="col col-md-6 col-xs-6">
+                      <section class="col col-md-6 col-xs-6">
                             <div class="input">
-                                <label class="control-label">Name Of Listed Company*</label>
+                                <label class="control-label">Name Of Relationship*</label>
                                 <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" readonly required>
                             </div>
-                        </section> -->
+                        </section>
                 
-                        <section class="col col-md-12 col-xs-12">
+                        <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">No. Of Shares</label>
                                 <input type="text" id="noofshares" name="noofshares" class="form_fields form-control col-md-7 col-xs-12" required>
                             </div>
                         </section>
                 
-                       <section class="col col-md-12 col-xs-12">
+                       <section class="col col-md-6 col-xs-6">
                         <div class="input">
                             <label class="control-label">Type Of Security</label>
                             <select id="sectype" name="sectype" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -202,7 +195,7 @@ $condeptsess = $this->session->contractdepartment;
         <h4 class="modal-title">Modify Content</h4>
       </div>
         <div class="modal-body">
-            <form action="holdingsummary/updateholdingsummry" autocomplete="off" id="updateholdingsummry" class="nishana" method="post" enctype="multipart/form-data">
+            <form action="relholdingsummary/updateholdingsummry" autocomplete="off" id="updateholdingsummry" class="nishana" method="post" enctype="multipart/form-data">
            
                 <input type="hidden" name="tempid" class="tempid" id="tempid" value="">
                        
@@ -219,8 +212,8 @@ $condeptsess = $this->session->contractdepartment;
                         <input type="text" id="prefernc" name="prefernc" class="form_fields form-control col-md-7 col-xs-12" required>
                     </div>
                 </section>
-              <!--   
-                <section class="col col-md-6 col-xs-6">
+                
+              <!--   <section class="col col-md-6 col-xs-6">
                     <div class="input">
                         <label class="control-label">Debentures Opening Balance</label>
                         <input type="text" id="debenture" name="debenture" class="form_fields form-control col-md-7 col-xs-12" required>
