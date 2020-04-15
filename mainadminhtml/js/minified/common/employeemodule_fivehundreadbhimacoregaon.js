@@ -378,7 +378,20 @@ else
 {website('.paginationmn').html(response.pgnhtml);}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
 {}});}
-function deleteemp(id){var delid=id;var formdata={id:delid}
+website("body").on("click","#pastupdate",function(e){var nooffield=website('.empnm').length;var myarr=[];for(var i=0;i<nooffield;i++)
+{var empname=website('#empname_'+i).val();var id=website('#empid_'+i).val();var designtn=website('#designtn_'+i).val();var strtdte=website('#strtdte_'+i).val();var enddte=website('#enddte_'+i).val();if(empname!=''&&designtn!=''&&strtdte!=''&&enddte!='')
+{var obj={empname:empname,designtn:designtn,strtdte:strtdte,enddte:enddte,empid:id};myarr.push(obj);}
+else
+{website('#alertcommon #allalertmsg').html('Please Check All The Input Fields');website('#alertcommon').modal('show');}}
+if(myarr.length>=1)
+{website.ajax({url:'employeemodule/updatepastemp',method:'POST',data:{myarr:myarr},contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(response.logged==true){new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});getpastempdata();}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{},error:function(jqXHR,textStatus,errorThrown)
+{}});}});function deleteemp(id){var delid=id;var formdata={id:delid}
 website.ajax({url:'employeemodule/deleteempdetail',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)

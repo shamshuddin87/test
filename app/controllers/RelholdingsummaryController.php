@@ -46,7 +46,7 @@ class RelholdingsummaryController extends ControllerBase
                 }
                 else
                 {
-                    $data = array("logged" => false,'message' => "This company exists in your holding list please edit your entry from list..!!");
+                    $data = array("logged" => false,'message' => "This relationship exists in your holding list please edit your entry from list..!!");
                     $this->response->setJsonContent($data);
                 }
                

@@ -72,7 +72,7 @@ function getmisnonexetrde()
                     htmlelements+='<tr>';
                     htmlelements+='<td width="10%">'+j+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
-                    htmlelements+='<td width="10%">'+response.data[i].company_name+'</td>';
+                    // htmlelements+='<td width="10%">'+response.data[i].company_name+'</td>';
                     // if(response.data[i].no_of_shares>=25000)
                     // {
                     //     htmlelements+='<td width="10%">'+response.data[i].ceoaprv_date+'</td>';

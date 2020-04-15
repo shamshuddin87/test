@@ -20,7 +20,7 @@ addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';if(r
 {addhtmlnxt+='<td width="20%">'+senddate+'</td>';}
 else
 {addhtmlnxt+='<td width="20%">'+date_added+'</td>';}
-addhtmlnxt+='<td width="15%">'+company+'</td>';addhtmlnxt+='<td width="15%">'+designation+'</td>';if(response.resdta[i].send_status==0)
+addhtmlnxt+='<td width="15%">'+designation+'</td>';if(response.resdta[i].send_status==0)
 {if(response.user_group_id=='7')
 {addhtmlnxt+='<td width="15%"><i class="fa fa-paper-plane"  id="sendforaprvformc" formcid="'+response.resdta[i].id+'" pdfurl ="'+draft+'"></i></td>';}}
 else

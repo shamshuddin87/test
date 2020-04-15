@@ -10,7 +10,7 @@ getmiscontratrd();function getmiscontratrd()
 {},success:function(response,textStatus,jqXHR)
 {var htmlelements='';if(response.logged==true)
 {for(var i=0;i<response.data.length;i++)
-{var j=i+1;htmlelements+='<tr>';htmlelements+='<td width="10%">'+j+'</td>';htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';htmlelements+='<td width="10%">'+response.data[i].company_name+'</td>';htmlelements+='<td width="10%">'+response.data[i].transaction+'</td>';htmlelements+='<td width="10%">'+response.data[i].date_of_transaction+'</td>';htmlelements+='<td width="10%">'+response.data[i].date_added+'</td>';htmlelements+='<td width="10%">'+response.data[i].no_of_share+'</td>';htmlelements+='<td width="10%">'+response.data[i].trading_date+'</td>';htmlelements+='</tr>';}}
+{var j=i+1;htmlelements+='<tr>';htmlelements+='<td width="10%">'+j+'</td>';htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';htmlelements+='<td width="10%">'+response.data[i].transaction+'</td>';htmlelements+='<td width="10%">'+response.data[i].date_of_transaction+'</td>';htmlelements+='<td width="10%">'+response.data[i].date_added+'</td>';htmlelements+='<td width="10%">'+response.data[i].no_of_share+'</td>';htmlelements+='<td width="10%">'+response.data[i].trading_date+'</td>';htmlelements+='</tr>';}}
 else
 {htmlelements+='<tr>';htmlelements+='<td colspan="8" style="text-align: center;">Data Not Found..!!</td></tr>';}
 website('.accdetails8').html(htmlelements);website('#acc8').html(response.pgnhtml);},complete:function(response)

@@ -83,7 +83,7 @@ function getmisconfrmtrde()
                     htmlelements+='<tr>';
                     htmlelements+='<td width="10%">'+j+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
-                    htmlelements+='<td width="10%">'+response.data[i].company_name+'</td>';
+                    // htmlelements+='<td width="10%">'+response.data[i].company_name+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].preclrtrade+'</td>';
                     if(response.data[i].approved_date!=null)
                     {

@@ -119,7 +119,7 @@ function subuserapproval()
                         /*addhtmlnxt += '<td>'+j+'</td>';*/
                         addhtmlnxt += '<td>'+name+'</td>';
                         addhtmlnxt += '<td>'+sectype+'</td>';
-                        addhtmlnxt += '<td>'+name_of_company+'</td>';
+                        // addhtmlnxt += '<td>'+name_of_company+'</td>';
                         addhtmlnxt += '<td>'+type_of_transaction+'</td>';
                         addhtmlnxt += '<td>'+no_of_shares+'</td>';
                         addhtmlnxt += '<td>'+typeofrequest+'</td>';

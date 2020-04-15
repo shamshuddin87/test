@@ -571,7 +571,7 @@
                      </td>
                      <td>
                         <div class="input">
-                           <input type="text" class="form-control inputbox4" id="d2ques2" name="d2ques2[]" value="Partner" readonly="readonly">
+                           <input type="text" class="form-control inputbox4" id="d2ques2" name="d2ques2[]" value="" maxlength="30">
                         </div>
                      </td>
                      <td>
@@ -1004,7 +1004,7 @@
 
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d6ques3" name="d6ques3[]" value="Partner" readonly="readonly">
+               <input type="text" class="form-control inputbox4" id="d6ques3" name="d6ques3[]" value="" maxlength="30">
                </div>
                </td>
 

@@ -10,7 +10,7 @@ getmisnonexetrde();function getmisnonexetrde()
 {},success:function(response,textStatus,jqXHR)
 {var htmlelements='';if(response.logged==true)
 {for(var i=0;i<response.data.length;i++)
-{var j=i+1;var apprvdte=response.data[i].approved_date?response.data[i].approved_date:'';htmlelements+='<tr>';htmlelements+='<td width="10%">'+j+'</td>';htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';htmlelements+='<td width="10%">'+response.data[i].company_name+'</td>';htmlelements+='<td width="10%">'+response.data[i].no_of_shares+'</td>';htmlelements+='<td width="10%">'+response.data[i].date_added+'</td>';htmlelements+='</tr>';}}
+{var j=i+1;var apprvdte=response.data[i].approved_date?response.data[i].approved_date:'';htmlelements+='<tr>';htmlelements+='<td width="10%">'+j+'</td>';htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';htmlelements+='<td width="10%">'+response.data[i].no_of_shares+'</td>';htmlelements+='<td width="10%">'+response.data[i].date_added+'</td>';htmlelements+='</tr>';}}
 else
 {htmlelements+='<tr>';htmlelements+='<td colspan="8" style="text-align: center;">Data Not Found..!!</td></tr>';}
 website('.accdetails8').html(htmlelements);website('#acc8').html(response.pgnhtml);},complete:function(response)

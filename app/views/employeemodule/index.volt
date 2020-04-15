@@ -21,7 +21,7 @@
          </div>
          <div class="col-md-3 col-xs-12 register">
             <button class="btn relatives ">
-            Dependent Relatives  Details   
+            Relatives  Details   
             </button>
             <!-- <span class="tooltiptext_bg">The term “immediate relative” means spouse of a person, and includes parents, siblings, and child of such person or the spouse, any of whom is either dependent financially on such person, or consults such person in taking decisions relating to trading in securities.</span> -->
          </div>
@@ -448,7 +448,7 @@
             <h3 class="col col-xs-6" style="margin-top: 30px;">Insert Relative Details</h3>
             <!--tooltip div -->
             <div class="tooltip_div col col-xs-6" style="margin-top: 30px;">
-               <a href="javascript:void(0);" data="The term “immediate relative” means spouse of a person, and includes parents, siblings, and child of such person or the spouse, any of whom is either dependent financially on such person, or consults such person in taking decisions relating to trading in securities.!" class="tooltip_c">who is dependent relative <abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+               <a href="javascript:void(0);" data="The term “immediate relative” means spouse of a person, and includes parents, siblings, and child of such person or the spouse, any of whom is either dependent financially on such person, or consults such person in taking decisions relating to trading in securities.!" class="tooltip_c">who is relative <abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
             </div>
             <!--tooltip div end-->
             <div class="col col-xs-12">

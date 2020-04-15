@@ -262,7 +262,7 @@ function checktypeofreq($uid,$usergroup,$data)
             }
 }
 
-        public function createrequest($uid,$usergroup,$data,$send_status,$pdfpath)
+        public function createrequest($uid,$usergroup,$data,$send_status,$pdfpath,$idofcmp)
         { 
             $connection = $this->dbtrd;
             
@@ -315,7 +315,7 @@ function checktypeofreq($uid,$usergroup,$data)
                     `sendaprvl_date`,`approved_status`,`trading_date`,`sent_contraexeaprvl`,`ex_approve_status`,approxprice,broker,demat,place,dateoftransaction,trans,shares,
                     `date_added`,`date_modified`,`timeago`) VALUES('".$uid."','".$usergroup."',
                     '".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."',
-                    '".$data['sectype']."','".$data['idofcmp']."','".$data['noofshare']."',
+                    '".$data['sectype']."','".$idofcmp."','".$data['noofshare']."',
                     '".$data['typeoftrans']."','".$pdfpath."','".$data['approverid']."','".$send_status."',
                     NOW(),'".$autoapst."','".$tradingdate."','0','0','".$data['approxprice']."','".$data['broker']."','".$data['demataccount']."','".$data['place']."','".$data['datetrans']."','".$data['transaction']."','".$data['sharestrans']."',
                     NOW(),NOW(),'".$time."')";

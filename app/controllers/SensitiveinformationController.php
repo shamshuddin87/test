@@ -1318,12 +1318,14 @@ class SensitiveinformationController extends ControllerBase
                 $rspgs = ceil($rscnt/$noofrows);
                 $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
                 $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+
+                $getaccess =$this->adminmodulecommon->gatallaccessdetails($getuserid);
                 
-                 $getresult = $this->sensitiveinformationcommon->fetchupsiinfo($getuserid,$user_group_id,'',$rslmt);
+                $getresult = $this->sensitiveinformationcommon->fetchupsiinfo($getuserid,$user_group_id,'',$rslmt);
               
                 if($getresult)
                 {
-                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres,'user_group_id'=>$user_group_id,"pgnhtml"=>$pgnhtml);
+                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres,'user_group_id'=>$user_group_id,"pgnhtml"=>$pgnhtml,'access'=>$getaccess);
                     $this->response->setJsonContent($data);
                 }
                 else

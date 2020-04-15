@@ -34,7 +34,8 @@ class HoldingsummaryController extends ControllerBase
             {
                 $date=date('d-m-Y');
                 //print_r($this->request->getPost());exit;
-                $listedcomp   = $this->request->getPost('compid','trim');
+                $listedcomp   = "1";
+
                 $noofshares   = $this->request->getPost('noofshares','trim');
                 $sectype   = $this->request->getPost('sectype','trim');
                

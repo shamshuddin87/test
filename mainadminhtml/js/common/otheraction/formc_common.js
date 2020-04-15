@@ -87,7 +87,7 @@ function getdataonload()
             {
                 addhtmlnxt += '<td width="20%">'+date_added+'</td>';
             }
-            addhtmlnxt += '<td width="15%">'+company+'</td>';
+            // addhtmlnxt += '<td width="15%">'+company+'</td>';
             addhtmlnxt += '<td width="15%">'+designation+'</td>';
             if(response.resdta[i].send_status == 0)
             {

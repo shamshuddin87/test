@@ -782,7 +782,7 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
    {
           $uid = $this->session->loginauthspuserfront['id'];
            $transaction = strip_tags($emaildata['type_trnscn']);
-       //echo "<pre>";print_r($userids);exit;
+         //echo "<pre>";print_r($emaildata);exit;
             $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="htth3://www.w3.org/1999/xhtml">
 
@@ -3028,7 +3028,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
   <table style="  border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
    <tr>';
       $html.="<td>Dr. Reddy's Laboratories Limited</td>";
-      $html.='<td><img src="img/dr reddy logo BnW"></td>                        
+      $html.='                    
     </tr>
   </table>
 

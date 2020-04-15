@@ -10,7 +10,9 @@ website(document).ready(function()
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {var addhtmlnxt='';for(var i=0;i<response.resdta.length;i++)
-{var upsitype=response.resdta[i].upsitype?response.resdta[i].upsitype:'';var projstartdate=response.resdta[i].projstartdate?response.resdta[i].projstartdate:'';var enddate=response.resdta[i].enddate?response.resdta[i].enddate:'';var date_added=response.resdta[i].date_added?response.resdta[i].date_added:'';addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="25%">'+upsitype+'</td>';addhtmlnxt+='<td width="25%">'+projstartdate+'</td>';addhtmlnxt+='<td width="25%">'+enddate+'</td>';addhtmlnxt+='<td width="25%">'+date_added+'</td>';addhtmlnxt+='<td width="25%"><i class="fa fa-plus faicon setupsitype" title="View entry" upsitypeid="'+response.resdta[i].id+'" ></i></td>';addhtmlnxt+='</tr>';}
+{var upsitype=response.resdta[i].upsitype?response.resdta[i].upsitype:'';var projstartdate=response.resdta[i].projstartdate?response.resdta[i].projstartdate:'';var enddate=response.resdta[i].enddate?response.resdta[i].enddate:'';var date_added=response.resdta[i].date_added?response.resdta[i].date_added:'';addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="25%">'+upsitype+'</td>';addhtmlnxt+='<td width="25%">'+projstartdate+'</td>';addhtmlnxt+='<td width="25%">'+enddate+'</td>';addhtmlnxt+='<td width="25%">'+date_added+'</td>';if(response.access[0].upsi_infoshare_add==1)
+{addhtmlnxt+='<td width="25%"><i class="fa fa-plus faicon setupsitype" title="View entry" upsitypeid="'+response.resdta[i].id+'" disabled></i></td>';}
+addhtmlnxt+='</tr>';}
 website('.appendrow').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);}
 else
 {website('.appendrow').html('<tr><td style="text-align:center;" colspan="5">No Data Found..!!!</td></tr>');website('.paginationmn').html(response.pgnhtml);}},complete:function(response)

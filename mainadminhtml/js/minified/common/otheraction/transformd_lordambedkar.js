@@ -15,7 +15,7 @@ var transaction=response.resdta[i].transaction?response.resdta[i].transaction:''
 var no_of_share=response.resdta[i].no_of_share?response.resdta[i].no_of_share:''
 var total_amount=response.resdta[i].total_amount?response.resdta[i].total_amount:''
 var date_of_transaction=response.resdta[i].date_of_transaction?response.resdta[i].date_of_transaction:''
-addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="10%"><input type="checkbox" class="" id="" name="check" value="'+response.resdta[i].id+'" /></td>';addhtmlnxt+='<td width="20%">'+company_name+'</td>';addhtmlnxt+='<td width="20%">'+transaction+'</td>';addhtmlnxt+='<td width="20%">'+no_of_share+'</td>';addhtmlnxt+='<td width="20%">'+total_amount+'</td>';addhtmlnxt+='<td width="20%">'+date_of_transaction+'</td>';addhtmlnxt+='</tr>';ids.push(response.resdta[i].id);}
+addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="10%"><input type="checkbox" class="" id="" name="check" value="'+response.resdta[i].id+'" /></td>';addhtmlnxt+='<td width="20%">'+transaction+'</td>';addhtmlnxt+='<td width="20%">'+no_of_share+'</td>';addhtmlnxt+='<td width="20%">'+total_amount+'</td>';addhtmlnxt+='<td width="20%">'+date_of_transaction+'</td>';addhtmlnxt+='</tr>';ids.push(response.resdta[i].id);}
 var trdeid=ids.join(",");website('#formdsend').attr('trdeid',trdeid);website('.appendrow').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);}
 else
 {website('.appendrow').html('<tr><td colspan="9" style="text-align:center;">Data Not Found..!!</td></tr>');website('.paginationmn').html(response.pgnhtml);}},complete:function(response)

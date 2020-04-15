@@ -76,7 +76,7 @@ function getdataonload()
                 var date_of_transaction = response.resdta[i].date_of_transaction?response.resdta[i].date_of_transaction:''
                 addhtmlnxt += '<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';
                 addhtmlnxt += '<td width="10%"><input type="checkbox" class="" id="" name="check" value="'+response.resdta[i].id+'" /></td>';
-                addhtmlnxt += '<td width="20%">'+company_name+'</td>';
+                // addhtmlnxt += '<td width="20%">'+company_name+'</td>';
                 addhtmlnxt += '<td width="20%">'+transaction+'</td>';
                 addhtmlnxt += '<td width="20%">'+no_of_share+'</td>';
                 addhtmlnxt += '<td width="20%">'+total_amount+'</td>';

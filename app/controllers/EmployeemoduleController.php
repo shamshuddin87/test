@@ -1968,4 +1968,120 @@ class EmployeemoduleController extends ControllerBase
             exit('No direct script access allowed');
         }
     }
+
+
+       public function updatepastempAction()
+    {     
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $timeago = time();
+        if($this->request->isPost() == true)
+        {   
+            if($this->request->isAjax() == true)
+            {
+                $flag = 1;
+                $date=date('d-m-Y');
+                $data=$this->request->getPost();
+                for($i=0;$i<sizeof($data['myarr']);$i++)
+                { 
+                    // print_r($data['myarr']);exit;
+                    $id=$data['myarr'][$i]['empid'];
+                    $empname=$data['myarr'][$i]['empname'];
+                    $designtn=$data['myarr'][$i]['designtn'];
+                    $startdate=$data['myarr'][$i]['strtdte'];
+                    $enddate=$data['myarr'][$i]['enddte'];
+
+                    if(empty($startdate))
+                    {
+                        $data = array("logged" => false,'message' => 'Start Date should not empty!!');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(strtotime($startdate) > strtotime($date))
+                    {
+                        $data = array("logged" => false,'message' => 'Start date of Employment for past employer should be past date only');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(empty($enddate))
+                    {
+                        $data = array("logged" => false,'message' => 'End Date should not empty!!');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(strtotime($enddate) > strtotime($date))
+                    {
+                        $data = array("logged" => false,'message' => 'End date of Employment for past employer should be past date only');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(strtotime($startdate) > strtotime($enddate))
+                    {
+                        $data = array("logged" => false,'message' => 'End date of employment cannot be before start date of employment');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(strtotime($enddate) > strtotime($date))
+                    {
+                        $data = array("logged" => false,'message' => 'End Date should not in future!!');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(strtotime($startdate) > strtotime($enddate))
+                    {
+                        $data = array("logged" => false,'message' => 'Start Date should be Greater Than End Date!!');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(strtotime($startdate) == strtotime($enddate))
+                    {
+                        $data = array("logged" => false,'message' => 'Start Date And End Date Should Not Equals!!');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }              
+                    else
+                    {
+                        $startdate =  date("d-m-Y", strtotime($startdate));
+                        $enddate =  date("d-m-Y", strtotime($enddate));
+                        $getres = $this->employeemodulecommon->updatepastemp($getuserid,$user_group_id,$empname,$designtn,$startdate,$enddate,$id);
+                    }
+                }
+                if($flag == 1)
+                {
+                    //echo 'exit;';exit;
+                    if($getres)
+                    {
+                        $data = array("logged" => true,'message' => 'Record Updated','resdta' => $getres);
+                        $this->response->setJsonContent($data);
+                    }
+                    else
+                    {
+                        $data = array("logged" => false,'message' => "Record Not Updated..!!");
+                        $this->response->setJsonContent($data);
+                    } 
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }       
+    }
 }

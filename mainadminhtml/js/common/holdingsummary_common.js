@@ -61,7 +61,7 @@ website('body').on('click','.go_button', function(e)
             styling: 'bootstrap3',
             addclass: 'dark ',
           });
-         window.location.reload();
+            window.location.reload();
             getdataonload();
           //window.location.reload();
            
@@ -162,7 +162,7 @@ function getdataonload()
             addhtmlnxt += '<td width="25%">'+response.resdta[k].company_name+'</td>';
             addhtmlnxt += '<td width="25%">'+response.resdta[k].equityshare+'</td>'; //equity opening blnc
             addhtmlnxt += '<td width="25%">'+response.resdta[k].prefershare+'</td>'; //prefr opening blnc
-            addhtmlnxt += '<td width="25%">'+response.resdta[k].debntrshare+'</td>'; //debtr opening blnc 
+            // addhtmlnxt += '<td width="25%">'+response.resdta[k].debntrshare+'</td>'; //debtr opening blnc 
             
                 /*----- EQUITY -----*/
               if(response.equity[k]!='')
@@ -230,10 +230,10 @@ function getdataonload()
                 {
                     addhtmlnxt += '<td width="25%">'+totalpref+'</td>'; //prefr buy/sell
                 }
-                if(response.debenture.length!=0)
-                { 
-                    addhtmlnxt += '<td width="25%">'+totaldeb+'</td>'; //debtr buy/sell 
-                }
+                // if(response.debenture.length!=0)
+                // { 
+                //     addhtmlnxt += '<td width="25%">'+totaldeb+'</td>'; //debtr buy/sell 
+                // }
             
                 addhtmlnxt += '<td width="25%">'+response.resdta[k].esop+'</td>';
             
@@ -249,10 +249,10 @@ function getdataonload()
                 }
                 
                 
-                if(response.debenture.length!=0)
-                { 
-                    addhtmlnxt += '<td width="25%">'+closblncdeb+'</td>'; //debtr closing blnc
-                }
+                // if(response.debenture.length!=0)
+                // { 
+                //     addhtmlnxt += '<td width="25%">'+closblncdeb+'</td>'; //debtr closing blnc
+                // }
             
 
             addhtmlnxt+='<td><i class="fa fa-edit editopngblnc " editopngblncid="'+response.resdta[k].id+'"   style="font-size:20px;"></i></td>'

@@ -69,7 +69,7 @@
                         <tr>
                             <th><input type="checkbox" class="getallchkbox" name="getallchkbox" chkval="ALL" value="ALL">All</th>
                             <th>Type Of Security</th>
-                            <th>Name Of Company</th>
+                           <!--  <th>Name Of Company</th> -->
                             <th>Type Of Transaction</th>
                             <th>No Of Shares</th>
                             <th>Type Of Request</th>
@@ -123,7 +123,7 @@
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Please Create  Trading Request</h4>
+        <h4 class="modal-title">Please Create Request for Pre-Clearance</h4>
     </div>
     <div class="modal-body show_shadow">
         <form  action="" id="tradinform" method="post" autocomplete="off">
@@ -155,7 +155,7 @@
             <div class="form-group" id="selrel">
                 <label for="exampleFormControlSelect1">Select Relative</label>
                 <select id="selrelative" name="selrelative" class="form_fields form-control col-md-7 col-xs-12" >
-                    <option value="" id="sectyperel" >Select Relattive</option>
+                    <option value="" id="sectyperel" >Select Relative</option>
                     <?php foreach($relativeinfo as $rel){  ?>
                     <option value="<?php echo $rel['id']; ?>"><?php echo $rel['name']; ?></option>
                     <?php } ?>
@@ -172,11 +172,11 @@
                 </select>
             </div>
 
-            <div class="form-group">
+           <!--  <div class="form-group">
                 <label for="exampleFormControlInput1">Name Of Company</label>
                 <input type="hidden" class="form-control" id="idofcmp" name="idofcmp" value="1">
                 <input type="text" class="form-control" id="nameofcmp" name="nameofcmp" value="Dr Reddy's Laboratories Ltd" readonly>
-            </div>
+            </div> -->
 
             <div id="searchcmp"></div>
 
@@ -188,10 +188,11 @@
             <div class="form-group">
                 <label for="">Type Of Transaction</label>
                 <select class="form-control" id="typeoftrans" name="typeoftrans">
-                    <option value="1">BUY</option>
-                    <option value="2">SELL</option>
-                    <option value="3">BONUS</option>
-                    <option value="4">RIGHTS</option>
+                    <option value="1">Buy</option>
+                    <option value="2">Sell</option>
+                    <option value="3">Pledge creation</option>
+                    <option value="4">Pledge Revocation</option>
+                     <option value="5">Exercise of stock</option>
                 </select>
             </div>
 
@@ -231,7 +232,7 @@
                 <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>
                 <div id = "left" class="form-group col-md-4" style="margin-left: -9px;">
                 <label for="">Date</label>
-                <input type="text" class="form-control bootdatepick" id="dateoftrans[]" name="dateoftrans[]" placeholder="Date" >
+                <input type="text" class="form-control bootdatepick" id="dateoftrans[]" name="dateoftrans[]" placeholder="Date" readonly="readonly" >
                 </div>
                 <div id = "middle" class="form-group col-md-4">
                  <label for="">Transaction</label>
@@ -552,7 +553,8 @@
 
 
                 
-              <h4 style="text-align: center;">Please confirm that you do not hold any UPSI Information</h4>
+       <div id = "showform1">
+       </div>
                
             </div>
             <div class="modal-footer">

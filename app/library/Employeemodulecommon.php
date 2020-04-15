@@ -1019,6 +1019,26 @@ class Employeemodulecommon extends Component
     }
   }
 
+    public function updatepastemp($getuserid,$user_group_id,$empname,$designtn,$startdate,$enddate,$id)
+    {
+        $connection = $this->dbtrd;
+        $time = time();
+       
+         $queryupdate =  "UPDATE `pastemployer` SET `emp_name` = '".$empname."' , `emp_desigtn` = '".$designtn."' ,`enddate` = '".$enddate."',`startdate` = '".$startdate."' ,`date_added` = NOW() ,`date_modified` = NOW(),`timeago` = '".$time."' WHERE id = '".$id."' ";
+        
+       // print_r($queryupdate);exit;
+        try
+        {
+            $exeprev = $connection->query($queryupdate);
+            return true;
+        }
+        catch (Exception $e) 
+        {
+            //echo "checkng Exception";print_r($e);exit;
+            return false;
+        }
+    }
+
 
   }
 
