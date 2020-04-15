@@ -159,9 +159,9 @@ function getdataonload()
         for(var k = response.pagefrm; k <= response.len; k++) 
         {
             addhtmlnxt += '<tr class="counter" aprvllistid="'+response.resdta[k].id+'" >';
-            addhtmlnxt += '<td width="25%">'+response.resdta[k].company_name+'</td>';
-            addhtmlnxt += '<td width="25%">'+response.resdta[k].equityshare+'</td>'; //equity opening blnc
-            addhtmlnxt += '<td width="25%">'+response.resdta[k].prefershare+'</td>'; //prefr opening blnc
+            addhtmlnxt += '<td width="20%">'+response.resdta[k].company_name+'</td>';
+            addhtmlnxt += '<td width="10%">'+response.resdta[k].equityshare+'</td>'; //equity opening blnc
+            addhtmlnxt += '<td width="10%">'+response.resdta[k].prefershare+'</td>'; //prefr opening blnc
             // addhtmlnxt += '<td width="25%">'+response.resdta[k].debntrshare+'</td>'; //debtr opening blnc 
             
                 /*----- EQUITY -----*/
@@ -224,28 +224,28 @@ function getdataonload()
                 if(response.equity.length!=0)
                 { 
                     
-                    addhtmlnxt += '<td width="25%">'+totaleq+'</td>'; //equity buy/sell 
+                    addhtmlnxt += '<td width="10%">'+totaleq+'</td>'; //equity buy/sell 
                 }
                 if(response.prefer.length!=0)
                 {
-                    addhtmlnxt += '<td width="25%">'+totalpref+'</td>'; //prefr buy/sell
+                    addhtmlnxt += '<td width="10%">'+totalpref+'</td>'; //prefr buy/sell
                 }
                 // if(response.debenture.length!=0)
                 // { 
                 //     addhtmlnxt += '<td width="25%">'+totaldeb+'</td>'; //debtr buy/sell 
                 // }
             
-                addhtmlnxt += '<td width="25%">'+response.resdta[k].esop+'</td>';
+                addhtmlnxt += '<td width="10%">'+response.resdta[k].esop+'</td>';
             
                 if(response.equity.length!=0)
                 { 
                     var esop= Number(closblnceq+Number(response.resdta[k].esop));
-                    addhtmlnxt += '<td width="25%">'+esop+'</td>'; //equity closing blnc
+                    addhtmlnxt += '<td width="10%">'+esop+'</td>'; //equity closing blnc
                 }
                 
                 if(response.prefer.length!=0)
                 {
-                    addhtmlnxt += '<td width="25%">'+closblncpref+'</td>'; //prefr closing blnc
+                    addhtmlnxt += '<td width="10%">'+closblncpref+'</td>'; //prefr closing blnc
                 }
                 
                 
@@ -255,7 +255,7 @@ function getdataonload()
                 // }
             
 
-            addhtmlnxt+='<td><i class="fa fa-edit editopngblnc " editopngblncid="'+response.resdta[k].id+'"   style="font-size:20px;"></i></td>'
+            addhtmlnxt+='<td width="10%"><i class="fa fa-edit editopngblnc " editopngblncid="'+response.resdta[k].id+'"   style="font-size:20px;"></i></td>'
             addhtmlnxt += '</tr>';
            
             
