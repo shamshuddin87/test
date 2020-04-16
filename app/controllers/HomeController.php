@@ -19,9 +19,8 @@ class HomeController extends ControllerBase
         
         $this->view->login = $this->homecommon->fetchfirstlogin($uid);
         $checkupsi  = $this->homecommon->upsiholding($uid);
-        $grpusrs = $this->insidercommon->getGroupUsers($uid,$user_group_id);
-        $getres = $this->blackoutperiodcommon->fetchblackoutperiod($uid,$user_group_id);
-        //print_r($getres);exit;
+        $this->view->tradingwindw = $this->homecommon->gettradingwindw($uid,$user_group_id);
+        //print_r($tradingwindw);exit;
         $date=date('d-m-Y');
 
         if(!empty($checkupsi))
@@ -49,7 +48,7 @@ class HomeController extends ControllerBase
         }
         }
 
-       
+
        
 
         $this->view->upsiresult = $upsiresult;
