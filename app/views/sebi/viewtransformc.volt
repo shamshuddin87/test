@@ -318,35 +318,35 @@ $condeptsess = $this->session->contractdepartment;
                      <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">Name</label>
-                                <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $name;?>" readonly required>
+                                <input type="text" id="name" name="name" class="form_fields form-control " value="<?php echo $name;?>" readonly required>
                             </div>
                     </section>
                         
                     <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">PAN</label>
-                                <input type="text" id="pan" name="pan" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $pan;?>" readonly required>
+                                <input type="text" id="pan" name="pan" class="form_fields form-control " value="<?php echo $pan;?>" readonly required>
                             </div>
                     </section>
                         
                     <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">Address</label>
-                                <input type="text" id="address" name="address" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $address;?>" readonly required>
+                                <input type="text" id="address" name="address" class="form_fields form-control " value="<?php echo $address;?>" readonly required>
                             </div>
                     </section>
                         
                     <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">Contact No.</label>
-                                <input type="text" id="cntctno" name="cntctno" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $cntctno;?>" readonly required>
+                                <input type="text" id="cntctno" name="cntctno" class="form_fields form-control " value="<?php echo $cntctno;?>" readonly required>
                             </div>
                     </section>
                         
                     <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">CIN/DIN</label>
-                                <input type="text" id="cin" name="cin" class="form_fields form-control col-md-7 col-xs-12" value="" readonly required>
+                                <input type="text" id="cin" name="cin" class="form_fields form-control " value="" readonly required>
                             </div>
                     </section>
                
@@ -366,7 +366,7 @@ $condeptsess = $this->session->contractdepartment;
                              <section class="col col-md-6 col-xs-6">
                          <div class="input">
                             <label class="control-label">Type Of Contract</label>
-                            <select id="contracttype" name="contracttype" class="form_fields form-control col-md-7 col-xs-12">
+                            <select id="contracttype" name="contracttype" class="form_fields form-control ">
                                     <option value="">Select Contract</option>
                                     <option value="1">Futures</option>
                                     <option value="2">Options</option>
@@ -384,11 +384,11 @@ $condeptsess = $this->session->contractdepartment;
                         </section>
                
                        
-                        <section class="col col-md-12 col-xs-12">
+                        <section class="">
                             <div class="input">
-                            <label class="control-label heading">Date of allotment advice/acquisition of shares/sale of shares specify</label>
+                            <label class="control-label heading" style="margin: 10px;">Date of allotment advice/acquisition of shares/sale of shares specify</label>
                            
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-6" >
                             <div class="input">
                             <label class="control-label">From</label>
                              <input type="text" id="fromdate" name="fromdate" class="form-control bootdatepick" readonly required>
@@ -425,16 +425,16 @@ $condeptsess = $this->session->contractdepartment;
                     </section> -->
                
                     <section class="col col-md-6 col-xs-6">
-                            <div class="input">
+                            <div class="input ">
                                 <label class="control-label">Date of intimation to company</label>
                                 <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control bootdatepick" readonly required>
                             </div>
                     </section> 
                
-                 <section class="col col-md-6 col-xs-6">
+                 <section class="col col-md-6 col-xs-6" >
                          <div class="input">
                             <label class="control-label">Mode of acquisition</label>
-                            <select id="acquimode" name="acquimode" class="form_fields form-control col-md-7 col-xs-12" required>
+                            <select id="acquimode" name="acquimode" class="form_fields form-control " required>
                                     <option value="">Select Mode</option>
                                     <?php foreach($modeacqui as $shwmode){  ?>
                                     <option value="<?php echo $shwmode['id']; ?>"><?php echo $shwmode['acquisitionmode']; ?></option>
@@ -443,35 +443,35 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                     </section>
                
-                     <section class="col col-md-12 col-xs-12">
+                     <section class="">
                             <div class="input">
-                            <label class="control-label heading">Trading in derivatives (Specify type of contract, Futures or Options etc)</label>
+                            <label class="control-label heading" style="margin: 10px;">Trading in derivatives (Specify type of contract, Futures or Options etc)</label>
                            
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-6" >
                             <div class="input">
                             <label class="control-label">Buy Value</label>
-                             <input type="text" id="buyvalue" name="buyvalue" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
+                             <input type="text" id="buyvalue" name="buyvalue" class="form_fields form-control " onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                         </section>
                                 
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
-                                <label class="control-label">Buy Number of units(contracts* lot size)</label>
-                                <input type="text" id="buynumbrunt" name="buynumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
+                                <label class="control-label">Buy No of units(contracts* lot size)</label>
+                                <input type="text" id="buynumbrunt" name="buynumbrunt" class="form_fields form-control " onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                        </section>
                                 
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-6" >
                             <div class="input">
                             <label class="control-label">Sell Value</label>
-                             <input type="text" id="sellvalue" name="sellvalue" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
+                             <input type="text" id="sellvalue" name="sellvalue" class="form_fields form-control " onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                         </section>
                
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
-                                <label class="control-label">Sell Number of units(contracts* lot size)</label>
-                                <input type="text" id="sellnumbrunt" name="sellnumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
+                                <label class="control-label">Sell No of units(contracts* lot size)</label>
+                                <input type="text" id="sellnumbrunt" name="sellnumbrunt" class="form_fields form-control " onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                        </section>
                          </div>
@@ -481,7 +481,7 @@ $condeptsess = $this->session->contractdepartment;
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">Exchange on which the trade was executed</label>
-                                <input type="text" id="exetrd" name="exetrd" class="form_fields form-control col-md-7 col-xs-12">
+                                <input type="text" id="exetrd" name="exetrd" class="form_fields form-control ">
                             </div>
                        </section>
                         
