@@ -42,9 +42,15 @@ $condeptsess = $this->session->contractdepartment;
         </select> 
         <span>Entries</span>
     </div>
+      <div class="excelanddownloadbtn">
+            <button type="button" class="btn btn-primary genfile excel_bg">Export Excel</button>
+            <a class="btn btn-primary exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
+      </div>
                 <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>
+
+                            <th></th>
                             <th>Created Date</th>
                             <th>Name</th>
                             <th>PAN</th>

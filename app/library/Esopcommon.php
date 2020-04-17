@@ -25,7 +25,7 @@ class Esopcommon extends Component
         {
              return false;
         }
-  }
+    }
     
     public function fetchesop($getuserid,$user_group_id,$query)
     {
@@ -97,7 +97,7 @@ class Esopcommon extends Component
         $getcmpid = array(); 
         $getpanuserid = array(); 
         $noofshares = array(); 
-        $updateesop =  "UPDATE `esop` SET `finalsave`=1,`date_modified`=NOW(),`timeago`='".$time."' WHERE `uniqueid`='".$uniqueid."' ";
+        $updateesop =  "UPDATE `esop` SET `finalsave`='1',`date_modified`=NOW(),`timeago`='".$time."' WHERE `uniqueid`='".$uniqueid."' ";
         //echo $updateesop;exit;
         try
         {
@@ -185,6 +185,66 @@ class Esopcommon extends Component
         {
             return false;
         }
+    }
+
+
+    public function getcount($getuserid,$user_group_id,$uniqueid)
+    {
+        $connection = $this->dbtrd;
+        $time = time();
+        $getcmpid = array(); 
+        $getpanuserid = array(); 
+        $noofshares = array(); 
+        
+        //echo $updateesop;exit;
+        try
+        {
+           
+                $selectesop = "SELECT * FROM `esop` WHERE `uniqueid` = '".$uniqueid."'";
+                $exeesop = $connection->query($selectesop);
+                $getesopnum = trim($exeesop->numRows());
+                if($getesopnum>0)
+                {
+                    while($rowesop = $exeesop->fetch())
+                    {
+                        $rowcmp[] = $rowesop['cmp_name'];
+                        $rowpan[] = $rowesop['emp_pan'];
+                    }
+                    $cmp = implode("','", $rowcmp);
+                    $pan = implode("','", $rowpan);
+
+                       
+                $queryselectpan = " SELECT * FROM `personal_info` WHERE `pan` IN('$pan') ";
+
+                
+                $exegetpan = $connection->query($queryselectpan);
+                $getnumpan = trim($exegetpan->numRows());
+                 
+                if($getnumpan>0)
+                {
+                   
+                    while($rowpan = $exegetpan->fetch())
+                {
+                    $getpanuserid[] = $rowpan['userid'];
+                    $count =  $getnumpan;
+                }
+                         
+                }
+                       
+                    $getlist = $count;
+                }
+            
+            else
+            {
+                $getlist = array();
+            }
+            
+        }
+        catch (Exception $e) 
+        {
+            $getlist = array();
+        }
+        return $getlist;
     }
 }
 

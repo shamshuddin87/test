@@ -75,7 +75,7 @@ function getdataonload()
                 addhtmlnxt += '<td width="20%">'+response.resdta[i].emp_pan+'</td>';
                 addhtmlnxt += '<td width="20%">'+response.resdta[i].emp_shares+'</td>';
                 addhtmlnxt += '<td width="20%">'+allotment+'</td>';
-                addhtmlnxt += '<td width="20%">'+response.resdta[i].cmp_name+'</td>';
+                // addhtmlnxt += '<td width="20%">'+response.resdta[i].cmp_name+'</td>';
                 addhtmlnxt += '</tr>';
                 if(response.resdta[i].finalsave == 1)
                 {

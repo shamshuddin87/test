@@ -118,6 +118,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                     $esopdata = array('empname'=>$emp_name,'emppan'=>$emp_pan,'empshares'=>$emp_shares,'almtdte'=>$emp_almtdate);
                   
                     $getstatus = $this->esopcommon->insertesop($getuserid,$user_group_id,$esopdata,$uniqueid);
+                    
                 }
                 
             }
@@ -472,6 +473,78 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                             '2' => $tblrow['email'],
                             '3'=> $annualyr,
                             '4' => $sentdate,
+                        );
+            $j++;
+        }
+        //echo '<pre>';print_r($nwexcl);exit;
+       
+        $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+        
+        $objPHPExcel->setActiveSheetIndex(0);
+        $worksheet = $objPHPExcel->getActiveSheet();
+        $highestColumn = $worksheet->getHighestColumn();
+        $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
+        $highestRow = $worksheet->getHighestRow();
+        $worksheet = $objPHPExcel->getActiveSheet();
+               //echo "yo";exit;  
+            //echo '<pre>';print_r($nwexcl);exit;
+            if(count($nwexcl)>0)
+            {
+                $row = 2; // 1-based index
+
+                foreach($nwexcl as $rowdata)
+                {
+                    $col = 0;
+                    foreach($rowdata as $key=>$value) 
+                    {
+                        //echo $col." ".$row." ".$value.'<br>';
+                        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+                        $col++;
+                    }                    
+                    $row++;
+                }
+
+                $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+                //echo '<pre>';print_r($newfilepath);exit;
+                $objWriter->save($newfilepath);
+                //echo $newfilepath;exit;
+
+                $genfile = $newfilepath;
+            }
+            else
+            {
+                $genfile = '';
+            }
+
+        //echo '<pre>';print_r($genfile);exit;
+        return $genfile;
+    }
+    
+     public function exportformc($getuserid,$user_group_id,$processdata)
+    {
+        //echo '<pre>'; print_r($processdata);exit;
+        $connection = $this->db;
+        $time = time();
+        
+        $excelfilenamepath = 'samplefile/SEBI/formc.xlsx';
+        $newfilepath = 'img/sebi/formc'.'_'.$time.'.xlsx';
+        $j=1;
+        foreach($processdata as $tblrow)
+        {
+            $date = $tblrow['date_added'];
+            $ndate = explode(" ",$date);
+
+            $newdate = explode("-",$ndate[0]);
+            $finaldate = $newdate[2].'-'.$newdate[1].'-'.$newdate[0];
+            
+            $nwexcl[] = array('0' => $j,
+                            '1' => $finaldate,
+                            '2' => $tblrow['fullname'],
+                            '3' => $tblrow['pan'],
+                            '4' => $tblrow['cin'],
+                            '5' => $tblrow['address'],
+                            '6' => $tblrow['mobile'],
+                            '7' => $tblrow['category']
                         );
             $j++;
         }

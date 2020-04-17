@@ -1312,7 +1312,7 @@ function checktypeofreq($uid,$usergroup,$data)
             $getlist = array();
             $queryget = "SELECT * FROM `upsimaster` 
                 WHERE (STR_TO_DATE('".$todate."','%d-%m-%Y') BETWEEN STR_TO_DATE(`projstartdate`,'%d-%m-%Y') AND STR_TO_DATE(`enddate`,'%d-%m-%Y')
-                OR (STR_TO_DATE(`projstartdate`,'%d-%m-%Y') < STR_TO_DATE('".$todate."','%d-%m-%Y')   AND (`enddate` IS NULL OR `enddate`=''))) AND (FIND_IN_SET('".$uid."',`projectowner`) OR FIND_IN_SET('".$uid."',`connecteddps`)) ";
+                OR (STR_TO_DATE(`projstartdate`,'%d-%m-%Y') <=   STR_TO_DATE('".$todate."','%d-%m-%Y')   AND (`enddate` IS NULL OR `enddate`=''))) AND (FIND_IN_SET('".$uid."',`projectowner`) OR FIND_IN_SET('".$uid."',`connecteddps`)) ";
                 //echo $queryget;exit;
             try{
                     $exeget = $connection->query($queryget);

@@ -38,7 +38,7 @@ $condeptsess = $this->session->contractdepartment;
                             <th>Employee PAN</th>
                             <th>No. of Shares</th>
                             <th>Date of Allotment</th>
-                            <th>Company Name</th>
+                           <!--  <th>Company Name</th> -->
                         </tr>
                     </thead>
                     <tbody class="appendviewesop">

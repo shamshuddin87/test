@@ -1565,5 +1565,48 @@ Class Email extends Phalcon\Mvc\User\Component {
     }
 
 
+    /******** send RTA EMAIL start ********/
+    public function sendmailRTA($email,$name)
+    {
+        $subject = 'RTA Reconcilation';
+        $to =$email;
+        //echo $to;exit;
+        $gethtml = $this->htmlelements->sendmailRTA($name);
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        //add cc
+        //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+        //Set who the message is to be sent to
+        $mail->addAddress($to, 'Volody');
+        $mail->Subject = $subject;
+        $mail->msgHTML($gethtml);
+        // $mail->addAttachment(''.$summdoc.'');
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+           
+           return true;
+        }
+        else {
+        echo $mail->ErrorInfo; exit;
+          return false;
+        }
+
+        return $get;
+    }
+    /******** send RTA EMAIL end ********/
+
+
     
 }

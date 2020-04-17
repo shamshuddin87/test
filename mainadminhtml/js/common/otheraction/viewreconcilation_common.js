@@ -68,8 +68,12 @@ function getdataonload()
             if(response.logged === true)
             { 
                 var addhtmlnxt='';
+                var email = new Array();
+                var name = new Array();
+                
                 for(var i = 0; i < response.resdta['data'].length; i++) 
                 {
+
                     var pan=response.resdta['data'][i].panno?response.resdta['data'][i].panno:''; 
                     var username=response.resdta['username'][i]?response.resdta['username'][i]:'';
                     var relativename=response.resdta['data'][i].relativename?response.resdta['data'][i].relativename:'';
@@ -78,9 +82,16 @@ function getdataonload()
                     var holding=response.resdta['data'][i].holding?response.resdta['data'][i].holding:'';
                     var diffrnc = Number(holding) - Number(response.equity[i]);
 
+
                     //------------------------- Table Fields Insertion START ------------------------
                     if(diffrnc != 0)
-                    {
+                    { 
+                        
+                        email.push(response.resdta['data'][i].email); 
+                        name.push(username); 
+                        website("#sendmail").modal('show');
+                        website("#emailid").val(email);
+                         website("#name").val(name);
                         addhtmlnxt += '<tr class="counter" reconciid="'+response.resdta['data'][i].id+'" style="background-color:#f5aaaa;">';
                     }
                     else
@@ -123,9 +134,13 @@ function getdataonload()
                         addhtmlnxt += '</tr>';
                     }
                 }
+
                 
                 website('.appendviewreconciltn').html(addhtmlnxt);
                 website('#datableabhi').DataTable();
+                
+
+               
                 //website('.paginationmn').html(response.pgnhtml);             
             }
             else
@@ -143,6 +158,62 @@ function getdataonload()
 website('body').on('click','.showerror', function(e) 
 {
     website('#myModalerrormssage').modal('show'); 
+});
+// Email Send if difference is there in RTA Reconcilation
+
+
+
+
+website(".yesmail").click(function()
+{
+let email = website("#emailid").val();
+let name = website("#name").val();
+formdata={email:email,name:name};
+ website.ajax({
+        url:'reconcilation/sendRTAmail',
+        data:formdata,
+        method:'POST',
+        //contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, /*Cross domain checking*/
+        beforeSend: function()
+        {   },
+        uploadProgress: function(event, position, total, percentComplete)
+        {   },
+        success: function(response, textStatus, jqXHR)
+        {
+            if(response.logged == true)
+            {
+                new PNotify({title: 'Alert',
+               text: "Mail Sent Successfully..!!!",
+                type: 'university',
+               hide: true,
+              styling: 'bootstrap3',
+               addclass: 'dark ',
+          });
+            }
+            else
+            {
+                new PNotify({title: 'Alert',
+               text: "Mail Sent Successfully..!!!",
+               type: 'university',
+               hide: true,
+               styling: 'bootstrap3',
+               addclass: 'dark ',
+               });
+
+            }
+            
+        },
+        complete: function(response)
+        {  website('.preloder_wraper').fadeOut(); },
+        error: function(jqXHR, textStatus, errorThrown)
+        {   }
+    });
+
 });
 
 

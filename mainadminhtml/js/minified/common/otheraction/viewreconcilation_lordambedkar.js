@@ -10,9 +10,9 @@ website.ajax({url:'reconcilation/fetchreconcilationforview',data:formdata,method
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{var addhtmlnxt='';for(var i=0;i<response.resdta['data'].length;i++)
+{var addhtmlnxt='';var email=new Array();var name=new Array();for(var i=0;i<response.resdta['data'].length;i++)
 {var pan=response.resdta['data'][i].panno?response.resdta['data'][i].panno:'';var username=response.resdta['username'][i]?response.resdta['username'][i]:'';var relativename=response.resdta['data'][i].relativename?response.resdta['data'][i].relativename:'';var relationship=response.resdta['data'][i].relationship?response.resdta['data'][i].relationship:'';var script=response.resdta['data'][i].script?response.resdta['data'][i].script:'';var holding=response.resdta['data'][i].holding?response.resdta['data'][i].holding:'';var diffrnc=Number(holding)-Number(response.equity[i]);if(diffrnc!=0)
-{addhtmlnxt+='<tr class="counter" reconciid="'+response.resdta['data'][i].id+'" style="background-color:#f5aaaa;">';}
+{email.push(response.resdta['data'][i].email);name.push(username);website("#sendmail").modal('show');website("#emailid").val(email);website("#name").val(name);addhtmlnxt+='<tr class="counter" reconciid="'+response.resdta['data'][i].id+'" style="background-color:#f5aaaa;">';}
 else
 {addhtmlnxt+='<tr class="counter" reconciid="'+response.resdta['data'][i].id+'">';}
 addhtmlnxt+='<td width="15%">'+pan+'</td>';addhtmlnxt+='<td width="10%">'+username+'</td>';addhtmlnxt+='<td width="15%">'+relativename+'</td>';addhtmlnxt+='<td width="10%">'+relationship+'</td>';addhtmlnxt+='<td width="15%">'+script+'</td>';addhtmlnxt+='<td width="15%">'+holding+'</td>';addhtmlnxt+='<td width="15%">'+response.equity[i]+'</td>';addhtmlnxt+='<td width="30%">'+diffrnc+'</td>';addhtmlnxt+='</tr>';}
@@ -25,4 +25,13 @@ else
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
 {}});}
 website('body').on('click','.showerror',function(e)
-{website('#myModalerrormssage').modal('show');});;
+{website('#myModalerrormssage').modal('show');});website(".yesmail").click(function()
+{let email=website("#emailid").val();let name=website("#name").val();formdata={email:email,name:name};website.ajax({url:'reconcilation/sendRTAmail',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(response.logged==true)
+{new PNotify({title:'Alert',text:"Mail Sent Successfully..!!!",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+else
+{new PNotify({title:'Alert',text:"Mail Sent Successfully..!!!",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
+{}});});;

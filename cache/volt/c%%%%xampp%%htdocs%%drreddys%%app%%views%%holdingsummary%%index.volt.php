@@ -41,23 +41,23 @@ $condeptsess = $this->session->contractdepartment;
         <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "" border="1">
             <thead>
                         <tr>
-                            <th rowspan="2">Company</th>
-                            <th colspan="2" style="text-align: center;">Opening Balance</th>
-                            <th colspan="2" style="text-align: center;">Buy/Sell</th>
-                            <th rowspan="2">Esop</th>
-                            <th colspan="2" style="text-align: center;">Closing Balance</th>
-                            <th rowspan="3">Action</th>
+                            <th width="20%" rowspan="2">Company</th>
+                            <th width="20%" colspan="2" style="text-align: center;">Opening Balance</th>
+                            <th width="20%" colspan="2" style="text-align: center;">Buy/Sell</th>
+                            <th width="10%" rowspan="2">Esop</th>
+                            <th width="20%" colspan="2" style="text-align: center;">Closing Balance</th>
+                            <th width="10%" rowspan="3">Action</th>
                         </tr>
                         <tr>
                             
-                            <th>Equity</th>
-                            <th>ADRs</th>
+                            <th width="10%">Equity</th>
+                            <th width="10%">ADRs</th>
                            <!--  <th>Debenture</th> -->
-                            <th>Equity</th>
-                            <th>ADRs</th>
+                            <th width="10%">Equity</th>
+                            <th width="10%">ADRs</th>
                             <!-- <th>Debenture</th> -->
-                            <th>Equity</th>
-                            <th>ADRs</th>
+                            <th width="10%">Equity</th>
+                            <th width="10%">ADRs</th>
                          <!--    <th>Debenture</th> -->
                             
                         </tr>

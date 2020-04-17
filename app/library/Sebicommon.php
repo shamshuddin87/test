@@ -1002,6 +1002,97 @@ class Sebicommon extends Component
             return $getlist;
     }
     // ********* fetch form c data on view of apprvr table end *******
+
+
+
+      // ********* fetch form c data for export table start *******
+    public function fetchformcdataforexport($uid,$usergroup,$rowid)
+    {
+        $connection = $this->dbtrd;
+       
+       
+
+        if(!empty($rowid))
+        {
+
+             if($usergroup!=2)
+            {
+
+                $queryget = "SELECT formc.*,memb.`designation`,memb.`fullname`,memb.`mobile`,pinfo.`address`,pinfo.`pan`,cate.`category` 
+                FROM `sebiformc_usrdata` formc LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id` 
+                LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id` 
+                LEFT JOIN `sebiformb_category` cate ON cate.`id` = formc.`category`
+                WHERE (formc.`send_status`='1') AND FIND_IN_SET('".$uid."',formc.`approverid`) AND formc.`id` IN(".$rowid.")";
+                
+            }
+            else
+            {
+               
+                $allusers=$this->tradingrequestcommon->getalluserformain($uid);
+                $allusers= implode(",",$allusers);
+
+                $queryget = "SELECT formc.*,memb.`designation`,memb.`fullname`,memb.`mobile`,pinfo.`address`,pinfo.`pan`,cate.`category` 
+                FROM `sebiformc_usrdata` formc LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id` 
+                LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id` 
+                LEFT JOIN `sebiformb_category` cate ON cate.`id` = formc.`category`
+                WHERE (formc.`send_status`='1') AND formc.`user_id` IN(".$allusers.") AND formc.`id` IN(".$rowid.")";
+            }
+        }
+        else
+        {
+
+              if($usergroup!=2)
+            {
+                $queryget = "SELECT formc.*,memb.`designation`,memb.`fullname`,memb.`mobile`,pinfo.`address`,pinfo.`pan`,cate.`category` 
+                FROM `sebiformc_usrdata` formc LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id` 
+                LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id` 
+                LEFT JOIN `sebiformb_category` cate ON cate.`id` = formc.`category`
+                WHERE (formc.`send_status`='1') AND FIND_IN_SET('".$uid."',formc.`approverid`)";
+            }
+            else
+            {
+                  
+                $allusers=$this->tradingrequestcommon->getalluserformain($uid);
+                $allusers= implode(",",$allusers);
+
+                $queryget = "SELECT formc.*,memb.`designation`,memb.`fullname`,memb.`mobile`,pinfo.`address`,pinfo.`pan`,cate.`category` 
+                FROM `sebiformc_usrdata` formc LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id` 
+                LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id` 
+                LEFT JOIN `sebiformb_category` cate ON cate.`id` = formc.`category`
+                WHERE (formc.`send_status`='1') AND formc.`user_id` IN(".$allusers.")";
+            }
+
+           
+
+              
+        }
+
+            try
+            {
+                $exeget = $connection->query($queryget);
+                $getnum = trim($exeget->numRows());
+
+                if($getnum>0)
+                {
+                    while($row = $exeget->fetch())
+                    {
+                        $getlist[] = $row;
+                    } 
+                }
+                else
+                {
+                    $getlist = array();
+                }
+
+            }
+            catch (Exception $e)
+            {
+                $getlist = array();
+            }
+            return $getlist;
+    }
+    // ********* fetch form c data for export table end *******
+
     
     public function insertpdfpathformc($pdfpath,$formcid)
     {

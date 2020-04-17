@@ -1667,4 +1667,66 @@ class SebiController extends ControllerBase
     /*------ get form d transaction data end -----*/
     
      /*--------------------------- form d section end ---------------------------*/
+
+    
+    /*--------------------------- Export formc ---------------------------*/
+
+    public function exportformcAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $noofrows=$this->request->getPost('noofrows');
+                $pagenum=$this->request->getPost('pagenum');
+                $id=$this->request->getPost('id');
+                //print_r($id);exit;
+                if($id)
+                {
+                    $rowid = implode(",", $id);
+                }
+                else
+                {
+                    $rowid = '';
+                }
+               // print_r($rowid);exit;
+
+                
+                
+               
+                $getres = $this->sebicommon->fetchformcdataforexport($getuserid,$user_group_id,$rowid);
+                
+                //print_r($getres);exit;
+                $genfile = $this->phpimportexpogen->exportformc($getuserid,$user_group_id,$getres);
+                
+                if(file_exists($genfile))
+                {
+                    $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "File Not Generated..!!");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
 }

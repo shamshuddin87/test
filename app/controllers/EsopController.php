@@ -54,11 +54,16 @@ class EsopController extends ControllerBase
                 //echo $uploadedornot; exit;
                 
                 $uniqueid = md5(microtime().rand());
+                
+
                 $getresponse = $this->phpimportexpogen->insertesop($getuserid,$user_group_id,$large_impfile_location,$uniqueid);
+
+                $employeecount = $this->esopcommon->getcount($getuserid,$user_group_id,$uniqueid);
+                //print_r($employeecount);exit;
                 
                 if($getresponse)
                 {
-                    $data = array("logged" => true,'message' => 'Record Added Successful !!','data'=>$getresponse);
+                    $data = array("logged" => true,'message' => 'Record Added Successful !!','data'=>$getresponse,'empcount' =>$employeecount);
                     $this->response->setJsonContent($data);
                 }
                 else

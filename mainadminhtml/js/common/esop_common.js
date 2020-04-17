@@ -28,6 +28,8 @@ website('#insertesop').ajaxForm
       {  website('.preloder_wraper').fadeIn(); },
       success: function(response, textStatus, jqXHR)
       {
+       
+        console.log(response.empcount);
         if(response.logged===true)
         {  
           new PNotify({title: 'Record Added Successfully',
@@ -37,7 +39,10 @@ website('#insertesop').ajaxForm
             styling: 'bootstrap3',
             addclass: 'dark ',
           });
-          setTimeout(function() { window.location.reload(); }, 2000);
+
+          website("#empcount").html(response.empcount);
+          website("#esopmodal").modal("show");
+          //setTimeout(function() { window.location.reload(); }, 2000);
         }
         else
         {

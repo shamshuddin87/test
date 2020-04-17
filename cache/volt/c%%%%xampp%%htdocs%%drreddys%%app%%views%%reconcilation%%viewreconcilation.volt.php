@@ -171,6 +171,30 @@ $condeptsess = $this->session->contractdepartment;
     </div>
 </div>
 
+<div id="sendmail" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+               
+            </div>
+            <div class="modal-body show_shadow">
+                <div class="text-center modal_heading">
+                    <div class="clearelement"></div>
+                    <input type="hidden" id = "emailid" value = "">
+                     <input type="hidden" id = "name" value = "">
+                    Are You Sure You Want To Send this Email?
+                </div>
+            </div>
+          
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary mar_0 yesmail" tempid="">Yes</button>
+                <button type="button" class="btn btn-default btn-default-one" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
