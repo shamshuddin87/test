@@ -13,7 +13,7 @@ website.ajax({url:'esop/fetchesopforview',data:formdata,method:'POST',contentTyp
 {var addhtmlnxt='';for(var i=0;i<response.resdta.length;i++)
 {var allotment=response.resdta[i].altmntdate?response.resdta[i].altmntdate:'';addhtmlnxt+='<tr class="counter" esopid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="20%">'+response.resdta[i].emp_name+'</td>';addhtmlnxt+='<td width="20%">'+response.resdta[i].emp_pan+'</td>';addhtmlnxt+='<td width="20%">'+response.resdta[i].emp_shares+'</td>';addhtmlnxt+='<td width="20%">'+allotment+'</td>';addhtmlnxt+='</tr>';if(response.resdta[i].finalsave==1)
 {website('.savefinal').hide();}}
-website('.appendviewesop').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);}
+website('.appendviewesop').html(addhtmlnxt);website("#empcount").html(response.empcount);website('.paginationmn').html(response.pgnhtml);}
 else
 {website('.paginationmn').html(response.pgnhtml);}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)

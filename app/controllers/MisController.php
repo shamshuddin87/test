@@ -1240,7 +1240,9 @@ class MisController extends ControllerBase
             {
                 $request=$this->request->getPost('request');
                 $getres = $this->miscommon->fetchallupsitypes($getuserid,$user_group_id,'');
-                //print_r($getres);exit;
+               // $getinfo = $this->annualdeclarationcommon->fetchpersonlinfo($getuserid,$user_group_id,'');
+                
+                
                 if($request=="pdf")
                 {
                    $gethtml=$this->miscommon->allupsihtml($getres);

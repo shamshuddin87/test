@@ -123,21 +123,3 @@ $condeptsess = $this->session->contractdepartment;
 
 
 
-<div id="esopmodal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" onclick = 'window.location.reload();' data-dismiss="modal">&times;</button>
-                   
-               
-            </div>
-            <div class="modal-body show_shadow">
-
-              <h4 style="text-align: center;">Total No of Employees Added in Esop is <span id = "empcount"></span></h4>
-            </div>
-          
-            
-        </div>
-    </div>
-</div>
-

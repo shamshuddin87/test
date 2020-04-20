@@ -989,7 +989,7 @@ function checktypeofreq($uid,$usergroup,$data)
         {
             return false;
         }           
-    }
+}
     
         public function rejectreq($uid,$usergroup,$rejectid,$message)
         {
@@ -1014,6 +1014,39 @@ function checktypeofreq($uid,$usergroup,$data)
                 return false;
               }
        }
+
+
+    public function gettotlamnt($getuserid,$usergroup,$reqid)
+    {
+        $connection = $this->dbtrd;
+        try
+         {
+            
+            $queryget = "SELECT SUM(total_amount) AS totalamnt FROM trading_status  WHERE req_id='".$reqid."' AND user_id='".$getuserid."'  "; 
+            //print_r($queryget);exit;
+          
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist = $row['totalamnt'];
+                }
+                //echo '<pre>';print_r($getnumrow);exit;
+                
+            }else{
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        return $getlist;
+    }
 
         public function checktradestatus($uid,$usergroup,$reqid)
         {
@@ -1051,7 +1084,7 @@ function checktypeofreq($uid,$usergroup,$data)
              return $getlist;
        }
     
-        public function donetrade($uid,$usergroup,$reqid)
+        public function  donetrade($uid,$usergroup,$reqid)
         { 
                $connection = $this->dbtrd;
                $time = time();

@@ -58,12 +58,12 @@ class EsopController extends ControllerBase
 
                 $getresponse = $this->phpimportexpogen->insertesop($getuserid,$user_group_id,$large_impfile_location,$uniqueid);
 
-                $employeecount = $this->esopcommon->getcount($getuserid,$user_group_id,$uniqueid);
+               
                 //print_r($employeecount);exit;
                 
                 if($getresponse)
                 {
-                    $data = array("logged" => true,'message' => 'Record Added Successful !!','data'=>$getresponse,'empcount' =>$employeecount);
+                    $data = array("logged" => true,'message' => 'Record Added Successful !!','data'=>$getresponse);
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -105,6 +105,7 @@ class EsopController extends ControllerBase
                 $pagenum=$this->request->getPost('pagenum');
                 $mainquery = '';
                 $getres = $this->esopcommon->fetchesop($getuserid,$user_group_id,$mainquery);
+
                 
                 /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
@@ -163,6 +164,7 @@ class EsopController extends ControllerBase
                 $noofrows = $this->request->getPost('noofrows');
                 $pagenum = $this->request->getPost('pagenum');
                 $getres = $this->esopcommon->fetchesopforview($getuserid,$user_group_id,$uniqueid,$mainquery);
+                 $employeecount = $this->esopcommon->getcount($getuserid,$user_group_id,$uniqueid);
                 
                  /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
@@ -175,7 +177,7 @@ class EsopController extends ControllerBase
                 $getresult = $this->esopcommon->fetchesopforview($getuserid,$user_group_id,$uniqueid,$rslmt);
                 if($getresult)
                 {
-                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getresult,'user_group_id'=>$user_group_id,'user_id'=>$getuserid,"pgnhtml"=>$pgnhtml);
+                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getresult,'user_group_id'=>$user_group_id,'user_id'=>$getuserid,"pgnhtml"=>$pgnhtml,'empcount' =>$employeecount);
                     $this->response->setJsonContent($data);
                 }
                 else

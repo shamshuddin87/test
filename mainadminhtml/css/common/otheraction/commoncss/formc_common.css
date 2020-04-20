@@ -1,4 +1,4 @@
-.modal-content { width:auto; }
+.modal-content {  }
 .table_wraper {
     background: #fff;
     padding: 10px; box-shadow: 2px 5px 3px #ccc;
@@ -150,5 +150,8 @@ color:#bababa; border:1px solid #bababa; cursor: default;}
     background-color: #f2f2f2;
     width: auto !important;
     cursor: pointer;
+}
+td {
+    font-size: 13px !important;
 }
 

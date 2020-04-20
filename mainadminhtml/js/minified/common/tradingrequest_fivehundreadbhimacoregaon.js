@@ -229,11 +229,12 @@ website("body").on("click","#donetrade",function(e){var reqid=website('#filereqi
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
 {if(response.logged==true)
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website('#uploadmyfile').modal('hide');getalltradingrequest("");}
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website('#uploadmyfile').modal('hide');getalltradingrequest("");if(response.totalamt)
+{website("#fillformc").modal("show");}}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
-{}});});website("body").on("click","#nottrade",function(e){var reqid=website('#filereqid').val();website.ajax({url:'tradingrequest/notdonetrade',data:{reqid:reqid},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{}});});website("body").on("click","#goformc",function(e){var base_url=getbaseurl();window.location.href=base_url+'sebi/transformc';});website("body").on("click","#nottrade",function(e){var reqid=website('#filereqid').val();website.ajax({url:'tradingrequest/notdonetrade',data:{reqid:reqid},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged==true)

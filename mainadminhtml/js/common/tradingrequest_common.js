@@ -1447,6 +1447,10 @@ website(":checkbox[name='modalcheck']").change(function() {
                     }); 
                     website('#uploadmyfile').modal('hide');
                     getalltradingrequest("");
+                    if(response.totalamt)
+                    {
+                      website("#fillformc").modal("show");
+                    }
 
                 }
                 else
@@ -1470,6 +1474,15 @@ website(":checkbox[name='modalcheck']").change(function() {
         });
 
     });
+
+
+ website("body").on("click","#goformc",function(e){
+
+  var base_url = getbaseurl();
+  window.location.href = base_url+'sebi/transformc';
+  
+ });
+
 
 website("body").on("click","#nottrade",function(e){
 

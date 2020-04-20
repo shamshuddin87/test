@@ -43,7 +43,7 @@
                                    <?php if(isset($upsiresult) && count($upsiresult) != 0){?>
                                     <li>
                                         <div class="announcementli">
-                                            <a href="">
+                                            <a >
                                                <h6>Alert!</h6>
                                                <p>You hold UPSI and therefore you cannot trade in shares of Dr. Reddy's Laboratories Ltd until the UPSI ends/becomes public..!!</p>
 
@@ -54,7 +54,7 @@
                                     
                                     <li>
                                         <div class="announcementli">
-                                            <a href="">
+                                            <a>
                                                <h6>Trading Window Closure</h6>
                                                <?php if(!empty($tradingwindw)){ 
                                                foreach($tradingwindw as $ntnlval){ 

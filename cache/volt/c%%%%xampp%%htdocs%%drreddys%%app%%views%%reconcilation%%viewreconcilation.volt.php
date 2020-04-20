@@ -183,7 +183,8 @@ $condeptsess = $this->session->contractdepartment;
                     <div class="clearelement"></div>
                     <input type="hidden" id = "emailid" value = "">
                      <input type="hidden" id = "name" value = "">
-                    Are You Sure You Want To Send this Email?
+                      <input type="hidden" id = "diffrnc" value = "">
+                   Are you sure you want to send email notification to users?
                 </div>
             </div>
           

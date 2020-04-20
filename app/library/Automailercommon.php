@@ -467,6 +467,43 @@ class Automailercommon extends Component
         
         return $getlist; 
     }
+
+
+
+    /*---- Send Auto Mail to User For Annual Declaration -----*/
+    public function chkifanualdeclfryear($userid,$year)
+    {
+        $connection = $this->dbtrd;
+        try
+        {
+            $queryget = "SELECT * FROM `annual_initial_declaration` WHERE send_status = '1' AND annualyear = '".$year."' AND `user_id`= '".$userid."' "; 
+            //echo $queryget;  exit;
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;
+                }
+                //echo '<pre>';print_r($getlist);exit;                
+            }
+            else
+            {
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
+    /*---- Send Auto Mail to User For Annual Declaration -----*/
+    
     
     public function chkifprsnlinfo($userid)
     {

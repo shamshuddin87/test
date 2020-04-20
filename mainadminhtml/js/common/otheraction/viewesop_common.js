@@ -85,6 +85,7 @@ function getdataonload()
             }
               
               website('.appendviewesop').html(addhtmlnxt);
+              website("#empcount").html(response.empcount);
               website('.paginationmn').html(response.pgnhtml);
              
           }

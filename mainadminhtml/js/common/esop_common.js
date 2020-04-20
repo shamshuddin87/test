@@ -29,7 +29,7 @@ website('#insertesop').ajaxForm
       success: function(response, textStatus, jqXHR)
       {
        
-        console.log(response.empcount);
+       // console.log(response.empcount);
         if(response.logged===true)
         {  
           new PNotify({title: 'Record Added Successfully',
@@ -40,8 +40,8 @@ website('#insertesop').ajaxForm
             addclass: 'dark ',
           });
 
-          website("#empcount").html(response.empcount);
-          website("#esopmodal").modal("show");
+          
+          
           //setTimeout(function() { window.location.reload(); }, 2000);
         }
         else

@@ -1306,6 +1306,8 @@ class TradingrequestController extends ControllerBase
             {   
                 $reqid = $this->request->getPost('reqid','trim');
                 $response = $this->tradingrequestcommon->donetrade($uid,$usergroup,$reqid); 
+                $totalamt = $this->tradingrequestcommon->gettotlamnt($uid,$usergroup,$reqid); 
+                //print_r($totalamt);exit;
                 
                 if($response==true)
                 {
@@ -1313,7 +1315,7 @@ class TradingrequestController extends ControllerBase
 
                     $notific=$this->notificationcommon->insertnotification($reqid,"3");
                 
-                    $data = array("logged" => true,"message" =>"Record Updated Successfully");
+                    $data = array("logged" => true,"message" =>"Record Updated Successfully","totalamt" => $totalamt );
                     $this->response->setJsonContent($data);
                 }
                 else

@@ -34,7 +34,7 @@ class Annualdeclarationcommon extends Component
     $connection = $this->dbtrd;
     $myarr=array();
     $time = time();
-    $query="SELECT * FROM personal_info WHERE userid='".$uid."'";
+    $query="SELECT personal_info.`*`, it_memberlist.`email` FROM personal_info LEFT JOIN it_memberlist ON personal_info.`userid` = it_memberlist.`wr_id` WHERE userid='".$uid."'";
    
     
       try{

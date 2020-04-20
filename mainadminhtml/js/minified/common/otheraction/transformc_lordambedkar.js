@@ -9,22 +9,22 @@ website(document).ready(function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{var addhtmlnxt='';var ids=[];for(var i=0;i<response.resdta.length;i++)
+{var addhtmlnxt='';var ids=[];var place=[];for(var i=0;i<response.resdta.length;i++)
 {var company_name=response.resdta[i].company_name?response.resdta[i].company_name:''
 var transaction=response.resdta[i].transaction?response.resdta[i].transaction:''
 var no_of_share=response.resdta[i].no_of_share?response.resdta[i].no_of_share:''
 var total_amount=response.resdta[i].total_amount?response.resdta[i].total_amount:''
 var date_of_transaction=response.resdta[i].date_of_transaction?response.resdta[i].date_of_transaction:''
-addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="10%"><input type="checkbox" class="" id="" name="check" value="'+response.resdta[i].id+'" /></td>';addhtmlnxt+='<td width="20%">'+transaction+'</td>';addhtmlnxt+='<td width="20%">'+no_of_share+'</td>';addhtmlnxt+='<td width="20%">'+total_amount+'</td>';addhtmlnxt+='<td width="20%">'+date_of_transaction+'</td>';addhtmlnxt+='</tr>';ids.push(response.resdta[i].id);}
-var trdeid=ids.join(",");website('#formcsend').attr('trdeid',trdeid);website('.appendrow').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);}
+addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="10%"><input type="checkbox" class="" id="" name="check" value="'+response.resdta[i].id+'" /></td>';addhtmlnxt+='<td width="20%">'+transaction+'</td>';addhtmlnxt+='<td width="20%">'+no_of_share+'</td>';addhtmlnxt+='<td width="20%">'+total_amount+'</td>';addhtmlnxt+='<td width="20%">'+date_of_transaction+'</td>';addhtmlnxt+='</tr>';ids.push(response.resdta[i].id);place.push(response.resdta[i].place);}
+var trdeid=ids.join(",");var place=ids.join(",");website('#formcsend').attr('trdeid',trdeid);website('#formcsend').attr('place',place);website('.appendrow').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);}
 else
 {website('.appendrow').html('<tr><td colspan="9" style="text-align:center;">Data Not Found..!!</td></tr>');website('.paginationmn').html(response.pgnhtml);}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});}
-website('body').on('click','#formcsend',function(){var ids=[];website.each(website("input[name='check']:checked"),function(){ids.push(website(this).val());});var trdeid=website(this).attr('trdeid');var apprvid=website('.approverid').val();var cin=website('.cin').val();var category=website('.category').val();if(ids.length==0)
+website('body').on('click','#formcsend',function(){var ids=[];website.each(website("input[name='check']:checked"),function(){ids.push(website(this).val());});var trdeid=website(this).attr('trdeid');var place=website(this).attr('place');var apprvid=website('.approverid').val();var cin=website('.cin').val();var category=website('.category').val();if(ids.length==0)
 {new PNotify({title:'Alert!!',text:'Please Select Atleast One Record',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{var formdata={ids:ids,apprvid:apprvid,cin:cin,category:category,trdeid:trdeid};website.ajax({url:'sebi/insertformc',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{var formdata={ids:ids,apprvid:apprvid,cin:cin,category:category,trdeid:trdeid,place:place};website.ajax({url:'sebi/insertformc',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)

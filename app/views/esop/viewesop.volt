@@ -26,11 +26,22 @@ $condeptsess = $this->session->contractdepartment;
         </select> 
         <span>Entries</span>
     </div>
+
+        
           <div class="control-label btnsubmitme cntrol_tab_one col-md-12 col-xs-12">
-                <div class="floatright">
+           <div class="floatright">
                 <input type="submit" class="btn btn-primary savefinal" value="Save As Final" uniqueid ="<?php echo $esopuniqueid; ?>">
-                </div>
+             
+           </div>
+
+            <div class="floatright">
+            <p id="noofusers"><span style="float: left; line-height: 35px;color: #000;font-size: 17px;">Total No of Entries</span> <span id = "empcount" style="color:#bd0111;background: #d6d5d5;float: right;text-align: center;line-height: normal;padding: 3px 14px;margin: 0 10px;font-size: 25px"></span></p>
+             
+            </div>
+               
+
          </div>
+          
           <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>

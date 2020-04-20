@@ -1314,13 +1314,15 @@ class Miscommon extends Component
        try{
             if($user_group_id == 2 || $user_group_id == 14)
             {
-                   $query="SELECT *,ups.`date_added` as dtadd,ups.`id` as uppid FROM `upsimaster` ups  LEFT JOIN  `it_memberlist` it ON ups.`user_id`=it.`wr_id`  ".$rslmt;
+                   $query="SELECT *,ups.`date_added` AS dtadd,ups.`id` AS uppid FROM `upsimaster` ups  LEFT JOIN  `it_memberlist` it ON ups.`user_id`=it.`wr_id`  
+                      LEFT JOIN  `personal_info` pr  ON ups.`user_id`=pr.`userid` ".$rslmt;
             }
             else
             {
-               $query="SELECT *,ups.`date_added` as dtadd,ups.`id` as uppid FROM `upsimaster` ups  LEFT JOIN  `it_memberlist` it ON ups.`user_id`=it.`wr_id` WHERE  ups.`projectowner` IN(".$userid.") ".$rslmt;
+               $query="SELECT *,ups.`date_added` AS dtadd,ups.`id` AS uppid FROM `upsimaster` ups  LEFT JOIN  `it_memberlist` it ON ups.`user_id`=it.`wr_id`  
+                 LEFT JOIN  `personal_info` pr  ON ups.`user_id`=pr.`userid` WHERE  ups.`projectowner` IN(".$userid.") ".$rslmt;
             }
-             //print_r($query);exit;
+            // print_r($query);exit;
              $exeget = $connection->query($query);
              $getnum = trim($exeget->numRows());
              if($getnum>0)
@@ -1344,6 +1346,8 @@ class Miscommon extends Component
            // print_r(count($getlist));exit;
         return $getlist;
     }
+
+
     
     public function allupsihtml($data)
     {

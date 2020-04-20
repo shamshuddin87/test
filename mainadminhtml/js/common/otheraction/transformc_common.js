@@ -66,6 +66,7 @@ function getdataonload()
         {
             var addhtmlnxt='';
             var ids = [];
+            var place = [];
             for(var i = 0; i < response.resdta.length; i++) 
             {
     //            //------------------------- Table Fields Insertion START ------------------------
@@ -84,10 +85,13 @@ function getdataonload()
                 addhtmlnxt += '</tr>';  
                 //------------------------ Table Fields Insertion END ------------------------
                 ids.push(response.resdta[i].id);
+                place.push(response.resdta[i].place);
             }
             
             var trdeid = ids.join(",");
+            var place = ids.join(",");
             website('#formcsend').attr('trdeid',trdeid);
+             website('#formcsend').attr('place',place);
             website('.appendrow').html(addhtmlnxt);
             website('.paginationmn').html(response.pgnhtml);
       }
@@ -112,6 +116,7 @@ website('body').on('click','#formcsend', function(){
                 ids.push(website(this).val());
             });
     var trdeid = website(this).attr('trdeid');
+    var place = website(this).attr('place');
     var apprvid = website('.approverid').val();
     var cin = website('.cin').val();
     // alert(apprvid);return false;
@@ -128,7 +133,7 @@ website('body').on('click','#formcsend', function(){
     }
     else
     {
-            var formdata = {ids:ids,apprvid:apprvid,cin:cin,category:category,trdeid:trdeid};
+            var formdata = {ids:ids,apprvid:apprvid,cin:cin,category:category,trdeid:trdeid,place:place};
             website.ajax({
               url:'sebi/insertformc',
               data:formdata,

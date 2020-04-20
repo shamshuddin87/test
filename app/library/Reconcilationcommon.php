@@ -123,16 +123,172 @@ class Reconcilationcommon extends Component
         return $finaldata;
     }
     
+    
+    // public function fetchequityshare($getuserid,$user_group_id,$uniqueid,$dateofrecon)
+    // {
+    //     $connection = $this->dbtrd;
+    //     try
+    //     {
+
+    //         $queryselect = "SELECT re.*,pinfo.`userid` AS personid ,rinfo.`id` AS relativeid  FROM `reconcilation` re
+    //                          LEFT JOIN `personal_info` pinfo ON pinfo.`pan` = re.`panno` 
+    //                          LEFT JOIN `relative_info` rinfo ON rinfo.`pan` = re.`panno`
+    //                          WHERE re.`uniqueid` = '".$uniqueid."'";
+
+    //         //print_r($queryselect);exit;
+
+    //         $exeget = $connection->query($queryselect);
+    //         $getnum = trim($exeget->numRows());
+    //         if($getnum>0)
+    //             {
+
+    //                 while($row = $exeget->fetch())
+    //                 {
+
+    //                   $queryselectcmp = 'SELECT * FROM `listedcmpmodule` WHERE `company_name` = "'.$row['script'].'" ';
+    //                   $exegetcmp = $connection->query($queryselectcmp);
+    //                   $getnumcmp = trim($exegetcmp->numRows());
+    //                     //print_r($getnumcmp);exit;
+    //                     if($getnumcmp>0)
+    //                     {
+    //                       while($rowcmp = $exegetcmp->fetch())
+    //                       {
+    //                           if(empty($row['personid'])) //for relative
+    //                           {
+    //                               $shareofequity = 0;
+    //                               $querytrade = "SELECT * FROM `personal_request` WHERE `relative_id` = '".$row['relativeid']."' AND `id_of_company` = '".$rowcmp['id']."' AND `trading_status` = 1 AND `sectype` = 1 ";
+    //                               $exetrade = $connection->query($querytrade);
+    //                               $gettrade = trim($exetrade->numRows());
+    //                               if($gettrade>0)
+    //                               {
+    //                                   while($rowtrade = $exetrade->fetch())
+    //                                   {
+                                          
+    //                                       $querytradests = "SELECT * FROM `trading_status` WHERE `req_id` = '".$rowtrade['id']."' AND `date_of_transaction`<= '".$dateofrecon."'";
+    //                                       $exetradests = $connection->query($querytradests);
+    //                                       $gettradests = trim($exetradests->numRows());
+    //                                       if($gettradests>0)
+    //                                       {
+    //                                           while($rowtradests = $exetradests->fetch())
+    //                                           {
+    //                                             $shareofequity =  $shareofequity + $rowtradests['no_of_share'];
+                                                
+    //                                           }
+    //                                       }
+    //                                       else
+    //                                       {
+    //                                           $shareofequity = 0;
+    //                                       }
+    //                                   }
+    //                               }
+    //                               else
+    //                               {
+    //                                   $shareofequity = 0;
+    //                               }
+    //                               $queryclsblnc = "SELECT * FROM `opening_balance` WHERE `user_id` = '".$row['personid']."' AND `id_of_company` = '".$rowcmp['id']."'";
+    //                               $execlsblnc = $connection->query($queryclsblnc);
+    //                               $getclsblnc = trim($execlsblnc->numRows());
+    //                               if($getclsblnc > 0)
+    //                               {
+    //                                   while($rowclsblnc = $execlsblnc->fetch())
+    //                                   {
+    //                                      $shareofequity =  $shareofequity + $rowclsblnc['equityshare'];
+    //                                   }
+    //                               }
+    //                               else
+    //                               {
+                                      
+    //                               }
+    //                               $getlist[] = $shareofequity;
+    //                           }
+    //                           else  //for person
+    //                           {
+    //                               $shareofequity = 0;
+    //                               $querytrade = "SELECT * FROM `personal_request` WHERE `user_id` = '".$row['personid']."' AND `relative_id` = '' AND `id_of_company` = '".$rowcmp['id']."' AND `trading_status` = 1 AND `sectype` = 1 ";
+    //                               //echo $querytrade;
+    //                               $exetrade = $connection->query($querytrade);
+    //                               $gettrade = trim($exetrade->numRows());
+    //                               if($gettrade>0)
+    //                               {
+    //                                   while($rowtrade = $exetrade->fetch())
+    //                                   {
+                                          
+    //                                       $querytradests = "SELECT * FROM `trading_status` WHERE `req_id` = '".$rowtrade['id']."' AND `date_of_transaction`<= '".$dateofrecon."'";
+    //                                       $exetradests = $connection->query($querytradests);
+    //                                       $gettradests = trim($exetradests->numRows());
+    //                                       if($gettradests>0)
+    //                                       {
+    //                                           while($rowtradests = $exetradests->fetch())
+    //                                           {
+    //                                             $shareofequity =  $shareofequity + $rowtradests['no_of_share']; 
+                                                
+    //                                           }
+    //                                       }
+    //                                       else
+    //                                       {
+    //                                           $shareofequity = 0;
+    //                                       }
+    //                                   }
+                                      
+    //                               }
+    //                               else
+    //                               {
+    //                                   $shareofequity = 0;
+    //                               }
+    //                               $queryclsblnc = "SELECT * FROM `opening_balance` WHERE `user_id` = '".$row['personid']."' AND `id_of_company` = '".$rowcmp['id']."'";
+    //                               $execlsblnc = $connection->query($queryclsblnc);
+    //                               $getclsblnc = trim($execlsblnc->numRows());
+    //                               if($getclsblnc > 0)
+    //                               {
+    //                                   while($rowclsblnc = $execlsblnc->fetch())
+    //                                   {
+    //                                      $shareofequity =  $shareofequity + $rowclsblnc['equityshare'];
+    //                                   }
+    //                               }
+    //                               else
+    //                               {
+                                      
+    //                               }
+    //                               $getlist[] = $shareofequity;
+    //                           }
+                             
+    //                         }
+    //                       }
+    //                     else
+    //                     {
+    //                         $getlist = array();
+    //                     }
+                        
+    //                 }
+                  
+    //                 //echo '<pre>';print_r($getlist);exit;
+
+    //             }
+    //             else{
+    //                 $getlist = array();
+    //             }
+    //     }
+    //     catch (Exception $e)
+    //     {
+    //         $getlist = array();
+    //         //$connection->close();
+    //     }
+    //     return $getlist;
+    // }
+
     public function fetchequityshare($getuserid,$user_group_id,$uniqueid,$dateofrecon)
     {
         $connection = $this->dbtrd;
         try
         {
-            $queryselect = " SELECT re.*,pinfo.`userid` AS personid ,rinfo.`id` AS relativeid  FROM `reconcilation` re
+          
+            $queryselect = "SELECT re.*,pinfo.`userid` AS personid ,rinfo.`id` AS relativeid,rinfo.`relationship` AS relative  FROM `reconcilation` re
                              LEFT JOIN `personal_info` pinfo ON pinfo.`pan` = re.`panno` 
                              LEFT JOIN `relative_info` rinfo ON rinfo.`pan` = re.`panno`
                              WHERE re.`uniqueid` = '".$uniqueid."'";
-           
+
+            //print_r($queryselect);exit;
+
             $exeget = $connection->query($queryselect);
             $getnum = trim($exeget->numRows());
             if($getnum>0)
@@ -140,10 +296,11 @@ class Reconcilationcommon extends Component
 
                     while($row = $exeget->fetch())
                     {
+                      //print_r($row);exit;
 
-                        $queryselectcmp = 'SELECT * FROM `listedcmpmodule` WHERE `company_name` = "'.$row['script'].'" ';
-                        $exegetcmp = $connection->query($queryselectcmp);
-                        $getnumcmp = trim($exegetcmp->numRows());
+                      $queryselectcmp = 'SELECT * FROM `listedcmpmodule` WHERE `company_name` = "'.$row['script'].'" ';
+                      $exegetcmp = $connection->query($queryselectcmp);
+                      $getnumcmp = trim($exegetcmp->numRows());
                         //print_r($getnumcmp);exit;
                         if($getnumcmp>0)
                         {
@@ -152,55 +309,30 @@ class Reconcilationcommon extends Component
                               if(empty($row['personid'])) //for relative
                               {
                                   $shareofequity = 0;
-                                  $querytrade = "SELECT * FROM `personal_request` WHERE `relative_id` = '".$row['relativeid']."' AND `id_of_company` = '".$rowcmp['id']."' AND `trading_status` = 1 AND `sectype` = 1 ";
+                                  $querytrade = "SELECT * FROM `relative_info` WHERE `id` = '".$row['relativeid']."'";
+                                  //print_r($querytrade);exit;
                                   $exetrade = $connection->query($querytrade);
                                   $gettrade = trim($exetrade->numRows());
                                   if($gettrade>0)
                                   {
                                       while($rowtrade = $exetrade->fetch())
                                       {
-                                          
-                                          $querytradests = "SELECT * FROM `trading_status` WHERE `req_id` = '".$rowtrade['id']."' AND `date_of_transaction`<= '".$dateofrecon."'";
-                                          $exetradests = $connection->query($querytradests);
-                                          $gettradests = trim($exetradests->numRows());
-                                          if($gettradests>0)
-                                          {
-                                              while($rowtradests = $exetradests->fetch())
-                                              {
-                                                $shareofequity =  $shareofequity + $rowtradests['no_of_share'];
-                                                
-                                              }
-                                          }
-                                          else
-                                          {
-                                              $shareofequity = 0;
-                                          }
+                                        $shareofequity = $rowtrade['sharehldng'];
                                       }
                                   }
                                   else
                                   {
                                       $shareofequity = 0;
                                   }
-                                  $queryclsblnc = "SELECT * FROM `opening_balance` WHERE `user_id` = '".$row['personid']."' AND `id_of_company` = '".$rowcmp['id']."'";
-                                  $execlsblnc = $connection->query($queryclsblnc);
-                                  $getclsblnc = trim($execlsblnc->numRows());
-                                  if($getclsblnc > 0)
-                                  {
-                                      while($rowclsblnc = $execlsblnc->fetch())
-                                      {
-                                         $shareofequity =  $shareofequity + $rowclsblnc['equityshare'];
-                                      }
-                                  }
-                                  else
-                                  {
-                                      
-                                  }
+                                 
+                                    // print_r($shareofequity); exit;  
+                                         
                                   $getlist[] = $shareofequity;
                               }
                               else  //for person
                               {
                                   $shareofequity = 0;
-                                  $querytrade = "SELECT * FROM `personal_request` WHERE `user_id` = '".$row['personid']."' AND `relative_id` = '' AND `id_of_company` = '".$rowcmp['id']."' AND `trading_status` = 1 AND `sectype` = 1 ";
+                                  $querytrade = "SELECT * FROM `personal_info` WHERE `userid` = '".$row['personid']."' ";
                                   //echo $querytrade;
                                   $exetrade = $connection->query($querytrade);
                                   $gettrade = trim($exetrade->numRows());
@@ -208,43 +340,16 @@ class Reconcilationcommon extends Component
                                   {
                                       while($rowtrade = $exetrade->fetch())
                                       {
-                                          
-                                          $querytradests = "SELECT * FROM `trading_status` WHERE `req_id` = '".$rowtrade['id']."' AND `date_of_transaction`<= '".$dateofrecon."'";
-                                          $exetradests = $connection->query($querytradests);
-                                          $gettradests = trim($exetradests->numRows());
-                                          if($gettradests>0)
-                                          {
-                                              while($rowtradests = $exetradests->fetch())
-                                              {
-                                                $shareofequity =  $shareofequity + $rowtradests['no_of_share']; 
-                                                
-                                              }
-                                          }
-                                          else
-                                          {
-                                              $shareofequity = 0;
-                                          }
-                                      }
-                                      
+                                           $shareofequity = $rowtrade['sharehldng'];
+
+                                         
+                                    }
                                   }
                                   else
                                   {
                                       $shareofequity = 0;
                                   }
-                                  $queryclsblnc = "SELECT * FROM `opening_balance` WHERE `user_id` = '".$row['personid']."' AND `id_of_company` = '".$rowcmp['id']."'";
-                                  $execlsblnc = $connection->query($queryclsblnc);
-                                  $getclsblnc = trim($execlsblnc->numRows());
-                                  if($getclsblnc > 0)
-                                  {
-                                      while($rowclsblnc = $execlsblnc->fetch())
-                                      {
-                                         $shareofequity =  $shareofequity + $rowclsblnc['equityshare'];
-                                      }
-                                  }
-                                  else
-                                  {
-                                      
-                                  }
+                                 
                                   $getlist[] = $shareofequity;
                               }
                              

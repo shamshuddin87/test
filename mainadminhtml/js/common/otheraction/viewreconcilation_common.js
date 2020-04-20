@@ -70,7 +70,8 @@ function getdataonload()
                 var addhtmlnxt='';
                 var email = new Array();
                 var name = new Array();
-                
+                var final = new Array();
+                //console.log(response.equity);
                 for(var i = 0; i < response.resdta['data'].length; i++) 
                 {
 
@@ -89,9 +90,12 @@ function getdataonload()
                         
                         email.push(response.resdta['data'][i].email); 
                         name.push(username); 
+                        final.push(diffrnc);
+                        //console.log(final);
                         website("#sendmail").modal('show');
                         website("#emailid").val(email);
                          website("#name").val(name);
+                         website("#diffrnc").val(final);
                         addhtmlnxt += '<tr class="counter" reconciid="'+response.resdta['data'][i].id+'" style="background-color:#f5aaaa;">';
                     }
                     else
@@ -168,7 +172,9 @@ website(".yesmail").click(function()
 {
 let email = website("#emailid").val();
 let name = website("#name").val();
-formdata={email:email,name:name};
+let diffrnc = website("#diffrnc").val();
+
+formdata={email:email,name:name,diffrnc:diffrnc};
  website.ajax({
         url:'reconcilation/sendRTAmail',
         data:formdata,
@@ -193,7 +199,10 @@ formdata={email:email,name:name};
                hide: true,
               styling: 'bootstrap3',
                addclass: 'dark ',
-          });
+             });
+            website("#sendmail").modal('hide');
+
+
             }
             else
             {

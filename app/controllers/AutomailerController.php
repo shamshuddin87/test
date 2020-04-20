@@ -258,23 +258,27 @@ class AutomailerController extends ControllerBase
         
                 
         //-------------------- Start SEND MAIL BEFORE TWO DAYS AGO OF TRADING DATE-----------//
-        $sendmailtouser = $this->automailercommon->sendmailtousers();
+        //$sendmailtouser = $this->automailercommon->sendmailtousers();
         //---------------------------------------------------------------------------//
 
 
         //--------------------------- Start SEND MAIL TO EVERY DAY------------------------------//
-        $sendmailevryday=$this->automailercommon->sendmailtouserseveryday();          
+        //$sendmailevryday=$this->automailercommon->sendmailtouserseveryday();          
         //------------------------------------------------------------------------------//
 
 
         //---------------------------Start SEND MAIL TO APPROVER BEFORE ONE DAY-------------//
-        $approvmail=$this->automailercommon->sendapprovmail();
+       // $approvmail=$this->automailercommon->sendapprovmail();
         //------------------------------------------------------------------------------//
 
 
         //---------------------------Start SEND MAIL TO APPROVER  EVERY DAY-------------//
-        $approvmail=$this->automailercommon->sendapprovmaileveryday();
+       // $approvmail=$this->automailercommon->sendapprovmaileveryday();
         //------------------------------------------------------------------------------//
+
+
+        //annual declaration mail on 15th april every year if not done
+         $sendremindfranualdecln = $this->remindrofanualdecln(); 
 
         
         /* ------------------------ Start ------------------------ */
@@ -285,6 +289,35 @@ class AutomailerController extends ControllerBase
         
         exit;
     }
+
+
+     // mail of annual declaration on every year of 15th april if pending
+      public function remindrofanualdecln() 
+    {
+        //$todaydate =date('15-04-2020');
+        $todaydate =date('d-m-Y');
+        $datemonth = date('d-m');
+      
+        $year =date('Y');
+      
+          
+      
+        $type = 'nonpersonal';
+        $getusr = $this->automailercommon->getallusers($type);
+        for($i=0;$i<sizeof($getusr);$i++)
+        {
+          if($datemonth == '15-03' || $datemonth == '29-03' || $datemonth == '10-04'
+             && ($year == '2020' || $year == '2021' || $year == '2022' || $year == '2023' || $year == '2024' || $year == '2025'))
+          {
+              $getanualdecl = $this->automailercommon->chkifanualdeclfryear($getusr[$i]['wr_id'],$year);
+              if(empty($getanualdecl))
+              {
+                  $sentmail = $this->emailer->mailsenttousrfranualdecl($getusr[$i]['email'],$getusr[$i]['fullname'],$year);
+              }
+          }
+        }
+    }
+    
 
     
     public function remindrofprsnlinfo()

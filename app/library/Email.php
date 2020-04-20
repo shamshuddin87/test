@@ -1566,12 +1566,12 @@ Class Email extends Phalcon\Mvc\User\Component {
 
 
     /******** send RTA EMAIL start ********/
-    public function sendmailRTA($email,$name)
+    public function sendmailRTA($email,$name,$diffrnc)
     {
-        $subject = 'RTA Reconcilation';
+        $subject = 'Difference in your holdings';
         $to =$email;
         //echo $to;exit;
-        $gethtml = $this->htmlelements->sendmailRTA($name);
+        $gethtml = $this->htmlelements->sendmailRTA($name,$diffrnc);
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
         $mail->isSMTP();
@@ -1606,6 +1606,49 @@ Class Email extends Phalcon\Mvc\User\Component {
         return $get;
     }
     /******** send RTA EMAIL end ********/
+
+
+
+     /*---- Send Auto Mail to User For Annual Declaration -----*/
+    public function mailsenttousrfranualdecl($emailid,$username,$year)
+    {
+        $subject = 'Annual Declaration Pending For Current Year';
+        $to =$emailid;
+        $gethtml = $this->htmlelements->mailsenttousrfranualdecl($username,$year);
+        //print_r($gethtml);exit;
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        //add cc
+        //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+        //Set who the message is to be sent to
+        $mail->addAddress($to, 'Volody');
+        $mail->Subject = $subject;
+        $mail->msgHTML($gethtml);
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            $get = array('logged'=>true,'message'=>'sent');
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false,'message'=>'nosent');
+        }
+        
+        return $get;
+    }
+    /*---- Send Auto Mail to User For Annual Declaration -----*/
+    
 
 
     

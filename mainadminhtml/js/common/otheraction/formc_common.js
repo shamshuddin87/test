@@ -187,7 +187,7 @@ var id = website(this).attr('formcid');
 
          
             website('#Mymodaledit #contractspeci').val(response.data.contract_specification);
-            website("#Mymodaledit #cin").val(response.data.cin);
+            //website("#Mymodaledit #cin").val(response.data.cin);
             website("#Mymodaledit #category").val(response.data.category);
             website("#Mymodaledit #cmpnme").val(response.data.companyid);
             website("#Mymodaledit #fromdate").val(response.data.fromdate);
@@ -369,6 +369,11 @@ website('body').on('click','#previewc',function()
                 //date to
                 dteto = response.formdata['todate'].split("-"); 
                 ddmmyyto = dteto[2]+'-'+dteto[1]+'-'+dteto[0];
+
+                dteadded = response.formdata['date_added'].split(" "); 
+                dtadd =   dteadded[0].split("-"); 
+                finaldtadd = dtadd[2]+'-'+dtadd[1]+'-'+dtadd[0];
+
                
                 //date intimation
                if(response.formdata['dateofintimtn'])
@@ -432,6 +437,8 @@ website('body').on('click','#previewc',function()
                website('.buynumbrunt').html(response.formdata['buynumbrunt']);
                website('.sellvalue').html(response.formdata['sellvalue']);
                website('.sellnumbrunt').html(response.formdata['sellnumbrunt']);
+              website('.place').html(response.formdata['place']);
+              website('.dateadded').html(finaldtadd);
                website('.exetrd').html(response.formdata['exetrd']);
                website('#modaldocument #formcid').val(id);
                 website('#modaldocument').modal('show');

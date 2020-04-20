@@ -208,14 +208,15 @@ class ReconcilationController extends ControllerBase
                
                 $email = $this->request->getPost('email');
                 $name = $this->request->getPost('name');
-                
+                $diffrnc = $this->request->getPost('diffrnc');
+
                 $emailids = explode(",",  $email);
                 $name = explode(",",  $name);
-
-
+                $diffrnc = explode(",",  $diffrnc);
+                
                 for($i=0;$i<count($emailids);$i++)
                 {
-                   $sendmail =  $this->emailer->sendmailRTA($emailids[$i],$name[$i]);
+                   $sendmail =  $this->emailer->sendmailRTA($emailids[$i],$name[$i],$diffrnc[$i]);
                 }
                 
                 

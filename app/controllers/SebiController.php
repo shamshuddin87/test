@@ -1308,10 +1308,11 @@ class SebiController extends ControllerBase
                 $docid   = $this->request->getPost('docid','trim');
                 
                 $getdocres = $this->sebicommon->getdocucontent($getuserid,$user_group_id,$docid);
-                $getres = $this->sebicommon->getformddata($getuserid,$user_group_id,$formdid);      
+                $getres = $this->sebicommon->getformddata($getuserid,$user_group_id,$formdid);
+                //print_r( $getres)   ;exit;   
                 if(!empty($getdocres))
                 {
-                    $data = array("logged" => true,'message' => 'Record Sent for approval','docontent' => $getdocres,'formdata'=>$getres['data']/*,'secutype'=>$getres['securitytype']*/);
+                    $data = array("logged" => true,'message' => 'Record Sent for approval','docontent' => $getdocres,'formdata'=>$getres['data']);
                     $this->response->setJsonContent($data);
                 }
                 else

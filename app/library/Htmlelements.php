@@ -3162,7 +3162,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
 
 
  /********** send RTA Reconcilation start *********/
-   public function sendmailRTA($name)
+   public function sendmailRTA($name,$diffrnc)
    {
        
       
@@ -3208,9 +3208,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
         <div class="main_container" style="max-width:600px; margin:0px;">
             <div class="header" style="margin-bottom:50px;">
                 <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
-                    <div style="    text-shadow: 1px 0px 2px #626262;
-    color: #626262;">RTA Reconcilation</div>
-                </div>
+                    
                  <div style="clear:both;"></div>
             </div>
         <div style="    background-color: #f2f2f2;
@@ -3218,7 +3216,8 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
             <div class="main">
                 <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
                <p>Dear '.$name.',</p> 
-               <p>There is a difference in your holdings as per Software </p> 
+               <p>On reconciliation with Company’s Registrar and Transfer Agent’s records, please note that a mismatch of '.$diffrnc.' shares has been observed in the number of shares held by you in the Company. You are requested to kindly review such mismatch and update your correct holding in the insider trading applicationsystem. 
+               </p> 
                <p>Thank you. </p> 
                
                 
@@ -3237,6 +3236,64 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
  return $html;
 }
   /********** send RTA Reconcilation end ***********/
+
+
+
+  /*---- Send Auto Mail to User For Annual Declaration -----*/
+    public function mailsenttousrfranualdecl($username,$year)
+    {
+        // print_r($getname);exit;
+        $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="htth3://www.w3.org/1999/xhtml">
+        <head>
+        <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <title>Phoenix Peth</title>
+        </head>
+
+
+<body style="font-family: Arial;
+    width: 100%;
+    background-color: #f2f2f2;
+    padding:30px;
+    max-width: 600px;
+    margin: 0 auto;;
+
+  ">
+    <div class="container" style=" max-width:600px; margin: 0 auto; background-color: #fff;padding:25px;">
+        <div class="main_container" style="max-width:600px; margin:0px;">
+            <div class="header" style="margin-bottom:50px;">
+                <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
+                    <div style="    text-shadow: 1px 0px 2px #626262;
+    color: #626262;">Annual Declaration Pending</div>
+                </div>
+                 <div style="clear:both;"></div>
+            </div>
+        <div style="    background-color: #f2f2f2;
+    padding: 18px;">
+            <div class="main">
+                <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
+               <p>Dear '.$username.',</p> 
+               <p>Your Annual Declaration is Pending For Current Year('.$year.').</p> 
+               <p>Thank you</p> 
+               
+                
+            </div
+                  
+            </div>
+        </div>
+    </div>
+        
+    </div>
+</body>
+       
+</html>';
+
+
+return $html;
+}
+    /*---- Send Auto Mail to User For Annual Declaration -----*/
+
 
 
 
