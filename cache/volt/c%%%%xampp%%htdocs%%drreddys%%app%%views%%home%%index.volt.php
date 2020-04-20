@@ -45,7 +45,7 @@
                                         <div class="announcementli">
                                             <a >
                                                <h6>Alert!</h6>
-                                               <p>You hold UPSI and therefore you cannot trade in shares of Dr. Reddy's Laboratories Ltd until the UPSI ends/becomes public..!!</p>
+                                               <p>You hold UPSI and therefore you cannot trade in shares of Dr. Reddy's Laboratories Ltd until the UPSI ends/becomes public.</p>
 
                                             </a>
                                         </div>
@@ -61,8 +61,8 @@
                                                ?>
                                                <p>
                                                  
-                                                 <p class="fa fa-dot-circle-o"> <span>Date From:<?php echo $ntnlval['datefrom']; ?></span></p>
-                                                <p class="margin_left"> <span>Date To:<?php echo $ntnlval['dateto']; ?></span></p> 
+                                                 <p class=""> <i class="fas fa-circle" style="margin-right: 5px;"></i><span>Date From:<?php echo $ntnlval['datefrom']; ?></span></p>
+                                                <p class="margin_left"> <span style="margin-left: 16px;">Date To:<?php echo $ntnlval['dateto']; ?></span></p> 
                                                </p>
                                                 <?php } } else{ ?>
                                                 <p>No New Window Closure..!!</p>
