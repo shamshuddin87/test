@@ -30,11 +30,7 @@ addhtmlnxt+='<td width="15%"><i class="fa fa-file-pdf-o" id="previewc" type="'+r
 {addhtmlnxt+='<td width="15%"><a href="'+response.resdta[i].final+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';}
 else
 {addhtmlnxt+='<td width="15%"></td>';}}
-dtfrmt=response.resdta[i].date_added.split("-");dtfrmtspace=response.resdta[i].date_added.split(" ");ddmmyy=dtfrmtspace[0];dtfrmt=dtfrmtspace[0].split("-");ddmmyy=dtfrmt[2]+'-'+dtfrmt[1]+'-'+dtfrmt[0];times=dtfrmtspace[1];addhtmlnxt+='<td width="15%" >'+ddmmyy+'  '+times+'</td>';if(response.resdta[i].send_status!=0)
-{addhtmlnxt+='<td width="10%" ></td>';}
-else
-{addhtmlnxt+='<td width="10%" ><i class="fa fa-edit faicon floatleft editformc" title="Edit entry" formcid="'+response.resdta[i].id+'"></i></td>';}
-addhtmlnxt+='</tr>';}
+dtfrmt=response.resdta[i].date_added.split("-");dtfrmtspace=response.resdta[i].date_added.split(" ");ddmmyy=dtfrmtspace[0];dtfrmt=dtfrmtspace[0].split("-");ddmmyy=dtfrmt[2]+'-'+dtfrmt[1]+'-'+dtfrmt[0];times=dtfrmtspace[1];addhtmlnxt+='<td width="15%" >'+ddmmyy+'  '+times+'</td>';addhtmlnxt+='</tr>';}
 website('.appendrow').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);}
 else
 {website('.appendrow').html('<tr><td colspan="9" style="text-align:center;">Data Not Found..!!</td></tr>');website('.paginationmn').html(response.pgnhtml);}},complete:function(response)

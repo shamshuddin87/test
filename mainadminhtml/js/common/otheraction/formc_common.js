@@ -88,29 +88,29 @@ function getdataonload()
                 addhtmlnxt += '<td width="20%">'+date_added+'</td>';
             }
             // addhtmlnxt += '<td width="15%">'+company+'</td>';
-            addhtmlnxt += '<td width="15%">'+designation+'</td>';
+            addhtmlnxt += '<td width="20%">'+designation+'</td>';
             if(response.resdta[i].send_status == 0)
             {
                 if(response.user_group_id == '7')
                 {
-                  addhtmlnxt += '<td width="15%"><i class="fa fa-paper-plane"  id="sendforaprvformc" formcid="'+response.resdta[i].id+'" pdfurl ="'+draft+'"></i></td>';
+                  addhtmlnxt += '<td width="20%"><i class="fa fa-paper-plane"  id="sendforaprvformc" formcid="'+response.resdta[i].id+'" pdfurl ="'+draft+'"></i></td>';
                 }
             }
             else
             {
-                 addhtmlnxt += '<td width="15%"><i class="fa fa-check" aria-hidden="true"></i></td>';
+                 addhtmlnxt += '<td width="20%"><i class="fa fa-check" aria-hidden="true"></i></td>';
             }
             
-            addhtmlnxt += '<td width="15%"><i class="fa fa-file-pdf-o" id="previewc" type="'+response.resdta[i].isitesop+'" doc_id=2 formcid="'+response.resdta[i].id+'"></i></td>';
+            addhtmlnxt += '<td width="20%"><i class="fa fa-file-pdf-o" id="previewc" type="'+response.resdta[i].isitesop+'" doc_id=2 formcid="'+response.resdta[i].id+'"></i></td>';
             if(response.user_group_id == '7')
             {
                 if(response.resdta[i].final)
                 {
-                    addhtmlnxt +=  '<td width="15%"><a href="'+response.resdta[i].final+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';
+                    addhtmlnxt +=  '<td width="20%"><a href="'+response.resdta[i].final+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';
                 }
                 else
                 {
-                     addhtmlnxt += '<td width="15%"></td>';
+                     addhtmlnxt += '<td width="20%"></td>';
                 }
             }
             dtfrmt = response.resdta[i].date_added.split("-");                   
@@ -123,11 +123,11 @@ function getdataonload()
 
             if(response.resdta[i].send_status!= 0)
             {
-                addhtmlnxt += '<td width="10%" ></td>';
+                addhtmlnxt += '<td width="20%" ></td>';
             }
             else
             {
-                addhtmlnxt += '<td width="10%" ><i class="fa fa-edit faicon floatleft editformc" title="Edit entry" formcid="'+response.resdta[i].id+'"></i></td>';
+                addhtmlnxt += '<td width="20%" ><i class="fa fa-edit faicon floatleft editformc" title="Edit entry" formcid="'+response.resdta[i].id+'"></i></td>';
                 
             }
             addhtmlnxt += '</tr>';                        

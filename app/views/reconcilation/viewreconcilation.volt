@@ -18,10 +18,15 @@ $condeptsess = $this->session->contractdepartment;
     <input type = "hidden" value="<?php echo $rtaid; ?>" id="rtaid">
     <input type = "hidden" value="<?php echo $rtauniqueid; ?>" id="rtauniqueid">
     <input type = "hidden" value="<?php echo $dateofrecon; ?>" id="dateofrecon">
+
    <div class="table-responsive table_wraper tradeplanview">
+     <input type ="button" id="emailExcelToBenpose" class="btn btn-primary text-right" value="Intimate User" style="float: right;">
           <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>
+
+                            <th><input type="checkbox" name="getallchkbox" class="getallchkbox" value="All"><br>All</th>
+                           
                             <th>PAN</th>
                             <th>Name</th>
                             <th>Relative Name</th>

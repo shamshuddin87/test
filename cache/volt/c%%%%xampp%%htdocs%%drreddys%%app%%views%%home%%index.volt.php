@@ -62,7 +62,7 @@
                                                <p>
                                                  
                                                  <p class=""> <i class="fas fa-circle" style="margin-right: 5px;"></i><span>Date From:<?php echo $ntnlval['datefrom']; ?></span></p>
-                                                <p class="margin_left"> <span style="margin-left: 16px;">Date To:<?php echo $ntnlval['dateto']; ?></span></p> 
+                                                <p class="margin_left"> <span style="margin-left: 18px;">Date To:<?php echo $ntnlval['dateto']; ?></span></p> 
                                                </p>
                                                 <?php } } else{ ?>
                                                 <p>No New Window Closure..!!</p>

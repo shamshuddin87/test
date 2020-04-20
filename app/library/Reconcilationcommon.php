@@ -64,7 +64,7 @@ class Reconcilationcommon extends Component
         try
         {
             
-            $queryselect = "SELECT re.*,pinfo.`userid`  AS personusername ,it.`email`,rinfo.`name` as relativename,rel.`relationshipname` AS relationship,rinfo.`user_id` AS relativeusername FROM reconcilation re
+            $queryselect = "SELECT re.*,pinfo.`userid` AS personusername ,pinfo.`sharehldng`  as shares,rinfo.`sharehldng`  as share,it.`email`,rinfo.`name` as relativename,rel.`relationshipname` AS relationship,rinfo.`user_id` AS relativeusername FROM reconcilation re
                             LEFT JOIN `personal_info` pinfo ON pinfo.`pan` = re.`panno`
                             LEFT JOIN `relative_info` rinfo ON rinfo.`pan` = re.`panno`
                             LEFT JOIN `relationship` rel ON rel.`id` = rinfo.`relationship`
@@ -317,7 +317,7 @@ class Reconcilationcommon extends Component
                                   {
                                       while($rowtrade = $exetrade->fetch())
                                       {
-                                        $shareofequity = $rowtrade['sharehldng'];
+                                        $shareofequity = $rowtrade;
                                       }
                                   }
                                   else
@@ -340,7 +340,7 @@ class Reconcilationcommon extends Component
                                   {
                                       while($rowtrade = $exetrade->fetch())
                                       {
-                                           $shareofequity = $rowtrade['sharehldng'];
+                                           $shareofequity = $rowtrade;
 
                                          
                                     }

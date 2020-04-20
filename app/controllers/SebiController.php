@@ -87,8 +87,10 @@ class SebiController extends ControllerBase
     {
         $getuserid = $this->session->loginauthspuserfront['id'];
         $getdataformcuser = $this->sebicommon->getformbdata($getuserid);   //fetch latest data of formb
-        $getdatauser = $this->sebicommon->getusersdata($getuserid);   //fetch user data of formb
-        $this->view->approverid = $getdatauser['approverid'];
+        $getdatauser = $this->sebicommon->getusersdata($getuserid); 
+        //print_r( $getdatauser);exit;  //fetch user data of formb
+        $this->view->approverid = $getdatauser['approvid'];
+
         $this->view->cin = $getdataformcuser['cin'];
         $this->view->category = $getdataformcuser['category'];
     }

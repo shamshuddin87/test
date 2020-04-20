@@ -162,8 +162,9 @@ class ReconcilationController extends ControllerBase
                 $dateofrecon = $this->request->getPost('dateofrecon');
                 
                 $getresequty = $this->reconcilationcommon->fetchequityshare($getuserid,$user_group_id,$uniqueid,$dateofrecon);
-                //print_r($getresequty);exit;
+                 //print_r($getresequty);exit;
                 $getresult = $this->reconcilationcommon->fetchreconcilationforview($getuserid,$user_group_id,$uniqueid,$mainquery);
+                //print_r(                $getresult);exit;
 
                 $getpanusr = $this->reconcilationcommon->fetchpanusr();
                  //print_r($getpanusr);exit;
@@ -209,10 +210,11 @@ class ReconcilationController extends ControllerBase
                 $email = $this->request->getPost('email');
                 $name = $this->request->getPost('name');
                 $diffrnc = $this->request->getPost('diffrnc');
-
+                 
                 $emailids = explode(",",  $email);
                 $name = explode(",",  $name);
                 $diffrnc = explode(",",  $diffrnc);
+                //print_r( $emailids );exit;
                 
                 for($i=0;$i<count($emailids);$i++)
                 {

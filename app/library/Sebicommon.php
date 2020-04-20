@@ -709,7 +709,7 @@ class Sebicommon extends Component
     /******* insert form c data start********/
     public function insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid,$category,$cin)
     {
-        //print_r($formcdata);exit;
+        //print_r($appvrid);exit;
         $time = time();
         $connection = $this->dbtrd; 
         for($i = 0;$i<sizeof($formcdata);$i++)
@@ -937,7 +937,7 @@ class Sebicommon extends Component
         $connection = $this->dbtrd; 
         $time = time();
         $todate=date('d-m-Y');
-           $queryinsert = "UPDATE `sebiformc_usrdata` SET `send_status`=1,send_date='".$todate."',`date_modified`=NOW(),`timeago`='".$time."'
+           $queryinsert = "UPDATE `sebiformc_usrdata` SET `send_status`='1',send_date='".$todate."',`date_modified`=NOW(),`timeago`='".$time."'
          WHERE `id`='".$formcid."'"; 
         // print_r($queryinsert);exit;
         try
@@ -977,7 +977,7 @@ class Sebicommon extends Component
                 WHERE (formc.`send_status`='1') AND formc.`user_id` IN(".$allusers.")".$query;
             }
 
-              // echo $queryget;  exit;
+               //echo $queryget;  exit;
 
             try
             {
