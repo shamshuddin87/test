@@ -41,6 +41,9 @@ website('body').on('click','.go_button', function(e)
     getdataonload();
 });
 
+
+getdataonload();
+
 function getdataonload()
 {
     var noofrows = website('#noofrows').val(); 
@@ -498,6 +501,7 @@ website('body').on('click','.formcpdf', function(e)
                 website('#modaldocument .formcpdf').fadeOut();
                 website('#modaldocument .button_pdf .down_load').show();
                 website('#modaldocument .downloadpdf').show();
+                website('#sendforaprvformc').attr('pdfurl',response.pdfpath);
                 website('#modaldocument .downloadpdf').html('<a href="'+response.pdfpath+'" target="_blank" class="downlodthfle" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span></a>');
             }
         },
