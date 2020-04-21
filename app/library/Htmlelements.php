@@ -3273,9 +3273,12 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
     padding: 18px;">
             <div class="main">
                 <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
-               <p>Dear '.$username.',</p> 
-               <p>Your Annual Declaration is Pending For Current Year('.$year.').</p> 
-               <p>Thank you</p> 
+               <p>Hello,</p> 
+               <p>As every year, we look forward to your support in submitting your annual disclosures under SEBI Insider Trading Regulations and Listing Regulations. Please login to iHub à All apps àCompany information àCompliance àInsider Trading Compliance for accessing the application. Please update the three tabs under ‘My info’, as applicable. The details under ‘My Info’ will comprise your annual disclosures under Insider Trading and is applicable to all of you. Once these details under ‘My Info’ are filled in please submit your ‘Annual Declaration’ online to the Compliance Officer.</p> 
+               <p>If you are in role bands - Yellow, Orange and Red (Y-O-R) – please note that the Related Party Disclosure is applicable only to you and will be visible only on your respective applications.  we have combined both your annual disclosures (i.e. under requirements of Insider trading and under SEBI Listing Regulations and Related Party Disclosure) on this application. We therefore request you to kindly fill up your details and submit your applicable Disclosures on or before March 31 '.$year.'.</p>
+               <p>Going forward, you can update any changes related to your and/or your relatives’ personal details during the year. Accordingly, next year on 31 March, you will have an updated disclosure automatically ready for your submission with just a click of a button.</p>
+               <p>In case of any issues, we request you to get in touch with Techease (IT) or Secretarial team for support in completing your compliance.</p>
+               <p>Regards<br>Sandeep</p> 
                
                 
             </div

@@ -258,22 +258,22 @@ class AutomailerController extends ControllerBase
         
                 
         //-------------------- Start SEND MAIL BEFORE TWO DAYS AGO OF TRADING DATE-----------//
-        //$sendmailtouser = $this->automailercommon->sendmailtousers();
+        $sendmailtouser = $this->automailercommon->sendmailtousers();
         //---------------------------------------------------------------------------//
 
 
         //--------------------------- Start SEND MAIL TO EVERY DAY------------------------------//
-        //$sendmailevryday=$this->automailercommon->sendmailtouserseveryday();          
+        $sendmailevryday=$this->automailercommon->sendmailtouserseveryday();          
         //------------------------------------------------------------------------------//
 
 
         //---------------------------Start SEND MAIL TO APPROVER BEFORE ONE DAY-------------//
-       // $approvmail=$this->automailercommon->sendapprovmail();
+        $approvmail=$this->automailercommon->sendapprovmail();
         //------------------------------------------------------------------------------//
 
 
         //---------------------------Start SEND MAIL TO APPROVER  EVERY DAY-------------//
-       // $approvmail=$this->automailercommon->sendapprovmaileveryday();
+        $approvmail=$this->automailercommon->sendapprovmaileveryday();
         //------------------------------------------------------------------------------//
 
 
