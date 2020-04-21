@@ -30,10 +30,10 @@ website('body').on('click','.showerror',function(e)
 else
 {website('div input').attr('checked',false);}});website(".yesmail").click(function()
 {let email=website("#emailid").val();let name=website("#name").val();let diffrnc=website("#diffrnc").val();formdata={email:email,name:name,diffrnc:diffrnc};website.ajax({url:'reconcilation/sendRTAmail',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
-{},uploadProgress:function(event,position,total,percentComplete)
+{website('.preloder_wraper').fadeIn();website("#sendmail").modal('hide');},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged==true)
-{new PNotify({title:'Alert',text:"Mail Sent Successfully..!!!",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});website("#sendmail").modal('hide');}
+{new PNotify({title:'Alert',text:"Mail Sent Successfully..!!!",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
 {new PNotify({title:'Alert',text:"Mail Sent Successfully..!!!",type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)

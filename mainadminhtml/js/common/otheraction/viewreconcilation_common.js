@@ -224,7 +224,8 @@ formdata={email:email,name:name,diffrnc:diffrnc};
         cache:false,
         //async:true, /*Cross domain checking*/
         beforeSend: function()
-        {   },
+        {  website('.preloder_wraper').fadeIn();
+         website("#sendmail").modal('hide'); },
         uploadProgress: function(event, position, total, percentComplete)
         {   },
         success: function(response, textStatus, jqXHR)
@@ -238,7 +239,7 @@ formdata={email:email,name:name,diffrnc:diffrnc};
               styling: 'bootstrap3',
                addclass: 'dark ',
              });
-            website("#sendmail").modal('hide');
+            
 
 
             }

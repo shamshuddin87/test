@@ -35,7 +35,7 @@ $condeptsess = $this->session->contractdepartment;
            </div>
 
             <div class="floatright">
-            <p id="noofusers"><span style="float: left; line-height: 35px;color: #000;font-size: 17px;">Total No of Entries</span> <span id = "empcount" style="color:#bd0111;background: #d6d5d5;float: right;text-align: center;line-height: normal;padding: 3px 14px;margin: 0 10px;font-size: 25px"></span></p>
+            <p id="noofusers"><span style="float: left; line-height: 35px;color: #000;font-size: 17px;">Total No of Designated Persons</span> <span id = "empcount" style="color:#bd0111;background: #d6d5d5;float: right;text-align: center;line-height: normal;padding: 3px 14px;margin: 0 10px;font-size: 25px"></span></p>
              
             </div>
                

@@ -40,9 +40,7 @@ website('#insertesop').ajaxForm
             addclass: 'dark ',
           });
 
-          
-          
-          //setTimeout(function() { window.location.reload(); }, 2000);
+          setTimeout(function() { window.location.reload(); }, 1000);
         }
         else
         {
