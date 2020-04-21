@@ -28,16 +28,22 @@ $condeptsess = $this->session->contractdepartment;
     </div>
 
         
-          <div class="control-label btnsubmitme cntrol_tab_one col-md-12 col-xs-12">
-           <div class="floatright">
-                <input type="submit" class="btn btn-primary savefinal" value="Save As Final" uniqueid ="<?php echo $esopuniqueid; ?>">
+          <div class="control-label  cntrol_tab_one col-md-12 col-xs-12">
+           <div class="control-label  col-md-2 col-xs-2">
+                <input type="submit" class="btn btn-primary savefinal" value="Save As Final" uniqueid ="<?php echo $esopuniqueid; ?>" style = " margin-left: -10px;">
              
            </div>
 
-            <div class="floatright">
-            <p id="noofusers"><span style="float: left; line-height: 35px;color: #000;font-size: 17px;">Total No of Designated Persons</span> <span id = "empcount" style="color:#bd0111;background: #d6d5d5;float: right;text-align: center;line-height: normal;padding: 3px 14px;margin: 0 10px;font-size: 25px"></span></p>
+            <div class="control-label  col-md-4 col-xs-4">
+            <p id="noofusers"><span style="float: left; line-height: 35px;color: #000;font-size: 17px;">Total No of Designated Persons</span> <span id = "empcount" style="color:#bd0111;background: #d6d5d5;text-align: center;line-height: normal;padding: 3px 14px;margin: 0 10px;font-size: 25px"></span></p>
              
             </div>
+
+             <div class=" control-label col-md-6 col-xs-6" >
+                <a class="btn btn-primary exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
+            <button type="button" class="btn btn-primary genfile excel_bg" style="float: right;">Export Data of Non-DPs</button>
+            
+           </div>
                
 
          </div>

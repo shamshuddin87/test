@@ -59,14 +59,70 @@ class Esopcommon extends Component
         
         return $getlist;
     }
-    
-    public function fetchesopforview($getuserid,$user_group_id,$uniqueid,$query)
+
+
+     public function fetchesoppanno($uniqueid)
     {
         $connection = $this->dbtrd;
         $getpanlist = array();
         try
         {
-            $queryselect = "SELECT * FROM esop WHERE `uniqueid`= '".$uniqueid."' ".$query;
+            $queryselect = "SELECT * FROM esop WHERE `uniqueid`= '".$uniqueid."' ";
+
+            //echo $queryselect;exit;
+            $exeget = $connection->query($queryselect);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                    while($row = $exeget->fetch())
+                    {
+                        $panlist[] = $row['emp_pan'];
+                       
+                    }
+              $pan = implode("','", $panlist);
+
+              $queryselectpan = " SELECT * FROM `personal_info` WHERE `pan` IN('$pan') ";
+
+                
+                $exegetpan = $connection->query($queryselectpan);
+                $getnumpan = trim($exegetpan->numRows());
+                 
+                if($getnumpan>0)
+                {
+                   
+                    while($rowpan = $exegetpan->fetch())
+                {
+                    $paninfo[] = $rowpan['pan'];
+                   
+                }
+                $panlist = implode("','", $paninfo);
+                         
+                }
+                       
+                   
+                    //print_r($panlist);exit;
+                }
+                else{
+                    $panlist = array();
+                }
+        }
+        catch (Exception $e)
+        {
+            $panlist = array();
+            //$connection->close();
+        }
+        //echo 'out';exit;
+        return $panlist;
+    }
+    
+    
+    public function fetchesopforview($getuserid,$user_group_id,$uniqueid,$query,$panlist)
+    {
+        $connection = $this->dbtrd;
+        $getpanlist = array();
+        try
+        {
+            $queryselect = "SELECT * FROM esop WHERE `uniqueid`= '".$uniqueid."' AND emp_pan IN('".$panlist."')".$query;
             //echo $queryselect;exit;
             $exeget = $connection->query($queryselect);
             $getnum = trim($exeget->numRows());
@@ -75,6 +131,39 @@ class Esopcommon extends Component
                     while($row = $exeget->fetch())
                     {
                         $getlist[] = $row;
+
+                    }
+                    //print_r($finaldata);exit;
+                }else{
+                    $getlist = array();
+                }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        //echo 'out';exit;
+        return $getlist;
+    }
+
+
+    public function fetchesopforexport($getuserid,$user_group_id,$uniqueid,$panlist)
+    {
+        $connection = $this->dbtrd;
+        $getpanlist = array();
+        try
+        {
+            $queryselect = "SELECT * FROM esop WHERE `uniqueid`= '".$uniqueid."' AND emp_pan NOT IN('".$panlist."')";
+            //echo $queryselect;exit;
+            $exeget = $connection->query($queryselect);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+                {
+                    while($row = $exeget->fetch())
+                    {
+                        $getlist[] = $row;
+
                     }
                     //print_r($finaldata);exit;
                 }else{

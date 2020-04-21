@@ -606,6 +606,71 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         return $genfile;
     }
 
+      public function exportesop($getuserid,$user_group_id,$processdata)
+    {
+        //echo '<pre>'; print_r($processdata);exit;
+        $connection = $this->db;
+        $time = time();
+        
+        $excelfilenamepath = 'samplefile/ESOP/esop_nondp.xlsx';
+        $newfilepath = 'img/esop/esop_nondp'.'_'.$time.'.xlsx';
+        $j=1;
+        foreach($processdata as $tblrow)
+        {
+            
+            
+            $nwexcl[] = array('0' => $tblrow['emp_name'],
+                            '1' => $tblrow['emp_pan'],
+                            '2' => $tblrow['emp_shares'],
+                            '3' => $tblrow['altmntdate']
+                           
+                        );
+            $j++;
+        }
+        //echo '<pre>';print_r($nwexcl);exit;
+       
+        $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+        
+        $objPHPExcel->setActiveSheetIndex(0);
+        $worksheet = $objPHPExcel->getActiveSheet();
+        $highestColumn = $worksheet->getHighestColumn();
+        $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
+        $highestRow = $worksheet->getHighestRow();
+        $worksheet = $objPHPExcel->getActiveSheet();
+               //echo "yo";exit;  
+            //echo '<pre>';print_r($nwexcl);exit;
+            if(count($nwexcl)>0)
+            {
+                $row = 2; // 1-based index
+
+                foreach($nwexcl as $rowdata)
+                {
+                    $col = 0;
+                    foreach($rowdata as $key=>$value) 
+                    {
+                        //echo $col." ".$row." ".$value.'<br>';
+                        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+                        $col++;
+                    }                    
+                    $row++;
+                }
+
+                $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+                //echo '<pre>';print_r($newfilepath);exit;
+                $objWriter->save($newfilepath);
+                //echo $newfilepath;exit;
+
+                $genfile = $newfilepath;
+            }
+            else
+            {
+                $genfile = '';
+            }
+
+        //echo '<pre>';print_r($genfile);exit;
+        return $genfile;
+    }
+
     public function exportContDisclsr($getuserid,$user_group_id,$processdata)
     {
         //echo '<pre>'; print_r($processdata);exit;

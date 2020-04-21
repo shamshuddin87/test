@@ -86,6 +86,7 @@ function getdataonload()
               
               website('.appendviewesop').html(addhtmlnxt);
               website("#empcount").html(response.empcount);
+              website(".genfile").attr('uniqueid',esopuniqueid);
               website('.paginationmn').html(response.pgnhtml);
              
           }
@@ -156,5 +157,66 @@ website('body').on('click','.finalsaveyes',function(e)
       {   }
     });
 });
+
+
+website('.genfile').on('click', function(e) {
+    // alert(request);return false;
+    var noofrows = website('#noofrows').val(); 
+    var pagenum = website('#pagenum').val();
+    var uniqueid = website('.genfile').attr('uniqueid');
+   // alert(uniqueid);
+    
+    //console.log(id);return false;
+    var formdata = {noofrows:noofrows,pagenum:pagenum,uniqueid:uniqueid};
+    website.ajax({
+        url:'esop/exportnondp',
+        data:formdata,
+        method:'POST',
+        //contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, /*Cross domain checking*/
+        beforeSend: function() 
+        {   
+            website('.preloder_wraper').fadeIn();
+            // website('.dwnldExcel').fadeOut();   
+        },
+        uploadProgress: function(event, position, total, percentComplete) 
+        {   },
+        success:function(response)
+        {
+            if(response.logged==true)
+            {
+                website('.dwnldExcel').fadeIn();
+                website('.dwnldExcel').attr('href',response.genfile);
+                new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                });
+            }
+            else
+            {
+                new PNotify({title: response.message,
+                   text: response.message,
+                   type: 'university',
+                   hide: true,
+                   styling: 'bootstrap3',
+                   addclass: 'dark ',
+                }); 
+                  
+            }
+        },
+        complete: function(response) 
+        {  website('.preloder_wraper').fadeOut();  },
+        error:function(response)
+        {   }
+    });
+});
+
 
 

@@ -117,9 +117,10 @@ function getdataonload()
                 addhtmlnxt += '<tr class="counter" esopid="'+response.resdta[i].id+'" >';
                 addhtmlnxt += '<td width="25%">'+yymmdd+'</td>';
                 addhtmlnxt += '<td width="25%">'+times+'</td>';
-                addhtmlnxt += '<td width="30%"><i class="fa fa-eye faicon floatleft viewesop" title="View entry" id="editesop" esopid="'+response.resdta[i].id+'" uniqueid="'+response.resdta[i].uniqueid+'"></i></td>'; addhtmlnxt += '</tr>';
+                addhtmlnxt += '<td width="30%"><i class="fa fa-eye faicon floatleft viewesop" title="View entry" id="editesop" esopid="'+response.resdta[i].id+'"  uniqueid="'+response.resdta[i].uniqueid+'"></i></td>'; addhtmlnxt += '</tr>';
             }
             website('.appendrow').html(addhtmlnxt);
+           
             website('.paginationmn').html(response.pgnhtml);
         }
         else
@@ -135,6 +136,8 @@ function getdataonload()
   });
           
 }
+
+
 
 website('body').on('click','.viewesop', function()
 {
