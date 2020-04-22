@@ -1182,10 +1182,11 @@ function getpdfdata(uniqueid)
                 }
                
                 /*---- Relative detail ----*/
-                if(response.reldetail.length>0)
+                //console.log(reldetail);
+                if(response.reldetail.dependency_nature.length>0)
                 {
                     var deptype = '';
-                    for(var i=0;i<response.reldetail.length;i++)
+                    for(var i=0;i<response.reldetail.dependency_nature.length;i++)
                     {
                         if(response.reldetail[i]['name']!='')
                         {
@@ -1195,9 +1196,9 @@ function getpdfdata(uniqueid)
                             reldetail += '<td>'+j+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['name']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['relationshipname']+'</td>';
-                            if(response.reldetail[i]['dependency_nature']!='')
+                            if(response.reldetail.dependency_nature!='')
                             {
-                                deptype =response.reldetail[i]['dependency_nature'].toString(',');
+                                deptype =response.reldetail.dependency_nature[i].toString(',');
                             }
                             reldetail += '<td>'+deptype+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['pan']+'</td>';

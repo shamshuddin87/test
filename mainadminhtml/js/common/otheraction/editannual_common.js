@@ -1094,7 +1094,7 @@ function getpdfdata(uniqueid)
                             dematacc += '<td width="25%">'+j+'</td>';
                             dematacc += '<td width="25%">'+response.dematdetail[i]['accountno']+'</td>';
                             dematacc += '<td width="25%">'+response.dematdetail[i]['depository_participient']+'</td>';
-                            dematacc += '<td width="25%">'+response.dematdetail[i]['clearing_house']+'</td>';
+                            // dematacc += '<td width="25%">'+response.dematdetail[i]['clearing_house']+'</td>';
                             dematacc += '</tr>'; 
                         }
                     }
@@ -1104,12 +1104,15 @@ function getpdfdata(uniqueid)
                 {
                     dematacc = '<tr><td colspan ="4">No Data Found..</td></tr>';
                 }
-                
+                  
+
+                //console.log(response.reldetail.dependency_nature.length);
                 /*---- Relative detail ----*/
-                if(response.reldetail.length>0)
-                {
+                if(response.reldetail.dependency_nature.length>0)
+                { 
+                 //alert("hello");
                     var deptype = '';
-                    for(var i=0;i<response.reldetail.length;i++)
+                    for(var i=0;i<response.reldetail.dependency_nature.length;i++)
                     {
                         if(response.reldetail[i]['name']!='')
                         {
@@ -1119,9 +1122,10 @@ function getpdfdata(uniqueid)
                             reldetail += '<td>'+j+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['name']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['relationshipname']+'</td>';
-                            if(response.reldetail[i]['dependency_nature']!='') 
+                            if(response.reldetail.dependency_nature!='') 
                             { 
-                                deptype =response.reldetail[i]['dependency_nature'].toString(',');
+                               //console.log(response.reldetail.dependency_nature[i]);
+                                deptype =response.reldetail.dependency_nature[i].toString(',');
                             }
                             reldetail += '<td>'+deptype+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['pan']+'</td>';
@@ -1147,6 +1151,7 @@ function getpdfdata(uniqueid)
                 /*---- Relative Demat detail ----*/
                 if(response.relDematdetail.length>0)
                 {
+                  //console.log()
                     for(var i=0;i<response.relDematdetail.length;i++)
                     {
                         if(response.relDematdetail[i]['accountno']!='')
@@ -1155,9 +1160,9 @@ function getpdfdata(uniqueid)
                             j++;
                             reldemat += '<tr class="counter">';
                             reldemat += '<td>'+j+'</td>';
-                            reldemat += '<td>'+response.reldetail[i]['accountno']+'</td>';
-                            reldemat += '<td>'+response.reldetail[i]['depository_participient']+'</td>';
-                            reldemat += '<td>'+response.reldetail[i]['clearing_house']+'</td>';
+                            reldemat += '<td>'+response.relDematdetail[i]['accountno']+'</td>';
+                            reldemat += '<td>'+response.relDematdetail[i]['depository_participient']+'</td>';
+                            // reldemat += '<td>'+response.reldetail[i]['clearing_house']+'</td>';
                             reldemat += '</tr>'; 
                         }
                     }

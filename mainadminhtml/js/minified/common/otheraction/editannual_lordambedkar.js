@@ -104,21 +104,21 @@ else
 if(response.dematdetail.length>0)
 {for(var i=0;i<response.dematdetail.length;i++)
 {if(response.dematdetail[i]['accountno']!='')
-{j=i;j++;dematacc+='<tr class="counter">';dematacc+='<td width="25%">'+j+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['accountno']+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['depository_participient']+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['clearing_house']+'</td>';dematacc+='</tr>';}}}
+{j=i;j++;dematacc+='<tr class="counter">';dematacc+='<td width="25%">'+j+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['accountno']+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['depository_participient']+'</td>';dematacc+='</tr>';}}}
 else
 {dematacc='<tr><td colspan ="4">No Data Found..</td></tr>';}
-if(response.reldetail.length>0)
-{var deptype='';for(var i=0;i<response.reldetail.length;i++)
+if(response.reldetail.dependency_nature.length>0)
+{var deptype='';for(var i=0;i<response.reldetail.dependency_nature.length;i++)
 {if(response.reldetail[i]['name']!='')
-{j=i;j++;reldetail+='<tr class="counter">';reldetail+='<td>'+j+'</td>';reldetail+='<td>'+response.reldetail[i]['name']+'</td>';reldetail+='<td>'+response.reldetail[i]['relationshipname']+'</td>';if(response.reldetail[i]['dependency_nature']!='')
-{deptype=response.reldetail[i]['dependency_nature'].toString(',');}
+{j=i;j++;reldetail+='<tr class="counter">';reldetail+='<td>'+j+'</td>';reldetail+='<td>'+response.reldetail[i]['name']+'</td>';reldetail+='<td>'+response.reldetail[i]['relationshipname']+'</td>';if(response.reldetail.dependency_nature.length!='')
+{deptype=response.reldetail.dependency_nature[i].toString(',');}
 reldetail+='<td>'+deptype+'</td>';reldetail+='<td>'+response.reldetail[i]['pan']+'</td>';reldetail+='<td>'+response.reldetail[i]['legal_identifier']+'</td>';reldetail+='<td>'+response.reldetail[i]['legal_identification_no']+'</td>';reldetail+='<td>'+response.reldetail[i]['aadhar']+'</td>';reldetail+='<td>'+response.reldetail[i]['dob']+'</td>';reldetail+='<td>'+response.reldetail[i]['address']+'</td>';reldetail+='<td>'+response.reldetail[i]['education']+'</td>';reldetail+='<td>'+response.reldetail[i]['education']+'</td>';reldetail+='<td>'+response.reldetail[i]['sharehldng']+'</td>';reldetail+='<td>'+response.reldetail[i]['adrshldng']+'</td>';reldetail+='</tr>';}}}
 else
 {reldetail='<tr><td colspan ="14">No Data Found..</td></tr>';}
 if(response.relDematdetail.length>0)
 {for(var i=0;i<response.relDematdetail.length;i++)
 {if(response.relDematdetail[i]['accountno']!='')
-{j=i;j++;reldemat+='<tr class="counter">';reldemat+='<td>'+j+'</td>';reldemat+='<td>'+response.reldetail[i]['accountno']+'</td>';reldemat+='<td>'+response.reldetail[i]['depository_participient']+'</td>';reldemat+='<td>'+response.reldetail[i]['clearing_house']+'</td>';reldemat+='</tr>';}}}
+{j=i;j++;reldemat+='<tr class="counter">';reldemat+='<td>'+j+'</td>';reldemat+='<td>'+response.relDematdetail[i]['accountno']+'</td>';reldemat+='<td>'+response.relDematdetail[i]['depository_participient']+'</td>';reldemat+='</tr>';}}}
 else
 {reldemat='<tr><td colspan ="14">No Data Found..</td></tr>';}
 website('.selfcompany').html(addhtmlnxt);website('.selffirm').html(addhtmlnxt1);website('.selfpubpri').html(addhtmlnxt2);website('.selfpubshare').html(addhtmlnxt3);website('.selfholdcontrl').html(addhtmlnxt7);website('.relative').html(addhtmlnxt4);website('.relativefirm').html(addhtmlnxt5);website('.relativepubpri').html(addhtmlnxt6);website('.relativepubshare').html(addhtmlnxt8);website('.relativeholdngcontrl').html(addhtmlnxt9);website('.pastemp').html(pastemp);website('.mfr').html(mfr);website('.dematacc').html(dematacc);website('.reldetail').html(reldetail);website('.reldemat').html(reldemat);}
