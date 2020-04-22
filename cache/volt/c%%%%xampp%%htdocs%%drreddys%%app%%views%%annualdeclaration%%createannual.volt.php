@@ -895,12 +895,17 @@
             </thead>
             <tbody>
             
-             <?php if(!empty($reldetail)){ for($i=0;$i<sizeof($reldetail);$i++){ $j = $i;$j++; $deptype = '';?> 
+
+             <?php 
+              
+              //print_r($reldetail['dependency_nature']);exit;
+              if(!empty($reldetail)){ for($i=0;$i < sizeof($reldetail['dependency_nature']);$i++){ $j = $i+1;
+               $deptype = '';?> 
                 <tr>
                  <td><?php echo $j;?></td>
                  <td><?php echo $reldetail[$i]['name'];?></td>
                  <td><?php echo $reldetail[$i]['relationshipname'];?></td>
-                 <?php if(!empty($reldetail[$i]['dependency_nature'])) { $deptype = implode(',',$reldetail[$i]['dependency_nature']); } ?>
+                 <?php if(!empty($reldetail['dependency_nature'])) { $deptype = implode(',',$reldetail['dependency_nature'][$i]); } ?>
                  <td><?php echo $deptype;?></td>
                  <td><?php echo $reldetail[$i]['pan'];?></td>
                  <td><?php echo $reldetail[$i]['legal_identifier'];?></td>

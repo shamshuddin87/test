@@ -1960,6 +1960,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
     {
         $connection = $this->dbtrd;
         $getlist = array();
+        $finalarray  = array();;
         $query="SELECT rinfo.*,rel.`relationshipname` FROM `relative_info` rinfo
         LEFT JOIN `relationship` rel ON rinfo.`relationship` = rel.`id`
         WHERE rinfo.`user_id`='".$uid."'";
@@ -1973,21 +1974,47 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
             { 
                 if(!empty($row['dependency_nature']))
                 {
-                    $querysql = "SELECT * FROM `nature_of_dependency` WHERE `id` IN (".$row['dependency_nature'].")";
-                    $exegetsql = $connection->query($querysql);
-                    $getnumsql = trim($exegetsql->numRows());
-                    if($getnumsql>0)
+
+                    $array1 = explode(",", $row['dependency_nature']);
+                    //print_r( $array1);
+                    $depnature = array();
+                    for($i=0;$i<count($array1);$i++)
                     {
-                       while($rowz = $exegetsql->fetch())
-                       { 
+                     
+                     $querysql = "SELECT * FROM `nature_of_dependency` WHERE `id`= ".$array1[$i]." ";
+                     //print_r( $querysql);
+                      $exegetsql = $connection->query($querysql);
+                      $getnumsql = trim($exegetsql->numRows());
+                       if($getnumsql>0)
+                       {
+                          
+                             $rowz = $exegetsql->fetch();
+                          
+                          
                            $depnature[] = $rowz['dependency_nature'];
-                       }
-                        $row['dependency_nature'] = $depnature;
+                           
+
+
+                     }
                     }
+
+                    array_push($finalarray, $depnature);
+
+                   
                 }
                 
+              
                 $getlist[] = $row; 
+                $getlist['dependency_nature'] = $finalarray;
+               
+                
             }
+
+            //print_r($getlist);exit;
+
+             
+           
+
         }
         else
         {  $getlist = array(); }
