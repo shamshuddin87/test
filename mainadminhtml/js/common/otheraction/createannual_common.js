@@ -1222,7 +1222,7 @@ function getpdfdata(uniqueid)
                 }
                
                 /*---- Relative Demat detail ----*/
-                console.log(response.relDematdetail.length);
+                //console.log(response.relDematdetail.length);
                 if(response.relDematdetail.length>0)
                 {
                     for(var i=0;i<response.relDematdetail.length;i++)

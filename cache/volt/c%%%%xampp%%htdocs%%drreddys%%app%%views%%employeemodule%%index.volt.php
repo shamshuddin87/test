@@ -1,7 +1,5 @@
 ﻿<?php $gmnlog = $this->session->loginauthspuserfront; ?>
-<?php //echo"<pre>";print_r($gmnlog); exit;?> 
-<!-- Main content -->
-<!-- ########################################## PageContent Start ########################################## --> 
+
 <div class="right_col" role="main">
 <div class="row">
 <div class="content">
@@ -23,13 +21,13 @@
             <button class="btn relatives ">
             Relatives  Details   
             </button>
-            <!-- <span class="tooltiptext_bg">The term “immediate relative” means spouse of a person, and includes parents, siblings, and child of such person or the spouse, any of whom is either dependent financially on such person, or consults such person in taking decisions relating to trading in securities.</span> -->
+           
          </div>
          <div class="col-md-3 col-xs-12 register">
             <button class="btn mfr">
              Material Financial Relationship  
             </button>
-            <!-- <span class="tooltiptext_bg">The term “material financial relationship” shall mean a relationship in which one person is a recipient of any kind of payment such as by way of a loan or gift during the immediately preceding twelve months, equivalent to at least 25% of such payer’s annual income but shall exclude relationships in which the payment is based on arm’s length transactions</span> -->
+            
          </div>
       </div>
    </div>
@@ -279,47 +277,7 @@
             <div class="containergrid">
                <div class="formcss">
                   <div class="typography form_pad" id="addnoofforms">
-                     <!--   <div class="formelementmain">                      
-                        <form id="insertpastemp" action="employeemodule/insertpastemp" method="post" enctype="multipart/form-data" autocomplete="off"> 
-                        <input type = "hidden" value="<?php echo $personid; ?>" id="personid" name="personid">
-                         <section class="col col-md-6 col-xs-6">
-                                <div class="input">
-                                    <label class="control-label">Name of employer*</label>
-                                    <input type="text" id="empname" name="empname" class="form_fields form-control col-md-7 col-xs-12" required>
-                                </div>
-                            </section>
-                            
-                             <section class="col col-md-6 col-xs-6">
-                                <div class="input">
-                                    <label class="control-label">Designation Served*</label>
-                                    <input type="text" id="designtn" name="designtn" class="form_fields form-control col-md-7 col-xs-12" required>
-                                </div>
-                            </section>
-                        
-                            
-                        <section class="col col-md-6 col-xs-6">
-                        <div class="input">
-                            <label class="control-label">Start Date of Employment*</label> 
-                            <input type="text" name="strtdte" id="strtdte" class="form-control bootdatepick" required readonly>
-                        </div>
-                        </section>
-                            
-                        <section class="col col-md-6 col-xs-6">
-                        <div class="input">
-                        <label class="control-label">End Date of employent*</label>  
-                            <input type="text" name="enddte" id="enddte" class="form-control bootdatepick" required readonly>
-                        </div>
-                        </section>
-                            
-                        
-                            
-                            <section class="col col-md-12 company_asses">
-                                <input type="submit" value="Submit" class="btn btn-primary contractexcelbtn">
-                            </section>
-                            <div class="clearelement"></div>
-                            
-                        </form>
-                        </div>  -->                               
+                                              
                      <div class="clearelement"></div>
                   </div>
                </div>
@@ -378,14 +336,9 @@
                               <label for="age">Mobile No*</label>
                               <input type="hidden" id="upmobileno" name="upmobileno" value="">
                               <input type="text" id="upmobno" name="upmobno" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10">
-                              <!--                 <p id="addmobileonmd"></p>-->
+                             
                            </div>
-                           <!--
-                              <div class="col-md-12">
-                              <input type="button" value="Add" name="" id="upaddmobile" class="inner_button">
-                               </div>
-                                
-                              -->
+                           
                            <div class="col-md-6">
                             <div class="tooltip_div">
                                 <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
@@ -893,7 +846,7 @@
                   </div>
                   <div class="modal-footer" style="border-top:none;">
                      <button type="button" class="btn btn-primary" id="yesdisclosures1">I understand</button> 
-<!--                      <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="nodisclosures1" onclick="nodisclosures(this.id);">No</button>-->
+
                   </div>
                </div>
             </div>
