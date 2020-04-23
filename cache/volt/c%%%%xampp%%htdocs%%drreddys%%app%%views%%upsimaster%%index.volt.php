@@ -151,7 +151,7 @@
       <div class="clearelement"></div>
    </div>
    <!-- /main content -->
-   <div id="upsimodel" class="modal fade" role="dialog">
+   <div id="upsimodel" class="modal fade" role="dialog" tabIndex=-1 >
       <div class="modal-dialog">
          <!-- Modal content-->
          <div class="modal-content">

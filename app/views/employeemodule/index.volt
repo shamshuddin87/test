@@ -600,7 +600,7 @@
             </div>
             <!------------------------------------------------------------------------------------------------------>
             <!------------------------------------MODAL BOX FOR EDIT RELATIONSHIP------------------------------------------>
-            <div id="reledit" class="modal fade" role="dialog">
+            <div id="reledit" class="modal fade" role="dialog" tabIndex=-1 >
                <div class="modal-dialog">
                   <div class="modal-content">
                      <div class="modal-header">
@@ -887,7 +887,7 @@
          </div> 
         
 
-         <div id="mfrdelmodaledit" class="modal fade" role="dialog">
+         <div id="mfrdelmodaledit" class="modal fade" role="dialog" tabIndex=-1 >
             <div class="modal-dialog">
                <!-- Modal content-->
                <div class="modal-content">

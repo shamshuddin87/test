@@ -1152,6 +1152,7 @@ website('body').on('click','.editrel',function()
                  
                });
                 website('#reledit').modal('show');
+                 website("#reledit").focus();
            }  
            else{
            
