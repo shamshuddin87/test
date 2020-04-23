@@ -305,7 +305,7 @@ $condeptsess = $this->session->contractdepartment;
   </div>
 </div>
 
-<div id="Mymodaledit" class="modal fade" role="dialog">
+<div id="Mymodaledit" class="modal fade" role="dialog" tabIndex=-1>
   <div class="modal-dialog">
 
     <div class="modal-content">

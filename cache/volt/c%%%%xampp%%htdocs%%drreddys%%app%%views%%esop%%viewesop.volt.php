@@ -40,7 +40,7 @@ $condeptsess = $this->session->contractdepartment;
             </div>
 
              <div class=" control-label col-md-6 col-xs-6" >
-                <a class="btn btn-primary exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
+                <a class="btn btn-primary exportcss dwnldExcel" href="" style="display: none;float: right;" download>Download</a>
             <button type="button" class="btn btn-primary genfile excel_bg" style="float: right;">Export Data of Non-DPs</button>
             
            </div>

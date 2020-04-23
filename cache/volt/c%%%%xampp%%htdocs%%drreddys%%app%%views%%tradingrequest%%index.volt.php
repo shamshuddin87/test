@@ -118,7 +118,7 @@
 
 
 <!-- ------------------------ Start PERSONAL REQUEST ------------------------ -->
-<div id="Mymodalreq" class="modal fade" role="dialog">
+<div id="Mymodalreq" class="modal fade" role="dialog" tabIndex=-1>
 <div class="modal-dialog">
 <div class="modal-content">
     <div class="modal-header">

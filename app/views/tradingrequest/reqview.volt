@@ -224,7 +224,7 @@ $gmnlog = $this->session->loginauthspuserfront;
 </div>
 
 
-<div id="Mymodalaudittrail" class="modal fade" role="dialog">
+<div id="Mymodalaudittrail" class="modal fade" role="dialog" tabIndex=-1>
   <div class="modal-dialog">
 
     <div class="modal-content">
