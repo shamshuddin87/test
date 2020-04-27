@@ -290,7 +290,7 @@ $condeptsess = $this->session->contractdepartment;
                     <input type="hidden" class="exceltranstype" name="exceltranstype" value="">
                     <input type="hidden" class="excelname" name="excelname" value="">
                     <input type="hidden" class="excelcmpnme" name="excelcmpnme" value="">
-                    <input type="hidden" class="excelcmpisin" name="excelcmpisin" value="INE089A01023">
+                    <input type="hidden" class="excelcmpisin" name="excelcmpisin" value="">
                     <input type="hidden" class="excelpan" name="excelpan" value="">
                     <input type="hidden" class="excelcin"  name="excelcin" value="L85195TG1984PLC004507">
                     <input type="hidden" class="excelcontctno" name="excelcontctno" value="">

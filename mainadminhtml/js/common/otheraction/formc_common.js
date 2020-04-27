@@ -421,7 +421,7 @@ website('body').on('click','#previewc',function()
                else
                {
                     website('.transtype').html('<p style="color:green;">BUY</p>');
-                     website('.exceltranstype').html('<p style="color:green;">BUY</p>');
+                     website('.exceltranstype').html('BUY');
                }
                website('.name').html(response.formdata['fullname']);
                 website('.excelname').val(response.formdata['fullname']);
