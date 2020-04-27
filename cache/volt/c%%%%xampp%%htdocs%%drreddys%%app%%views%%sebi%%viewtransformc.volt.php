@@ -281,6 +281,7 @@ $condeptsess = $this->session->contractdepartment;
 
 <div class="table-responsive">
 <div id="modaldocument" class="modal fade" role="dialog">
+    <form id="excelupload" name="excelupload">
 
   <div class="table-responsive modal-dialog modal_width">
     <!-- Modal content-->
@@ -302,9 +303,10 @@ $condeptsess = $this->session->contractdepartment;
     </div>
   </div>
 </div>
+</form>
 </div>
 
-<div id="Mymodaledit" class="modal fade" role="dialog">
+<div id="Mymodaledit" class="modal fade" role="dialog" tabIndex=-1>
   <div class="modal-dialog">
 
     <div class="modal-content">

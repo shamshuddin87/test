@@ -71,7 +71,7 @@ else
 {if(response.logged===true)
 {website('.preloder_wraper').fadeOut();website('#modaldocument .formbpdf').fadeOut();website('#modaldocument .button_pdf .down_load').show();website('#modaldocument .downloadpdf').show();website('#modaldocument .downloadpdf .pdfln').html('<a href="'+response.pdfpath+'" target="_blank" class="downlodthfle" style="color: white;"> Download</a>');}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
-{}});});website('.genfile').on('click',function(e){var noofrows=website('#noofrows').val();var pagenum=website('#pagenum').val();var annualyr=website('#annualyear').val();var filterstatus=website('#filterstatus').val();var search=website('#srch').val();let id=new Array();website("input:checkbox[name=chkbox]:checked").each(function(){id.push(website(this).val());});var formdata={noofrows:noofrows,pagenum:pagenum,annualyr:annualyr,filterstatus:filterstatus,search:search,id:id};website.ajax({url:'sebi/exportformc',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{}});});website('.genfile').on('click',function(e){let id=new Array();website("input:checkbox[name=chkbox]:checked").each(function(){id.push(website(this).val());});var formdata={id:id};website.ajax({url:'sebi/exportformc',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
 {if(response.logged==true)

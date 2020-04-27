@@ -281,6 +281,42 @@ $condeptsess = $this->session->contractdepartment;
 
 <div class="table-responsive">
 <div id="modaldocument" class="modal fade" role="dialog">
+    <form id="excelupload" name="excelupload">
+                 <input type="hidden" class="excelsecutype1" name="excelsecutype1" value="">
+                    <input type="hidden" class="excelsecutype2" name="excelsecutype2" value="">
+                    <input type="hidden" class="excelcontractspecific" name="excelcontractspecific" value="">
+                    <input type="hidden" class="excelcontracttype" name="excelcontracttype" value="">
+                    <input type="hidden" class="excelposttrans" name="excelposttrans" value="">
+                    <input type="hidden" class="exceltranstype" name="exceltranstype" value="">
+                    <input type="hidden" class="excelname" name="excelname" value="">
+                    <input type="hidden" class="excelcmpnme" name="excelcmpnme" value="">
+                    <input type="hidden" class="excelcmpisin" name="excelcmpisin" value="INE089A01023">
+                    <input type="hidden" class="excelpan" name="excelpan" value="">
+                    <input type="hidden" class="excelcin"  name="excelcin" value="L85195TG1984PLC004507">
+                    <input type="hidden" class="excelcontctno" name="excelcontctno" value="">
+                    <input type="hidden" class="excelopngblnc"  name="excelopngblnc" value="">
+                    <input type="hidden" class="excelpershare" name="excelpershare" value="">
+                    
+                    <input type="hidden" class="excelnoofshares" name="excelnoofshares" value="">
+                    <input type="hidden" class="exceltotalamt" name="exceltotalamt" value="">
+                    <input type="hidden" class="exceladdress"  name="exceladdress" value="">
+                    <input type="hidden" class="excelcategory" name="excelcategory" value="">
+                    <input type="hidden" class="excelpretrans" name="excelpretrans" value="">
+                    <input type="hidden" class="excelposttrans" name="excelposttrans" value="">
+                    <input type="hidden" class="excelfromdate"  name="excelfromdate"  value="">
+                    <input type="hidden" class="exceltodate" name="exceltodate" value="">
+                    <input type="hidden" class="exceldateofintimtn" name="exceldateofintimtn" value="">
+                    <input type="hidden" class="excelacquimode" name="excelacquimode" value="">
+                    <input type="hidden" class="excelbuyvalue" name="excelbuyvalue" value="">
+                    <input type="hidden" class="excelbuynumbrunt"  name="excelbuynumbrunt" value="">
+                    <input type="hidden" class="excelsellvalue" name="excelsellvalue" value="">
+                    <input type="hidden" class="excelsellnumbrunt" name="excelsellnumbrunt" value="">
+                    <input type="hidden" class="excelexetrd" name="excelexetrd" value="">
+                    <input type="hidden" class="excelformcid" name="excelformcid" value="">
+                    <input type="hidden" class="excelprepercent" name="excelprepercent" value="">
+                    <input type="hidden" class="excelpostpercent" name="excelpostpercent" value="">
+                    </form>
+
 
   <div class="table-responsive modal-dialog modal_width">
     <!-- Modal content-->
@@ -302,6 +338,7 @@ $condeptsess = $this->session->contractdepartment;
     </div>
   </div>
 </div>
+
 </div>
 
 <div id="Mymodaledit" class="modal fade" role="dialog" tabIndex=-1>

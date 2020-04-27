@@ -402,18 +402,13 @@ website('body').on('click','.formbpdf', function(e)
 
 
 website('.genfile').on('click', function(e) {
-    // alert(request);return false;
-    var noofrows = website('#noofrows').val(); 
-    var pagenum = website('#pagenum').val();
-    var annualyr = website('#annualyear').val();
-    var filterstatus = website('#filterstatus').val();
-    var search = website('#srch').val();
+    
     let id = new Array();
     website("input:checkbox[name=chkbox]:checked").each(function(){
     id.push(website(this).val());
    });
     //console.log(id);return false;
-    var formdata = {noofrows:noofrows,pagenum:pagenum,annualyr:annualyr,filterstatus:filterstatus,search:search,id:id};
+    var formdata = {id:id};
     website.ajax({
         url:'sebi/exportformc',
         data:formdata,

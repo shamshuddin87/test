@@ -536,29 +536,45 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
     
      public function exportformc($getuserid,$user_group_id,$processdata)
     {
-        //echo '<pre>'; print_r($processdata);exit;
-        $connection = $this->db;
+       // echo '<pre>'; print_r($processdata);exit;
+         $connection = $this->db;
         $time = time();
         
         $excelfilenamepath = 'samplefile/SEBI/formc.xlsx';
         $newfilepath = 'img/sebi/formc'.'_'.$time.'.xlsx';
         $j=1;
+       
         foreach($processdata as $tblrow)
         {
-            $date = $tblrow['date_added'];
-            $ndate = explode(" ",$date);
+           
+           $firstfield=$tblrow[6].",".$tblrow[9].",".$tblrow[10].",".$tblrow[16].",".$tblrow[11];
+           $third = $tblrow[12].",".$tblrow[30];
+            $nine = $tblrow[13].",".$tblrow[31];
 
-            $newdate = explode("-",$ndate[0]);
-            $finaldate = $newdate[2].'-'.$newdate[1].'-'.$newdate[0];
-            
-            $nwexcl[] = array('0' => $j,
-                            '1' => $finaldate,
-                            '2' => $tblrow['fullname'],
-                            '3' => $tblrow['pan'],
-                            '4' => $tblrow['cin'],
-                            '5' => $tblrow['address'],
-                            '6' => $tblrow['mobile'],
-                            '7' => $tblrow['category']
+          
+            $nwexcl[] = array(  '0' => $firstfield,
+                                '1' => $tblrow[17],
+                                '2'=>$tblrow[0],
+                                '3' =>$third,
+                                '4' =>$tblrow[0],
+                                '5' =>$tblrow[14],
+                                '6' =>$tblrow[15],
+                                '7' =>strip_tags($tblrow[5]),
+                                '8' =>$tblrow[1],
+                                '9' =>$nine,
+                                '10' =>$tblrow[20],
+                                '11' =>$tblrow[21],
+                                '12' =>$tblrow[22],
+                                '13' =>$tblrow[23],
+                                '14' =>$tblrow[3],
+                                '15' =>$tblrow[2],
+                                '16' =>$tblrow[24],
+                                '17' =>$tblrow[25],
+                                '18' =>$tblrow[26],
+                                '19' =>$tblrow[27],
+                                '20' =>$tblrow[28]
+                              
+
                         );
             $j++;
         }
@@ -604,6 +620,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
 
         //echo '<pre>';print_r($genfile);exit;
         return $genfile;
+
     }
 
       public function exportesop($getuserid,$user_group_id,$processdata)

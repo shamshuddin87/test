@@ -324,7 +324,7 @@
 
 
 <!-- ---------------------- Start MODAL BOX FOR UPDATE ---------------------- -->
-<div id="updatemodal" class="modal fade" role="dialog">
+<div id="updatemodal" class="modal fade" role="dialog" tabIndex=-1>
 <div class="modal-dialog">
 <div class="modal-content">
     <div class="modal-header">
@@ -400,7 +400,7 @@
 
 
 <!-- ---------------------- Start MODAL BOX FOR UPLOAD FILE ---------------------- -->
-<div id="uploadmyfile" class="modal fade" role="dialog">
+<div id="uploadmyfile" class="modal fade" role="dialog" tabIndex=-1>
 <div class="modal-dialog">
 <!-- Modal content-->
 <div class="modal-content margin-top">
@@ -536,7 +536,7 @@
 
 
 <!-- -------------------- Start MODAL BOX FOR EDIT RELATIONSHIP -------------------- -->
-<div id="checkappvlrequest" class="modal fade" role="dialog">
+<div id="checkappvlrequest" class="modal fade" role="dialog" tabIndex=-1>
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -585,7 +585,7 @@
 <!-- -------------------- End MODAL BOX FOR EDIT RELATIONSHIP -------------------- -->
 
 
-<div id="checkappvlreq" class="modal fade" role="dialog">
+<div id="checkappvlreq" class="modal fade" role="dialog" tabIndex=-1>
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -611,7 +611,7 @@
 </div>
    
      
-<div id="Mymodalaudittrail" class="modal fade" role="dialog">
+<div id="Mymodalaudittrail" class="modal fade" role="dialog" tabIndex=-1>
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -668,7 +668,7 @@
 </div>
 
 
-<div id="formI" class="modal fade" role="dialog">
+<div id="formI" class="modal fade" role="dialog" tabIndex=-1>
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -688,7 +688,7 @@
     </div>
 </div>
 </div>
-<div id="chckexcptnrequest" class="modal fade" role="dialog">
+<div id="chckexcptnrequest" class="modal fade" role="dialog" tabIndex=-1>
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -726,7 +726,7 @@
     </div>
 </div>
 </div>
-<div id="reasonexceptn" class="modal fade" role="dialog">
+<div id="reasonexceptn" class="modal fade" role="dialog" tabIndex=-1>
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
