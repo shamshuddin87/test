@@ -547,9 +547,9 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         foreach($processdata as $tblrow)
         {
            
-           $firstfield=$tblrow[6].",".$tblrow[9].",".$tblrow[10].",".$tblrow[16].",".$tblrow[11];
+           $firstfield=$tblrow[6].",".$tblrow[9].","L85195TG1984PLC004507",".$tblrow[16].",".$tblrow[11];
            $third = $tblrow[12].",".$tblrow[30];
-            $nine = $tblrow[13].",".$tblrow[31];
+           $nine = $tblrow[13].",".$tblrow[31];
 
           
             $nwexcl[] = array(  '0' => $firstfield,
