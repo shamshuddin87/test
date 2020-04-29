@@ -630,7 +630,7 @@
                      <td style="border-right: 1px solid #f7f7f7"></td>
                      <td>
                         <div class="input">
-                           <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" onkeypress="return isAlphaNumeric_space(event,this.value);"  >
+                           <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]"   >
                          </div>
                      </td>
                      <td> 
@@ -697,7 +697,7 @@
                <td style="border-right: 1px solid #f7f7f7"></td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" placeholder="Company Name" onkeypress="return isAlphaNumeric_space(event,this.value);">
+               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" placeholder="Company Name" >
                    </div>
                </td>
                <td> 
@@ -762,7 +762,7 @@
                <td style="border-right: 1px solid #f7f7f7"></td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d8ques1" name="d8ques1[]" onkeypress="return isAlphaNumeric_space(event,this.value);">
+               <input type="text" class="form-control inputbox4" id="d8ques1" name="d8ques1[]" >
                    </div>
                </td>
                <td>
@@ -1165,7 +1165,7 @@
                    </td>
                    <td> 
                    <div class="input">
-                   <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" placeholder="Company Name" onkeypress="return isAlphaNumeric_space(event,this.value);">
+                   <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" placeholder="Company Name" >
                        </div>
                    </td>
                    <td> 

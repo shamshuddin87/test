@@ -157,20 +157,8 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                             '1' => $tblrow['projstartdate'],
                             '2'=> $tblrow['enddate'],
                             '3' => $tblrow[11],
-                            '4' => $tblrow['fullname'],
-                            '5' => $tblrow['email'],
-                            '6' => $tblrow['pan'],
-                            '7'=> $tblrow['legal_identifier'],
-                            '8' => $tblrow['legal_identification_no'],
-                            '9' => $tblrow['aadhar'],
-                            '10' => $tblrow['dob'],
-                            '11' => $tblrow['sex'],
-                            '12' => $tblrow['education'],
-                            '13' => $tblrow['institute'],
-                            '14' => $tblrow['address'],
-                            '15' => $tblrow['mobileno'],
-                            '16' => $tblrow['sharehldng'],
-                            '17' => $tblrow['adrshldng']
+                            '4' => $tblrow['fullname']
+                    
                             //'4' => $tblrow['designation']
                            
                         );

@@ -624,7 +624,7 @@
             <td>
                <div class="input">
                <input type="text" class="form-control inputbox3" id="d3id" name="d3id[]" value="<?php echo $selfpublic[$i]['id']?>" style= "display: none;">
-               <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" value="<?php echo $selfpublic[$i]['company']?>" onkeypress="return isAlphaNumeric_space(event,this.value);">
+               <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" value="<?php echo $selfpublic[$i]['company']?>" >
                 </div>
             </td>
             <td>
@@ -733,7 +733,7 @@
             <td>
                <div class="input">
                <input type="text" class="form-control inputbox3" id="d4id" name="d4id[]" value="<?php echo $selfpubshare[$i]['id']?>" style= "display: none;">
-               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]"  value="<?php echo $selfpubshare[$i]['company']?>"onkeypress="return isAlphaNumeric_space(event,this.value);" >
+               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]"  value="<?php echo $selfpubshare[$i]['company']?>" >
             </td>
             <td>
                <div class="input">
@@ -825,7 +825,7 @@
                    <td> 
                     <input type="text" class="form-control inputbox3" id="d8id" name="d8id[]" value="<?php echo $selfholdcntrl[$i]['id']?>" style= "display: none;">
                    <div class="input">
-                   <input type="text" class="form-control inputbox4" id="d8ques1" name="d8ques1[]" value="<?php echo  $selfholdcntrl[$i]['cmpname'];?>" onkeypress="return isAlphaNumeric_space(event,this.value);">
+                   <input type="text" class="form-control inputbox4" id="d8ques1" name="d8ques1[]" value="<?php echo  $selfholdcntrl[$i]['cmpname'];?>" >
                        </div>
                    </td>
                    <td>
@@ -1285,7 +1285,7 @@
            </td>
            <td> 
            <div class="input">
-           <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]"  value="<?php echo $relativepubshare[$i]['company']; ?>" onkeypress="return isAlphaNumeric_space(event,this.value);">
+           <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]"  value="<?php echo $relativepubshare[$i]['company']; ?>" >
                </div>
            </td>
            <td> 

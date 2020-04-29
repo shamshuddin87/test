@@ -526,18 +526,18 @@ class Miscommon extends Component
          {
             //print_r($masteruserdata);exit;
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-             $queryget = "SELECT ss.*,sr.name,sr.nameofentity,sr.identityno,utype.upsitype,
+             $queryget = "SELECT ss.*,sr.`name`,sr.`nameofentity`,sr.`identityno`,utype.`upsitype`,
                     memb.`fullname`,sc.`category` AS category_name,sr.`othercategory` 
                     FROM `sensitiveinfo_sharing` ss 
                     LEFT JOIN `sensitiveinfo_recipient` sr ON ss.`recipientid` = sr.`id` 
                     LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ss.`user_id` 
-                    LEFT JOIN `upsimaster` utype ON utype.id = ss.`upsitype` 
+                    LEFT JOIN `upsimaster` utype ON utype.`id` = ss.`upsitype` 
                     LEFT JOIN `sensitiveinfo_category` sc ON sc.`id` = sr.`category`
 				    WHERE ss.`user_id` IN (".$grpusrs['ulstring'].") AND ss.`upsitype`= '".$upsitypeid."' ORDER BY ss.`id` DESC ".$query; 
 
           
             
-            //echo $queryget;  exit;
+           //echo $queryget;  exit;
             //,sr.`othercategory`
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
