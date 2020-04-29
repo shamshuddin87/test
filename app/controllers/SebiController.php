@@ -791,9 +791,9 @@ class SebiController extends ControllerBase
                 }
                 if(!empty($getsharecapital))
                 {
-                    $prepercentshrecap=($getres['data']['adrshldng']/$getsharecapital['pershare'])*100;
-                    $postpercentshrecap=($getres['data']['adrshldng']+$getres['data']['no_of_shares']/$getsharecapital['pershare'])*100;
-                    $postnumber=$getres['data']['adrshldng']+$getres['data']['no_of_shares'];
+                    $prepercentshrecap=($getres['data']['sharehldng']/$getsharecapital['pershare'])*100;
+                    $postpercentshrecap=($getres['data']['sharehldng']+$getres['data']['no_of_shares']/$getsharecapital['pershare'])*100;
+                    $postnumber=$getres['data']['sharehldng']+$getres['data']['no_of_shares'];
                 }
                 else
                 {

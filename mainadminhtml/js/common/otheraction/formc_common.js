@@ -433,8 +433,8 @@ website('body').on('click','#previewc',function()
                 website('.excelcmpisin').val(response.formdata['cin']);
                website('.contctno').html(response.formdata['mobile']);
                 website('.excelcontctno').val(response.formdata['mobile']);
-               website('.opngblnc').html(response.formdata['adrshldng']);
-                website('.excelopngblnc').val(response.formdata['adrshldng']);
+               website('.opngblnc').html(response.formdata['sharehldng']);
+                website('.excelopngblnc').val(response.formdata['sharehldng']);
                 website('.pershare').html(response.postnumber);
                  website('.excelpershare').val(response.postnumber);
 

@@ -1473,7 +1473,7 @@
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-primary sendtype" name="sendtype" id="" value="yes" tempid="">Yes</button>
-            <button type="button" class="btn btn-primary" onclick="window.location.reload();" value="no" tempid="">No</button>
+            <button type="button" class="btn btn-primary sendtype"  value="no" tempid="">No</button>
          </div>
       </div>
    </div>

@@ -537,7 +537,7 @@ public function getallrelative($uid,$usergroup)
              VALUES ('".$getuserid."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
          
          
-         //echo $queryinsert;
+         echo $queryinsert;
          $exe = $connection->query($queryinsert);
      }
         //echo 'here';exit;
@@ -561,13 +561,14 @@ public function getallrelative($uid,$usergroup)
    
 
      for($i = 0; $i< sizeof($company);$i++)
-     {              
-          $queryinsert = "INSERT INTO `annual_self_firm`
+     {     
+
+          $queryinsert = 'INSERT INTO `annual_self_firm`
             (`user_id`,`firm`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-             VALUES ('".$getuserid."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+             VALUES ("'.$getuserid.'","'.$company[$i].'","'.$interest[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
          
          
-         //echo $queryinsert;
+        // echo $queryinsert;
          $exe = $connection->query($queryinsert);
 
      }
@@ -593,9 +594,9 @@ public function getallrelative($uid,$usergroup)
 
      for($i = 0; $i< sizeof($company);$i++)
      {              
-          $queryinsert = "INSERT INTO `annual_self_publicprivate`
+          $queryinsert = 'INSERT INTO `annual_self_publicprivate`
             (`user_id`,`company`,`interest`,`decision`,`transaction`,`noofshare`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-             VALUES ('".$getuserid."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$noofshare[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+             VALUES ("'.$getuserid.'","'.$company[$i].'","'.$interest[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$noofshare[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
          
          
          //echo $queryinsert;
@@ -625,9 +626,9 @@ public function getallrelative($uid,$usergroup)
 
      for($i = 0; $i< sizeof($company);$i++)
      {              
-          $queryinsert = "INSERT INTO `annual_self_publicshare`
+          $queryinsert = 'INSERT INTO `annual_self_publicshare`
             (`user_id`,`company`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-             VALUES ('".$getuserid."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+             VALUES ("'.$getuserid.'","'.$company[$i].'","'.$interest[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
          
          
          //echo $queryinsert;
@@ -656,12 +657,12 @@ public function getallrelative($uid,$usergroup)
 
      for($i = 0; $i< sizeof($relative);$i++)
      {              
-          $queryinsert = "INSERT INTO `annual_relative`
+          $queryinsert = 'INSERT INTO `annual_relative`
             (`user_id`,`relative`,`company`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-             VALUES ('".$getuserid."','".$relative[$i]."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+             VALUES ("'.$getuserid.'","'.$relative[$i].'","'.$company[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
          
          
-         //echo $queryinsert;
+         echo $queryinsert;
          $exe = $connection->query($queryinsert);
 
      }
@@ -687,9 +688,9 @@ public function getallrelative($uid,$usergroup)
 
      for($i = 0; $i< sizeof($relative);$i++)
      {              
-          $queryinsert = "INSERT INTO `annual_relative_firm`
+          $queryinsert = 'INSERT INTO `annual_relative_firm`
             (`user_id`,`relative`,`firm`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-             VALUES ('".$getuserid."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+             VALUES ("'.$getuserid.'","'.$relative[$i].'","'.$company[$i].'","'.$interest[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
          
          
          //echo $queryinsert;
@@ -718,9 +719,9 @@ public function getallrelative($uid,$usergroup)
 
      for($i = 0; $i< sizeof($relative);$i++)
      {              
-          $queryinsert = "INSERT INTO `annual_relative_publicprivate`
+          $queryinsert = 'INSERT INTO `annual_relative_publicprivate`
             (`user_id`,`relative`,`company`,`interest`,`decision`,`transaction`,`noofshare`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-             VALUES ('".$getuserid."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$noofshare[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+             VALUES ("'.$getuserid.'","'.$relative[$i].'","'.$company[$i].'","'.$interest[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$noofshare[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
          
          
          //echo $queryinsert;
@@ -750,9 +751,9 @@ public function getallrelative($uid,$usergroup)
 
          for($i = 0; $i< sizeof($company);$i++)
          {              
-              $queryinsert = "INSERT INTO `annual_self_holdinginterest`
+              $queryinsert = 'INSERT INTO `annual_self_holdinginterest`
                 (`user_id`,`user_group_id`,`cmpname`,`isdecisionmaking`,`isfincltrans`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-                 VALUES ('".$getuserid."','".$user_group_id."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+                 VALUES ("'.$getuserid.'","'.$user_group_id.'","'.$company[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
 
 
              //echo $queryinsert;
@@ -782,9 +783,9 @@ public function getallrelative($uid,$usergroup)
 
          for($i = 0; $i< sizeof($relative);$i++)
          {              
-              $queryinsert = "INSERT INTO `annual_relative_publicshare`
+              $queryinsert = 'INSERT INTO `annual_relative_publicshare`
                 (`user_id`,`user_group_id`,`relative`,`company`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-                 VALUES ('".$getuserid."','".$user_group_id."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+                 VALUES ("'.$getuserid.'","'.$user_group_id.'","'.$relative[$i].'","'.$company[$i].'","'.$interest[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
 
 
              //echo $queryinsert;exit;
@@ -814,9 +815,9 @@ public function getallrelative($uid,$usergroup)
 
          for($i = 0; $i< sizeof($relative);$i++)
          {              
-              $queryinsert = "INSERT INTO `annual_relative_holdinginterest`
+              $queryinsert = 'INSERT INTO `annual_relative_holdinginterest`
                 (`user_id`,`user_group_id`,`relative`,`cmpname`,`isdecisionmaking`,`isfincltrans`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-                 VALUES ('".$getuserid."','".$user_group_id."','".$relative[$i]."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+                 VALUES ("'.$getuserid.'","'.$user_group_id.'","'.$relative[$i].'","'.$company[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
 
 
              //echo $queryinsert;
@@ -1275,16 +1276,16 @@ public function upannualselffirm($uid,$company,$interest,$decision,$transaction,
          if(array_key_exists($i,$id))
           {  
              
-         $queryupdate =  "UPDATE `annual_self_firm` SET `firm` = '".$company[$i]."',`interest` = '".$interest[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = '".$id[$i]."' ";
+         $queryupdate =  'UPDATE `annual_self_firm` SET `firm` = "'.$company[$i].'",`interest` = "'.$interest[$i].'",`decision` = "'.$decision[$i].'",`transaction` = "'.$transaction[$i].'",`date_added`=NOW(),`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = "'.$id[$i].'" ';
           
           $exegetqry = $connection->query($queryupdate);
             
          }
          else
          {
-            $queryinsert = "INSERT INTO `annual_self_firm`
+            $queryinsert = 'INSERT INTO `annual_self_firm`
             (`user_id`,`firm`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-             VALUES ('".$uid."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+             VALUES ("'.$uid.'","'.$company[$i].'","'.$interest[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
             
            $exegetqry = $connection->query($queryinsert);
          }
@@ -1338,16 +1339,17 @@ public function upannualselfpubprivate($uid,$company,$interest,$decision,$transa
           if(array_key_exists($i,$id))
           {   
 
-         $queryupdate =  "UPDATE `annual_self_publicprivate` SET `company` = '".$company[$i]."',`interest` = '".$interest[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = '".$id[$i]."' ";
+         $queryupdate =  'UPDATE `annual_self_publicprivate` SET `company` = "'.$company[$i].'",`interest` = "'.$interest[$i].'",`decision` = "'.$decision[$i].'",`transaction` = "'.$transaction[$i].'",`date_added`=NOW(),`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = "'.$id[$i].'" ';
+
           $exegetqry = $connection->query($queryupdate);
         
          }
          else
          {
 
-            $queryinsert = "INSERT INTO `annual_self_publicprivate`
+            $queryinsert = 'INSERT INTO `annual_self_publicprivate`
             (`user_id`,`company`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-             VALUES ('".$uid."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+             VALUES ("'.$uid.'","'.$company[$i].'","'.$interest[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
               $exegetqry = $connection->query($queryinsert);
                            
 
@@ -1400,16 +1402,17 @@ public function upannualselfpubshare($uid,$company,$interest,$decision,$transact
          if(array_key_exists($i,$id))
           {  
 
-         $queryupdate =  "UPDATE `annual_self_publicshare` SET `company` = '".$company[$i]."',`interest` = '".$interest[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id`= '".$id[$i]."' ";
+         $queryupdate =  'UPDATE `annual_self_publicshare` SET `company` = "'.$company[$i].'",`interest` = "'.$interest[$i].'",`decision` = "'.$decision[$i].'",`transaction` = "'.$transaction[$i].'",`date_added`=NOW(),`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id`= "'.$id[$i].'" ';
+
          $exegetqry = $connection->query($queryupdate);
         
          }
          else
          {
 
-         $queryinsert = "INSERT INTO `annual_self_publicshare`
+         $queryinsert = 'INSERT INTO `annual_self_publicshare`
             (`user_id`,`company`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-             VALUES ('".$uid."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+             VALUES ("'.$uid.'","'.$company[$i].'","'.$interest[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
           $exegetqry = $connection->query($queryinsert);
                            
          }
@@ -1519,15 +1522,15 @@ public function upannualrelativefirm($uid,$relative,$company,$interest,$decision
         if(array_key_exists($i,$id))
         {
 
-         $queryupdate =  "UPDATE `annual_relative_firm` SET `firm` = '".$company[$i]."',`relative` = '".$relative[$i]."',`interest` = '".$interest[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = '".$id[$i]."'  ";
+         $queryupdate =  'UPDATE `annual_relative_firm` SET `firm` = "'.$company[$i].'",`relative` = "'.$relative[$i].'",`interest` = "'.$interest[$i].'",`decision` = "'.$decision[$i].'",`transaction` = "'.$transaction[$i].'",`date_added`=NOW(),`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = "'.$id[$i].'"  ';
             $exegetqry = $connection->query($queryupdate);
         
          }
          else
          {
-          $queryinsert = "INSERT INTO `annual_relative_firm`
+          $queryinsert = 'INSERT INTO `annual_relative_firm`
             (`user_id`,`relative`,`firm`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-             VALUES ('".$uid."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+             VALUES ("'.$uid.'","'.$relative[$i].'","'.$company[$i].'","'.$interest[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
               $exegetqry = $connection->query($queryinsert);
          }
 
@@ -1580,16 +1583,16 @@ public function upannualrelativepublicshare($uid,$relative,$company,$decision,$t
         if(array_key_exists($i,$id))
         {
 
-         $queryupdate =  "UPDATE `annual_relative_publicprivate` SET `company` = '".$company[$i]."',`relative` = '".$relative[$i]."',`interest` = '".$interest[$i]."',`noofshare` = '".$noofshare[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = '".$id[$i]."' ";
+         $queryupdate =  'UPDATE `annual_relative_publicprivate` SET `company` = "'.$company[$i].'",`relative` = "'.$relative[$i].'",`interest` = "'.$interest[$i].'",`noofshare` = "'.$noofshare[$i].'",`decision` = "'.$decision[$i].'",`transaction` = "'.$transaction[$i].'",`date_added`=NOW(),`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = "'.$id[$i].'" ';
         // print_r($queryupdate);
           $exegetqry = $connection->query($queryupdate);
         }
         else
         {
          
-          $queryinsert = "INSERT INTO `annual_relative_publicprivate`
+          $queryinsert = 'INSERT INTO `annual_relative_publicprivate`
             (`user_id`,`relative`,`company`,`interest`,`noofshare`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-             VALUES ('".$uid."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$noofshare[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+             VALUES ("'.$uid.'",'.$relative[$i].'","'.$company[$i].'","'.$interest[$i].'","'.$noofshare[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
              //print_r($queryinsert);
               $exegetqry = $connection->query($queryinsert);
                            
@@ -1642,17 +1645,17 @@ public function upannualselfholdingintrst($uid,$user_group_id,$company,$decision
         if(array_key_exists($i,$id))
         {
                  
-         $queryupdate =  "UPDATE `annual_self_holdinginterest` SET `cmpname` = '".$company[$i]."',`isdecisionmaking` = '".$decision[$i]."',`isfincltrans` = '".$transaction[$i]."',`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
+         $queryupdate =  'UPDATE `annual_self_holdinginterest` SET `cmpname` = "'.$company[$i].'",`isdecisionmaking` = "'.$decision[$i].'",`isfincltrans` = "'.$transaction[$i].'",`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = ".$id[$i]." ';
 
           $exegetqry = $connection->query($queryupdate);
         }
         else
         {
          
-          $queryinsert = "INSERT INTO `annual_self_holdinginterest`
+          $queryinsert = 'INSERT INTO `annual_self_holdinginterest`
                 (`user_id`,`user_group_id`,`cmpname`,`isdecisionmaking`,`isfincltrans`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-                 VALUES ('".$uid."','".$user_group_id."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
-                 print_r($queryinsert);
+                 VALUES ("'.$uid.'","'.$user_group_id.'","'.$company[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
+                // print_r($queryinsert);
               $exegetqry = $connection->query($queryinsert);
                            
         }
@@ -1709,16 +1712,16 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
         if(array_key_exists($i,$id))
         {
 
-         $queryupdate =  "UPDATE `annual_relative_publicshare` SET `company` = '".$company[$i]."',`relative` = '".$relative[$i]."',`interest` = '".$interest[$i]."',`decision` = '".$decision[$i]."',`transaction` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
+         $queryupdate =  'UPDATE `annual_relative_publicshare` SET `company` = "'.$company[$i].'",`relative` = "'.$relative[$i].'",`interest` = "'.$interest[$i].'",`decision` = "'.$decision[$i].'",`transaction` = "'.$transaction[$i].'",`date_added`=NOW(),`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = ".$id[$i]." ';
 
           $exegetqry = $connection->query($queryupdate);
         }
         else
         {
          
-          $queryinsert = "INSERT INTO `annual_relative_publicshare`
+          $queryinsert = 'INSERT INTO `annual_relative_publicshare`
                 (`user_id`,`user_group_id`,`relative`,`company`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-                 VALUES ('".$uid."','".$user_group_id."','".$relative[$i]."','".$company[$i]."','".$interest[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+                 VALUES ("'.$uid.'","'.$user_group_id.'","'.$relative[$i].'","'.$company[$i].'","'.$interest[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
                 // print_r($queryinsert);exit;
               $exegetqry = $connection->query($queryinsert);
                            
@@ -1776,7 +1779,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
         if(array_key_exists($i,$id))
         {
 
-         $queryupdate =  "UPDATE `annual_relative_holdinginterest` SET `cmpname` = '".$company[$i]."',`relative` = '".$relative[$i]."',`isdecisionmaking` = '".$decision[$i]."',`isfincltrans` = '".$transaction[$i]."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `uniqueid`='".$unique."' AND `id` = ".$id[$i]." ";
+         $queryupdate =  'UPDATE `annual_relative_holdinginterest` SET `cmpname` = "'.$company[$i].'",`relative` = "'.$relative[$i].'",`isdecisionmaking` = "'.$decision[$i].'",`isfincltrans` = "'.$transaction[$i].'",`date_added`=NOW(),`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = ".$id[$i]." ';
               //echo $queryupdate;
           $exegetqry = $connection->query($queryupdate);
             
@@ -1784,9 +1787,9 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
         else
         {
          
-          $queryinsert = "INSERT INTO `annual_relative_holdinginterest`
+          $queryinsert = 'INSERT INTO `annual_relative_holdinginterest`
                 (`user_id`,`user_group_id`,`relative`,`cmpname`,`isdecisionmaking`,`isfincltrans`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-                 VALUES ('".$uid."','".$user_group_id."','".$relative[$i]."','".$company[$i]."','".$decision[$i]."','".$transaction[$i]."','".$unique."',NOW(),NOW(),'".$time."')";
+                 VALUES ("'.$uid.'","'.$user_group_id.'","'.$relative[$i].'","'.$company[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
               $exegetqry = $connection->query($queryinsert);
                            
         }
