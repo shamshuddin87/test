@@ -1645,7 +1645,7 @@ public function upannualselfholdingintrst($uid,$user_group_id,$company,$decision
         if(array_key_exists($i,$id))
         {
                  
-         $queryupdate =  'UPDATE `annual_self_holdinginterest` SET `cmpname` = "'.$company[$i].'",`isdecisionmaking` = "'.$decision[$i].'",`isfincltrans` = "'.$transaction[$i].'",`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = ".$id[$i]." ';
+         $queryupdate =  'UPDATE `annual_self_holdinginterest` SET `cmpname` = "'.$company[$i].'",`isdecisionmaking` = "'.$decision[$i].'",`isfincltrans` = "'.$transaction[$i].'",`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = "'.$id[$i].'" ';
 
           $exegetqry = $connection->query($queryupdate);
         }
@@ -1659,6 +1659,8 @@ public function upannualselfholdingintrst($uid,$user_group_id,$company,$decision
               $exegetqry = $connection->query($queryinsert);
                            
         }
+
+        //print_r($queryupdate);exit;
          
 
 
@@ -1712,7 +1714,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
         if(array_key_exists($i,$id))
         {
 
-         $queryupdate =  'UPDATE `annual_relative_publicshare` SET `company` = "'.$company[$i].'",`relative` = "'.$relative[$i].'",`interest` = "'.$interest[$i].'",`decision` = "'.$decision[$i].'",`transaction` = "'.$transaction[$i].'",`date_added`=NOW(),`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = ".$id[$i]." ';
+         $queryupdate =  'UPDATE `annual_relative_publicshare` SET `company` = "'.$company[$i].'",`relative` = "'.$relative[$i].'",`interest` = "'.$interest[$i].'",`decision` = "'.$decision[$i].'",`transaction` = "'.$transaction[$i].'",`date_added`=NOW(),`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = "'.$id[$i].'" ';
 
           $exegetqry = $connection->query($queryupdate);
         }
@@ -1779,7 +1781,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
         if(array_key_exists($i,$id))
         {
 
-         $queryupdate =  'UPDATE `annual_relative_holdinginterest` SET `cmpname` = "'.$company[$i].'",`relative` = "'.$relative[$i].'",`isdecisionmaking` = "'.$decision[$i].'",`isfincltrans` = "'.$transaction[$i].'",`date_added`=NOW(),`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = ".$id[$i]." ';
+         $queryupdate =  'UPDATE `annual_relative_holdinginterest` SET `cmpname` = "'.$company[$i].'",`relative` = "'.$relative[$i].'",`isdecisionmaking` = "'.$decision[$i].'",`isfincltrans` = "'.$transaction[$i].'",`date_added`=NOW(),`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = "'.$id[$i].'" ';
               //echo $queryupdate;
           $exegetqry = $connection->query($queryupdate);
             

@@ -482,156 +482,7 @@
         </table>
                  
             <h3 class="h3_heading">V.  Related Party Details</h3>
-<!--
-   <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
-      <tr>
-         <td style="border-right: 1px solid #f7f7f7; color: #000; font-weight: bold;  padding-right: 0px">1.</td>
-         <td colspan="4">
-            <div class="">
-               <label >Are you holding controlling interest i.e. 20% or more of the paid up share capital in any company? (please mention names)*</label>
-               <input style="color: #000;" type="radio" id= "showsec1" name="showsec1" value="Yes"  onclick="showsection(this.id)">Yes
-               <input style="color: #000;" type="radio" id= "hidesec1" name="showsec1" value="No" onclick="hidesection(this.id)">No
-            </div>
-         </td>
-      </tr>
-   </table>
--->
-   
-   <?php 
-      $k = 1;
-      for($i=0; $i < count($selfcompany); $i++){
-      if($selfcompany[$i]['company'] != ''){
-       
-      ?>
-<!--
-   <table border="1" id="t1row<?php echo $k ?>"  style="border-collapse: collapse; border: 1px solid #ccc; display:block;" width="100%"  class="test">
-   <tr>
-      <td style="border-right: 1px solid #f7f7f7; width: 2.5%" ></td>
-      <td style="width: 22%"><label class="control-label">Company Name</label></td>
-      <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-      <td><label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
-   </tr>
 
-   <tr>
-      <td style="border-right: 1px solid #f7f7f7"></td>
-      <td>
-         <div id = "div1" class="" >
-            <section class="">
-               <div class="input">
-                  <input type="text" class="form-control inputbox3" id="uniqueid" name="uniqueid" value="<?php echo $uniqueid ?>" style= "display: none;">
-                  <input type="text" class="form-control inputbox3" id="d1id" name="d1id[]" value="<?php echo $selfcompany[$i]['id']?>" style= "display: none;">
-                  <input type="text" class="form-control inputbox3" id="d1ques1" name="d1ques1[]" value="<?php echo $selfcompany[$i]['company']?>"  >
-               </div>
-            </section>
-         </div>
-      </td>
-      <td>
-         <section class="">
-            <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >
-               <option value="">Select Option</option>
-               <?php if($selfcompany[$i]['decision']  == Yes){ ?>
-               <option value="Yes" selected>Yes</option>
-               <option value="No">No</option>
-               <?php }elseif($selfcompany[$i]['decision']  == No){ ?>
-               <option value="Yes" >Yes</option>
-               <option value="No" selected>No</option>
-               <?php }else{ ?>
-               <option value="Yes" >Yes</option>
-               <option value="No">No</option>
-               <?php } ?>
-            </select>
-         </section>
-      </td>
-      <td>
-         <section class="">
-            <select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >
-               <option value="">Select Option</option>
-               <?php if($selfcompany[$i]['transaction']  == Yes){ ?>
-               <option value="Yes" selected>Yes</option>
-               <option value="No">No</option>
-               <?php }elseif($selfcompany[$i]['transaction']  == No){ ?>
-               <option value="Yes" >Yes</option>
-               <option value="No" selected>No</option>
-               <?php }else{ ?>
-               <option value="Yes" >Yes</option>
-               <option value="No" >No</option>
-               <?php } ?>
-            </select>
-         </section>
-      </td>
-   </tr>
-   <tr>
-      <?php }else{ 
-         ?>
-      <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;display: none; " width="100%"  id="test">
-         <tr >
-            <td style="border-right: 1px solid #f7f7f7; width: 2.5%" ></td>
-            <td style="width: 22%"><label class="control-label">Company Name</label></td>
-            <td><label class="control-label">Can you significantly influence the decision making of this company?</label></td>
-            <td><label class="control-label">Does the company have any commercial or financial transactions with Dr. Reddy's Laboratories Limited or any of its group company/subsidiary?</label></td>
-         </tr>
-         <tr>
-            <td style="border-right: 1px solid #f7f7f7"></td>
-            <td>
-               <div id = "div1" class="" >
-                  <section class="">
-                     <div class="input">
-                        <input type="text" class="form-control inputbox3" id="uniqueid" name="uniqueid" value="<?php echo $uniqueid ?>" style= "display: none;">
-                        <input type="text" class="form-control inputbox3" id="d1id" name="d1id[]" value="<?php echo $selfcompany[$i]['id']?>" style= "display: none;">
-                        <input type="text" class="form-control inputbox3" id="d1ques1" name="d1ques1[]" value="<?php echo $selfcompany[$i]['company']?>"  >
-                     </div>
-                  </section>
-               </div>
-            </td>
-            <td>
-               <section class="">
-                  <select id="d1ques2" name="d1ques2[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >
-                     <option value="">Select Option</option>
-                     <?php if($selfcompany[$i]['decision']  == Yes){ ?>
-                     <option value="Yes" selected>Yes</option>
-                     <option value="No">No</option>
-                     <?php }elseif($selfcompany[$i]['decision']  == No){ ?>
-                     <option value="Yes" >Yes</option>
-                     <option value="No" selected>No</option>
-                     <?php }else{ ?>
-                     <option value="Yes" >Yes</option>
-                     <option value="No">No</option>
-                     <?php } ?>
-                  </select>
-               </section>
-            </td>
-            <td>
-               <section class="">
-                  <select id="d1ques3" name="d1ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >
-                     <option value="">Select Option</option>
-                     <?php if($selfcompany[$i]['transaction']  == Yes){ ?>
-                     <option value="Yes" selected>Yes</option>
-                     <option value="No">No</option>
-                     <?php }elseif($selfcompany[$i]['transaction']  == No){ ?>
-                     <option value="Yes" >Yes</option>
-                     <option value="No" selected>No</option>
-                     <?php }else{ ?>
-                     <option value="Yes" >Yes</option>
-                     <option value="No" >No</option>
-                     <?php } ?>
-                  </select>
-               </section>
-            </td>
-         </tr>
-         <?php } $k++; } ?>
-          <tr>
-            <td colspan="4" >
-               
-            </td>
-         </tr> 
-      </table>
-       <div class = "appenddiv1 " id="appenddiv1"></div>
-      <div class="adddiv1section1 col-md-12" style="text-align: right;">
-                  <input type="button" id = "adddiv1" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
-                  <input type="button" id = "remvdiv1" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
-                  <input type="hidden" class="appendd1" plancntr="<?php echo count($selfcompany); ?>">
-      </div>
--->
 
       
       
@@ -773,7 +624,7 @@
             <td>
                <div class="input">
                <input type="text" class="form-control inputbox3" id="d3id" name="d3id[]" value="<?php echo $selfpublic[$i]['id']?>" style= "display: none;">
-               <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" value="<?php echo $selfpublic[$i]['company']?>" >
+               <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" value="<?php echo $selfpublic[$i]['company']?>" onkeypress="return isAlphaNumeric_space(event,this.value);">
                 </div>
             </td>
             <td>
@@ -882,7 +733,7 @@
             <td>
                <div class="input">
                <input type="text" class="form-control inputbox3" id="d4id" name="d4id[]" value="<?php echo $selfpubshare[$i]['id']?>" style= "display: none;">
-               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]"  value="<?php echo $selfpubshare[$i]['company']?>" >
+               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]"  value="<?php echo $selfpubshare[$i]['company']?>"onkeypress="return isAlphaNumeric_space(event,this.value);" >
             </td>
             <td>
                <div class="input">
@@ -974,7 +825,7 @@
                    <td> 
                     <input type="text" class="form-control inputbox3" id="d8id" name="d8id[]" value="<?php echo $selfholdcntrl[$i]['id']?>" style= "display: none;">
                    <div class="input">
-                   <input type="text" class="form-control inputbox4" id="d8ques1" name="d8ques1[]" value="<?php echo  $selfholdcntrl[$i]['cmpname'];?>">
+                   <input type="text" class="form-control inputbox4" id="d8ques1" name="d8ques1[]" value="<?php echo  $selfholdcntrl[$i]['cmpname'];?>" onkeypress="return isAlphaNumeric_space(event,this.value);">
                        </div>
                    </td>
                    <td>
@@ -1434,7 +1285,7 @@
            </td>
            <td> 
            <div class="input">
-           <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]"  value="<?php echo $relativepubshare[$i]['company']; ?>">
+           <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]"  value="<?php echo $relativepubshare[$i]['company']; ?>" onkeypress="return isAlphaNumeric_space(event,this.value);">
                </div>
            </td>
            <td> 
