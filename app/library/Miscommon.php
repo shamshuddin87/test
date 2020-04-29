@@ -1311,6 +1311,7 @@ class Miscommon extends Component
        $connection = $this->dbtrd;
        $time = time();
        $getmasterid = $this->tradingrequestcommon->getmasterid($userid);
+       //print_r($userid);exit;
        try{
             if($user_group_id == 2 || $user_group_id == 14)
             {
@@ -1321,8 +1322,9 @@ class Miscommon extends Component
             {
                $query="SELECT *,ups.`date_added` AS dtadd,ups.`id` AS uppid FROM `upsimaster` ups  LEFT JOIN  `it_memberlist` it ON ups.`user_id`=it.`wr_id`  
                  LEFT JOIN  `personal_info` pr  ON ups.`user_id`=pr.`userid` WHERE  ups.`projectowner` IN(".$userid.") ".$rslmt;
+                  //print_r($query);exit;
             }
-            // print_r($query);exit;
+            
              $exeget = $connection->query($query);
              $getnum = trim($exeget->numRows());
              if($getnum>0)

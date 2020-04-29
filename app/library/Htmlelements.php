@@ -3120,8 +3120,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
   </table>
 
   <br/>
-
-  <p>You are requested to consider my application and grant the relaxation to enter into an opposite transaction within 6 months period basis the above reason(s) and undertaking given herein below:-. </p>
+  
 
   <p><b>I hereby undertake and confirm that,</b></p>
   <ol style="padding-left: 17px;">

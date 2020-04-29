@@ -557,6 +557,8 @@ website('body').on('click','#previewc',function()
                     website('.transtype').html('<p style="color:green;">BUY</p>');
                      website('.exceltranstype').html('<p style="color:green;">BUY</p>');
                }
+               website('.place').html(response.formdata['place']);
+                website('.dateadded').html(finaldtadd);
                website('.name').html(response.formdata['fullname']);
                 website('.excelname').val(response.formdata['fullname']);
                website('.cmpnme').html(response.formdata['company_name']);

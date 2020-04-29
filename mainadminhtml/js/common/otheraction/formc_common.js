@@ -404,7 +404,8 @@ website('body').on('click','#previewc',function()
                      website('.excelsecutype1').val(secutype);
                      website('.excelsecutype2').val(secutype);
                 }
-                
+              website('.place').html(response.formdata['place']);
+               website('.dateadded').html(finaldtadd);
               website('.contractspecific').html(response.formdata['contract_specification']);
                website('.excelcontractspecific').val(response.formdata['contract_specification']);
               website('.contracttype').html(response.formdata['contractname']);
