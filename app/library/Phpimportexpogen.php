@@ -158,7 +158,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                             '2'=> $tblrow['enddate'],
                             '3' => $tblrow[11],
                             '4' => $tblrow['fullname']
-                    
+                           
                             //'4' => $tblrow['designation']
                            
                         );
@@ -213,7 +213,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
     public function fetchSharedInfoexcel($getuserid,$user_group_id,$upsidata)
     {
 
-         //echo '<pre>'; print_r($processdata);exit;
+        // echo '<pre>'; print_r($upsidata);exit;
         $connection = $this->db;
         $time = time();
         
@@ -234,8 +234,21 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                             '3' => $tblrow['sharingtime'],
                             '4' => $tblrow['enddate'],
                             '5' => $tblrow['datashared'],
-//                            '6' => $tblrow['purpose'],
-                            '6' => $tblrow['fullname']
+//                          
+                            '6' => $tblrow['fullname'],
+                             '7' => $tblrow['email'],
+                            '8' => $tblrow['pan'],
+                            '9'=> $tblrow['legal_identifier'],
+                            '10' => $tblrow['legal_identification_no'],
+                            '11' => $tblrow['aadhar'],
+                            '12' => $tblrow['dob'],
+                            '13' => $tblrow['sex'],
+                            '14' => $tblrow['education'],
+                            '15' => $tblrow['institute'],
+                            '16' => $tblrow['address'],
+                            '17' => $tblrow['mobileno'],
+                            '18' => $tblrow['sharehldng'],
+                            '19' => $tblrow['adrshldng']
                         );
             $j++;
         }
