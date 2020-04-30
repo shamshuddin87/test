@@ -1233,7 +1233,7 @@ class AnnualdeclarationController extends ControllerBase
 
                 $delid = $this->request->getPost('delid');
                 $uniqueid = $this->request->getPost('uniqueid');
-                 $tablename = $this->request->getPost('tablename');
+                $tablename = $this->request->getPost('tablename');
 
 
                 $status = $this->annualdeclarationcommon->deleteannualdeclare($delid,$uniqueid,$tablename);

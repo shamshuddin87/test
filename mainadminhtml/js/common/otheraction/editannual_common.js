@@ -2,6 +2,7 @@ website(document).ready(function()
 {
   
    loadnoofsec();
+   FetchSubsidiries();
     
     
 });
@@ -267,17 +268,17 @@ function addhtml(clicked)
          var addhtmlnxt='';
        
         addhtmlnxt += '<div class="row'+getlastid+' append_row3" style="padding-bottom:20px;" id="t6row'+getlastid+'" >';
-         addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
+         addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border=1 >';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.5%"></td>';
-          addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
+          addhtmlnxt += ' <td style="border-right: 1px solid #fff;"></td>   ';
+          addhtmlnxt += '<td style="width: 15%"><label class="control-label">Relative Name</label>';
           addhtmlnxt += '</td>';
-            addhtmlnxt += '<td style="width: 20%"><label class="control-label">Firm Name</label>';
+            addhtmlnxt += '<td style="width: 15%"><label class="control-label">Firm Name</label>';
           addhtmlnxt += '</td>';
 
            addhtmlnxt += '<td style="width: 15%"><label class="control-label">Nature of interest</label>';
           addhtmlnxt += '</td>';
-          addhtmlnxt += '<td><label class="control-label">Can this relative significantly influence the decision making of this firm?</label>';
+          addhtmlnxt += '<td style="position: relative;"><label class="control-label">Can this relative significantly influence the decision making of this firm?</label>';
             addhtmlnxt +='</td>';
           addhtmlnxt += '<td><label class="control-label">Do this firm have any commercial or financial transactions with Dr. Reddys Laboratories Limited or any of its group company/subsidiary?</label>';
         
@@ -285,13 +286,13 @@ function addhtml(clicked)
           addhtmlnxt += '</td>';
           addhtmlnxt +='</tr>';
           addhtmlnxt += '<tr>';
-          addhtmlnxt += '<td style="border-right: 1px solid #fff"></td>';
+          addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7"></td>';
 
         addhtmlnxt += '<td><div class="input"> <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  >';
            addhtmlnxt +='<option value="">Select Option </option>';   
           website.each(response.resdta, function (index, value) {
 
-                addhtmlnxt += '<option value='+value['name']+'>'+value['name']+'</option>';    
+                addhtmlnxt += '<option value='+value['id']+'>'+value['name']+'</option>';    
 
               });
          //addhtmlnxt += '<td><div class="input">  <select id="d6ques1" name="d6ques1[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select>  </div></td> ';
@@ -324,14 +325,14 @@ function addhtml(clicked)
        addhtmlnxt += '<table style="border-collapse: collapse; border: 1px solid #ccc" width="100%" border="1">';
           addhtmlnxt += '<tr>';
           addhtmlnxt += ' <td style="border-right: 1px solid #fff;width:2.5%"></td>';
-          addhtmlnxt += '<td style="width: 20%"><label class="control-label">Relative Name</label>';
+          addhtmlnxt += '<td style="width: 17%"><label class="control-label">Relative Name</label>';
           addhtmlnxt += '</td>';
-            addhtmlnxt += '<td style="width: 20%"><label class="control-label">Company Name</label>';
+            addhtmlnxt += '<td style="width: 17%"><label class="control-label">Company Name</label>';
           addhtmlnxt += '</td>';
 
            addhtmlnxt += '<td style="width: 15%"><label class="control-label">Nature of interest</label>';
           addhtmlnxt += '</td>';
-           addhtmlnxt += '<td><label class="control-label">No. of shares held</label>';
+           addhtmlnxt += '<td style="width: 15%"><label class="control-label">No. of shares held</label>';
           addhtmlnxt += '</td>';
           addhtmlnxt += '<td><label class="control-label">Can this relative significantly influence the decision making of this company?</label>';
             addhtmlnxt +='</td>';
@@ -347,7 +348,7 @@ function addhtml(clicked)
         addhtmlnxt += '<option value="">Select Option </option>';   
           website.each(response.resdta, function (index, value) {
 
-                addhtmlnxt += '<option value='+value['name']+'>'+value['name']+'</option>';    
+                addhtmlnxt += '<option value='+value['id']+'>'+value['name']+'</option>';    
 
               });
          //addhtmlnxt += '<td><div class="input">  <select id="d7ques1" name="d7ques1[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select>  </div></td> ';
@@ -1761,6 +1762,7 @@ website('body').on('click','.yesconfirm',function(e)
             {   }
         });
 });
+
 
 // subsidiries button in edit page
 function FetchSubsidiries()

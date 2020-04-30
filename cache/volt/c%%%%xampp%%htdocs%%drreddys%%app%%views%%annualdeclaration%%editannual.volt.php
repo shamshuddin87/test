@@ -660,7 +660,12 @@
                        <option value="1">Member</option>
                        <option value="2">Director</option>
                        <option value="3" selected>Member And Director</option>
-                    <?php } ?>
+                    <?php } 
+                     else{  ?>
+                      <option value="1">Member</option>
+                      <option value="2">Director</option>
+                      <option value="3" >Member And Director</option>
+                   <?php } ?>
                     </select>
                </div>
             </td>
@@ -1031,7 +1036,7 @@
          ?>
       <table border="1" id="t6row<?php echo $k ?>"  style="border-collapse: collapse; border: 1px solid #ccc" width="100%">
        <tr>
-        <td style="border-right: 1px solid #f7f7f7"></td>   
+        <td style="style="border-right: 1px solid #fff;width:2.5%"></td>   
         <td style="width: 15%">  <label class="control-label">Relative Name</label></td>
         <td style="width: 15%"><label class="control-label">Firm Name</label></td>
         <td style="width: 15%"><label class="control-label">Nature of interest</label></td>
@@ -1192,7 +1197,12 @@
                        <option value="1">Member</option>
                        <option value="2">Director</option>
                        <option value="3" selected>Member And Director</option>
-                    <?php } ?>
+                    <?php }
+                    else{  ?>
+                      <option value="1">Member</option>
+                      <option value="2">Director</option>
+                      <option value="3" >Member And Director</option>
+                   <?php } ?>
                   </select>
                   </div>
               </td>

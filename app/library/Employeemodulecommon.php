@@ -319,6 +319,7 @@ class Employeemodulecommon extends Component
               return true;
           }
       }
+      
     public function panvalidation($uid,$usergroup,$pan)
       {
        $connection = $this->dbtrd;
@@ -398,12 +399,13 @@ class Employeemodulecommon extends Component
     }
 
 
-     public function check_dateoverlap($getuserid,$user_group_id,$startdate,$enddate)
+   public function check_dateoverlap($getuserid,$user_group_id,$startdate,$enddate)
     {
         $connection = $this->dbtrd;
+        //print_r($enddate);exit;
         try
         {
-            $queryselect = "SELECT * FROM `pastemployer` WHERE `user_id` = '".$getuserid."'".$query;
+         $queryselect = "SELECT * FROM `pastemployer` WHERE `user_id` = '".$getuserid."'";
             // echo $query;exit;
             $exeget = $connection->query($queryselect);
             $getnum = trim($exeget->numRows());
@@ -413,21 +415,22 @@ class Employeemodulecommon extends Component
                     {
                         $getlist[] = $row;
                     }
-                     //echo 'out';exit; 
+                    
+                    // for($i=0;$i<count( $getlist);$i++)
+                    // {
 
-                    //echo '<pre>';print_r($getlist);exit;
+                    //   if($startdate )
+                    // }
 
-                }else{
-                    $getlist = array();
                 }
         }
         catch (Exception $e)
         {
-            $getlist = array();
+            return false;
             //$connection->close();
         }
         
-        return $getlist;
+        
     }
    
   
