@@ -212,7 +212,7 @@ class EmployeemoduleController extends ControllerBase
             exit('No direct script access allowed');
         }
     }
-//-----------------------------------UPDATE USER DETAILS START HERE--------------------------------------
+      //-----------------------------------UPDATE USER DETAILS START HERE--------------------------------------
     public function updatemydetailsAction()
     {
         $this->view->disable();
@@ -936,128 +936,6 @@ class EmployeemoduleController extends ControllerBase
             }                                     
        }
     
-        /******************  insert past employer start *********************/
-//        public function insertpastempAction()
-//        {     
-//            $this->view->disable();
-//            $getuserid = $this->session->loginauthspuserfront['id'];
-//            $cin = $this->session->memberdoccin;
-//            $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
-//            $timeago = time();
-//            if($this->request->isPost() == true)
-//            {
-//                if($this->request->isAjax() == true)
-//                {
-//                    $date=date('d-m-Y');
-//                    $data=$this->request->getPost();
-//                    // print_r(sizeof($data));
-//                   
-//                    // $empname   = $this->request->getPost('empname','trim');
-//                    // $designtn   = $this->request->getPost('designtn','trim');
-//                    // $startdate   = $this->request->getPost('strtdte','trim');
-//                    // $enddate   = $this->request->getPost('enddte','trim');
-//                    // if(empty($startdate))
-//                    // {
-//                    //     $data = array("logged" => false,'message' => 'Start Date should not empty!!');
-//                    //     $this->response->setJsonContent($data);
-//                    // }
-//                    // else if(strtotime($startdate) > strtotime($date))
-//                    // {
-//                    //     $data = array("logged" => false,'message' => 'Start Date should not in future!!');
-//                    //     $this->response->setJsonContent($data);
-//                    // }
-//                    // else if(empty($enddate))
-//                    // {
-//                    //     $data = array("logged" => false,'message' => 'End Date should not empty!!');
-//                    //     $this->response->setJsonContent($data);
-//                    // }
-//                    // else if(strtotime($enddate) > strtotime($date))
-//                    // {
-//                    //     $data = array("logged" => false,'message' => 'End Date should not in future!!');
-//                    //     $this->response->setJsonContent($data);
-//                    // }
-//                    // else if(strtotime($startdate) > strtotime($enddate))
-//                    // {
-//                    //       $data = array("logged" => false,'message' => 'Start Date should be Greater Than End Date!!');
-//                    //       $this->response->setJsonContent($data);
-//                    // }
-//                    // else
-//                    // {
-//                    //     $startdate =  date("d-m-Y", strtotime($startdate));
-//                    //     $enddate =  date("d-m-Y", strtotime($enddate));
-//
-//                      for($i=0;$i<sizeof($data['myarr']);$i++)
-//                      {
-//                         // print_r($data['myarr']);exit;
-//                          $empname=$data['myarr'][$i]['empname'];
-//                          $designtn=$data['myarr'][$i]['designtn'];
-//                          $startdate=$data['myarr'][$i]['strtdte'];
-//                          $enddate=$data['myarr'][$i]['enddte'];
-//                         
-//                           if(empty($startdate))
-//                            {
-//                                $data = array("logged" => false,'message' => 'Start Date should not empty!!');
-//                                $this->response->setJsonContent($data);
-//
-//                            }
-//                            else if(strtotime($startdate) > strtotime($date))
-//                            {
-//                                $data = array("logged" => false,'message' => 'Start Date should not in future!!');
-//                                $this->response->setJsonContent($data);
-//                            }
-//                            else if(empty($enddate))
-//                            {
-//                                $data = array("logged" => false,'message' => 'End Date should not empty!!');
-//                                $this->response->setJsonContent($data);
-//                            }
-//                            else if(strtotime($enddate) > strtotime($date))
-//                            {
-//                                $data = array("logged" => false,'message' => 'End Date should not in future!!');
-//                                $this->response->setJsonContent($data);
-//                            }
-//                            else if(strtotime($startdate) > strtotime($enddate))
-//                            {
-//                                  $data = array("logged" => false,'message' => 'Start Date should be Greater Than End Date!!');
-//                                  $this->response->setJsonContent($data);
-//                            }
-//                            else
-//                            {
-//
-//                                 $startdate =  date("d-m-Y", strtotime($startdate));
-//                                  $enddate =  date("d-m-Y", strtotime($enddate));
-//                                $getres = $this->employeemodulecommon->insertpastemp($getuserid,$user_group_id,$empname,$designtn,$startdate,$enddate);
-//                            }
-//                         
-//                       }
-//                       
-//                        //print_r($getres);exit;
-//                        if($getres)
-//                        {
-//                            $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
-//                            $this->response->setJsonContent($data);
-//                        }
-//                        else
-//                        {
-//                            $data = array("logged" => false,'message' => "Record Not Added..!!");
-//                            $this->response->setJsonContent($data);
-//                        }  
-//
-//                    // }
-//
-//                    $this->response->send();
-//                }
-//                else
-//                {
-//                    exit('No direct script access allowed');
-//                    $connection->close();
-//                }
-//            }
-//            else
-//            {
-//                return $this->response->redirect('errors/show404');
-//                exit('No direct script access allowed');
-//            }       
-//        }
     
         public function insertpastempAction()
         {     
@@ -1065,6 +943,9 @@ class EmployeemoduleController extends ControllerBase
             $getuserid = $this->session->loginauthspuserfront['id'];
             $cin = $this->session->memberdoccin;
             $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+
+          
+
             $timeago = time();
             if($this->request->isPost() == true)
             {   
@@ -1080,6 +961,8 @@ class EmployeemoduleController extends ControllerBase
                         $designtn=$data['myarr'][$i]['designtn'];
                         $startdate=$data['myarr'][$i]['strtdte'];
                         $enddate=$data['myarr'][$i]['enddte'];
+
+                        $date_overlap = $this->employeemodulecommon->check_dateoverlap($getuserid,$user_group_id,$startdate,$enddate);
 
                         if(empty($startdate))
                         {

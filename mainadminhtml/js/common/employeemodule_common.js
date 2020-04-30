@@ -2548,7 +2548,7 @@ website("body").on("click","#pastbtnsub",function(e){
                     styling: 'bootstrap3',
                     addclass: 'dark ',
                 });
-                    relativeaccinfo();
+                    
 
             } 
             else{

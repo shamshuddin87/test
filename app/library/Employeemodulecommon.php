@@ -396,6 +396,39 @@ class Employeemodulecommon extends Component
         
         return $getlist;
     }
+
+
+     public function check_dateoverlap($getuserid,$user_group_id,$startdate,$enddate)
+    {
+        $connection = $this->dbtrd;
+        try
+        {
+            $queryselect = "SELECT * FROM `pastemployer` WHERE `user_id` = '".$getuserid."'".$query;
+            // echo $query;exit;
+            $exeget = $connection->query($queryselect);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+                {
+                    while($row = $exeget->fetch())
+                    {
+                        $getlist[] = $row;
+                    }
+                     //echo 'out';exit; 
+
+                    //echo '<pre>';print_r($getlist);exit;
+
+                }else{
+                    $getlist = array();
+                }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
    
   
     public function fetchempedit($getuserid,$user_group_id,$id)

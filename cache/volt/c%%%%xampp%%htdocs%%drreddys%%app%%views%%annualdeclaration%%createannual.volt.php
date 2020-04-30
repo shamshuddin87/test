@@ -24,7 +24,7 @@
 <div class="mainelementfom">
     <div class="mainheader row">
 
-      <div class="col col-xs-6"><h1 class="h1_heading ">Annual Declaration</h1></div>
+    <div class="col col-xs-6"><h1 class="h1_heading ">Annual Declaration</h1></div>
       <div class="create_button  col col-xs-6">
         <div class="compnamedata_div">  
            <a href="javascript:void(0);"  class="compnamedata_btn right btn btn-primary ">Dr Reddy's subsidiaries</a>

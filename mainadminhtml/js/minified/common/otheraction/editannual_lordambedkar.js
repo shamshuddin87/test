@@ -232,4 +232,10 @@ website('body').on('click','.deletebtn',function()
 {if(response.logged===true)
 {new PNotify({title:' Deleted Successfully',text:' Deleted Successfully',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
-{}});});;
+{}});});function FetchSubsidiries()
+{website.ajax({url:'annualdeclaration/FetchSubsidiries',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{var html='';website('#compnamedata').html(response.data);},complete:function(response)
+{},error:function(jqXHR,textStatus,errorThrown)
+{}});};

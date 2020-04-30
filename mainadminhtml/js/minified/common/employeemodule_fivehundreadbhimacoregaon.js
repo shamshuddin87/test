@@ -354,7 +354,7 @@ if(myarr.length>=1)
 {website.ajax({url:'employeemodule/insertpastemp',method:'POST',data:{myarr:myarr},contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
-{if(response.logged==true){new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});relativeaccinfo();}
+{if(response.logged==true){new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});}});website('body').on('click','.sendfrapp',function(e){website('#sendappp').modal('show');});website('body').on('click','.sendreq',function(e){website.ajax({url:'employeemodule/sendreq',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()

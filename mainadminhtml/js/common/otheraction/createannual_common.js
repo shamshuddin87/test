@@ -23,14 +23,7 @@ function FetchSubsidiries()
           success: function(response, textStatus, jqXHR)
           {
               var html = '';
-//              for(var i=0;i<response.data.length;i++)
-//              {
-//                  var j = i;
-//                  j++;
-//                  html+= '<table><tr><td>'+j+'</td><td>'+response.data[i].subsidiaryname+'</td></tr></table>';
-//                  //console.log(html);
-//                  
-//              }
+
               //html1 =  html.replace( /(<([^>]+)>)/ig, '');
               website('#compnamedata').html(response.data);
               //website('.tooltip').css('display','block');
