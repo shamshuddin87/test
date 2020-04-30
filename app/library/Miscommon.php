@@ -187,7 +187,7 @@ class Miscommon extends Component
         $getlist = array();
         for($i=0;$i<sizeof($compid);$i++)
         {
-            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
+            $queryget = "SELECT ts.*,pr.`type_of_transaction` FROM `trading_status` ts
                         LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id` 
                         WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='3' AND pr.`relative_id` = ''";
             //echo $queryget;

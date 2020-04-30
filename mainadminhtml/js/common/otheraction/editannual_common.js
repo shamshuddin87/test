@@ -1020,6 +1020,7 @@ function getpdfdata(uniqueid)
                     website('.pan').html(response.personaldetail['pan']);
                     website('.legalidentifier').html(response.personaldetail['legal_identifier']);
                     website('.legalidentityno').html(response.personaldetail['legal_identification_no']);
+                     website('.aadhaar').html(response.personaldetail['aadhar']);
                     website('.dob').html(response.personaldetail['dob']);
                     website('.gender').html(response.personaldetail['sex']);
                     website('.edu').html(response.personaldetail['education']);
@@ -1212,15 +1213,23 @@ function getpdfdata(uniqueid)
     });
     }
 
+
 website('body').on('click','.formpdf', function(e)
 {
+    website('#sendtoco').modal('show');
+});
+
+website('body').on('click','.sendtype', function(e)
+{
+    var sendtype = website(this).val();
     var htmldata = website('#Mymodaldeclara .modalform').html();
     var uniqueid = website('#uniqueid').val();
+    //alert(uniqueid);
    
     var annualyear=website('#annualyear').val();
-    
+   
     // var formbid = website('#modaldocument #formbid').val();
-    var formData = {htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid};
+    var formData = {htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid,sendtype:sendtype};
     website.ajax({
         type:"POST",
         url:'annualdeclaration/generateformbPDF',
@@ -1235,18 +1244,20 @@ website('body').on('click','.formpdf', function(e)
         },
         uploadProgress: function(event, position, total, percentComplete)
         {
-            
+           
         },
-        success: function(response) 
+        success: function(response)
         {
-            // console.log(response.pdfpath); 
+            // console.log(response.pdfpath);
             if(response.logged===true)
             {
+              website('#sendtoco').modal('hide');  
               website('#Mymodaldeclara .formpdf').css('display','none');
               website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');
-             
+                window.location.href = "annualdeclaration";
 
-              
+
+             
             }
             else
             {
@@ -1258,12 +1269,65 @@ website('body').on('click','.formpdf', function(e)
             website('.preloder_wraper').fadeOut();
             //window.location.reload();
         },
-        error: function() 
+        error: function()
         {
-            
+           
         }
     });
 });
+
+// website('body').on('click','.formpdf', function(e)
+// {
+//     var htmldata = website('#Mymodaldeclara .modalform').html();
+//     var uniqueid = website('#uniqueid').val();
+   
+//     var annualyear=website('#annualyear').val();
+    
+//     // var formbid = website('#modaldocument #formbid').val();
+//     var formData = {htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid};
+//     website.ajax({
+//         type:"POST",
+//         url:'annualdeclaration/generateformbPDF',
+//         data: formData,
+//         //contentType: "application/json; charset=utf-8",
+//         dataType:"json",
+//         beforeSend: function()
+//         {
+//              website('.preloder_wraper').fadeIn();
+//             // website('#modaldocument .downloadpdf .pdfln').html('');
+//             // website('#modaldocument .trailpdfdownload').addClass('disabled');
+//         },
+//         uploadProgress: function(event, position, total, percentComplete)
+//         {
+            
+//         },
+//         success: function(response) 
+//         {
+//             // console.log(response.pdfpath); 
+//             if(response.logged===true)
+//             {
+//               website('#Mymodaldeclara .formpdf').css('display','none');
+//               website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');
+             
+
+              
+//             }
+//             else
+//             {
+
+//             }
+//         },
+//         complete: function(response)
+//         {
+//             website('.preloder_wraper').fadeOut();
+//             //window.location.reload();
+//         },
+//         error: function() 
+//         {
+            
+//         }
+//     });
+// });
 
 
 function removehtml(clicked)

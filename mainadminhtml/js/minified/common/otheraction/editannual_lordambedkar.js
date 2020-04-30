@@ -88,7 +88,7 @@ if(response.relativeholdngshare!=0)
 {if(response.relativeholdngshare[i]['relative']!='')
 {addhtmlnxt9+='<tr class="counter">';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['relative']+'</td>';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['cmpname']+'</td>';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['isdecisionmaking']+'</td>';addhtmlnxt9+='<td width="25%">'+response.relativeholdngshare[i]['isfincltrans']+'</td>';addhtmlnxt9+='</tr>';}}}
 if(response.userlevel)
-{website('.empcode').html(response.userlevel['employeecode']);website('.username').html(response.personaldetail['name']);website('.emailid').html(response.userlevel['email']);website('.pan').html(response.personaldetail['pan']);website('.legalidentifier').html(response.personaldetail['legal_identifier']);website('.legalidentityno').html(response.personaldetail['legal_identification_no']);website('.dob').html(response.personaldetail['dob']);website('.gender').html(response.personaldetail['sex']);website('.edu').html(response.personaldetail['education']);website('.institute').html(response.personaldetail['institute']);website('.address').html(response.personaldetail['address']);website('.mobno').html(response.personaldetail['mobileno']);website('.noofshare').html(response.personaldetail['sharehldng']);website('.adrsshare').html(response.personaldetail['adrshldng']);}
+{website('.empcode').html(response.userlevel['employeecode']);website('.username').html(response.personaldetail['name']);website('.emailid').html(response.userlevel['email']);website('.pan').html(response.personaldetail['pan']);website('.legalidentifier').html(response.personaldetail['legal_identifier']);website('.legalidentityno').html(response.personaldetail['legal_identification_no']);website('.aadhaar').html(response.personaldetail['aadhar']);website('.dob').html(response.personaldetail['dob']);website('.gender').html(response.personaldetail['sex']);website('.edu').html(response.personaldetail['education']);website('.institute').html(response.personaldetail['institute']);website('.address').html(response.personaldetail['address']);website('.mobno').html(response.personaldetail['mobileno']);website('.noofshare').html(response.personaldetail['sharehldng']);website('.adrsshare').html(response.personaldetail['adrshldng']);}
 if(response.empdetail.length>0)
 {for(var i=0;i<response.empdetail.length;i++)
 {if(response.empdetail[i]['emp_name']!='')
@@ -128,11 +128,12 @@ else
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
 {}});}
 website('body').on('click','.formpdf',function(e)
-{var htmldata=website('#Mymodaldeclara .modalform').html();var uniqueid=website('#uniqueid').val();var annualyear=website('#annualyear').val();var formData={htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid};website.ajax({type:"POST",url:'annualdeclaration/generateformbPDF',data:formData,dataType:"json",beforeSend:function()
+{website('#sendtoco').modal('show');});website('body').on('click','.sendtype',function(e)
+{var sendtype=website(this).val();var htmldata=website('#Mymodaldeclara .modalform').html();var uniqueid=website('#uniqueid').val();var annualyear=website('#annualyear').val();var formData={htmldata:htmldata,annualyear:annualyear,uniqueid:uniqueid,sendtype:sendtype};website.ajax({type:"POST",url:'annualdeclaration/generateformbPDF',data:formData,dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
 {if(response.logged===true)
-{website('#Mymodaldeclara .formpdf').css('display','none');website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');}
+{website('#sendtoco').modal('hide');website('#Mymodaldeclara .formpdf').css('display','none');website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');window.location.href="annualdeclaration";}
 else
 {}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()

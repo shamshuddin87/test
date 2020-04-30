@@ -1097,6 +1097,7 @@ function getpdfdata(uniqueid)
                     website('.pan').html(response.personaldetail['pan']);
                     website('.legalidentifier').html(response.personaldetail['legal_identifier']);
                     website('.legalidentityno').html(response.personaldetail['legal_identification_no']);
+                     website('.aadhaar').html(response.personaldetail['aadhar']);
                     website('.dob').html(response.personaldetail['dob']);
                     website('.gender').html(response.personaldetail['sex']);
                     website('.edu').html(response.personaldetail['education']);
@@ -1376,10 +1377,8 @@ website('body').on('click','.sendtype', function(e)
               website('#sendtoco').modal('hide');  
               website('#Mymodaldeclara .formpdf').css('display','none');
               website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');
-//              if(sendtype == 'no')
-//              {
-                  window.location.href = "annualdeclaration";
-//              }
+                window.location.href = "annualdeclaration";
+
 
              
             }
@@ -1400,12 +1399,6 @@ website('body').on('click','.sendtype', function(e)
     });
 });
 
-// website('body').on('click','.downloadpdf',function(e)
-// {
-//   alert("hello");
-//   window.location.reload();
-
-// });
 function loadnoofsec()
 {
     website("#d3ques2").change(function() {

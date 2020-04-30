@@ -74,41 +74,46 @@
               </tr>
                <tr>
                 <td>7</td>
+                <td>Aadhaar</td>
+                <td><?php echo $personaldetail['aadhar'];?></td>                
+              </tr>
+               <tr>
+                <td>8</td>
                 <td>DOB</td>
                 <td><?php echo $personaldetail['dob'];?></td>                
               </tr>
                <tr>
-                <td>8</td>
+                <td>9</td>
                 <td>Gender</td>
                 <td><?php echo $personaldetail['sex'];?></td>                
               </tr>
                <tr>
-                <td>9</td>
+                <td>10</td>
                 <td>Educational Qualification</td>
                 <td><?php echo $personaldetail['education'];?></td>               
               </tr>
                <tr>
-                <td>10</td>
+                <td>11</td>
                 <td>Institute from which qualification was acquired</td>
                 <td><?php echo $personaldetail['institute'];?></td>               
               </tr>
                <tr>
-                <td>11</td>
+                <td>12</td>
                 <td>Residential Address</td>
                 <td><?php echo $personaldetail['address'];?></td>              
               </tr>
                <tr>
-                <td>12</td>
+                <td>13</td>
                 <td>Mobile no.</td>
                 <td><?php echo $personaldetail['mobileno'];?></td>                
               </tr>
                <tr>
-                <td>13</td>
+                <td>14</td>
                 <td>No. of shares of Dr. Reddys held by you</td>
                 <td><?php echo $personaldetail['sharehldng'];?></td>               
               </tr>
                <tr>
-                <td>14</td>
+                <td>15</td>
                 <td>No. of ADRs of Dr. Reddys held by your</td>
                 <td><?php echo $personaldetail['adrshldng'];?></td>                
               </tr>
@@ -346,43 +351,48 @@
                 <td>Nature of Identification no. (In case of Foreign Nationals)</td>
                 <td><?php echo $personaldetail['legal_identification_no'];?></td>                
               </tr>
-               <tr>
+                <tr>
                 <td>7</td>
+                <td>Aadhaar</td>
+                <td><?php echo $personaldetail['aadhar'];?></td>                
+              </tr>
+               <tr>
+                <td>8</td>
                 <td>DOB</td>
                 <td><?php echo $personaldetail['dob'];?></td>                
               </tr>
                <tr>
-                <td>8</td>
+                <td>9</td>
                 <td>Gender</td>
                 <td><?php echo $personaldetail['sex'];?></td>                
               </tr>
                <tr>
-                <td>9</td>
+                <td>10</td>
                 <td>Educational Qualification</td>
                 <td><?php echo $personaldetail['education'];?></td>               
               </tr>
                <tr>
-                <td>10</td>
+                <td>11</td>
                 <td>Institute from which qualification was acquired</td>
                 <td><?php echo $personaldetail['institute'];?></td>               
               </tr>
                <tr>
-                <td>11</td>
+                <td>12</td>
                 <td>Residential Address</td>
                 <td><?php echo $personaldetail['address'];?></td>              
               </tr>
                <tr>
-                <td>12</td>
+                <td>13</td>
                 <td>Mobile no.</td>
                 <td><?php echo $personaldetail['mobileno'];?></td>                
               </tr>
                <tr>
-                <td>13</td>
+                <td>14</td>
                 <td>No. of shares of Dr. Reddys held by you</td>
                 <td><?php echo $personaldetail['sharehldng'];?></td>               
               </tr>
                <tr>
-                <td>14</td>
+                <td>15</td>
                 <td>No. of ADRs of Dr. Reddys held by your</td>
                 <td><?php echo $personaldetail['adrshldng'];?></td>                
               </tr>
@@ -1600,4 +1610,25 @@
           </div>
       </div>
   </div>
+</div>
+
+
+<div id="sendtoco" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="modal-body show_shadow">
+            <div class="text-center modal_heading">
+               <div class="clearelement"></div>
+               Do you want to send the form to Compliance Officer.
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-primary sendtype" name="sendtype" id="" value="yes" tempid="">Yes</button>
+            <button type="button" class="btn btn-primary sendtype"  value="no" tempid="">No</button>
+         </div>
+      </div>
+   </div>
 </div>
