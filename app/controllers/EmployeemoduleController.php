@@ -963,6 +963,7 @@ class EmployeemoduleController extends ControllerBase
                         $enddate=$data['myarr'][$i]['enddte'];
 
                         $date_overlap = $this->employeemodulecommon->check_dateoverlap($getuserid,$user_group_id,$startdate,$enddate);
+                        //print_r($date_overlap);exit;
 
                         if(empty($startdate))
                         {
@@ -1019,7 +1020,14 @@ class EmployeemoduleController extends ControllerBase
                             $this->response->setJsonContent($data);
                             $flag = 0;
                             break;
-                        }              
+                        }
+                         else if($date_overlap)
+                        {
+                            $data = array("logged" => false,'message' => 'Employment dates cannot overlap each other');
+                            $this->response->setJsonContent($data);
+                            $flag = 0;
+                            break;
+                        }                  
                         else
                         {
                             $startdate =  date("d-m-Y", strtotime($startdate));

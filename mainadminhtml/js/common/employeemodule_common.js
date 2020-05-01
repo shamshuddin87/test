@@ -2179,6 +2179,7 @@ website('#Mymodaledit #trnstype').on('change',function(){
 });
 
 
+
 website('#insertpastemp').ajaxForm({
       //method:'POST',
       //contentType:'json',
@@ -2200,10 +2201,9 @@ website('#insertpastemp').ajaxForm({
             styling: 'bootstrap3',
             addclass: 'dark ',
           });
-             getdataonload();
-         window.location.reload();
-           
-          //window.location.reload();
+           window.location.reload();
+          //getdataonload();
+        
            
             
         }else{

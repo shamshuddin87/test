@@ -51,7 +51,8 @@ class Employeemodulecommon extends Component
       return $myarr;
     }
  }
-    public function getmydetails($uid,$usergroup)
+ 
+ public function getmydetails($uid,$usergroup)
     {
 
         $connection = $this->dbtrd;
@@ -415,12 +416,22 @@ class Employeemodulecommon extends Component
                     {
                         $getlist[] = $row;
                     }
+                    //print_r($getlist);exit;
                     
-                    // for($i=0;$i<count( $getlist);$i++)
-                    // {
+                    for($i=0;$i<count($getlist);$i++)
+                    {
 
-                    //   if($startdate )
-                    // }
+
+                    if((strtotime($startdate) >= strtotime($getlist[$i]['startdate'])) && (strtotime($startdate) <= strtotime($getlist[$i]['enddate'])) || (strtotime($enddate) >= strtotime($getlist[$i]['startdate'])) && (strtotime($enddate) <= strtotime($getlist[$i]['enddate']))  )
+                      {
+                        
+                           return true;
+                      }
+                      else
+                      {
+                        return false;
+                      }
+                    }
 
                 }
         }
