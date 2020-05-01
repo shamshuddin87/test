@@ -95,7 +95,7 @@
                </div>
               <div class="col-md-4 col-xs-12">
                   <label for="Dob">DOB*</label>
-                  <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="bootdatepick" placeholder="DOB" readonly>
+                  <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="" placeholder="DOB" >
                </div>
                 
                <div class="col-md-12 col-xs-12"> 
@@ -194,7 +194,7 @@
                </div>
               <div class="col-md-4 col-xs-12">
                   <label for="Dob">Dob*</label>
-                  <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="dob" readonly>
+                  <input type="text" id="dob" name="dob" class="" placeholder="dob" >
                </div>
                <div class="col-md-12 col-xs-12"> 
                    <div class="col-md-4 col-xs-12"> 
@@ -469,7 +469,7 @@
                      </div>
                      <div class="col-md-4">
                         <label>DOB*</label>
-                        <input type="text"  id="1_dob" name="dob" class="bootdatepick" placeholder="DOB" readonly>
+                        <input type="text"  id="1_dob" name="dob" class="" placeholder="DOB" >
                      </div>
                      <div class="col-md-4">
                          <div class="tooltip_div">
@@ -670,7 +670,7 @@
                            </div>
                            <div class="col-md-6">
                               <label for="Dob">DOB*</label>
-                              <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="DOB" readonly>
+                              <input type="text" id="dob" name="dob" class="" placeholder="DOB" >
                            </div>
                            <div class="col-md-6" style="margin-bottom: 15px;">
                                <label style="display: block;" for="sex">Gender*</label>

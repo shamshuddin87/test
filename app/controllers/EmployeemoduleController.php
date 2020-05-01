@@ -60,7 +60,14 @@ class EmployeemoduleController extends ControllerBase
                 $toemail   = $this->request->getPost('toemail','trim');
 
                
-                
+                 /*Date Validation for date of birth Start */
+                $dateofbirth = explode('-', $dob);
+
+                $m = $dateofbirth[1];
+                $y = $dateofbirth[2];
+                $d = $dateofbirth[0];
+                $datestatus = $this->elements->checkdate($m,$y,$d);
+                /*Date Validation for date of birth End */
 
 
                 if(empty($pan))
@@ -91,9 +98,14 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
                     $this->response->setJsonContent($data);
                 }
+                 else if($datestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of Birth');
+                    $this->response->setJsonContent($data);
+                }
                 else if(strtotime($dob)>=strtotime($date))
                 {
-                    $data = array("logged" => false,'message' => 'Birth Date cannot be in future and current date');
+                    $data = array("logged" => false,'message' => 'Birth Date cannot be in future ');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($aadhar))
@@ -442,7 +454,17 @@ class EmployeemoduleController extends ControllerBase
                 $file   = $this->request->getPost('file','trim');
                 $depnature   = $this->request->getPost('depnature','trim');
                 $mobno   = $this->request->getPost('relmobno','trim');
-                //print_r($mobno);exit;
+
+                 /*Date Validation for date of birth Start */
+                $dateofbirth = explode('-', $dob);
+
+                $m = $dateofbirth[1];
+                $y = $dateofbirth[2];
+                $d = $dateofbirth[0];
+                $datestatus = $this->elements->checkdate($m,$y,$d);
+                /*Date Validation for date of birth End */
+
+                
                 if(empty($fname))
                 {
                     $data = array("logged" => false,'message' => 'Please Enter First Name!!');
@@ -478,6 +500,11 @@ class EmployeemoduleController extends ControllerBase
                 else if(empty($dob)) 
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
+                    $this->response->setJsonContent($data);
+                }
+                 else if($datestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of Birth');
                     $this->response->setJsonContent($data);
                 }
                 else if(strtotime($dob)>=strtotime($date))
@@ -772,6 +799,15 @@ class EmployeemoduleController extends ControllerBase
                 $releditid = $this->request->getPost('releditid','trim');
                 $prevfilepath = $this->request->getPost('filepath','trim');
                 $mobno   = $this->request->getPost('relmobnoup','trim');
+
+                 /*Date Validation for date of birth Start */
+                $dateofbirth = explode('-', $dob);
+
+                $m = $dateofbirth[1];
+                $y = $dateofbirth[2];
+                $d = $dateofbirth[0];
+                $datestatus = $this->elements->checkdate($m,$y,$d);
+                /*Date Validation for date of birth End */
                 
                 if(empty($name))
                 { 
@@ -801,6 +837,11 @@ class EmployeemoduleController extends ControllerBase
                 else if(strtotime($dob)>=strtotime($date))
                 {
                     $data = array("logged" => false,'message' => 'Birth Date cannot be in future and current date');
+                    $this->response->setJsonContent($data);
+                }
+                 else if($datestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of Birth');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($sex))
