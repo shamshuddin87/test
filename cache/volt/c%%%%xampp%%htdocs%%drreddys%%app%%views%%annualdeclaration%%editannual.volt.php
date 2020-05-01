@@ -79,44 +79,48 @@
                 <td>Nature of Identification no. (In case of Foreign Nationals)</td>
                 <td><?php echo $personaldetail['legal_identification_no'];?></td>                
               </tr>
-             
                <tr>
                 <td>7</td>
+                <td>Aadhaar</td>
+                <td><?php echo $personaldetail['aadhar'];?></td>                
+              </tr>
+               <tr>
+                <td>8</td>
                 <td>DOB</td>
                 <td><?php echo $personaldetail['dob'];?></td>                
               </tr>
                <tr>
-                <td>8</td>
+                <td>9</td>
                 <td>Gender</td>
                 <td><?php echo $personaldetail['sex'];?></td>                
               </tr>
                <tr>
-                <td>9</td>
+                <td>10</td>
                 <td>Educational Qualification</td>
                 <td><?php echo $personaldetail['education'];?></td>               
               </tr>
                <tr>
-                <td>10</td>
+                <td>11</td>
                 <td>Institute from which qualification was acquired</td>
                 <td><?php echo $personaldetail['institute'];?></td>               
               </tr>
                <tr>
-                <td>11</td>
+                <td>12</td>
                 <td>Residential Address</td>
                 <td><?php echo $personaldetail['address'];?></td>              
               </tr>
                <tr>
-                <td>12</td>
+                <td>13</td>
                 <td>Mobile no.</td>
                 <td><?php echo $personaldetail['mobileno'];?></td>                
               </tr>
                <tr>
-                <td>13</td>
+                <td>14</td>
                 <td>No. of shares of Dr. Reddys held by you</td>
                 <td><?php echo $personaldetail['sharehldng'];?></td>               
               </tr>
                <tr>
-                <td>14</td>
+                <td>15</td>
                 <td>No. of ADRs of Dr. Reddys held by your</td>
                 <td><?php echo $personaldetail['adrshldng'];?></td>                
               </tr>
@@ -281,6 +285,7 @@
              <?php if(!empty($relDematdetail)){ for($i=0;$i<sizeof($relDematdetail);$i++){ $j = $i;$j++; ?> 
                 <tr>
                  <td><?php echo $j;?></td>
+                   <td><?php echo $relDematdetail[$i]['name'];?></td>
                  <td><?php echo $relDematdetail[$i]['accountno'];?></td>
                  <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
                 </tr>
@@ -354,43 +359,48 @@
                 <td>Nature of Identification no. (In case of Foreign Nationals)</td>
                 <td><?php echo $personaldetail['legal_identification_no'];?></td>                
               </tr>
-               <tr>
+                <tr>
                 <td>7</td>
+                <td>Aadhaar</td>
+                <td><?php echo $personaldetail['aadhar'];?></td>                
+              </tr>
+               <tr>
+                <td>8</td>
                 <td>DOB</td>
                 <td><?php echo $personaldetail['dob'];?></td>                
               </tr>
                <tr>
-                <td>8</td>
+                <td>9</td>
                 <td>Gender</td>
                 <td><?php echo $personaldetail['sex'];?></td>                
               </tr>
                <tr>
-                <td>9</td>
+                <td>10</td>
                 <td>Educational Qualification</td>
                 <td><?php echo $personaldetail['education'];?></td>               
               </tr>
                <tr>
-                <td>10</td>
+                <td>11</td>
                 <td>Institute from which qualification was acquired</td>
                 <td><?php echo $personaldetail['institute'];?></td>               
               </tr>
                <tr>
-                <td>11</td>
+                <td>12</td>
                 <td>Residential Address</td>
                 <td><?php echo $personaldetail['address'];?></td>              
               </tr>
                <tr>
-                <td>12</td>
+                <td>13</td>
                 <td>Mobile no.</td>
                 <td><?php echo $personaldetail['mobileno'];?></td>                
               </tr>
                <tr>
-                <td>13</td>
+                <td>14</td>
                 <td>No. of shares of Dr. Reddys held by you</td>
                 <td><?php echo $personaldetail['sharehldng'];?></td>               
               </tr>
                <tr>
-                <td>14</td>
+                <td>15</td>
                 <td>No. of ADRs of Dr. Reddys held by your</td>
                 <td><?php echo $personaldetail['adrshldng'];?></td>                
               </tr>
@@ -986,9 +996,10 @@
              <?php if(!empty($relDematdetail)){ for($i=0;$i<sizeof($relDematdetail);$i++){ $j = $i;$j++; ?> 
                 <tr>
                  <td><?php echo $j;?></td>
+                   <td><?php echo $relDematdetail[$i]['name'];?></td>
                  <td><?php echo $relDematdetail[$i]['accountno'];?></td>
                  <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
-                 <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
+                
                 </tr>
                <?php } } else { ?>
                 <tr>

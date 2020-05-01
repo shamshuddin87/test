@@ -285,6 +285,7 @@
              <?php if(!empty($relDematdetail)){ for($i=0;$i<sizeof($relDematdetail);$i++){ $j = $i;$j++; ?> 
                 <tr>
                  <td><?php echo $j;?></td>
+                   <td><?php echo $relDematdetail[$i]['name'];?></td>
                  <td><?php echo $relDematdetail[$i]['accountno'];?></td>
                  <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
                 </tr>
@@ -995,9 +996,10 @@
              <?php if(!empty($relDematdetail)){ for($i=0;$i<sizeof($relDematdetail);$i++){ $j = $i;$j++; ?> 
                 <tr>
                  <td><?php echo $j;?></td>
+                   <td><?php echo $relDematdetail[$i]['name'];?></td>
                  <td><?php echo $relDematdetail[$i]['accountno'];?></td>
                  <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
-                 <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
+                
                 </tr>
                <?php } } else { ?>
                 <tr>

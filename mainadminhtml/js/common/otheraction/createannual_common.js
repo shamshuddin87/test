@@ -1228,6 +1228,8 @@ function getpdfdata(uniqueid)
                             j++;
                             reldemat += '<tr class="counter">';
                             reldemat += '<td>'+j+'</td>';
+                            reldemat += '<td>'+response.relDematdetail[i]['name']+'</td>';
+
                             reldemat += '<td>'+response.relDematdetail[i]['accountno']+'</td>';
                             reldemat += '<td>'+response.relDematdetail[i]['depository_participient']+'</td>';
 //                            reldemat += '<td>'+response.reldetail[i]['clearing_house']+'</td>';

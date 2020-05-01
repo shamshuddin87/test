@@ -187,7 +187,7 @@ else
 if(response.relDematdetail.length>0)
 {for(var i=0;i<response.relDematdetail.length;i++)
 {if(response.relDematdetail[i]['accountno']!='')
-{j=i;j++;reldemat+='<tr class="counter">';reldemat+='<td>'+j+'</td>';reldemat+='<td>'+response.relDematdetail[i]['accountno']+'</td>';reldemat+='<td>'+response.relDematdetail[i]['depository_participient']+'</td>';reldemat+='</tr>';}}}
+{j=i;j++;reldemat+='<tr class="counter">';reldemat+='<td>'+j+'</td>';reldemat+='<td>'+response.relDematdetail[i]['name']+'</td>';reldemat+='<td>'+response.relDematdetail[i]['accountno']+'</td>';reldemat+='<td>'+response.relDematdetail[i]['depository_participient']+'</td>';reldemat+='</tr>';}}}
 else
 {reldemat='<tr><td colspan ="14">No Data Found..</td></tr>';}
 website('.selfcompany').html(addhtmlnxt);website('.selffirm').html(addhtmlnxt1);website('.selfpubpri').html(addhtmlnxt2);website('.selfpubshare').html(addhtmlnxt3);website('.selfholdcontrl').html(addhtmlnxt7);website('.relative').html(addhtmlnxt4);website('.relativefirm').html(addhtmlnxt5);website('.relativepubpri').html(addhtmlnxt6);website('.relativepubshare').html(addhtmlnxt8);website('.relativeholdngcontrl').html(addhtmlnxt9);website('.pastemp').html(pastemp);website('.mfr').html(mfr);website('.dematacc').html(dematacc);website('.reldetail').html(reldetail);website('.reldemat').html(reldemat);}

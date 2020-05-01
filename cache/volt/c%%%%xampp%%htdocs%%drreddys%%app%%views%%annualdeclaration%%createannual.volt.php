@@ -318,7 +318,8 @@
         </table>
         </div>
           
-                     <h3 class="h3_heading">II.  Demat Account Details</h3>
+
+        <h3 class="h3_heading">II.  Demat Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
@@ -332,6 +333,7 @@
              <?php if(!empty($relDematdetail)){ for($i=0;$i<sizeof($relDematdetail);$i++){ $j = $i;$j++; ?> 
                 <tr>
                  <td><?php echo $j;?></td>
+                  <td><?php echo $relDematdetail[$i]['name'];?></td>
                  <td><?php echo $relDematdetail[$i]['accountno'];?></td>
                  <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
                 </tr>
@@ -941,7 +943,7 @@
         </table>
       </div>
           
-        <h3 class="h3_heading">II.  Demat Account Details</h3>
+        <h3 class="h3_heading">II. Demat Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
@@ -956,9 +958,10 @@
              <?php if(!empty($relDematdetail)){ for($i=0;$i<sizeof($relDematdetail);$i++){ $j = $i;$j++; ?> 
                 <tr>
                  <td><?php echo $j;?></td>
+                 <td><?php echo $relDematdetail[$i]['name'];?></td>
                  <td><?php echo $relDematdetail[$i]['accountno'];?></td>
                  <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
-                 <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
+
                 </tr>
                <?php } } else { ?>
                 <tr>

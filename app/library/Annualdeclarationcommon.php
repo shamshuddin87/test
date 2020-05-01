@@ -258,7 +258,7 @@ public function getallrelative($uid,$usergroup)
                 $queryin = "INSERT INTO `annual_initial_declaration` (user_id, user_group_id,send_status,sent_date, pdfpath,annualyear,uniqueid,date_added,date_modified,timeago) 
                 VALUES   ('".$uid."','".$usergroup."','".$send_status."','".$sent_date."','".$pdfpath."','".$annualyear."','".$uniqueid."',NOW(),NOW(),'".$time."')"; 
                 
-                $queryup = "UPDATE `annual_initial_declaration` SET `send_status` = '".$send_status."',`sent_date` = '".$sent_date."',`pdfpath` = '".$pdfpath."',`uniqueid` = '".$uniqueid."',`date_added`=NOW(),`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `annualyear`='".$annualyear."'";
+                $queryup = "UPDATE `annual_initial_declaration` SET `send_status` = '".$send_status."',`sent_date` = '".$sent_date."',`pdfpath` = '".$pdfpath."',`uniqueid` = '".$uniqueid."',`date_modified`=NOW(),`timeago`='".$time."' WHERE `user_id` ='".$uid."' AND `annualyear`='".$annualyear."'";
                  //echo $queryin; exit;
                 $exeget = $connection->query($querysel);
                 $getnum = trim($exeget->numRows());
@@ -2025,8 +2025,8 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
 
         $connection = $this->dbtrd;
         $getlist = array();
-        $query="SELECT * FROM `relative_demat_accounts`
-        WHERE `parent_user_id`='".$uid."'";
+        $query="SELECT rd .`*`,r.`name` FROM `relative_demat_accounts` rd LEFT JOIN `relative_info` r ON r.`id`=rd.`rel_user_id`
+         WHERE `parent_user_id`='".$uid."'";
         //print_r($query);exit; 
         try{
         $exeget = $connection->query($query);
@@ -2037,10 +2037,13 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
             { 
                 $getlist[] = $row; 
             }
+            //print_r($getlist);exit;
         }
         else
         {  $getlist = array(); }
         }
+
+
 
 
         catch (Exception $e)
