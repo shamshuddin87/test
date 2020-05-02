@@ -43,7 +43,7 @@
          <div class="insert">
 
              <div class="col-md-4 col-xs-12">
-               <label for="nation">Select Nationality**</label>
+               <label for="nation">Select Nationality*</label>
                <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
                           
                     <option value="1">Indian National</option>
