@@ -582,6 +582,7 @@ website('body').on('click','#previewc',function()
 
                // website('.clsngblnc').html(response.formdata['totalamnt']);
                website('.noofshares').html(response.formdata['tdsshare']);
+               
                 website('.excelnoofshares').val(response.formdata['tdsshare']);
 
                website('.totalamt').html(response.formdata['totalamnt']);

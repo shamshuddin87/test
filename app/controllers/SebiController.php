@@ -781,7 +781,7 @@ class SebiController extends ControllerBase
                 
                 $getdocres = $this->sebicommon->getdocucontent($getuserid,$user_group_id,$docid);
                 $getres = $this->sebicommon->getformcdata($getuserid,$user_group_id,$formcid);
-
+                //print_r($getres);exit;
 
                  $getsharecapital=$this->sebicommon->getsharecapital($getuserid,$user_group_id,$getres['data']['companyid']);
                  //print_r($getres);exit;
@@ -792,8 +792,17 @@ class SebiController extends ControllerBase
                 if(!empty($getsharecapital))
                 {
                     $prepercentshrecap=($getres['data']['sharehldng']/$getsharecapital['pershare'])*100;
-                    $postpercentshrecap=($getres['data']['sharehldng']+$getres['data']['no_of_shares']/$getsharecapital['pershare'])*100;
+
+                    $postpercentshrecap=($getres['data']['sharehldng']+$getres['data']['no_of_shares'])/$getsharecapital['pershare'];
+
+                    $postpercentshrecap = $postpercentshrecap*100;
+                      //print_r( $postpercentshrecap);exit;
+
+                    $finalprepercentshrecap = number_format((float)$prepercentshrecap, 2, '.', ''); 
+                    $finalpostpercentshrecap = number_format((float)$postpercentshrecap, 2, '.', ''); 
+                      
                     $postnumber=$getres['data']['sharehldng']+$getres['data']['no_of_shares'];
+                    
                 }
                 else
                 {
@@ -801,7 +810,7 @@ class SebiController extends ControllerBase
                 }      
                 if(!empty($getdocres))
                 {
-                    $data = array("logged" => true,'message' => 'Record Sent for approval','docontent' => $getdocres,'formdata'=>$getres['data'],'prepercent'=> $prepercentshrecap,'postpercent'=> $postpercentshrecap,'postnumber'=>$postnumber);
+                    $data = array("logged" => true,'message' => 'Record Sent for approval','docontent' => $getdocres,'formdata'=>$getres['data'],'prepercent'=> $finalprepercentshrecap,'postpercent'=> $finalpostpercentshrecap,'postnumber'=>$postnumber);
                     $this->response->setJsonContent($data);
                 }
                 else

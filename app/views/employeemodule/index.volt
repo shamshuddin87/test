@@ -42,15 +42,7 @@
          <h3>Insert Personal Details</h3>
          <div class="insert">
 
-             <div class="col-md-4 col-xs-12">
-               <label for="nation">Select Nationality*</label>
-               <select id="relationship" name="relationship" class="form_fields" required="">
-                          
-                    <option value="1">Indian National</option>
-                    <option value="2">Foreign National</option>
-                          
-                  </select>
-            </div>
+             
             <div class="col-md-4 col-xs-12">
                <label for="fn">Employee ID*</label>
                <input type="text"  value="<?php echo($userdetails[0]['employeecode']) ?>" readonly="readonly"/>
@@ -80,7 +72,16 @@
            
                  <input type="hidden" id="rqid" name="rqid" placeholder="" value="<?php echo($personaldetails['id']) ?>">
                 
-               <!-- </div> -->
+                <div class="col-md-4 col-xs-12">
+               <label for="nation">Select Nationality*</label>
+               <select id="relationship" name="relationship" class="form_fields" required="">
+                          
+                    <option value="1">Indian</option>
+                    <option value="2">Other</option>
+                          
+                  </select>
+            </div>
+              
                <div class="col-md-4 col-xs-12">
                   <label for="pan">PAN*</label>
                   <input type="text" id="pan" name="pan" value="<?php echo($personaldetails['pan']) ?>" placeholder="pan" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
