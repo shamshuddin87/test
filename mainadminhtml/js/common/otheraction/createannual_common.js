@@ -1,5 +1,5 @@
 website(document).ready(function()
-{
+{  
     loadnoofsec();
     FetchSubsidiries();
 });
@@ -23,14 +23,7 @@ function FetchSubsidiries()
           success: function(response, textStatus, jqXHR)
           {
               var html = '';
-//              for(var i=0;i<response.data.length;i++)
-//              {
-//                  var j = i;
-//                  j++;
-//                  html+= '<table><tr><td>'+j+'</td><td>'+response.data[i].subsidiaryname+'</td></tr></table>';
-//                  //console.log(html);
-//                  
-//              }
+
               //html1 =  html.replace( /(<([^>]+)>)/ig, '');
               website('#compnamedata').html(response.data);
               //website('.tooltip').css('display','block');
@@ -43,7 +36,8 @@ function FetchSubsidiries()
 }
 
 function addhtml(clicked)
-{
+{   
+
     website.ajax({
       url:'annualdeclaration/fetchrelative',
       //data:formdata,
@@ -170,7 +164,7 @@ function addhtml(clicked)
           addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>';
 
        
-         addhtmlnxt += '<td><div class="input">  <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" >  </div></td> ';
+         addhtmlnxt += '<td><div class="input">  <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]"  >  </div></td> ';
          addhtmlnxt+=' <td><div class="input">  <select class="form-control inputbox4" id="d3ques2" rownum="row'+getlastid+'" name="d3ques2[]"><option value="">Select Option</option><option value="1">Member</option><option value="2">Director</option>/select></div></td>';
           addhtmlnxt+='<td><input type="text" class="form-control inputbox4" id="d3ques5" name="d3ques5[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></td>';
           addhtmlnxt+='<td> <div class="input"> <select id="d3ques3" name="d3ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
@@ -216,7 +210,7 @@ function addhtml(clicked)
           addhtmlnxt += '<td style="border-right: 1px solid #f7f7f7;width:2.5%"></td>';
 
        
-         addhtmlnxt += '<td><div class="input">  <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" value="Company Name"  >  </div></td> ';
+         addhtmlnxt += '<td><div class="input">  <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" value=""  >  </div></td> ';
          addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d4ques2" name="d4ques2[]" value="holding 2% above shares" readonly="readonly" ></div></td>';
           addhtmlnxt+='<td> <div class="input"> <select id="d4ques3" name="d4ques3[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt+=' <td><div class="input">   <select id="d4ques4" name="d4ques4[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
@@ -475,7 +469,7 @@ function addhtml(clicked)
                 addhtmlnxt += '<option value='+value['id']+'>'+value['name']+'</option>';    
 
               });
-         addhtmlnxt += '<td><div class="input">  <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" value="holding above 2% shares" readonly="readonly" placeholder="Company Name">  </div></td> ';
+         addhtmlnxt += '<td><div class="input">  <input type="text" class="form-control inputbox4" id="d9ques2" name="d9ques2[]" value=""  placeholder="Company Name" >  </div></td> ';
          addhtmlnxt+=' <td><div class="input">  <input type="text" class="form-control inputbox4" id="d9ques3" name="d9ques3[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="holding above 2% shares" readonly="readonly"></div></td>';
           addhtmlnxt+='<td> <div class="input"> <select id="d9ques4" name="d9ques4[]" class="form_fields form-control col-md-7 col-xs-12 selectbox4"  ><option value="">Select Option </option> <option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
           addhtmlnxt+=' <td><div class="input">   <select id="d9ques5" name="d9ques5[]" class="form_fields form-control col-md-7 col-xs-12" ><option value="">Select Option</option><option value="Yes">Yes</option> <option value="No">No</option> </select></div></td>';
@@ -1096,6 +1090,7 @@ function getpdfdata(uniqueid)
                     website('.pan').html(response.personaldetail['pan']);
                     website('.legalidentifier').html(response.personaldetail['legal_identifier']);
                     website('.legalidentityno').html(response.personaldetail['legal_identification_no']);
+                     website('.aadhaar').html(response.personaldetail['aadhar']);
                     website('.dob').html(response.personaldetail['dob']);
                     website('.gender').html(response.personaldetail['sex']);
                     website('.edu').html(response.personaldetail['education']);
@@ -1233,6 +1228,8 @@ function getpdfdata(uniqueid)
                             j++;
                             reldemat += '<tr class="counter">';
                             reldemat += '<td>'+j+'</td>';
+                            reldemat += '<td>'+response.relDematdetail[i]['name']+'</td>';
+
                             reldemat += '<td>'+response.relDematdetail[i]['accountno']+'</td>';
                             reldemat += '<td>'+response.relDematdetail[i]['depository_participient']+'</td>';
 //                            reldemat += '<td>'+response.reldetail[i]['clearing_house']+'</td>';
@@ -1375,10 +1372,8 @@ website('body').on('click','.sendtype', function(e)
               website('#sendtoco').modal('hide');  
               website('#Mymodaldeclara .formpdf').css('display','none');
               website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');
-//              if(sendtype == 'no')
-//              {
-                  window.location.href = "annualdeclaration";
-//              }
+                window.location.href = "annualdeclaration";
+
 
              
             }
@@ -1399,12 +1394,6 @@ website('body').on('click','.sendtype', function(e)
     });
 });
 
-// website('body').on('click','.downloadpdf',function(e)
-// {
-//   alert("hello");
-//   window.location.reload();
-
-// });
 function loadnoofsec()
 {
     website("#d3ques2").change(function() {
@@ -1469,3 +1458,5 @@ website('body').on('click','#submituserdata', function(e)
     website('.modalform').html(pdfdata);
     website('#Mymodaldeclara').modal('show');
 });
+
+

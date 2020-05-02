@@ -780,10 +780,28 @@ class SebiController extends ControllerBase
                 $docid   = $this->request->getPost('docid','trim');
                 
                 $getdocres = $this->sebicommon->getdocucontent($getuserid,$user_group_id,$docid);
-                $getres = $this->sebicommon->getformcdata($getuserid,$user_group_id,$formcid);      
+                $getres = $this->sebicommon->getformcdata($getuserid,$user_group_id,$formcid);
+
+
+                 $getsharecapital=$this->sebicommon->getsharecapital($getuserid,$user_group_id,$getres['data']['companyid']);
+                 //print_r($getres);exit;
+                if(empty($getsharecapital))
+                {
+                    $meassage = 'Share Capital Is Not Inserted For Selected Company.Please Contact To Super Admin..';
+                }
+                if(!empty($getsharecapital))
+                {
+                    $prepercentshrecap=($getres['data']['sharehldng']/$getsharecapital['pershare'])*100;
+                    $postpercentshrecap=($getres['data']['sharehldng']+$getres['data']['no_of_shares']/$getsharecapital['pershare'])*100;
+                    $postnumber=$getres['data']['sharehldng']+$getres['data']['no_of_shares'];
+                }
+                else
+                {
+                    $percentshrecap='';
+                }      
                 if(!empty($getdocres))
                 {
-                    $data = array("logged" => true,'message' => 'Record Sent for approval','docontent' => $getdocres,'formdata'=>$getres['data']/*,'secutype'=>$getres['securitytype']*/);
+                    $data = array("logged" => true,'message' => 'Record Sent for approval','docontent' => $getdocres,'formdata'=>$getres['data'],'prepercent'=> $prepercentshrecap,'postpercent'=> $postpercentshrecap,'postnumber'=>$postnumber);
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -822,6 +840,13 @@ class SebiController extends ControllerBase
             {
                 $pdf_content = $this->request->getPost('htmldata');
                 $formcid = $this->request->getPost('formcid');
+                $exceldata = $this->request->getPost('exceldata');
+                $exceldata = json_encode($exceldata);
+                $myfile = fopen("img/mis/".$formcid.".txt", "w");
+                // print_r($myfile);exit;
+                $txt = $exceldata;
+                fwrite($myfile, $txt);
+                fclose($myfile);
                 $pdfpath = $this->dompdfgen->getpdf($pdf_content,'Formc','Form_c','configFormc');
                 if(!empty($pdfpath))
                 {
@@ -1686,29 +1711,41 @@ class SebiController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
-                $noofrows=$this->request->getPost('noofrows');
-                $pagenum=$this->request->getPost('pagenum');
-                $id=$this->request->getPost('id');
-                //print_r($id);exit;
-                if($id)
-                {
-                    $rowid = implode(",", $id);
-                }
-                else
-                {
-                    $rowid = '';
-                }
-               // print_r($rowid);exit;
-
-                
-                
                
-                $getres = $this->sebicommon->fetchformcdataforexport($getuserid,$user_group_id,$rowid);
-                
-                //print_r($getres);exit;
-                $genfile = $this->phpimportexpogen->exportformc($getuserid,$user_group_id,$getres);
-                
-                if(file_exists($genfile))
+                $exceldata=$this->request->getPost('id');
+                for($i=0;$i<sizeof($exceldata);$i++)
+                {    
+                     $data='';
+                     $filecontent='';
+                     $filecontent=file_get_contents("img/mis/".$exceldata[$i].".txt");
+                     //print_r($filecontent);exit;
+                   
+                     $data=json_decode($filecontent,true);
+                   
+                      // print_r($data);exit;
+                     $myarr2=array();
+                     for($n=0;$n<sizeof($data);$n++)
+                     {
+                        // $myarr2=array();
+                        $myarr2[]=$data[$n]['value'];
+                     }
+
+                      $myarr[]=$myarr2; 
+                }
+
+                if(isset($myarr) && !empty($myarr))
+                   {
+                         $genfile = $this->phpimportexpogen->exportformc($getuserid,$user_group_id,$myarr);
+                   }
+                   else
+                   {
+                       $data = array("logged" => false,'message' => 'Please Select Atleast One CheckBox' , 'genfile'=> '');
+                       $this->response->setJsonContent($data);
+                       $this->response->send();
+                       exit;
+                   }
+                 
+                 if(!empty($genfile))
                 {
                     $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
                     $this->response->setJsonContent($data);
@@ -1718,6 +1755,11 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => "File Not Generated..!!");
                     $this->response->setJsonContent($data);
                 }
+
+               
+               
+                
+               
                 $this->response->send();
             }
             else

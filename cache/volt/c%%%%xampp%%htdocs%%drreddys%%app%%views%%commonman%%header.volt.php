@@ -177,7 +177,7 @@
                   <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> My Info<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                      <li><a href="employeemodule"><i class="" id="cmp_mst"></i>Personal information</a></li>
-                     <li><a href="portfolio"><i class=""></i>Demat Accounts</a></li>
+                     <li><a href="portfolio"><i class=""></i>Demat/Securities Account</a></li>
                      <li><a href="continuousdisclosure"><i class=""></i>Continuous Disclosure</a></li>
                      <li><a href="tradingrequest"><i class=""></i>Request for Pre-clearance</a></li>
                      <!--     <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li>  -->  

@@ -72,7 +72,7 @@ function getSelectionStart(o){if(o.createTextRange){var r=document.selection.cre
 r.moveEnd('character',o.value.length)
 if(r.text=='')return o.value.length
 return o.value.lastIndexOf(r.text)}else return o.selectionStart}
-function isAlphaNumeric_space(e){var k;document.all?k=e.keycode:k=e.which;return((k>47&&k<58)||(k>64&&k<91)||(k>96&&k<123)||k==0||k==32);}
+function isAlphaNumeric_space(e){var k;document.all?k=e.keycode:k=e.which;return((k>47&&k<58)||(k>64&&k<91)||(k>96&&k<123)||k==0||k==32||k==39);}
 function isAlpha_space(e){var k;document.all?k=e.keycode:k=e.which;return((k>64&&k<91)||(k>96&&k<123)||k==32);}
 function nospclchar(){var charCode=event.keyCode;if((charCode>64&&charCode<91)||(charCode>48&&charCode<57)||(charCode>96&&charCode<123)||charCode==8||charCode==32)
 return true;else

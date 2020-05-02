@@ -1017,6 +1017,7 @@ function getpdfdata(uniqueid)
                     website('.legalidentifier').html(response.personaldetail['legal_identifier']);
                     website('.legalidentityno').html(response.personaldetail['legal_identification_no']);
                     website('.dob').html(response.personaldetail['dob']);
+                     website('.aadhaar').html(response.personaldetail['aadhar']);
                     website('.gender').html(response.personaldetail['sex']);
                     website('.edu').html(response.personaldetail['education']);
                     website('.institute').html(response.personaldetail['institute']);

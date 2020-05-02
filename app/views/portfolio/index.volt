@@ -35,7 +35,7 @@
     <div class=" personaldetails" style="display: block;">
   <div class="acc">
    
-    <label class="do">Do you have any Demat Account?  
+    <label class="do">Do you have any Demat/Securities Account?  
   <?php 
    //print_r($getdematsstatus);exit;
   if(isset($getdematsstatus) ){ 
@@ -64,7 +64,7 @@
  
   
   <div id = "showdemat" style="display: none;">
-  <h3 style="text-align: center;">How Many Demat Accounts Do You Have?</h3>
+  <h3 style="text-align: center;">How Many Demat/Securities Accounts Do You Have?</h3>
   <div class="input-group">
 
       <input type="text" class="form-control" id="noofacc" size="30" placeholder="No Of account" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
@@ -124,7 +124,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit Demat Details</h4>
+        <h4 class="modal-title">Edit  Demat/Securities Details</h4>
         </div>
         <div class="title"></div>
         <div class="col-md-12 list_co">
@@ -132,9 +132,9 @@
              <input type="text" id="editaccno" name="editaccno" class="form_fields form-control col-md-7 col-xs-12 showhovertext" required="required" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="16" pattern="[A-Za-z0-9]{16}"  onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)" >
             <span id= "showhovertext" class ="cssclass " style="display: none;z-index: 2;">
             <ol type="a" style="padding: 5px 5px 5px 15px;">
-              <li>Demat account, mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>
+              <li> Demat/Securities account, mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>
               <li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held</li>
-              <li>In case your Demat account no. is less than 16 digits then prefix the relevant number of '0's</li>
+              <li>In case your Demat/Securities account no. is less than 16 digits then prefix the relevant number of '0's</li>
             </ol>
         </span>
         </div>    
@@ -169,7 +169,7 @@
 <div class="relativesform" style="display: none;">
   <div class="acc">
     <div class="input-group col-md-12"> 
-     <section class="col col-md-6 col-xs-6">
+     <section class="col col-md-5 col-xs-5">
         <label class="control-label">Select Name Of Relatives</label>
           <div class="input">
             <select id="relinfo" name="relinfo" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -181,8 +181,8 @@
                       </div>
                         </section>
 
-                       <section class="col col-md-3 col-xs-3">
-                      <label class="control-label">No Of Demat Accounts</label>
+                       <section class="col col-md-4 col-xs-4">
+                      <label class="control-label">No Of  Demat/Securities Accounts</label>
                      <div class="input">
                    <input type="text" id="reldematno" name="reldematno" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
                             </div>
@@ -241,7 +241,7 @@
 </div>
 <!------------------------------Delete relative Modal Finish--------------------------------->
 <!-------------------------------EDIT Relative ACCOUNT  MODAL START HERE------------------------------>
-<div id="releditaccmodal" class="modal fade" role="dialog">
+<div id="releditaccmodal" class="modal fade" role="dialog" tabIndex=-1>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -256,9 +256,9 @@
              <input type="text" id="releditaccno" name="releditaccno" class="form_fields form-control col-md-7 col-xs-12 showhovertext1" required="required" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)">
               <span id= "showhovertext1" class ="cssclass " style="display: none;z-index: 2;">
             <ol type="a" style="padding: 5px 5px 5px 15px;">
-              <li>Demat account, mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>
+              <li> Demat/Securities account, mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>
               <li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held</li>
-              <li>In case your Demat account no. is less than 16 digits then prefix the relevant number of '0's</li>
+              <li>In case your  Demat/Securities account no. is less than 16 digits then prefix the relevant number of '0's</li>
             </ol>
         </span>
         </div>    

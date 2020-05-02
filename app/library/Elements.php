@@ -29,6 +29,23 @@ class Elements extends Component
 
     }
 
+     /*-----#################### DATE VALIDATION FOR INPUT DATE START####################-----------------*/
+    
+    public function checkdate($m,$y,$d)
+    {   
+        if(checkdate($m, $d, $y))
+        {
+            $status = "valid";
+        }
+        else
+        {
+            $status = "not valid";
+        }
+        return $status;
+    }
+    
+    /*-----#################### DATE VALIDATION FOR INPUT DATE END ####################-----------------*/
+
     public function checkuserloggedinpage()
     {
         $LoginAuthsAdmin = $this->session->loginauthspuserfront;

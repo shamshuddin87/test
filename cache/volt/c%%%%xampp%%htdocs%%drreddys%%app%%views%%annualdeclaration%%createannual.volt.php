@@ -24,7 +24,7 @@
 <div class="mainelementfom">
     <div class="mainheader row">
 
-      <div class="col col-xs-6"><h1 class="h1_heading ">Annual Declaration</h1></div>
+    <div class="col col-xs-6"><h1 class="h1_heading ">Annual Declaration</h1></div>
       <div class="create_button  col col-xs-6">
         <div class="compnamedata_div">  
            <a href="javascript:void(0);"  class="compnamedata_btn right btn btn-primary ">Dr Reddy's subsidiaries</a>
@@ -125,43 +125,50 @@
                 <td>Nature of Identification no. (In case of Foreign Nationals)</td>
                 <td><?php echo $personaldetail['legal_identification_no'];?></td>                
               </tr>
+
                <tr>
                 <td>7</td>
+                <td>Aadhaar</td>
+                <td><?php echo $personaldetail['aadhar'];?></td>                
+              </tr>
+
+               <tr>
+                <td>8</td>
                 <td>DOB</td>
                 <td><?php echo $personaldetail['dob'];?></td>                
               </tr>
                <tr>
-                <td>8</td>
+                <td>9</td>
                 <td>Gender</td>
                 <td><?php echo $personaldetail['sex'];?></td>                
               </tr>
                <tr>
-                <td>9</td>
+                <td>10</td>
                 <td>Educational Qualification</td>
                 <td><?php echo $personaldetail['education'];?></td>               
               </tr>
                <tr>
-                <td>10</td>
+                <td>11</td>
                 <td>Institute from which qualification was acquired</td>
                 <td><?php echo $personaldetail['institute'];?></td>               
               </tr>
                <tr>
-                <td>11</td>
+                <td>12</td>
                 <td>Residential Address</td>
                 <td><?php echo $personaldetail['address'];?></td>              
               </tr>
                <tr>
-                <td>12</td>
+                <td>13</td>
                 <td>Mobile no.</td>
                 <td><?php echo $personaldetail['mobileno'];?></td>                
               </tr>
                <tr>
-                <td>13</td>
+                <td>14</td>
                 <td>No. of shares of Dr. Reddys held by you</td>
                 <td><?php echo $personaldetail['sharehldng'];?></td>               
               </tr>
                <tr>
-                <td>14</td>
+                <td>15</td>
                 <td>No. of ADRs of Dr. Reddys held by you</td>
                 <td><?php echo $personaldetail['adrshldng'];?></td>                
               </tr>
@@ -311,7 +318,8 @@
         </table>
         </div>
           
-                     <h3 class="h3_heading">II.  Demat Account Details</h3>
+
+        <h3 class="h3_heading">II.  Demat Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
@@ -325,6 +333,7 @@
              <?php if(!empty($relDematdetail)){ for($i=0;$i<sizeof($relDematdetail);$i++){ $j = $i;$j++; ?> 
                 <tr>
                  <td><?php echo $j;?></td>
+                  <td><?php echo $relDematdetail[$i]['name'];?></td>
                  <td><?php echo $relDematdetail[$i]['accountno'];?></td>
                  <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
                 </tr>
@@ -399,43 +408,50 @@
                 <td>Nature of Identification no. (In case of Foreign Nationals)</td>
                 <td><?php echo $personaldetail['legal_identification_no'];?></td>                
               </tr>
+
                <tr>
                 <td>7</td>
+                <td>Aadhaar</td>
+                <td><?php echo $personaldetail['aadhar'];?></td>                
+              </tr>
+
+               <tr>
+                <td>8</td>
                 <td>DOB</td>
                 <td><?php echo $personaldetail['dob'];?></td>                
               </tr>
                <tr>
-                <td>8</td>
+                <td>9</td>
                 <td>Gender</td>
                 <td><?php echo $personaldetail['sex'];?></td>                
               </tr>
                <tr>
-                <td>9</td>
+                <td>10</td>
                 <td>Educational Qualification</td>
                 <td><?php echo $personaldetail['education'];?></td>               
               </tr>
                <tr>
-                <td>10</td>
+                <td>11</td>
                 <td>Institute from which qualification was acquired</td>
                 <td><?php echo $personaldetail['institute'];?></td>               
               </tr>
                <tr>
-                <td>11</td>
+                <td>12</td>
                 <td>Residential Address</td>
                 <td><?php echo $personaldetail['address'];?></td>              
               </tr>
                <tr>
-                <td>12</td>
+                <td>13</td>
                 <td>Mobile no.</td>
                 <td><?php echo $personaldetail['mobileno'];?></td>                
               </tr>
                <tr>
-                <td>13</td>
+                <td>14</td>
                 <td>No. of shares of Dr. Reddys held by you</td>
                 <td><?php echo $personaldetail['sharehldng'];?></td>               
               </tr>
                <tr>
-                <td>14</td>
+                <td>15</td>
                 <td>No. of ADRs of Dr. Reddys held by you</td>
                 <td><?php echo $personaldetail['adrshldng'];?></td>                
               </tr>
@@ -630,7 +646,7 @@
                      <td style="border-right: 1px solid #f7f7f7"></td>
                      <td>
                         <div class="input">
-                           <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]" >
+                           <input type="text" class="form-control inputbox4" id="d3ques1" name="d3ques1[]"   >
                          </div>
                      </td>
                      <td> 
@@ -697,7 +713,7 @@
                <td style="border-right: 1px solid #f7f7f7"></td>
                <td> 
                <div class="input">
-               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" placeholder="Company Name">
+               <input type="text" class="form-control inputbox4" id="d4ques1" name="d4ques1[]" placeholder="Company Name" >
                    </div>
                </td>
                <td> 
@@ -927,7 +943,7 @@
         </table>
       </div>
           
-        <h3 class="h3_heading">II.  Demat Account Details</h3>
+        <h3 class="h3_heading">II. Demat Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
@@ -942,9 +958,10 @@
              <?php if(!empty($relDematdetail)){ for($i=0;$i<sizeof($relDematdetail);$i++){ $j = $i;$j++; ?> 
                 <tr>
                  <td><?php echo $j;?></td>
+                 <td><?php echo $relDematdetail[$i]['name'];?></td>
                  <td><?php echo $relDematdetail[$i]['accountno'];?></td>
                  <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
-                 <td><?php echo $relDematdetail[$i]['depository_participient'];?></td>
+
                 </tr>
                <?php } } else { ?>
                 <tr>
@@ -1473,7 +1490,7 @@
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-primary sendtype" name="sendtype" id="" value="yes" tempid="">Yes</button>
-            <button type="button" class="btn btn-primary" onclick="window.location.reload();" value="no" tempid="">No</button>
+            <button type="button" class="btn btn-primary sendtype"  value="no" tempid="">No</button>
          </div>
       </div>
    </div>

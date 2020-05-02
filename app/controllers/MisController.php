@@ -197,7 +197,7 @@ class MisController extends ControllerBase
             $getequity = $this->miscommon->fetchequity($usrdata['wr_id'],$getres['companyid']);
             //echo '$getequity-----<pre>'; print_r($getequity); exit;
             
-            $getprefereence = $this->miscommon->fetchprefereence($usrdata['wr_id'],$getres['companyid']);
+            $getadrs = $this->miscommon->fetchprefereence($usrdata['wr_id'],$getres['companyid']);
             //echo '$getprefereence-----<pre>'; print_r($getprefereence); exit;
             
             //$getdebenure = $this->miscommon->fetchdebenure($usrdata['wr_id'],$getres['companyid']);
@@ -234,9 +234,9 @@ class MisController extends ControllerBase
                     $sum1 = $getequity;
                 }
                 
-                if(!empty($getprefereence))
+                if(!empty($getadrs))
                 {
-                    $sum2 = $getprefereence;
+                    $sum2 = $getadrs;
                 }                
                 
 //                if(!empty($getdebenure))

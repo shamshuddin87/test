@@ -275,7 +275,7 @@ else{
 
 <!------------------------------------------------------------------------------------------------------------------>
 <!------------------------MODAL BOX FOR UPDATE--------------------------------------------------------------->
-      <div id="updatemodal" class="modal fade" role="dialog">
+      <div id="updatemodal" class="modal fade" role="dialog" tabIndex=-1>
        <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -394,7 +394,7 @@ else{
 
 
 <!-------------------------------MODAL BOX FOR UPLOAD FILE------------------------------------------------------>
-<div id="uploadmyfile" class="modal fade" role="dialog">
+<div id="uploadmyfile" class="modal fade" role="dialog" tabIndex=-1>
 <div class="modal-dialog">
 <!-- Modal content-->
 <div class="modal-content margin-top"  style="width:900px;">

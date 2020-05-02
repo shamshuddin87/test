@@ -187,7 +187,7 @@ class Miscommon extends Component
         $getlist = array();
         for($i=0;$i<sizeof($compid);$i++)
         {
-            $queryget = "SELECT ts.*,pr.type_of_transaction FROM `trading_status` ts
+            $queryget = "SELECT ts.*,pr.`type_of_transaction` FROM `trading_status` ts
                         LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id` 
                         WHERE ts.`user_id` = '".$userid."' AND ts.`id_of_company` = '".$compid[$i]."' AND ts.trading_status='1' AND ts.sectype='3' AND pr.`relative_id` = ''";
             //echo $queryget;
@@ -526,18 +526,21 @@ class Miscommon extends Component
          {
             //print_r($masteruserdata);exit;
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-             $queryget = "SELECT ss.*,sr.name,sr.nameofentity,sr.identityno,utype.upsitype,
-                    memb.`fullname`,sc.`category` AS category_name,sr.`othercategory` 
+             $queryget = "SELECT ss.*,sr.`name`,sr.`nameofentity`,sr.`identityno`,utype.`upsitype`,
+                    memb.`fullname`,sc.`category` AS category_name,sr.`othercategory`,pr.`*`, mem.`email`
                     FROM `sensitiveinfo_sharing` ss 
                     LEFT JOIN `sensitiveinfo_recipient` sr ON ss.`recipientid` = sr.`id` 
                     LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ss.`user_id` 
-                    LEFT JOIN `upsimaster` utype ON utype.id = ss.`upsitype` 
+                    LEFT JOIN `upsimaster` utype ON utype.`id` = ss.`upsitype` 
                     LEFT JOIN `sensitiveinfo_category` sc ON sc.`id` = sr.`category`
+                     LEFT JOIN `personal_info` pr ON pr.`userid` = ss.`recipientid`
+                     LEFT JOIN `it_memberlist` mem ON mem.`wr_id` = ss.`recipientid` 
+                    
 				    WHERE ss.`user_id` IN (".$grpusrs['ulstring'].") AND ss.`upsitype`= '".$upsitypeid."' ORDER BY ss.`id` DESC ".$query; 
 
           
             
-            //echo $queryget;  exit;
+           //echo $queryget;  exit;
             //,sr.`othercategory`
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
@@ -1311,6 +1314,7 @@ class Miscommon extends Component
        $connection = $this->dbtrd;
        $time = time();
        $getmasterid = $this->tradingrequestcommon->getmasterid($userid);
+       //print_r($userid);exit;
        try{
             if($user_group_id == 2 || $user_group_id == 14)
             {
@@ -1321,8 +1325,9 @@ class Miscommon extends Component
             {
                $query="SELECT *,ups.`date_added` AS dtadd,ups.`id` AS uppid FROM `upsimaster` ups  LEFT JOIN  `it_memberlist` it ON ups.`user_id`=it.`wr_id`  
                  LEFT JOIN  `personal_info` pr  ON ups.`user_id`=pr.`userid` WHERE  ups.`projectowner` IN(".$userid.") ".$rslmt;
+                  //print_r($query);exit;
             }
-            // print_r($query);exit;
+            
              $exeget = $connection->query($query);
              $getnum = trim($exeget->numRows());
              if($getnum>0)

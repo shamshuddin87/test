@@ -873,7 +873,7 @@ class Sebicommon extends Component
     public function getformcdata($getuserid,$user_group_id,$formcid)
     {
         $connection = $this->dbtrd;
-        $queryget = "SELECT formc.*,memb.`fullname`,memb.`mobile`,tr.`req_id`,pr.`place`,pinfo.`pan`,pinfo.`address`,cate.`category`,cmp.`company_name`,formmode.`acquisitionmode` AS acquistnmode  
+        $queryget = "SELECT formc.*,memb.`fullname`,memb.`mobile`,tr.`req_id`,pr.`place`,pr.`no_of_shares`,pinfo.`pan`,pinfo.`address`,cate.`category`,cmp.`company_name`,formmode.`acquisitionmode` AS acquistnmode ,pinfo.`sharehldng`,sc.`pershare` 
          FROM `sebiformc_usrdata` formc 
          LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id` 
          LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id` 
@@ -882,6 +882,7 @@ class Sebicommon extends Component
          LEFT JOIN `sebiformc_mode` formmode ON formmode.`id` = formc.`acquimode`
          LEFT JOIN `trading_status` tr ON tr.`id` = formc.`tradeid`
          LEFT JOIN personal_request pr ON pr.`id` = tr.`req_id`
+          LEFT JOIN sharecapital sc ON sc.`user_id` = pinfo.`userid`
          WHERE formc.`id`='".$formcid."'";
         //echo $queryget;exit;
         try{
@@ -1169,8 +1170,8 @@ class Sebicommon extends Component
             $queryget= "SELECT formc.`user_id`, formc.`approverid`, 
                 memb.`fullname`,memb.`designation`,pinfo.`pan` 
                 FROM `sebiformc_usrdata` formc
-                LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.user_id
-                LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.user_id
+                LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id`
+                LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id`
                 WHERE formc.`id`='".$formcid."' ";
             //echo $queryget; exit;
             
@@ -2036,6 +2037,48 @@ class Sebicommon extends Component
     
     
     /*--------------------------- form d section end ---------------------------*/
+
+
+      public function getsharecapital($getuserid,$user_group_id)
+    {
+        $connection = $this->dbtrd;
+        try
+        {
+            if($user_group_id == 2)
+            {
+                $queryget = "SELECT *  FROM `sharecapital` WHERE `user_id`='".$getuserid."'  ";
+            }
+            else
+            {
+                $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+                $queryget = "SELECT *  FROM `sharecapital` WHERE `user_id` IN(".$grpusrs['ulstring'].") ";
+            }
+            //echo $queryget;exit;
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist = $row;
+                }
+                //echo '<pre>';print_r($getlist);exit;
+            }
+            else
+            {
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+
+        return $getlist;
+    }
+    
     
 }
 

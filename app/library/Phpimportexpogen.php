@@ -157,20 +157,8 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                             '1' => $tblrow['projstartdate'],
                             '2'=> $tblrow['enddate'],
                             '3' => $tblrow[11],
-                            '4' => $tblrow['fullname'],
-                            '5' => $tblrow['email'],
-                            '6' => $tblrow['pan'],
-                            '7'=> $tblrow['legal_identifier'],
-                            '8' => $tblrow['legal_identification_no'],
-                            '9' => $tblrow['aadhar'],
-                            '10' => $tblrow['dob'],
-                            '11' => $tblrow['sex'],
-                            '12' => $tblrow['education'],
-                            '13' => $tblrow['institute'],
-                            '14' => $tblrow['address'],
-                            '15' => $tblrow['mobileno'],
-                            '16' => $tblrow['sharehldng'],
-                            '17' => $tblrow['adrshldng']
+                            '4' => $tblrow['fullname']
+                           
                             //'4' => $tblrow['designation']
                            
                         );
@@ -225,7 +213,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
     public function fetchSharedInfoexcel($getuserid,$user_group_id,$upsidata)
     {
 
-         //echo '<pre>'; print_r($processdata);exit;
+        // echo '<pre>'; print_r($upsidata);exit;
         $connection = $this->db;
         $time = time();
         
@@ -246,8 +234,21 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                             '3' => $tblrow['sharingtime'],
                             '4' => $tblrow['enddate'],
                             '5' => $tblrow['datashared'],
-//                            '6' => $tblrow['purpose'],
-                            '6' => $tblrow['fullname']
+//                          
+                            '6' => $tblrow['fullname'],
+                             '7' => $tblrow['email'],
+                            '8' => $tblrow['pan'],
+                            '9'=> $tblrow['legal_identifier'],
+                            '10' => $tblrow['legal_identification_no'],
+                            '11' => $tblrow['aadhar'],
+                            '12' => $tblrow['dob'],
+                            '13' => $tblrow['sex'],
+                            '14' => $tblrow['education'],
+                            '15' => $tblrow['institute'],
+                            '16' => $tblrow['address'],
+                            '17' => $tblrow['mobileno'],
+                            '18' => $tblrow['sharehldng'],
+                            '19' => $tblrow['adrshldng']
                         );
             $j++;
         }
@@ -536,29 +537,45 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
     
      public function exportformc($getuserid,$user_group_id,$processdata)
     {
-        //echo '<pre>'; print_r($processdata);exit;
-        $connection = $this->db;
+       // echo '<pre>'; print_r($processdata);exit;
+         $connection = $this->db;
         $time = time();
         
         $excelfilenamepath = 'samplefile/SEBI/formc.xlsx';
         $newfilepath = 'img/sebi/formc'.'_'.$time.'.xlsx';
         $j=1;
+       
         foreach($processdata as $tblrow)
         {
-            $date = $tblrow['date_added'];
-            $ndate = explode(" ",$date);
+           
+           $firstfield=$tblrow[6].",".$tblrow[9].",".$tblrow[10].",".$tblrow[16].",".$tblrow[11];
+           $third = $tblrow[12].",".$tblrow[30];
+           $nine = $tblrow[13].",".$tblrow[31];
 
-            $newdate = explode("-",$ndate[0]);
-            $finaldate = $newdate[2].'-'.$newdate[1].'-'.$newdate[0];
-            
-            $nwexcl[] = array('0' => $j,
-                            '1' => $finaldate,
-                            '2' => $tblrow['fullname'],
-                            '3' => $tblrow['pan'],
-                            '4' => $tblrow['cin'],
-                            '5' => $tblrow['address'],
-                            '6' => $tblrow['mobile'],
-                            '7' => $tblrow['category']
+          
+            $nwexcl[] = array(  '0' => $firstfield,
+                                '1' => $tblrow[17],
+                                '2'=>$tblrow[0],
+                                '3' =>$third,
+                                '4' =>$tblrow[0],
+                                '5' =>$tblrow[14],
+                                '6' =>$tblrow[15],
+                                '7' =>strip_tags($tblrow[5]),
+                                '8' =>$tblrow[1],
+                                '9' =>$nine,
+                                '10' =>$tblrow[20],
+                                '11' =>$tblrow[21],
+                                '12' =>$tblrow[22],
+                                '13' =>$tblrow[23],
+                                '14' =>$tblrow[3],
+                                '15' =>$tblrow[2],
+                                '16' =>$tblrow[24],
+                                '17' =>$tblrow[25],
+                                '18' =>$tblrow[26],
+                                '19' =>$tblrow[27],
+                                '20' =>$tblrow[28]
+                              
+
                         );
             $j++;
         }
@@ -604,6 +621,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
 
         //echo '<pre>';print_r($genfile);exit;
         return $genfile;
+
     }
 
       public function exportesop($getuserid,$user_group_id,$processdata)

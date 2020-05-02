@@ -3120,8 +3120,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
   </table>
 
   <br/>
-
-  <p>You are requested to consider my application and grant the relaxation to enter into an opposite transaction within 6 months period basis the above reason(s) and undertaking given herein below:-. </p>
+  
 
   <p><b>I hereby undertake and confirm that,</b></p>
   <ol style="padding-left: 17px;">
@@ -3216,7 +3215,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
             <div class="main">
                 <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px;">
                <p>Dear '.$name.',</p> 
-               <p>On reconciliation with Company’s Registrar and Transfer Agent’s records, please note that a mismatch of '.$diffrnc.' shares has been observed in the number of shares held by you in the Company. You are requested to kindly review such mismatch and update your correct holding in the insider trading applicationsystem. 
+               <p>On reconciliation with Company’s Registrar and Transfer Agent’s records, please note that a mismatch of '.$diffrnc.' shares has been observed in the number of shares held by you in the Company. You are requested to kindly review such mismatch and update your correct holding in the insider trading application system. 
                </p> 
                <p>Thank you. </p> 
                

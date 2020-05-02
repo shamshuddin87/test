@@ -51,7 +51,8 @@ class Employeemodulecommon extends Component
       return $myarr;
     }
  }
-    public function getmydetails($uid,$usergroup)
+ 
+ public function getmydetails($uid,$usergroup)
     {
 
         $connection = $this->dbtrd;
@@ -155,10 +156,10 @@ class Employeemodulecommon extends Component
             $newDate = date("d-m-Y", strtotime($originalDate));
             $depdntnature = implode(',',$data['depnature']);
            // print_r($data);exit;
-             $query="INSERT INTO `relative_info`
+             $query='INSERT INTO `relative_info`
              (`user_id`,`user_group_id`,`name`,`pan`,`legal_identifier`,`legal_identification_no`,`aadhar`,`relationship`,`dependency_nature`,`dob`,`sex`,`address`,`education`,`institute`,`mobile`,`filepath`,`sharehldng`,`adrshldng`,`occupation`,`company`,`date_added`,`date_modified`,`timeago`)
                 VALUES 
-                ('".$userid."','".$user_group_id."','".$data['fname']."','".$data['pan']."','".$data['legal_idntfr']."','".$data['legal_idntfctn_no']."','".$data['aadhar']."','".$data['relationship']."','".$depdntnature."','".$newDate."','".$data['sex']."','".$data['address']."','".$data['eduqulfcn']."','".$data['relinstitute']."','".$data['relmobno']."','".$filepath."','".$data['shareholdng']."','".$data['adrsholdng']."','".$data['reloccupation']."','".$data['relcompany']."',NOW(),NOW(),'".$time."')";
+                ("'.$userid.'","'.$user_group_id.'","'.$data['fname'].'","'.$data['pan'].'","'.$data['legal_idntfr'].'","'.$data['legal_idntfctn_no'].'","'.$data['aadhar'].'","'.$data['relationship'].'","'.$depdntnature.'","'.$newDate.'","'.$data['sex'].'","'.$data['address'].'","'.$data['eduqulfcn'].'","'.$data['relinstitute'].'","'.$data['relmobno'].'","'.$filepath.'","'.$data['shareholdng'].'","'.$data['adrsholdng'].'","'.$data['reloccupation'].'","'.$data['relcompany'].'",NOW(),NOW(),"'.$time.'")';
 
               // echo $query;exit;
                $exeget = $connection->query($query);
@@ -276,7 +277,7 @@ class Employeemodulecommon extends Component
               $depdntnature = implode(',',$data['depnature']);
               //print_r($data);exit;
            
-             $qry = "UPDATE relative_info SET name ='".$data['name']."',pan ='".$data['pan']."',legal_identifier ='".$data['legal_idntfr']."',legal_identification_no ='".$data['legal_idntfctn_no']."',aadhar ='".$data['aadhar']."',dob ='".$newDate."',sex ='".$data['sex']."',address ='".$data['address']."',relationship ='".$data['relationship']."',dependency_nature ='".$depdntnature."',education ='".$data['eduqulfcn']."',institute ='".$data['relinstituteup']."',mobile ='".$data['relmobnoup']."',filepath ='".$filepath."',sharehldng ='".$data['shareholdng']."',adrshldng ='".$data['adrsholdng']."',occupation ='".$data['reloccupationup']."',company ='".$data['relcompanyup']."',date_modified=NOW(),timeago='".$time."' WHERE id='".$releditid."' ";
+             $qry = 'UPDATE relative_info SET name ="'.$data['name'].'",pan ="'.$data['pan'].'",legal_identifier ="'.$data['legal_idntfr'].'",legal_identification_no ="'.$data['legal_idntfctn_no'].'",aadhar ="'.$data['aadhar'].'",dob ="'.$newDate.'",sex ="'.$data['sex'].'",address ="'.$data['address'].'",relationship ="'.$data['relationship'].'",dependency_nature ="'.$depdntnature.'",education ="'.$data['eduqulfcn'].'",institute ="'.$data['relinstituteup'].'",mobile ="'.$data['relmobnoup'].'",filepath ="'.$filepath.'",sharehldng ="'.$data['shareholdng'].'",adrshldng ="'.$data['adrsholdng'].'",occupation ="'.$data['reloccupationup'].'",company ="'.$data['relcompanyup'].'",date_modified=NOW(),timeago="'.$time.'" WHERE id="'.$releditid.'" ';
              // echo $qry;exit;
              $exeget = $connection->query($qry);
              
@@ -319,6 +320,7 @@ class Employeemodulecommon extends Component
               return true;
           }
       }
+      
     public function panvalidation($uid,$usergroup,$pan)
       {
        $connection = $this->dbtrd;
@@ -395,6 +397,51 @@ class Employeemodulecommon extends Component
         }
         
         return $getlist;
+    }
+
+
+   public function check_dateoverlap($getuserid,$user_group_id,$startdate,$enddate)
+    {
+        $connection = $this->dbtrd;
+        //print_r($enddate);exit;
+        try
+        {
+         $queryselect = "SELECT * FROM `pastemployer` WHERE `user_id` = '".$getuserid."'";
+            // echo $query;exit;
+            $exeget = $connection->query($queryselect);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+                {
+                    while($row = $exeget->fetch())
+                    {
+                        $getlist[] = $row;
+                    }
+                    //print_r($getlist);exit;
+                    
+                    for($i=0;$i<count($getlist);$i++)
+                    {
+
+
+                    if((strtotime($startdate) >= strtotime($getlist[$i]['startdate'])) && (strtotime($startdate) <= strtotime($getlist[$i]['enddate'])) || (strtotime($enddate) >= strtotime($getlist[$i]['startdate'])) && (strtotime($enddate) <= strtotime($getlist[$i]['enddate']))  )
+                      {
+                        
+                           return true;
+                      }
+                      else
+                      {
+                        return false;
+                      }
+                    }
+
+                }
+        }
+        catch (Exception $e)
+        {
+            return false;
+            //$connection->close();
+        }
+        
+        
     }
    
   
