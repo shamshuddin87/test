@@ -41,6 +41,16 @@
          <!-------------------------------------------------------------------------------------------->
          <h3>Insert Personal Details</h3>
          <div class="insert">
+
+             <div class="col-md-4 col-xs-12">
+               <label for="nation">Select Nationality**</label>
+               <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
+                          
+                    <option value="1">Indian National</option>
+                    <option value="2">Foreign National</option>
+                          
+                  </select>
+            </div>
             <div class="col-md-4 col-xs-12">
                <label for="fn">Employee ID*</label>
                <input type="text"  value="<?php echo($userdetails[0]['employeecode']) ?>" readonly="readonly"/>
@@ -93,12 +103,13 @@
                   <label for="aadhar">Aadhaar*</label>
                   <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<?php echo($personaldetails['aadhar']) ?>" maxlength="12" pattern="[0-9]{12}">
                </div>
-              <div class="col-md-4 col-xs-12">
+
+                
+               <div class="col-md-12 col-xs-12"> 
+                <div class="col-md-4 col-xs-12">
                   <label for="Dob">DOB*</label>
                   <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="" placeholder="DOB" >
                </div>
-                
-               <div class="col-md-12 col-xs-12"> 
                    <div class="col-md-4 col-xs-12"> 
                         <label class="gender" for="sex">Gender*</label>
                         <?php if($personaldetails['sex'] == 'Male'){?>
@@ -126,12 +137,12 @@
                       <label for="age">Educational Qualification*</label>
                       <input type="text" id="eduqulfcn" name="eduqulfcn" value="<?php echo($personaldetails['education']) ?>" placeholder="Educational Qualification">
                    </div>
-                   <div class="col-md-4 col-xs-12">
+                   
+              </div>
+                <div class="col-md-4 col-xs-12">
                       <label for="age">Institute From Which Acquired*</label>
                       <input type="text" id="institute" name="institute" value="<?php echo($personaldetails['institute']) ?>" placeholder="Institute From Which Acquired">
                    </div>
-              </div>
-                
                <div class="col-md-4 col-xs-12"> 
                   <label for="subject">Address*</label>
                   <textarea id="address" name="address" value="<?php echo($personaldetails['address']) ?>" placeholder="Write address.." style="height:50px"><?php echo($personaldetails['address']) ?></textarea>
@@ -146,13 +157,15 @@
                      <input type="file" name="hldngfile" id="hldngfile" >
                   </div>
                </div>
-               <div class="col-md-4 col-xs-12 "> 
+               
+                <div class="row">
+                  <div class="col-md-12 col-xs-12"> 
+
+                    <div class="col-md-4 col-xs-12 "> 
                   <label for="age">Mobile No*</label>
                   <input type="text" id="mobno" name="mobno" value="<?php echo($personaldetails['mobileno']) ?>" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
                   <span id="mobileappend"></span>
                </div>
-                <div class="row">
-                  <div class="col-md-12 col-xs-12"> 
 
                 <div class="col-md-4 col-xs-12 "> 
                   <label for="age">Holdings In Shares*</label>  
