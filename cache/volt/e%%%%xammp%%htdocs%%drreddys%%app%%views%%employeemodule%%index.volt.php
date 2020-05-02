@@ -41,6 +41,16 @@
          <!-------------------------------------------------------------------------------------------->
          <h3>Insert Personal Details</h3>
          <div class="insert">
+
+             <div class="col-md-4 col-xs-12">
+               <label for="nation">Select Nationality*</label>
+               <select id="relationship" name="relationship" class="form_fields" required="">
+                          
+                    <option value="1">Indian National</option>
+                    <option value="2">Foreign National</option>
+                          
+                  </select>
+            </div>
             <div class="col-md-4 col-xs-12">
                <label for="fn">Employee ID*</label>
                <input type="text"  value="<?php echo($userdetails[0]['employeecode']) ?>" readonly="readonly"/>
@@ -93,14 +103,15 @@
                   <label for="aadhar">Aadhaar*</label>
                   <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<?php echo($personaldetails['aadhar']) ?>" maxlength="12" pattern="[0-9]{12}">
                </div>
-              <div class="col-md-4 col-xs-12">
+
+                
+               <div class="col-md-12 col-xs-12"> 
+                <div class="col-md-4 col-xs-12">
                   <label for="Dob">DOB*</label>
                   <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="" placeholder="DOB" >
                </div>
-                
-               <div class="col-md-12 col-xs-12"> 
                    <div class="col-md-4 col-xs-12"> 
-                        <label class="gender" for="sex">Gender*</label>
+                        <label class="gender" for="sex" style="margin-bottom: 10px;">Gender*</label>
                         <?php if($personaldetails['sex'] == 'Male'){?>
                         <input type="radio" id="sex" name="sex" value="Male" checked/>Male
                         <input type="radio" id="sex" name="sex"  value="Female"/>Female
@@ -126,12 +137,12 @@
                       <label for="age">Educational Qualification*</label>
                       <input type="text" id="eduqulfcn" name="eduqulfcn" value="<?php echo($personaldetails['education']) ?>" placeholder="Educational Qualification">
                    </div>
-                   <div class="col-md-4 col-xs-12">
+                   
+              </div>
+                <div class="col-md-4 col-xs-12">
                       <label for="age">Institute From Which Acquired*</label>
                       <input type="text" id="institute" name="institute" value="<?php echo($personaldetails['institute']) ?>" placeholder="Institute From Which Acquired">
                    </div>
-              </div>
-                
                <div class="col-md-4 col-xs-12"> 
                   <label for="subject">Address*</label>
                   <textarea id="address" name="address" value="<?php echo($personaldetails['address']) ?>" placeholder="Write address.." style="height:50px"><?php echo($personaldetails['address']) ?></textarea>
@@ -146,13 +157,15 @@
                      <input type="file" name="hldngfile" id="hldngfile" >
                   </div>
                </div>
-               <div class="col-md-4 col-xs-12 "> 
+               
+                <div class="row">
+                  <div class="col-md-12 col-xs-12"> 
+
+                    <div class="col-md-4 col-xs-12 "> 
                   <label for="age">Mobile No*</label>
                   <input type="text" id="mobno" name="mobno" value="<?php echo($personaldetails['mobileno']) ?>" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
                   <span id="mobileappend"></span>
                </div>
-                <div class="row">
-                  <div class="col-md-12 col-xs-12"> 
 
                 <div class="col-md-4 col-xs-12 "> 
                   <label for="age">Holdings In Shares*</label>  
@@ -198,7 +211,7 @@
                </div>
                <div class="col-md-12 col-xs-12"> 
                    <div class="col-md-4 col-xs-12"> 
-                        <label class="gender" for="sex">Gender*</label>
+                        <label class="gender" for="sex" style="margin-bottom: 10px;">Gender*</label>
                         <input type="radio" id="sex" name="sex" value="Male" />Male
                         <input type="radio" id="sex" name="sex"  value="Female"/>Female
                         <input type="radio" id="sex" name="sex"  value="Other"/>Other
@@ -327,7 +340,7 @@
                               <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="dob" readonly>
                            </div>
                            <div class="col-md-6"> 
-                              <label class="gender" for="sex">Gender*</label>
+                              <label class="gender" for="sex" style="margin-bottom: 10px;">Gender*</label>
                               <input type="radio" id="sex" name="sex" value="Male" checked/>Male
                               <input type="radio" id="sex" name="sex"  value="Female"/>Female
                               <input type="radio" id="sex" name="sex"  value="Other"/>Other
@@ -408,9 +421,18 @@
                <form action ="employeemodule/relationdata" class="chklength" id="getdata_1" method="post" enctype="multipart/form-data" autocomplete="off">
                   <div class="input-group col-md-12 col-xs-12 col-sm-12">
                     <div class="row">
+
+                       <div class="col-md-4 col-xs-12">
+                         <label for="nation">Select Nationality*</label>
+                            <select id="relationship" name="relationship" class="form_fields" required="">                                    
+                              <option value="1">Indian National</option>
+                              <option value="2">Foreign National</option>                                    
+                            </select>
+                      </div>
+
                       <div class="col-md-4">
                         <label>Relationship*</label >
-                        <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
+                        <select id="relationship" name="relationship" class="form_fields" required="">
                           
                            <option value="2">Spouse</option>
                            <option value="3">Father</option>
@@ -427,7 +449,7 @@
                      </div>  
                      <div class="col-md-4">
                         <label>Nature of Dependency*</label >
-                        <select id="depnature" name="depnature[]" class="form_fields form-control col-md-7 col-xs-12" required="" multiple size="3">
+                        <select id="depnature" name="depnature[]" class="form_fields" required="" multiple size="3">
                            <option value="1">Financially Dependent</option>
                            <option value="2">Consult in trading for securities</option>
                            <option value="3">Non-dependent</option>
@@ -437,8 +459,8 @@
                         <label>Full Name*</label>
                         <input  class="" placeholder="Full Name"  class="fname" id="fname" name="fname" type="text" />
                      </div>
-                      </div>
-                    <div class="row">
+                      <!-- </div>
+                    <div class="row"> -->
                      <div class="col-md-4">
                            <div class="tooltip_div">
                              <a href="javascript:void(0);" data="In case no PAN number available with dependents, please enter 00000000" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
@@ -460,9 +482,9 @@
                         <label for="legal_idntfctn_no">Any other legal identification number</label>
                         <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);"  placeholder="Any other legal identification number">
                     </div>
-                    </div>
+                    <!-- </div>
                       
-                    <div class="row">
+                    <div class="row"> -->
                      <div class="col-md-4"> 
                         <label>Aadhaar*</label>
                         <input  class=" aadhar" placeholder="Aadhaar" id="aadhar"  name="aadhar" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}" />
@@ -480,9 +502,9 @@
                      </div>
 
 
-                    </div>
+                    <!-- </div>
                       
-                    <div class="row">
+                    <div class="row"> -->
 
                     <div class="col-md-4 col-xs-12">
                       <label for="institute">Institute From Which Acquired</label>
@@ -496,17 +518,9 @@
                         <input type="text"  id="relmobno" name="relmobno" placeholder="Mobile No"onkeypress='return event.charCode >= 48 && event.charCode <= 57'  maxlength="10"  >
    
                         </div>
-                    
-                     <div class="col-md-4">
-                        <label>Address*</label>
-                        <textarea class="" placeholder="Address" id="addr"  name="address" type="text"></textarea>
-                     </div>
-                   
-                    </div>
-                      <div class="row">
 
-                         <div class="col-md-4"> 
-                        <label style="display: block;" for="sex">Gender*</label>
+                        <div class="col-md-4"> 
+                        <label style="display: block; margin-bottom: 10px;" for="sex">Gender*</label>
 
                         <input class = "relgender" type="radio" id="relmale" name="sex" value="Male" />Male
                         <input class = "relgender" type="radio" id="relfemale" name="sex"  value="Female"  >Female 
@@ -514,6 +528,11 @@
 
                      </div>
 
+                   
+                   <!--  </div>
+                      <div class="row"> -->
+
+                         
                      <div class="col-md-4 col-xs-12 "> 
                       <label for="age">Occupation</label>
                      <input type="text" id="reloccupation" name="reloccupation" placeholder="Occupation" >
@@ -523,7 +542,6 @@
                   <label for="age">Name of Companies/Firm</label>
                   <input type="text" id="relcompany" name="relcompany"  placeholder="Name of Companies/Firm " >
                </div>
-                    <div class="col-md-12 col-md-12">
                         <div class="col-md-4">
                         <label class="control-label">Upload Identity Proof</label>
                         <input type="file" name="file[]" id="file" >
@@ -538,10 +556,14 @@
                       </div>
 
                       
+                    
+                     <div class="col-md-4">
+                        <label>Address*</label>
+                        <textarea class="" placeholder="Address" id="addr"  name="address" type="text"></textarea>
+                     </div>
 
 
 
-                    </div>
                      </div>
                      <div class="col-md-12">
                         <input class="btn btn-primary" type="button" name="relsub" value="Submit" id="relsub" onclick="confirmdisclosure(this.id)" style="float: right;">
@@ -609,9 +631,18 @@
                      </div>
                      <div class="modal-body show_shadow">
                         <form action="employeemodule/updaterelatives" id="uprel" method="post" autocomplete="off">
+
+                          <div class="col-md-6">
+                           <label for="nation">Select Nationality*</label>
+                            <select id="relationship" name="relationship" class="form_fields" required="">                                    
+                              <option value="1">Indian National</option>
+                              <option value="2">Foreign National</option>                                    
+                            </select>
+                          </div>
+
                             <div class="col-md-6">
                               <label for="relationship">Relationship*</label>
-                              <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
+                              <select id="relationship" name="relationship" class="form_fields" required="">
                                
                                  <option value="2">Spouse</option>
                                  <option value="3">Father</option>
@@ -629,7 +660,7 @@
                             
                              <div class="col-md-6">
                                 <label>Nature of Dependency*</label >
-                                <select id="depnature" name="depnature[]" class="form_fields form-control col-md-7 col-xs-12" required="" multiple size="3">
+                                <select id="depnature" name="depnature[]" class="form_fields" required="" multiple size="6" style="margin-bottom: 0;">
                                    <option value="1">Financially Dependent</option>
                                    <option value="2">Consult in trading for securities</option>
                                    <option value="3">Non-dependent</option>
@@ -673,7 +704,7 @@
                               <input type="text" id="dob" name="dob" class="" placeholder="DOB" >
                            </div>
                            <div class="col-md-6" style="margin-bottom: 15px;">
-                               <label style="display: block;" for="sex">Gender*</label>
+                               <label style="display: block; margin-bottom: 10px;" for="sex">Gender*</label>
                               <input type="radio" id="sex" name="sex" value="Male" checked/>Male
                               <input type="radio" id="sex" name="sex"  value="Female"/>Female
                               <input type="radio" id="sex" name="sex"  value="Other"/>Other
