@@ -873,7 +873,7 @@ class Sebicommon extends Component
     public function getformcdata($getuserid,$user_group_id,$formcid)
     {
         $connection = $this->dbtrd;
-        $queryget = "SELECT formc.*,memb.`fullname`,memb.`mobile`,tr.`req_id`,pr.`place`,pr.`no_of_shares`,pinfo.`pan`,pinfo.`address`,cate.`category`,cmp.`company_name`,formmode.`acquisitionmode` AS acquistnmode ,pinfo.`sharehldng`,sc.`pershare` 
+        $queryget = "SELECT formc.*,memb.`fullname`,memb.`mobile`,tr.`no_of_share` AS tdsshare,tr.`req_id`,pr.`place`,pr.`no_of_shares`,pinfo.`pan`,pinfo.`address`,cate.`category`,cmp.`company_name`,formmode.`acquisitionmode` AS acquistnmode ,pinfo.`sharehldng`,sc.`pershare` 
          FROM `sebiformc_usrdata` formc 
          LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id` 
          LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id` 
