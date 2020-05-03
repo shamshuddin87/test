@@ -1297,6 +1297,7 @@ class MisController extends ControllerBase
                 $request = $this->request->getPost('request');
                 $upsitypeid = $this->request->getPost('upsitypeid');
                 $query = '';
+
                 $getres = $this->miscommon->fetchinfosharing($getuserid,$user_group_id,$upsitypeid,$query);
                 //print_r($getres);exit;
                 $genfile = $this->phpimportexpogen->fetchSharedInfoexcel($getuserid,$user_group_id,$getres);

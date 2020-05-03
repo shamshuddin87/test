@@ -70,14 +70,9 @@ function getdataonload()
         var addhtmlnxt='';
             
         for(var i = 0; i < response.resdta.length; i++) 
-        {
+        {    console.log(response.resdta[i].category_name);
             var datefrom = response.resdta[i].sharingdate;
-//            datefrom = datefrom.split(' ')[0];
-//            dtfrmtfrom = datefrom.split("-"); 
-//            dtfrmtspacefrom = datefrom.split(" ");                    
-//            ddmmyyfrom = dtfrmtspacefrom[0];
-//            dtfrmtfrom = dtfrmtspacefrom[0].split("-");
-//            ddmmyyfrom = dtfrmtfrom[2]+'-'+dtfrmtfrom[1]+'-'+dtfrmtfrom[0];
+
             var enddate = response.resdta[i].enddate?response.resdta[i].enddate:'';
             var time = response.resdta[i].sharingtime?response.resdta[i].sharingtime:'';
             var newtime = time.replace(/:[^:]*$/,'');
@@ -89,6 +84,10 @@ function getdataonload()
             if(response.resdta[i].category == 16)
             {
                 var category = response.resdta[i].othercategory?response.resdta[i].othercategory:'';
+            }
+            else if(response.resdta[i].category_name == null)
+            {
+              var category = 'Employee';
             }
             addhtmlnxt += '<td width="10%">'+category+'</td>';
             addhtmlnxt += '<td width="10%">'+datefrom+'</td>';
