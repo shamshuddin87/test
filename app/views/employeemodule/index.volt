@@ -64,16 +64,16 @@
                <?php if(!empty($personaldetails)){ ?>
                <input type="hidden" id="rqid" name="rqid" placeholder="" value="<?php echo($personaldetails['id']) ?>">
                <div class="col-md-4 col-xs-12">
-                  <label for="nation">Select Nationality*</label>
+                  <label for="nation">Nationality*</label>
                   <select id="per_nation" name="per_nation" class="form_fields" onchange="nationality(this.id);">
                      <option value="">Select Nationality</option>
-                     <option value="1">Indian</option>
-                     <option value="2">Other</option>
+                     <option value="Indian">Indian</option>
+                     <option value="Other">Other</option>
                   </select>
                </div>
                <div class="col-md-4 col-xs-12">
                   <label id = "pan_label" for="pan">PAN*</label>
-                  <input type="text" id="pan" name="pan" value="<?php echo($personaldetails['pan']) ?>" placeholder="pan" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
+                  <input type="text" id="pan" name="PAN" value="<?php echo($personaldetails['pan']) ?>" placeholder="pan" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
                </div>
                <div class="col-md-4 col-xs-12">
                   <div class="tooltip_div">
@@ -93,10 +93,10 @@
                   <label id = "aadhar_label" for="aadhar">Aadhaar*</label>
                   <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<?php echo($personaldetails['aadhar']) ?>" maxlength="12" pattern="[0-9]{12}">
                </div>
-               <div class="col-md-12 col-xs-12">
+              
                   <div class="col-md-4 col-xs-12">
-                     <label for="Dob">DOB*</label>
-                     <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="" placeholder="DOB" >
+                     <label for="Dob">DOB (dd-mm-yyyy)*</label>
+                     <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="" placeholder="dd-mm-yyyy" maxlength="10" >
                   </div>
                   <div class="col-md-4 col-xs-12"> 
                      <label class="gender" for="sex" style="margin-bottom: 10px;">Gender*</label>
@@ -125,7 +125,7 @@
                      <label for="age">Educational Qualification*</label>
                      <input type="text" id="eduqulfcn" name="eduqulfcn" value="<?php echo($personaldetails['education']) ?>" placeholder="Educational Qualification">
                   </div>
-               </div>
+              
                <div class="col-md-4 col-xs-12">
                   <label for="age">Institute From Which Acquired*</label>
                   <input type="text" id="institute" name="institute" value="<?php echo($personaldetails['institute']) ?>" placeholder="Institute From Which Acquired">
@@ -163,17 +163,17 @@
                </div>
                <?php } else { ?>
                <div class="col-md-4 col-xs-12">
-                  <label for="nation">Select Nationality*</label>
+                  <label for="nation">Nationality*</label>
                   <select id="per_nation" name="per_nation" class="form_fields" onchange="nationality(this.id);" >
                      <option value="">Select Nationality</option>
-                     <option value="1">Indian</option>
-                     <option value="2">Other</option>
+                     <option value="Indian">Indian</option>
+                     <option value="Other">Other</option>
                   </select>
                </div>
                <input type="hidden" id="rqid" name="rqid" placeholder="" value="">
                <div class="col-md-4 col-xs-12">
                   <label id = "pan_label" for="pan">PAN*</label>
-                  <input type="text" id="pan" name="pan" placeholder="pan" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
+                  <input type="text" id="pan" name="PAN" placeholder="pan" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
                </div>
                <div class="col-md-4 col-xs-12">
                   <div class="tooltip_div">
@@ -193,11 +193,12 @@
                   <label id = "aadhar_label" for="aadhar">Aadhaar*</label>
                   <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
                </div>
-               <div class="col-md-4 col-xs-12">
-                  <label for="Dob">Dob*</label>
-                  <input type="text" id="dob" name="dob" class="" placeholder="dob" >
-               </div>
-               <div class="col-md-12 col-xs-12">
+              
+              
+                   <div class="col-md-4 col-xs-12">
+                     <label for="Dob">DOB (dd-mm-yyyy)*</label>
+                     <input type="text" id="dob" name="dob"  class="" placeholder="dd-mm-yyyy" maxlength="10" >
+                  </div>
                   <div class="col-md-4 col-xs-12"> 
                      <label class="gender" for="sex" style="margin-bottom: 10px;">Gender*</label>
                      <input type="radio" id="sex" name="sex" value="Male" />Male
@@ -211,11 +212,12 @@
                      <label for="age">Educational Qualification*</label>
                      <input type="text" id="eduqulfcn" name="eduqulfcn"  placeholder="Educational Qualification">
                   </div>
-                  <div class="col-md-4 col-xs-12">
+                 
+             
+                <div class="col-md-4 col-xs-12">
                      <label for="age">Institute From Which Acquired*</label>
                      <input type="text" id="institute" name="institute"  placeholder="Institute From Which Acquired">
                   </div>
-               </div>
                <div class="col-md-4 col-xs-12"> 
                   <label for="subject">Address*</label>
                   <textarea id="address" name="address" placeholder="Write address.." style="height:50px"></textarea>
@@ -226,13 +228,15 @@
                      <input type="file" name="hldngfile" id="hldngfile" >
                   </div>
                </div>
-               <div class="col-md-4 col-xs-12 "> 
+              
+               <div class="row">
+
+                  <div class="col-md-12 col-xs-12">
+                     <div class="col-md-4 col-xs-12 "> 
                   <label for="age">Mobile No*</label>
                   <input type="text" id="mobno" name="mobno" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
                   <span id="mobileappend"></span>
                </div>
-               <div class="row">
-                  <div class="col-md-12 col-xs-12">
                      <div class="col-md-4 col-xs-12 "> 
                         <label for="age">Holdings In Shares*</label>  
                         <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
@@ -391,10 +395,11 @@
                   <div class="input-group col-md-12 col-xs-12 col-sm-12">
                      <div class="row">
                         <div class="col-md-4 col-xs-12">
-                           <label for="nation">Select Nationality*</label>
+                           <label for="nation">Nationality*</label>
                            <select id="rel_nation" name="rel_nation" class="form_fields" required="" onchange="nationality(this.id);">
-                              <option value="1">Indian</option>
-                              <option value="2">Other</option>
+                               <option value="">Select Nationality</option>
+                              <option value="Indian">Indian</option>
+                              <option value="Other">Other</option>
                            </select>
                         </div>
                         <div class="col-md-4">
@@ -455,8 +460,8 @@
                            <input  class=" aadhar" placeholder="Aadhaar" id="aadhar"  name="aadhar" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}" />
                         </div>
                         <div class="col-md-4">
-                           <label>DOB*</label>
-                           <input type="text"  id="1_dob" name="dob" class="" placeholder="DOB" >
+                           <label>DOB (dd-mm-yyyy)*</label>
+                           <input type="text"  id="1_dob" name="dob" class="" placeholder="dd-mm-yyyy" maxlength="10">
                         </div>
                         <div class="col-md-4">
                            <div class="tooltip_div">
@@ -575,10 +580,11 @@
                      <div class="modal-body show_shadow">
                         <form action="employeemodule/updaterelatives" id="uprel" method="post" autocomplete="off">
                            <div class="col-md-6">
-                              <label for="nation">Select Nationality*</label>
-                              <select id="relationship" name="relationship" class="form_fields" required="">
-                                 <option value="1">Indian National</option>
-                                 <option value="2">Foreign National</option>
+                              <label for="nation">Nationality*</label>
+                              <select id="rel_nation_update" name="rel_nation_update" class="form_fields" onchange="nationality(this.id);">
+                                
+                                 <option value="Indian">Indian</option>
+                                 <option value="Other">Other</option>
                               </select>
                            </div>
                            <div class="col-md-6">
@@ -616,7 +622,7 @@
                                  <a href="javascript:void(0);" data="In case no PAN number available with dependents, please enter 00000000" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                               </div>
                               <input type="hidden" name="reqid" id="reqid" value="">
-                              <label for="pan">PAN*</label>
+                              <label id= "edit_pan_label" for="pan">PAN*</label>
                               <input type="text" id="pan" name="pan" placeholder="PAN" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
                            </div>
                            <div class="col-md-6">
@@ -634,12 +640,12 @@
                               <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
                            </div>
                            <div class="col-md-6">
-                              <label for="aadhar">Aadhaar*</label>
+                              <label id= "edit_aadhar_label" for="aadhar">Aadhaar*</label>
                               <input type="text" id="aadhar" name="aadhar" placeholder="Aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
                            </div>
                            <div class="col-md-6">
-                              <label for="Dob">DOB*</label>
-                              <input type="text" id="dob" name="dob" class="" placeholder="DOB" >
+                              <label for="Dob">DOB (dd-mm-yyyy)*</label>
+                              <input type="text" id="dob" name="dob" class="" placeholder="dd-mm-yyyy" >
                            </div>
                            <div class="col-md-6" style="margin-bottom: 15px;">
                               <label style="display: block; margin-bottom: 10px;" for="sex">Gender*</label>

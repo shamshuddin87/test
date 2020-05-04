@@ -166,10 +166,22 @@ function confirmdisclosure(id) {
   } else if (id == "relsub") {
     var shareholdng = website("#getdata_1 #shareholdng").val();
     var adrsholdng = website("#getdata_1 #adrsholdng").val();
+     var nationality = website("#rel_nation").val();
+     
 
-    if (shareholdng && adrsholdng) {
+    if (shareholdng && adrsholdng && nationality) {
       website("#updateholdings2").modal("show");
-    } else if (!shareholdng) {
+    } 
+    else if (!nationality) {
+      new PNotify({
+        title: "Alert",
+        text: "Please Select Nationality",
+        type: "university",
+        hide: true,
+        styling: "bootstrap3",
+        addclass: "dark ",
+      });
+      }else if (!shareholdng) {
       new PNotify({
         title: "Alert",
         text: "Please Enter Holding in Shares",
@@ -191,10 +203,21 @@ function confirmdisclosure(id) {
   } else if (id == "relupdate") {
     var shareholdng = website("#reledit #shareholdng").val();
     var adrsholdng = website("#reledit #adrsholdng").val();
+     var nationality = website("#rel_nation_update").val();
 
-    if (shareholdng && adrsholdng) {
+    if (shareholdng && adrsholdng && nationality) {
       website("#updateholdings3").modal("show");
-    } else if (!shareholdng) {
+    } 
+    else if (!nationality) {
+      new PNotify({
+        title: "Alert",
+        text: "Please Select Nationality",
+        type: "university",
+        hide: true,
+        styling: "bootstrap3",
+        addclass: "dark ",
+      });
+      }else if (!shareholdng) {
       new PNotify({
         title: "Alert",
         text: "Please Enter Holding in Shares",
@@ -217,23 +240,23 @@ function confirmdisclosure(id) {
 }
 
 
-function nationality(id) {
+website('#reledit').on('show.bs.modal', function() {
+   
+   nationality('rel_nation_update');
+});
+
+ function nationality(id) {
   var id = id;
-
-
 
   if (id == "per_nation") 
   {
   var per_nation_id =  website( "#per_nation" ).val();
-
-    
-
-    if (per_nation_id == '2') {
+   if (per_nation_id == 'Other') {
      
      website("#perdetail #pan").removeAttr("maxlength");
      website("#pan_label").text("Identity No*");
      website("#perdetail #pan").attr("placeholder",'Identity No');
-      website("#aadhar_label").text("Aadhaar");
+     website("#aadhar_label").text("Aadhaar");
      website("#perdetail #mobno").removeAttr("maxlength");
      website("#perdetail #mobno").removeAttr("onkeypress");
     website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43 || event.charCode == 45 ');
@@ -242,7 +265,7 @@ function nationality(id) {
     {
          website("#perdetail #pan").attr("maxlength",'10');
          website("#pan_label").text("PAN*");
-          website("#perdetail #pan").attr("placeholder",'pan No');
+        website("#perdetail #pan").attr("placeholder",'PAN');
           website("#aadhar_label").text("Aadhaar*");
          website("#perdetail #mobno").attr("maxlength",'10');
          website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
@@ -255,7 +278,7 @@ function nationality(id) {
 
     
 
-    if (rel_nation_id == '2') {
+    if (rel_nation_id == 'Other') {
      
      website("#getdata_1 #pan").removeAttr("maxlength");
      website("#getdata_1 #rel_pan_label").text("Identity No*");
@@ -277,31 +300,32 @@ function nationality(id) {
   } 
   else if (id == "rel_nation_update") 
   {
-    var rel_nation_id =  website( "#rel_nation" ).val();
-
     
+    var rel_nation_id =  website( "#rel_nation_update" ).val();
+    //alert(rel_nation_id)
 
-    if (rel_nation_id == '2') {
+    if (rel_nation_id == 'Other') {
      
-     website("#getdata_1 #pan").removeAttr("maxlength");
-     website("#getdata_1 #rel_pan_label").text("Identity No*");
-      website("#getdata_1 #pan").attr("placeholder",'Identity No');
-      website("#getdata_1 #rel_aadhar_label").text("Aadhaar");
-     website("#getdata_1 #relmobno").removeAttr("maxlength");
-     website("#getdata_1 #relmobno").removeAttr("onkeypress");
-    website("#getdata_1 #relmobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43 || event.charCode == 45 ');
+     website("#reledit #pan").removeAttr("maxlength");
+     website("#reledit #edit_pan_label").text("Identity No*");
+      website("#reledit #pan").attr("placeholder",'Identity No');
+      website("#reledit #edit_aadhar_label").text("Aadhaar");
+     website("#reledit #relmobnoup").removeAttr("maxlength");
+     website("#reledit #relmobnoup").removeAttr("onkeypress");
+    website("#reledit #relmobnoup").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43 || event.charCode == 45 ');
     }
     else
     {
-         website("#getdata_1 #pan").attr("maxlength",'10');
-         website("#getdata_1 #rel_pan_label").text("PAN*");
-          website("#getdata_1 #pan").attr("placeholder",'PAN');
-          website("#getdata_1 #rel_aadhar_label").text("Aadhaar*");
-         website("#getdata_1 #relmobno").attr("maxlength",'10');
-         website("#getdata_1 #relmobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
+         website("#reledit #pan").attr("maxlength",'10');
+         website("#reledit #edit_pan_label").text("PAN*");
+          website("#reledit #pan").attr("placeholder",'PAN');
+          website("#reledit #edit_aadhar_label").text("Aadhaar*");
+         website("#reledit #relmobnoup").attr("maxlength",'10');
+         website("#reledit #relmobnoup").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
     } 
   }
 }
+
 function nodisclosures(id) {
   if (id == "nodisclosures1") {
     new PNotify({
@@ -358,6 +382,7 @@ website("body").on("click", "#yesdisclosures1", function (e) {
   var adrsholdng = website("#adrsholdng").val();
   var ecode = website("#ecode").val();
   var per_nation = website("#per_nation").val();
+
 
   var formdata = {
     ecode: ecode,
@@ -446,6 +471,7 @@ website("body").on("click", "#yesdisclosures2", function (e) {
   var relcompany = website("#getdata_1 #relcompany").val();
   var relinstitute = website("#getdata_1 #relinstitute").val();
   var relmobno = website("#getdata_1 #relmobno").val();
+  var rel_nation = website("#getdata_1 #rel_nation").val();
 
   var formdata = {
     relmobno: relmobno,
@@ -466,6 +492,7 @@ website("body").on("click", "#yesdisclosures2", function (e) {
     reloccupation: reloccupation,
     relcompany: relcompany,
     depnature: depnature,
+    rel_nation:rel_nation
   };
   website.ajax({
     url: "employeemodule/relationdata",
@@ -539,7 +566,8 @@ website("body").on("click", "#yesdisclosures3", function (e) {
   var company = website("#reledit #relcompanyup").val();
   var relinstituteup = website("#reledit #relinstituteup").val();
   var relmobnoup = website("#reledit #relmobnoup").val();
-
+  var rel_nation_update = website("#reledit #rel_nation_update").val();
+   
   var formdata = {
     relmobnoup: relmobnoup,
     relinstituteup: relinstituteup,
@@ -560,6 +588,8 @@ website("body").on("click", "#yesdisclosures3", function (e) {
     reloccupationup: occupation,
     relcompanyup: company,
     depnature: depnature,
+    rel_nation_update:rel_nation_update
+
   };
 
   website.ajax({
@@ -1119,6 +1149,7 @@ website("body").on("click", "#deleterel", function (e) {
 //###############################################EDIT RELATIONSHIP START HERE################################//
 website("body").on("click", ".editrel", function () {
   var releditid = website(this).attr("releditid");
+
   //console.log(tempid); return false;
 
   // website('#reledit').modal('show');
@@ -1169,6 +1200,7 @@ website("body").on("click", ".editrel", function () {
         var company = response.data.company ? response.data.company : "";
         var mobile = response.data.mobile ? response.data.mobile : "";
         var institute = response.data.institute ? response.data.institute : "";
+        var nationality = response.data.nationality ? response.data.nationality : "";
         var filepath = response.data.filepath;
         jQuery("#reledit input[value='" + sex + "']").attr("checked", true);
         website("#reledit #name").val(name);
@@ -1179,6 +1211,7 @@ website("body").on("click", ".editrel", function () {
         //                website('#reledit #age').val(age);
         website("#reledit #dob").val(dob);
         website("#reledit #relationship").val(relationship);
+        website("#reledit #rel_nation_update").val(nationality);
         website("#reledit #address").val(address);
         website("#reledit #eduqulfcn").val(education);
         website("#reledit #filepath").val(filepath);
@@ -1190,6 +1223,7 @@ website("body").on("click", ".editrel", function () {
         website("#reledit #relcompanyup").val(company);
         website("#reledit #relinstituteup").val(institute);
         website("#reledit #relmobnoup").val(mobile);
+
         dependantnature = dependantnature.split(",");
         website.each(dependantnature, function (key, value) {
           website('#reledit #depnature option[value="' + value + '"]').attr(
@@ -1197,8 +1231,10 @@ website("body").on("click", ".editrel", function () {
             "selected"
           );
         });
+       
+        
         website("#reledit").modal("show");
-        website("#reledit").focus();
+       
       } else {
       }
     },
@@ -1208,6 +1244,8 @@ website("body").on("click", ".editrel", function () {
 });
 
 //--------------------------AAdhar validation Start Here--------------------------
+
+
 aadharvalidation();
 function aadharvalidation() {
   website(".aadhar").on("keyup", function () {
@@ -1250,6 +1288,7 @@ function aadharvalidation() {
   });
 }
 //###############pan validation#######################################
+
 
 panvalidation();
 function panvalidation() {

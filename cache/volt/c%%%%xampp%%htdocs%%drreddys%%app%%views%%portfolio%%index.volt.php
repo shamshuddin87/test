@@ -175,13 +175,13 @@
             <select id="relinfo" name="relinfo" class="form_fields form-control col-md-7 col-xs-12" required>
               <option value="" id="relativeinfo">Name Of Relatives</option>
                 <?php foreach($relativesinfo as $rel){  ?>
-                  <option value="<?php echo $rel['id']; ?>"><?php echo $rel['name']; ?></option>
+                  <option value="<?php echo $rel['id']; ?>" nationality = "<?php echo $rel['nationality']; ?>" ><?php echo $rel['name']; ?></option>
                    <?php } ?>
                     </select>
                       </div>
                         </section>
 
-                       <section class="col col-md-4 col-xs-4">
+                    <section class="col col-md-4 col-xs-4">
                       <label class="control-label">No Of  Demat/Securities Accounts</label>
                      <div class="input">
                    <input type="text" id="reldematno" name="reldematno" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
@@ -250,6 +250,7 @@
         <div class="col-md-12 list_co">
           <label class="modal-title">Name</label>
              <input type="text" id="reledname" name="reledname" class="form_fields form-control col-md-7 col-xs-12" required="required" readonly/>
+              <input type="text" id="relednation" name="relednation" class="form_fields form-control col-md-7 col-xs-12" required="required" readonly/>
         </div>  
         <div class="col-md-12 list_co">
             <label class="modal-title">Account No</label>

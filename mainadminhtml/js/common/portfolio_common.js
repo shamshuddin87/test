@@ -318,6 +318,9 @@ var editid=website(this).attr('btnedit');
 website("body").on("click",".relhtml",function(e){ 
 var noofacc=website('#reldematno').val();
 var relinfo=website('#relinfo').val();
+var nationality =website("#relinfo option:selected").attr("nationality");
+  //alert(nationality);
+
 if(relinfo!='')
 {
 
@@ -326,12 +329,23 @@ if(relinfo!='')
     var myhtml=' <table class="table table-inverse" id="datableabhi"><tr><th>Account No </th><th>Depository Participant </th></tr>';
   
    for(var i=1;i<=no;i++)
-   {
+   {   
+      if(nationality == 'Indian')
+     {
        myhtml+='<tr><td style = "position:relative;"><input type="text" class="form-control relac showhovertext4'+i+'" id="relfield_'+i+'"  placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"><span id= "showhovertext4'+i+'" class ="cssclass1 " style="display: none;z-index: 2;">  <ol type="a" style="padding: 5px 5px 5px 15px;"> <li>Demat account,  mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li><li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held  </li><li>In case your Demat account no. is less than 16 digits then prefix the relevant number of "0"s</li>  </ol> </span></td><td><input type="text" class="form-control deppoparticipient showhovertext4'+i+'" id="relfield2_'+i+'" placeholder="Depository Participant '+i+'"  onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"></td></tr>';
+     }
+     else
+     {
+      myhtml+='<tr><td style = "position:relative;"><input type="text" class="form-control relac showhovertext4'+i+'" id="relfield_'+i+'"  placeholder="Account No '+i+'" onkeypress="return isAlphaNumeric(event,this.value);" pattern="[A-Za-z0-9]" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"><span id= "showhovertext4'+i+'" class ="cssclass1 " style="display: none;z-index: 2;">  <ol type="a" style="padding: 5px 5px 5px 15px;"> <li>Demat account,  mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li><li>In case of Securities Account (held in a country other than India): please mention the account no. and entity where the account is held  </li><li>In case your Demat account no. is less than 16 digits then prefix the relevant number of "0"s</li>  </ol> </span></td><td><input type="text" class="form-control deppoparticipient showhovertext4'+i+'" id="relfield2_'+i+'" placeholder="Depository Participant '+i+'"  onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)"></td></tr>';
+     }
     }
        myhtml+='</table>'
        myhtml+='<section class=""><button type="button" class="btn btn-primary" id="subreldemat">Submit</button>';
        website('.relfieldapnd').html(myhtml);
+     
+  
+     
+    
  }
  else{
 
@@ -454,14 +468,13 @@ function relativeaccinfo(){
                 var j=1;
                  for(var i=0;i<response.data.length;i++)
                  {
-                    //  console.log(response.data[i]);return false; 
-                       htmlelements+='<tr>';
+                     //console.log(response.data[i].nationality);
                        htmlelements+='<td>'+j+'</td>';
                        htmlelements+='<td>'+response.data[i].name+'</td>';
                        htmlelements+='<td>'+response.data[i].accountno+'</td>';
                        htmlelements+='<td>'+response.data[i].depository_participient+'</td>';
 //                       htmlelements+='<td>'+response.data[i].clearing_house+'</td>';
-                       htmlelements+='<td><i class="fa fa-edit relaccedit" relname="'+response.data[i].name+'" dp="'+response.data[i].depository_participient+'" ch="'+response.data[i].clearing_house+'" relaccno="'+response.data[i].accountno+'" relacedit="'+response.data[i].id+'" ></i>'+
+                       htmlelements+='<td><i class="fa fa-edit relaccedit" relname="'+response.data[i].name+'" dp="'+response.data[i].depository_participient+'"  ch="'+response.data[i].clearing_house+'" relaccno="'+response.data[i].accountno+'"  relacedit="'+response.data[i].id+'"  nationality="'+response.data[i].nationality+'"  ></i>'+
                       '<i class="fa fa-trash relaccdel" acourel="'+response.data[i].id+'" ></i></td>';
                        htmlelements+='</tr>';
                        j=j+1;
@@ -540,7 +553,9 @@ var relaccno=website(this).attr('relaccno');
 var dp=website(this).attr('dp');
 var ch=website(this).attr('ch');
 var name=website(this).attr('relname'); 
-var editid=website(this).attr('relacedit');
+var editid=website(this).attr('relacedit')
+var nationality = website(this).attr(nationality);
+alert(nationality);
 
 website('#releditaccmodal #dparrel').val(dp);
 website('#releditaccmodal #relclhouse').val(ch);
@@ -548,8 +563,14 @@ website('#releditaccmodal #relclhouse').val(ch);
 website('#releditaccmodal #reledname').val(name);
 website('#releditaccmodal #releditaccno').val(relaccno);
 website('#releditaccmodal .relupacc').attr('btnedit',editid);
+// if(nationality == 'Other')
+// {
+//   website('#releditaccmodal #releditaccno').removeAttr("maxlength");
+
+// }
 website('#releditaccmodal').modal('show');
 });
+
 website("body").on("click",".relupacc",function(e){
 var reledit=website(this).attr('btnedit');
 var accno=website("#releditaccno").val();
@@ -600,12 +621,16 @@ var ch=website("#relclhouse").val();
    });
 
 })
-
+relativeaccinfo();
 website("body").on("click","#subreldemat",function(e){
   var nooffield=website('.relac').length;
   var relinfo=website('#relinfo').val();
+  var nationality =website("#relinfo option:selected").attr("nationality");
+  
+
   var myarr=[];
   for(var i=1;i<=nooffield;i++){
+
        var txtdata=website('#relfield_'+i).val();
        var dp=website('#relfield2_'+i).val();
         var ch=website('#relfield3_'+i).val();
@@ -632,7 +657,7 @@ website("body").on("click","#subreldemat",function(e){
         website.ajax({
         url:'portfolio/insertrelativeacc',
         method:'POST',
-        data:{myarr:myarr,relid:relinfo},
+        data:{myarr:myarr,relid:relinfo,nationality:nationality},
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
         //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
         dataType:"json",
@@ -653,7 +678,8 @@ website("body").on("click","#subreldemat",function(e){
                     styling: 'bootstrap3',
                     addclass: 'dark ',
                 });
-                    relativeaccinfo();
+                  
+                  window.location.reload();  
 
             } 
             else{

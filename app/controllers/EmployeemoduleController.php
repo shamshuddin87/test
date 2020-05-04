@@ -61,8 +61,11 @@ class EmployeemoduleController extends ControllerBase
                 $nationalty = $this->request->getPost('per_nation','trim');
                 //print_r($nationalty);exit;
 
-               
+                
+                if(!empty($dob))
+                {
                  /*Date Validation for date of birth Start */
+               
                 $dateofbirth = explode('-', $dob);
 
                 $m = $dateofbirth[1];
@@ -70,6 +73,7 @@ class EmployeemoduleController extends ControllerBase
                 $d = $dateofbirth[0];
                 $datestatus = $this->elements->checkdate($m,$y,$d);
                 /*Date Validation for date of birth End */
+               }
 
 
                 if(empty($pan))
@@ -83,13 +87,13 @@ class EmployeemoduleController extends ControllerBase
                    $data = array("logged" => false,'message' => 'Please Enter Mobile Number!!');
                    $this->response->setJsonContent($data); 
                 }
-                 else if(strlen($mobile) < 10)
+                 else if(strlen($mobile) < 10 && $nationalty == 'Indian' )
                 {
 
                    $data = array("logged" => false,'message' => 'Your Mobile No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
                 }
-                else if(strlen($pan) < 10)
+                else if(strlen($pan) < 10 && $nationalty == 'Indian')
                 {
                    $data = array("logged" => false,'message' => 'Your Pan No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
@@ -110,13 +114,13 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Birth Date cannot be in future ');
                     $this->response->setJsonContent($data);
                 }
-                else if(empty($aadhar))
+                else if(empty($aadhar) && $nationalty == 'Indian')
                 {
 
                    $data = array("logged" => false,'message' => 'Please Enter Aadhaar Number!!');
                    $this->response->setJsonContent($data); 
                 }
-                 else if(strlen($aadhar) < 12)
+                 else if(strlen($aadhar) < 12 && $nationalty == 'Indian')
                 {
                    $data = array("logged" => false,'message' => 'Your Aadhaar No Should Be 12 Digit!!');
                    $this->response->setJsonContent($data); 
@@ -456,14 +460,18 @@ class EmployeemoduleController extends ControllerBase
                 $file   = $this->request->getPost('file','trim');
                 $depnature   = $this->request->getPost('depnature','trim');
                 $mobno   = $this->request->getPost('relmobno','trim');
+                $rel_nation = $this->request->getPost('rel_nation','trim');
 
                  /*Date Validation for date of birth Start */
-                $dateofbirth = explode('-', $dob);
-
-                $m = $dateofbirth[1];
-                $y = $dateofbirth[2];
-                $d = $dateofbirth[0];
-                $datestatus = $this->elements->checkdate($m,$y,$d);
+                if(!empty($dob))
+                {
+                    $dateofbirth = explode('-', $dob);
+                    $m = $dateofbirth[1];
+                    $y = $dateofbirth[2];
+                    $d = $dateofbirth[0];
+                    $datestatus = $this->elements->checkdate($m,$y,$d);
+                }
+               
                 /*Date Validation for date of birth End */
 
                 
@@ -483,17 +491,17 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Pan Number');
                     $this->response->setJsonContent($data);
                 }
-                else if(strlen($pan) < 10)
+                else if(strlen($pan) < 10 && $rel_nation == 'Indian' )
                 {
                    $data = array("logged" => false,'message' => 'Your Pan No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
                 }
-                   else if(empty($aadhaar)) 
+                   else if(empty($aadhaar) && $rel_nation == 'Indian') 
                 {
                     $data = array("logged" => false,'message' => 'Please Enter Aadhar Number');
                     $this->response->setJsonContent($data);
                 }
-                else if(strlen($aadhaar) < 12) 
+                else if(strlen($aadhaar) < 12 && $rel_nation == 'Indian') 
                 {
                     $data = array("logged" => false,'message' => 'Your Aadhaar No Should Be 12 Digit!!');
                     $this->response->setJsonContent($data);
@@ -525,7 +533,7 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Mobile No');
                     $this->response->setJsonContent($data);
                 }
-                 else if(strlen($mobno) < 10)
+                 else if(strlen($mobno) < 10 && $rel_nation == 'Indian')
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Valid Mobile No');
                     $this->response->setJsonContent($data);
@@ -801,14 +809,20 @@ class EmployeemoduleController extends ControllerBase
                 $releditid = $this->request->getPost('releditid','trim');
                 $prevfilepath = $this->request->getPost('filepath','trim');
                 $mobno   = $this->request->getPost('relmobnoup','trim');
+                $rel_nation_update = $this->request->getPost('rel_nation_update','trim');
+                //print_r($rel_nation_update);exit;
 
-                 /*Date Validation for date of birth Start */
+                /*Date Validation for date of birth Start */
+                if(!empty($dob))
+                {
                 $dateofbirth = explode('-', $dob);
 
                 $m = $dateofbirth[1];
                 $y = $dateofbirth[2];
                 $d = $dateofbirth[0];
                 $datestatus = $this->elements->checkdate($m,$y,$d);
+                }
+               
                 /*Date Validation for date of birth End */
                 
                 if(empty($name))
@@ -821,15 +835,20 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Pan Number');
                     $this->response->setJsonContent($data);
                 }
-                else if(strlen($pan) < 10)
+                else if(strlen($pan) < 10 && $rel_nation_update == 'Indian')
                 {
                    $data = array("logged" => false,'message' => 'Your Pan No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
                 }
-                 else if(empty($aadhar)) 
+                 else if(empty($aadhar) && $rel_nation_update == 'Indian') 
                 {
                     $data = array("logged" => false,'message' => 'Please Enter Aadhar Number');
                     $this->response->setJsonContent($data);
+                }
+                 else if(strlen($aadhar) < 12 && $rel_nation_update == 'Indian')
+                {
+                   $data = array("logged" => false,'message' => 'Your Aadhaar No Should Be 10 Digit!!');
+                   $this->response->setJsonContent($data); 
                 }
                 else if(empty($dob)) 
                 {
@@ -861,7 +880,7 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Mobile No');
                     $this->response->setJsonContent($data);
                 }
-                 else if(strlen($mobno) < 10)
+                 else if(strlen($mobno) < 10 && $rel_nation_update == 'Indian' )
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Valid Mobile No');
                     $this->response->setJsonContent($data);

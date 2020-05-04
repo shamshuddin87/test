@@ -1,4 +1,4 @@
-<?php 
+  <?php 
 class PortfolioController extends ControllerBase
 {
     public function initialize()
@@ -183,6 +183,10 @@ class PortfolioController extends ControllerBase
                $flag = 1;
                $myarr= $this->request->getPost('myarr');
                $relitiveid= $this->request->getPost('relid');
+               $nationality= $this->request->getPost('nationality');
+
+               if($nationality == 'Indian')
+               {
                 for($i=0;$i<sizeof($myarr);$i++)
                 {
                     if(strlen($myarr[$i]['relativeacc'])<16)
@@ -198,6 +202,12 @@ class PortfolioController extends ControllerBase
                         $flag = 1;
                     }
                 }
+               }
+               else
+               {
+                 $flag = 1;
+               }
+                
              if($flag == 1)
              {
                 $getresponse = $this->portfoliocommon->storerelativeacc($uid,$usergroup,$myarr,$relitiveid);
