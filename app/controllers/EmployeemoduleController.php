@@ -58,6 +58,8 @@ class EmployeemoduleController extends ControllerBase
                 $legal_idntfctn_no = $this->request->getPost('legal_idntfctn_no','trim');
                 $rqid   = $this->request->getPost('rqid','trim');
                 $toemail   = $this->request->getPost('toemail','trim');
+                $nationalty = $this->request->getPost('per_nation','trim');
+                //print_r($nationalty);exit;
 
                
                  /*Date Validation for date of birth Start */
@@ -143,7 +145,7 @@ class EmployeemoduleController extends ControllerBase
 
                 else
                 {
-                    //echo 'in else';exit;
+                       //echo 'in else';exit;
                     if(!empty($_FILES["hldngfile"]))
                     {
                         $userfile_name = $_FILES['hldngfile']['name'];

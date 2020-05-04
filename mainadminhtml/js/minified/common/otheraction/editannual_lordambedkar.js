@@ -107,7 +107,7 @@ if(response.dematdetail.length>0)
 {j=i;j++;dematacc+='<tr class="counter">';dematacc+='<td width="25%">'+j+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['accountno']+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['depository_participient']+'</td>';dematacc+='</tr>';}}}
 else
 {dematacc='<tr><td colspan ="4">No Data Found..</td></tr>';}
-if(response.reldetail.dependency_nature.length>0)
+if(response.reldetail.length>0)
 {var deptype='';for(var i=0;i<response.reldetail.dependency_nature.length;i++)
 {if(response.reldetail[i]['name']!='')
 {j=i;j++;reldetail+='<tr class="counter">';reldetail+='<td>'+j+'</td>';reldetail+='<td>'+response.reldetail[i]['name']+'</td>';reldetail+='<td>'+response.reldetail[i]['relationshipname']+'</td>';if(response.reldetail.dependency_nature!='')

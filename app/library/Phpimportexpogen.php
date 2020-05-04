@@ -213,7 +213,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
     public function fetchSharedInfoexcel($getuserid,$user_group_id,$upsidata)
     {
 
-        // echo '<pre>'; print_r($upsidata);exit;
+         //echo '<pre>'; print_r($upsidata);exit;
         $connection = $this->db;
         $time = time();
         
@@ -227,6 +227,10 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
             if($tblrow['category'] == 16)
             {
                 $category = $tblrow['othercategory'];
+            }
+             else if(empty($tblrow['category_name']))
+            {
+              $category = 'Employee';
             }
             $nwexcl[] = array('0' => $tblrow['name'],
                             '1' => $category,

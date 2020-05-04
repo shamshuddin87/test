@@ -1110,7 +1110,7 @@ function getpdfdata(uniqueid)
 
                 //console.log(response.reldetail.dependency_nature.length);
                 /*---- Relative detail ----*/
-                if(response.reldetail.dependency_nature.length>0)
+                if(response.reldetail.length>0)
                 { 
                  //alert("hello");
                     var deptype = '';
