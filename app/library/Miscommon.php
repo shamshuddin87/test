@@ -526,16 +526,17 @@ class Miscommon extends Component
          {
             //print_r($masteruserdata);exit;
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-             $queryget = "SELECT ss.*,sr.`name`,sr.`nameofentity`,sr.`identityno`,utype.`upsitype`,
-                    memb.`fullname`,sc.`category` AS category_name,sr.`othercategory`,pr.`*`, mem.`email`
+            
+             $queryget = "SELECT ss.*,sr.`nameofentity`,sr.`identityno`,utype.`upsitype`,
+                    memb.`fullname`,sc.`category` AS category_name,sr.`othercategory`,pr.`pan`,pr.`legal_identifier`,pr.`legal_identification_no`,pr.`aadhar`, pr.`age`, pr.`dob`,pr.`sex`,pr.`address`,pr.`education`,pr.`institute`,
+                    pr.`mobileno`,pr.`sharehldng`,pr.`adrshldng`,pr.`occupation`,pr.`company`,mem.`email`
                     FROM `sensitiveinfo_sharing` ss 
                     LEFT JOIN `sensitiveinfo_recipient` sr ON ss.`recipientid` = sr.`id` 
                     LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ss.`user_id` 
                     LEFT JOIN `upsimaster` utype ON utype.`id` = ss.`upsitype` 
                     LEFT JOIN `sensitiveinfo_category` sc ON sc.`id` = sr.`category`
-                     LEFT JOIN `personal_info` pr ON pr.`userid` = ss.`recipientid`
-                     LEFT JOIN `it_memberlist` mem ON mem.`wr_id` = ss.`recipientid` 
-                    
+                     LEFT JOIN `personal_info` pr ON pr.`userid` = ss.`wr_id`
+                     LEFT JOIN `it_memberlist` mem ON mem.`wr_id` = ss.`wr_id` 
 				    WHERE ss.`user_id` IN (".$grpusrs['ulstring'].") AND ss.`upsitype`= '".$upsitypeid."' ORDER BY ss.`id` DESC ".$query; 
 
           

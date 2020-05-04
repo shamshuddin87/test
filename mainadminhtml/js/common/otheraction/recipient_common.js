@@ -609,6 +609,7 @@ website("body").on("click",".topul",function(e){
     var pan = website(this).attr('pan');
 
     var email = website(this).attr('email');
+    var wr_id = website(this).attr('wruid');
     if(pan && email )
     {
      
@@ -624,6 +625,8 @@ website("body").on("click",".topul",function(e){
          
           website('#insertrecipient #email').val(email);
           website('#insertrecipient #email').attr('readonly',true);
+          website('#insertrecipient #wr_id').val(wr_id);
+
         }
          
        

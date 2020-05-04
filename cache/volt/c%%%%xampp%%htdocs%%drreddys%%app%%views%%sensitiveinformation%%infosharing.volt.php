@@ -75,6 +75,7 @@ $upsiid = $this->session->upsitypeid;
                             <div class="input">
                                 <label class="control-label">Date Of Information Sharing*</label>
                                 <input type="text" id="date" name="date" class="form-control bootdatepick" readonly required>
+                                <input type="hidden" id="wr_id" name="wr_id" class="form_fields form-control col-md-7 col-xs-12" >
                             </div>
                         </section>
                         

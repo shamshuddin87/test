@@ -38,14 +38,14 @@ class Sensitiveinformationcommon extends Component
     }
     
        // **************************** recipient insert ***************************
-    public function insertrecipient($getuserid,$user_group_id,$category,$othercate,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$pan,$department)
+    public function insertrecipient($getuserid,$user_group_id,$category,$othercate,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$pan,$department,$wr_id)
     {
         
         $connection = $this->dbtrd; 
         $time = time();
        
-           $queryinsert = 'INSERT INTO `sensitiveinfo_recipient`(`user_id`,`user_group_id`,`category`,`othercategory`,`department`,`pannumber`,`nameofentity`, `name`, `identityno`, `phoneno`, `mobileno`, `designation`, `email`, `filepath`,`agreemntfile`,`date_added`, `date_modified`,`timeago`)
-         VALUES ("'.$getuserid.'","'.$user_group_id.'","'.$category.'","'.$othercate.'","'.$department.'","'.$pan.'","'.$entity.'","'.$name.'","'.$identitynum.'","'.$phonenum.'","'.$mobilenum.'","'.$designation.'","'.$email.'","'.$filepath.'","'.$agreemntfilepath.'",NOW(),NOW(),"'.$time.'")'; 
+           $queryinsert = 'INSERT INTO `sensitiveinfo_recipient`(`user_id`,`user_group_id`,`category`,`othercategory`,`department`,`pannumber`,`nameofentity`, `name`, `identityno`, `phoneno`, `mobileno`, `designation`, `email`, `filepath`,`agreemntfile`,wr_id,`date_added`, `date_modified`,`timeago`)
+         VALUES ("'.$getuserid.'","'.$user_group_id.'","'.$category.'","'.$othercate.'","'.$department.'","'.$pan.'","'.$entity.'","'.$name.'","'.$identitynum.'","'.$phonenum.'","'.$mobilenum.'","'.$designation.'","'.$email.'","'.$filepath.'","'.$agreemntfilepath.'","'.$wr_id.'",NOW(),NOW(),"'.$time.'")'; 
         //print_r($queryinsert);exit;
         try
         {
@@ -213,7 +213,7 @@ class Sensitiveinformationcommon extends Component
     
     
     // **************************** infosharing insert ***************************
-   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$emailrec,$upsiname,$loggedemail,$nameoflogged)
+   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$emailrec,$upsiname,$loggedemail,$nameoflogged,$wr_id)
     {
         $connection = $this->dbtrd; 
         $times = time();
@@ -222,8 +222,8 @@ class Sensitiveinformationcommon extends Component
  
       
         $dayOfWeek = date("l", $unixTimestamp);
-        $queryinsert = "INSERT INTO `sensitiveinfo_sharing`(`user_id`,`user_group_id`,`recipientid`,`recipienttype`,`name`,`sharingdate`,`upsitype`,`sharingtime`,`enddate`, `datashared`,`category`,`filepath`,`date_added`, `date_modified`,`timeago`)
-         VALUES ('".$getuserid."','".$user_group_id."','".$recipientid."','".$recipienttype."','".$name."','".$sharingdate."','".$upsitypeid."','".$sharingtime."','".$enddate."','".$datashared."','".$category."','".$filepath."',NOW(),NOW(),'".$times."')"; 
+        $queryinsert = "INSERT INTO `sensitiveinfo_sharing`(`user_id`,`user_group_id`,`recipientid`,`recipienttype`,`name`,`sharingdate`,`upsitype`,`sharingtime`,`enddate`, `datashared`,`category`,`filepath`,wr_id,`date_added`, `date_modified`,`timeago`)
+         VALUES ('".$getuserid."','".$user_group_id."','".$recipientid."','".$recipienttype."','".$name."','".$sharingdate."','".$upsitypeid."','".$sharingtime."','".$enddate."','".$datashared."','".$category."','".$filepath."','".$wr_id."',NOW(),NOW(),'".$times."')"; 
         //print_r($queryinsert);exit;
         try
         {
