@@ -42,8 +42,13 @@ class PortfolioController extends ControllerBase
          {
              $flag =0;
              $accnodata= $this->request->getPost('accno');
+             $self_nation = $this->request->getPost('self_nation');
              //print_r($accnodata);exit;
             //$clhouse= $this->request->getPost('clhouse');
+
+            if($self_nation == 'Indian')
+            {
+
             for($i=0;$i<sizeof($accnodata);$i++)
             {
                if(strlen($accnodata[$i]['accno'])<16)
@@ -59,6 +64,11 @@ class PortfolioController extends ControllerBase
                     $flag = 1;
                 }
             }
+           }
+           else
+           {
+            $flag = 1;
+           }
             if($flag == 1)
             {
                 
@@ -147,7 +157,11 @@ class PortfolioController extends ControllerBase
             $hc= $this->request->getPost('hc','trim');
             $dp= $this->request->getPost('rp','trim');
             $editid= $this->request->getPost('editid','trim');
-            if(strlen($accno)<16)
+            $self_nation= $this->request->getPost('self_nation','trim');
+            //print_r($self_nation);exit;
+
+
+            if(strlen($accno)<16 && $self_nation == 'Indian')
             {
                 $data = array("logged" => false,'message' => 'Demat account no. should be 16 characters!!');
                 $this->response->setJsonContent($data);
@@ -297,7 +311,12 @@ class PortfolioController extends ControllerBase
             $accno= $this->request->getPost('accno','trim');
              $dp= $this->request->getPost('dp','trim');
               $ch= $this->request->getPost('ch','trim');
-            if(strlen($accno)<16)
+              $rel_nation = $this->request->getPost('rel_nation','trim');
+
+            
+
+
+            if(strlen($accno)<16 && $rel_nation == 'Indian')
             {
                 $data = array("logged" => false,'message' => 'Demat account no. should be 16 characters!!');
                 $this->response->setJsonContent($data);

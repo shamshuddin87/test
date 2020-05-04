@@ -1,6 +1,10 @@
-<?php $gmnlog = $this->session->loginauthspuserfront; ?>
+<?php $gmnlog = $this->session->loginauthspuserfront;
 
-<?php //echo"<pre>";print_r($userdetails[0]['fullname']); ?> 
+//print_r($gmnlog);exit; ?>
+
+<?php $self_nation = $this->portfoliocommon->self_nationality($gmnlog['id']);
+//print_r($self_nation);exit;
+ ?> 
 
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
@@ -68,6 +72,10 @@
   <div class="input-group">
 
       <input type="text" class="form-control" id="noofacc" size="30" placeholder="No Of account" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+
+      <?php if(!empty($self_nation)){ ?>
+       <input type="hidden" class="form-control" id="self_nation" value = "<?php echo $self_nation['nationality']?>">
+        <?php } ?>
       <div class="input-group-btn">
         <button type="button" class="btn btn-primary" id="noofdmat">Go</button>
       </div>
@@ -129,7 +137,16 @@
         <div class="title"></div>
         <div class="col-md-12 list_co">
           <label class="modal-title">Edit Account No</label>
+
+             <?php if(!empty($self_nation))
+             { ?>
+              <input type="hidden" class="form-control" id="self_nation_update" value = "<?php echo $self_nation['nationality']?>">
+              <?php if(($self_nation['nationality'] == 'Indian')){ ?>
+             
              <input type="text" id="editaccno" name="editaccno" class="form_fields form-control col-md-7 col-xs-12 showhovertext" required="required" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="16" pattern="[A-Za-z0-9]{16}"  onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)" >
+           <?php } else { ?>
+            <input type="text" id="editaccno" name="editaccno" class="form_fields form-control col-md-7 col-xs-12 showhovertext" required="required" onkeypress="return isAlphaNumeric(event,this.value);" pattern="[A-Za-z0-9]"  onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)" >
+             <?php } }?>
             <span id= "showhovertext" class ="cssclass " style="display: none;z-index: 2;">
             <ol type="a" style="padding: 5px 5px 5px 15px;">
               <li> Demat/Securities account, mention the 16 digit DP ID-Client ID (For eg.: IN123456-12345678 or 12345678-12345678</li>
@@ -250,7 +267,7 @@
         <div class="col-md-12 list_co">
           <label class="modal-title">Name</label>
              <input type="text" id="reledname" name="reledname" class="form_fields form-control col-md-7 col-xs-12" required="required" readonly/>
-              <input type="text" id="relednation" name="relednation" class="form_fields form-control col-md-7 col-xs-12" required="required" readonly/>
+              <input type="hidden" id="relednation" name="relednation" class="form_fields form-control col-md-7 col-xs-12" required="required" readonly/>
         </div>  
         <div class="col-md-12 list_co">
             <label class="modal-title">Account No</label>

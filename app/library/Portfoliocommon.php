@@ -2,6 +2,7 @@
 use Phalcon\Mvc\User\Component;
 class Portfoliocommon extends Component
 {
+  
    public function storeaccno($uid,$usergroup,$accnodata)
    {
 
@@ -180,9 +181,10 @@ class Portfoliocommon extends Component
         $time = time();
         
 
-        $query="SELECT relative_info.`name`,relative_info.`nationality` ,relative_demat_accounts.`id`,relative_demat_accounts.`*`  FROM relative_info INNER JOIN
-                relative_demat_accounts ON relative_info.`id` = relative_demat_accounts.`rel_user_id` 
+        $query="SELECT relative_info.`name` ,relative_demat_accounts.`id`,relative_demat_accounts.`*` ,relative_info.`nationality` FROM relative_info INNER JOIN
+                relative_demat_accounts ON relative_info.`id` = relative_demat_accounts.`rel_user_id`  
                 AND relative_demat_accounts.`parent_user_id`='".$uid."'";
+                //print_r($query);exit;
         
 
          try{
@@ -347,6 +349,43 @@ class Portfoliocommon extends Component
        }
 
        return $result;
+       
+     }
+
+
+    public function self_nationality($uid)
+     {
+       try
+       {   
+            $connection = $this->dbtrd;
+            $result=array();
+            $query="SELECT nationality FROM `personal_info` WHERE userid='".$uid."'";
+            //print_r( $query);exit;
+            $exe= $connection->query($query);
+            $getnum = trim($exe->numRows());
+             if($getnum>0)
+            {
+                while($row = $exe->fetch())
+                {
+                    
+                       $getlist = $row;                     
+                    
+                }
+            }
+            else
+            {
+               $getlist=array();
+
+            }
+            
+
+       }
+       catch(Exception $e)
+       {
+           $getlist=array();
+       }
+
+       return $getlist;
        
      }
 
