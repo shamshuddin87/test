@@ -362,3 +362,8 @@ input[type="radio"], input[type="checkbox"] {
 .h1_heading { font-size: 28px; font-weight: normal; }
 
 input#upload, input#uploadagrm { cursor: pointer; }
+
+.table.muticasttabletupeone>thead>tr>th, .table.muticasttabletupeone>tbody>tr>th, .table.muticasttabletupeone>tfoot>tr>th, .table.muticasttabletupeone>thead>tr>td, .table.muticasttabletupeone>tbody>tr>td, .table.muticasttabletupeone>tfoot>tr>td
+{
+    padding: 5px;
+}
