@@ -202,7 +202,7 @@
                   </ul>
                </li>
                
-               <li>
+              <!--  <li>
                   <a class="click_board click_board3" ><i class="fa fa-line-chart fa-5x"></i>Share Holding Summary<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                      <li>
@@ -212,7 +212,7 @@
                         <a href="relholdingsummary"><i class="" id="cmp_mst"></i>Relative Holding Summary</a>
                      </li>
                   </ul>
-               </li>
+               </li> -->
                <li>
                   <a href="blackoutperiod"><i class="fa fa-ban fa-5x" id="cmp_mst"></i>Trading Window</a>
                </li>
@@ -273,7 +273,7 @@
                <?php }  ?>
                <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='2') {?>
                <li><a href="sharecapital"><i class="fa fa-line-chart fa-5x" id="excelup"></i>Share Capital</a></li>
-               <li><a href="uploadholding"><i class="fa fa-line-chart fa-5x" id="excelup"></i>Upload Holding</a></li>
+              <!--  <li><a href="uploadholding"><i class="fa fa-line-chart fa-5x" id="excelup"></i>Upload Holding</a></li> -->
                <?php }  ?>
                <!----------------------------------------------------------------------------------------------->
                </li> 
