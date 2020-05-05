@@ -61,14 +61,25 @@
                <input type="hidden" id="lname" name="lname" placeholder="Your name.." value="<?php echo($userdetails[0]['lastname']) ?>">
                <input type="hidden" id="ecode" name="ecode" placeholder="Your name.." value="<?php echo($userdetails[0]['employeecode']) ?>">
                <input type="hidden" id="toemail" name="toemail" placeholder="" value="<?php echo($userdetails[0]['email']) ?> ">
+
                <?php if(!empty($personaldetails)){ ?>
                <input type="hidden" id="rqid" name="rqid" placeholder="" value="<?php echo($personaldetails['id']) ?>">
                <div class="col-md-4 col-xs-12">
                   <label for="nation">Nationality*</label>
                   <select id="per_nation" name="per_nation" class="form_fields" onchange="nationality(this.id);">
+                  <?php if($personaldetails['nationality'] == 'Indian'){?>
                      <option value="">Select Nationality</option>
-                     <option value="Indian">Indian</option>
+                     <option value="Indian" selected>Indian</option>
                      <option value="Other">Other</option>
+                  <?php } else if($personaldetails['nationality'] == 'Other'){ ?>
+                     <option value="">Select Nationality</option>
+                     <option value="Indian" >Indian</option>
+                     <option value="Other" selected>Other</option>
+                      <?php } else { ?>
+                     <option value="">Select Nationality</option>
+                     <option value="Indian" >Indian</option>
+                     <option value="Other" >Other</option>
+                      <?php }  ?>
                   </select>
                </div>
                <div class="col-md-4 col-xs-12">

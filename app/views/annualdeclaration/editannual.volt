@@ -192,12 +192,12 @@
             </tbody>
         </table>
           
-           <h3 class="h3_heading">IV.  Demat Account Details</h3>
+           <h3 class="h3_heading">IV.  Demat/Securities Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Demat Account No.</th>
+                <th>Demat/Securities Account No.</th>
                 <th>Name of Depository Participant</th>
             </tr>
             </thead>
@@ -271,12 +271,12 @@
         </table>
       </div>
           
-                     <h3 class="h3_heading">II.  Demat Account Details</h3>
+                     <h3 class="h3_heading">II.  Demat/Securities Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Demat Account No.</th>
+                <th>Demat/Securities Account No.</th>
                 <th>Name of Depository Participant</th>
             </tr>
             </thead>
@@ -472,12 +472,12 @@
             </tbody>
         </table>
           
-           <h3 class="h3_heading">IV.  Demat Account Details</h3>
+           <h3 class="h3_heading">IV.  Demat/Securities Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Demat Account No.</th>
+                <th>Demat/Securities Account No.</th>
                 <th>Name of Depository Participant</th>
 <!--                <th>Name of Clearing House</th>-->
             </tr>
@@ -981,13 +981,13 @@
         </table>
         </div>
           
-        <h3 class="h3_heading">II.  Demat Account Details</h3>
+        <h3 class="h3_heading">II.  Demat/Securities Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
                 <th>Relative Names</th>
-                <th>Demat Account No.*</th>
+                <th>Demat/Securities Account No.*</th>
                 <th>Name of Depository Participant*</th>
             </tr>
             </thead>

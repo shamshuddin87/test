@@ -37,6 +37,31 @@ website(document).ready(function () {
     website(".mymfr").show();
   } else {
   }
+
+
+  //personal details nationality select conditions
+
+  var selected_nationality = website( "#per_nation option:selected" ).val();
+
+  if (selected_nationality == 'Other') {
+     
+     website("#perdetail #pan").removeAttr("maxlength");
+     website("#pan_label").text("Identity No*");
+     website("#perdetail #pan").attr("placeholder",'Identity No');
+     website("#aadhar_label").text("Aadhaar");
+     website("#perdetail #mobno").removeAttr("maxlength");
+     website("#perdetail #mobno").removeAttr("onkeypress");
+    website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43 || event.charCode == 45 ');
+    }
+    else
+    {
+         website("#perdetail #pan").attr("maxlength",'10');
+         website("#pan_label").text("PAN*");
+        website("#perdetail #pan").attr("placeholder",'PAN');
+          website("#aadhar_label").text("Aadhaar*");
+         website("#perdetail #mobno").attr("maxlength",'10');
+         website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
+    } 
 });
 
 website(".relativesform").hide();
@@ -251,7 +276,7 @@ website('#reledit').on('show.bs.modal', function() {
   if (id == "per_nation") 
   {
   var per_nation_id =  website( "#per_nation" ).val();
-   if (per_nation_id == 'Other') {
+  if (per_nation_id == 'Other') {
      
      website("#perdetail #pan").removeAttr("maxlength");
      website("#pan_label").text("Identity No*");
