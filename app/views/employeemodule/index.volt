@@ -623,7 +623,7 @@
                               <input type="hidden" name="releditid" id="releditid" value="">
                               <input type="hidden" name="filepath" id="filepath" value="">
                               <label for="name">Name*</label>
-                              <input type="text" id="name" name="name" placeholder="Name">
+                              <input type="text" id="name" name="name" placeholder="Name" style="margin-bottom: 14px;">
                            </div>
 
                             <div class="col-md-6">
