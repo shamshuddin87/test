@@ -1013,9 +1013,21 @@ function getpdfdata(uniqueid)
                     website('.empcode').html(response.userlevel['employeecode']);
                     website('.username').html(response.personaldetail['name']);
                     website('.emailid').html(response.userlevel['email']);
-                    website('.pan').html(response.personaldetail['pan']);
-                    website('.legalidentifier').html(response.personaldetail['legal_identifier']);
-                    website('.legalidentityno').html(response.personaldetail['legal_identification_no']);
+                     if(response.personaldetail['nationality'] == 'Indian')
+            {
+               website(".pan").html(response.personaldetail["pan"]);
+            }
+            else if(response.personaldetail['nationality'] == 'Other')
+            {
+                website(".legalidentifier").html(
+              response.personaldetail["pan"]
+               );
+              website(".legalidentityno").html(
+              response.personaldetail["legal_identifier"]
+              );
+            }
+
+                  
                     website('.dob').html(response.personaldetail['dob']);
                      website('.aadhaar').html(response.personaldetail['aadhar']);
                     website('.gender').html(response.personaldetail['sex']);
@@ -1103,7 +1115,7 @@ function getpdfdata(uniqueid)
                 }
                 
                 /*---- Relative detail ----*/
-                if(response.reldetail.length>0)
+                if(Object.keys(response.reldetail).length)
                 {
                     var deptype = '';
                     for(var i=0;i<response.reldetail.length;i++)
@@ -1121,9 +1133,19 @@ function getpdfdata(uniqueid)
                                 deptype =response.reldetail[i]['dependency_nature'].toString(',');
                             }
                             reldetail += '<td>'+deptype+'</td>';
-                            reldetail += '<td>'+response.reldetail[i]['pan']+'</td>';
-                            reldetail += '<td>'+response.reldetail[i]['legal_identifier']+'</td>';
-                            reldetail += '<td>'+response.reldetail[i]['legal_identification_no']+'</td>';
+                            if(response.reldetail[i]["nationality"] == 'Indian')
+                             {
+                              reldetail += "<td>" + response.reldetail[i]["pan"] + "</td>";
+                              reldetail +="<td></td>";
+                               reldetail +="<td></td>";
+                             }
+                            else if(response.reldetail[i]["nationality"] == 'Other')
+                            {
+                            reldetail +="<td></td>";
+                            reldetail +="<td>" + response.reldetail[i]["pan"] + "</td>";
+                            reldetail += "<td>" + response.reldetail[i]["legal_identifier"] + "</td>";
+                            }
+                           
                             reldetail += '<td>'+response.reldetail[i]['aadhar']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['dob']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['address']+'</td>';

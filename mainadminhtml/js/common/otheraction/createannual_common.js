@@ -1108,13 +1108,23 @@ function getpdfdata(uniqueid) {
             website(".empcode").html(response.userlevel["employeecode"]);
             website(".username").html(response.personaldetail["name"]);
             website(".emailid").html(response.userlevel["email"]);
-            website(".pan").html(response.personaldetail["pan"]);
-            website(".legalidentifier").html(
+
+            if(response.personaldetail['nationality'] == 'Indian')
+            {
+               website(".pan").html(response.personaldetail["pan"]);
+            }
+            else if(response.personaldetail['nationality'] == 'Other')
+            {
+                website(".legalidentifier").html(
+              response.personaldetail["pan"]
+               );
+              website(".legalidentityno").html(
               response.personaldetail["legal_identifier"]
-            );
-            website(".legalidentityno").html(
-              response.personaldetail["legal_identification_no"]
-            );
+              );
+            }
+
+           
+           
             website(".aadhaar").html(response.personaldetail["aadhar"]);
             website(".dob").html(response.personaldetail["dob"]);
             website(".gender").html(response.personaldetail["sex"]);
@@ -1211,8 +1221,8 @@ function getpdfdata(uniqueid) {
           }
 
           /*---- Relative detail ----*/
-          //console.log(reldetail);
-          if (response.reldetail.length > 0) {
+          //console.log(Object.keys(response.reldetail).length);
+          if (Object.keys(response.reldetail).length) {
             var deptype = "";
             for (
               var i = 0;
@@ -1233,13 +1243,20 @@ function getpdfdata(uniqueid) {
                   );
                 }
                 reldetail += "<td>" + deptype + "</td>";
-                reldetail += "<td>" + response.reldetail[i]["pan"] + "</td>";
-                reldetail +=
-                  "<td>" + response.reldetail[i]["legal_identifier"] + "</td>";
-                reldetail +=
-                  "<td>" +
-                  response.reldetail[i]["legal_identification_no"] +
-                  "</td>";
+
+               if(response.reldetail[i]["nationality"] == 'Indian')
+                {
+                  reldetail += "<td>" + response.reldetail[i]["pan"] + "</td>";
+                   reldetail +="<td></td>";
+                   reldetail +="<td></td>";
+                  }
+                   else if(response.reldetail[i]["nationality"] == 'Other')
+                  {
+                    reldetail +="<td></td>";
+                     reldetail +="<td>" + response.reldetail[i]["pan"] + "</td>";
+                     reldetail += "<td>" + response.reldetail[i]["legal_identifier"] + "</td>";
+                   }
+               
                 reldetail += "<td>" + response.reldetail[i]["aadhar"] + "</td>";
                 reldetail += "<td>" + response.reldetail[i]["dob"] + "</td>";
                 reldetail +=
@@ -1284,7 +1301,7 @@ function getpdfdata(uniqueid) {
           } else {
             reldemat = '<tr><td colspan ="14">No Data Found..</td></tr>';
           }
-          alert("hello");
+          //alert("hello");
           website(".selfcompany").html(addhtmlnxt);
           website(".selffirm").html(addhtmlnxt1);
           website(".selfpubpri").html(addhtmlnxt2);

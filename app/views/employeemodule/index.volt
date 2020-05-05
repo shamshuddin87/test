@@ -90,23 +90,23 @@
                   <div class="tooltip_div">
                      <a href="javascript:void(0);" data="Nature of Identifier (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                   </div>
-                  <label for="legal_idntfr" style="display: inline;">Any other legal identifier</label>
-                  <input type="text" id="legal_idntfr" name="legal_idntfr" value="<?php echo($personaldetails['legal_identifier']) ?>" placeholder="Any other legal identifier">
+                  <label for="legal_idntfr" style="display: inline;">Nature of Legal Identifier</label>
+                  <input type="text" id="legal_idntfr" name="legal_idntfr" value="<?php echo($personaldetails['legal_identifier']) ?>" placeholder="Nature of Legal Identifier">
                </div>
-               <div class="col-md-4 col-xs-12">
+              <!--  <div class="col-md-4 col-xs-12">
                   <div class="tooltip_div">
                      <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                   </div>
                   <label for="legal_idntfctn_no">Any other legal identification number</label>
                   <input type="text" id="legal_idntfctn_no" value="<?php echo($personaldetails['legal_identification_no']) ?>" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
-               </div>
+               </div> -->
                <div class="col-md-4 col-xs-12">
                   <label id = "aadhar_label" for="aadhar">Aadhaar*</label>
                   <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<?php echo($personaldetails['aadhar']) ?>" maxlength="12" pattern="[0-9]{12}">
                </div>
               
                   <div class="col-md-4 col-xs-12">
-                     <label for="Dob">DOB (dd-mm-yyyy)*</label>
+                     <label for="Dob">Date of Birth (dd-mm-yyyy)*</label>
                      <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="" placeholder="dd-mm-yyyy" maxlength="10" >
                   </div>
                   <div class="col-md-4 col-xs-12"> 
@@ -155,13 +155,14 @@
                      <input type="file" name="hldngfile" id="hldngfile" >
                   </div>
                </div>
-               <div class="row">
-                  <div class="col-md-12 col-xs-12">
-                     <div class="col-md-4 col-xs-12 "> 
+                <div class="col-md-4 col-xs-12 "> 
                         <label for="age">Mobile No*</label>
                         <input type="text" id="mobno" name="mobno" value="<?php echo($personaldetails['mobileno']) ?>" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
                         <span id="mobileappend"></span>
                      </div>
+               <div class="row">
+                  <div class="col-md-12 col-xs-12">
+                    
                      <div class="col-md-4 col-xs-12 "> 
                         <label for="age">Holdings In Shares*</label>  
                         <input type="text" id="shareholdng" name="shareholdng" value="<?php echo($personaldetails['sharehldng']) ?>" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
@@ -190,16 +191,16 @@
                   <div class="tooltip_div">
                      <a href="javascript:void(0);" data="Nature of Identifier (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                   </div>
-                  <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
-                  <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Any other legal identifier" >
+                  <label for="legal_idntfr" style="display: inline;">Nature of Legal Identifier </label>
+                  <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of Legal Identifier" >
                </div>
-               <div class="col-md-4 col-xs-12">
+               <!-- <div class="col-md-4 col-xs-12">
                   <div class="tooltip_div">
                      <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                   </div>
                   <label for="legal_idntfctn_no">Any other legal identification number</label>
                   <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
-               </div>
+               </div> -->
                <div class="col-md-4 col-xs-12">
                   <label id = "aadhar_label" for="aadhar">Aadhaar*</label>
                   <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
@@ -207,7 +208,7 @@
               
               
                    <div class="col-md-4 col-xs-12">
-                     <label for="Dob">DOB (dd-mm-yyyy)*</label>
+                     <label for="Dob">Date of Birth (dd-mm-yyyy)*</label>
                      <input type="text" id="dob" name="dob"  class="" placeholder="dd-mm-yyyy" maxlength="10" >
                   </div>
                   <div class="col-md-4 col-xs-12"> 
@@ -239,15 +240,16 @@
                      <input type="file" name="hldngfile" id="hldngfile" >
                   </div>
                </div>
-              
-               <div class="row">
-
-                  <div class="col-md-12 col-xs-12">
-                     <div class="col-md-4 col-xs-12 "> 
+                <div class="col-md-4 col-xs-12 "> 
                   <label for="age">Mobile No*</label>
                   <input type="text" id="mobno" name="mobno" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
                   <span id="mobileappend"></span>
                </div>
+              
+               <div class="row">
+
+                  <div class="col-md-12 col-xs-12">
+                    
                      <div class="col-md-4 col-xs-12 "> 
                         <label for="age">Holdings In Shares*</label>  
                         <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
@@ -312,8 +314,8 @@
                               <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
                            </div>
                            <div class="col-md-6">
-                              <label for="legal_idntfr">Any other legal identifier</label>
-                              <input type="text" id="legal_idntfr" name="legal_idntfr" placeholder="Any other legal identifier">
+                              <label for="legal_idntfr">Nature of Legal Identifier</label>
+                              <input type="text" id="legal_idntfr" name="legal_idntfr" placeholder="Nature of Legal Identifier">
                            </div>
                            <div class="col-md-6">
                               <div class="tooltip_div">
@@ -405,14 +407,7 @@
                <form action ="employeemodule/relationdata" class="chklength" id="getdata_1" method="post" enctype="multipart/form-data" autocomplete="off">
                   <div class="input-group col-md-12 col-xs-12 col-sm-12">
                      <div class="row">
-                        <div class="col-md-4 col-xs-12">
-                           <label for="nation">Nationality*</label>
-                           <select id="rel_nation" name="rel_nation" class="form_fields" required="" onchange="nationality(this.id);">
-                               <option value="">Select Nationality</option>
-                              <option value="Indian">Indian</option>
-                              <option value="Other">Other</option>
-                           </select>
-                        </div>
+                        
                         <div class="col-md-4">
                            <label>Relationship*</label >
                            <select id="relationship" name="relationship" class="form_fields" required="">
@@ -429,7 +424,12 @@
                               <option value="11">Others</option>
                            </select>
                         </div>
+                       
                         <div class="col-md-4">
+                           <label>Full Name*</label>
+                           <input  class="" placeholder="Full Name"  class="fname" id="fname" name="fname" type="text" />
+                        </div>
+                         <div class="col-md-4">
                            <label>Nature of Dependency*</label >
                            <select id="depnature" name="depnature[]" class="form_fields" required="" multiple size="3">
                               <option value="1">Financially Dependent</option>
@@ -437,12 +437,14 @@
                               <option value="3">Non-dependent</option>
                            </select>
                         </div>
-                        <div class="col-md-4">
-                           <label>Full Name*</label>
-                           <input  class="" placeholder="Full Name"  class="fname" id="fname" name="fname" type="text" />
+                        <div class="col-md-4 col-xs-12">
+                           <label for="nation">Nationality*</label>
+                           <select id="rel_nation" name="rel_nation" class="form_fields" required="" onchange="nationality(this.id);">
+                               <option value="">Select Nationality</option>
+                              <option value="Indian">Indian</option>
+                              <option value="Other">Other</option>
+                           </select>
                         </div>
-                        <!-- </div>
-                           <div class="row"> -->
                         <div class="col-md-4">
                            <div class="tooltip_div">
                               <a href="javascript:void(0);" data="In case no PAN number available with dependents, please enter 00000000" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
@@ -454,16 +456,16 @@
                            <div class="tooltip_div">
                               <a href="javascript:void(0);" data="Nature of Identifier (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                            </div>
-                           <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
-                           <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Any other legal identifier">
+                           <label for="legal_idntfr" style="display: inline;">Nature of Legal Identifier </label>
+                           <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of Legal Identifier">
                         </div>
-                        <div class="col-md-4">
+                        <!-- <div class="col-md-4">
                            <div class="tooltip_div">
                               <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                            </div>
                            <label for="legal_idntfctn_no">Any other legal identification number</label>
                            <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);"  placeholder="Any other legal identification number">
-                        </div>
+                        </div> -->
                         <!-- </div>
                            <div class="row"> -->
                         <div class="col-md-4"> 
@@ -471,7 +473,7 @@
                            <input  class=" aadhar" placeholder="Aadhaar" id="aadhar"  name="aadhar" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}" />
                         </div>
                         <div class="col-md-4">
-                           <label>DOB (dd-mm-yyyy)*</label>
+                           <label>Date of Birth (dd-mm-yyyy)*</label>
                            <input type="text"  id="1_dob" name="dob" class="" placeholder="dd-mm-yyyy" maxlength="10">
                         </div>
                         <div class="col-md-4">
@@ -487,15 +489,16 @@
                            <label for="institute">Institute From Which Acquired</label>
                            <input type="text" id="relinstitute" name="relinstitute" placeholder="Institute From Which Acquired">
                         </div>
-                        <div class="col-md-4  "> 
-                           <label for="control-label">Mobile No*</label>
-                           <input type="text"  id="relmobno" name="relmobno" placeholder="Mobile No"onkeypress='return event.charCode >= 48 && event.charCode <= 57'  maxlength="10"  >
-                        </div>
+                        
                         <div class="col-md-4"> 
                            <label style="display: block; margin-bottom: 10px;" for="sex">Gender*</label>
                            <input class = "relgender" type="radio" id="relmale" name="sex" value="Male" />Male
                            <input class = "relgender" type="radio" id="relfemale" name="sex"  value="Female"  >Female 
                            <input class = "relgender"type="radio" id="relother" name="sex"  value="Other"  >Other 
+                        </div>
+                        <div class="col-md-4  "> 
+                           <label for="control-label">Mobile No*</label>
+                           <input type="text"  id="relmobno" name="relmobno" placeholder="Mobile No"onkeypress='return event.charCode >= 48 && event.charCode <= 57'  maxlength="10"  >
                         </div>
                         <!--  </div>
                            <div class="row"> -->
@@ -507,10 +510,7 @@
                            <label for="age">Name of Companies/Firm</label>
                            <input type="text" id="relcompany" name="relcompany"  placeholder="Name of Companies/Firm " >
                         </div>
-                        <div class="col-md-4">
-                           <label class="control-label">Upload Identity Proof</label>
-                           <input type="file" name="file[]" id="file" >
-                        </div>
+                       
                         <div class="col-md-4 "> 
                            <label for="age">Holdings In Shares*</label>
                            <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
@@ -518,6 +518,10 @@
                         <div class="col-md-4 col-xs-12"> 
                            <label for="age">Holdings In ADRs*</label>
                            <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                        </div>
+                         <div class="col-md-4">
+                           <label class="control-label">Upload Identity Proof</label>
+                           <input type="file" name="file[]" id="file" >
                         </div>
                         <div class="col-md-4">
                            <label>Address*</label>
@@ -590,14 +594,7 @@
                      </div>
                      <div class="modal-body show_shadow">
                         <form action="employeemodule/updaterelatives" id="uprel" method="post" autocomplete="off">
-                           <div class="col-md-6">
-                              <label for="nation">Nationality*</label>
-                              <select id="rel_nation_update" name="rel_nation_update" class="form_fields" onchange="nationality(this.id);">
-                                
-                                 <option value="Indian">Indian</option>
-                                 <option value="Other">Other</option>
-                              </select>
-                           </div>
+                          
                            <div class="col-md-6">
                               <label for="relationship">Relationship*</label>
                               <select id="relationship" name="relationship" class="form_fields" required="">
@@ -616,7 +613,7 @@
                            </div>
                            <div class="col-md-6">
                               <label>Nature of Dependency*</label >
-                              <select id="depnature" name="depnature[]" class="form_fields" required="" multiple size="6" style="margin-bottom: 0;">
+                              <select id="depnature" name="depnature[]" class="form_fields" required="" multiple size="4" style="margin-bottom: 0;">
                                  <option value="1">Financially Dependent</option>
                                  <option value="2">Consult in trading for securities</option>
                                  <option value="3">Non-dependent</option>
@@ -627,6 +624,15 @@
                               <input type="hidden" name="filepath" id="filepath" value="">
                               <label for="name">Name*</label>
                               <input type="text" id="name" name="name" placeholder="Name">
+                           </div>
+
+                            <div class="col-md-6">
+                              <label for="nation">Nationality*</label>
+                              <select id="rel_nation_update" name="rel_nation_update" class="form_fields" onchange="nationality(this.id);">
+                                
+                                 <option value="Indian">Indian</option>
+                                 <option value="Other">Other</option>
+                              </select>
                            </div>
                            <div class="col-md-6">
                               <div class="tooltip_div">
@@ -640,23 +646,23 @@
                               <div class="tooltip_div">
                                  <a href="javascript:void(0);" data="Nature of Identifier (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                               </div>
-                              <label for="legal_idntfr" style="display: inline;">Any other legal identifier </label>
-                              <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Any other legal identifier">
+                              <label for="legal_idntfr" style="display: inline;">Nature of Legal Identifier </label>
+                              <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of Legal Identifier">
                            </div>
-                           <div class="col-md-6">
+                           <!-- <div class="col-md-6">
                               <div class="tooltip_div">
                                  <a href="javascript:void(0);" data="only for overseas employees" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                               </div>
                               <label for="legal_idntfctn_no">Any other legal identification number</label>
                               <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
-                           </div>
+                           </div> -->
                            <div class="col-md-6">
                               <label id= "edit_aadhar_label" for="aadhar">Aadhaar*</label>
                               <input type="text" id="aadhar" name="aadhar" placeholder="Aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
                            </div>
                            <div class="col-md-6">
-                              <label for="Dob">DOB (dd-mm-yyyy)*</label>
-                              <input type="text" id="dob" name="dob" class="" placeholder="dd-mm-yyyy" >
+                              <label for="Dob">Date of Birth (dd-mm-yyyy)*</label>
+                              <input type="text" id="dob" name="dob" class="" placeholder="dd-mm-yyyy" maxlength="10" >
                            </div>
                            <div class="col-md-6" style="margin-bottom: 15px;">
                               <label style="display: block; margin-bottom: 10px;" for="sex">Gender*</label>
@@ -683,8 +689,7 @@
                               <label for="subject">Address*</label>
                               <textarea id="address" name="address" placeholder="Write address.." style="height:100px"></textarea>
                            </div>
-                           <div class="row">
-                              <div class="col-md-12">
+                           
                                  <div class="col-md-6">
                                     <label for="age">Holdings In Shares*</label>
                                     <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
@@ -705,8 +710,7 @@
                                     <label class="control-label">Upload Identity Proof</label>
                                     <input type="file" name="file" id="file" >
                                  </div>
-                              </div>
-                           </div>
+                              
                            <div class="col-md-12"> 
                               <input type="button" class="btn btn-primary" name= "relupdate" value="Update" onclick="confirmdisclosure(this.id)" id="relupdate" style="float: right;">
                            </div>

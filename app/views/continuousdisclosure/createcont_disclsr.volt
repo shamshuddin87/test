@@ -11,6 +11,24 @@
    $reldetail = $this->annualdeclarationcommon->FetchRelativeDetail($uid);
    $relDematdetail = $this->annualdeclarationcommon->FetchRelDematDetail($uid);
    //echo "company is ";print_r($uniqueid);exit;
+    if($personaldetail['nationality'] == 'Other')
+   {
+      $identityno = $personaldetail['pan'];
+      $pan = '';
+      $nature = $personaldetail['legal_identifier'];
+   }
+   else if($personaldetail['nationality'] == 'Indian')
+   {
+       $pan = $personaldetail['pan'];
+       $identityno = '';
+       $nature ='';
+   }
+   else
+   {
+       $identityno = '';
+       $pan = '';
+        $nature ='';
+   }
    ?>
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
@@ -109,17 +127,17 @@
                <tr>
                 <td>4</td>
                 <td>PAN (In case of Indian Nationals)</td>
-                <td><?php echo $personaldetail['pan'];?></td>               
+                <td><?php echo $pan;?></td>               
               </tr>
                <tr>
                 <td>5</td>
                 <td>Other Identification no. (In case of Foreign Nationals)</td>
-                <td><?php echo $personaldetail['legal_identifier'];?></td>               
+                <td><?php echo $identityno;?></td>               
               </tr>
                <tr>
                 <td>6</td>
                 <td>Nature of Identification no. (In case of Foreign Nationals)</td>
-                <td><?php echo $personaldetail['legal_identification_no'];?></td>                
+                <td><?php echo $nature;?></td>                
               </tr>
                <tr>
                 <td>7</td>
@@ -293,9 +311,32 @@
                  <td><?php echo $reldetail[$i]['relationshipname'];?></td>
                  <?php if(!empty($reldetail['dependency_nature'])) { $deptype = implode(',',$reldetail['dependency_nature'][$i]); } ?>
                  <td><?php echo $deptype;?></td>
-                 <td><?php echo $reldetail[$i]['pan'];?></td>
-                 <td><?php echo $reldetail[$i]['legal_identifier'];?></td>
-                 <td><?php echo $reldetail[$i]['legal_identification_no'];?></td>
+                  <?php if($reldetail[$i]['nationality'] == 'Indian')
+                 {
+                    $pan = $reldetail[$i]['pan'];
+                    $identityno = '';
+                    $nature ='';
+                 }
+                 else if($reldetail[$i]['nationality'] == 'Other')
+                 {
+                    $pan = '';
+                    $identityno = $reldetail[$i]['pan'];
+                    $nature = $reldetail[$i]['legal_identifier'];
+                 }
+                 else
+                 {
+                    $pan = '';
+                    $identityno ='';
+                    $nature = '';
+                 }
+
+
+
+                 ?>
+                 <td><?php echo $pan;?></td>
+                 <td><?php echo $identityno;?></td>
+                 <td><?php echo $nature;?></td>
+                
                  <td><?php echo $reldetail[$i]['aadhar'];?></td>
                  <td><?php echo $reldetail[$i]['dob'];?></td>
                  <td><?php echo $reldetail[$i]['address'];?></td>
@@ -389,17 +430,17 @@
                <tr>
                 <td>4</td>
                 <td>PAN (In case of Indian Nationals)</td>
-                <td><?php echo $personaldetail['pan'];?></td>               
+                <td><?php echo $pan;?></td>               
               </tr>
                <tr>
                 <td>5</td>
                 <td>Other Identification no. (In case of Foreign Nationals)</td>
-                <td><?php echo $personaldetail['legal_identifier'];?></td>               
+                <td><?php echo $identityno;?></td>               
               </tr>
                <tr>
                 <td>6</td>
                 <td>Nature of Identification no. (In case of Foreign Nationals)</td>
-                <td><?php echo $personaldetail['legal_identification_no'];?></td>                
+                <td><?php echo $nature;?></td>                
               </tr>
                 <tr>
                 <td>7</td>
@@ -909,9 +950,31 @@
                  <td><?php echo $reldetail[$i]['relationshipname'];?></td>
                  <?php if(!empty($reldetail['dependency_nature'])) { $deptype = implode(',',$reldetail['dependency_nature'][$i]); } ?>
                  <td><?php echo $deptype;?></td>
-                 <td><?php echo $reldetail[$i]['pan'];?></td>
-                 <td><?php echo $reldetail[$i]['legal_identifier'];?></td>
-                 <td><?php echo $reldetail[$i]['legal_identification_no'];?></td>
+                  <?php if($reldetail[$i]['nationality'] == 'Indian')
+                 {
+                    $pan = $reldetail[$i]['pan'];
+                    $identityno = '';
+                    $nature ='';
+                 }
+                 else if($reldetail[$i]['nationality'] == 'Other')
+                 {
+                    $pan = '';
+                    $identityno = $reldetail[$i]['pan'];
+                    $nature = $reldetail[$i]['legal_identifier'];
+                 }
+                 else
+                 {
+                    $pan = '';
+                    $identityno ='';
+                    $nature = '';
+                 }
+
+
+
+                 ?>
+                 <td><?php echo $pan;?></td>
+                 <td><?php echo $identityno;?></td>
+                 <td><?php echo $nature;?></td>
                  <td><?php echo $reldetail[$i]['aadhar'];?></td>
                  <td><?php echo $reldetail[$i]['dob'];?></td>
                  <td><?php echo $reldetail[$i]['address'];?></td>

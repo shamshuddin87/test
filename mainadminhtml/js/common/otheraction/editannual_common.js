@@ -1012,16 +1012,30 @@ function getpdfdata(uniqueid)
                             
                     }
                 }
+
+                //console.log(response.userlevel);
                 /*---- Personal detail ----*/
                 if(response.userlevel)
                 {
                     website('.empcode').html(response.userlevel['employeecode']);
                     website('.username').html(response.personaldetail['name']);
                     website('.emailid').html(response.userlevel['email']);
-                    website('.pan').html(response.personaldetail['pan']);
-                    website('.legalidentifier').html(response.personaldetail['legal_identifier']);
-                    website('.legalidentityno').html(response.personaldetail['legal_identification_no']);
-                     website('.aadhaar').html(response.personaldetail['aadhar']);
+
+                    if(response.personaldetail['nationality'] == 'Indian')
+                    {
+                      website(".pan").html(response.personaldetail["pan"]);
+                    }
+                    else if(response.personaldetail['nationality'] == 'Other')
+                    {
+                      website(".legalidentifier").html(
+                      response.personaldetail["pan"]
+                      );
+                     website(".legalidentityno").html(
+                      response.personaldetail["legal_identifier"]
+                      );
+                    }
+                   
+                    website('.aadhaar').html(response.personaldetail['aadhar']);
                     website('.dob').html(response.personaldetail['dob']);
                     website('.gender').html(response.personaldetail['sex']);
                     website('.edu').html(response.personaldetail['education']);
@@ -1108,9 +1122,9 @@ function getpdfdata(uniqueid)
                 }
                   
 
-                //console.log(response.reldetail.dependency_nature.length);
+                //console.log(response.reldetail);
                 /*---- Relative detail ----*/
-                if(response.reldetail.length>0)
+                if(Object.keys(response.reldetail).length)
                 { 
                  //alert("hello");
                     var deptype = '';
@@ -1130,9 +1144,19 @@ function getpdfdata(uniqueid)
                                 deptype =response.reldetail.dependency_nature[i].toString(',');
                             }
                             reldetail += '<td>'+deptype+'</td>';
-                            reldetail += '<td>'+response.reldetail[i]['pan']+'</td>';
-                            reldetail += '<td>'+response.reldetail[i]['legal_identifier']+'</td>';
-                            reldetail += '<td>'+response.reldetail[i]['legal_identification_no']+'</td>';
+                            if(response.reldetail[i]["nationality"] == 'Indian')
+                             {
+                              reldetail += "<td>" + response.reldetail[i]["pan"] + "</td>";
+                              reldetail +="<td></td>";
+                               reldetail +="<td></td>";
+                             }
+                            else if(response.reldetail[i]["nationality"] == 'Other')
+                            {
+                            reldetail +="<td></td>";
+                            reldetail +="<td>" + response.reldetail[i]["pan"] + "</td>";
+                            reldetail += "<td>" + response.reldetail[i]["legal_identifier"] + "</td>";
+                            }
+                          
                             reldetail += '<td>'+response.reldetail[i]['aadhar']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['dob']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['address']+'</td>';

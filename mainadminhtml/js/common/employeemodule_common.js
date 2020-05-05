@@ -46,21 +46,25 @@ website(document).ready(function () {
   if (selected_nationality == 'Other') {
      
      website("#perdetail #pan").removeAttr("maxlength");
-     website("#pan_label").text("Identity No*");
-     website("#perdetail #pan").attr("placeholder",'Identity No');
+     website("#pan_label").text("Local Legal Identification Number*");
+     website("#perdetail #pan").attr("placeholder",'Local Legal Identification Number');
      website("#aadhar_label").text("Aadhaar");
      website("#perdetail #mobno").removeAttr("maxlength");
      website("#perdetail #mobno").removeAttr("onkeypress");
     website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43 || event.charCode == 45 ');
+     website("#perdetail #legal_idntfr").removeAttr("readonly");
+    website("#perdetail #aadhar").attr("readonly",'readonly');
     }
     else
     {
-         website("#perdetail #pan").attr("maxlength",'10');
-         website("#pan_label").text("PAN*");
+        website("#perdetail #pan").attr("maxlength",'10');
+        website("#pan_label").text("PAN*");
         website("#perdetail #pan").attr("placeholder",'PAN');
-          website("#aadhar_label").text("Aadhaar*");
-         website("#perdetail #mobno").attr("maxlength",'10');
-         website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
+        website("#aadhar_label").text("Aadhaar*");
+        website("#perdetail #mobno").attr("maxlength",'10');
+        website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
+        website("#perdetail #legal_idntfr").attr("readonly",'readonly');
+        website("#perdetail #aadhar").removeAttr("readonly");
     } 
 });
 
@@ -278,22 +282,27 @@ website('#reledit').on('show.bs.modal', function() {
   var per_nation_id =  website( "#per_nation" ).val();
   if (per_nation_id == 'Other') {
      
-     website("#perdetail #pan").removeAttr("maxlength");
-     website("#pan_label").text("Identity No*");
-     website("#perdetail #pan").attr("placeholder",'Identity No');
-     website("#aadhar_label").text("Aadhaar");
-     website("#perdetail #mobno").removeAttr("maxlength");
-     website("#perdetail #mobno").removeAttr("onkeypress");
+    website("#perdetail #pan").removeAttr("maxlength");
+    website("#pan_label").text("Local Legal Identification Number*");
+    website("#perdetail #pan").attr("placeholder",'Local Legal Identification Number');
+    website("#aadhar_label").text("Aadhaar");
+    website("#perdetail #mobno").removeAttr("maxlength");
+    website("#perdetail #mobno").removeAttr("onkeypress");
     website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43 || event.charCode == 45 ');
+    website("#perdetail #legal_idntfr").removeAttr("readonly");
+    website("#perdetail #aadhar").attr("readonly",'readonly');
+
     }
     else
     {
          website("#perdetail #pan").attr("maxlength",'10');
          website("#pan_label").text("PAN*");
         website("#perdetail #pan").attr("placeholder",'PAN');
-          website("#aadhar_label").text("Aadhaar*");
-         website("#perdetail #mobno").attr("maxlength",'10');
-         website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
+        website("#aadhar_label").text("Aadhaar*");
+        website("#perdetail #mobno").attr("maxlength",'10');
+        website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
+        website("#perdetail #legal_idntfr").attr("readonly",'readonly');
+        website("#perdetail #aadhar").removeAttr("readonly");
     } 
    
   } 
@@ -306,12 +315,14 @@ website('#reledit').on('show.bs.modal', function() {
     if (rel_nation_id == 'Other') {
      
      website("#getdata_1 #pan").removeAttr("maxlength");
-     website("#getdata_1 #rel_pan_label").text("Identity No*");
-      website("#getdata_1 #pan").attr("placeholder",'Identity No');
+     website("#getdata_1 #rel_pan_label").text("Local Legal Identification Number*");
+      website("#getdata_1 #pan").attr("placeholder",'Local Legal Identification Number');
       website("#getdata_1 #rel_aadhar_label").text("Aadhaar");
      website("#getdata_1 #relmobno").removeAttr("maxlength");
      website("#getdata_1 #relmobno").removeAttr("onkeypress");
     website("#getdata_1 #relmobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43 || event.charCode == 45 ');
+    website("#getdata_1 #legal_idntfr").removeAttr("readonly");
+    website("#getdata_1 #aadhar").attr("readonly",'readonly');
     }
     else
     {
@@ -321,6 +332,8 @@ website('#reledit').on('show.bs.modal', function() {
           website("#getdata_1 #rel_aadhar_label").text("Aadhaar*");
          website("#getdata_1 #relmobno").attr("maxlength",'10');
          website("#getdata_1 #relmobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
+         website("#getdata_1 #legal_idntfr").attr("readonly",'readonly');
+         website("#getdata_1 #aadhar").removeAttr("readonly");
     } 
   } 
   else if (id == "rel_nation_update") 
@@ -332,12 +345,14 @@ website('#reledit').on('show.bs.modal', function() {
     if (rel_nation_id == 'Other') {
      
      website("#reledit #pan").removeAttr("maxlength");
-     website("#reledit #edit_pan_label").text("Identity No*");
-      website("#reledit #pan").attr("placeholder",'Identity No');
+     website("#reledit #edit_pan_label").text("Local Legal Identification Number*");
+      website("#reledit #pan").attr("placeholder",'Local Legal Identification Number');
       website("#reledit #edit_aadhar_label").text("Aadhaar");
      website("#reledit #relmobnoup").removeAttr("maxlength");
      website("#reledit #relmobnoup").removeAttr("onkeypress");
-    website("#reledit #relmobnoup").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43 || event.charCode == 45 ');
+     website("#reledit #relmobnoup").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43 || event.charCode == 45 ');
+     website("#reledit #legal_idntfr").removeAttr("readonly");
+      website("#reledit #aadhar").attr("readonly",'readonly');
     }
     else
     {
@@ -347,6 +362,8 @@ website('#reledit').on('show.bs.modal', function() {
           website("#reledit #edit_aadhar_label").text("Aadhaar*");
          website("#reledit #relmobnoup").attr("maxlength",'10');
          website("#reledit #relmobnoup").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
+         website("#reledit #legal_idntfr").attr("readonly",'readonly');
+         website("#reledit #aadhar").removeAttr("readonly");
     } 
   }
 }

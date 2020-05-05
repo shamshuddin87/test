@@ -1643,7 +1643,7 @@ public function upannualselfholdingintrst($uid,$user_group_id,$company,$decision
           $queryinsert = 'INSERT INTO `annual_self_holdinginterest`
                 (`user_id`,`user_group_id`,`cmpname`,`isdecisionmaking`,`isfincltrans`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
                  VALUES ("'.$uid.'","'.$user_group_id.'","'.$company[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
-                 print_r($queryinsert);
+                 //print_r($queryinsert);
               $exegetqry = $connection->query($queryinsert);
                            
         }
