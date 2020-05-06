@@ -1159,7 +1159,7 @@ function getpdfdata(uniqueid)
                 if(Object.keys(response.reldetail).length)
                 {
                     var deptype = '';
-                    for(var i=0;i<response.reldetail.length;i++)
+                    for(var i=0;i<response.reldetail.dependency_nature.length;i++)
                     {
                         if(response.reldetail[i]['name']!='')
                         {
@@ -1169,10 +1169,11 @@ function getpdfdata(uniqueid)
                             reldetail += '<td>'+j+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['name']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['relationshipname']+'</td>';
-                            if(response.reldetail[i]['dependency_nature']!='') 
-                            { 
-                                deptype =response.reldetail[i]['dependency_nature'].toString(',');
-                            }
+                            if (response.reldetail.dependency_nature != "") {
+                  deptype = response.reldetail.dependency_nature[i].toString(
+                    ","
+                  );
+                }
                             reldetail += '<td>'+deptype+'</td>';
                             if(response.reldetail[i]["nationality"] == 'Indian')
                              {
@@ -1186,6 +1187,13 @@ function getpdfdata(uniqueid)
                             reldetail +="<td>" + response.reldetail[i]["pan"] + "</td>";
                             reldetail += "<td>" + response.reldetail[i]["legal_identifier"] + "</td>";
                             }
+                            else
+                   {
+                    reldetail +="<td></td>";
+                    reldetail +="<td></td>";
+                    reldetail +="<td></td>";
+
+                   }
                            
                             reldetail += '<td>'+response.reldetail[i]['aadhar']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['dob']+'</td>';

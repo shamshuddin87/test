@@ -111,7 +111,7 @@ if(response.dematdetail.length>0)
 {j=i;j++;dematacc+='<tr class="counter">';dematacc+='<td width="25%">'+j+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['accountno']+'</td>';dematacc+='<td width="25%">'+response.dematdetail[i]['depository_participient']+'</td>';dematacc+='</tr>';}}}
 else
 {dematacc='<tr><td colspan ="4">No Data Found..</td></tr>';}
-if(response.reldetail)
+if(Object.keys(response.reldetail).length)
 {var deptype='';for(var i=0;i<response.reldetail.dependency_nature.length;i++)
 {if(response.reldetail[i]['name']!='')
 {j=i;j++;reldetail+='<tr class="counter">';reldetail+='<td>'+j+'</td>';reldetail+='<td>'+response.reldetail[i]['name']+'</td>';reldetail+='<td>'+response.reldetail[i]['relationshipname']+'</td>';if(response.reldetail.dependency_nature!='')
@@ -120,6 +120,8 @@ reldetail+='<td>'+deptype+'</td>';if(response.reldetail[i]["nationality"]=='Indi
 {reldetail+="<td>"+response.reldetail[i]["pan"]+"</td>";reldetail+="<td></td>";reldetail+="<td></td>";}
 else if(response.reldetail[i]["nationality"]=='Other')
 {reldetail+="<td></td>";reldetail+="<td>"+response.reldetail[i]["pan"]+"</td>";reldetail+="<td>"+response.reldetail[i]["legal_identifier"]+"</td>";}
+else
+{reldetail+="<td></td>";reldetail+="<td></td>";reldetail+="<td></td>";}
 reldetail+='<td>'+response.reldetail[i]['aadhar']+'</td>';reldetail+='<td>'+response.reldetail[i]['dob']+'</td>';reldetail+='<td>'+response.reldetail[i]['address']+'</td>';reldetail+='<td>'+response.reldetail[i]['education']+'</td>';reldetail+='<td>'+response.reldetail[i]['education']+'</td>';reldetail+='<td>'+response.reldetail[i]['sharehldng']+'</td>';reldetail+='<td>'+response.reldetail[i]['adrshldng']+'</td>';reldetail+='</tr>';}}}
 else
 {reldetail='<tr><td colspan ="14">No Data Found..</td></tr>';}

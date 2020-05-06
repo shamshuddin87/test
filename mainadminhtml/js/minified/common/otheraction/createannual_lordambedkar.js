@@ -99,6 +99,8 @@ reldetail+="<td>"+deptype+"</td>";if(response.reldetail[i]["nationality"]=='Indi
 {reldetail+="<td>"+response.reldetail[i]["pan"]+"</td>";reldetail+="<td></td>";reldetail+="<td></td>";}
 else if(response.reldetail[i]["nationality"]=='Other')
 {reldetail+="<td></td>";reldetail+="<td>"+response.reldetail[i]["pan"]+"</td>";reldetail+="<td>"+response.reldetail[i]["legal_identifier"]+"</td>";}
+else
+{reldetail+="<td></td>";reldetail+="<td></td>";reldetail+="<td></td>";}
 reldetail+="<td>"+response.reldetail[i]["aadhar"]+"</td>";reldetail+="<td>"+response.reldetail[i]["dob"]+"</td>";reldetail+="<td>"+response.reldetail[i]["address"]+"</td>";reldetail+="<td>"+response.reldetail[i]["education"]+"</td>";reldetail+="<td>"+response.reldetail[i]["education"]+"</td>";reldetail+="<td>"+response.reldetail[i]["sharehldng"]+"</td>";reldetail+="<td>"+response.reldetail[i]["adrshldng"]+"</td>";reldetail+="</tr>";}}}else{reldetail='<tr><td colspan ="14">No Data Found..</td></tr>';}
 if(response.relDematdetail.length>0){for(var i=0;i<response.relDematdetail.length;i++){if(response.relDematdetail[i]["accountno"]!=""){j=i;j++;reldemat+='<tr class="counter">';reldemat+="<td>"+j+"</td>";reldemat+="<td>"+response.relDematdetail[i]["name"]+"</td>";reldemat+="<td>"+response.relDematdetail[i]["accountno"]+"</td>";reldemat+="<td>"+
 response.relDematdetail[i]["depository_participient"]+"</td>";reldemat+="</tr>";}}}else{reldemat='<tr><td colspan ="14">No Data Found..</td></tr>';}

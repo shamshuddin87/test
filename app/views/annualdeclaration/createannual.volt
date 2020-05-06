@@ -15,7 +15,7 @@
    {
       $identityno = $personaldetail['pan'];
       $pan = '';
-      $nature = $nature;
+      $nature = $personaldetail['legal_identifier'];
    }
    else if($personaldetail['nationality'] == 'Indian')
    {
@@ -27,7 +27,7 @@
    {
        $identityno = '';
        $pan = '';
-      $nature ='';
+        $nature ='';
    }
     
 

@@ -445,3 +445,8 @@ label {
 .btn.personal{background: #fff; color: #000;}
 .btn.personal.active { background: #522c8f; color: #fff; }
 .btn.btn.personal:hover { background:  #522c8f; color: #fff; }
+
+.modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+    }

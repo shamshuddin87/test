@@ -1237,6 +1237,7 @@ function getpdfdata(uniqueid) {
                 reldetail += "<td>" + response.reldetail[i]["name"] + "</td>";
                 reldetail +=
                   "<td>" + response.reldetail[i]["relationshipname"] + "</td>";
+
                 if (response.reldetail.dependency_nature != "") {
                   deptype = response.reldetail.dependency_nature[i].toString(
                     ","
@@ -1255,6 +1256,13 @@ function getpdfdata(uniqueid) {
                     reldetail +="<td></td>";
                      reldetail +="<td>" + response.reldetail[i]["pan"] + "</td>";
                      reldetail += "<td>" + response.reldetail[i]["legal_identifier"] + "</td>";
+                   }
+                   else
+                   {
+                    reldetail +="<td></td>";
+                    reldetail +="<td></td>";
+                    reldetail +="<td></td>";
+
                    }
                
                 reldetail += "<td>" + response.reldetail[i]["aadhar"] + "</td>";
