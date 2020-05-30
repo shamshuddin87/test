@@ -368,7 +368,7 @@ input#upload, input#uploadagrm { cursor: pointer; }
     padding: 5px;
 }
 
-
+/* scroll modal even after error messges */
 .modal {
     overflow-x: hidden;
     overflow-y: auto;
