@@ -184,11 +184,11 @@ or getcontrolleractionname == "createcont_disclsr"
     
 <!-- End User Tracking Code -->
 </head>
-{% if getcontrollername == "annualdeclaration"  %}
+{% if getcontrollername == "annualdeclaration" or getcontrollername == "continuousdisclosure" %}
   <body tabindex="1" class="nav-sm loadingInProgress  <?php echo ($getcontrollername=='index' || $getcontrollername=='login') ? 'login-cover' : $getcontrollername.'_bodymncl '; ?>" >
 {% endif %}
 
-{% if getcontrollername != "annualdeclaration"  %}
+{% if getcontrollername != "annualdeclaration" or getcontrollername != "continuousdisclosure" %}
 <body tabindex="1" class="nav-md loadingInProgress  <?php echo ($getcontrollername=='index' || $getcontrollername=='login') ? 'login-cover' : $getcontrollername.'_bodymncl '; ?>" ><!--bg-purple-->
 {% endif %}
 

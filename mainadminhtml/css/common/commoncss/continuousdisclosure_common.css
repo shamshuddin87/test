@@ -18,3 +18,28 @@ input#holdingfile { padding: 9px; border: 1px solid #ccc; width: 100%;}
 .formelementmain section.col.col-md-6.col-xs-6 {margin: 9px 0px;}
 
 .create_button {text-align: right;}
+
+.nav-sm .container.body .col-md-3.left_col {
+    min-height: 100%;
+    width: 70px;
+    padding: 0;
+    /*position: fixed;*/
+    display: flex;
+    z-index: 999;
+    overflow: visible !important;
+    height: 100%;
+}
+
+body.nav-sm .container.body .left_col {
+    height: 100%;
+}
+
+.main_container {
+    position: relative;
+}
+
+body.nav-sm .main_container .top_nav,
+.main_container .top_nav {
+    z-index: 2;
+    position: relative;
+}

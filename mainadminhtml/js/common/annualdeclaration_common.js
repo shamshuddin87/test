@@ -10,8 +10,8 @@ website(document).ready(function()
     website('.dpgradu').html(addhtmlnxt);
     website('.mfr').html(addhtmlnxt);
 
-    //  website('#sidebar-menu li').removeClass('active');     
-    // website('.nav.child_menu').hide(); 
+    website('#sidebar-menu li').removeClass('active');     
+    website('.nav.child_menu').hide(); 
 
 
     
