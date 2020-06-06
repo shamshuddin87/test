@@ -148,6 +148,36 @@ class Blackoutperiodcommon extends Component
         return $returndta; 
     }
     /**************************** delete cmp in blackout period end *****************************/
+
+     /*   ------- START Test Email Facility ------ */
+     public function inserttradingwindowtestemail($getuserid,$user_group_id,$emailcontent,$logedinusername,$logedinuseremail)
+     {
+         $connection = $this->dbtrd;
+         $time = time();
+         
+       
+            $purpose = htmlentities($emailcontent['reason'],ENT_QUOTES);
+            unset($emailcontent['reason']);
+            $emailcontent['reason'] = $purpose;
+            $emailcontentfinal = json_encode($emailcontent);
+        
+         
+         $queuetype = '3';
+         $queryinsert = "INSERT INTO `email_test`
+         (`user_id`,`user_group_id`,`qtypeid`,`sendtoid`,`sendtoemail`,`sendtoname`,`maildata`,`date_added`, `date_modified`,`timeago`)
+          VALUES ('".$getuserid."','".$user_group_id."','".$queuetype."','".$getuserid."','".$logedinuseremail."','".$logedinusername."','".$emailcontentfinal."',NOW(),NOW(),'".$time."')";
+        // echo $queryinsert;exit;
+         try
+         {
+             $exeprev = $connection->query($queryinsert);
+             return true;
+         }
+         catch (Exception $e)
+         {
+             return false;
+         }
+     }
+     /*   ------- END Test Email Facility ------ */
 }
 
 

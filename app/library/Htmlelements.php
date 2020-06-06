@@ -1901,6 +1901,7 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
         $unixTimestamp1 = strtotime($emaildata['blckoutto']);
  
         $dayOfWeek1 = date("l", $unixTimestamp1);
+        $reason =html_entity_decode($emaildata['reason']); 
 
  
  
@@ -1953,7 +1954,7 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
         <p>Dear All,</p>
-        <p>Please note that the trading window is closed from '.$dayOfWeek.', '.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.', '.$emaildata['blckoutto'].' both days inclusive on account of '.$emaildata['reason'].'.
+        <p>Please note that the trading window is closed from '.$dayOfWeek.', '.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.', '.$emaildata['blckoutto'].' both days inclusive on account of '.$reason.'.
         </p>';
         $html.="<p>Under the Securities and Exchange Board of India (Prohibition of Insider Trading) Regulations 2015, (Insider Trading Regulations) buying, selling or dealing in the securities of the company by its directors/employees on the knowledge of any inside, unpublished price-sensitive information is prohibited and doing so is an offense. The Directors and employees of the Company and their immediate relatives are not permitted to trade in the Company's shares/ADRs during the period, as may be notified in this behalf and/or till such price-sensitive information is disseminated to the public at large.
 

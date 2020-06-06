@@ -146,7 +146,7 @@ class BlackoutperiodController extends ControllerBase
                     //print_r($connectedperson);exit;
                     $email = $grpusrs['userlist'];
                     $email =array_merge($email,$connectedperson);
-                    //print_r($infodata);exit;
+                    //print_r($email);exit;
                     
                   
                     for($i=0;$i<sizeof($email);$i++)
@@ -155,13 +155,14 @@ class BlackoutperiodController extends ControllerBase
 
                         if(array_key_exists("wr_id", $email[$i]))
                         {
+                            echo "hello";
                         $sendtoid = $email[$i]['wr_id'];                        
                         $sendtoname = $email[$i]['fullname'];
                         $emailid = $email[$i]['email'];
                         }
                         else if(array_key_exists("nameofentity", $email[$i]))
                         {
-
+                          echo "not hello";
                         $sendtoid = $email[$i]['user_id'];                        
                         $sendtoname = $email[$i]['nameofentity'];
                         $emailid = $email[$i]['email'];
@@ -204,6 +205,7 @@ class BlackoutperiodController extends ControllerBase
     }
     /**************************** insert cmp in blackout period end *****************************/
     
+
     /**************************** fetch cmp in blackout period start *****************************/
     public function fetchblackoutperiodAction()
     {
@@ -353,4 +355,106 @@ class BlackoutperiodController extends ControllerBase
             exit('No direct script access allowed');
         }
     }
+
+      /*   ------- START Test Email Facility ------ */
+    public function tradingWindowTestEmailAction()
+    {
+          $this->view->disable();
+          $getuserid = $this->session->loginauthspuserfront['id'];
+          $cin = $this->session->memberdoccin;
+          $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+          //echo $getuserid.'*'.$cin;exit;
+  
+          if($this->request->isPost() == true)
+          {
+              if($this->request->isAjax() == true)
+              {
+
+
+                $date=date('d-m-Y');
+                $emailcontent=$this->request->getPost();
+                $logedinuseremail = $this->session->loginauthspuserfront['email'];
+                $logedinusername = $this->session->loginauthspuserfront['username'];
+                  
+                $blckoutfrom = $this->request->getPost('blckoutfrom','trim');
+                $blckoutto = $this->request->getPost('blckoutto','trim');
+                $purcloser = $this->request->getPost('reason','trim');
+                $compid = $this->request->getPost('compid','trim');
+                  
+                 
+                if(empty($compid))
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Company!!');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($blckoutfrom))
+                {
+                    $data = array("logged" => false,'message' => 'Black Out Date From should not empty!!');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($date) > strtotime($blckoutfrom))
+                {
+                      $data = array("logged" => false,'message' => 'Black Out Date From should be in future!!');
+                      $this->response->setJsonContent($data);
+                }
+                else if(empty($blckoutto))
+                {
+                    $data = array("logged" => false,'message' => 'Black Out Date To should not empty!!');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($date) > strtotime($blckoutto))
+                {
+                      $data = array("logged" => false,'message' => 'Black Out Date To should be in future!!');
+                      $this->response->setJsonContent($data);
+                }
+                else if(strtotime($blckoutfrom) > strtotime($blckoutto))
+                {
+                   $data = array("logged" => false,'message' => 'Black Out Date To should be Greater Than Black Out Date From!!');
+                   $this->response->setJsonContent($data);
+                }
+              
+                  else
+                  {
+                     
+                    $inserres = $this->blackoutperiodcommon->inserttradingwindowtestemail($getuserid,$user_group_id,$emailcontent ,$logedinusername,$logedinuseremail);
+                    //print_r($inserres);exit;
+  
+                      if($inserres)
+                      { 
+                        $result = $this->emailer->mailoftradingwindow($emailcontent,$logedinuseremail);
+                         
+                          if($result==true)
+                          {
+                              $data = array('logged'=>true, 'message'=>'Sent Successfully');
+                              $this->response->setJsonContent($data);
+                          }
+                          else
+                          {
+                              $data = array('logged'=>false, 'message'=>'Mail Not Sent');
+                              $this->response->setJsonContent($data);
+  
+                          }
+                      }
+                      else
+                      {
+                          $data = array('logged'=>false, 'message'=>'Announcement Test Email Not Sent.');
+                          $this->response->setJsonContent($data);
+  
+                      }
+                  }
+                  $this->response->send();
+              }
+              else
+              {
+                  exit('No direct script access allowed');
+                  $connection->close();
+              }
+          }
+          else
+          {
+              return $this->response->redirect('errors/show404');
+              exit('No direct script access allowed');
+          }
+    }
+      /*   ------- END Test Email Facility ------ */
 }

@@ -57,7 +57,7 @@ class Employeemodulecommon extends Component
 
         $connection = $this->dbtrd;
 
-        $queryget = "SELECT pr.`*` ,it.`dpdate` FROM personal_info pr INNER JOIN
+        $queryget = "SELECT pr.* ,it.`dpdate` FROM personal_info pr INNER JOIN
         it_memberlist it ON it.`wr_id`=pr.`userid`
         WHERE `userid` = '".$uid."' ";
        // print_r($queryget);exit;
