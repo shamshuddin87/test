@@ -66,11 +66,11 @@ header("Pragma: no-cache");
     
 <!-- End User Tracking Code -->
 </head>
-<?php if ($getcontrollername == 'annualdeclaration') { ?>
+<?php if ($getcontrollername == 'annualdeclaration' || $getcontrollername == 'continuousdisclosure') { ?>
   <body tabindex="1" class="nav-sm loadingInProgress  <?php echo ($getcontrollername=='index' || $getcontrollername=='login') ? 'login-cover' : $getcontrollername.'_bodymncl '; ?>" >
 <?php } ?>
 
-<?php if ($getcontrollername != 'annualdeclaration') { ?>
+<?php if ($getcontrollername != 'annualdeclaration' || $getcontrollername != 'continuousdisclosure') { ?>
 <body tabindex="1" class="nav-md loadingInProgress  <?php echo ($getcontrollername=='index' || $getcontrollername=='login') ? 'login-cover' : $getcontrollername.'_bodymncl '; ?>" ><!--bg-purple-->
 <?php } ?>
 
