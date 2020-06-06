@@ -155,14 +155,14 @@ class BlackoutperiodController extends ControllerBase
 
                         if(array_key_exists("wr_id", $email[$i]))
                         {
-                            echo "hello";
+                           // echo "hello";
                         $sendtoid = $email[$i]['wr_id'];                        
                         $sendtoname = $email[$i]['fullname'];
                         $emailid = $email[$i]['email'];
                         }
                         else if(array_key_exists("nameofentity", $email[$i]))
                         {
-                          echo "not hello";
+                          //echo "not hello";
                         $sendtoid = $email[$i]['user_id'];                        
                         $sendtoname = $email[$i]['nameofentity'];
                         $emailid = $email[$i]['email'];
