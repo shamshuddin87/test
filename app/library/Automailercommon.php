@@ -15,8 +15,15 @@ class Automailercommon extends Component
         
         try
         {
+            //print_r($infodata);exit;
+            $purpose = htmlentities($infodata['reason'],ENT_QUOTES);
+            unset($infodata['reason']);
+            $infodata['reason'] = $purpose;
             $maildata = '';
             $maildata = json_encode($infodata);
+            //print_r($maildata);exit;
+          
+           
             $maildata = str_replace("'", "''", $maildata);
             //print_r($maildata);exit;    
             

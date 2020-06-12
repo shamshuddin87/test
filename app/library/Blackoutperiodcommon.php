@@ -51,6 +51,8 @@ class Blackoutperiodcommon extends Component
              // print_r($getmasterid);
              $user_group_id=2;
         }
+        $reason = str_replace("'", "''", $reason);
+
 
         $queryinsert = "INSERT INTO `blackoutperiod_cmp`
         (`user_id`,`user_group_id`,`companyid`,`datefrom`, `dateto`,`reason`,`date_added`, `date_modified`,`timeago`)

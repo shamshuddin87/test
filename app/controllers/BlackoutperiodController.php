@@ -100,7 +100,7 @@ class BlackoutperiodController extends ControllerBase
                 $blckoutto   = $this->request->getPost('blckoutto','trim');
                 $reason   = $this->request->getPost('reason','trim');
                 $infodata = $this->request->getPost();
-                //print_r($reason);exit;
+                
                 
                 if(empty($compid))
                 {
@@ -139,6 +139,7 @@ class BlackoutperiodController extends ControllerBase
                 
                 
                     $getres = $this->blackoutperiodcommon->insertblackoutperiod($getuserid,$user_group_id,$compid,$blckoutfrom,$blckoutto,$reason);
+                    
 
                     $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
                     $connectedperson = $this->insidercommon->getconnectedusers($getuserid,$user_group_id);
@@ -174,6 +175,7 @@ class BlackoutperiodController extends ControllerBase
                         $qtypeid = '3'; //-- refer email_queuetype table
                        
                         $result = $this->automailercommon->insertemailqueue($getuserid,$user_group_id,$qtypeid,$sendtoid,$emailid,$sendtoname,$infodata);
+                        //print_r($result);exit;
                     }
 
                     if($getres && $result==true)
@@ -416,7 +418,7 @@ class BlackoutperiodController extends ControllerBase
                   else
                   {
                      
-                    $inserres = $this->blackoutperiodcommon->inserttradingwindowtestemail($getuserid,$user_group_id,$emailcontent ,$logedinusername,$logedinuseremail);
+                    $inserres = $this->blackoutperiodcommon->inserttradingwindowtestemail($getuserid,$user_group_id,$emailcontent,$logedinusername,$logedinuseremail);
                     //print_r($inserres);exit;
   
                       if($inserres)
