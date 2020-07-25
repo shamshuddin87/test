@@ -199,20 +199,26 @@ class Upsicommon extends Component
         }
         if(!empty($exceldpids))
         {
-            //print_r($exceldpids);exit;
-            $excelcondps = implode(',',$exceldpids);
+            
+            $excelcondps = implode(',',$exceldpids['getres']);
+            
+            //print_r($updatedata);exit;
+            
         }
        
-        //print_r($connctdps);exit;
+        //print_r($excelcondps);exit;
         if(!empty($connctdps) && !empty($excelcondps))
         {
             $connctdps.= ','.$excelcondps;
+            $updatedata['exceldp'] = $excelcondps;
+            
         }
         else if(!$connctdps && !empty($excelcondps))
         {
             $connctdps = $excelcondps;
+            $updatedata['exceldp'] = $excelcondps;
         }
-        //print_r($updatedata);exit;
+        //print_r($exceldpids);exit;
         $sqlquery = 'UPDATE `upsimaster` SET  `upsitype`="'.$updatedata['upname'].'",`toalldps`="'.$toalldps.'",`projstartdate`="'.$updatedata['pstartdte'].'",`enddate`="'.$updatedata['enddate'].'",`projectowner`="'.$updatedata['ownerid'].'",`projdescriptn`="'.$updatedata['projdesc'].'",`connecteddps`="'.$connctdps.'",`date_modified`=NOW(),`timeago`="'.$time.'"
          WHERE `id`="'.$updatedata['editid'].'"'; 
         //echo $sqlquery;exit; 
@@ -411,26 +417,105 @@ class Upsicommon extends Component
         
 
 
-       
-        // for($i=0;$i<sizeof($userdatadp);$i++)
-        // {
-        //     $sendtoid = $userdatadp[$i]['wr_id'];                        
-        //     $sendtoname = $userdatadp[$i]['fullname'];
-        //     $emailid = $userdatadp[$i]['email'];
-        //     $enddate = '';
-        //     print_r($data);exit;
-        //     if(array_key_exists("enddate", $data))
-        //     {
-        //         $enddate = $data['enddate'];
-        //     }
-        //     $pstartdate = $data['pstartdte'];
-        //     $todaydate = date('d-m-Y');
+         // mail Type One:
+        
+        //print_r($cntin.'*'.sizeof($getdata)); exit;
+        if($result == true)
+        {
+            return true;
+        }
+        else
+        {   
+            return false;
+        } 
+            
+    }
 
-        //     $result = $this->emailer->mailofnewdp($emailid,$sendtoname,$pstartdate,$enddate,$todaydate,$data['nameaddedby'],$data['upname']);
+    public function mailfortradingwindoweditexcel($getuserid,$user_group_id,$userdp,$data,$username,$ownerid,$upsiid)
+    {
+        //print_r($data);exit;
+        $uniuserid = array_unique($userdp);
+        //print_r($uniuserid);exit;
+        $uniuserid = array_values($uniuserid);
+        
+        $unquser = implode(',',$uniuserid);
+        //print_r($unquser);exit;
+        $userdatadp = $this->fetchuserdata($unquser); //designated person
+
+        $ownerdata = $this->fetchuserdata($ownerid); //owner person
+        $owneremail =  $ownerdata[0]['email'];
+        $ownerfullname = $ownerdata[0]['fullname'];
+        //print_r($userdatadp);exit;
+        for($i=0;$i<sizeof($userdatadp);$i++)
+        {
+                              
+            $sendtoname[] = $userdatadp[$i]['fullname'];
+           
+        }
+        $dpnames = implode(",", $sendtoname);
+        
+ 
+        
+        $upsiinfo = $this->upsicommon->getsingleupsidetail($upsiid);  //upsiinfo
+        //print_r($upsiinfo);exit;
+        $complianceinfo = $this->sensitiveinformationcommon->compliancedetails(); // CO Officer
+            foreach ($complianceinfo as $c) 
+            {
+                $sendmail1[] = $c['email'];
+                $sendmailname[] = $c['fullname'];
+            }
+           // print_r($sendmail1);exit;
+
+        array_push($sendmail1,$owneremail);
+        array_push($sendmailname,$ownerfullname); // to send mail to projec owner and co officer
+        
+        $uniquemail1 = array_unique($sendmail1);
+        $uniquemailname = array_unique($sendmailname);
+        //print_r($sendmailname);exit;
+
+
+
+        for($i=0;$i<sizeof($uniquemail1);$i++)
+        {
+           
+            $email = $uniquemail1[$i];
+            $enddate = '';
+            //print_r($data);exit;
+            if(array_key_exists("enddate", $data))
+            {
+                $enddate = $data['enddate'];
+            }
+            $pstartdate = $data['pstartdte'];
+            $todaydate = date('d-m-Y');
+
+            
+            $result = $this->emailer->mailofType1($email,$todaydate,$data['upname'],$upsiinfo,$dpnames,$uniquemailname[$i]);
            
            
-        // }
+        }
+        
+        //mail for dp users
+        for($i=0;$i<sizeof($userdatadp);$i++)
+        {
+          
+            $enddate = '';
+            //print_r($data);exit;
+            if(array_key_exists("enddate", $data))
+            {
+                $enddate = $data['enddate'];
+            }
+            $pstartdate = $data['pstartdte'];
+            $todaydate = date('d-m-Y');
 
+          // ----- Start InsertDataInAutomailer -----
+          $qtypeid = '6'; //-- refer email_queuetype table
+
+          $infodata = array('upsitype'=>$data['upname'],'ownername'=>$ownerfullname,'emaildate'=>$todaydate,'projectstart'=>$pstartdate,'date_added'=>$upsiinfo['date_added']);
+          $result1 = $this->automailercommon->insertemailqueue($getuserid,$user_group_id,$qtypeid,$userdatadp[$i]['id'],$userdatadp[$i]['email'],$userdatadp[$i]['fullname'],$infodata);
+
+          // ----- End InsertDataInAutomailer -----
+        }
+        
 
          // mail Type One:
         
@@ -487,32 +572,64 @@ class Upsicommon extends Component
                 $connectdps[] = $val['wr_id'];
             }
             $userids = $connectdps;
+            //print_r($userids );exit;
         }
         else
         {
-
+          //echo "else";exit;
 
             $flag = 0;
 
             $chngein = 'all';
             
-            //print_r($updatedata);exit;
-            if(array_key_exists("connectdps",$updatedata))
+            //print_r($updatedata);exit;  //when both connect and excel
+            if(array_key_exists("connectdps",$updatedata) && array_key_exists("exceldp",$updatedata) )
             {
-                
+                //print_r($updatedata);exit;
 
                 $connctdps = implode(',',$updatedata['connectdps']);
+                $exceldp = $updatedata['exceldp'];
+                $connctdps.= ','.$exceldp;
+
                 //print_r($connctdps);exit;
 
                 if(strcasecmp($connctdps, $updatedata['cmpconnectdps']) !=0)
+                 { 
+                    $chngein = 'excelusers';
+                
+                   $flag = 1;
+                 }
+                
+            }
+            else if(array_key_exists("connectdps",$updatedata))
+            {
+                //print_r($updatedata);exit;
+
+                $connctdps = implode(',',$updatedata['connectdps']);
+
+                //print_r($connctdps);exit;
+
+                if(strcasecmp($connctdps, $updatedata['cmpconnectdps']) !=0 || array_key_exists("exceldp",$updatedata))
                  { 
                     $chngein = 'users';
                 
                    $flag = 1;
                  }
+                
+            }
+            else if(array_key_exists("exceldp",$updatedata))
+            {
+                //echo "hello";exit;
+                $connctdps = $updatedata['exceldp'];
+                if(strcasecmp($connctdps, $updatedata['cmpconnectdps']) !=0)
+                 { 
+                    $chngein = 'excelusers';
+                
+                   $flag = 1;
+                 }
             }
             else
-            {
+            { 
                       $connctdps ='';
             }
           
@@ -552,24 +669,52 @@ class Upsicommon extends Component
                 {
 
                     
-                    $condp = explode(',',$connctdps); // all connected dps in array
-                    //print_r($condp);
-                   
-                     
+                    $condp = explode(',',$connctdps); // all connected dps in array(convert in array)
+                    
                     $connctdpscmp = explode(',',$updatedata['cmpconnectdps']); //old dps
+
+                    //Excel Users
+                     
+                    //print_r($updatedata);exit;
                     //print_r( $connctdpscmp  );
 
 
                     $useriddp = array_diff($condp,$connctdpscmp);
 
-                 if($useriddp)
-                {
-          
-                $result = $this->upsicommon->mailfortradingwindowedit($getuserid,$usergroup,$useriddp,$updatedata,$username,$ownerid,$upsiid);
-                 return $result;
-                 }
+                    if($useriddp)
+                    {
+            
+                    $result = $this->upsicommon->mailfortradingwindowedit($getuserid,$usergroup,$useriddp,$updatedata,$username,$ownerid,$upsiid);
+                    return $result;
+                    }
                       //print_r($useriddp);echo "hello";exit;
                 }
+                if($chngein == 'excelusers')
+                {
+
+                    
+                    $condp = explode(',',$connctdps); // all connected dps in array(convert in array)
+                    
+                    $connctdpscmp = explode(',',$updatedata['cmpconnectdps']); //old dps
+
+                    //Excel Users
+                     
+                    //print_r($updatedata);exit;
+                    //print_r( $connctdpscmp  );
+
+
+                    $useriddp = array_diff($condp,$connctdpscmp);
+                    //print_r($useriddp);exit;
+
+                    if($useriddp)
+                    {
+            
+                     $result = $this->upsicommon->mailfortradingwindoweditexcel($getuserid,$usergroup,$useriddp,$updatedata,$username,$ownerid,$upsiid);
+                     return $result;
+                    }
+                      //print_r($useriddp);echo "hello";exit;
+                }
+                
                 else
                 {
                     //$ownerid = explode(',',$updatedata['ownerid']);
