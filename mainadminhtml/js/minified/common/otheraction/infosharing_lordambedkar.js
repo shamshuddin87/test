@@ -104,7 +104,7 @@ website.ajax({url:'sensitiveinformation/namelists',data:formdata,method:'POST',c
 {rectype='connected person';if(response.data[i].category=='16')
 {categoryname=response.data[i].othercategory;name=response.data[i].name;email=response.data[i].email;category=response.data[i].category;id=response.data[i].id;wr_id='';}
 else if(response.data[i].category=='14')
-{categoryname=response.data[i].categoryname;name=response.data[i].name;email=response.data[i].email;category=response.data[i].category;id=response.data[i].id;alert(response.data[i].id);wr_id=response.data[i].wr_id;}
+{categoryname=response.data[i].categoryname;name=response.data[i].name;email=response.data[i].email;category=response.data[i].category;id=response.data[i].id;wr_id=response.data[i].wr_id;}
 else
 {categoryname=response.data[i].categoryname;name=response.data[i].name;email=response.data[i].email;category=response.data[i].category;id=response.data[i].id;wr_id='';}}
 else
