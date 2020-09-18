@@ -1388,7 +1388,7 @@ class Miscommon extends Component
                <th>Project Start Date</th>
                <th>Project End Date</th>
                <th>Creation Date</th>
-               <th>Added By</th>
+               <th>Shared By</th>
             </tr>
          ".$myhtml."
          </table>
