@@ -130,6 +130,7 @@
             <!--   <?php } ?> -->
             <?php } ?>
             <!-----------------------------------EMPLOYEE MODULE--------------------------------------->
+            <?php if($gettypm['user_group_id'] != '2'){?>
             <li>
                   <a class="click_board click_board3" href="javascript:;"><i class="fa fa-share-alt"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
@@ -146,7 +147,7 @@
                      </li>
                   </ul>
                </li>
-                
+            <?php } ?>    
             <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='2') {?>
             <li>
                <a class="click_board click_board3" href="javascript:;"><i class="glyphicon glyphicon-cog"></i>MIS<span class="fa fa-chevron-down"></span></a>

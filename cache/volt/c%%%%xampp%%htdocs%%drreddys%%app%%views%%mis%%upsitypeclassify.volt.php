@@ -42,7 +42,7 @@ $condeptsess = $this->session->contractdepartment;
                             <th>Project Start Date</th>
                             <th>Project End Date</th>
                             <th>Creation Date</th> 
-                            <th>Added By</th> 
+                            <th>Shared By</th> 
                         </tr>
                     </thead>
                     <tbody class="appendrow" appendrow='1'>

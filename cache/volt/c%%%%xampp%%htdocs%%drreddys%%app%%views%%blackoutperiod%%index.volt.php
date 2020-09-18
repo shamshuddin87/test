@@ -82,6 +82,7 @@ $condeptsess = $this->session->contractdepartment;
                         
                         <section class="col col-md-12 company_asses">
                             <input type="submit" value="Submit" class="btn btn-primary contractexcelbtn">
+                            <button type="button" class="btn btn-primary testemail" >Test Email</button>
                         </section>
                         <div class="clearelement"></div>
                         
