@@ -1,5 +1,5 @@
 .formelementmain {padding: 30px 12px; background: #fff; border-radius: 4px;box-shadow: 2px 2px 5px #cccc; margin: 20px 0;}
-input.btn.btn-primary.contractexcelbtn { margin-top: 20px;}
+input.btn.btn-primary.contractexcelbtn ,.testemail { margin-top: 20px;}
 tbody.appendrow {  background: #fff;}
 input[type="search"] {  border: 1px solid #73879c;  padding: 6px;  margin: 8px 10px;}
 .control-label.btnsubmitme.cntrol_tab_one {  float: left;   margin-top: 20px;}

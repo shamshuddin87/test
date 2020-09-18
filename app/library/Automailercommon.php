@@ -15,10 +15,26 @@ class Automailercommon extends Component
         
         try
         {
+            //print_r($infodata);exit;
+            
+            if($qtypeid == '6')
+            {
+                $maildata = json_encode($infodata);
+            }
+            else
+            {
+           
+            $purpose = htmlentities($infodata['reason'],ENT_QUOTES);
+            unset($infodata['reason']);
+            $infodata['reason'] = $purpose;
             $maildata = '';
             $maildata = json_encode($infodata);
+            //print_r($maildata);exit;
+          
+           
             $maildata = str_replace("'", "''", $maildata);
             //print_r($maildata);exit;    
+            }
             
             $queryinsert = "INSERT INTO `email_queue`
                 (`user_id`,`user_group_id`,
@@ -27,7 +43,7 @@ class Automailercommon extends Component
                 VALUES ('".$getuserid."', '".$user_group_id."',
                 '".$qtypeid."', '".$sendtoid."', '".$sendtoemail."', '".$sendtoname."', '".$maildata."', 
                 NOW(),NOW(),'".$time."') ";         
-            //print_r($queryinsert); exit;
+            // print_r($queryinsert); exit;
             
             $exeqry = $connection->query($queryinsert);
             //echo '<pre>'; print_r($exeqry); exit;

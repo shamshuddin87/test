@@ -1894,13 +1894,16 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
     public function mailformdackrqst($subject,$emaildata)
    {
 
-        //print_r($emaildata);exit;
+       // print_r($emaildata);exit;
         $unixTimestamp = strtotime($emaildata['blckoutfrom']);
  
         $dayOfWeek = date("l", $unixTimestamp);
         $unixTimestamp1 = strtotime($emaildata['blckoutto']);
  
         $dayOfWeek1 = date("l", $unixTimestamp1);
+        $reason =html_entity_decode($emaildata['reason']); 
+        $blackfrom = $emaildata['blckoutfrom'];
+        $blackto = $emaildata['blckoutto'];
 
  
  
@@ -1953,14 +1956,14 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
         <p>Dear All,</p>
-        <p>Please note that the trading window is closed from '.$dayOfWeek.', '.$emaildata['blckoutfrom'].' to '.$dayOfWeek1.', '.$emaildata['blckoutto'].' both days inclusive on account of '.$emaildata['reason'].'.
-        </p>';
-        $html.="<p>Under the Securities and Exchange Board of India (Prohibition of Insider Trading) Regulations 2015, (Insider Trading Regulations) buying, selling or dealing in the securities of the company by its directors/employees on the knowledge of any inside, unpublished price-sensitive information is prohibited and doing so is an offense. The Directors and employees of the Company and their immediate relatives are not permitted to trade in the Company's shares/ADRs during the period, as may be notified in this behalf and/or till such price-sensitive information is disseminated to the public at large.
+        <p>Please note that the trading window is closed from '.$dayOfWeek.', '.$blackfrom.' to '.$dayOfWeek1.', '.$blackto.' both days inclusive on account of '.$reason.'.
+        </p>
+       <p>Under the Securities and Exchange Board of India (Prohibition of Insider Trading) Regulations 2015, (Insider Trading Regulations) buying, selling or dealing in the securities of the company by its directors/employees on the knowledge of any inside, unpublished price-sensitive information is prohibited and doing so is an offense. The Directors and employees of the Company and their immediate relatives are not permitted to trade in the Company&#39;s shares/ADRs during the period, as may be notified in this behalf and/or till such price-sensitive information is disseminated to the public at large.
 
               </p>
-        <p>Under the revised Insider Trading Regulations and Company's revised Code of Conduct to regulate, monitor and report trading by designated persons (the Code), the trading restriction period can be made applicable from the end of every quarter till 48 hours after the declaration of financial results or such other period as may be notified in this behalf. Accordingly, it is hereby informed that the Trading Window for buying, selling or dealing in the securities of the Company by the designated persons (including their immediate relatives) will be closed from from ".$dayOfWeek.", ".$emaildata['blckoutfrom']." to ".$dayOfWeek1.", ".$emaildata['blckoutto']." for ".$emaildata['reason'].".
-           </p>";
-            $html.='<p>Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.</p>
+        <p>Under the revised Insider Trading Regulations and Company&#39;s revised Code of Conduct to regulate, monitor and report trading by designated persons (the Code), the trading restriction period can be made applicable from the end of every quarter till 48 hours after the declaration of financial results or such other period as may be notified in this behalf. Accordingly, it is hereby informed that the Trading Window for buying, selling or dealing in the securities of the Company by the designated persons (including their immediate relatives) will be closed from '.$dayOfWeek.', '.$blackfrom.' to '.$dayOfWeek1.', '.$blackto.' for '.$reason.'.
+           </p>
+           <p>Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.</p>
 
             <p>Any contravention of the above would attract penalty as mentioned under Clause 13 of the Code and/or by SEBI. Hence, please refrain from buying, selling or dealing in the shares/ADRs of the Company during the above mentioned period. You are also requested not to take position in any derivatives in the securities of the Company.
 
@@ -2252,6 +2255,75 @@ public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$e
     //echo $html; exit; 
 
      return $html;
+} 
+
+
+public function Type2content($emailid,$username,$upsitype,$ownername,$pstartdate,$emaildate,$date_timestamp)
+{   
+     
+          $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="htth3://www.w3.org/1999/xhtml">
+
+    <head>
+      <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+      <title>Phoenix Peth</title>
+          <style>
+          .button {
+              background-color: #4CAF50; /* Green */
+              border: none;
+              color: white;
+              padding: 15px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+              margin: 4px 2px;
+              cursor: pointer;
+          }
+
+          .button2 {background-color: #008CBA;} /* Blue */
+          .button3 {background-color: #f44336;} /* Red */ 
+          .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+          .button5 {background-color: #555555;} /* Black */
+          </style>
+  </head>
+
+  <body style="font-family: Arial;
+      width: 100%;
+      background-color: #f2f2f2;
+      padding:30px;
+      max-width: 600px;
+      margin: 0 auto;;
+
+    ">
+      <div class="container" style=" max-width:600px; margin: 0 auto; background-color: #fff;padding:25px;">
+          <div class="main_container" style="max-width:600px; margin:0px;">
+              <div class="header" style="margin-bottom:50px;">
+                  <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
+                      <div style="    text-shadow: 1px 0px 2px #626262;
+      color: #626262;">UPSI Updated</div>
+                  </div>
+                   <div style="clear:both;"></div>
+              </div>
+          <div style="    background-color: #f2f2f2;
+      padding: 18px;">
+      <p>Dear '.$username.', 
+      </p>
+      <p>This is to inform you that,you have been added to the UPSI titled '.$upsitype.' on '.$emaildate.'. This UPSI was created by '.$ownername.' on '.$date_timestamp.'.
+       </p>
+      
+             
+          </div>
+      </div>
+
+      </div>
+  </body>
+  </html>';
+
+  //echo $html; exit; 
+
+   return $html;
 } 
 
 public function mailofupdatedp($tomail,$tousername,$pstartdate,$enddate,$today,$fromusername,$upsitype)

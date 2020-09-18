@@ -499,6 +499,7 @@ function numberalphOnly()
 /************** for search **********/
 
 var timer = 0;
+
 function mySearch (){ 
     var getvalue = website('.header-search-input').val();
     doSearch(getvalue); 
@@ -618,7 +619,7 @@ function doSearch(getvalue)
         website('#live-search-header-wrapper').fadeIn();
                 
         if (response.logged == true && response.data.length>=1) 
-                {         
+          {         
          // console.log(response.data);
           for(var i = 0; i < response.data.length; i++) 
           {   
