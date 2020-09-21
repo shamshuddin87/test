@@ -87,30 +87,29 @@ function getdataonload()
             {
                 addhtmlnxt += '<td width="20%">'+date_added+'</td>';
             }
-            addhtmlnxt += '<td width="15%">'+company+'</td>';
-            addhtmlnxt += '<td width="15%">'+designation+'</td>';
+            // addhtmlnxt += '<td width="15%">'+company+'</td>';
+            addhtmlnxt += '<td width="20%">'+designation+'</td>';
             if(response.resdta[i].send_status == 0)
             {
-                if(response.user_group_id == '7')
-                {
-                  addhtmlnxt += '<td width="15%"><i class="fa fa-paper-plane"  id="sendforaprvformc" formcid="'+response.resdta[i].id+'" pdfurl ="'+draft+'"></i></td>';
-                }
+                
+                  addhtmlnxt += '<td width="20%"><i class="fa fa-paper-plane"  id="sendforaprvformc" formcid="'+response.resdta[i].id+'" pdfurl ="'+draft+'"></i></td>';
+                    
             }
             else
             {
-                 addhtmlnxt += '<td width="15%"><i class="fa fa-check" aria-hidden="true"></i></td>';
+                 addhtmlnxt += '<td width="20%"><i class="fa fa-check" aria-hidden="true"></i></td>';
             }
             
-            addhtmlnxt += '<td width="15%"><i class="fa fa-file-pdf-o" id="previewc" type="'+response.resdta[i].isitesop+'" doc_id=2 formcid="'+response.resdta[i].id+'"></i></td>';
+            addhtmlnxt += '<td width="20%"><i class="fa fa-file-pdf-o" id="previewc" type="'+response.resdta[i].isitesop+'" doc_id=2 formcid="'+response.resdta[i].id+'"></i></td>';
             if(response.user_group_id == '7')
             {
                 if(response.resdta[i].final)
                 {
-                    addhtmlnxt +=  '<td width="15%"><a href="'+response.resdta[i].final+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';
+                    addhtmlnxt +=  '<td width="20%"><a href="'+response.resdta[i].final+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';
                 }
                 else
                 {
-                     addhtmlnxt += '<td width="15%"></td>';
+                     addhtmlnxt += '<td width="20%"></td>';
                 }
             }
             dtfrmt = response.resdta[i].date_added.split("-");                   
@@ -123,11 +122,11 @@ function getdataonload()
 
             if(response.resdta[i].send_status!= 0)
             {
-                addhtmlnxt += '<td width="10%" ></td>';
+                addhtmlnxt += '<td width="20%" ></td>';
             }
             else
             {
-                addhtmlnxt += '<td width="10%" ><i class="fa fa-edit faicon floatleft editformc" title="Edit entry" formcid="'+response.resdta[i].id+'"></i></td>';
+                addhtmlnxt += '<td width="20%" ><i class="fa fa-edit faicon floatleft editformc" title="Edit entry" formcid="'+response.resdta[i].id+'"></i></td>';
                 
             }
             addhtmlnxt += '</tr>';                        
@@ -187,7 +186,7 @@ var id = website(this).attr('formcid');
 
          
             website('#Mymodaledit #contractspeci').val(response.data.contract_specification);
-            website("#Mymodaledit #cin").val(response.data.cin);
+            //website("#Mymodaledit #cin").val(response.data.cin);
             website("#Mymodaledit #category").val(response.data.category);
             website("#Mymodaledit #cmpnme").val(response.data.companyid);
             website("#Mymodaledit #fromdate").val(response.data.fromdate);
@@ -369,6 +368,11 @@ website('body').on('click','#previewc',function()
                 //date to
                 dteto = response.formdata['todate'].split("-"); 
                 ddmmyyto = dteto[2]+'-'+dteto[1]+'-'+dteto[0];
+
+                dteadded = response.formdata['date_added'].split(" "); 
+                dtadd =   dteadded[0].split("-"); 
+                finaldtadd = dtadd[2]+'-'+dtadd[1]+'-'+dtadd[0];
+
                
                 //date intimation
                if(response.formdata['dateofintimtn'])
@@ -389,50 +393,108 @@ website('body').on('click','#previewc',function()
                     var secutype = 'Shares';
                     website('.secutype1').html(secutype);
                     website('.secutype2').html(secutype);
+                     website('.excelsecutype1').val(secutype);
+                     website('.excelsecutype2').val(secutype);
                 }
                else
                 {
                     var secutype = 'Convertible Debenture';
                     website('.secutype1').html(secutype);
                     website('.secutype2').html(secutype);
+                     website('.excelsecutype1').val(secutype);
+                     website('.excelsecutype2').val(secutype);
                 }
-                
-                 website('.contractspecific').html(response.formdata['contract_specification']);
-               website('.contracttype').html(response.formdata['contractname']);
+              website('.place').html(response.formdata['place']);
+               website('.dateadded').html(finaldtadd);
+              website('.contractspecific').html(response.formdata['contract_specification']);
+               website('.excelcontractspecific').val(response.formdata['contract_specification']);
+              website('.contracttype').html(response.formdata['contractname']);
+               website('.excelcontracttype').val(response.formdata['contractname']);
                // alert(response.formdata['clsblnc'])
                 // alert(response.pershare);
                website('.posttrans').html(response.pershare);
+               website('.excelposttrans').val(response.pershare);
                 if(response.formdata['typtrans']!=null)
                {
                      website('.transtype').html(response.formdata['typtrans']);
+                      website('.exceltranstype').html(response.formdata['typtrans']);
                }
                else
                {
                     website('.transtype').html('<p style="color:green;">BUY</p>');
+                     website('.exceltranstype').html('BUY');
                }
                website('.name').html(response.formdata['fullname']);
+                website('.excelname').val(response.formdata['fullname']);
                website('.cmpnme').html(response.formdata['company_name']);
+                website('.excelcmpnme').val(response.formdata['company_name']);
                website('.pan').html(response.formdata['pan']);
+                website('.excelpan').val(response.formdata['pan']);
                website('.cin').html(response.formdata['cin']);
+                website('.excelcmpisin').val(response.formdata['cin']);
                website('.contctno').html(response.formdata['mobile']);
-               website('.opngblnc').html(response.formdata['opngblnc']);
-                website('.pershare').html(response.pershare);
+                website('.excelcontctno').val(response.formdata['mobile']);
+               website('.opngblnc').html(response.formdata['sharehldng']);
+                website('.excelopngblnc').val(response.formdata['sharehldng']);
+                website('.pershare').html(response.postnumber);
+                 website('.excelpershare').val(response.postnumber);
+
+                 website('.prepercent').html(response.prepercent);
+                  website('.excelprepercent').val(response.prepercent);
+
+                website('.postpercent').html(response.postpercent);
+                website('.excelpostpercent').val(response.postpercent);
+
                // website('.clsngblnc').html(response.formdata['totalamnt']);
                website('.noofshares').html(response.formdata['tdsshare']);
+                website('.excelnoofshares').val(response.formdata['tdsshare']);
+
                website('.totalamt').html(response.formdata['totalamnt']);
+                website('.exceltotalamt').val(response.formdata['totalamnt']);
                website('.address').html(response.formdata['address']);
+               website('.exceladdress').val(response.formdata['address']);
                website('.category').html(response.formdata['category']);
+               website('.excelcategory').val(response.formdata['category']);
                website('.pretrans').html(response.formdata['pretrans']);
+               website('.excelpretrans').val(response.formdata['pretrans']);
                website('.posttrans').html(response.formdata['posttrans']);
+               website('.excelposttrans').val(response.formdata['posttrans']);
                website('.fromdate').html(ddmmyyfrom);  //date
+               website('.excelfromdate').val(ddmmyyfrom);  //date
                website('.todate').html(ddmmyyto); //date
+               website('.exceltodate').val(ddmmyyto); //date
                website('.dateofintimtn').html(ddmmyyinti); //date
+               website('.exceldateofintimtn').val(ddmmyyinti); //date
                website('.acquimode').html(response.formdata['acquistnmode']);
+               website('.excelacquimode').val(response.formdata['acquistnmode']);
                website('.buyvalue').html(response.formdata['buyvalue']);
+               website('.excelbuyvalue').val(response.formdata['buyvalue']);
                website('.buynumbrunt').html(response.formdata['buynumbrunt']);
+               website('.excelbuynumbrunt').val(response.formdata['buynumbrunt']);
                website('.sellvalue').html(response.formdata['sellvalue']);
+               website('.excelsellvalue').val(response.formdata['sellvalue']);
                website('.sellnumbrunt').html(response.formdata['sellnumbrunt']);
+               website('.excelsellnumbrunt').val(response.formdata['sellnumbrunt']);
                website('.exetrd').html(response.formdata['exetrd']);
+               website('.excelexetrd').val(response.formdata['exetrd']);
+               website('.formcidexcel').val(id);
+               
+              //  website('.address').html(response.formdata['address']);
+
+              //  website('.category').html(response.formdata['category']);
+              //  website('.pretrans').html(response.formdata['pretrans']);
+              //  website('.posttrans').html(response.formdata['posttrans']);
+              //  website('.fromdate').html(ddmmyyfrom);  //date
+              //  website('.todate').html(ddmmyyto); //date
+              //  website('.dateofintimtn').html(ddmmyyinti); //date
+              //  website('.acquimode').html(response.formdata['acquistnmode']);
+              //  website('.buyvalue').html(response.formdata['buyvalue']);
+              //  website('.buynumbrunt').html(response.formdata['buynumbrunt']);
+              //  website('.sellvalue').html(response.formdata['sellvalue']);
+              //  website('.sellnumbrunt').html(response.formdata['sellnumbrunt']);
+              // website('.place').html(response.formdata['place']);
+              // website('.dateadded').html(finaldtadd);
+              //  website('.exetrd').html(response.formdata['exetrd']);
                website('#modaldocument #formcid').val(id);
                 website('#modaldocument').modal('show');
            }
@@ -454,7 +516,9 @@ website('body').on('click','.formcpdf', function(e)
 {
     var htmldata = website('#modaldocument .docpdf').html();
     var formcid = website('#modaldocument #formcid').val();
-    var formData = {htmldata:htmldata,formcid:formcid};
+    var dataString = website("form[name=excelupload]").serializeArray();
+    //console.log(dataString);return;
+    var formData = {htmldata:htmldata,formcid:formcid,exceldata:dataString};
     website.ajax({
         type:"POST",
         url:'sebi/generateformcPDF',
@@ -480,6 +544,7 @@ website('body').on('click','.formcpdf', function(e)
                 website('#modaldocument .formcpdf').fadeOut();
                 website('#modaldocument .button_pdf .down_load').show();
                 website('#modaldocument .downloadpdf').show();
+                 website('#sendforaprvformc').attr('pdfurl',response.pdfpath);
                 website('#modaldocument .downloadpdf').html('<a href="'+response.pdfpath+'" target="_blank" class="downlodthfle" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span></a>');
             }
         },

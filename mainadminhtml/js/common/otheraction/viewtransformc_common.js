@@ -41,6 +41,9 @@ website('body').on('click','.go_button', function(e)
     getdataonload();
 });
 
+
+getdataonload();
+
 function getdataonload()
 {
     var noofrows = website('#noofrows').val(); 
@@ -350,6 +353,124 @@ website('body').on('click','.yesapprove',function()
     }
 });
 
+// website('body').on('click','#previewc',function()
+// {
+//    var docid = website(this).attr('doc_id');
+//     var id = website(this).attr('formcid');
+//     var type=website(this).attr('type');
+//     // alert(type);
+//     var formdata = {id:id,docid:docid,type:type};
+//     website.ajax({
+//       url:'sebi/previewofformc',
+//       data:formdata,
+//       method:'POST',
+//       //contentType:'json',
+//       contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+//       //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+//       dataType:"json",
+//       cache:false,
+//       //async:true, /*Cross domain checking*/
+//       beforeSend: function()
+//       {  website('#modaldocument .formcpdf').show(); },
+//       uploadProgress: function(event, position, total, percentComplete)
+//       {   },
+//         success: function(response, textStatus, jqXHR) 
+//         {
+//           console.log(response.pershare);
+//            if(response.logged === true)
+//            {
+               
+//                 dtfrom = response.formdata['fromdate'].split("-"); 
+//                 ddmmyyfrom = dtfrom[2]+'-'+dtfrom[1]+'-'+dtfrom[0];
+//                 //date to
+//                 dteto = response.formdata['todate'].split("-"); 
+//                 ddmmyyto = dteto[2]+'-'+dteto[1]+'-'+dteto[0];
+               
+//                 //date intimation
+//                if(response.formdata['dateofintimtn'])
+//                 {
+//                     dtinti = response.formdata['dateofintimtn'].split("-"); 
+//                     ddmmyyinti = dtinti[2]+'-'+dtinti[1]+'-'+dtinti[0];
+//                 }
+//                else
+//                 {
+//                     ddmmyyinti = '';
+//                 }
+               
+//                website('#modaldocument .downloadpdf').hide(); 
+//                website('#modaldocument .docpdf').html(response.docontent);
+//                if(response.formdata['sectype'] == 1 || response.formdata['sectype'] == 2)
+//                 {
+//                     var secutype = 'Shares';
+//                     website('.secutype1').html(secutype);
+//                     website('.secutype2').html(secutype);
+//                 }
+//                else
+//                 {
+//                     var secutype = 'Convertible Debenture';
+//                     website('.secutype1').html(secutype);
+//                     website('.secutype2').html(secutype);
+//                 }
+                 
+//                website('.contractspecific').html(response.formdata['contract_specification']);
+//                website('.contracttype').html(response.formdata['contractname']);
+//                // alert(response.formdata['clsblnc'])
+//                 // alert(response.pershare);
+//                website('.posttrans').html(response.pershare);
+//                // console.log(response.formdata['typtrans']);
+//                if(response.formdata['typtrans']!=null)
+//                {
+//                      website('.transtype').html(response.formdata['typtrans']);
+//                }
+//                else
+//                {
+//                     website('.transtype').html('<p style="color:green;">BUY</p>');
+//                }
+             
+//                website('.name').html(response.formdata['fullname']);
+//                website('.cmpnme').html(response.formdata['company_name']);
+//                website('.pan').html(response.formdata['pan']);
+//                website('.cin').html(response.formdata['cin']);
+//                website('.contctno').html(response.formdata['mobile']);
+//                website('.opngblnc').html(response.formdata['adrshldng']);
+//                 website('.pershare').html(response.postnumber);
+//                  website('.prepercent').html(response.prepercent);
+//                   website('.postpercent').html(response.postpercent);
+//                // website('.clsngblnc').html(response.formdata['totalamnt']);
+//                website('.noofshares').html(response.formdata['tdsshare']);
+//                website('.totalamt').html(response.formdata['totalamnt']);
+//                website('.address').html(response.formdata['address']);
+//                website('.category').html(response.formdata['category']);
+//                website('.pretrans').html(response.formdata['pretrans']);
+//                website('.posttrans').html(response.formdata['posttrans']);
+//                website('.fromdate').html(ddmmyyfrom);  //date
+//                website('.todate').html(ddmmyyto); //date
+//                website('.dateofintimtn').html(ddmmyyinti); //date
+//                website('.acquimode').html(response.formdata['acquistnmode']);
+//                website('.buyvalue').html(response.formdata['buyvalue']);
+//                website('.buynumbrunt').html(response.formdata['buynumbrunt']);
+//                website('.sellvalue').html(response.formdata['sellvalue']);
+//                website('.sellnumbrunt').html(response.formdata['sellnumbrunt']);
+//                website('.exetrd').html(response.formdata['exetrd']);
+//                website('#modaldocument #formcid').val(id);
+//                 website('#modaldocument').modal('show');
+//            }
+//            else
+//            {    
+              
+//            }
+//         },
+//         complete: function(response) 
+//         {
+//             website('#myModalyesno .mainprogressbarforall').fadeOut(); 
+//         },
+//         error: function() 
+//         {   }
+//     });
+// });
+
+
+
 website('body').on('click','#previewc',function()
 {
    var docid = website(this).attr('doc_id');
@@ -375,17 +496,17 @@ website('body').on('click','#previewc',function()
         {
            if(response.logged === true)
            {
-               
-               //date from
-               
-                // console.log(response.formdata['clsblnc']);return false;
-                 // console.log(response.pershare);return false;
-
+                //date from
                 dtfrom = response.formdata['fromdate'].split("-"); 
                 ddmmyyfrom = dtfrom[2]+'-'+dtfrom[1]+'-'+dtfrom[0];
                 //date to
                 dteto = response.formdata['todate'].split("-"); 
                 ddmmyyto = dteto[2]+'-'+dteto[1]+'-'+dteto[0];
+
+                dteadded = response.formdata['date_added'].split(" "); 
+                dtadd =   dteadded[0].split("-"); 
+                finaldtadd = dtadd[2]+'-'+dtadd[1]+'-'+dtadd[0];
+
                
                 //date intimation
                if(response.formdata['dateofintimtn'])
@@ -397,6 +518,7 @@ website('body').on('click','#previewc',function()
                 {
                     ddmmyyinti = '';
                 }
+                
                
                website('#modaldocument .downloadpdf').hide(); 
                website('#modaldocument .docpdf').html(response.docontent);
@@ -405,52 +527,110 @@ website('body').on('click','#previewc',function()
                     var secutype = 'Shares';
                     website('.secutype1').html(secutype);
                     website('.secutype2').html(secutype);
+                     website('.excelsecutype1').val(secutype);
+                     website('.excelsecutype2').val(secutype);
                 }
                else
                 {
                     var secutype = 'Convertible Debenture';
                     website('.secutype1').html(secutype);
                     website('.secutype2').html(secutype);
+                     website('.excelsecutype1').val(secutype);
+                     website('.excelsecutype2').val(secutype);
                 }
-                 
-               website('.contractspecific').html(response.formdata['contract_specification']);
-               website('.contracttype').html(response.formdata['contractname']);
+                
+              website('.contractspecific').html(response.formdata['contract_specification']);
+               website('.excelcontractspecific').val(response.formdata['contract_specification']);
+              website('.contracttype').html(response.formdata['contractname']);
+               website('.excelcontracttype').val(response.formdata['contractname']);
                // alert(response.formdata['clsblnc'])
                 // alert(response.pershare);
                website('.posttrans').html(response.pershare);
-               // console.log(response.formdata['typtrans']);
-               if(response.formdata['typtrans']!=null)
+               website('.excelposttrans').val(response.pershare);
+                if(response.formdata['typtrans']!=null)
                {
                      website('.transtype').html(response.formdata['typtrans']);
+                      website('.exceltranstype').html(response.formdata['typtrans']);
                }
                else
                {
                     website('.transtype').html('<p style="color:green;">BUY</p>');
+                     website('.exceltranstype').html('<p style="color:green;">BUY</p>');
                }
-             
+               website('.place').html(response.formdata['place']);
+                website('.dateadded').html(finaldtadd);
                website('.name').html(response.formdata['fullname']);
+                website('.excelname').val(response.formdata['fullname']);
                website('.cmpnme').html(response.formdata['company_name']);
+                website('.excelcmpnme').val(response.formdata['company_name']);
                website('.pan').html(response.formdata['pan']);
+                website('.excelpan').val(response.formdata['pan']);
                website('.cin').html(response.formdata['cin']);
+                website('.excelcmpisin').val(response.formdata['cin']);
                website('.contctno').html(response.formdata['mobile']);
-               website('.opngblnc').html(response.formdata['opngblnc']);
-                website('.pershare').html(response.pershare);
+                website('.excelcontctno').val(response.formdata['mobile']);
+               website('.opngblnc').html(response.formdata['sharehldng']);
+                website('.excelopngblnc').val(response.formdata['sharehldng']);
+                website('.pershare').html(response.postnumber);
+                 website('.excelpershare').val(response.postnumber);
+
+                 website('.prepercent').html(response.prepercent);
+                  website('.excelprepercent').val(response.prepercent);
+
+                website('.postpercent').html(response.postpercent);
+                website('.excelpostpercent').val(response.postpercent);
+
                // website('.clsngblnc').html(response.formdata['totalamnt']);
                website('.noofshares').html(response.formdata['tdsshare']);
+               
+                website('.excelnoofshares').val(response.formdata['tdsshare']);
+
                website('.totalamt').html(response.formdata['totalamnt']);
+                website('.exceltotalamt').val(response.formdata['totalamnt']);
                website('.address').html(response.formdata['address']);
+               website('.exceladdress').val(response.formdata['address']);
                website('.category').html(response.formdata['category']);
+               website('.excelcategory').val(response.formdata['category']);
                website('.pretrans').html(response.formdata['pretrans']);
+               website('.excelpretrans').val(response.formdata['pretrans']);
                website('.posttrans').html(response.formdata['posttrans']);
+               website('.excelposttrans').val(response.formdata['posttrans']);
                website('.fromdate').html(ddmmyyfrom);  //date
+               website('.excelfromdate').val(ddmmyyfrom);  //date
                website('.todate').html(ddmmyyto); //date
+               website('.exceltodate').val(ddmmyyto); //date
                website('.dateofintimtn').html(ddmmyyinti); //date
+               website('.exceldateofintimtn').val(ddmmyyinti); //date
                website('.acquimode').html(response.formdata['acquistnmode']);
+               website('.excelacquimode').val(response.formdata['acquistnmode']);
                website('.buyvalue').html(response.formdata['buyvalue']);
+               website('.excelbuyvalue').val(response.formdata['buyvalue']);
                website('.buynumbrunt').html(response.formdata['buynumbrunt']);
+               website('.excelbuynumbrunt').val(response.formdata['buynumbrunt']);
                website('.sellvalue').html(response.formdata['sellvalue']);
+               website('.excelsellvalue').val(response.formdata['sellvalue']);
                website('.sellnumbrunt').html(response.formdata['sellnumbrunt']);
+               website('.excelsellnumbrunt').val(response.formdata['sellnumbrunt']);
                website('.exetrd').html(response.formdata['exetrd']);
+               website('.excelexetrd').val(response.formdata['exetrd']);
+               website('.formcidexcel').val(id);
+               
+              //  website('.address').html(response.formdata['address']);
+
+              //  website('.category').html(response.formdata['category']);
+              //  website('.pretrans').html(response.formdata['pretrans']);
+              //  website('.posttrans').html(response.formdata['posttrans']);
+              //  website('.fromdate').html(ddmmyyfrom);  //date
+              //  website('.todate').html(ddmmyyto); //date
+              //  website('.dateofintimtn').html(ddmmyyinti); //date
+              //  website('.acquimode').html(response.formdata['acquistnmode']);
+              //  website('.buyvalue').html(response.formdata['buyvalue']);
+              //  website('.buynumbrunt').html(response.formdata['buynumbrunt']);
+              //  website('.sellvalue').html(response.formdata['sellvalue']);
+              //  website('.sellnumbrunt').html(response.formdata['sellnumbrunt']);
+              // website('.place').html(response.formdata['place']);
+              // website('.dateadded').html(finaldtadd);
+              //  website('.exetrd').html(response.formdata['exetrd']);
                website('#modaldocument #formcid').val(id);
                 website('#modaldocument').modal('show');
            }
@@ -472,7 +652,9 @@ website('body').on('click','.formcpdf', function(e)
 {
     var htmldata = website('#modaldocument .docpdf').html();
     var formcid = website('#modaldocument #formcid').val();
-    var formData = {htmldata:htmldata,formcid:formcid};
+    var dataString = website("form[name=excelupload]").serializeArray();
+
+    var formData = {htmldata:htmldata,formcid:formcid,exceldata:dataString};
     website.ajax({
         type:"POST",
         url:'sebi/generateformcPDF',
@@ -498,6 +680,7 @@ website('body').on('click','.formcpdf', function(e)
                 website('#modaldocument .formcpdf').fadeOut();
                 website('#modaldocument .button_pdf .down_load').show();
                 website('#modaldocument .downloadpdf').show();
+                website('#sendforaprvformc').attr('pdfurl',response.pdfpath);
                 website('#modaldocument .downloadpdf').html('<a href="'+response.pdfpath+'" target="_blank" class="downlodthfle" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span></a>');
             }
         },

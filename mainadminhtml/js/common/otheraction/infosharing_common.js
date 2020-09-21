@@ -499,6 +499,7 @@ function numberalphOnly()
 /************** for search **********/
 
 var timer = 0;
+
 function mySearch (){ 
     var getvalue = website('.header-search-input').val();
     doSearch(getvalue); 
@@ -618,8 +619,8 @@ function doSearch(getvalue)
         website('#live-search-header-wrapper').fadeIn();
                 
         if (response.logged == true && response.data.length>=1) 
-                {         
-          //console.log(response.data);
+          {         
+         // console.log(response.data);
           for(var i = 0; i < response.data.length; i++) 
           {   
             var categoryname = ''; 
@@ -633,18 +634,21 @@ function doSearch(getvalue)
                   if(response.data[i].category == '16')
                   {
                        categoryname = response.data[i].othercategory;
-                        name = response.data[i].name;
-                         email = response.data[i].email;
-                          category = response.data[i].category;
-                            id = response.data[i].id;
+                       name = response.data[i].name;
+                       email = response.data[i].email;
+                       category = response.data[i].category;
+                       id = response.data[i].id;
+                       wr_id = '';
                   }
                   else if(response.data[i].category == '14')
                   {
                        categoryname = response.data[i].categoryname;
                         name = response.data[i].name;
-                         email = response.data[i].email;
-                          category = response.data[i].category;
-                            id = response.data[i].id;
+                        email = response.data[i].email;
+                        category = response.data[i].category;
+                        id = response.data[i].id;
+                        
+                        wr_id = response.data[i].wr_id;
                   }
                   else
                   {
@@ -653,6 +657,7 @@ function doSearch(getvalue)
                       email = response.data[i].email;
                        category = response.data[i].category;
                          id = response.data[i].id;
+                         wr_id = '';
                   }
 
 
@@ -665,12 +670,13 @@ function doSearch(getvalue)
               category = 14;
               id = response.data[i].wr_id;
               email = response.data[i].email;
+              wr_id = response.data[i].wr_id;
             }
 
 
 
            
-              addhtml += '<li rec_id="'+id+'" rec_type="'+rectype+'" name="'+name+'" category ="'+category+'"  email ="'+email+'"  categoryname="'+categoryname+'" class="bottomul validatorsid">'+name;
+              addhtml += '<li rec_id="'+id+'" rec_type="'+rectype+'" name="'+name+'" category ="'+category+'"  email ="'+email+'"  categoryname="'+categoryname+'"  wr_id = "'+wr_id+'"  class="bottomul validatorsid">'+name;
               //addhtml += '<a target="_blank" href="profile/willline/'+response.data[i].cid+'" class="floatleft searchavtarname">'+response.data[i].comanyname+'</a>';
               addhtml += '<div class="clearelement"></div></li>';
             
@@ -745,9 +751,9 @@ function doSearchforedit(getvalue)
                 
         if (response.logged == true && response.data.length>=1) 
         {         
-          //console.log(response.data);return false;
+          //console.log(response.data);
           for(var i = 0; i < response.data.length; i++) 
-                    {   
+            {   
             if(i==0)
             {                           
               addhtml += '<li rec_id="'+response.data[i].id+'" name="'+response.data[i].name+'" category ="'+response.data[i].category+'"  categoryname="'+categoryname+'" class="topul validatorsid">'+response.data[i].name;
@@ -802,6 +808,7 @@ function doSearchforedit(getvalue)
        var cate = website(this).attr('category');
        var categoryname = website(this).attr('categoryname');
        var email = website(this).attr('email');
+       var wr_id = website(this).attr('wr_id');
        
        
         
@@ -816,6 +823,7 @@ function doSearchforedit(getvalue)
        
        website('#insertinfosharing #name').val(name);
        website('#insertinfosharing #categoryname').val(categoryname);
+       website('#insertinfosharing #wr_id').val(wr_id);
        website('#validators').attr('recid',recid);
        website('#validators').attr('recname',name);
     });

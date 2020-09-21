@@ -76,6 +76,8 @@ class SensitiveinformationController extends ControllerBase
                 $designation   = $this->request->getPost('designation','trim');
                 $email   = $this->request->getPost('email','trim');
                 $pan   = $this->request->getPost('panentity','trim');
+                $wr_id   = $this->request->getPost('wr_id','trim');
+                //print_r($wr_id);exit;
 
 
                
@@ -138,7 +140,7 @@ class SensitiveinformationController extends ControllerBase
                         $agreemntfilepath = $upload_filepath;
                   }
                 //print_r($agreemntfilepath);exit;
-                  $getres = $this->sensitiveinformationcommon->insertrecipient($getuserid,$user_group_id,$category,$othercate,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$pan,$department);
+                  $getres = $this->sensitiveinformationcommon->insertrecipient($getuserid,$user_group_id,$category,$othercate,$entity,$name,$identitynum,$phonenum,$mobilenum,$designation,$email,$filepath,$agreemntfilepath,$pan,$department,$wr_id);
                     //echo "checking form data";print_r($getres); exit;      
                     if($getres)
                     {
@@ -472,8 +474,9 @@ class SensitiveinformationController extends ControllerBase
                 $stdate=new DateTime($date);
                 $time = $this->request->getPost('time_of_data','trim');
                 $email = $this->request->getPost('emailforsendmail','trim');
+                $wr_id = $this->request->getPost('wr_id','trim');
 
-                //print_r($email);exit;
+                //print_r($wr_id);exit;
                 $enddate   = $this->request->getPost('enddate','trim');
                 $upsiname = $this->request->getPost('selectupsi','trim');
                 $endchkdate= new DateTime($enddate);
@@ -572,7 +575,7 @@ class SensitiveinformationController extends ControllerBase
                         
                     }
                   //print_r($filepath);exit;
-                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail,$nameoflogged);
+                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail,$nameoflogged,$wr_id);
                   //print_r($getres);exit;
                     
                   if($getres == true)
@@ -974,7 +977,7 @@ class SensitiveinformationController extends ControllerBase
                     {
                         $finallist = array();
                     }
-                    //print_r($finallist);exit;
+                            //print_r($finallist);exit;
 //                    $finallist1 = array_push($namelist,$namelist1);
 //                    $finallist1 = array_push($namelist,$namelist1);
 //                    $finallistnew = array_unique($namelist);
@@ -1318,12 +1321,14 @@ class SensitiveinformationController extends ControllerBase
                 $rspgs = ceil($rscnt/$noofrows);
                 $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
                 $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+
+                $getaccess =$this->adminmodulecommon->gatallaccessdetails($getuserid);
                 
-                 $getresult = $this->sensitiveinformationcommon->fetchupsiinfo($getuserid,$user_group_id,'',$rslmt);
+                $getresult = $this->sensitiveinformationcommon->fetchupsiinfo($getuserid,$user_group_id,'',$rslmt);
               
                 if($getresult)
                 {
-                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres,'user_group_id'=>$user_group_id,"pgnhtml"=>$pgnhtml);
+                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres,'user_group_id'=>$user_group_id,"pgnhtml"=>$pgnhtml,'access'=>$getaccess);
                     $this->response->setJsonContent($data);
                 }
                 else

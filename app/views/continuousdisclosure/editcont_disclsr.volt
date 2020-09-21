@@ -11,6 +11,24 @@
    $reldetail = $this->annualdeclarationcommon->FetchRelativeDetail($uid);
    $relDematdetail = $this->annualdeclarationcommon->FetchRelDematDetail($uid);
    //echo "company is ";print_r($selfcompany);exit;
+    if($personaldetail['nationality'] == 'Other')
+   {
+      $identityno = $personaldetail['pan'];
+      $pan = '';
+      $nature = $personaldetail['legal_identifier'];
+   }
+   else if($personaldetail['nationality'] == 'Indian')
+   {
+       $pan = $personaldetail['pan'];
+       $identityno = '';
+       $nature ='';
+   }
+   else
+   {
+       $identityno = '';
+       $pan = '';
+        $nature ='';
+   }
    ?>
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
@@ -60,55 +78,60 @@
                <tr>
                 <td>4</td>
                 <td>PAN (In case of Indian Nationals)</td>
-                <td><?php echo $personaldetail['pan'];?></td>               
+                <td><?php echo $pan;?></td>               
               </tr>
                <tr>
                 <td>5</td>
                 <td>Other Identification no. (In case of Foreign Nationals)</td>
-                <td><?php echo $personaldetail['legal_identifier'];?></td>               
+                <td><?php echo $identityno;?></td>               
               </tr>
                <tr>
                 <td>6</td>
                 <td>Nature of Identification no. (In case of Foreign Nationals)</td>
-                <td><?php echo $personaldetail['legal_identification_no'];?></td>                
+                <td><?php echo $nature;?></td>                
               </tr>
                <tr>
                 <td>7</td>
+                <td>Aadhaar</td>
+                <td><?php echo $personaldetail['aadhar'];?></td>                
+              </tr>
+               <tr>
+                <td>8</td>
                 <td>DOB</td>
                 <td><?php echo $personaldetail['dob'];?></td>                
               </tr>
                <tr>
-                <td>8</td>
+                <td>9</td>
                 <td>Gender</td>
                 <td><?php echo $personaldetail['sex'];?></td>                
               </tr>
                <tr>
-                <td>9</td>
+                <td>10</td>
                 <td>Educational Qualification</td>
                 <td><?php echo $personaldetail['education'];?></td>               
               </tr>
                <tr>
-                <td>10</td>
+                <td>11</td>
                 <td>Institute from which qualification was acquired</td>
                 <td><?php echo $personaldetail['institute'];?></td>               
               </tr>
                <tr>
-                <td>11</td>
+                <td>12</td>
                 <td>Residential Address</td>
                 <td><?php echo $personaldetail['address'];?></td>              
               </tr>
                <tr>
-                <td>12</td>
+                <td>13</td>
                 <td>Mobile no.</td>
                 <td><?php echo $personaldetail['mobileno'];?></td>                
               </tr>
                <tr>
-                <td>13</td>
+                <td>14</td>
                 <td>No. of shares of Dr. Reddys held by you</td>
                 <td><?php echo $personaldetail['sharehldng'];?></td>               
               </tr>
                <tr>
-                <td>14</td>
+                <td>15</td>
                 <td>No. of ADRs of Dr. Reddys held by your</td>
                 <td><?php echo $personaldetail['adrshldng'];?></td>                
               </tr>
@@ -180,12 +203,12 @@
             </tbody>
         </table>
           
-           <h3 class="h3_heading">IV.  Demat Account Details</h3>
+           <h3 class="h3_heading">IV.  Demat/Securities Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Demat Account No.</th>
+                <th>Demat/Securities Account No.</th>
                 <th>Name of Depository Participant</th>
             </tr>
             </thead>
@@ -231,16 +254,38 @@
             </thead>
             <tbody>
             
-             <?php if(!empty($reldetail)){ for($i=0;$i<sizeof($reldetail);$i++){ $j = $i;$j++; $deptype = '';?> 
+             <?php if(!empty($reldetail)){ for($i=0;$i<sizeof($reldetail['dependency_nature']);$i++){ $j = $i;$j++; $deptype = '';?> 
                 <tr>
                  <td><?php echo $j;?></td>
                  <td><?php echo $reldetail[$i]['name'];?></td>
                  <td><?php echo $reldetail[$i]['relationshipname'];?></td>
-                 <?php if(!empty($reldetail[$i]['dependency_nature'])) { $deptype = implode(',',$reldetail[$i]['dependency_nature']); } ?>
+                 <?php if(!empty($reldetail['dependency_nature'])) { $deptype = implode(',',$reldetail['dependency_nature'][$i]); } ?>
                  <td><?php echo $deptype;?></td>
-                 <td><?php echo $reldetail[$i]['pan'];?></td>
-                 <td><?php echo $reldetail[$i]['legal_identifier'];?></td>
-                 <td><?php echo $reldetail[$i]['legal_identification_no'];?></td>
+                  <?php if($reldetail[$i]['nationality'] == 'Indian')
+                 {
+                    $pan = $reldetail[$i]['pan'];
+                    $identityno = '';
+                    $nature ='';
+                 }
+                 else if($reldetail[$i]['nationality'] == 'Other')
+                 {
+                    $pan = '';
+                    $identityno = $reldetail[$i]['pan'];
+                    $nature = $reldetail[$i]['legal_identifier'];
+                 }
+                 else
+                 {
+                    $pan = '';
+                    $identityno ='';
+                    $nature = '';
+                 }
+
+
+
+                 ?>
+                 <td><?php echo $pan;?></td>
+                 <td><?php echo $identityno;?></td>
+                 <td><?php echo $nature;?></td>
                  <td><?php echo $reldetail[$i]['aadhar'];?></td>
                  <td><?php echo $reldetail[$i]['dob'];?></td>
                  <td><?php echo $reldetail[$i]['address'];?></td>
@@ -257,12 +302,12 @@
             </tbody>
         </table>
           
-                     <h3 class="h3_heading">II.  Demat Account Details</h3>
+                     <h3 class="h3_heading">II.  Demat/Securities Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Demat Account No.</th>
+                <th>Demat/Securities Account No.</th>
                 <th>Name of Depository Participant</th>
             </tr>
             </thead>
@@ -332,55 +377,61 @@
                <tr>
                 <td>4</td>
                 <td>PAN (In case of Indian Nationals)</td>
-                <td><?php echo $personaldetail['pan'];?></td>               
+                <td><?php echo $pan;?></td>               
               </tr>
                <tr>
                 <td>5</td>
                 <td>Other Identification no. (In case of Foreign Nationals)</td>
-                <td><?php echo $personaldetail['legal_identifier'];?></td>               
+                <td><?php echo $identityno;?></td>               
               </tr>
                <tr>
                 <td>6</td>
                 <td>Nature of Identification no. (In case of Foreign Nationals)</td>
-                <td><?php echo $personaldetail['legal_identification_no'];?></td>                
+                <td><?php echo $nature;?></td>                
+              </tr>
+
+                <tr>
+                <td>7</td>
+                <td>Aadhaar</td>
+                <td><?php echo $personaldetail['aadhar'];?></td>                
               </tr>
                <tr>
-                <td>7</td>
+                <td>8</td>
                 <td>DOB</td>
                 <td><?php echo $personaldetail['dob'];?></td>                
               </tr>
                <tr>
-                <td>8</td>
+                <td>9</td>
                 <td>Gender</td>
                 <td><?php echo $personaldetail['sex'];?></td>                
               </tr>
                <tr>
-                <td>9</td>
+                <td>10</td>
                 <td>Educational Qualification</td>
                 <td><?php echo $personaldetail['education'];?></td>               
               </tr>
                <tr>
-                <td>10</td>
+                <td>11</td>
                 <td>Institute from which qualification was acquired</td>
                 <td><?php echo $personaldetail['institute'];?></td>               
               </tr>
                <tr>
-                <td>11</td>
+                <td>12</td>
                 <td>Residential Address</td>
                 <td><?php echo $personaldetail['address'];?></td>              
               </tr>
                <tr>
-                <td>12</td>
+                <td>13</td>
                 <td>Mobile no.</td>
                 <td><?php echo $personaldetail['mobileno'];?></td>                
               </tr>
                <tr>
-                <td>13</td>
+                <td>14</td>
                 <td>No. of shares of Dr. Reddys held by you</td>
                 <td><?php echo $personaldetail['sharehldng'];?></td>               
               </tr>
                <tr>
-                <td>14</td>
+                <td>15</td>
                 <td>No. of ADRs of Dr. Reddys held by your</td>
                 <td><?php echo $personaldetail['adrshldng'];?></td>                
               </tr>
@@ -452,12 +503,12 @@
             </tbody>
         </table>
           
-           <h3 class="h3_heading">IV.  Demat Account Details</h3>
+           <h3 class="h3_heading">IV.  Demat/Securities Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Demat Account No.</th>
+                <th>Demat/Securities Account No.</th>
                 <th>Name of Depository Participant</th>
                 <th>Name of Clearing House</th>
             </tr>
@@ -1221,16 +1272,39 @@
             </thead>
             <tbody>
             
-             <?php if(!empty($reldetail)){ for($i=0;$i<sizeof($reldetail);$i++){ $j = $i;$j++; $deptype = '';?> 
+             <?php if(!empty($reldetail)){ for($i=0;$i<sizeof($reldetail['dependency_nature']);$i++){ $j = $i;$j++; $deptype = '';?> 
                 <tr>
                  <td><?php echo $j;?></td>
                  <td><?php echo $reldetail[$i]['name'];?></td>
                  <td><?php echo $reldetail[$i]['relationshipname'];?></td>
-                 <?php if(!empty($reldetail[$i]['dependency_nature'])) { $deptype = implode(',',$reldetail[$i]['dependency_nature']); } ?>
+                 <?php if(!empty($reldetail['dependency_nature'])) { $deptype = implode(',',$reldetail['dependency_nature'][$i]); } ?>
                  <td><?php echo $deptype;?></td>
-                 <td><?php echo $reldetail[$i]['pan'];?></td>
-                 <td><?php echo $reldetail[$i]['legal_identifier'];?></td>
-                 <td><?php echo $reldetail[$i]['legal_identification_no'];?></td>
+                  <?php if($reldetail[$i]['nationality'] == 'Indian')
+                 {
+                    $pan = $reldetail[$i]['pan'];
+                    $identityno = '';
+                    $nature ='';
+                 }
+                 else if($reldetail[$i]['nationality'] == 'Other')
+                 {
+                    $pan = '';
+                    $identityno = $reldetail[$i]['pan'];
+                    $nature = $reldetail[$i]['legal_identifier'];
+                 }
+                 else
+                 {
+                    $pan = '';
+                    $identityno ='';
+                    $nature = '';
+                 }
+
+
+
+                 ?>
+                 <td><?php echo $pan;?></td>
+                 <td><?php echo $identityno;?></td>
+                 <td><?php echo $nature;?></td>
+                
                  <td><?php echo $reldetail[$i]['aadhar'];?></td>
                  <td><?php echo $reldetail[$i]['dob'];?></td>
                  <td><?php echo $reldetail[$i]['address'];?></td>
@@ -1247,12 +1321,12 @@
             </tbody>
         </table>
           
-        <h3 class="h3_heading">II.  Demat Account Details</h3>
+        <h3 class="h3_heading">II.  Demat/Securities Account Details</h3>
         <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
-                <th>Demat Account No.</th>
+                <th>Demat/Securities Account No.</th>
                 <th>Name of Depository Participant</th>
             </tr>
             </thead>

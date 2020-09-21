@@ -41,24 +41,24 @@ $condeptsess = $this->session->contractdepartment;
         <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "" border="1">
             <thead>
                         <tr>
-                            <th rowspan="2">Company</th>
-                            <th colspan="3" style="text-align: center;">Opening Balance</th>
-                            <th colspan="3" style="text-align: center;">Buy/Sell</th>
-                            <th rowspan="2">Esop</th>
-                            <th colspan="3" style="text-align: center;">Closing Balance</th>
-                            <th rowspan="3">Action</th>
+                            <th width="20%" rowspan="2">Company</th>
+                            <th width="20%" colspan="2" style="text-align: center;">Opening Balance</th>
+                            <th width="20%" colspan="2" style="text-align: center;">Buy/Sell</th>
+                            <th width="10%" rowspan="2">Esop</th>
+                            <th width="20%" colspan="2" style="text-align: center;">Closing Balance</th>
+                            <th width="10%" rowspan="3">Action</th>
                         </tr>
                         <tr>
                             
-                            <th>Equity</th>
-                            <th>Preference</th>
-                            <th>Debenture</th>
-                            <th>Equity</th>
-                            <th>Preference</th>
-                            <th>Debenture</th>
-                            <th>Equity</th>
-                            <th>Preference</th>
-                            <th>Debenture</th>
+                            <th width="10%">Equity</th>
+                            <th width="10%">ADRs</th>
+                           <!--  <th>Debenture</th> -->
+                            <th width="10%">Equity</th>
+                            <th width="10%">ADRs</th>
+                            <!-- <th>Debenture</th> -->
+                            <th width="10%">Equity</th>
+                            <th width="10%">ADRs</th>
+                         <!--    <th>Debenture</th> -->
                             
                         </tr>
              </thead>
@@ -118,14 +118,14 @@ $condeptsess = $this->session->contractdepartment;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title col-md-6">Add Company</h4>
+        <h4 class="modal-title col-md-6">Add Opening Balance</h4>
       </div>
         <div class="modal-body">
             <form action="holdingsummary/insertholdingsummry" autocomplete="off" id="insertholdingsummry" class="nishana" method="post" enctype="multipart/form-data">
            
                 <input type="hidden" name="compid" class="compid" id="compid" value="">
                 
-                        <section class="col col-md-6 col-xs-6">
+                        <!-- <section class="col col-md-6 col-xs-6">
                             <div class="input">
                           <div class="mainelem company_product">
                             <label class="control-label">Search Listed Company Name*</label>
@@ -149,14 +149,14 @@ $condeptsess = $this->session->contractdepartment;
                         </div>
                        </div>
                             </div>
-                    </section>
+                    </section> -->
 
-                      <section class="col col-md-6 col-xs-6">
+                     <!--  <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">Name Of Listed Company*</label>
                                 <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" readonly required>
                             </div>
-                        </section>
+                        </section> -->
                 
                         <section class="col col-md-12 col-xs-12">
                             <div class="input">
@@ -215,17 +215,17 @@ $condeptsess = $this->session->contractdepartment;
                 
                 <section class="col col-md-6 col-xs-6">
                     <div class="input">
-                        <label class="control-label">Preference Shares Opening Balance</label>
+                        <label class="control-label">ADRs Opening Balance</label>
                         <input type="text" id="prefernc" name="prefernc" class="form_fields form-control col-md-7 col-xs-12" required>
                     </div>
                 </section>
-                
+              <!--   
                 <section class="col col-md-6 col-xs-6">
                     <div class="input">
                         <label class="control-label">Debentures Opening Balance</label>
                         <input type="text" id="debenture" name="debenture" class="form_fields form-control col-md-7 col-xs-12" required>
                     </div>
-                </section>
+                </section> -->
                         
                         
                        

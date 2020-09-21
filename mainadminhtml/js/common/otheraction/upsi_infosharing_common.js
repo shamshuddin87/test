@@ -77,7 +77,11 @@ function getdataonload()
                 addhtmlnxt += '<td width="25%">'+projstartdate+'</td>';
                 addhtmlnxt += '<td width="25%">'+enddate+'</td>';
                 addhtmlnxt += '<td width="25%">'+date_added+'</td>';
-                addhtmlnxt += '<td width="25%"><i class="fa fa-plus faicon setupsitype" title="View entry" upsitypeid="'+response.resdta[i].id+'" ></i></td>';
+               //console.log(response.access[0].upsi_infoshare_add);
+                if(response.access[0].upsi_infoshare_add == 1 )
+                { 
+                    addhtmlnxt += '<td width="25%"><i class="fa fa-plus faicon setupsitype" title="View entry" upsitypeid="'+response.resdta[i].id+'" disabled></i></td>';
+                }
 //                addhtmlnxt += '<td width="25%"><i class="fa fa-edit faicon floatleft editupsitype" title="Edit entry" upsitypeid="'+response.resdta[i].id+'" ></i><i class="fa fa-trash-o faicon floatleft deleteupsitype" title="Delete entry" upsitypeid="'+response.resdta[i].id+'" ></i></td>';
                 
                 addhtmlnxt += '</tr>';     
@@ -280,13 +284,7 @@ website('body').on('click','.setupsitype', function(){
                 }
                 else
                 {
-                    // new PNotify({title: 'Alert',
-                    //       text: response.message,
-                    //       type: 'university',
-                    //       hide: true,
-                    //       styling: 'bootstrap3',
-                    //       addclass: 'bg-primary alert-styled-left',
-                    //   });
+                    
                       website('#alertcommon #allalertmsg').html(response.message);
                       website('#alertcommon').modal('show');
                 }
@@ -294,13 +292,7 @@ website('body').on('click','.setupsitype', function(){
             complete: function(response)
             {  website('.progress-indeterminate').fadeOut(); },
             error: function(jqXHR, textStatus, errorThrown)
-             { // new PNotify({title: 'Alert',
-            //               text: 'Something went wrong ! Please Contact to website admin',
-            //               type: 'university',
-            //               hide: true,
-            //               styling: 'bootstrap3',
-            //               addclass: 'bg-primary alert-styled-left',
-            //           }); 
+             { 
 
                website('#alertcommon #allalertmsg').html("Something went wrong ! Please Contact to website admin");
                website('#alertcommon').modal('show');

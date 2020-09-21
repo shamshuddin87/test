@@ -709,7 +709,7 @@ class Sebicommon extends Component
     /******* insert form c data start********/
     public function insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid,$category,$cin)
     {
-        //print_r($formcdata);exit;
+        //print_r($appvrid);exit;
         $time = time();
         $connection = $this->dbtrd; 
         for($i = 0;$i<sizeof($formcdata);$i++)
@@ -873,13 +873,16 @@ class Sebicommon extends Component
     public function getformcdata($getuserid,$user_group_id,$formcid)
     {
         $connection = $this->dbtrd;
-        $queryget = "SELECT formc.*,memb.fullname,memb.mobile,pinfo.pan,pinfo.address,cate.category,cmp.company_name,formmode.acquisitionmode AS acquistnmode  
+        $queryget = "SELECT formc.*,memb.`fullname`,memb.`mobile`,tr.`no_of_share` AS tdsshare,tr.`req_id`,pr.`place`,pr.`no_of_shares`,pinfo.`pan`,pinfo.`address`,cate.`category`,cmp.`company_name`,formmode.`acquisitionmode` AS acquistnmode ,pinfo.`sharehldng`,sc.`pershare` 
          FROM `sebiformc_usrdata` formc 
          LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id` 
-         LEFT JOIN `personal_info` pinfo ON pinfo.userid = formc.`user_id` 
-         LEFT JOIN `sebiformb_category` cate ON cate.id = formc.category 
-         LEFT JOIN `listedcmpmodule` cmp ON cmp.id = formc.companyid 
-         LEFT JOIN `sebiformc_mode` formmode ON formmode.id = formc.acquimode
+         LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id` 
+         LEFT JOIN `sebiformb_category` cate ON cate.`id` = formc.`category` 
+         LEFT JOIN `listedcmpmodule` cmp ON cmp.`id` = formc.`companyid` 
+         LEFT JOIN `sebiformc_mode` formmode ON formmode.`id` = formc.`acquimode`
+         LEFT JOIN `trading_status` tr ON tr.`id` = formc.`tradeid`
+         LEFT JOIN personal_request pr ON pr.`id` = tr.`req_id`
+          LEFT JOIN sharecapital sc ON sc.`user_id` = pinfo.`userid`
          WHERE formc.`id`='".$formcid."'";
         //echo $queryget;exit;
         try{
@@ -935,7 +938,7 @@ class Sebicommon extends Component
         $connection = $this->dbtrd; 
         $time = time();
         $todate=date('d-m-Y');
-           $queryinsert = "UPDATE `sebiformc_usrdata` SET `send_status`=1,send_date='".$todate."',`date_modified`=NOW(),`timeago`='".$time."'
+           $queryinsert = "UPDATE `sebiformc_usrdata` SET `send_status`='1',send_date='".$todate."',`date_modified`=NOW(),`timeago`='".$time."'
          WHERE `id`='".$formcid."'"; 
         // print_r($queryinsert);exit;
         try
@@ -975,7 +978,7 @@ class Sebicommon extends Component
                 WHERE (formc.`send_status`='1') AND formc.`user_id` IN(".$allusers.")".$query;
             }
 
-              // echo $queryget;  exit;
+               //echo $queryget;  exit;
 
             try
             {
@@ -1002,6 +1005,97 @@ class Sebicommon extends Component
             return $getlist;
     }
     // ********* fetch form c data on view of apprvr table end *******
+
+
+
+      // ********* fetch form c data for export table start *******
+    public function fetchformcdataforexport($uid,$usergroup,$rowid)
+    {
+        $connection = $this->dbtrd;
+       
+       
+
+        if(!empty($rowid))
+        {
+
+             if($usergroup!=2)
+            {
+
+                $queryget = "SELECT formc.*,memb.`designation`,memb.`fullname`,memb.`mobile`,pinfo.`address`,pinfo.`pan`,cate.`category` 
+                FROM `sebiformc_usrdata` formc LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id` 
+                LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id` 
+                LEFT JOIN `sebiformb_category` cate ON cate.`id` = formc.`category`
+                WHERE (formc.`send_status`='1') AND FIND_IN_SET('".$uid."',formc.`approverid`) AND formc.`id` IN(".$rowid.")";
+                
+            }
+            else
+            {
+               
+                $allusers=$this->tradingrequestcommon->getalluserformain($uid);
+                $allusers= implode(",",$allusers);
+
+                $queryget = "SELECT formc.*,memb.`designation`,memb.`fullname`,memb.`mobile`,pinfo.`address`,pinfo.`pan`,cate.`category` 
+                FROM `sebiformc_usrdata` formc LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id` 
+                LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id` 
+                LEFT JOIN `sebiformb_category` cate ON cate.`id` = formc.`category`
+                WHERE (formc.`send_status`='1') AND formc.`user_id` IN(".$allusers.") AND formc.`id` IN(".$rowid.")";
+            }
+        }
+        else
+        {
+
+              if($usergroup!=2)
+            {
+                $queryget = "SELECT formc.*,memb.`designation`,memb.`fullname`,memb.`mobile`,pinfo.`address`,pinfo.`pan`,cate.`category` 
+                FROM `sebiformc_usrdata` formc LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id` 
+                LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id` 
+                LEFT JOIN `sebiformb_category` cate ON cate.`id` = formc.`category`
+                WHERE (formc.`send_status`='1') AND FIND_IN_SET('".$uid."',formc.`approverid`)";
+            }
+            else
+            {
+                  
+                $allusers=$this->tradingrequestcommon->getalluserformain($uid);
+                $allusers= implode(",",$allusers);
+
+                $queryget = "SELECT formc.*,memb.`designation`,memb.`fullname`,memb.`mobile`,pinfo.`address`,pinfo.`pan`,cate.`category` 
+                FROM `sebiformc_usrdata` formc LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id` 
+                LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id` 
+                LEFT JOIN `sebiformb_category` cate ON cate.`id` = formc.`category`
+                WHERE (formc.`send_status`='1') AND formc.`user_id` IN(".$allusers.")";
+            }
+
+           
+
+              
+        }
+
+            try
+            {
+                $exeget = $connection->query($queryget);
+                $getnum = trim($exeget->numRows());
+
+                if($getnum>0)
+                {
+                    while($row = $exeget->fetch())
+                    {
+                        $getlist[] = $row;
+                    } 
+                }
+                else
+                {
+                    $getlist = array();
+                }
+
+            }
+            catch (Exception $e)
+            {
+                $getlist = array();
+            }
+            return $getlist;
+    }
+    // ********* fetch form c data for export table end *******
+
     
     public function insertpdfpathformc($pdfpath,$formcid)
     {
@@ -1076,8 +1170,8 @@ class Sebicommon extends Component
             $queryget= "SELECT formc.`user_id`, formc.`approverid`, 
                 memb.`fullname`,memb.`designation`,pinfo.`pan` 
                 FROM `sebiformc_usrdata` formc
-                LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.user_id
-                LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.user_id
+                LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id`
+                LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id`
                 WHERE formc.`id`='".$formcid."' ";
             //echo $queryget; exit;
             
@@ -1198,13 +1292,13 @@ class Sebicommon extends Component
             for($i = 0;$i<sizeof($getcomp);$i++)
             {
                 $totalamnt = 0;
-                    $queryget = "SELECT ts.*,cmp.company_name,secu.security_type,trans.transaction FROM `trading_status` ts
-                    LEFT JOIN `listedcmpmodule` cmp ON cmp.id = ts.id_of_company
-                    LEFT JOIN `req_securitytype` secu ON secu.id = ts.sectype
-                    LEFT JOIN `personal_request` pr ON pr.id = ts.req_id
-                    LEFT JOIN `type_of_transaction` trans ON trans.id = pr.type_of_transaction WHERE ts.`user_id`='".$getuserid."' AND ts.`id_of_company`='".$getcomp[$i]."' AND ts.`formcstatus` = '0' AND ts.`date_of_transaction` BETWEEN '".$finstrtdte."' AND '".$finenddte."' ORDER BY ID DESC ".$query; 
+                    $queryget = "SELECT ts.*,cmp.`company_name`,secu.`security_type`,trans.`transaction` FROM `trading_status` ts
+                    LEFT JOIN `listedcmpmodule` cmp ON cmp.`id` = ts.`id_of_company`
+                    LEFT JOIN `req_securitytype` secu ON secu.`id` = ts.`sectype`
+                    LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
+                    LEFT JOIN `type_of_transaction` trans ON trans.`id` = pr.`type_of_transaction` WHERE ts.`user_id`='".$getuserid."' AND ts.`id_of_company`='".$getcomp[$i]."' AND ts.`formcstatus` = '0' AND ts.`date_of_transaction` BETWEEN '".$finstrtdte."' AND '".$finenddte."' ORDER BY ID DESC ".$query; 
                 
-                // echo $queryget;
+                 //echo $queryget;exit;
                 $exeget = $connection->query($queryget);
                 $getnum = trim($exeget->numRows());
                 //echo $getnum;exit;
@@ -1213,7 +1307,9 @@ class Sebicommon extends Component
                     while($row = $exeget->fetch())
                     {
                         $gettotal[$i] = $this->gettotlamnt($getuserid,$getcomp[$i],$finstrtdte,$finenddte);
+                        //print_r($gettotal[$i]);exit;
                         $getrow = "SELECT * FROM `sebiformc_usrdata` WHERE `tradeid` = '".$row['id']."'";
+                        //print_r($getrow);exit;
                         $exegetrow = $connection->query($getrow);
                         $getnumrow[$i] = trim($exegetrow->numRows());
                         if($gettotal[$i] > 1000000 || $getnumrow[$i] == 1 )
@@ -1275,6 +1371,7 @@ class Sebicommon extends Component
          {
             
             $queryget = "SELECT SUM(total_amount) AS totalamnt FROM trading_status  WHERE id_of_company='".$getcomp."' AND user_id='".$getuserid."' AND  `date_of_transaction` BETWEEN '".$finstrtdte."' AND '".$finenddte."' "; 
+            //print_r($queryget);exit;
           
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
@@ -1523,12 +1620,14 @@ class Sebicommon extends Component
     public function getformddata($getuserid,$user_group_id,$formdid)
     {
         $connection = $this->dbtrd;
-        $queryget = "SELECT formd.*,memb.fullname,memb.mobile,pinfo.pan,pinfo.address,cmp.company_name,formmode.acquisitionmode AS acquistnmode 
+        $queryget = "SELECT formd.*,memb.`fullname`,memb.`mobile`,tr.`req_id`,pr.`place`,pinfo.`pan`,pinfo.`address`,cmp.`company_name`,formmode.`acquisitionmode` AS acquistnmode 
          FROM `sebiformd_usrdata` formd 
          LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formd.`user_id` 
-         LEFT JOIN `personal_info` pinfo ON pinfo.userid = formd.`user_id` 
-         LEFT JOIN `listedcmpmodule` cmp ON cmp.id = formd.companyid
-         LEFT JOIN `sebiformc_mode` formmode ON formmode.id = formd.acquimode 
+         LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formd.`user_id` 
+         LEFT JOIN `listedcmpmodule` cmp ON cmp.`id` = formd.`companyid`
+         LEFT JOIN `sebiformc_mode` formmode ON formmode.`id` = formd.`acquimode`
+         LEFT JOIN `trading_status` tr ON tr.`id` = formd.`tradeid`
+         LEFT JOIN personal_request pr ON pr.`id` = tr.`req_id`
          WHERE formd.`id`='".$formdid."'";
         //echo $queryget;exit;
         try{
@@ -1938,6 +2037,48 @@ class Sebicommon extends Component
     
     
     /*--------------------------- form d section end ---------------------------*/
+
+
+      public function getsharecapital($getuserid,$user_group_id)
+    {
+        $connection = $this->dbtrd;
+        try
+        {
+            if($user_group_id == 2)
+            {
+                $queryget = "SELECT *  FROM `sharecapital` WHERE `user_id`='".$getuserid."'  ";
+            }
+            else
+            {
+                $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+                $queryget = "SELECT *  FROM `sharecapital` WHERE `user_id` IN(".$grpusrs['ulstring'].") ";
+            }
+            //echo $queryget;exit;
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist = $row;
+                }
+                //echo '<pre>';print_r($getlist);exit;
+            }
+            else
+            {
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+
+        return $getlist;
+    }
+    
     
 }
 

@@ -39,10 +39,10 @@ $condeptsess = $this->session->contractdepartment;
                         <tr>
                             <?php if($user_group_id == '7'){?><th>Date of Sending for Approval</th>
                             <?php }else { ?> <th>Created On</th> <?php } ?>
-                            <th>Company Name</th>
+                           <!--  <th>Company Name</th> -->
                             <th>Designation</th>
-                            <?php if($user_group_id == '7'){?>
-                            <th>Send for Approval</th> <?php } ?>
+                           
+                            <th>Send for Approval</th> 
                             <th>View Draft</th> 
                             <?php if($user_group_id == '7'){?><th>View Final</th> <?php } ?>
                             <th>Created Date</th>
@@ -281,6 +281,42 @@ $condeptsess = $this->session->contractdepartment;
 </div>
 
 <div id="modaldocument" class="modal fade" role="dialog">
+   <form id="excelupload" name="excelupload">
+                   <input type="hidden" class="excelsecutype1" name="excelsecutype1" value="">
+                    <input type="hidden" class="excelsecutype2" name="excelsecutype2" value="">
+                    <input type="hidden" class="excelcontractspecific" name="excelcontractspecific" value="">
+                    <input type="hidden" class="excelcontracttype" name="excelcontracttype" value="">
+                    <input type="hidden" class="excelposttrans" name="excelposttrans" value="">
+                    <input type="hidden" class="exceltranstype" name="exceltranstype" value="">
+                    <input type="hidden" class="excelname" name="excelname" value="">
+                    <input type="hidden" class="excelcmpnme" name="excelcmpnme" value="">
+                    <input type="hidden" class="excelcmpisin" name="excelcmpisin" value="">
+                    <input type="hidden" class="excelpan" name="excelpan" value="">
+                    <input type="hidden" class="excelcin"  name="excelcin" value="L85195TG1984PLC004507">
+                    <input type="hidden" class="excelcontctno" name="excelcontctno" value="">
+                    <input type="hidden" class="excelopngblnc"  name="excelopngblnc" value="">
+                    <input type="hidden" class="excelpershare" name="excelpershare" value="">
+                   
+                    <input type="hidden" class="excelnoofshares" name="excelnoofshares" value="">
+                    <input type="hidden" class="exceltotalamt" name="exceltotalamt" value="">
+                    <input type="hidden" class="exceladdress"  name="exceladdress" value="">
+                    <input type="hidden" class="excelcategory" name="excelcategory" value="">
+                    <input type="hidden" class="excelpretrans" name="excelpretrans" value="">
+                    <input type="hidden" class="excelposttrans" name="excelposttrans" value="">
+                    <input type="hidden" class="excelfromdate"  name="excelfromdate"  value="">
+                    <input type="hidden" class="exceltodate" name="exceltodate" value="">
+                    <input type="hidden" class="exceldateofintimtn" name="exceldateofintimtn" value="">
+                    <input type="hidden" class="excelacquimode" name="excelacquimode" value="">
+                    <input type="hidden" class="excelbuyvalue" name="excelbuyvalue" value="">
+                    <input type="hidden" class="excelbuynumbrunt"  name="excelbuynumbrunt" value="">
+                    <input type="hidden" class="excelsellvalue" name="excelsellvalue" value="">
+                    <input type="hidden" class="excelsellnumbrunt" name="excelsellnumbrunt" value="">
+                    <input type="hidden" class="excelexetrd" name="excelexetrd" value="">
+                    <input type="hidden" class="excelformcid" name="excelformcid" value="">
+                     <input type="hidden" class="excelprepercent" name="excelprepercent" value="">
+                    <input type="hidden" class="excelpostpercent" name="excelpostpercent" value="">
+                    </form>
+
   <div class="modal-dialog modal_width">
     <!-- Modal content-->
     <div class="table-responsive">  
@@ -303,9 +339,10 @@ $condeptsess = $this->session->contractdepartment;
     </div>
 </div>
   </div>
+
 </div>
 
-<div id="Mymodaledit" class="modal fade" role="dialog">
+<div id="Mymodaledit" class="modal fade" role="dialog" tabIndex=-1>
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -349,11 +386,9 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">CIN/DIN</label>
-                                <?php if(empty($cinn)) {?>
-                                <input type="text" id="cin" name="cin" class="form_fields form-control col-md-7 col-xs-12" value="" required>
-                                <?php } else { ?>
-                                <input type="text" id="cin" name="cin" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $cinn;?>" readonly required>
-                                <?php } ?>
+                                
+                                <input type="text" id="cin" name="cin" class="form_fields form-control col-md-7 col-xs-12" value="L85195TG1984PLC004507" readonly required>
+                                
                             </div>
                     </section>
                
@@ -390,9 +425,9 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                         </section>
 
-                        <section class="col col-md-12 col-xs-12">
-                            <div class="input">
-                            <label class="control-label heading">Date of allotment advice/acquisition of shares/sale of shares specify</label>
+                        <section class="">
+                            <div class="input ">
+                            <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 10px;">Date of allotment advice/acquisition of shares/sale of shares specify</label>
                            
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
@@ -410,25 +445,6 @@ $condeptsess = $this->session->contractdepartment;
                          </div>
                     </section>
                
-                  <!--   <section class="col col-md-12 col-xs-12">
-                            <div class="input">
-                            <label class="control-label heading">% of shareholding</label>
-                           
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                            <label class="control-label">Pretransaction</label>
-                             <input type="text" id="pretrans" name="pretrans" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
-                            </div>
-                        </section>
-               
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                                <label class="control-label">Posttransaction</label>
-                                <input type="text" id="posttrans" name="posttrans" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
-                            </div>
-                       </section>
-                         </div>
-                    </section> -->
                
                     <section class="col col-md-6 col-xs-6">
                             <div class="input">
@@ -449,9 +465,9 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                     </section>
                
-                     <section class="col col-md-12 col-xs-12">
+                     <section class="">
                             <div class="input">
-                            <label class="control-label heading">Trading in derivatives (Specify type of contract, Futures or Options etc)</label>
+                            <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 10px;">Trading in derivatives (Specify type of contract, Futures or Options etc)</label>
                            
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
@@ -462,7 +478,7 @@ $condeptsess = $this->session->contractdepartment;
                                 
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
-                                <label class="control-label">Buy Number of units(contracts* lot size)</label>
+                                <label class="control-label">Buy No of units(contracts* lot size)</label>
                                 <input type="text" id="buynumbrunt" name="buynumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                        </section>
@@ -476,7 +492,7 @@ $condeptsess = $this->session->contractdepartment;
                
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
-                                <label class="control-label">Sell Number of units(contracts* lot size)</label>
+                                <label class="control-label">Sell No of units(contracts* lot size)</label>
                                 <input type="text" id="sellnumbrunt" name="sellnumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                        </section>

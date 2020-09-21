@@ -6,7 +6,7 @@ website(document).ready(function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{new PNotify({title:'Record Added Successfully',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});setTimeout(function(){window.location.reload();},2000);}
+{new PNotify({title:'Record Added Successfully',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});setTimeout(function(){window.location.reload();},1000);}
 else
 {new PNotify({title:'Record Not Added',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
@@ -19,7 +19,7 @@ else
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {var addhtmlnxt='';for(var i=0;i<response.resdta.length;i++)
-{dtfrmt=response.resdta[i].date_added.split("-");dtfrmtspace=response.resdta[i].date_added.split(" ");ddmmyy=dtfrmtspace[0];dtfrmt=dtfrmtspace[0].split("-");yymmdd=dtfrmt[0]+'-'+dtfrmt[1]+'-'+dtfrmt[2];times=dtfrmtspace[1];addhtmlnxt+='<tr class="counter" esopid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="25%">'+yymmdd+'</td>';addhtmlnxt+='<td width="25%">'+times+'</td>';addhtmlnxt+='<td width="30%"><i class="fa fa-eye faicon floatleft viewesop" title="View entry" id="editesop" esopid="'+response.resdta[i].id+'" uniqueid="'+response.resdta[i].uniqueid+'"></i></td>';addhtmlnxt+='</tr>';}
+{dtfrmt=response.resdta[i].date_added.split("-");dtfrmtspace=response.resdta[i].date_added.split(" ");ddmmyy=dtfrmtspace[0];dtfrmt=dtfrmtspace[0].split("-");yymmdd=dtfrmt[0]+'-'+dtfrmt[1]+'-'+dtfrmt[2];times=dtfrmtspace[1];addhtmlnxt+='<tr class="counter" esopid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="25%">'+yymmdd+'</td>';addhtmlnxt+='<td width="25%">'+times+'</td>';addhtmlnxt+='<td width="30%"><i class="fa fa-eye faicon floatleft viewesop" title="View entry" id="editesop" esopid="'+response.resdta[i].id+'"  uniqueid="'+response.resdta[i].uniqueid+'"></i></td>';addhtmlnxt+='</tr>';}
 website('.appendrow').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);}
 else
 {website('.appendrow').html('<tr><td style="text-align:center;" colspan="13">Data Not Found!!!!</td></tr>');website('.paginationmn').html(response.pgnhtml);}},complete:function(response)

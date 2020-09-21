@@ -118,6 +118,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                     $esopdata = array('empname'=>$emp_name,'emppan'=>$emp_pan,'empshares'=>$emp_shares,'almtdte'=>$emp_almtdate);
                   
                     $getstatus = $this->esopcommon->insertesop($getuserid,$user_group_id,$esopdata,$uniqueid);
+                    
                 }
                 
             }
@@ -141,7 +142,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
     public function fetchallupsiexportexcel($getuserid,$user_group_id,$processdata)
     {
 
-         //echo '<pre>'; print_r($processdata);exit;
+        //echo '<pre>'; print_r($processdata);exit;
         $connection = $this->db;
         $time = time();
         
@@ -157,12 +158,14 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                             '2'=> $tblrow['enddate'],
                             '3' => $tblrow[11],
                             '4' => $tblrow['fullname']
+                           
                             //'4' => $tblrow['designation']
                            
                         );
             $j++;
         }
-        //echo '<pre>';print_r($nwexcl);exit;
+
+        
        
         $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
         
@@ -210,7 +213,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
     public function fetchSharedInfoexcel($getuserid,$user_group_id,$upsidata)
     {
 
-         //echo '<pre>'; print_r($processdata);exit;
+         //echo '<pre>'; print_r($upsidata);exit;
         $connection = $this->db;
         $time = time();
         
@@ -225,14 +228,31 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
             {
                 $category = $tblrow['othercategory'];
             }
+             else if(empty($tblrow['category_name']))
+            {
+              $category = 'Employee';
+            }
             $nwexcl[] = array('0' => $tblrow['name'],
                             '1' => $category,
                             '2'=> $tblrow['sharingdate'],
                             '3' => $tblrow['sharingtime'],
                             '4' => $tblrow['enddate'],
                             '5' => $tblrow['datashared'],
-//                            '6' => $tblrow['purpose'],
-                            '6' => $tblrow['fullname']
+//                          
+                            '6' => $tblrow['fullname'],
+                             '7' => $tblrow['email'],
+                            '8' => $tblrow['pan'],
+                            '9'=> $tblrow['legal_identifier'],
+                            '10' => $tblrow['legal_identification_no'],
+                            '11' => $tblrow['aadhar'],
+                            '12' => $tblrow['dob'],
+                            '13' => $tblrow['sex'],
+                            '14' => $tblrow['education'],
+                            '15' => $tblrow['institute'],
+                            '16' => $tblrow['address'],
+                            '17' => $tblrow['mobileno'],
+                            '18' => $tblrow['sharehldng'],
+                            '19' => $tblrow['adrshldng']
                         );
             $j++;
         }
@@ -386,11 +406,12 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                          $ConnctdDpArray = array('username'=>$username,'emailid'=>$emailid);
                          
                         
-                 }
+                    }
                 
               }   
               //print_r($username);exit;
               $getres = $this->upsicommon->Fetchusersid($getuserid,$user_group_id,$ConnctdDpArray);
+              $final = array('ConnctdDpArray'=> $ConnctdDpArray,'getres'=>$getres);
                 //print_r($getres);echo "hello";exit;
                         if(!$getres)
                         {
@@ -404,11 +425,11 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         }
         catch (Exception $e)
         {
-            $getres = array();
+            $final = array();
             $connection->close();
         }
        // print_r($getres);exit;
-        return $getres;
+        return $final;
     }
 
     public function insertholding($getuserid,$user_group_id,$excelfilenamepath,$dtofhldng,$uniqueid,$typeofhldng)
@@ -472,6 +493,160 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                             '2' => $tblrow['email'],
                             '3'=> $annualyr,
                             '4' => $sentdate,
+                        );
+            $j++;
+        }
+        //echo '<pre>';print_r($nwexcl);exit;
+       
+        $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+        
+        $objPHPExcel->setActiveSheetIndex(0);
+        $worksheet = $objPHPExcel->getActiveSheet();
+        $highestColumn = $worksheet->getHighestColumn();
+        $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
+        $highestRow = $worksheet->getHighestRow();
+        $worksheet = $objPHPExcel->getActiveSheet();
+               //echo "yo";exit;  
+            //echo '<pre>';print_r($nwexcl);exit;
+            if(count($nwexcl)>0)
+            {
+                $row = 2; // 1-based index
+
+                foreach($nwexcl as $rowdata)
+                {
+                    $col = 0;
+                    foreach($rowdata as $key=>$value) 
+                    {
+                        //echo $col." ".$row." ".$value.'<br>';
+                        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+                        $col++;
+                    }                    
+                    $row++;
+                }
+
+                $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+                //echo '<pre>';print_r($newfilepath);exit;
+                $objWriter->save($newfilepath);
+                //echo $newfilepath;exit;
+
+                $genfile = $newfilepath;
+            }
+            else
+            {
+                $genfile = '';
+            }
+
+        //echo '<pre>';print_r($genfile);exit;
+        return $genfile;
+    }
+    
+     public function exportformc($getuserid,$user_group_id,$processdata)
+    {
+       // echo '<pre>'; print_r($processdata);exit;
+         $connection = $this->db;
+        $time = time();
+        
+        $excelfilenamepath = 'samplefile/SEBI/formc.xlsx';
+        $newfilepath = 'img/sebi/formc'.'_'.$time.'.xlsx';
+        $j=1;
+       
+        foreach($processdata as $tblrow)
+        {
+           
+           $firstfield=$tblrow[6].",".$tblrow[9].",".$tblrow[10].",".$tblrow[16].",".$tblrow[11];
+           $third = $tblrow[12].",".$tblrow[30];
+           $nine = $tblrow[13].",".$tblrow[31];
+
+          
+            $nwexcl[] = array(  '0' => $firstfield,
+                                '1' => $tblrow[17],
+                                '2'=>$tblrow[0],
+                                '3' =>$third,
+                                '4' =>$tblrow[0],
+                                '5' =>$tblrow[14],
+                                '6' =>$tblrow[15],
+                                '7' =>strip_tags($tblrow[5]),
+                                '8' =>$tblrow[1],
+                                '9' =>$nine,
+                                '10' =>$tblrow[20],
+                                '11' =>$tblrow[21],
+                                '12' =>$tblrow[22],
+                                '13' =>$tblrow[23],
+                                '14' =>$tblrow[3],
+                                '15' =>$tblrow[2],
+                                '16' =>$tblrow[24],
+                                '17' =>$tblrow[25],
+                                '18' =>$tblrow[26],
+                                '19' =>$tblrow[27],
+                                '20' =>$tblrow[28]
+                              
+
+                        );
+            $j++;
+        }
+        //echo '<pre>';print_r($nwexcl);exit;
+       
+        $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+        
+        $objPHPExcel->setActiveSheetIndex(0);
+        $worksheet = $objPHPExcel->getActiveSheet();
+        $highestColumn = $worksheet->getHighestColumn();
+        $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
+        $highestRow = $worksheet->getHighestRow();
+        $worksheet = $objPHPExcel->getActiveSheet();
+               //echo "yo";exit;  
+            //echo '<pre>';print_r($nwexcl);exit;
+            if(count($nwexcl)>0)
+            {
+                $row = 2; // 1-based index
+
+                foreach($nwexcl as $rowdata)
+                {
+                    $col = 0;
+                    foreach($rowdata as $key=>$value) 
+                    {
+                        //echo $col." ".$row." ".$value.'<br>';
+                        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+                        $col++;
+                    }                    
+                    $row++;
+                }
+
+                $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+                //echo '<pre>';print_r($newfilepath);exit;
+                $objWriter->save($newfilepath);
+                //echo $newfilepath;exit;
+
+                $genfile = $newfilepath;
+            }
+            else
+            {
+                $genfile = '';
+            }
+
+        //echo '<pre>';print_r($genfile);exit;
+        return $genfile;
+
+    }
+
+      public function exportesop($getuserid,$user_group_id,$processdata)
+    {
+        //echo '<pre>'; print_r($processdata);exit;
+        $connection = $this->db;
+        $time = time();
+        
+        $excelfilenamepath = 'samplefile/ESOP/esop_nondp.xlsx';
+        $newfilepath = 'img/esop/esop_nondp'.'_'.$time.'.xlsx';
+        $j=1;
+        foreach($processdata as $tblrow)
+        {
+            
+            
+            $nwexcl[] = array('0' => $tblrow['emp_name'],
+                            '1' => $tblrow['emp_pan'],
+                            '2' => $tblrow['emp_shares'],
+                            '3' => $tblrow['altmntdate']
+                           
                         );
             $j++;
         }

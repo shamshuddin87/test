@@ -10,8 +10,10 @@ website(document).ready(function()
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {var addhtmlnxt='';for(var i=0;i<response.resdta.length;i++)
-{var datefrom=response.resdta[i].sharingdate;var enddate=response.resdta[i].enddate?response.resdta[i].enddate:'';var time=response.resdta[i].sharingtime?response.resdta[i].sharingtime:'';var newtime=time.replace(/:[^:]*$/,'');addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="10%">'+response.resdta[i].name+'</td>';var category=response.resdta[i].category_name;if(response.resdta[i].category==16)
+{console.log(response.resdta[i].category_name);var datefrom=response.resdta[i].sharingdate;var enddate=response.resdta[i].enddate?response.resdta[i].enddate:'';var time=response.resdta[i].sharingtime?response.resdta[i].sharingtime:'';var newtime=time.replace(/:[^:]*$/,'');addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';addhtmlnxt+='<td width="10%">'+response.resdta[i].name+'</td>';var category=response.resdta[i].category_name;if(response.resdta[i].category==16)
 {var category=response.resdta[i].othercategory?response.resdta[i].othercategory:'';}
+else if(response.resdta[i].category_name==null)
+{var category='Employee';}
 addhtmlnxt+='<td width="10%">'+category+'</td>';addhtmlnxt+='<td width="10%">'+datefrom+'</td>';addhtmlnxt+='<td width="10%">'+newtime+'</td>';addhtmlnxt+='<td width="10%">'+enddate+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].datashared+'</td>';addhtmlnxt+='<td width="10%"><i class="fa fa-file" aria-hidden="true" id="upsiattachmnt" filepath="'+response.resdta[i].filepath+'"></i></td>';addhtmlnxt+='<td width="5%"><i class="fa fa-bar-chart viewtrail" infoshrid="'+response.resdta[i].id+'"></i></td>';addhtmlnxt+='<td width="10%">'+response.resdta[i].fullname+'</td>';addhtmlnxt+='</tr>';}
 website('.appendrow').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);}
 else

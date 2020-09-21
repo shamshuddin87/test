@@ -48,7 +48,7 @@ $condeptsess = $this->session->contractdepartment;
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Company Name</th>
+                           <!--  <th>Company Name</th> -->
                             <th>Buy/Sell</th>
                             <th>No.Of Shares</th>
                             <th>Value Of Shares</th>
@@ -79,7 +79,7 @@ $condeptsess = $this->session->contractdepartment;
 </div>
 <!-- ########################################## PageContent End ########################################## --> 
 
-<div id="Mymodalformc" class="modal fade" role="dialog">
+<div id="Mymodalformc" class="modal fade" role="dialog" tabIndex=-1>
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -307,7 +307,7 @@ $condeptsess = $this->session->contractdepartment;
   </div>
 </div>
 
-<div id="Mymodaledit" class="modal fade" role="dialog">
+<div id="Mymodaledit" class="modal fade" role="dialog"tabIndex=-1>
   <div class="modal-dialog">
 
     <div class="modal-content">

@@ -41,23 +41,23 @@ $condeptsess = $this->session->contractdepartment;
             <thead>
                         <tr>
                             <th rowspan="2">Relationship</th>
-                            <th colspan="3" style="text-align: center;">Opening Balance</th>
-                            <th colspan="3" style="text-align: center;">Buy/Sell</th>
+                            <th colspan="2" style="text-align: center;">Opening Balance</th>
+                            <th colspan="2" style="text-align: center;">Buy/Sell</th>
                            <!--  <th rowspan="2">Esop</th> -->
-                            <th colspan="3" style="text-align: center;">Closing Balance</th>
+                            <th colspan="2" style="text-align: center;">Closing Balance</th>
                             <th rowspan="3">Action</th>
                         </tr>
                         <tr>
                             
                             <th>Equity</th>
-                            <th>Preference</th>
-                            <th>Debenture</th>
+                            <th>ADRs</th>
+                          <!--   <th>Debenture</th> -->
                             <th>Equity</th>
-                            <th>Preference</th>
-                            <th>Debenture</th>
+                            <th>ADRs</th>
+                          <!--   <th>Debenture</th> -->
                             <th>Equity</th>
-                            <th>Preference</th>
-                            <th>Debenture</th>
+                            <th>ADRs</th>
+                          <!--   <th>Debenture</th> -->
                             
                         </tr>
              </thead>
@@ -208,17 +208,17 @@ $condeptsess = $this->session->contractdepartment;
                 
                 <section class="col col-md-6 col-xs-6">
                     <div class="input">
-                        <label class="control-label">Preference Shares Opening Balance</label>
+                        <label class="control-label">ADRs Opening Balance</label>
                         <input type="text" id="prefernc" name="prefernc" class="form_fields form-control col-md-7 col-xs-12" required>
                     </div>
                 </section>
                 
-                <section class="col col-md-6 col-xs-6">
+              <!--   <section class="col col-md-6 col-xs-6">
                     <div class="input">
                         <label class="control-label">Debentures Opening Balance</label>
                         <input type="text" id="debenture" name="debenture" class="form_fields form-control col-md-7 col-xs-12" required>
                     </div>
-                </section>
+                </section> -->
                         
                         
                        

@@ -22,7 +22,7 @@ website(document).ready(function()
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {var addhtmlnxt='';var equityclosblnc=[];var preferclosblnc=[];var debntrclosblnc=[];var equityopnblnc='';var preferopnblnc='';var debntropnblnc='';var othercloseequity=[];var othercloseprefer=[];var otherclosedebtr=[];for(var k=response.pagefrm;k<=response.len;k++)
-{addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[k].id+'" >';addhtmlnxt+='<td width="25%">'+response.resdta[k].relationshipname+'</td>';addhtmlnxt+='<td width="25%">'+response.resdta[k].equityshare+'</td>';addhtmlnxt+='<td width="25%">'+response.resdta[k].prefershare+'</td>';addhtmlnxt+='<td width="25%">'+response.resdta[k].debntrshare+'</td>';if(response.equity[k]!='')
+{addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[k].id+'" >';addhtmlnxt+='<td width="20%">'+response.resdta[k].relationshipname+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[k].equityshare+'</td>';addhtmlnxt+='<td width="10%">'+response.resdta[k].prefershare+'</td>';if(response.equity[k]!='')
 {var opnblnceq=response.resdta[k].equityshare;var buyeq=response.equity[k].buyequity;var selleq=response.equity[k].sellequity;var totaleq=Number(buyeq)-Number(selleq);var closblnceq=Number(opnblnceq)+Number(totaleq);equityclosblnc.push({k:closblnceq});}
 else
 {var opnblnceq=response.resdta[k].equityshare;var totaleq=0;var closblnceq=Number(opnblnceq)+Number(totaleq);equityclosblnc.push({k:closblnceq});}
@@ -35,18 +35,14 @@ if(response.debenture[k]!='')
 else
 {var opnblncdeb=response.resdta[k].debntrshare;var totaldeb=0;var closblncdeb=Number(opnblncdeb)+Number(totaldeb);debntrclosblnc.push(closblncdeb);}
 if(response.equity.length!=0)
-{addhtmlnxt+='<td width="25%">'+totaleq+'</td>';}
+{addhtmlnxt+='<td width="10%">'+totaleq+'</td>';}
 if(response.prefer.length!=0)
-{addhtmlnxt+='<td width="25%">'+totalpref+'</td>';}
-if(response.debenture.length!=0)
-{addhtmlnxt+='<td width="25%">'+totaldeb+'</td>';}
+{addhtmlnxt+='<td width="10%">'+totalpref+'</td>';}
 if(response.equity.length!=0)
-{var esop=Number(closblnceq+Number(response.resdta[k].esop));addhtmlnxt+='<td width="25%">'+esop+'</td>';}
+{var esop=Number(closblnceq+Number(response.resdta[k].esop));addhtmlnxt+='<td width="10%">'+esop+'</td>';}
 if(response.prefer.length!=0)
-{addhtmlnxt+='<td width="25%">'+closblncpref+'</td>';}
-if(response.debenture.length!=0)
-{addhtmlnxt+='<td width="25%">'+closblncdeb+'</td>';}
-addhtmlnxt+='<td><i class="fa fa-edit editopngblnc " editopngblncid="'+response.resdta[k].id+'"   style="font-size:20px;"></i></td>'
+{addhtmlnxt+='<td width="10%">'+closblncpref+'</td>';}
+addhtmlnxt+='<td width="10%"><i class="fa fa-edit editopngblnc " editopngblncid="'+response.resdta[k].id+'"   style="font-size:20px;"></i></td>'
 addhtmlnxt+='</tr>';}
 website('.appendrow').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);}
 else

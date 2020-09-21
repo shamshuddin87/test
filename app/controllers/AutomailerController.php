@@ -205,6 +205,63 @@ class AutomailerController extends ControllerBase
                     //echo '<pre>'; print_r($result); exit;
                     
                 }
+
+
+                if($svl['qtypeid']=='6')
+                {
+                    $emailid = $svl['sendtoemail'];
+                    $username = $svl['sendtoname'];
+                    $usergrpid = $svl['user_group_id'];
+
+                    if(!empty($svl['maildata']))
+                    {
+                        $maildata = json_decode($svl['maildata'], true);
+                        //echo '<pre>'; print_r($maildata); exit;
+                        // ---
+                        if(isset($maildata['upsitype']))
+                        {   $upsitype = $maildata['upsitype'];    }
+                        else
+                        {   $upsitype = '';    }
+                        
+                        if(isset($maildata['date_added']))
+                        {   $date_added = $maildata['date_added'];    }
+                        else
+                        {   $date_added = '';    }
+                        
+                       
+                        
+                        if(isset($maildata['ownername']))
+                        {   $ownername = $maildata['ownername'];    }
+                        else
+                        {   $ownername = '';    }
+                        
+                        if(isset($maildata['emaildate']))
+                        {   $emaildate = $maildata['emaildate'];    }
+
+                        else
+                        {   $emaildate = '';    }
+                        
+                        if(isset($maildata['projectstart']))
+                        {   $pstartdate = $maildata['projectstart'];    }
+                        else
+                        {   $pstartdate = '';    }
+                        
+                        
+                    }
+                    else
+                    {
+                        $upsitype = '';
+                        $emaildate = '';
+                        $ownername = '';
+                        $date_added = '';
+                        $pstartdate = '';
+                    }
+                    //print_r($username);exit;
+                    $today = date('d-m-Y');
+                    $result = $this->emailer->mailofType2($emailid,$username,$upsitype,$ownername,$pstartdate,$emaildate,$date_added);
+                    //echo '<pre>'; print_r($result); exit;
+                    
+                }
                 
                 if($result['logged']==true)
                 {
@@ -276,6 +333,10 @@ class AutomailerController extends ControllerBase
         $approvmail=$this->automailercommon->sendapprovmaileveryday();
         //------------------------------------------------------------------------------//
 
+
+        //annual declaration mail on 15th april every year if not done
+         $sendremindfranualdecln = $this->remindrofanualdecln(); 
+
         
         /* ------------------------ Start ------------------------ */
         //$sendremindfrprsnlinfo = $this->remindrofprsnlinfo();
@@ -285,6 +346,35 @@ class AutomailerController extends ControllerBase
         
         exit;
     }
+
+
+     // mail of annual declaration on every year of 15th april if pending
+      public function remindrofanualdecln() 
+    {
+        //$todaydate =date('15-04-2020');
+        $todaydate =date('d-m-Y');
+        $datemonth = date('d-m');
+      
+        $year =date('Y');
+      
+          
+      
+        $type = 'nonpersonal';
+        $getusr = $this->automailercommon->getallusers($type);
+        for($i=0;$i<sizeof($getusr);$i++)
+        {
+          if($datemonth == '15-03' || $datemonth == '29-03' || $datemonth == '10-04'
+             && ($year == '2020' || $year == '2021' || $year == '2022' || $year == '2023' || $year == '2024' || $year == '2025'))
+          {
+              $getanualdecl = $this->automailercommon->chkifanualdeclfryear($getusr[$i]['wr_id'],$year);
+              if(empty($getanualdecl))
+              {
+                  $sentmail = $this->emailer->mailsenttousrfranualdecl($getusr[$i]['email'],$getusr[$i]['fullname'],$year);
+              }
+          }
+        }
+    }
+    
 
     
     public function remindrofprsnlinfo()

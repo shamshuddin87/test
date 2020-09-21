@@ -20,20 +20,19 @@ addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';if(r
 {addhtmlnxt+='<td width="20%">'+senddate+'</td>';}
 else
 {addhtmlnxt+='<td width="20%">'+date_added+'</td>';}
-addhtmlnxt+='<td width="15%">'+company+'</td>';addhtmlnxt+='<td width="15%">'+designation+'</td>';if(response.resdta[i].send_status==0)
-{if(response.user_group_id=='7')
-{addhtmlnxt+='<td width="15%"><i class="fa fa-paper-plane"  id="sendforaprvformc" formcid="'+response.resdta[i].id+'" pdfurl ="'+draft+'"></i></td>';}}
+addhtmlnxt+='<td width="20%">'+designation+'</td>';if(response.resdta[i].send_status==0)
+{addhtmlnxt+='<td width="20%"><i class="fa fa-paper-plane"  id="sendforaprvformc" formcid="'+response.resdta[i].id+'" pdfurl ="'+draft+'"></i></td>';}
 else
-{addhtmlnxt+='<td width="15%"><i class="fa fa-check" aria-hidden="true"></i></td>';}
-addhtmlnxt+='<td width="15%"><i class="fa fa-file-pdf-o" id="previewc" type="'+response.resdta[i].isitesop+'" doc_id=2 formcid="'+response.resdta[i].id+'"></i></td>';if(response.user_group_id=='7')
+{addhtmlnxt+='<td width="20%"><i class="fa fa-check" aria-hidden="true"></i></td>';}
+addhtmlnxt+='<td width="20%"><i class="fa fa-file-pdf-o" id="previewc" type="'+response.resdta[i].isitesop+'" doc_id=2 formcid="'+response.resdta[i].id+'"></i></td>';if(response.user_group_id=='7')
 {if(response.resdta[i].final)
-{addhtmlnxt+='<td width="15%"><a href="'+response.resdta[i].final+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';}
+{addhtmlnxt+='<td width="20%"><a href="'+response.resdta[i].final+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';}
 else
-{addhtmlnxt+='<td width="15%"></td>';}}
+{addhtmlnxt+='<td width="20%"></td>';}}
 dtfrmt=response.resdta[i].date_added.split("-");dtfrmtspace=response.resdta[i].date_added.split(" ");ddmmyy=dtfrmtspace[0];dtfrmt=dtfrmtspace[0].split("-");ddmmyy=dtfrmt[2]+'-'+dtfrmt[1]+'-'+dtfrmt[0];times=dtfrmtspace[1];addhtmlnxt+='<td width="15%" >'+ddmmyy+'  '+times+'</td>';if(response.resdta[i].send_status!=0)
-{addhtmlnxt+='<td width="10%" ></td>';}
+{addhtmlnxt+='<td width="20%" ></td>';}
 else
-{addhtmlnxt+='<td width="10%" ><i class="fa fa-edit faicon floatleft editformc" title="Edit entry" formcid="'+response.resdta[i].id+'"></i></td>';}
+{addhtmlnxt+='<td width="20%" ><i class="fa fa-edit faicon floatleft editformc" title="Edit entry" formcid="'+response.resdta[i].id+'"></i></td>';}
 addhtmlnxt+='</tr>';}
 website('.appendrow').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);}
 else
@@ -48,7 +47,7 @@ website('body').on('click','.editformc',function(){var id=website(this).attr('fo
 {website('#Mymodaledit #contracttype option[value=""]').prop('selected','selected').change();}
 else
 {website('#Mymodaledit #contracttype option[value='+typcntr+']').prop('selected','selected').change();}
-website('#Mymodaledit #contractspeci').val(response.data.contract_specification);website("#Mymodaledit #cin").val(response.data.cin);website("#Mymodaledit #category").val(response.data.category);website("#Mymodaledit #cmpnme").val(response.data.companyid);website("#Mymodaledit #fromdate").val(response.data.fromdate);website("#Mymodaledit #todate").val(response.data.todate);website("#Mymodaledit #pretrans").val(response.data.pretrans);website("#Mymodaledit #posttrans").val(response.data.posttrans);website("#Mymodaledit #dateofintimtn").val(response.data.dateofintimtn);website("#Mymodaledit #acquimode").val(response.data.acquimode);website("#Mymodaledit #buyvalue").val(response.data.buyvalue);website("#Mymodaledit #buynumbrunt").val(response.data.buynumbrunt);website("#Mymodaledit #sellvalue").val(response.data.sellvalue);website("#Mymodaledit #sellnumbrunt").val(response.data.sellnumbrunt);website("#Mymodaledit #exetrd").val(response.data.exetrd);website('#updateformc #upformcid').val(id);website('#Mymodaledit').modal('show');}},complete:function(response)
+website('#Mymodaledit #contractspeci').val(response.data.contract_specification);website("#Mymodaledit #category").val(response.data.category);website("#Mymodaledit #cmpnme").val(response.data.companyid);website("#Mymodaledit #fromdate").val(response.data.fromdate);website("#Mymodaledit #todate").val(response.data.todate);website("#Mymodaledit #pretrans").val(response.data.pretrans);website("#Mymodaledit #posttrans").val(response.data.posttrans);website("#Mymodaledit #dateofintimtn").val(response.data.dateofintimtn);website("#Mymodaledit #acquimode").val(response.data.acquimode);website("#Mymodaledit #buyvalue").val(response.data.buyvalue);website("#Mymodaledit #buynumbrunt").val(response.data.buynumbrunt);website("#Mymodaledit #sellvalue").val(response.data.sellvalue);website("#Mymodaledit #sellnumbrunt").val(response.data.sellnumbrunt);website("#Mymodaledit #exetrd").val(response.data.exetrd);website('#updateformc #upformcid').val(id);website('#Mymodaledit').modal('show');}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});});website('#updateformc').ajaxForm({dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
@@ -75,28 +74,28 @@ else
 {website('#modaldocument .formcpdf').show();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{dtfrom=response.formdata['fromdate'].split("-");ddmmyyfrom=dtfrom[2]+'-'+dtfrom[1]+'-'+dtfrom[0];dteto=response.formdata['todate'].split("-");ddmmyyto=dteto[2]+'-'+dteto[1]+'-'+dteto[0];if(response.formdata['dateofintimtn'])
+{dtfrom=response.formdata['fromdate'].split("-");ddmmyyfrom=dtfrom[2]+'-'+dtfrom[1]+'-'+dtfrom[0];dteto=response.formdata['todate'].split("-");ddmmyyto=dteto[2]+'-'+dteto[1]+'-'+dteto[0];dteadded=response.formdata['date_added'].split(" ");dtadd=dteadded[0].split("-");finaldtadd=dtadd[2]+'-'+dtadd[1]+'-'+dtadd[0];if(response.formdata['dateofintimtn'])
 {dtinti=response.formdata['dateofintimtn'].split("-");ddmmyyinti=dtinti[2]+'-'+dtinti[1]+'-'+dtinti[0];}
 else
 {ddmmyyinti='';}
 website('#modaldocument .downloadpdf').hide();website('#modaldocument .docpdf').html(response.docontent);if(response.formdata['sectype']==1||response.formdata['sectype']==2)
-{var secutype='Shares';website('.secutype1').html(secutype);website('.secutype2').html(secutype);}
+{var secutype='Shares';website('.secutype1').html(secutype);website('.secutype2').html(secutype);website('.excelsecutype1').val(secutype);website('.excelsecutype2').val(secutype);}
 else
-{var secutype='Convertible Debenture';website('.secutype1').html(secutype);website('.secutype2').html(secutype);}
-website('.contractspecific').html(response.formdata['contract_specification']);website('.contracttype').html(response.formdata['contractname']);website('.posttrans').html(response.pershare);if(response.formdata['typtrans']!=null)
-{website('.transtype').html(response.formdata['typtrans']);}
+{var secutype='Convertible Debenture';website('.secutype1').html(secutype);website('.secutype2').html(secutype);website('.excelsecutype1').val(secutype);website('.excelsecutype2').val(secutype);}
+website('.contractspecific').html(response.formdata['contract_specification']);website('.excelcontractspecific').val(response.formdata['contract_specification']);website('.contracttype').html(response.formdata['contractname']);website('.excelcontracttype').val(response.formdata['contractname']);website('.posttrans').html(response.pershare);website('.excelposttrans').val(response.pershare);if(response.formdata['typtrans']!=null)
+{website('.transtype').html(response.formdata['typtrans']);website('.exceltranstype').html(response.formdata['typtrans']);}
 else
-{website('.transtype').html('<p style="color:green;">BUY</p>');}
-website('.name').html(response.formdata['fullname']);website('.cmpnme').html(response.formdata['company_name']);website('.pan').html(response.formdata['pan']);website('.cin').html(response.formdata['cin']);website('.contctno').html(response.formdata['mobile']);website('.opngblnc').html(response.formdata['opngblnc']);website('.pershare').html(response.pershare);website('.noofshares').html(response.formdata['tdsshare']);website('.totalamt').html(response.formdata['totalamnt']);website('.address').html(response.formdata['address']);website('.category').html(response.formdata['category']);website('.pretrans').html(response.formdata['pretrans']);website('.posttrans').html(response.formdata['posttrans']);website('.fromdate').html(ddmmyyfrom);website('.todate').html(ddmmyyto);website('.dateofintimtn').html(ddmmyyinti);website('.acquimode').html(response.formdata['acquistnmode']);website('.buyvalue').html(response.formdata['buyvalue']);website('.buynumbrunt').html(response.formdata['buynumbrunt']);website('.sellvalue').html(response.formdata['sellvalue']);website('.sellnumbrunt').html(response.formdata['sellnumbrunt']);website('.exetrd').html(response.formdata['exetrd']);website('#modaldocument #formcid').val(id);website('#modaldocument').modal('show');}
+{website('.transtype').html('<p style="color:green;">BUY</p>');website('.exceltranstype').html('BUY');}
+website('.name').html(response.formdata['fullname']);website('.excelname').val(response.formdata['fullname']);website('.cmpnme').html(response.formdata['company_name']);website('.excelcmpnme').val(response.formdata['company_name']);website('.pan').html(response.formdata['pan']);website('.excelpan').val(response.formdata['pan']);website('.cin').html(response.formdata['cin']);website('.contctno').html(response.formdata['mobile']);website('.excelcontctno').val(response.formdata['mobile']);website('.opngblnc').html(response.formdata['adrshldng']);website('.excelopngblnc').val(response.formdata['adrshldng']);website('.pershare').html(response.postnumber);website('.excelpershare').val(response.postnumber);website('.prepercent').html(response.prepercent);website('.excelprepercent').val(response.prepercent);website('.postpercent').html(response.postpercent);website('.excelpostpercent').val(response.postpercent);website('.noofshares').html(response.formdata['tdsshare']);website('.excelnoofshares').val(response.formdata['tdsshare']);website('.totalamt').html(response.formdata['totalamnt']);website('.exceltotalamt').val(response.formdata['totalamnt']);website('.address').html(response.formdata['address']);website('.exceladdress').val(response.formdata['address']);website('.category').html(response.formdata['category']);website('.excelcategory').val(response.formdata['category']);website('.pretrans').html(response.formdata['pretrans']);website('.excelpretrans').val(response.formdata['pretrans']);website('.posttrans').html(response.formdata['posttrans']);website('.excelposttrans').val(response.formdata['posttrans']);website('.fromdate').html(ddmmyyfrom);website('.excelfromdate').val(ddmmyyfrom);website('.todate').html(ddmmyyto);website('.exceltodate').val(ddmmyyto);website('.dateofintimtn').html(ddmmyyinti);website('.exceldateofintimtn').val(ddmmyyinti);website('.acquimode').html(response.formdata['acquistnmode']);website('.excelacquimode').val(response.formdata['acquistnmode']);website('.buyvalue').html(response.formdata['buyvalue']);website('.excelbuyvalue').val(response.formdata['buyvalue']);website('.buynumbrunt').html(response.formdata['buynumbrunt']);website('.excelbuynumbrunt').val(response.formdata['buynumbrunt']);website('.sellvalue').html(response.formdata['sellvalue']);website('.excelsellvalue').val(response.formdata['sellvalue']);website('.sellnumbrunt').html(response.formdata['sellnumbrunt']);website('.excelsellnumbrunt').val(response.formdata['sellnumbrunt']);website('.exetrd').html(response.formdata['exetrd']);website('.excelexetrd').val(response.formdata['exetrd']);website('.formcidexcel').val(id);website('#modaldocument #formcid').val(id);website('#modaldocument').modal('show');}
 else
 {}},complete:function(response)
 {website('#myModalyesno .mainprogressbarforall').fadeOut();},error:function()
 {}});});website('body').on('click','.formcpdf',function(e)
-{var htmldata=website('#modaldocument .docpdf').html();var formcid=website('#modaldocument #formcid').val();var formData={htmldata:htmldata,formcid:formcid};website.ajax({type:"POST",url:'sebi/generateformcPDF',data:formData,dataType:"json",beforeSend:function()
+{var htmldata=website('#modaldocument .docpdf').html();var formcid=website('#modaldocument #formcid').val();var dataString=website("form[name=excelupload]").serializeArray();var formData={htmldata:htmldata,formcid:formcid,exceldata:dataString};website.ajax({type:"POST",url:'sebi/generateformcPDF',data:formData,dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();website('#modaldocument .downloadpdf .pdfln').html('');website('#modaldocument .trailpdfdownload').addClass('disabled');},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response)
 {if(response.logged===true)
-{website('.preloder_wraper').fadeOut();website('#modaldocument .formcpdf').fadeOut();website('#modaldocument .button_pdf .down_load').show();website('#modaldocument .downloadpdf').show();website('#modaldocument .downloadpdf').html('<a href="'+response.pdfpath+'" target="_blank" class="downlodthfle" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span></a>');}},complete:function(response)
+{website('.preloder_wraper').fadeOut();website('#modaldocument .formcpdf').fadeOut();website('#modaldocument .button_pdf .down_load').show();website('#modaldocument .downloadpdf').show();website('#sendforaprvformc').attr('pdfurl',response.pdfpath);website('#modaldocument .downloadpdf').html('<a href="'+response.pdfpath+'" target="_blank" class="downlodthfle" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span></a>');}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
 {}});});website('body').on('click','.downloadpdf',function(){website('#modaldocument').modal('hide');window.location.reload();});website('body').on('click','.previous',function(e)
 {var baseHref=getbaseurl();window.location.href=baseHref+"sebi/transformc";});function numberalphOnly()

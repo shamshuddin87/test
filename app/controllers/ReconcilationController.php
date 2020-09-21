@@ -162,8 +162,12 @@ class ReconcilationController extends ControllerBase
                 $dateofrecon = $this->request->getPost('dateofrecon');
                 
                 $getresequty = $this->reconcilationcommon->fetchequityshare($getuserid,$user_group_id,$uniqueid,$dateofrecon);
+                 //print_r($getresequty);exit;
                 $getresult = $this->reconcilationcommon->fetchreconcilationforview($getuserid,$user_group_id,$uniqueid,$mainquery);
+                //print_r(                $getresult);exit;
+
                 $getpanusr = $this->reconcilationcommon->fetchpanusr();
+                 //print_r($getpanusr);exit;
                 if($getresult)
                 {
                     $data = array("logged" => true,'message' => 'Record Added','resdta' => $getresult,'user_group_id'=>$user_group_id,'user_id'=>$getuserid,'equity'=>$getresequty,'panuser'=>$getpanusr,'panlist'=>$getresult['panlist']);
@@ -172,6 +176,60 @@ class ReconcilationController extends ControllerBase
                 else
                 {
                     $data = array("logged" => false,'message' => "Record Not Added..!!");
+                    $this->response->setJsonContent($data);
+                }
+                
+
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+     public function sendRTAmailAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+               
+                $email = $this->request->getPost('email');
+                $name = $this->request->getPost('name');
+                $diffrnc = $this->request->getPost('diffrnc');
+                 
+                $emailids = explode(",",  $email);
+                $name = explode(",",  $name);
+                $diffrnc = explode(",",  $diffrnc);
+                //print_r( $emailids );exit;
+                
+                for($i=0;$i<count($emailids);$i++)
+                {
+                   $sendmail =  $this->emailer->sendmailRTA($emailids[$i],$name[$i],$diffrnc[$i]);
+                }
+                
+                
+                if($sendmail == true)
+                {
+                    $data = array("logged" => true,'message' => 'Mail Sent Successfully');
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "Mail Not Sent Successfully..!!");
                     $this->response->setJsonContent($data);
                 }
                 

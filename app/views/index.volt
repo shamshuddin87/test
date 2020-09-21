@@ -184,11 +184,11 @@ or getcontrolleractionname == "createcont_disclsr"
     
 <!-- End User Tracking Code -->
 </head>
-{% if getcontrollername == "annualdeclaration"  %}
+{% if getcontrollername == "annualdeclaration" or getcontrollername == "continuousdisclosure" %}
   <body tabindex="1" class="nav-sm loadingInProgress  <?php echo ($getcontrollername=='index' || $getcontrollername=='login') ? 'login-cover' : $getcontrollername.'_bodymncl '; ?>" >
 {% endif %}
 
-{% if getcontrollername != "annualdeclaration"  %}
+{% if getcontrollername != "annualdeclaration" or getcontrollername != "continuousdisclosure" %}
 <body tabindex="1" class="nav-md loadingInProgress  <?php echo ($getcontrollername=='index' || $getcontrollername=='login') ? 'login-cover' : $getcontrollername.'_bodymncl '; ?>" ><!--bg-purple-->
 {% endif %}
 
@@ -215,6 +215,32 @@ or getcontrolleractionname == "createcont_disclsr"
         <!-- Page container Start -->
             <div class="main_container page_<?php echo $getcontrollername.'_controller'.$getcontrolleractionname; ?>">
                 {{ content() }}
+                
+                <div id="alertcommon" class="modal fade cssalertcommon" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                Alert Message
+                                <button type="button" class="close" data-dismiss="modal">
+                                    &times;</button>
+
+                            </div>
+                            <div class="modal-body">
+                                <h5 class="cssallalertmsg" id="allalertmsg" style="text-align: center;">Message
+                                </h5>
+                                <div style="text-align: center;padding: 10px;">
+                                    <div id="showlink" style="display:none;">Click Here</div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary csscommonclose"
+                                    data-dismiss="modal">Ok</button>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         <!-- /page container -->			
 

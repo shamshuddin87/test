@@ -32,6 +32,52 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row boxes -->
+
+                    <div class="row">
+                        <div class="col-xs-6"></div>
+                        <div class="col-xs-6">
+                            <div class="announcementdiv">
+                                <h4>Announcement</h4>
+                                <ul>
+                                  
+                                   <?php if(isset($upsiresult) && count($upsiresult) != 0){?>
+                                    <li>
+                                        <div class="announcementli">
+                                            <a >
+                                               <h6>Alert!</h6>
+                                               <p>You hold UPSI and therefore you cannot trade in shares of Dr. Reddy's Laboratories Ltd until the UPSI ends/becomes public.</p>
+
+                                            </a>
+                                        </div>
+                                    </li>
+                                   <?php }?>
+                                    
+                                    <li>
+                                        <div class="announcementli">
+                                            <a>
+                                               <h6>Trading Window Closure</h6>
+                                               <?php if(!empty($tradingwindw)){ 
+                                               foreach($tradingwindw as $ntnlval){ 
+                                               ?>
+                                               <p>
+                                                 
+                                                 <p class=""> <i class="fas fa-circle" style="margin-right: 5px;"></i><span>Date From:<?php echo $ntnlval['datefrom']; ?></span></p>
+                                                <p class="margin_left"> <span style="margin-left: 18px;">Date To:<?php echo $ntnlval['dateto']; ?></span></p> 
+                                               </p>
+                                                <?php } } else{ ?>
+                                                <p>No New Window Closure..!!</p>
+                                                <?php  }  ?>
+
+                                            </a>
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="row">
 <!--
                         <div class="col-lg-3 col-md-6" id="restcomplist">

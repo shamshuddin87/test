@@ -87,8 +87,10 @@ class SebiController extends ControllerBase
     {
         $getuserid = $this->session->loginauthspuserfront['id'];
         $getdataformcuser = $this->sebicommon->getformbdata($getuserid);   //fetch latest data of formb
-        $getdatauser = $this->sebicommon->getusersdata($getuserid);   //fetch user data of formb
-        $this->view->approverid = $getdatauser['approverid'];
+        $getdatauser = $this->sebicommon->getusersdata($getuserid); 
+        //print_r( $getdatauser);exit;  //fetch user data of formb
+        $this->view->approverid = $getdatauser['approvid'];
+
         $this->view->cin = $getdataformcuser['cin'];
         $this->view->category = $getdataformcuser['category'];
     }
@@ -778,10 +780,37 @@ class SebiController extends ControllerBase
                 $docid   = $this->request->getPost('docid','trim');
                 
                 $getdocres = $this->sebicommon->getdocucontent($getuserid,$user_group_id,$docid);
-                $getres = $this->sebicommon->getformcdata($getuserid,$user_group_id,$formcid);      
+                $getres = $this->sebicommon->getformcdata($getuserid,$user_group_id,$formcid);
+                //print_r($getres);exit;
+
+                 $getsharecapital=$this->sebicommon->getsharecapital($getuserid,$user_group_id,$getres['data']['companyid']);
+                 //print_r($getres);exit;
+                if(empty($getsharecapital))
+                {
+                    $meassage = 'Share Capital Is Not Inserted For Selected Company.Please Contact To Super Admin..';
+                }
+                if(!empty($getsharecapital))
+                {
+                    $prepercentshrecap=($getres['data']['sharehldng']/$getsharecapital['pershare'])*100;
+
+                    $postpercentshrecap=($getres['data']['sharehldng']+$getres['data']['no_of_shares'])/$getsharecapital['pershare'];
+
+                    $postpercentshrecap = $postpercentshrecap*100;
+                      //print_r( $postpercentshrecap);exit;
+
+                    $finalprepercentshrecap = number_format((float)$prepercentshrecap, 2, '.', ''); 
+                    $finalpostpercentshrecap = number_format((float)$postpercentshrecap, 2, '.', ''); 
+                      
+                    $postnumber=$getres['data']['sharehldng']+$getres['data']['no_of_shares'];
+                    
+                }
+                else
+                {
+                    $percentshrecap='';
+                }      
                 if(!empty($getdocres))
                 {
-                    $data = array("logged" => true,'message' => 'Record Sent for approval','docontent' => $getdocres,'formdata'=>$getres['data']/*,'secutype'=>$getres['securitytype']*/);
+                    $data = array("logged" => true,'message' => 'Record Sent for approval','docontent' => $getdocres,'formdata'=>$getres['data'],'prepercent'=> $finalprepercentshrecap,'postpercent'=> $finalpostpercentshrecap,'postnumber'=>$postnumber);
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -820,6 +849,13 @@ class SebiController extends ControllerBase
             {
                 $pdf_content = $this->request->getPost('htmldata');
                 $formcid = $this->request->getPost('formcid');
+                $exceldata = $this->request->getPost('exceldata');
+                $exceldata = json_encode($exceldata);
+                $myfile = fopen("img/mis/".$formcid.".txt", "w");
+                // print_r($myfile);exit;
+                $txt = $exceldata;
+                fwrite($myfile, $txt);
+                fclose($myfile);
                 $pdfpath = $this->dompdfgen->getpdf($pdf_content,'Formc','Form_c','configFormc');
                 if(!empty($pdfpath))
                 {
@@ -1308,10 +1344,11 @@ class SebiController extends ControllerBase
                 $docid   = $this->request->getPost('docid','trim');
                 
                 $getdocres = $this->sebicommon->getdocucontent($getuserid,$user_group_id,$docid);
-                $getres = $this->sebicommon->getformddata($getuserid,$user_group_id,$formdid);      
+                $getres = $this->sebicommon->getformddata($getuserid,$user_group_id,$formdid);
+                //print_r( $getres)   ;exit;   
                 if(!empty($getdocres))
                 {
-                    $data = array("logged" => true,'message' => 'Record Sent for approval','docontent' => $getdocres,'formdata'=>$getres['data']/*,'secutype'=>$getres['securitytype']*/);
+                    $data = array("logged" => true,'message' => 'Record Sent for approval','docontent' => $getdocres,'formdata'=>$getres['data']);
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -1667,4 +1704,83 @@ class SebiController extends ControllerBase
     /*------ get form d transaction data end -----*/
     
      /*--------------------------- form d section end ---------------------------*/
+
+    
+    /*--------------------------- Export formc ---------------------------*/
+
+    public function exportformcAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+               
+                $exceldata=$this->request->getPost('id');
+                for($i=0;$i<sizeof($exceldata);$i++)
+                {    
+                     $data='';
+                     $filecontent='';
+                     $filecontent=file_get_contents("img/mis/".$exceldata[$i].".txt");
+                     //print_r($filecontent);exit;
+                   
+                     $data=json_decode($filecontent,true);
+                   
+                      // print_r($data);exit;
+                     $myarr2=array();
+                     for($n=0;$n<sizeof($data);$n++)
+                     {
+                        // $myarr2=array();
+                        $myarr2[]=$data[$n]['value'];
+                     }
+
+                      $myarr[]=$myarr2; 
+                }
+
+                if(isset($myarr) && !empty($myarr))
+                   {
+                         $genfile = $this->phpimportexpogen->exportformc($getuserid,$user_group_id,$myarr);
+                   }
+                   else
+                   {
+                       $data = array("logged" => false,'message' => 'Please Select Atleast One CheckBox' , 'genfile'=> '');
+                       $this->response->setJsonContent($data);
+                       $this->response->send();
+                       exit;
+                   }
+                 
+                 if(!empty($genfile))
+                {
+                    $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "File Not Generated..!!");
+                    $this->response->setJsonContent($data);
+                }
+
+               
+               
+                
+               
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
 }

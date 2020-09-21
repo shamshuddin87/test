@@ -130,6 +130,7 @@
             <!--   <?php } ?> -->
             <?php } ?>
             <!-----------------------------------EMPLOYEE MODULE--------------------------------------->
+            <?php if($gettypm['user_group_id'] != '2'){?>
             <li>
                   <a class="click_board click_board3" href="javascript:;"><i class="fa fa-share-alt"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
@@ -146,7 +147,7 @@
                      </li>
                   </ul>
                </li>
-                
+            <?php } ?>    
             <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='2') {?>
             <li>
                <a class="click_board click_board3" href="javascript:;"><i class="glyphicon glyphicon-cog"></i>MIS<span class="fa fa-chevron-down"></span></a>
@@ -177,7 +178,7 @@
                   <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> My Info<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                      <li><a href="employeemodule"><i class="" id="cmp_mst"></i>Personal information</a></li>
-                     <li><a href="portfolio"><i class=""></i>Demat Accounts</a></li>
+                     <li><a href="portfolio"><i class=""></i>Demat/Securities Account</a></li>
                      <li><a href="continuousdisclosure"><i class=""></i>Continuous Disclosure</a></li>
                      <li><a href="tradingrequest"><i class=""></i>Request for Pre-clearance</a></li>
                      <!--     <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li>  -->  
@@ -202,7 +203,7 @@
                   </ul>
                </li>
                
-               <li>
+              <!--  <li>
                   <a class="click_board click_board3" ><i class="fa fa-line-chart fa-5x"></i>Share Holding Summary<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                      <li>
@@ -212,7 +213,7 @@
                         <a href="relholdingsummary"><i class="" id="cmp_mst"></i>Relative Holding Summary</a>
                      </li>
                   </ul>
-               </li>
+               </li> -->
                <li>
                   <a href="blackoutperiod"><i class="fa fa-ban fa-5x" id="cmp_mst"></i>Trading Window</a>
                </li>
@@ -273,7 +274,7 @@
                <?php }  ?>
                <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='2') {?>
                <li><a href="sharecapital"><i class="fa fa-line-chart fa-5x" id="excelup"></i>Share Capital</a></li>
-               <li><a href="uploadholding"><i class="fa fa-line-chart fa-5x" id="excelup"></i>Upload Holding</a></li>
+              <!--  <li><a href="uploadholding"><i class="fa fa-line-chart fa-5x" id="excelup"></i>Upload Holding</a></li> -->
                <?php }  ?>
                <!----------------------------------------------------------------------------------------------->
                </li> 

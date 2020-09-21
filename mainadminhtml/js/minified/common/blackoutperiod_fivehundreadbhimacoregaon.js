@@ -9,7 +9,8 @@ website(document).ready(function()
 else
 {new PNotify({title:'Record Not Added',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
-{}});function getdataonload()
+{}});website('body').on('click','.testemail',function(e){var blckoutfrom=website('#blckoutfrom').val();var blckoutto=website('#blckoutto').val();var reason=website('#reason').val();var compid=website('#compid').val();var formdata={blckoutfrom:blckoutfrom,blckoutto:blckoutto,reason:reason,compid:compid};website.ajax({url:'blackoutperiod/tradingWindowTestEmail',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function(){website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete){website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR){if(response.logged===true){website('#myModalemail').modal('hide');website('#alertcommon #allalertmsg').html(response.message);website('#alertcommon').modal('show');}
+else{website('#alertcommon #allalertmsg').html(response.message);website('#alertcommon').modal('show');}},complete:function(response){website('.preloder_wraper').fadeOut();website('#myModalemail .mainprogressbarforall').fadeOut();},error:function(){}});});function getdataonload()
 {website.ajax({url:'blackoutperiod/fetchblackoutperiod',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)

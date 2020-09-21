@@ -1348,6 +1348,52 @@ Class Email extends Phalcon\Mvc\User\Component {
        
     }
 
+
+    
+ public function mailofType2($toemail,$username,$upsitype,$ownername,$pstartdate,$emaildate,$date_added)
+ {
+
+     $date_added =  explode(" ", $date_added);
+     $date_timestamp = strtotime($date_added[0]);
+     $new_date = date("d-m-Y",  $date_timestamp);
+
+     $gethtml = $this->htmlelements->Type2content($toemail,$username,$upsitype,$ownername,$pstartdate,$emaildate,$date_added[0]);
+     //print_r($toemail);exit;
+     $mail = new PHPMailer();
+     $mail->isSMTP();
+     $mail->SMTPDebug = 2;
+     $mail->Debugoutput = 'html';
+     $mail->Host = $this->Hostname;
+     $mail->Port = 587;
+     $mail->SMTPSecure = 'tls';
+     $mail->SMTPAuth = true;
+     $mail->Username = $this->hosemail;
+     $mail->Password = $this->pwdemail;
+     $mail->setFrom($this->hosemail, 'Volody');
+     $mail->addReplyTo($this->hosemail, 'Volody');
+     //add cc
+     //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+     //Set who the message is to be sent to
+     $mail->addAddress($toemail, 'Volody');
+     $mail->Subject = 'New DP Added';
+     $mail->msgHTML($gethtml);
+     //Replace the plain text body with one created manually
+     //send the message, check for errors
+
+     if ($mail->Send()) {
+      
+         return true;
+     }
+     else {
+         //echo $mail->ErrorInfo; exit;
+        return false;
+     }
+
+     return $get;
+
+    
+ }
+
     public function mailofnewdp($toemail,$tousername,$pstartdate,$enddate,$today,$fromusername,$upsitype)
     {
 
@@ -1563,6 +1609,92 @@ Class Email extends Phalcon\Mvc\User\Component {
  
        
     }
+
+
+    /******** send RTA EMAIL start ********/
+    public function sendmailRTA($email,$name,$diffrnc)
+    {
+        $subject = 'Difference in your holdings';
+        $to =$email;
+        //echo $to;exit;
+        $gethtml = $this->htmlelements->sendmailRTA($name,$diffrnc);
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        //add cc
+        //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+        //Set who the message is to be sent to
+        $mail->addAddress($to, 'Volody');
+        $mail->Subject = $subject;
+        $mail->msgHTML($gethtml);
+        // $mail->addAttachment(''.$summdoc.'');
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+           
+           return true;
+        }
+        else {
+        echo $mail->ErrorInfo; exit;
+          return false;
+        }
+
+        return $get;
+    }
+    /******** send RTA EMAIL end ********/
+
+
+
+     /*---- Send Auto Mail to User For Annual Declaration -----*/
+    public function mailsenttousrfranualdecl($emailid,$username,$year)
+    {
+        $subject = 'Annual Declaration Pending For Current Year';
+        $to =$emailid;
+        $gethtml = $this->htmlelements->mailsenttousrfranualdecl($username,$year);
+        //print_r($gethtml);exit;
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        //add cc
+        //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+        //Set who the message is to be sent to
+        $mail->addAddress($to, 'Volody');
+        $mail->Subject = $subject;
+        $mail->msgHTML($gethtml);
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            $get = array('logged'=>true,'message'=>'sent');
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false,'message'=>'nosent');
+        }
+        
+        return $get;
+    }
+    /*---- Send Auto Mail to User For Annual Declaration -----*/
+    
 
 
     

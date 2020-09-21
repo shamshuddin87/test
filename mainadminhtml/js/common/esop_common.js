@@ -28,6 +28,8 @@ website('#insertesop').ajaxForm
       {  website('.preloder_wraper').fadeIn(); },
       success: function(response, textStatus, jqXHR)
       {
+       
+       // console.log(response.empcount);
         if(response.logged===true)
         {  
           new PNotify({title: 'Record Added Successfully',
@@ -37,7 +39,8 @@ website('#insertesop').ajaxForm
             styling: 'bootstrap3',
             addclass: 'dark ',
           });
-          setTimeout(function() { window.location.reload(); }, 2000);
+
+          setTimeout(function() { window.location.reload(); }, 1000);
         }
         else
         {
@@ -114,9 +117,10 @@ function getdataonload()
                 addhtmlnxt += '<tr class="counter" esopid="'+response.resdta[i].id+'" >';
                 addhtmlnxt += '<td width="25%">'+yymmdd+'</td>';
                 addhtmlnxt += '<td width="25%">'+times+'</td>';
-                addhtmlnxt += '<td width="30%"><i class="fa fa-eye faicon floatleft viewesop" title="View entry" id="editesop" esopid="'+response.resdta[i].id+'" uniqueid="'+response.resdta[i].uniqueid+'"></i></td>'; addhtmlnxt += '</tr>';
+                addhtmlnxt += '<td width="30%"><i class="fa fa-eye faicon floatleft viewesop" title="View entry" id="editesop" esopid="'+response.resdta[i].id+'"  uniqueid="'+response.resdta[i].uniqueid+'"></i></td>'; addhtmlnxt += '</tr>';
             }
             website('.appendrow').html(addhtmlnxt);
+           
             website('.paginationmn').html(response.pgnhtml);
         }
         else
@@ -132,6 +136,8 @@ function getdataonload()
   });
           
 }
+
+
 
 website('body').on('click','.viewesop', function()
 {

@@ -276,15 +276,27 @@ class AnnualdeclarationController extends ControllerBase
 
                 $annualyear = $this->request->getPost('annualyear');
                 $sendtype = $this->request->getPost('sendtype');
-                // print_r($pdf_content);exit;
+                //print_r($sendtype);exit;
                 $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','annualdeclaration','annualdeclarationpdf');
                 // print_r($pdfpath);exit;
                 if(!empty($pdfpath))
-                {
+                {     
+
+                      if($sendtype == 'no')
+                      {
+                        $savedata = $this->annualdeclarationcommon->saveinitialdeclare($uid,$user_group_id,$pdfpath,$annualyear,$uniqueid,$sendtype);
+                        $data = array("logged" => true,"message"=>"data saved Successfully","pdfpath"=>$pdfpath);
+                      }
+                      else
+                      {
+
                       $savedata = $this->annualdeclarationcommon->saveinitialdeclare($uid,$user_group_id,$pdfpath,$annualyear,$uniqueid,$sendtype);
                       $getuserapprove = $this->insidercommon->fetchiddata($usergroup,'it_memberlist','wr_id',$uid);
                       $sendmail= $this->annualdeclarationcommon->sendmailtoapprover($reqid,$getuserapprove['approvid'],$getuserapprove['fullname'],$pdfpath);
                       $data = array("logged" => true,"message"=>"PDF Generated Successfully","pdfpath"=>$pdfpath);
+
+                      }
+                      
                       $this->response->setJsonContent($data);
                 }
                 else
@@ -1221,7 +1233,7 @@ class AnnualdeclarationController extends ControllerBase
 
                 $delid = $this->request->getPost('delid');
                 $uniqueid = $this->request->getPost('uniqueid');
-                 $tablename = $this->request->getPost('tablename');
+                $tablename = $this->request->getPost('tablename');
 
 
                 $status = $this->annualdeclarationcommon->deleteannualdeclare($delid,$uniqueid,$tablename);

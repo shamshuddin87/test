@@ -440,6 +440,50 @@ class Homecommon extends Component
                   
         return $getlist; 
     }
+
+      public function gettradingwindw($getuserid,$user_group_id)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+
+          $d       =  date('d-m-Y');
+          //print_r($d);exit;
+        try
+        {
+            /* -- get company ---*/
+            $querycmp = "SELECT * FROM `it_memberlist`WHERE `wr_id` = '".$getuserid."'";
+            $execmp = $connection->query($querycmp);
+            $rowz = $execmp->fetch();
+            $cmpid = $rowz['cmpaccess'];
+            $cmpid = explode(',',$cmpid);
+            //print_r($cmpid);exit;
+            $queryselect = "SELECT * FROM `blackoutperiod_cmp` WHERE STR_TO_DATE(blackoutperiod_cmp.`dateto`,'%d-%m-%Y') >= STR_TO_DATE('".$d."','%d-%m-%Y') ORDER BY `id` DESC LIMIT 5";
+            //echo $queryselect;exit;
+            $exeget = $connection->query($queryselect);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+                {
+                    while($row = $exeget->fetch())
+                    {
+                        $blackoutcmp = $row['companyid'];
+                        if(in_array($blackoutcmp,$cmpid))
+                        {
+                            $getlist[] = $row;
+                        }
+                    }
+
+                }else{
+                    $getlist = array();
+                }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        //print_r($getlist);exit;
+        return $getlist;
+    }
     
     
     

@@ -54,7 +54,12 @@ class EsopController extends ControllerBase
                 //echo $uploadedornot; exit;
                 
                 $uniqueid = md5(microtime().rand());
+                
+
                 $getresponse = $this->phpimportexpogen->insertesop($getuserid,$user_group_id,$large_impfile_location,$uniqueid);
+
+               
+                //print_r($employeecount);exit;
                 
                 if($getresponse)
                 {
@@ -100,6 +105,7 @@ class EsopController extends ControllerBase
                 $pagenum=$this->request->getPost('pagenum');
                 $mainquery = '';
                 $getres = $this->esopcommon->fetchesop($getuserid,$user_group_id,$mainquery);
+
                 
                 /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
@@ -157,7 +163,10 @@ class EsopController extends ControllerBase
                 $uniqueid = $this->request->getPost('esopuniqueid');
                 $noofrows = $this->request->getPost('noofrows');
                 $pagenum = $this->request->getPost('pagenum');
-                $getres = $this->esopcommon->fetchesopforview($getuserid,$user_group_id,$uniqueid,$mainquery);
+                $panlist = $this->esopcommon->fetchesoppanno($uniqueid);
+                //print_r($panlist);exit;
+                $getres = $this->esopcommon->fetchesopforview($getuserid,$user_group_id,$uniqueid,$mainquery,$panlist);
+                $employeecount = $this->esopcommon->getcount($getuserid,$user_group_id,$uniqueid);
                 
                  /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
@@ -167,10 +176,10 @@ class EsopController extends ControllerBase
                 $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
                 $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
                 
-                $getresult = $this->esopcommon->fetchesopforview($getuserid,$user_group_id,$uniqueid,$rslmt);
+                $getresult = $this->esopcommon->fetchesopforview($getuserid,$user_group_id,$uniqueid,$rslmt,$panlist);
                 if($getresult)
                 {
-                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getresult,'user_group_id'=>$user_group_id,'user_id'=>$getuserid,"pgnhtml"=>$pgnhtml);
+                    $data = array("logged" => true,'message' => 'Record Added','resdta' => $getresult,'user_group_id'=>$user_group_id,'user_id'=>$getuserid,"pgnhtml"=>$pgnhtml,'empcount' =>$employeecount);
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -237,4 +246,58 @@ class EsopController extends ControllerBase
         }        
     }
     /*************  save ESOP as Final end ***************/
+
+
+    /*--------------------------- Export non dp in Esop ---------------------------*/
+
+    public function exportnondpAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $noofrows=$this->request->getPost('noofrows');
+                $pagenum=$this->request->getPost('pagenum');
+                $uniqueid=$this->request->getPost('uniqueid');
+                
+                //print_r($uniqueid);exit;
+
+                
+                
+               $panlist = $this->esopcommon->fetchesoppanno($uniqueid);
+               $getres = $this->esopcommon->fetchesopforexport($getuserid,$user_group_id,$uniqueid,$panlist);
+                
+                //print_r($getres);exit;
+                $genfile = $this->phpimportexpogen->exportesop($getuserid,$user_group_id,$getres);
+                
+                if(file_exists($genfile))
+                {
+                    $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "File Not Generated..!!");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
 }

@@ -64,6 +64,54 @@ website('#insertblackoutperiod').ajaxForm({
     {   }
 });
 
+
+
+/*   ------- START Test Email Facility ------ */
+website('body').on('click', '.testemail', function (e) {
+
+  
+  var blckoutfrom = website('#blckoutfrom').val();
+  var blckoutto = website('#blckoutto').val();
+  var reason = website('#reason').val();
+  var compid = website('#compid').val();
+
+
+  var formdata = { blckoutfrom: blckoutfrom, blckoutto: blckoutto, reason: reason,compid:compid };
+  
+  website.ajax({
+    url: 'blackoutperiod/tradingWindowTestEmail',
+    data: formdata,
+    method: 'POST',
+    //contentType:'json',
+    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+    //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+    dataType: "json",
+    cache: false,
+    //async:true, /*Cross domain checking*/
+    beforeSend: function () { website('.preloder_wraper').fadeIn(); },
+    uploadProgress: function (event, position, total, percentComplete) { website('.preloder_wraper').fadeIn(); },
+    success: function (response, textStatus, jqXHR) {
+      if (response.logged === true) {
+        //fetchmasterlist();
+        website('#myModalemail').modal('hide');
+        website('#alertcommon #allalertmsg').html(response.message);
+
+        website('#alertcommon').modal('show');
+      }
+      else {
+        website('#alertcommon #allalertmsg').html(response.message);
+        website('#alertcommon').modal('show');
+      }
+    },
+    complete: function (response) {
+      website('.preloder_wraper').fadeOut();
+      website('#myModalemail .mainprogressbarforall').fadeOut();
+    },
+    error: function () { }
+  });
+});
+/*   ------- END Test Email Facility ------ */
+
 function getdataonload()
 {
     website.ajax({

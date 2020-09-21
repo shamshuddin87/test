@@ -18,10 +18,15 @@ $condeptsess = $this->session->contractdepartment;
     <input type = "hidden" value="<?php echo $rtaid; ?>" id="rtaid">
     <input type = "hidden" value="<?php echo $rtauniqueid; ?>" id="rtauniqueid">
     <input type = "hidden" value="<?php echo $dateofrecon; ?>" id="dateofrecon">
+
    <div class="table-responsive table_wraper tradeplanview">
+     <input type ="button" id="emailExcelToBenpose" class="btn btn-primary text-right" value="Intimate User" style="float: right;">
           <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>
+
+                            <th><input type="checkbox" name="getallchkbox" class="getallchkbox" value="All"><br>All</th>
+                           
                             <th>PAN</th>
                             <th>Name</th>
                             <th>Relative Name</th>
@@ -166,6 +171,31 @@ $condeptsess = $this->session->contractdepartment;
           
             <div class="modal-footer">
                 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="sendmail" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+               
+            </div>
+            <div class="modal-body show_shadow">
+                <div class="text-center modal_heading">
+                    <div class="clearelement"></div>
+                    <input type="hidden" id = "emailid" value = "">
+                     <input type="hidden" id = "name" value = "">
+                      <input type="hidden" id = "diffrnc" value = "">
+                   Are you sure you want to send email notification to users?
+                </div>
+            </div>
+          
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary mar_0 yesmail" tempid="">Yes</button>
+                <button type="button" class="btn btn-default btn-default-one" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>

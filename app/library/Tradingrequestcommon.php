@@ -262,7 +262,7 @@ function checktypeofreq($uid,$usergroup,$data)
             }
 }
 
-        public function createrequest($uid,$usergroup,$data,$send_status,$pdfpath)
+        public function createrequest($uid,$usergroup,$data,$send_status,$pdfpath,$idofcmp)
         { 
             $connection = $this->dbtrd;
             
@@ -315,7 +315,7 @@ function checktypeofreq($uid,$usergroup,$data)
                     `sendaprvl_date`,`approved_status`,`trading_date`,`sent_contraexeaprvl`,`ex_approve_status`,approxprice,broker,demat,place,dateoftransaction,trans,shares,
                     `date_added`,`date_modified`,`timeago`) VALUES('".$uid."','".$usergroup."',
                     '".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."',
-                    '".$data['sectype']."','".$data['idofcmp']."','".$data['noofshare']."',
+                    '".$data['sectype']."','".$idofcmp."','".$data['noofshare']."',
                     '".$data['typeoftrans']."','".$pdfpath."','".$data['approverid']."','".$send_status."',
                     NOW(),'".$autoapst."','".$tradingdate."','0','0','".$data['approxprice']."','".$data['broker']."','".$data['demataccount']."','".$data['place']."','".$data['datetrans']."','".$data['transaction']."','".$data['sharestrans']."',
                     NOW(),NOW(),'".$time."')";
@@ -989,7 +989,7 @@ function checktypeofreq($uid,$usergroup,$data)
         {
             return false;
         }           
-    }
+}
     
         public function rejectreq($uid,$usergroup,$rejectid,$message)
         {
@@ -1014,6 +1014,39 @@ function checktypeofreq($uid,$usergroup,$data)
                 return false;
               }
        }
+
+
+    public function gettotlamnt($getuserid,$usergroup,$reqid)
+    {
+        $connection = $this->dbtrd;
+        try
+         {
+            
+            $queryget = "SELECT SUM(total_amount) AS totalamnt FROM trading_status  WHERE req_id='".$reqid."' AND user_id='".$getuserid."'  "; 
+            //print_r($queryget);exit;
+          
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist = $row['totalamnt'];
+                }
+                //echo '<pre>';print_r($getnumrow);exit;
+                
+            }else{
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        return $getlist;
+    }
 
         public function checktradestatus($uid,$usergroup,$reqid)
         {
@@ -1051,7 +1084,7 @@ function checktypeofreq($uid,$usergroup,$data)
              return $getlist;
        }
     
-        public function donetrade($uid,$usergroup,$reqid)
+        public function  donetrade($uid,$usergroup,$reqid)
         { 
                $connection = $this->dbtrd;
                $time = time();
@@ -1312,7 +1345,7 @@ function checktypeofreq($uid,$usergroup,$data)
             $getlist = array();
             $queryget = "SELECT * FROM `upsimaster` 
                 WHERE (STR_TO_DATE('".$todate."','%d-%m-%Y') BETWEEN STR_TO_DATE(`projstartdate`,'%d-%m-%Y') AND STR_TO_DATE(`enddate`,'%d-%m-%Y')
-                OR (STR_TO_DATE(`projstartdate`,'%d-%m-%Y') < STR_TO_DATE('".$todate."','%d-%m-%Y')   AND (`enddate` IS NULL OR `enddate`=''))) AND (FIND_IN_SET('".$uid."',`projectowner`) OR FIND_IN_SET('".$uid."',`connecteddps`)) ";
+                OR (STR_TO_DATE(`projstartdate`,'%d-%m-%Y') <=   STR_TO_DATE('".$todate."','%d-%m-%Y')   AND (`enddate` IS NULL OR `enddate`=''))) AND (FIND_IN_SET('".$uid."',`projectowner`) OR FIND_IN_SET('".$uid."',`connecteddps`)) ";
                 //echo $queryget;exit;
             try{
                     $exeget = $connection->query($queryget);

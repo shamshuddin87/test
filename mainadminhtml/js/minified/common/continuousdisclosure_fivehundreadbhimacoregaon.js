@@ -1,6 +1,6 @@
 
 website(document).ready(function()
-{var addhtmlnxt='';addhtmlnxt+='<tr class="counter">';addhtmlnxt+='<td width="25%">'+""+'</td>';addhtmlnxt+='<td width="25%">'+""+'</td>';addhtmlnxt+='</tr>';website('.dpgradu').html(addhtmlnxt);website('.mfr').html(addhtmlnxt);});function getallmydata()
+{var addhtmlnxt='';addhtmlnxt+='<tr class="counter">';addhtmlnxt+='<td width="25%">'+""+'</td>';addhtmlnxt+='<td width="25%">'+""+'</td>';addhtmlnxt+='</tr>';website('.dpgradu').html(addhtmlnxt);website('.mfr').html(addhtmlnxt);website('#sidebar-menu li').removeClass('active');website('.nav.child_menu').hide();});function getallmydata()
 {website.ajax({url:'continuousdisclosure/fetchinitialdeclaration',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)

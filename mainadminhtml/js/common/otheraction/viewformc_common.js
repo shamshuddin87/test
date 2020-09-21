@@ -81,6 +81,7 @@ function getdataonload()
             dtfrmt = dtfrmtspace[0].split("-");
             ddmmyy = dtfrmt[2]+'-'+dtfrmt[1]+'-'+dtfrmt[0];
             times = dtfrmtspace[1];
+            addhtmlnxt += '<td width="5%"><input type="checkbox"  name="chkbox"  size="30px;" value='+response.resdta[i].id+'></td>';
             addhtmlnxt += '<td width="15%" >'+ddmmyy+'  '+times+'</td>';
             
             addhtmlnxt += '<td width="20%">'+response.resdta[i].fullname+'</td>';
@@ -396,6 +397,65 @@ website('body').on('click','.formbpdf', function(e)
         {
             
         }
+    });
+});
+
+
+website('.genfile').on('click', function(e) {
+    
+    let id = new Array();
+    website("input:checkbox[name=chkbox]:checked").each(function(){
+    id.push(website(this).val());
+   });
+    //console.log(id);return false;
+    var formdata = {id:id};
+    website.ajax({
+        url:'sebi/exportformc',
+        data:formdata,
+        method:'POST',
+        //contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, /*Cross domain checking*/
+        beforeSend: function() 
+        {   
+            website('.preloder_wraper').fadeIn();
+            // website('.dwnldExcel').fadeOut();   
+        },
+        uploadProgress: function(event, position, total, percentComplete) 
+        {   },
+        success:function(response)
+        {
+            if(response.logged==true)
+            {
+                website('.dwnldExcel').fadeIn();
+                website('.dwnldExcel').attr('href',response.genfile);
+                new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                });
+            }
+            else
+            {
+                new PNotify({title: response.message,
+                   text: response.message,
+                   type: 'university',
+                   hide: true,
+                   styling: 'bootstrap3',
+                   addclass: 'dark ',
+                }); 
+                  
+            }
+        },
+        complete: function(response) 
+        {  website('.preloder_wraper').fadeOut();  },
+        error:function(response)
+        {   }
     });
 });
 

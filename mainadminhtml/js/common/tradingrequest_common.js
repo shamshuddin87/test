@@ -181,9 +181,11 @@ website('body').on('click','.sendrequst',function()
     var reqnames = website('#reqname').val();
     website('#checkappvlrequest #reqname').val(reqnames);
     var typeofrequests = website('#typeofrequest').val();
+    //alert(typeofrequests);
     website('#checkappvlrequest #typeofrequest').val(typeofrequests);
     
     var selrelatives = website('#selrelative').val();
+
     website('#checkappvlrequest #selrelative').val(selrelatives);
     var idofcmps = website('#idofcmp').val();
     website('#checkappvlrequest #idofcmp').val(idofcmps);
@@ -213,7 +215,7 @@ website('body').on('click','.sendrequst',function()
 
     var datetrans = website("input[name='dateoftrans[]']")
               .map(function(){return website(this).val();}).get();
-    //console.log(datetrans);
+    
     website('#checkappvlrequest #datetrans').val(datetrans);
 
      var transaction = website("input[name='trans[]']")
@@ -230,7 +232,7 @@ website('body').on('click','.sendrequst',function()
     
     website.ajax({
         url:'tradingrequest/checkclosebalval',
-        data:{datetrans:datetrans,approxprice:approxprice,broker:broker,place:place,idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},
+        data:{datetrans:datetrans,approxprice:approxprice,broker:broker,place:place,idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeofrequests:typeofrequests,noofshares:noofshares},
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -274,7 +276,9 @@ website('body').on('click','.sendrequst',function()
                 else
                 {
                   //form 1
-                  website('#checkappvlrequest').modal('show');
+                  let formtype = 'form1';
+                  getform(formtype,demataccount,datetrans,approxprice,broker,place,idofcmps,typeoftranss,sectypes,typeoftranss,typeofrequests,noofshares,selrelatives,transaction,sharestrans)
+                   website('#checkappvlrequest').modal('show');
                 }
             }
             else
@@ -297,12 +301,13 @@ website('body').on('click','.sendrequst',function()
 });
 
 
-function getform(formtype)
+function getform(formtype,demataccount,datetrans,approxprice,broker,place,idofcmps,typeoftranss,sectypes,typeoftranss,typeofrequests,noofshares,selrelatives,transaction,sharestrans)
 {
+
     website.ajax({
         type:"POST",
         url:'tradingrequest/getfilecontent',
-        data:{formtype:formtype},
+        data:{formtype:formtype,selrelatives:selrelatives,demataccount:demataccount,sharestrans:sharestrans,transaction:transaction,datetrans:datetrans,approxprice:approxprice,broker:broker,place:place,idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeofrequests:typeofrequests,noofshares:noofshares},
         dataType:"json",
         beforeSend: function()
         { website('.preloder_wraper').fadeIn();  },
@@ -316,7 +321,7 @@ function getform(formtype)
                 if(formtype == 'form1')
                 {
 
-                  //website('#checkappvlrequest #pdflink').attr('href',response.pdf_path);
+                  website('#checkappvlrequest #showform1').html(response.pdf_content    );
                   website('#checkappvlrequest').modal('show');
                   
                     
@@ -369,7 +374,7 @@ website('body').on('click','.reqdraft',function()
     
     website.ajax({
         url:'tradingrequest/checkclosebalval',
-        data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeoftranss:typeoftranss,typeofrequests:typeofrequests,noofshares:noofshares},
+        data:{idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeofrequests:typeofrequests,noofshares:noofshares},
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -482,12 +487,14 @@ website('body').on('click','#Yesreqst',function(e)
     var nameofcmp = website('#checkappvlrequest #nameofcmp').val();
     var noofshare = website('#checkappvlrequest #noofshare').val();
     var typeoftrans = website('#checkappvlrequest #typeoftrans').val();
+   
     var sendreq = website('#checkappvlrequest #sendreq').val();
     var approxprice = website('#checkappvlrequest #approxprice').val();
     var broker = website('#checkappvlrequest #broker').val();
     var demataccount = website('#checkappvlrequest #demataccount').val();
     var place = website('#checkappvlrequest #place').val();
     var datetrans = website('#checkappvlrequest #datetrans').val();
+    //alert(datetrans);
     var transaction = website('#checkappvlrequest #transaction').val();
     var sharestrans = website('#checkappvlrequest #sharestrans').val();
    
@@ -784,7 +791,7 @@ function getalltradingrequest(url_status)
                     }
 
                     addhtmlnxt += '<td>'+sectype+'</td>';
-                    addhtmlnxt += '<td>'+name_of_company+'</td>';
+                     
                     addhtmlnxt += '<td>'+type_of_transaction+'</td>';
                     addhtmlnxt += '<td>'+no_of_shares+'</td>';
                     addhtmlnxt += '<td>'+typeofrequest+'</td>';
@@ -1440,6 +1447,10 @@ website(":checkbox[name='modalcheck']").change(function() {
                     }); 
                     website('#uploadmyfile').modal('hide');
                     getalltradingrequest("");
+                    if(response.totalamt)
+                    {
+                      website("#fillformc").modal("show");
+                    }
 
                 }
                 else
@@ -1463,6 +1474,15 @@ website(":checkbox[name='modalcheck']").change(function() {
         });
 
     });
+
+
+ website("body").on("click","#goformc",function(e){
+
+  var base_url = getbaseurl();
+  window.location.href = base_url+'sebi/transformc';
+  
+ });
+
 
 website("body").on("click","#nottrade",function(e){
 
@@ -2042,7 +2062,7 @@ function addhtml(clicked)
          // addhtmlnxt += ' <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>';
         addhtmlnxt += ' <div id = "left" class="form-group col-md-4" style="margin-left: -18px;">';
         addhtmlnxt += '<label for="">Date</label>';
-        addhtmlnxt += ' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" >';
+        addhtmlnxt += ' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" readonly="readonly" >';
         addhtmlnxt += '</div>';
         addhtmlnxt += ' <div id = "middle" class="form-group col-md-4">';
         addhtmlnxt += '<label for="">Transaction</label>';

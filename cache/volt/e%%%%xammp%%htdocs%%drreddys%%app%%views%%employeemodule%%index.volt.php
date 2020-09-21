@@ -1,7 +1,5 @@
 ﻿<?php $gmnlog = $this->session->loginauthspuserfront; ?>
-<?php //echo"<pre>";print_r($gmnlog); exit;?> 
-<!-- Main content -->
-<!-- ########################################## PageContent Start ########################################## --> 
+
 <div class="right_col" role="main">
 <div class="row">
 <div class="content">
@@ -21,15 +19,15 @@
          </div>
          <div class="col-md-3 col-xs-12 register">
             <button class="btn relatives ">
-            Dependent Relatives  Details   
+            Relatives  Details   
             </button>
-            <!-- <span class="tooltiptext_bg">The term “immediate relative” means spouse of a person, and includes parents, siblings, and child of such person or the spouse, any of whom is either dependent financially on such person, or consults such person in taking decisions relating to trading in securities.</span> -->
+           
          </div>
          <div class="col-md-3 col-xs-12 register">
             <button class="btn mfr">
              Material Financial Relationship  
             </button>
-            <!-- <span class="tooltiptext_bg">The term “material financial relationship” shall mean a relationship in which one person is a recipient of any kind of payment such as by way of a loan or gift during the immediately preceding twelve months, equivalent to at least 25% of such payer’s annual income but shall exclude relationships in which the payment is based on arm’s length transactions</span> -->
+            
          </div>
       </div>
    </div>
@@ -43,6 +41,16 @@
          <!-------------------------------------------------------------------------------------------->
          <h3>Insert Personal Details</h3>
          <div class="insert">
+
+             <div class="col-md-4 col-xs-12">
+               <label for="nation">Select Nationality*</label>
+               <select id="relationship" name="relationship" class="form_fields" required="">
+                          
+                    <option value="1">Indian National</option>
+                    <option value="2">Foreign National</option>
+                          
+                  </select>
+            </div>
             <div class="col-md-4 col-xs-12">
                <label for="fn">Employee ID*</label>
                <input type="text"  value="<?php echo($userdetails[0]['employeecode']) ?>" readonly="readonly"/>
@@ -95,14 +103,15 @@
                   <label for="aadhar">Aadhaar*</label>
                   <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<?php echo($personaldetails['aadhar']) ?>" maxlength="12" pattern="[0-9]{12}">
                </div>
-              <div class="col-md-4 col-xs-12">
-                  <label for="Dob">DOB*</label>
-                  <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="bootdatepick" placeholder="DOB" readonly>
-               </div>
+
                 
                <div class="col-md-12 col-xs-12"> 
+                <div class="col-md-4 col-xs-12">
+                  <label for="Dob">DOB*</label>
+                  <input type="text" id="dob" name="dob" value="<?php echo($personaldetails['dob']) ?>" class="" placeholder="DOB" >
+               </div>
                    <div class="col-md-4 col-xs-12"> 
-                        <label class="gender" for="sex">Gender*</label>
+                        <label class="gender" for="sex" style="margin-bottom: 10px;">Gender*</label>
                         <?php if($personaldetails['sex'] == 'Male'){?>
                         <input type="radio" id="sex" name="sex" value="Male" checked/>Male
                         <input type="radio" id="sex" name="sex"  value="Female"/>Female
@@ -128,12 +137,12 @@
                       <label for="age">Educational Qualification*</label>
                       <input type="text" id="eduqulfcn" name="eduqulfcn" value="<?php echo($personaldetails['education']) ?>" placeholder="Educational Qualification">
                    </div>
-                   <div class="col-md-4 col-xs-12">
+                   
+              </div>
+                <div class="col-md-4 col-xs-12">
                       <label for="age">Institute From Which Acquired*</label>
                       <input type="text" id="institute" name="institute" value="<?php echo($personaldetails['institute']) ?>" placeholder="Institute From Which Acquired">
                    </div>
-              </div>
-                
                <div class="col-md-4 col-xs-12"> 
                   <label for="subject">Address*</label>
                   <textarea id="address" name="address" value="<?php echo($personaldetails['address']) ?>" placeholder="Write address.." style="height:50px"><?php echo($personaldetails['address']) ?></textarea>
@@ -148,13 +157,15 @@
                      <input type="file" name="hldngfile" id="hldngfile" >
                   </div>
                </div>
-               <div class="col-md-4 col-xs-12 "> 
+               
+                <div class="row">
+                  <div class="col-md-12 col-xs-12"> 
+
+                    <div class="col-md-4 col-xs-12 "> 
                   <label for="age">Mobile No*</label>
                   <input type="text" id="mobno" name="mobno" value="<?php echo($personaldetails['mobileno']) ?>" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
                   <span id="mobileappend"></span>
                </div>
-                <div class="row">
-                  <div class="col-md-12 col-xs-12"> 
 
                 <div class="col-md-4 col-xs-12 "> 
                   <label for="age">Holdings In Shares*</label>  
@@ -196,11 +207,11 @@
                </div>
               <div class="col-md-4 col-xs-12">
                   <label for="Dob">Dob*</label>
-                  <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="dob" readonly>
+                  <input type="text" id="dob" name="dob" class="" placeholder="dob" >
                </div>
                <div class="col-md-12 col-xs-12"> 
                    <div class="col-md-4 col-xs-12"> 
-                        <label class="gender" for="sex">Gender*</label>
+                        <label class="gender" for="sex" style="margin-bottom: 10px;">Gender*</label>
                         <input type="radio" id="sex" name="sex" value="Male" />Male
                         <input type="radio" id="sex" name="sex"  value="Female"/>Female
                         <input type="radio" id="sex" name="sex"  value="Other"/>Other
@@ -279,47 +290,7 @@
             <div class="containergrid">
                <div class="formcss">
                   <div class="typography form_pad" id="addnoofforms">
-                     <!--   <div class="formelementmain">                      
-                        <form id="insertpastemp" action="employeemodule/insertpastemp" method="post" enctype="multipart/form-data" autocomplete="off"> 
-                        <input type = "hidden" value="<?php echo $personid; ?>" id="personid" name="personid">
-                         <section class="col col-md-6 col-xs-6">
-                                <div class="input">
-                                    <label class="control-label">Name of employer*</label>
-                                    <input type="text" id="empname" name="empname" class="form_fields form-control col-md-7 col-xs-12" required>
-                                </div>
-                            </section>
-                            
-                             <section class="col col-md-6 col-xs-6">
-                                <div class="input">
-                                    <label class="control-label">Designation Served*</label>
-                                    <input type="text" id="designtn" name="designtn" class="form_fields form-control col-md-7 col-xs-12" required>
-                                </div>
-                            </section>
-                        
-                            
-                        <section class="col col-md-6 col-xs-6">
-                        <div class="input">
-                            <label class="control-label">Start Date of Employment*</label> 
-                            <input type="text" name="strtdte" id="strtdte" class="form-control bootdatepick" required readonly>
-                        </div>
-                        </section>
-                            
-                        <section class="col col-md-6 col-xs-6">
-                        <div class="input">
-                        <label class="control-label">End Date of employent*</label>  
-                            <input type="text" name="enddte" id="enddte" class="form-control bootdatepick" required readonly>
-                        </div>
-                        </section>
-                            
-                        
-                            
-                            <section class="col col-md-12 company_asses">
-                                <input type="submit" value="Submit" class="btn btn-primary contractexcelbtn">
-                            </section>
-                            <div class="clearelement"></div>
-                            
-                        </form>
-                        </div>  -->                               
+                                              
                      <div class="clearelement"></div>
                   </div>
                </div>
@@ -369,7 +340,7 @@
                               <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="dob" readonly>
                            </div>
                            <div class="col-md-6"> 
-                              <label class="gender" for="sex">Gender*</label>
+                              <label class="gender" for="sex" style="margin-bottom: 10px;">Gender*</label>
                               <input type="radio" id="sex" name="sex" value="Male" checked/>Male
                               <input type="radio" id="sex" name="sex"  value="Female"/>Female
                               <input type="radio" id="sex" name="sex"  value="Other"/>Other
@@ -378,14 +349,9 @@
                               <label for="age">Mobile No*</label>
                               <input type="hidden" id="upmobileno" name="upmobileno" value="">
                               <input type="text" id="upmobno" name="upmobno" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10">
-                              <!--                 <p id="addmobileonmd"></p>-->
+                             
                            </div>
-                           <!--
-                              <div class="col-md-12">
-                              <input type="button" value="Add" name="" id="upaddmobile" class="inner_button">
-                               </div>
-                                
-                              -->
+                           
                            <div class="col-md-6">
                             <div class="tooltip_div">
                                 <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
@@ -448,16 +414,25 @@
             <h3 class="col col-xs-6" style="margin-top: 30px;">Insert Relative Details</h3>
             <!--tooltip div -->
             <div class="tooltip_div col col-xs-6" style="margin-top: 30px;">
-               <a href="javascript:void(0);" data="The term “immediate relative” means spouse of a person, and includes parents, siblings, and child of such person or the spouse, any of whom is either dependent financially on such person, or consults such person in taking decisions relating to trading in securities.!" class="tooltip_c">who is dependent relative <abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+               <a href="javascript:void(0);" data="The term “immediate relative” means spouse of a person, and includes parents, siblings, and child of such person or the spouse, any of whom is either dependent financially on such person, or consults such person in taking decisions relating to trading in securities.!" class="tooltip_c">who is relative <abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
             </div>
             <!--tooltip div end-->
             <div class="col col-xs-12">
                <form action ="employeemodule/relationdata" class="chklength" id="getdata_1" method="post" enctype="multipart/form-data" autocomplete="off">
                   <div class="input-group col-md-12 col-xs-12 col-sm-12">
                     <div class="row">
+
+                       <div class="col-md-4 col-xs-12">
+                         <label for="nation">Select Nationality*</label>
+                            <select id="relationship" name="relationship" class="form_fields" required="">                                    
+                              <option value="1">Indian National</option>
+                              <option value="2">Foreign National</option>                                    
+                            </select>
+                      </div>
+
                       <div class="col-md-4">
                         <label>Relationship*</label >
-                        <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
+                        <select id="relationship" name="relationship" class="form_fields" required="">
                           
                            <option value="2">Spouse</option>
                            <option value="3">Father</option>
@@ -474,7 +449,7 @@
                      </div>  
                      <div class="col-md-4">
                         <label>Nature of Dependency*</label >
-                        <select id="depnature" name="depnature[]" class="form_fields form-control col-md-7 col-xs-12" required="" multiple size="3">
+                        <select id="depnature" name="depnature[]" class="form_fields" required="" multiple size="3">
                            <option value="1">Financially Dependent</option>
                            <option value="2">Consult in trading for securities</option>
                            <option value="3">Non-dependent</option>
@@ -484,8 +459,8 @@
                         <label>Full Name*</label>
                         <input  class="" placeholder="Full Name"  class="fname" id="fname" name="fname" type="text" />
                      </div>
-                      </div>
-                    <div class="row">
+                      <!-- </div>
+                    <div class="row"> -->
                      <div class="col-md-4">
                            <div class="tooltip_div">
                              <a href="javascript:void(0);" data="In case no PAN number available with dependents, please enter 00000000" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
@@ -507,16 +482,16 @@
                         <label for="legal_idntfctn_no">Any other legal identification number</label>
                         <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);"  placeholder="Any other legal identification number">
                     </div>
-                    </div>
+                    <!-- </div>
                       
-                    <div class="row">
+                    <div class="row"> -->
                      <div class="col-md-4"> 
                         <label>Aadhaar*</label>
                         <input  class=" aadhar" placeholder="Aadhaar" id="aadhar"  name="aadhar" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}" />
                      </div>
                      <div class="col-md-4">
                         <label>DOB*</label>
-                        <input type="text"  id="1_dob" name="dob" class="bootdatepick" placeholder="DOB" readonly>
+                        <input type="text"  id="1_dob" name="dob" class="" placeholder="DOB" >
                      </div>
                      <div class="col-md-4">
                          <div class="tooltip_div">
@@ -527,9 +502,9 @@
                      </div>
 
 
-                    </div>
+                    <!-- </div>
                       
-                    <div class="row">
+                    <div class="row"> -->
 
                     <div class="col-md-4 col-xs-12">
                       <label for="institute">Institute From Which Acquired</label>
@@ -543,17 +518,9 @@
                         <input type="text"  id="relmobno" name="relmobno" placeholder="Mobile No"onkeypress='return event.charCode >= 48 && event.charCode <= 57'  maxlength="10"  >
    
                         </div>
-                    
-                     <div class="col-md-4">
-                        <label>Address*</label>
-                        <textarea class="" placeholder="Address" id="addr"  name="address" type="text"></textarea>
-                     </div>
-                   
-                    </div>
-                      <div class="row">
 
-                         <div class="col-md-4"> 
-                        <label style="display: block;" for="sex">Gender*</label>
+                        <div class="col-md-4"> 
+                        <label style="display: block; margin-bottom: 10px;" for="sex">Gender*</label>
 
                         <input class = "relgender" type="radio" id="relmale" name="sex" value="Male" />Male
                         <input class = "relgender" type="radio" id="relfemale" name="sex"  value="Female"  >Female 
@@ -561,6 +528,11 @@
 
                      </div>
 
+                   
+                   <!--  </div>
+                      <div class="row"> -->
+
+                         
                      <div class="col-md-4 col-xs-12 "> 
                       <label for="age">Occupation</label>
                      <input type="text" id="reloccupation" name="reloccupation" placeholder="Occupation" >
@@ -570,7 +542,6 @@
                   <label for="age">Name of Companies/Firm</label>
                   <input type="text" id="relcompany" name="relcompany"  placeholder="Name of Companies/Firm " >
                </div>
-                    <div class="col-md-12 col-md-12">
                         <div class="col-md-4">
                         <label class="control-label">Upload Identity Proof</label>
                         <input type="file" name="file[]" id="file" >
@@ -585,10 +556,14 @@
                       </div>
 
                       
+                    
+                     <div class="col-md-4">
+                        <label>Address*</label>
+                        <textarea class="" placeholder="Address" id="addr"  name="address" type="text"></textarea>
+                     </div>
 
 
 
-                    </div>
                      </div>
                      <div class="col-md-12">
                         <input class="btn btn-primary" type="button" name="relsub" value="Submit" id="relsub" onclick="confirmdisclosure(this.id)" style="float: right;">
@@ -647,7 +622,7 @@
             </div>
             <!------------------------------------------------------------------------------------------------------>
             <!------------------------------------MODAL BOX FOR EDIT RELATIONSHIP------------------------------------------>
-            <div id="reledit" class="modal fade" role="dialog">
+            <div id="reledit" class="modal fade" role="dialog" tabIndex=-1 >
                <div class="modal-dialog">
                   <div class="modal-content">
                      <div class="modal-header">
@@ -656,9 +631,18 @@
                      </div>
                      <div class="modal-body show_shadow">
                         <form action="employeemodule/updaterelatives" id="uprel" method="post" autocomplete="off">
+
+                          <div class="col-md-6">
+                           <label for="nation">Select Nationality*</label>
+                            <select id="relationship" name="relationship" class="form_fields" required="">                                    
+                              <option value="1">Indian National</option>
+                              <option value="2">Foreign National</option>                                    
+                            </select>
+                          </div>
+
                             <div class="col-md-6">
                               <label for="relationship">Relationship*</label>
-                              <select id="relationship" name="relationship" class="form_fields form-control col-md-7 col-xs-12" required="">
+                              <select id="relationship" name="relationship" class="form_fields" required="">
                                
                                  <option value="2">Spouse</option>
                                  <option value="3">Father</option>
@@ -676,7 +660,7 @@
                             
                              <div class="col-md-6">
                                 <label>Nature of Dependency*</label >
-                                <select id="depnature" name="depnature[]" class="form_fields form-control col-md-7 col-xs-12" required="" multiple size="3">
+                                <select id="depnature" name="depnature[]" class="form_fields" required="" multiple size="6" style="margin-bottom: 0;">
                                    <option value="1">Financially Dependent</option>
                                    <option value="2">Consult in trading for securities</option>
                                    <option value="3">Non-dependent</option>
@@ -717,10 +701,10 @@
                            </div>
                            <div class="col-md-6">
                               <label for="Dob">DOB*</label>
-                              <input type="text" id="dob" name="dob" class="bootdatepick" placeholder="DOB" readonly>
+                              <input type="text" id="dob" name="dob" class="" placeholder="DOB" >
                            </div>
                            <div class="col-md-6" style="margin-bottom: 15px;">
-                               <label style="display: block;" for="sex">Gender*</label>
+                               <label style="display: block; margin-bottom: 10px;" for="sex">Gender*</label>
                               <input type="radio" id="sex" name="sex" value="Male" checked/>Male
                               <input type="radio" id="sex" name="sex"  value="Female"/>Female
                               <input type="radio" id="sex" name="sex"  value="Other"/>Other
@@ -820,8 +804,8 @@
                </div>
 
                 <div class="col-md-6">
-                  <label>DP ID/Client ID*</label>
-                  <input type="text" placeholder="DP ID/Client ID " id="mfrclientid" onkeypress="return isAlphaNumeric(event);" maxlength="16">
+                  <label>Demat Account No*</label>
+                  <input type="text" placeholder="Demat Account No" id="mfrclientid" onkeypress="return isAlphaNumeric(event);" maxlength="16">
                   
                </div>
 
@@ -844,7 +828,7 @@
             </div>
             <!---------------------------------------------------------------------------------------------->
             <!----TABLE OF INSERTED DATA------------------------------------------------------------------>
-            <h4 class="mfrdetails">Material Financial Relationship</h4>
+<!--             <h4 class="mfrdetails">Material Financial Relationship</h4> -->
             <table class="table table-inverse" id="datableabhi">
                <thead>
                   <tr>
@@ -893,7 +877,7 @@
                   </div>
                   <div class="modal-footer" style="border-top:none;">
                      <button type="button" class="btn btn-primary" id="yesdisclosures1">I understand</button> 
-<!--                      <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="nodisclosures1" onclick="nodisclosures(this.id);">No</button>-->
+
                   </div>
                </div>
             </div>
@@ -934,7 +918,7 @@
          </div> 
         
 
-         <div id="mfrdelmodaledit" class="modal fade" role="dialog">
+         <div id="mfrdelmodaledit" class="modal fade" role="dialog" tabIndex=-1 >
             <div class="modal-dialog">
                <!-- Modal content-->
                <div class="modal-content">
@@ -968,8 +952,8 @@
                </div>
 
                 <div class="col-md-6">
-                  <label>DP ID/Client ID*</label>
-                  <input type="text" placeholder="DP ID/Client ID " id="mfrclientidup" onkeypress="return isAlphaNumeric(event,this.value); "maxlength="16" pattern="[A-Za-z0-9]{16}">
+                  <label>Demat Account No*</label>
+                  <input type="text" placeholder="Demat Account No" id="mfrclientidup" onkeypress="return isAlphaNumeric(event,this.value); "maxlength="16" pattern="[A-Za-z0-9]{16}">
                   
                </div>
 

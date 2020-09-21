@@ -12,7 +12,7 @@ website(document).ready(function()
 {var addhtmlnxt='';for(var i=0;i<response.resdta.length;i++)
 {var draft=response.resdta[i].draft?response.resdta[i].draft:''
 var final=response.resdta[i].final?response.resdta[i].final:''
-addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';dtfrmt=response.resdta[i].date_added.split("-");dtfrmtspace=response.resdta[i].date_added.split(" ");ddmmyy=dtfrmtspace[0];dtfrmt=dtfrmtspace[0].split("-");ddmmyy=dtfrmt[2]+'-'+dtfrmt[1]+'-'+dtfrmt[0];times=dtfrmtspace[1];addhtmlnxt+='<td width="15%" >'+ddmmyy+'  '+times+'</td>';addhtmlnxt+='<td width="20%">'+response.resdta[i].fullname+'</td>';addhtmlnxt+='<td width="15%">'+response.resdta[i].pan+'</td>';addhtmlnxt+='<td width="15%">'+response.resdta[i].cin+'</td>';addhtmlnxt+='<td width="15%">'+response.resdta[i].address+'</td>';addhtmlnxt+='<td width="15%">'+response.resdta[i].mobile+'</td>';addhtmlnxt+='<td width="15%">'+response.resdta[i].category+'</td>';if(response.resdta[i].draft)
+addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';dtfrmt=response.resdta[i].date_added.split("-");dtfrmtspace=response.resdta[i].date_added.split(" ");ddmmyy=dtfrmtspace[0];dtfrmt=dtfrmtspace[0].split("-");ddmmyy=dtfrmt[2]+'-'+dtfrmt[1]+'-'+dtfrmt[0];times=dtfrmtspace[1];addhtmlnxt+='<td width="5%"><input type="checkbox"  name="chkbox"  size="30px;" value='+response.resdta[i].id+'></td>';addhtmlnxt+='<td width="15%" >'+ddmmyy+'  '+times+'</td>';addhtmlnxt+='<td width="20%">'+response.resdta[i].fullname+'</td>';addhtmlnxt+='<td width="15%">'+response.resdta[i].pan+'</td>';addhtmlnxt+='<td width="15%">'+response.resdta[i].cin+'</td>';addhtmlnxt+='<td width="15%">'+response.resdta[i].address+'</td>';addhtmlnxt+='<td width="15%">'+response.resdta[i].mobile+'</td>';addhtmlnxt+='<td width="15%">'+response.resdta[i].category+'</td>';if(response.resdta[i].draft)
 {addhtmlnxt+='<td width="25%"><a href="'+draft+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';}
 else
 {addhtmlnxt+='<td width="15%"></td>';}
@@ -71,6 +71,14 @@ else
 {if(response.logged===true)
 {website('.preloder_wraper').fadeOut();website('#modaldocument .formbpdf').fadeOut();website('#modaldocument .button_pdf .down_load').show();website('#modaldocument .downloadpdf').show();website('#modaldocument .downloadpdf .pdfln').html('<a href="'+response.pdfpath+'" target="_blank" class="downlodthfle" style="color: white;"> Download</a>');}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
+{}});});website('.genfile').on('click',function(e){let id=new Array();website("input:checkbox[name=chkbox]:checked").each(function(){id.push(website(this).val());});var formdata={id:id};website.ajax({url:'sebi/exportformc',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response)
+{if(response.logged==true)
+{website('.dwnldExcel').fadeIn();website('.dwnldExcel').attr('href',response.genfile);new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+else
+{new PNotify({title:response.message,text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function(response)
 {}});});function numberalphOnly()
 {var charCode=event.keyCode;if((charCode>47&&charCode<58)||charCode==32||(charCode>64&&charCode<91)||(charCode>96&&charCode<123)||charCode==8||charCode==44||charCode==40||charCode==41||charCode==46||charCode==47)
 return true;else

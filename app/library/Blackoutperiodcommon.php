@@ -51,6 +51,8 @@ class Blackoutperiodcommon extends Component
              // print_r($getmasterid);
              $user_group_id=2;
         }
+        $reason = str_replace("'", "''", $reason);
+
 
         $queryinsert = "INSERT INTO `blackoutperiod_cmp`
         (`user_id`,`user_group_id`,`companyid`,`datefrom`, `dateto`,`reason`,`date_added`, `date_modified`,`timeago`)
@@ -86,8 +88,8 @@ class Blackoutperiodcommon extends Component
         try
         {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryselect = "SELECT bcmp.*,cmp.companyname FROM `blackoutperiod_cmp` bcmp
-                            LEFT JOIN `companylist` cmp ON cmp.id = bcmp.companyid
+            $queryselect = "SELECT bcmp.*,cmp.`companyname` FROM `blackoutperiod_cmp` bcmp
+                            LEFT JOIN `companylist` cmp ON cmp.`id` = bcmp.`companyid`
                             WHERE bcmp.`user_id` IN (".$grpusrs['ulstring'].")";
             //echo $queryselect;exit;
             $exeget = $connection->query($queryselect);
@@ -148,6 +150,36 @@ class Blackoutperiodcommon extends Component
         return $returndta; 
     }
     /**************************** delete cmp in blackout period end *****************************/
+
+     /*   ------- START Test Email Facility ------ */
+     public function inserttradingwindowtestemail($getuserid,$user_group_id,$emailcontent,$logedinusername,$logedinuseremail)
+     {
+         $connection = $this->dbtrd;
+         $time = time();
+         
+       
+            $purpose = htmlentities($emailcontent['reason'],ENT_QUOTES);
+            unset($emailcontent['reason']);
+            $emailcontent['reason'] = $purpose;
+            $emailcontentfinal = json_encode($emailcontent);
+        
+         
+         $queuetype = '3';
+         $queryinsert = "INSERT INTO `email_test`
+         (`user_id`,`user_group_id`,`qtypeid`,`sendtoid`,`sendtoemail`,`sendtoname`,`maildata`,`date_added`, `date_modified`,`timeago`)
+          VALUES ('".$getuserid."','".$user_group_id."','".$queuetype."','".$getuserid."','".$logedinuseremail."','".$logedinusername."','".$emailcontentfinal."',NOW(),NOW(),'".$time."')";
+        // echo $queryinsert;exit;
+         try
+         {
+             $exeprev = $connection->query($queryinsert);
+             return true;
+         }
+         catch (Exception $e)
+         {
+             return false;
+         }
+     }
+     /*   ------- END Test Email Facility ------ */
 }
 
 

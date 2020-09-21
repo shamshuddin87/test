@@ -67,7 +67,7 @@ $gmnlog = $this->session->loginauthspuserfront;
                                     <!--<th>Sr No</th>-->
                                     <th>Name</th>
                                     <th>Security Type</th>
-                                    <th>Name Of Company</th>
+                                   <!--  <th>Name Of Company</th> -->
                                     <th>Type Of Transaction</th>
                                     <th>No Of Shares</th>
                                     <th>Type Of Request</th>
@@ -224,7 +224,7 @@ $gmnlog = $this->session->loginauthspuserfront;
 </div>
 
 
-<div id="Mymodalaudittrail" class="modal fade" role="dialog">
+<div id="Mymodalaudittrail" class="modal fade" role="dialog" tabIndex=-1>
   <div class="modal-dialog">
 
     <div class="modal-content">

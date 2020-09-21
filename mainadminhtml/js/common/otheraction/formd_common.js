@@ -131,7 +131,7 @@ function getdataonload()
             {
                 addhtmlnxt += '<td width="20%">'+date_added+'</td>';
             }
-            addhtmlnxt += '<td width="15%">'+company+'</td>';
+            // addhtmlnxt += '<td width="15%">'+company+'</td>';
             addhtmlnxt += '<td width="15%">'+designation+'</td>';
             if(response.resdta[i].send_status == 0)
             {
@@ -219,7 +219,7 @@ var id = website(this).attr('formdid');
         if(response.logged===true)
         {
             //console.log(response.data);return false;
-            website("#Mymodaledit #cin").val(response.data.cin);
+            //website("#Mymodaledit #cin").val(response.data.cin);
             website("#Mymodaledit #category").val(response.data.category);
             website("#Mymodaledit #cmpcnctn").val(response.data.cmpcnct);
             website("#Mymodaledit #fromdate").val(response.data.fromdate);
@@ -407,6 +407,10 @@ website('body').on('click','#previewd',function()
                 //date to
                 dteto = response.formdata['todate'].split("-"); 
                 ddmmyyto = dteto[2]+'-'+dteto[1]+'-'+dteto[0];
+
+                dteadded = response.formdata['date_added'].split(" "); 
+                dtadd =   dteadded[0].split("-"); 
+                finaldtadd = dtadd[2]+'-'+dtadd[1]+'-'+dtadd[0];
                
 //                //date intimation
                if(response.formdata['dateofintimtn'])
@@ -454,6 +458,8 @@ website('body').on('click','#previewd',function()
                website('.sellvalue').html(response.formdata['sellvalue']);
                website('.sellnumbrunt').html(response.formdata['sellnumbrunt']);
                website('.exetrd').html(response.formdata['exetrd']);
+                website('.place').html(response.formdata['place']);
+              website('.dateadded').html(finaldtadd);
                website('#modaldocument #formdid').val(id);
                 website('#modaldocument').modal('show');
            }

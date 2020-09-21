@@ -15,10 +15,26 @@ class Automailercommon extends Component
         
         try
         {
+            //print_r($infodata);exit;
+            
+            if($qtypeid == '6')
+            {
+                $maildata = json_encode($infodata);
+            }
+            else
+            {
+           
+            $purpose = htmlentities($infodata['reason'],ENT_QUOTES);
+            unset($infodata['reason']);
+            $infodata['reason'] = $purpose;
             $maildata = '';
             $maildata = json_encode($infodata);
+            //print_r($maildata);exit;
+          
+           
             $maildata = str_replace("'", "''", $maildata);
             //print_r($maildata);exit;    
+            }
             
             $queryinsert = "INSERT INTO `email_queue`
                 (`user_id`,`user_group_id`,
@@ -27,7 +43,7 @@ class Automailercommon extends Component
                 VALUES ('".$getuserid."', '".$user_group_id."',
                 '".$qtypeid."', '".$sendtoid."', '".$sendtoemail."', '".$sendtoname."', '".$maildata."', 
                 NOW(),NOW(),'".$time."') ";         
-            //print_r($queryinsert); exit;
+            // print_r($queryinsert); exit;
             
             $exeqry = $connection->query($queryinsert);
             //echo '<pre>'; print_r($exeqry); exit;
@@ -467,6 +483,43 @@ class Automailercommon extends Component
         
         return $getlist; 
     }
+
+
+
+    /*---- Send Auto Mail to User For Annual Declaration -----*/
+    public function chkifanualdeclfryear($userid,$year)
+    {
+        $connection = $this->dbtrd;
+        try
+        {
+            $queryget = "SELECT * FROM `annual_initial_declaration` WHERE send_status = '1' AND annualyear = '".$year."' AND `user_id`= '".$userid."' "; 
+            //echo $queryget;  exit;
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;
+                }
+                //echo '<pre>';print_r($getlist);exit;                
+            }
+            else
+            {
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        
+        return $getlist;
+    }
+    /*---- Send Auto Mail to User For Annual Declaration -----*/
+    
     
     public function chkifprsnlinfo($userid)
     {

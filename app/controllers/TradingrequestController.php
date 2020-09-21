@@ -95,7 +95,7 @@ class TradingrequestController extends ControllerBase
             { 
                 $clsstatus=1;
                 $alldata= $this->request->getPost();
-                $idofcmp=$this->request->getPost('idofcmps','trim');
+                $idofcmp='1';
                 $typeoftrans=$this->request->getPost('typeoftranss','trim');
                 $sectype=$this->request->getPost('sectypes','trim');
                 $noofshare=$this->request->getPost('noofshares','trim');
@@ -107,12 +107,12 @@ class TradingrequestController extends ControllerBase
                 $todaydate = date('d-m-Y');
 
                   
-                if(empty($idofcmp))
-                {
-                    $data = array("logged" => false,'message' => 'Please Select Company..!!!');
-                    $this->response->setJsonContent($data);
-                }
-                else if(empty($typeoftrans))
+                // if(empty($idofcmp))
+                // {
+                //     $data = array("logged" => false,'message' => 'Please Select Company..!!!');
+                //     $this->response->setJsonContent($data);
+                // }
+                if(empty($typeoftrans))
                 {
                     $data = array("logged" => false,'message' =>"Please Select Type Of Transaction..!!!");
                     $this->response->setJsonContent($data);
@@ -225,8 +225,8 @@ class TradingrequestController extends ControllerBase
                 $alldata= $this->request->getPost();
                 $approverid = $this->request->getPost('approverid','trim');
                 $sectype = $this->request->getPost('sectype','trim');
-                $idofcmp = $this->request->getPost('idofcmp','trim');
-                $nameofcmp  = $this->request->getPost('nameofcmp','trim');
+                
+              
                 $noofshare = $this->request->getPost('noofshare','trim');
                 $typeoftrans  = $this->request->getPost('typeoftrans','trim');
                 //print_r($typeoftrans);exit;
@@ -243,12 +243,22 @@ class TradingrequestController extends ControllerBase
                 $demataccountid=$this->request->getPost('demataccount','trim');
                 $place=$this->request->getPost('place','trim');
                 $datetrans=$this->request->getPost('datetrans','trim');
+                  //print_r($typeofrequest);exit;
                 $transaction=$this->request->getPost('transaction','trim');
                 $sharestrans=$this->request->getPost('sharestrans','trim');
-
-                if($typeoftrans == 2)
+                $idofcmp  = '1';
+                $nameofcmp = "Dr Reddy's Laboratories Ltd";
+                if($typeofrequest == 2)
                 {
+
+                    if($typeoftrans == 2)
+                    { 
                     $nature = 'Sale';
+                    }
+                    else
+                    {
+                        $nature = 'Purchase';
+                    }
                     $relativeinfo = $this->tradingrequestcommon->getrelativesingle($selrelative);
                     if(!empty($demataccountid))
                     {
@@ -264,9 +274,16 @@ class TradingrequestController extends ControllerBase
                     
                     $relativename = $relativeinfo['name'];
                 }
-                else if($typeoftrans == 1)
+                else if($typeofrequest == 1)
                 {
-                    $nature = 'Purchase';
+                   if($typeoftrans == 2)
+                    { 
+                    $nature = 'Sale';
+                    }
+                    else
+                    {
+                        $nature = 'Purchase';
+                    }
                     $relativename = ' ';
                     //print_r($dematinfo);exit;
                      if(!empty($demataccountid))
@@ -296,8 +313,9 @@ class TradingrequestController extends ControllerBase
                 $personalinfo = $this->tradingrequestcommon->getpersonalinfo($uid,$usergroup);
 
                 $itmemberinfo = $this->tradingrequestcommon->userdetails($uid,$usergroup);
-                
+                // print_r($datetrans);exit;
                 $datetrans = explode(",", $datetrans);
+
                 $transaction = explode(",", $transaction);
                 $sharestrans = explode(",", $sharestrans);
               
@@ -355,18 +373,18 @@ class TradingrequestController extends ControllerBase
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
-                else if(empty($idofcmp))
-                {
-                    $data = array("logged" => false,'message' => 'Please Select Valid Company');
-                    $this->response->setJsonContent($data);
-                    $this->response->send();
-                }
-                else if(empty($nameofcmp))
-                {
-                    $data = array("logged" => false,'message' => 'Name Of Comapny Can Not Be Blank');
-                    $this->response->setJsonContent($data);
-                    $this->response->send();
-                }
+                // else if(empty($idofcmp))
+                // {
+                //     $data = array("logged" => false,'message' => 'Please Select Valid Company');
+                //     $this->response->setJsonContent($data);
+                //     $this->response->send();
+                // }
+                // else if(empty($nameofcmp))
+                // {
+                //     $data = array("logged" => false,'message' => 'Name Of Comapny Can Not Be Blank');
+                //     $this->response->setJsonContent($data);
+                //     $this->response->send();
+                // }
                 else if(empty($noofshare))
                 {
                     $data = array("logged" => false,'message' => 'Please Enter Total No Of Shares');
@@ -430,7 +448,7 @@ class TradingrequestController extends ControllerBase
                     if($flag == 1)
                     {
                         
-                        $result = $this->tradingrequestcommon->createrequest($uid,$usergroup,$alldata,$send_status,$pdfpath);
+                        $result = $this->tradingrequestcommon->createrequest($uid,$usergroup,$alldata,$send_status,$pdfpath,$idofcmp);
                         //print_r($result);exit;
                         if($result['status']==true)
                         {
@@ -1288,6 +1306,8 @@ class TradingrequestController extends ControllerBase
             {   
                 $reqid = $this->request->getPost('reqid','trim');
                 $response = $this->tradingrequestcommon->donetrade($uid,$usergroup,$reqid); 
+                $totalamt = $this->tradingrequestcommon->gettotlamnt($uid,$usergroup,$reqid); 
+                //print_r($totalamt);exit;
                 
                 if($response==true)
                 {
@@ -1295,7 +1315,7 @@ class TradingrequestController extends ControllerBase
 
                     $notific=$this->notificationcommon->insertnotification($reqid,"3");
                 
-                    $data = array("logged" => true,"message" =>"Record Updated Successfully");
+                    $data = array("logged" => true,"message" =>"Record Updated Successfully","totalamt" => $totalamt );
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -1432,10 +1452,109 @@ class TradingrequestController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $formtype = $this->request->getPost("formtype");
+                  $date=date('d-m-Y');
+                $alldata= $this->request->getPost();
+                $approverid = $this->request->getPost('approverid','trim');
+                $sectype = $this->request->getPost('sectype','trim');
+                $idofcmp = $this->request->getPost('idofcmp','trim');
+                $nameofcmp  = $this->request->getPost('nameofcmp','trim');
+                $noofshare = $this->request->getPost('noofshares','trim');
+                $typeoftrans  = $this->request->getPost('typeoftranss','trim');
+                
+                $typeofrequest=$this->request->getPost('typeofrequests','trim');
+                 //print_r($typeofrequest);exit;
+                $selrelative=$this->request->getPost('selrelatives','trim');
+                //print_r($selrelative);exit;
+                $reqname= $this->request->getPost('reqname','trim');
+                $sendreq=$this->request->getPost('sendreq','trim');
+                //print_r($sendreq);exit;
+                //$pdfpath = $this->request->getPost('link','trim');
+
+                $approxprice=$this->request->getPost('approxprice','trim');
+                $broker=$this->request->getPost('broker','trim');
+                $demataccountid=$this->request->getPost('demataccount','trim');
+                $place=$this->request->getPost('place','trim');
+                $datetrans=$this->request->getPost('datetrans','trim');
+                //print_r( $datetrans);exit;
+                $transaction=$this->request->getPost('transaction','trim');
+                $sharestrans=$this->request->getPost('sharestrans','trim');
+                  //print_r($demataccountid);exit;
+                if($typeofrequest == 2)
+                {
+
+                    if($typeoftrans == 2)
+                    { 
+                    $nature = 'Sale';
+                    }
+                    else
+                    {
+                        $nature = 'Purchase';
+                    }
+                    $relativeinfo = $this->tradingrequestcommon->getrelativesingle($selrelative);
+                    //print_r($relativeinfo);exit;
+                    if(!empty($demataccountid))
+                    {
+                        $dematinfo = $this->tradingrequestcommon->relativedemat($demataccountid);
+                        $dp = $dematinfo['depository_participient'];
+                        $dpacc = $dematinfo['accountno'];
+                    }
+                    else
+                    {
+                        $dp = ' ';
+                        $dpacc = ' ';
+                    }
+                    
+                    $relativename = $relativeinfo[0]['name'];
+                }
+                else if($typeofrequest == 1)
+                {
+                   if($typeoftrans == 2)
+                    { 
+                    $nature = 'Sale';
+                    }
+                    else
+                    {
+                        $nature = 'Purchase';
+                    }
+                    $relativename = ' ';
+                    //print_r($dematinfo);exit;
+                     if(!empty($demataccountid))
+                    {
+                          $dematinfo = $this->tradingrequestcommon->userdemat($demataccountid);
+                          $dp = $dematinfo['depository_participient'];
+                          $dpacc = $dematinfo['accountno'];
+
+                    }
+                    else
+                    {
+                        $dp = ' ';
+                        $dpacc = ' ';
+                    }
+                  
+                }
+                else
+                {
+                    $nature = ' ';
+                    $relativename = ' ';
+                    $dematinfo = ' ';
+                }
+                //print_r($dematinfo);exit;
+                
+               
+                
+                $personalinfo = $this->tradingrequestcommon->getpersonalinfo($uid,$user_group_id);
+
+                $itmemberinfo = $this->tradingrequestcommon->userdetails($uid,$user_group_id);
+                  //print_r($datetrans);exit;
+                // $datetrans = explode(",", $datetrans);
+                // $transaction = explode(",", $transaction);
+                // $sharestrans = explode(",", $sharestrans);
+
 
                 if($formtype == "form1")
                 {
-                    $pdf_content = file_get_contents("declaration_form/preclearance.html");
+                    $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccountid,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename);
+                    //print_r($pdf_content);exit;
                     //$pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','weaver','weaver');
                 }
                 else if($formtype == "form2")

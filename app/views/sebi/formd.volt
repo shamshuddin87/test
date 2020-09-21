@@ -35,7 +35,7 @@ $condeptsess = $this->session->contractdepartment;
                         <tr>
                             <?php if($user_group_id == '7'){?><th>Date of Sending for Approval</th>
                             <?php }else { ?> <th>Created On</th> <?php } ?>
-                            <th>Company Name</th>
+                           <!--  <th>Company Name</th> -->
                             <th>Designation</th>
                             <?php if($user_group_id == '7'){?>
                             <th>Send for Approval</th> <?php } ?>
@@ -114,7 +114,7 @@ $condeptsess = $this->session->contractdepartment;
   </div>
 </div>
 
-<div id="Mymodaledit" class="modal fade" role="dialog">
+<div id="Mymodaledit" class="modal fade" role="dialog" tabIndex=-1>
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -156,7 +156,7 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">CIN/DIN</label>
-                                <input type="text" id="cin" name="cin" class="form_fields form-control col-md-7 col-xs-12" value="" readonly required>
+                                <input type="text" id="cin" name="cin" class="form_fields form-control col-md-7 col-xs-12" value="L85195TG1984PLC004507" readonly required>
                             </div>
                     </section>
                
@@ -167,9 +167,9 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                         </section>
                
-                        <section class="col col-md-12 col-xs-12">
+                        <section class="">
                             <div class="input">
-                            <label class="control-label heading">Date of allotment advice/acquisition of shares/sale of shares specify</label>
+                            <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 10px;">Date of allotment advice/acquisition of shares/sale of shares specify</label>
                            
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
@@ -187,9 +187,9 @@ $condeptsess = $this->session->contractdepartment;
                          </div>
                     </section>
                
-                    <section class="col col-md-12 col-xs-12">
+                    <section class="">
                             <div class="input">
-                            <label class="control-label heading">% of shareholding</label>
+                            <label class="control-label heading col col-md-12 col-xs-12"style="margin-top: 10px;">% of shareholding</label>
                            
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
@@ -226,9 +226,9 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                     </section>
                
-                     <section class="col col-md-12 col-xs-12">
+                     <section class="">
                             <div class="input">
-                            <label class="control-label heading">Trading in derivatives (Specify type of contract, Futures or Options etc)</label>
+                            <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 10px;">Trading in derivatives (Specify type of contract, Futures or Options etc)</label>
                            
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
@@ -239,7 +239,7 @@ $condeptsess = $this->session->contractdepartment;
                                 
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
-                                <label class="control-label">Buy Number of units(contracts* lot size)</label>
+                                <label class="control-label">Buy No of units(contracts* lot size)</label>
                                 <input type="text" id="buynumbrunt" name="buynumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                        </section>
@@ -253,7 +253,7 @@ $condeptsess = $this->session->contractdepartment;
                
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
-                                <label class="control-label">Sell Number of units(contracts* lot size)</label>
+                                <label class="control-label">Sell No of units(contracts* lot size)</label>
                                 <input type="text" id="sellnumbrunt" name="sellnumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                        </section>

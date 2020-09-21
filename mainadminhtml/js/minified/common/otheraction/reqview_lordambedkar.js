@@ -15,7 +15,7 @@ else if(trading_status=='')
 {var file=response.data[i].file?response.data[i].file:'Not Uploaded';}
 else
 {var file=response.data[i].file?response.data[i].file:'<p style="color:red;"><i class="fa fa-line-chart" style="font-size:15px;color:red;"></i></p>';}
-addhtmlnxt+='<tr class="counter" tempid="'+response.data[i].id+'" >';addhtmlnxt+='<td>'+name+'</td>';addhtmlnxt+='<td>'+sectype+'</td>';addhtmlnxt+='<td>'+name_of_company+'</td>';addhtmlnxt+='<td>'+type_of_transaction+'</td>';addhtmlnxt+='<td>'+no_of_shares+'</td>';addhtmlnxt+='<td>'+typeofrequest+'</td>';addhtmlnxt+='<td>'+nameofrelative+'</td>';addhtmlnxt+='<td>'+relationship+'</td>';if(approved_status==1){addhtmlnxt+='<td><i class="fa fa-check-circle" style="font-size:15px;color:green;"></i></td>';}
+addhtmlnxt+='<tr class="counter" tempid="'+response.data[i].id+'" >';addhtmlnxt+='<td>'+name+'</td>';addhtmlnxt+='<td>'+sectype+'</td>';addhtmlnxt+='<td>'+type_of_transaction+'</td>';addhtmlnxt+='<td>'+no_of_shares+'</td>';addhtmlnxt+='<td>'+typeofrequest+'</td>';addhtmlnxt+='<td>'+nameofrelative+'</td>';addhtmlnxt+='<td>'+relationship+'</td>';if(approved_status==1){addhtmlnxt+='<td><i class="fa fa-check-circle" style="font-size:15px;color:green;"></i></td>';}
 else if(approved_status==2){addhtmlnxt+='<td class="getmsg" mymessage="'+message+'"><i class="fa fa-close" style="font-size:15px;color:red;"></i></td>';}
 else{addhtmlnxt+='<td style="color:#F44336;">Not Approved</td>';}
 addhtmlnxt+='<td>'+trading_date+'</td>';addhtmlnxt+='<td>'+date_added+'</td>';addhtmlnxt+='<td>'+file+'</td>';addhtmlnxt+='<td><i class="fa fa-bar-chart viewrequsttrail" rqstid="'+response.data[i].id+'"></i></td>';if(approved_status==1)

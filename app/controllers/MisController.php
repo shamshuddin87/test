@@ -197,7 +197,7 @@ class MisController extends ControllerBase
             $getequity = $this->miscommon->fetchequity($usrdata['wr_id'],$getres['companyid']);
             //echo '$getequity-----<pre>'; print_r($getequity); exit;
             
-            $getprefereence = $this->miscommon->fetchprefereence($usrdata['wr_id'],$getres['companyid']);
+            $getadrs = $this->miscommon->fetchprefereence($usrdata['wr_id'],$getres['companyid']);
             //echo '$getprefereence-----<pre>'; print_r($getprefereence); exit;
             
             //$getdebenure = $this->miscommon->fetchdebenure($usrdata['wr_id'],$getres['companyid']);
@@ -234,9 +234,9 @@ class MisController extends ControllerBase
                     $sum1 = $getequity;
                 }
                 
-                if(!empty($getprefereence))
+                if(!empty($getadrs))
                 {
-                    $sum2 = $getprefereence;
+                    $sum2 = $getadrs;
                 }                
                 
 //                if(!empty($getdebenure))
@@ -1240,7 +1240,9 @@ class MisController extends ControllerBase
             {
                 $request=$this->request->getPost('request');
                 $getres = $this->miscommon->fetchallupsitypes($getuserid,$user_group_id,'');
-                //print_r($getres);exit;
+               // $getinfo = $this->annualdeclarationcommon->fetchpersonlinfo($getuserid,$user_group_id,'');
+                
+                
                 if($request=="pdf")
                 {
                    $gethtml=$this->miscommon->allupsihtml($getres);
@@ -1295,6 +1297,7 @@ class MisController extends ControllerBase
                 $request = $this->request->getPost('request');
                 $upsitypeid = $this->request->getPost('upsitypeid');
                 $query = '';
+
                 $getres = $this->miscommon->fetchinfosharing($getuserid,$user_group_id,$upsitypeid,$query);
                 //print_r($getres);exit;
                 $genfile = $this->phpimportexpogen->fetchSharedInfoexcel($getuserid,$user_group_id,$getres);

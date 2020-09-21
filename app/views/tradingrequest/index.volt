@@ -1,4 +1,4 @@
-<?php $gmnlog = $this->session->loginauthspuserfront;
+    <?php $gmnlog = $this->session->loginauthspuserfront;
 
     //print_r($selfdemat);exit;
 
@@ -69,7 +69,7 @@
                         <tr>
                             <th><input type="checkbox" class="getallchkbox" name="getallchkbox" chkval="ALL" value="ALL">All</th>
                             <th>Type Of Security</th>
-                            <th>Name Of Company</th>
+                           <!--  <th>Name Of Company</th> -->
                             <th>Type Of Transaction</th>
                             <th>No Of Shares</th>
                             <th>Type Of Request</th>
@@ -118,12 +118,12 @@
 
 
 <!-- ------------------------ Start PERSONAL REQUEST ------------------------ -->
-<div id="Mymodalreq" class="modal fade" role="dialog">
+<div id="Mymodalreq" class="modal fade" role="dialog" tabIndex=-1>
 <div class="modal-dialog">
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Please Create  Trading Request</h4>
+        <h4 class="modal-title">Please Create Request for Pre-Clearance</h4>
     </div>
     <div class="modal-body show_shadow">
         <form  action="" id="tradinform" method="post" autocomplete="off">
@@ -155,7 +155,7 @@
             <div class="form-group" id="selrel">
                 <label for="exampleFormControlSelect1">Select Relative</label>
                 <select id="selrelative" name="selrelative" class="form_fields form-control col-md-7 col-xs-12" >
-                    <option value="" id="sectyperel" >Select Relattive</option>
+                    <option value="" id="sectyperel" >Select Relative</option>
                     <?php foreach($relativeinfo as $rel){  ?>
                     <option value="<?php echo $rel['id']; ?>"><?php echo $rel['name']; ?></option>
                     <?php } ?>
@@ -172,11 +172,11 @@
                 </select>
             </div>
 
-            <div class="form-group">
+           <!--  <div class="form-group">
                 <label for="exampleFormControlInput1">Name Of Company</label>
                 <input type="hidden" class="form-control" id="idofcmp" name="idofcmp" value="1">
                 <input type="text" class="form-control" id="nameofcmp" name="nameofcmp" value="Dr Reddy's Laboratories Ltd" readonly>
-            </div>
+            </div> -->
 
             <div id="searchcmp"></div>
 
@@ -188,10 +188,11 @@
             <div class="form-group">
                 <label for="">Type Of Transaction</label>
                 <select class="form-control" id="typeoftrans" name="typeoftrans">
-                    <option value="1">BUY</option>
-                    <option value="2">SELL</option>
-                    <option value="3">BONUS</option>
-                    <option value="4">RIGHTS</option>
+                    <option value="1">Buy</option>
+                    <option value="2">Sell</option>
+                    <option value="3">Pledge creation</option>
+                    <option value="4">Pledge Revocation</option>
+                     <option value="5">Exercise of stock</option>
                 </select>
             </div>
 
@@ -218,7 +219,7 @@
                 </select>
             </div>
 
-              <div class="form-group">
+            <div class="form-group">
                 <label for="">Place</label>
                  <input type="text" class="form-control " id="place" name="place" placeholder="Place" >
                
@@ -231,7 +232,7 @@
                 <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>
                 <div id = "left" class="form-group col-md-4" style="margin-left: -9px;">
                 <label for="">Date</label>
-                <input type="text" class="form-control bootdatepick" id="dateoftrans[]" name="dateoftrans[]" placeholder="Date" >
+                <input type="text" class="form-control bootdatepick" id="dateoftrans[]" name="dateoftrans[]" placeholder="Date" readonly="readonly" >
                 </div>
                 <div id = "middle" class="form-group col-md-4">
                  <label for="">Transaction</label>
@@ -323,7 +324,7 @@
 
 
 <!-- ---------------------- Start MODAL BOX FOR UPDATE ---------------------- -->
-<div id="updatemodal" class="modal fade" role="dialog">
+<div id="updatemodal" class="modal fade" role="dialog" tabIndex=-1>
 <div class="modal-dialog">
 <div class="modal-content">
     <div class="modal-header">
@@ -399,7 +400,7 @@
 
 
 <!-- ---------------------- Start MODAL BOX FOR UPLOAD FILE ---------------------- -->
-<div id="uploadmyfile" class="modal fade" role="dialog">
+<div id="uploadmyfile" class="modal fade" role="dialog" tabIndex=-1>
 <div class="modal-dialog">
 <!-- Modal content-->
 <div class="modal-content margin-top">
@@ -514,10 +515,28 @@
     </div>
 </div>
 
+<div id="fillformc" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 style="text-align: center;">Please Fill Form C</h4> 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="goformc" tempid="">Yes</button> 
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 <!-- -------------------- Start MODAL BOX FOR EDIT RELATIONSHIP -------------------- -->
-<div id="checkappvlrequest" class="modal fade" role="dialog">
+<div id="checkappvlrequest" class="modal fade" role="dialog" tabIndex=-1>
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -552,7 +571,8 @@
 
 
                 
-              <h4 style="text-align: center;">Please confirm that you do not hold any UPSI Information</h4>
+       <div id = "showform1">
+       </div>
                
             </div>
             <div class="modal-footer">
@@ -565,7 +585,7 @@
 <!-- -------------------- End MODAL BOX FOR EDIT RELATIONSHIP -------------------- -->
 
 
-<div id="checkappvlreq" class="modal fade" role="dialog">
+<div id="checkappvlreq" class="modal fade" role="dialog" tabIndex=-1>
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -591,7 +611,7 @@
 </div>
    
      
-<div id="Mymodalaudittrail" class="modal fade" role="dialog">
+<div id="Mymodalaudittrail" class="modal fade" role="dialog" tabIndex=-1>
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -648,7 +668,7 @@
 </div>
 
 
-<div id="formI" class="modal fade" role="dialog">
+<div id="formI" class="modal fade" role="dialog" tabIndex=-1>
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -668,7 +688,7 @@
     </div>
 </div>
 </div>
-<div id="chckexcptnrequest" class="modal fade" role="dialog">
+<div id="chckexcptnrequest" class="modal fade" role="dialog" tabIndex=-1>
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -706,7 +726,7 @@
     </div>
 </div>
 </div>
-<div id="reasonexceptn" class="modal fade" role="dialog">
+<div id="reasonexceptn" class="modal fade" role="dialog" tabIndex=-1>
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">

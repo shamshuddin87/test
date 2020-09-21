@@ -58,9 +58,22 @@ class EmployeemoduleController extends ControllerBase
                 $legal_idntfctn_no = $this->request->getPost('legal_idntfctn_no','trim');
                 $rqid   = $this->request->getPost('rqid','trim');
                 $toemail   = $this->request->getPost('toemail','trim');
+                $nationalty = $this->request->getPost('per_nation','trim');
+                //print_r($nationalty);exit;
 
-               
                 
+                if(!empty($dob))
+                {
+                 /*Date Validation for date of birth Start */
+               
+                $dateofbirth = explode('-', $dob);
+
+                $m = $dateofbirth[1];
+                $y = $dateofbirth[2];
+                $d = $dateofbirth[0];
+                $datestatus = $this->elements->checkdate($m,$y,$d);
+                /*Date Validation for date of birth End */
+               }
 
 
                 if(empty($pan))
@@ -74,13 +87,13 @@ class EmployeemoduleController extends ControllerBase
                    $data = array("logged" => false,'message' => 'Please Enter Mobile Number!!');
                    $this->response->setJsonContent($data); 
                 }
-                 else if(strlen($mobile) < 10)
+                 else if(strlen($mobile) < 10 && $nationalty == 'Indian' )
                 {
 
                    $data = array("logged" => false,'message' => 'Your Mobile No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
                 }
-                else if(strlen($pan) < 10)
+                else if(strlen($pan) < 10 && $nationalty == 'Indian')
                 {
                    $data = array("logged" => false,'message' => 'Your Pan No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
@@ -91,18 +104,23 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
                     $this->response->setJsonContent($data);
                 }
-                else if(strtotime($dob)>=strtotime($date))
+                 else if($datestatus != "valid")
                 {
-                    $data = array("logged" => false,'message' => 'Birth Date cannot be in future and current date');
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of Birth');
                     $this->response->setJsonContent($data);
                 }
-                else if(empty($aadhar))
+                else if(strtotime($dob)>=strtotime($date))
+                {
+                    $data = array("logged" => false,'message' => 'Birth Date cannot be in future ');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($aadhar) && $nationalty == 'Indian')
                 {
 
                    $data = array("logged" => false,'message' => 'Please Enter Aadhaar Number!!');
                    $this->response->setJsonContent($data); 
                 }
-                 else if(strlen($aadhar) < 12)
+                 else if(strlen($aadhar) < 12 && $nationalty == 'Indian')
                 {
                    $data = array("logged" => false,'message' => 'Your Aadhaar No Should Be 12 Digit!!');
                    $this->response->setJsonContent($data); 
@@ -131,7 +149,7 @@ class EmployeemoduleController extends ControllerBase
 
                 else
                 {
-                    //echo 'in else';exit;
+                       //echo 'in else';exit;
                     if(!empty($_FILES["hldngfile"]))
                     {
                         $userfile_name = $_FILES['hldngfile']['name'];
@@ -212,7 +230,7 @@ class EmployeemoduleController extends ControllerBase
             exit('No direct script access allowed');
         }
     }
-//-----------------------------------UPDATE USER DETAILS START HERE--------------------------------------
+      //-----------------------------------UPDATE USER DETAILS START HERE--------------------------------------
     public function updatemydetailsAction()
     {
         $this->view->disable();
@@ -442,7 +460,21 @@ class EmployeemoduleController extends ControllerBase
                 $file   = $this->request->getPost('file','trim');
                 $depnature   = $this->request->getPost('depnature','trim');
                 $mobno   = $this->request->getPost('relmobno','trim');
-                //print_r($mobno);exit;
+                $rel_nation = $this->request->getPost('rel_nation','trim');
+
+                 /*Date Validation for date of birth Start */
+                if(!empty($dob))
+                {
+                    $dateofbirth = explode('-', $dob);
+                    $m = $dateofbirth[1];
+                    $y = $dateofbirth[2];
+                    $d = $dateofbirth[0];
+                    $datestatus = $this->elements->checkdate($m,$y,$d);
+                }
+               
+                /*Date Validation for date of birth End */
+
+                
                 if(empty($fname))
                 {
                     $data = array("logged" => false,'message' => 'Please Enter First Name!!');
@@ -459,17 +491,17 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Pan Number');
                     $this->response->setJsonContent($data);
                 }
-                else if(strlen($pan) < 10)
+                else if(strlen($pan) < 10 && $rel_nation == 'Indian' )
                 {
                    $data = array("logged" => false,'message' => 'Your Pan No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
                 }
-                   else if(empty($aadhaar)) 
+                   else if(empty($aadhaar) && $rel_nation == 'Indian') 
                 {
                     $data = array("logged" => false,'message' => 'Please Enter Aadhar Number');
                     $this->response->setJsonContent($data);
                 }
-                else if(strlen($aadhaar) < 12) 
+                else if(strlen($aadhaar) < 12 && $rel_nation == 'Indian') 
                 {
                     $data = array("logged" => false,'message' => 'Your Aadhaar No Should Be 12 Digit!!');
                     $this->response->setJsonContent($data);
@@ -478,6 +510,11 @@ class EmployeemoduleController extends ControllerBase
                 else if(empty($dob)) 
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
+                    $this->response->setJsonContent($data);
+                }
+                 else if($datestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of Birth');
                     $this->response->setJsonContent($data);
                 }
                 else if(strtotime($dob)>=strtotime($date))
@@ -496,7 +533,7 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Mobile No');
                     $this->response->setJsonContent($data);
                 }
-                 else if(strlen($mobno) < 10)
+                 else if(strlen($mobno) < 10 && $rel_nation == 'Indian')
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Valid Mobile No');
                     $this->response->setJsonContent($data);
@@ -772,6 +809,21 @@ class EmployeemoduleController extends ControllerBase
                 $releditid = $this->request->getPost('releditid','trim');
                 $prevfilepath = $this->request->getPost('filepath','trim');
                 $mobno   = $this->request->getPost('relmobnoup','trim');
+                $rel_nation_update = $this->request->getPost('rel_nation_update','trim');
+                //print_r($rel_nation_update);exit;
+
+                /*Date Validation for date of birth Start */
+                if(!empty($dob))
+                {
+                $dateofbirth = explode('-', $dob);
+
+                $m = $dateofbirth[1];
+                $y = $dateofbirth[2];
+                $d = $dateofbirth[0];
+                $datestatus = $this->elements->checkdate($m,$y,$d);
+                }
+               
+                /*Date Validation for date of birth End */
                 
                 if(empty($name))
                 { 
@@ -783,15 +835,20 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Pan Number');
                     $this->response->setJsonContent($data);
                 }
-                else if(strlen($pan) < 10)
+                else if(strlen($pan) < 10 && $rel_nation_update == 'Indian')
                 {
                    $data = array("logged" => false,'message' => 'Your Pan No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
                 }
-                 else if(empty($aadhar)) 
+                 else if(empty($aadhar) && $rel_nation_update == 'Indian') 
                 {
                     $data = array("logged" => false,'message' => 'Please Enter Aadhar Number');
                     $this->response->setJsonContent($data);
+                }
+                 else if(strlen($aadhar) < 12 && $rel_nation_update == 'Indian')
+                {
+                   $data = array("logged" => false,'message' => 'Your Aadhaar No Should Be 10 Digit!!');
+                   $this->response->setJsonContent($data); 
                 }
                 else if(empty($dob)) 
                 {
@@ -801,6 +858,11 @@ class EmployeemoduleController extends ControllerBase
                 else if(strtotime($dob)>=strtotime($date))
                 {
                     $data = array("logged" => false,'message' => 'Birth Date cannot be in future and current date');
+                    $this->response->setJsonContent($data);
+                }
+                 else if($datestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of Birth');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($sex))
@@ -818,7 +880,7 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Mobile No');
                     $this->response->setJsonContent($data);
                 }
-                 else if(strlen($mobno) < 10)
+                 else if(strlen($mobno) < 10 && $rel_nation_update == 'Indian' )
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Valid Mobile No');
                     $this->response->setJsonContent($data);
@@ -936,128 +998,6 @@ class EmployeemoduleController extends ControllerBase
             }                                     
        }
     
-        /******************  insert past employer start *********************/
-//        public function insertpastempAction()
-//        {     
-//            $this->view->disable();
-//            $getuserid = $this->session->loginauthspuserfront['id'];
-//            $cin = $this->session->memberdoccin;
-//            $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
-//            $timeago = time();
-//            if($this->request->isPost() == true)
-//            {
-//                if($this->request->isAjax() == true)
-//                {
-//                    $date=date('d-m-Y');
-//                    $data=$this->request->getPost();
-//                    // print_r(sizeof($data));
-//                   
-//                    // $empname   = $this->request->getPost('empname','trim');
-//                    // $designtn   = $this->request->getPost('designtn','trim');
-//                    // $startdate   = $this->request->getPost('strtdte','trim');
-//                    // $enddate   = $this->request->getPost('enddte','trim');
-//                    // if(empty($startdate))
-//                    // {
-//                    //     $data = array("logged" => false,'message' => 'Start Date should not empty!!');
-//                    //     $this->response->setJsonContent($data);
-//                    // }
-//                    // else if(strtotime($startdate) > strtotime($date))
-//                    // {
-//                    //     $data = array("logged" => false,'message' => 'Start Date should not in future!!');
-//                    //     $this->response->setJsonContent($data);
-//                    // }
-//                    // else if(empty($enddate))
-//                    // {
-//                    //     $data = array("logged" => false,'message' => 'End Date should not empty!!');
-//                    //     $this->response->setJsonContent($data);
-//                    // }
-//                    // else if(strtotime($enddate) > strtotime($date))
-//                    // {
-//                    //     $data = array("logged" => false,'message' => 'End Date should not in future!!');
-//                    //     $this->response->setJsonContent($data);
-//                    // }
-//                    // else if(strtotime($startdate) > strtotime($enddate))
-//                    // {
-//                    //       $data = array("logged" => false,'message' => 'Start Date should be Greater Than End Date!!');
-//                    //       $this->response->setJsonContent($data);
-//                    // }
-//                    // else
-//                    // {
-//                    //     $startdate =  date("d-m-Y", strtotime($startdate));
-//                    //     $enddate =  date("d-m-Y", strtotime($enddate));
-//
-//                      for($i=0;$i<sizeof($data['myarr']);$i++)
-//                      {
-//                         // print_r($data['myarr']);exit;
-//                          $empname=$data['myarr'][$i]['empname'];
-//                          $designtn=$data['myarr'][$i]['designtn'];
-//                          $startdate=$data['myarr'][$i]['strtdte'];
-//                          $enddate=$data['myarr'][$i]['enddte'];
-//                         
-//                           if(empty($startdate))
-//                            {
-//                                $data = array("logged" => false,'message' => 'Start Date should not empty!!');
-//                                $this->response->setJsonContent($data);
-//
-//                            }
-//                            else if(strtotime($startdate) > strtotime($date))
-//                            {
-//                                $data = array("logged" => false,'message' => 'Start Date should not in future!!');
-//                                $this->response->setJsonContent($data);
-//                            }
-//                            else if(empty($enddate))
-//                            {
-//                                $data = array("logged" => false,'message' => 'End Date should not empty!!');
-//                                $this->response->setJsonContent($data);
-//                            }
-//                            else if(strtotime($enddate) > strtotime($date))
-//                            {
-//                                $data = array("logged" => false,'message' => 'End Date should not in future!!');
-//                                $this->response->setJsonContent($data);
-//                            }
-//                            else if(strtotime($startdate) > strtotime($enddate))
-//                            {
-//                                  $data = array("logged" => false,'message' => 'Start Date should be Greater Than End Date!!');
-//                                  $this->response->setJsonContent($data);
-//                            }
-//                            else
-//                            {
-//
-//                                 $startdate =  date("d-m-Y", strtotime($startdate));
-//                                  $enddate =  date("d-m-Y", strtotime($enddate));
-//                                $getres = $this->employeemodulecommon->insertpastemp($getuserid,$user_group_id,$empname,$designtn,$startdate,$enddate);
-//                            }
-//                         
-//                       }
-//                       
-//                        //print_r($getres);exit;
-//                        if($getres)
-//                        {
-//                            $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
-//                            $this->response->setJsonContent($data);
-//                        }
-//                        else
-//                        {
-//                            $data = array("logged" => false,'message' => "Record Not Added..!!");
-//                            $this->response->setJsonContent($data);
-//                        }  
-//
-//                    // }
-//
-//                    $this->response->send();
-//                }
-//                else
-//                {
-//                    exit('No direct script access allowed');
-//                    $connection->close();
-//                }
-//            }
-//            else
-//            {
-//                return $this->response->redirect('errors/show404');
-//                exit('No direct script access allowed');
-//            }       
-//        }
     
         public function insertpastempAction()
         {     
@@ -1065,6 +1005,9 @@ class EmployeemoduleController extends ControllerBase
             $getuserid = $this->session->loginauthspuserfront['id'];
             $cin = $this->session->memberdoccin;
             $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+
+          
+
             $timeago = time();
             if($this->request->isPost() == true)
             {   
@@ -1080,6 +1023,9 @@ class EmployeemoduleController extends ControllerBase
                         $designtn=$data['myarr'][$i]['designtn'];
                         $startdate=$data['myarr'][$i]['strtdte'];
                         $enddate=$data['myarr'][$i]['enddte'];
+
+                        $date_overlap = $this->employeemodulecommon->check_dateoverlap($getuserid,$user_group_id,$startdate,$enddate);
+                        //print_r($date_overlap);exit;
 
                         if(empty($startdate))
                         {
@@ -1136,7 +1082,14 @@ class EmployeemoduleController extends ControllerBase
                             $this->response->setJsonContent($data);
                             $flag = 0;
                             break;
-                        }              
+                        }
+                         else if($date_overlap)
+                        {
+                            $data = array("logged" => false,'message' => 'Employment dates cannot overlap each other');
+                            $this->response->setJsonContent($data);
+                            $flag = 0;
+                            break;
+                        }                  
                         else
                         {
                             $startdate =  date("d-m-Y", strtotime($startdate));
@@ -1967,5 +1920,121 @@ class EmployeemoduleController extends ControllerBase
             return $this->response->redirect('errors/show404');
             exit('No direct script access allowed');
         }
+    }
+
+
+       public function updatepastempAction()
+    {     
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $timeago = time();
+        if($this->request->isPost() == true)
+        {   
+            if($this->request->isAjax() == true)
+            {
+                $flag = 1;
+                $date=date('d-m-Y');
+                $data=$this->request->getPost();
+                for($i=0;$i<sizeof($data['myarr']);$i++)
+                { 
+                    // print_r($data['myarr']);exit;
+                    $id=$data['myarr'][$i]['empid'];
+                    $empname=$data['myarr'][$i]['empname'];
+                    $designtn=$data['myarr'][$i]['designtn'];
+                    $startdate=$data['myarr'][$i]['strtdte'];
+                    $enddate=$data['myarr'][$i]['enddte'];
+
+                    if(empty($startdate))
+                    {
+                        $data = array("logged" => false,'message' => 'Start Date should not empty!!');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(strtotime($startdate) > strtotime($date))
+                    {
+                        $data = array("logged" => false,'message' => 'Start date of Employment for past employer should be past date only');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(empty($enddate))
+                    {
+                        $data = array("logged" => false,'message' => 'End Date should not empty!!');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(strtotime($enddate) > strtotime($date))
+                    {
+                        $data = array("logged" => false,'message' => 'End date of Employment for past employer should be past date only');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(strtotime($startdate) > strtotime($enddate))
+                    {
+                        $data = array("logged" => false,'message' => 'End date of employment cannot be before start date of employment');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(strtotime($enddate) > strtotime($date))
+                    {
+                        $data = array("logged" => false,'message' => 'End Date should not in future!!');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(strtotime($startdate) > strtotime($enddate))
+                    {
+                        $data = array("logged" => false,'message' => 'Start Date should be Greater Than End Date!!');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if(strtotime($startdate) == strtotime($enddate))
+                    {
+                        $data = array("logged" => false,'message' => 'Start Date And End Date Should Not Equals!!');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }              
+                    else
+                    {
+                        $startdate =  date("d-m-Y", strtotime($startdate));
+                        $enddate =  date("d-m-Y", strtotime($enddate));
+                        $getres = $this->employeemodulecommon->updatepastemp($getuserid,$user_group_id,$empname,$designtn,$startdate,$enddate,$id);
+                    }
+                }
+                if($flag == 1)
+                {
+                    //echo 'exit;';exit;
+                    if($getres)
+                    {
+                        $data = array("logged" => true,'message' => 'Record Updated','resdta' => $getres);
+                        $this->response->setJsonContent($data);
+                    }
+                    else
+                    {
+                        $data = array("logged" => false,'message' => "Record Not Updated..!!");
+                        $this->response->setJsonContent($data);
+                    } 
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }       
     }
 }

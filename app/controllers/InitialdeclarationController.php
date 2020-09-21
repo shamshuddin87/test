@@ -329,6 +329,117 @@ class InitialdeclarationController extends ControllerBase
         }
     }
 
+
+    // public function generatemisheldshare($getuserid,$user_group_id)
+    // {
+    //     $addhtmlnxt = '';
+    //     $getres = $this->miscommon->fetchhldsingle($getuserid,$user_group_id);
+    //     //echo '$getres-----<pre>'; print_r($getres); exit;
+
+    //     $getequity = $this->miscommon->fetchequity($getuserid,$getres['companyid']);
+    //     //echo '$getequity-----<pre>'; print_r($getequity); exit;
+
+    //     $getprefereence = $this->miscommon->fetchprefereence($getuserid,$getres['companyid']);
+    //     // echo '$getprefereence-----<pre>'; print_r($getprefereence); exit;
+
+    //     $getdebenure = $this->miscommon->fetchdebenure($getuserid,$getres['companyid']);
+    //     //echo '$getdebenure-----<pre>'; print_r($getdebenure); exit;
+
+    //     /* --------------- html process Start --------------- */
+    //     $sum1=0;    $sum2=0;    $sum3=0;
+    //     foreach($getres['data'] as $kyres => $resdata)
+    //     {   
+    //         $equitybuysell = array();   $preferbuysell = array();   $debntrbuysell = array();
+    //         $equityclosblnc = array();  $preferclosblnc = array();  $debntrclosblnc = array();            
+    //         $equityopnblnc = '';    $preferopnblnc = '';    $debntropnblnc = '';            
+    //         $othercloseequity = array();    $othercloseprefer = array();    $otherclosedebtr = array();
+
+    //         // ----- Equity Start -----
+    //         if(!empty($getequity[$kyres]))
+    //         {
+    //             $opnblnceq = $resdata['equityshare'];
+    //             $buyeq = $getequity[$kyres]['buyequity'];
+    //             $selleq = $getequity[$kyres]['sellequity'];
+    //             $totaleq = $buyeq - $selleq;
+    //             $closblnceq = $opnblnceq + $totaleq;
+
+    //             $equityclosblnc[$kyres] = $closblnceq;
+    //         }
+    //         else
+    //         {
+    //             $opnblnceq = $resdata['equityshare'];
+    //             $totaleq = 0;                        
+    //             $closblnceq = $opnblnceq + $totaleq;
+
+    //             $equityclosblnc[$kyres] = $closblnceq;
+    //         }
+    //         //echo '$equityclosblnc-----<pre>'; print_r($equityclosblnc); exit;
+    //         // ----- Equity End -----
+
+    //         // ----- Preference Start -----
+    //         if(!empty($getprefereence[$kyres]))
+    //         {
+    //             $opnblncpref = $resdata['prefershare'];
+    //             $buypref = $getprefereence[$kyres]['buyprefer'];
+    //             $sellpref = $getprefereence[$kyres]['sellprefer'];
+    //             $totalpref = $buypref - $sellpref;
+    //             $closblncpref = $opnblncpref + $totalpref;
+
+    //             $preferclosblnc[$kyres] = $closblncpref;
+    //         }
+    //         else
+    //         {
+    //             $opnblncpref = $resdata['prefershare'];
+    //             $totalpref = 0;
+    //             $closblncpref = $opnblncpref + $totalpref;
+
+    //             $preferclosblnc[$kyres] = $closblncpref;
+    //         }
+    //         // ----- Preference End -----
+
+
+    //         // ----- Debenture Start -----
+    //         if(!empty($getdebenure[$kyres]))
+    //         {
+    //             $opnblncdeb = $resdata['debntrshare'];
+    //             $buydeb = $getdebenure[$kyres]['buydebtr'];
+    //             $selldeb = $getdebenure[$kyres]['selldebtr'];;
+    //             $totaldeb = $buydeb - $selldeb;
+    //             $closblncdeb = $opnblncdeb + $totaldeb;
+
+    //             $debntrclosblnc[$kyres] = $closblncdeb;
+    //         }
+    //         else
+    //         {
+    //             $opnblncdeb = $resdata['debntrshare'];
+    //             $totaldeb = 0;
+    //             $closblncdeb = $opnblncdeb + $totaldeb;
+
+    //             $debntrclosblnc[$kyres] = $closblncdeb;
+    //         }
+    //         // ----- Debenture End -----
+
+    //         if(!empty($getequity))
+    //         { 
+    //             $sum1 = $sum1 + $equityclosblnc[$kyres] + $resdata['esop'];
+    //         }
+
+    //         if(!empty($getprefereence))
+    //         {
+    //             $sum2 = $sum2 + $preferclosblnc[$kyres];
+    //         }                
+
+    //         if(!empty($getdebenure))
+    //         { 
+    //             $sum3 = $sum3 + $debntrclosblnc[$kyres];
+    //         }
+    //     }
+    //     /* --------------- html process End --------------- */
+
+    //     return $sum1;
+    // }
+
+
     public function generatemisheldshare($getuserid,$user_group_id)
     {
         $addhtmlnxt = '';
@@ -336,106 +447,106 @@ class InitialdeclarationController extends ControllerBase
         //echo '$getres-----<pre>'; print_r($getres); exit;
 
         $getequity = $this->miscommon->fetchequity($getuserid,$getres['companyid']);
-        //echo '$getequity-----<pre>'; print_r($getequity); exit;
+        // //echo '$getequity-----<pre>'; print_r($getequity); exit;
 
-        $getprefereence = $this->miscommon->fetchprefereence($getuserid,$getres['companyid']);
-        // echo '$getprefereence-----<pre>'; print_r($getprefereence); exit;
+        // $getprefereence = $this->miscommon->fetchprefereence($getuserid,$getres['companyid']);
+        // // echo '$getprefereence-----<pre>'; print_r($getprefereence); exit;
 
-        $getdebenure = $this->miscommon->fetchdebenure($getuserid,$getres['companyid']);
-        //echo '$getdebenure-----<pre>'; print_r($getdebenure); exit;
+        // $getdebenure = $this->miscommon->fetchdebenure($getuserid,$getres['companyid']);
+        // //echo '$getdebenure-----<pre>'; print_r($getdebenure); exit;
 
-        /* --------------- html process Start --------------- */
-        $sum1=0;    $sum2=0;    $sum3=0;
-        foreach($getres['data'] as $kyres => $resdata)
-        {   
-            $equitybuysell = array();   $preferbuysell = array();   $debntrbuysell = array();
-            $equityclosblnc = array();  $preferclosblnc = array();  $debntrclosblnc = array();            
-            $equityopnblnc = '';    $preferopnblnc = '';    $debntropnblnc = '';            
-            $othercloseequity = array();    $othercloseprefer = array();    $otherclosedebtr = array();
+        // /* --------------- html process Start --------------- */
+        // $sum1=0;    $sum2=0;    $sum3=0;
+        // foreach($getres['data'] as $kyres => $resdata)
+        // {   
+        //     $equitybuysell = array();   $preferbuysell = array();   $debntrbuysell = array();
+        //     $equityclosblnc = array();  $preferclosblnc = array();  $debntrclosblnc = array();            
+        //     $equityopnblnc = '';    $preferopnblnc = '';    $debntropnblnc = '';            
+        //     $othercloseequity = array();    $othercloseprefer = array();    $otherclosedebtr = array();
 
-            // ----- Equity Start -----
-            if(!empty($getequity[$kyres]))
-            {
-                $opnblnceq = $resdata['equityshare'];
-                $buyeq = $getequity[$kyres]['buyequity'];
-                $selleq = $getequity[$kyres]['sellequity'];
-                $totaleq = $buyeq - $selleq;
-                $closblnceq = $opnblnceq + $totaleq;
+        //     // ----- Equity Start -----
+        //     if(!empty($getequity[$kyres]))
+        //     {
+        //         $opnblnceq = $resdata['equityshare'];
+        //         $buyeq = $getequity[$kyres]['buyequity'];
+        //         $selleq = $getequity[$kyres]['sellequity'];
+        //         $totaleq = $buyeq - $selleq;
+        //         $closblnceq = $opnblnceq + $totaleq;
 
-                $equityclosblnc[$kyres] = $closblnceq;
-            }
-            else
-            {
-                $opnblnceq = $resdata['equityshare'];
-                $totaleq = 0;                        
-                $closblnceq = $opnblnceq + $totaleq;
+        //         $equityclosblnc[$kyres] = $closblnceq;
+        //     }
+        //     else
+        //     {
+        //         $opnblnceq = $resdata['equityshare'];
+        //         $totaleq = 0;                        
+        //         $closblnceq = $opnblnceq + $totaleq;
 
-                $equityclosblnc[$kyres] = $closblnceq;
-            }
-            //echo '$equityclosblnc-----<pre>'; print_r($equityclosblnc); exit;
-            // ----- Equity End -----
+        //         $equityclosblnc[$kyres] = $closblnceq;
+        //     }
+        //     //echo '$equityclosblnc-----<pre>'; print_r($equityclosblnc); exit;
+        //     // ----- Equity End -----
 
-            // ----- Preference Start -----
-            if(!empty($getprefereence[$kyres]))
-            {
-                $opnblncpref = $resdata['prefershare'];
-                $buypref = $getprefereence[$kyres]['buyprefer'];
-                $sellpref = $getprefereence[$kyres]['sellprefer'];
-                $totalpref = $buypref - $sellpref;
-                $closblncpref = $opnblncpref + $totalpref;
+        //     // ----- Preference Start -----
+        //     if(!empty($getprefereence[$kyres]))
+        //     {
+        //         $opnblncpref = $resdata['prefershare'];
+        //         $buypref = $getprefereence[$kyres]['buyprefer'];
+        //         $sellpref = $getprefereence[$kyres]['sellprefer'];
+        //         $totalpref = $buypref - $sellpref;
+        //         $closblncpref = $opnblncpref + $totalpref;
 
-                $preferclosblnc[$kyres] = $closblncpref;
-            }
-            else
-            {
-                $opnblncpref = $resdata['prefershare'];
-                $totalpref = 0;
-                $closblncpref = $opnblncpref + $totalpref;
+        //         $preferclosblnc[$kyres] = $closblncpref;
+        //     }
+        //     else
+        //     {
+        //         $opnblncpref = $resdata['prefershare'];
+        //         $totalpref = 0;
+        //         $closblncpref = $opnblncpref + $totalpref;
 
-                $preferclosblnc[$kyres] = $closblncpref;
-            }
-            // ----- Preference End -----
+        //         $preferclosblnc[$kyres] = $closblncpref;
+        //     }
+        //     // ----- Preference End -----
 
 
-            // ----- Debenture Start -----
-            if(!empty($getdebenure[$kyres]))
-            {
-                $opnblncdeb = $resdata['debntrshare'];
-                $buydeb = $getdebenure[$kyres]['buydebtr'];
-                $selldeb = $getdebenure[$kyres]['selldebtr'];;
-                $totaldeb = $buydeb - $selldeb;
-                $closblncdeb = $opnblncdeb + $totaldeb;
+        //     // ----- Debenture Start -----
+        //     if(!empty($getdebenure[$kyres]))
+        //     {
+        //         $opnblncdeb = $resdata['debntrshare'];
+        //         $buydeb = $getdebenure[$kyres]['buydebtr'];
+        //         $selldeb = $getdebenure[$kyres]['selldebtr'];;
+        //         $totaldeb = $buydeb - $selldeb;
+        //         $closblncdeb = $opnblncdeb + $totaldeb;
 
-                $debntrclosblnc[$kyres] = $closblncdeb;
-            }
-            else
-            {
-                $opnblncdeb = $resdata['debntrshare'];
-                $totaldeb = 0;
-                $closblncdeb = $opnblncdeb + $totaldeb;
+        //         $debntrclosblnc[$kyres] = $closblncdeb;
+        //     }
+        //     else
+        //     {
+        //         $opnblncdeb = $resdata['debntrshare'];
+        //         $totaldeb = 0;
+        //         $closblncdeb = $opnblncdeb + $totaldeb;
 
-                $debntrclosblnc[$kyres] = $closblncdeb;
-            }
-            // ----- Debenture End -----
+        //         $debntrclosblnc[$kyres] = $closblncdeb;
+        //     }
+        //     // ----- Debenture End -----
 
-            if(!empty($getequity))
-            { 
-                $sum1 = $sum1 + $equityclosblnc[$kyres] + $resdata['esop'];
-            }
+        //     if(!empty($getequity))
+        //     { 
+        //         $sum1 = $sum1 + $equityclosblnc[$kyres] + $resdata['esop'];
+        //     }
 
-            if(!empty($getprefereence))
-            {
-                $sum2 = $sum2 + $preferclosblnc[$kyres];
-            }                
+        //     if(!empty($getprefereence))
+        //     {
+        //         $sum2 = $sum2 + $preferclosblnc[$kyres];
+        //     }                
 
-            if(!empty($getdebenure))
-            { 
-                $sum3 = $sum3 + $debntrclosblnc[$kyres];
-            }
-        }
-        /* --------------- html process End --------------- */
+        //     if(!empty($getdebenure))
+        //     { 
+        //         $sum3 = $sum3 + $debntrclosblnc[$kyres];
+        //     }
+        // }
+        // /* --------------- html process End --------------- */
 
-        return $sum1;
+        return $getequity;
     }
 
     public function sendrequestAction()

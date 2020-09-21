@@ -15,10 +15,12 @@ class HomeController extends ControllerBase
     {     
         $uid = $this->session->loginauthspuserfront['id'];
         $gmnlog = $this->session->loginauthspuserfront;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
         
         $this->view->login = $this->homecommon->fetchfirstlogin($uid);
         $checkupsi  = $this->homecommon->upsiholding($uid);
-        //print_r($checkupsi);exit;
+        $this->view->tradingwindw = $this->homecommon->gettradingwindw($uid,$user_group_id);
+        //print_r($tradingwindw);exit;
         $date=date('d-m-Y');
 
         if(!empty($checkupsi))
@@ -45,6 +47,8 @@ class HomeController extends ControllerBase
            
         }
         }
+
+
        
 
         $this->view->upsiresult = $upsiresult;

@@ -190,11 +190,12 @@ function getSelectionStart(o) {
 		return o.value.lastIndexOf(r.text)
 	} else return o.selectionStart
 }
+
 // New Decimal number Enter only
 function isAlphaNumeric_space(e){ // Alphanumeric only
             var k;
             document.all ? k=e.keycode : k=e.which;
-            return((k>47 && k<58)||(k>64 && k<91)||(k>96 && k<123)||k==0 || k==32);
+            return((k>47 && k<58)||(k>64 && k<91)||(k>96 && k<123)||k==0 || k==32 || k==39);
          }
 function isAlpha_space(e){ // Alphanumeric only
             var k;
