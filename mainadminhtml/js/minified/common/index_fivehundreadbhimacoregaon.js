@@ -1,5 +1,15 @@
 
-website(document).ready(function(){website.validator.addMethod("validEmail",function(value,element)
+website(document).ready(function(){var username=website('#ValidateLogin #username').val();if(username!='')
+{formdata={username:username};website.ajax({type:"POST",url:"login/autovidmlogin",data:formdata,cache:false,dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{website('.mainprogressbarforall').fadeIn('slow');},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{var baseHref=getbaseurl();window.location.href=baseHref+'home';}
+else if(response.logged===false)
+{website('.geterrorelemttxt').html(response.message);website('.errorelement').fadeIn('slow');setTimeout(function(){website('.errormain').html('');},5000);website('#ad_login').fadeOut();website('#login').fadeIn();}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function()
+{}});}
+website.validator.addMethod("validEmail",function(value,element)
 {if(value=='')
 return true;var temp1;temp1=true;var ind=value.indexOf('@');var str2=value.substr(ind+1);var str3=str2.substr(0,str2.indexOf('.'));if(str3.lastIndexOf('-')==(str3.length-1)||(str3.indexOf('-')!=str3.lastIndexOf('-')))
 return false;var str1=value.substr(0,ind);if((str1.lastIndexOf('_')==(str1.length-1))||(str1.lastIndexOf('.')==(str1.length-1))||(str1.lastIndexOf('-')==(str1.length-1)))
