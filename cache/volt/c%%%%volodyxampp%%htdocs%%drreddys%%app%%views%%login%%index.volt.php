@@ -59,7 +59,7 @@
                 </div>
             </div>    
             <div class="errorelement"><div class="geterrorelemttxt"></div></div>
-            <div class="tooltipmn">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+            <div class="tooltipmn">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius d tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
             <a href="mylogin">Request for Demo</a>
 		</div> -->
 		<!-- button -->

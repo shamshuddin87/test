@@ -205,7 +205,7 @@ website('#updatemasterlistid').ajaxForm({
 getuserlistonload();
 function getuserlistonload()
 {
-   var noofrows = website('#noofrows').val(); 
+    var noofrows = website('#noofrows').val(); 
     var pagenum = website('#pagenum').val();
     // var chkclk = '';
     // var numofdata = 'all';

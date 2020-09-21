@@ -205,6 +205,63 @@ class AutomailerController extends ControllerBase
                     //echo '<pre>'; print_r($result); exit;
                     
                 }
+
+
+                if($svl['qtypeid']=='6')
+                {
+                    $emailid = $svl['sendtoemail'];
+                    $username = $svl['sendtoname'];
+                    $usergrpid = $svl['user_group_id'];
+
+                    if(!empty($svl['maildata']))
+                    {
+                        $maildata = json_decode($svl['maildata'], true);
+                        //echo '<pre>'; print_r($maildata); exit;
+                        // ---
+                        if(isset($maildata['upsitype']))
+                        {   $upsitype = $maildata['upsitype'];    }
+                        else
+                        {   $upsitype = '';    }
+                        
+                        if(isset($maildata['date_added']))
+                        {   $date_added = $maildata['date_added'];    }
+                        else
+                        {   $date_added = '';    }
+                        
+                       
+                        
+                        if(isset($maildata['ownername']))
+                        {   $ownername = $maildata['ownername'];    }
+                        else
+                        {   $ownername = '';    }
+                        
+                        if(isset($maildata['emaildate']))
+                        {   $emaildate = $maildata['emaildate'];    }
+
+                        else
+                        {   $emaildate = '';    }
+                        
+                        if(isset($maildata['projectstart']))
+                        {   $pstartdate = $maildata['projectstart'];    }
+                        else
+                        {   $pstartdate = '';    }
+                        
+                        
+                    }
+                    else
+                    {
+                        $upsitype = '';
+                        $emaildate = '';
+                        $ownername = '';
+                        $date_added = '';
+                        $pstartdate = '';
+                    }
+                    //print_r($username);exit;
+                    $today = date('d-m-Y');
+                    $result = $this->emailer->mailofType2($emailid,$username,$upsitype,$ownername,$pstartdate,$emaildate,$date_added);
+                    //echo '<pre>'; print_r($result); exit;
+                    
+                }
                 
                 if($result['logged']==true)
                 {

@@ -80,7 +80,7 @@ function getdataonload()
                //console.log(response.access[0].upsi_infoshare_add);
                 if(response.access[0].upsi_infoshare_add == 1 )
                 { 
-                addhtmlnxt += '<td width="25%"><i class="fa fa-plus faicon setupsitype" title="View entry" upsitypeid="'+response.resdta[i].id+'" disabled></i></td>';
+                    addhtmlnxt += '<td width="25%"><i class="fa fa-plus faicon setupsitype" title="View entry" upsitypeid="'+response.resdta[i].id+'" disabled></i></td>';
                 }
 //                addhtmlnxt += '<td width="25%"><i class="fa fa-edit faicon floatleft editupsitype" title="Edit entry" upsitypeid="'+response.resdta[i].id+'" ></i><i class="fa fa-trash-o faicon floatleft deleteupsitype" title="Delete entry" upsitypeid="'+response.resdta[i].id+'" ></i></td>';
                 

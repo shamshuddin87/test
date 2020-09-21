@@ -406,11 +406,12 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                          $ConnctdDpArray = array('username'=>$username,'emailid'=>$emailid);
                          
                         
-                 }
+                    }
                 
               }   
               //print_r($username);exit;
               $getres = $this->upsicommon->Fetchusersid($getuserid,$user_group_id,$ConnctdDpArray);
+              $final = array('ConnctdDpArray'=> $ConnctdDpArray,'getres'=>$getres);
                 //print_r($getres);echo "hello";exit;
                         if(!$getres)
                         {
@@ -424,11 +425,11 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         }
         catch (Exception $e)
         {
-            $getres = array();
+            $final = array();
             $connection->close();
         }
        // print_r($getres);exit;
-        return $getres;
+        return $final;
     }
 
     public function insertholding($getuserid,$user_group_id,$excelfilenamepath,$dtofhldng,$uniqueid,$typeofhldng)

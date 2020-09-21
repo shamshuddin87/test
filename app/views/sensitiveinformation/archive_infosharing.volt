@@ -39,7 +39,7 @@ $condeptsess = $this->session->contractdepartment;
 <!--                            <th>Purpose</th> -->
                             <th>Attachment</th> 
                             <th>Audit Trail</th> 
-                            <th>Sent By</th> 
+                            <th>Shared By</th> 
 <!--                            <th>Action</th>-->
                         </tr>
                     </thead>

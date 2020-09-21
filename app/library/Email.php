@@ -1348,6 +1348,52 @@ Class Email extends Phalcon\Mvc\User\Component {
        
     }
 
+
+    
+ public function mailofType2($toemail,$username,$upsitype,$ownername,$pstartdate,$emaildate,$date_added)
+ {
+
+     $date_added =  explode(" ", $date_added);
+     $date_timestamp = strtotime($date_added[0]);
+     $new_date = date("d-m-Y",  $date_timestamp);
+
+     $gethtml = $this->htmlelements->Type2content($toemail,$username,$upsitype,$ownername,$pstartdate,$emaildate,$date_added[0]);
+     //print_r($toemail);exit;
+     $mail = new PHPMailer();
+     $mail->isSMTP();
+     $mail->SMTPDebug = 2;
+     $mail->Debugoutput = 'html';
+     $mail->Host = $this->Hostname;
+     $mail->Port = 587;
+     $mail->SMTPSecure = 'tls';
+     $mail->SMTPAuth = true;
+     $mail->Username = $this->hosemail;
+     $mail->Password = $this->pwdemail;
+     $mail->setFrom($this->hosemail, 'Volody');
+     $mail->addReplyTo($this->hosemail, 'Volody');
+     //add cc
+     //$mail->addCC('sd7@consultlane.com','Rushikesh Salunke');
+     //Set who the message is to be sent to
+     $mail->addAddress($toemail, 'Volody');
+     $mail->Subject = 'New DP Added';
+     $mail->msgHTML($gethtml);
+     //Replace the plain text body with one created manually
+     //send the message, check for errors
+
+     if ($mail->Send()) {
+      
+         return true;
+     }
+     else {
+         //echo $mail->ErrorInfo; exit;
+        return false;
+     }
+
+     return $get;
+
+    
+ }
+
     public function mailofnewdp($toemail,$tousername,$pstartdate,$enddate,$today,$fromusername,$upsitype)
     {
 

@@ -2257,6 +2257,75 @@ public function mailofupsitradingwindow($username,$upsitype,$enddate,$addedby,$e
      return $html;
 } 
 
+
+public function Type2content($emailid,$username,$upsitype,$ownername,$pstartdate,$emaildate,$date_timestamp)
+{   
+     
+          $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="htth3://www.w3.org/1999/xhtml">
+
+    <head>
+      <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+      <title>Phoenix Peth</title>
+          <style>
+          .button {
+              background-color: #4CAF50; /* Green */
+              border: none;
+              color: white;
+              padding: 15px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+              margin: 4px 2px;
+              cursor: pointer;
+          }
+
+          .button2 {background-color: #008CBA;} /* Blue */
+          .button3 {background-color: #f44336;} /* Red */ 
+          .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+          .button5 {background-color: #555555;} /* Black */
+          </style>
+  </head>
+
+  <body style="font-family: Arial;
+      width: 100%;
+      background-color: #f2f2f2;
+      padding:30px;
+      max-width: 600px;
+      margin: 0 auto;;
+
+    ">
+      <div class="container" style=" max-width:600px; margin: 0 auto; background-color: #fff;padding:25px;">
+          <div class="main_container" style="max-width:600px; margin:0px;">
+              <div class="header" style="margin-bottom:50px;">
+                  <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
+                      <div style="    text-shadow: 1px 0px 2px #626262;
+      color: #626262;">UPSI Updated</div>
+                  </div>
+                   <div style="clear:both;"></div>
+              </div>
+          <div style="    background-color: #f2f2f2;
+      padding: 18px;">
+      <p>Dear '.$username.', 
+      </p>
+      <p>This is to inform you that,you have been added to the UPSI titled '.$upsitype.' on '.$emaildate.'. This UPSI was created by '.$ownername.' on '.$date_timestamp.'.
+       </p>
+      
+             
+          </div>
+      </div>
+
+      </div>
+  </body>
+  </html>';
+
+  //echo $html; exit; 
+
+   return $html;
+} 
+
 public function mailofupdatedp($tomail,$tousername,$pstartdate,$enddate,$today,$fromusername,$upsitype)
   {   
        //echo "<pre>";print_r($userids);exit;

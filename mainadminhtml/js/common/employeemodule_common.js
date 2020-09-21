@@ -2794,6 +2794,7 @@ website("body").on("click", "#pastupdate", function (e) {
   var nooffield = website(".empnm").length;
 
   var myarr = [];
+  
   for (var i = 0; i < nooffield; i++) {
     var empname = website("#empname_" + i).val();
     var id = website("#empid_" + i).val();
