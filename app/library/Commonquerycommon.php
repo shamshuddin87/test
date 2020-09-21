@@ -4,7 +4,7 @@ use Phalcon\Mvc\User\Component;
 class Commonquerycommon extends Component
 {
     
-    public function commoninsertlogic($getuserid,$cin,$user_group_id,$last_id,$fullname,$firstname,$lastname,$email,$mobile,$gender,$designation,$reminderdays,$pwdemail,$accrgt,$deptaccessid,$approvid,$dpdate,$empcode,$l1firstname,$l1lastname,$l1email,$l1empid,$roleid)
+    public function commoninsertlogic($getuserid,$cin,$user_group_id,$last_id,$fullname,$firstname,$lastname,$email,$mobile,$gender,$designation,$reminderdays,$pwdemail,$accrgt,$deptaccessid,$approvid,$dpdate,$empcode,$l1firstname,$l1lastname,$l1email,$l1empid,$roleid,$emp_status,$resignordeletiondate)
     {
         // $connection = $this->db;
         $connectiondbtrd = $this->dbtrd;
@@ -15,11 +15,11 @@ class Commonquerycommon extends Component
             `wr_id`,`role_id`,`fullname`,`firstname`,`lastname`,
             `email`,`mobile`,`gender_id`,`employeecode`,`designation`,
             `reminderdays`,`access`,`deptaccess`,`cmpaccess`,`dpdate`,`l1firstname`,
-            `l1lastname`,`l1email`,`l1empid`,`date_added`,`date_modified`,`timeago`,`approvid`,`status`)
+            `l1lastname`,`l1email`,`l1empid`,`emp_status`,`resignordeletiondate`,`date_added`,`date_modified`,`timeago`,`approvid`,`status`)
             VALUES ('".$getuserid."','".$user_group_id."',
             '".$last_id."','".$roleid."','".$fullname."','".$firstname."','".$lastname."',
             '".$email."','".$mobile."','".$gender."','".$empcode."','".$designation."',
-            '".$reminderdays."','".$accrgt."','".$deptaccessid."','".$cin."','".$dpdate."','".$l1firstname."','".$l1lastname."','".$l1email."','".$l1empid."',
+            '".$reminderdays."','".$accrgt."','".$deptaccessid."','".$cin."','".$dpdate."','".$l1firstname."','".$l1lastname."','".$l1email."','".$l1empid."','".$emp_status."','".$resignordeletiondate."',
             NOW(),NOW(),'".$time."','".$approvid."',1) ";
          // print_r($queryinsertml); exit;
         

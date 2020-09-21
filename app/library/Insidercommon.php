@@ -180,7 +180,7 @@ class Insidercommon extends Component
                 {
                     $row = $exessa->fetch();
                     
-                    $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$row['user_id'],$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid']);
+                    $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$row['user_id'],$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid'],$insertmas['emp_status'],$insertmas['resignordeletiondate']);
                     
                     if($data)
                     {
@@ -226,7 +226,7 @@ class Insidercommon extends Component
                 // print_r($lastid);exit;     
                
                
-                $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$lastid,$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid']);
+                $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$lastid,$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid'],$insertmas['emp_status'],$insertmas['resignordeletiondate']);
                
                
                 if($data)
@@ -284,7 +284,7 @@ class Insidercommon extends Component
             mobile = '".$updatemas['mobile']."', designation = '".$updatemas['designation']."',
             reminderdays = '".$updatemas['reminderdays']."',employeecode='".$updatemas['employeecode']."', access = '".$updatemas['accrgt']."',
             deptaccess = '".$updatemas['deptaccessid']."', cmpaccess = '".$updatemas['cmpnyaccessid']."',
-            approvid='".$updatemas['approvername']."', dpdate='".$updatemas['dpdate']."',l1firstname='".$updatemas['l1firstname']."',l1lastname='".$updatemas['l1lastname']."',l1email='".$updatemas['l1email']."',l1empid='".$updatemas['l1empid']."',
+            approvid='".$updatemas['approvername']."', dpdate='".$updatemas['dpdate']."',l1firstname='".$updatemas['l1firstname']."',l1lastname='".$updatemas['l1lastname']."',l1email='".$updatemas['l1email']."',l1empid='".$updatemas['l1empid']."',emp_status='".$updatemas['emp_status']."',resignordeletiondate='".$updatemas['resignordeletiondate']."',
             date_added = NOW(), date_modified=NOW(), timeago='".$time."'
             WHERE id='".$updatemas['mlistid']."' ";
         //echo "<pre>"; print_r($query);exit;

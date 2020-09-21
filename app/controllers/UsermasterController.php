@@ -3,7 +3,7 @@ class UsermasterController extends ControllerBase
 {
     public function initialize()
     {
-        $getlan    = $this->elements->getTranslation();
+        $getlan = $this->elements->getTranslation();
         $this->tag->setTitle($getlan['websitetitle']);
 		$this->elements->checkuserloggedin();
 		//$getuserid = $this->session->loginauthspuserfront['id'];
@@ -69,6 +69,8 @@ class UsermasterController extends ControllerBase
                 $l1emailcheck = $this->validationcommon->emailvalidate($l1email);
                 $l1empid = $this->request->getPost('l1empid','trim');
                 $roleid = $this->request->getPost('roleid','trim');
+                $emp_status = $this->request->getPost('emp_status','trim');
+                $resignordeletiondate = $this->request->getPost('resignordeletiondate','trim');
                  // print_r($approvername);exit;l1email
               
                 $dupliempcode = $this->commonquerycommon->checkifduplidata($getuserid,$employeecode,'');          
@@ -97,9 +99,29 @@ class UsermasterController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Select Date Of Becoming Designated Person ');
                     $this->response->setJsonContent($data);
                 }
+                else if(empty($resignordeletiondate) && $emp_status == '2')
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Resignation Date');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($resignordeletiondate) && $emp_status == '3')
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Deletion Date');
+                    $this->response->setJsonContent($data);
+                }
                 else if(strtotime($dpdate) > strtotime($todate))
                 {
                     $data = array("logged" => false,'message' => 'Date of becoming DP should be in past');
+                    $this->response->setJsonContent($data);
+                }
+                else if((strtotime($resignordeletiondate) > strtotime($todate)) && $emp_status == '2')
+                {
+                    $data = array("logged" => false,'message' => 'Resignation date should be in past.');
+                    $this->response->setJsonContent($data);
+                }
+                else if((strtotime($resignordeletiondate) > strtotime($todate)) && $emp_status == '3')
+                {
+                    $data = array("logged" => false,'message' => 'Deletion date should be in past.');
                     $this->response->setJsonContent($data);
                 }
                 else if($firstnamecheck==true)
@@ -189,6 +211,9 @@ class UsermasterController extends ControllerBase
                     $insertmas['l1email']= $l1email;
                     $insertmas['l1empid']= $l1empid;
                     $insertmas['roleid']= $roleid;
+                    $insertmas['emp_status']= $emp_status;
+                    $insertmas['resignordeletiondate']= $resignordeletiondate;
+
                     //print_r($insertmas);exit;
 
                     $insermresponse = $this->insidercommon->insertmasterlist($insertmas);     
@@ -232,6 +257,7 @@ class UsermasterController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
+                //echo"<pre>";print_r($_POST);die;
                 $firstname = $this->request->getPost('firstname','trim');
                 $mlistid= $this->request->getPost('mlistid','trim');
                 $lastname  = $this->request->getPost('lastname','trim');
@@ -258,6 +284,8 @@ class UsermasterController extends ControllerBase
                 $l1emailcheck = $this->validationcommon->emailvalidate($l1email);
                 $l1empid=$this->request->getPost('l1empid','trim');
                 $roleid=$this->request->getPost('roleid','trim');
+                $emp_status=$this->request->getPost('emp_status','trim');
+                $resignordeletiondate = $this->request->getPost('resignordeletiondate','trim');
                 
                 if($masterid==2)
                 {
@@ -290,9 +318,29 @@ class UsermasterController extends ControllerBase
                     $data = array("logged" => false,'message' => 'PleaseSelect Date Of Becoming Designated Person');
                     $this->response->setJsonContent($data);
                 }
+                else if(empty($resignordeletiondate) && $emp_status == '2')
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Resignation Date');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($resignordeletiondate) && $emp_status == '3')
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Deletion Date');
+                    $this->response->setJsonContent($data);
+                }
                 else if(strtotime($dpdate) > strtotime($todate))
                 {
                     $data = array("logged" => false,'message' => 'Date of becoming DP should be in past');
+                    $this->response->setJsonContent($data);
+                }
+                else if((strtotime($resignordeletiondate) > strtotime($todate)) && $emp_status == '2')
+                {
+                    $data = array("logged" => false,'message' => 'Resignation date should be in past.');
+                    $this->response->setJsonContent($data);
+                }
+                else if((strtotime($resignordeletiondate) > strtotime($todate)) && $emp_status == '3')
+                {
+                    $data = array("logged" => false,'message' => 'Deletion date should be in past.');
                     $this->response->setJsonContent($data);
                 }
                 else if($typeofusr=='')
@@ -379,6 +427,8 @@ class UsermasterController extends ControllerBase
                     $updatemas['l1email']= $l1email;
                     $updatemas['l1empid']= $l1empid;
                     $updatemas['roleid']= $roleid;
+                    $updatemas['emp_status']= $emp_status;
+                    $updatemas['resignordeletiondate']= $resignordeletiondate;
                     //print_r($updatemas);exit;
 
                     $chkresponse = $this->insidercommon->updatemasterlist($updatemas);

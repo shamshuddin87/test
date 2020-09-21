@@ -261,6 +261,19 @@ function getuserlistonload()
                     addhtmlnxt +='<td width="15%">'+companyname+'</td>';
                     addhtmlnxt+='<td width="15%">'+departmentname+'</td>';
                     // addhtmlnxt += '<td width="15%">'+reminderdays+'</td>';
+                    if(response.data[i].emp_status == '1')
+                    {
+                        addhtmlnxt+='<td width="15%">Active</td>';
+                    }
+                    else if(response.data[i].emp_status == '2')
+                    {
+                        addhtmlnxt+='<td width="15%">Resigned</td>';
+                    }
+                    else if(response.data[i].emp_status == '3')
+                    {
+                        addhtmlnxt+='<td width="15%">Not a DP</td>';
+                    }
+
                     if(response.data[i].master_group_id==2)
                     {
                        addhtmlnxt += '<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i></td>';
@@ -415,6 +428,8 @@ website('body').on('click','.dbeditme',function(e){
                        var l1email=response.data[i].l1email?response.data[i].l1email:'';
                        var l1empid=response.data[i].l1empid?response.data[i].l1empid:'';
                        var roleid=response.data[i].role_id?response.data[i].role_id:'';
+                       var emp_status=response.data[i].emp_status?response.data[i].emp_status:'';
+                       var resignordeletiondate=response.data[i].resignordeletiondate?response.data[i].resignordeletiondate:'';
 
                           website('#Mymodaledit #mlistid').val(response.data[i].id);
                           website('#Mymodaledit #userid').val(response.data[i].wr_id);
@@ -434,9 +449,28 @@ website('body').on('click','.dbeditme',function(e){
                           website('#Mymodaledit #l1email').val(l1email);
                           website('#Mymodaledit #l1empid').val(l1empid);
                           website('#Mymodaledit #roleid').val(roleid);
+                          website('#Mymodaledit #emp_status_edit').val(emp_status);
                           
 
                           // console.log(response.data[i].approver);
+
+                          if(emp_status == '2')
+                          {
+                            website("#Mymodaledit .resignordeletiondate").css("display","block");
+                            website('#Mymodaledit #lblresignordeletiondate').text("Resignation Date*");
+                            website('#Mymodaledit #resignordeletiondate').val(resignordeletiondate);
+                          }
+                          else if(emp_status == '3')
+                          {
+                            website("#Mymodaledit .resignordeletiondate").css("display","block");
+                            website('#Mymodaledit #lblresignordeletiondate').text("Deletion Date*");
+                            website('#Mymodaledit #resignordeletiondate').val(resignordeletiondate);
+                          }
+                          else
+                          {
+                            website("#Mymodaledit .resignordeletiondate").css("display","none");
+                          }
+                          
                          
 
                               var approveuser='';
@@ -854,3 +888,48 @@ website(document).ready(function(){
 });
 //---------------------------------on key up functionallity Finish here---------------------------------------------------------//
  // ##########################################EDIT APPROVER SEARCH FINISH HERE##############################################//
+
+
+ website('body').on('change','#emp_status_insert', function(e) 
+    {
+        var emp_status = website(this).val();
+        if(emp_status == "2")
+        {
+            website("#insertmasterlist .resignordeletiondate").css("display","block");
+            website('#insertmasterlist #lblresignordeletiondate').text("Resignation Date*");
+            website("#insertmasterlist #resignordeletiondate").val("");
+        }
+        else if(emp_status == "3")
+        {
+            website("#insertmasterlist .resignordeletiondate").css("display","block");
+            website('#insertmasterlist #lblresignordeletiondate').text("Deletion Date*");
+            website("#insertmasterlist #resignordeletiondate").val("");
+        }
+        else
+        {
+            website("#insertmasterlist .resignordeletiondate").css("display","none");
+            website("#insertmasterlist #resignordeletiondate").val("");
+        }
+    });
+
+  website('body').on('change','#emp_status_edit', function(e) 
+    {
+        var emp_status = website(this).val();
+        if(emp_status == "2")
+        {
+            website("#Mymodaledit .resignordeletiondate").css("display","block");
+            website('#Mymodaledit #lblresignordeletiondate').text("Resignation Date*");
+            website("#Mymodaledit #resignordeletiondate").val("");
+        }
+        else if(emp_status == "3")
+        {
+            website("#Mymodaledit .resignordeletiondate").css("display","block");
+            website('#Mymodaledit #lblresignordeletiondate').text("Deletion Date*");
+            website("#Mymodaledit #resignordeletiondate").val("");
+        }
+        else
+        {
+            website("#Mymodaledit .resignordeletiondate").css("display","none");
+            website("#Mymodaledit #resignordeletiondate").val("");
+        }
+    });
