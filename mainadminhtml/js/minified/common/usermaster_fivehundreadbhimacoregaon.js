@@ -30,7 +30,13 @@ else
 {var addhtmlnxt='';var dept='';var companyname='';for(var i=0;i<response.data.length;i++)
 {var fullname=response.data[i].fullname?response.data[i].fullname:'NONE';var email=response.data[i].email?response.data[i].email:'NONE';var dpdate=response.data[i].dpdate?response.data[i].dpdate:'NONE'
 var designation=response.data[i].designation?response.data[i].designation:'NONE';var companyname=response.data[i].companyname?response.data[i].companyname:'NONE';var departmentname=response.data[i].department?response.data[i].department:'NONE'
-var employeecode=response.data[i].employeecode?response.data[i].employeecode:'';var j=i+1;addhtmlnxt+='<tr class="counter" tempid="'+response.data[i].id+'" >';addhtmlnxt+='<td width="15%">'+j+'</td>';addhtmlnxt+='<td width="10%">'+employeecode+'</td>';addhtmlnxt+='<td width="15%">'+fullname+'</td>';addhtmlnxt+='<td width="15%">'+email+'</td>';addhtmlnxt+='<td width="15%">'+designation+'</td>';addhtmlnxt+='<td width="15%">'+dpdate+'</td>';addhtmlnxt+='<td width="15%">'+companyname+'</td>';addhtmlnxt+='<td width="15%">'+departmentname+'</td>';if(response.data[i].master_group_id==2)
+var employeecode=response.data[i].employeecode?response.data[i].employeecode:'';var j=i+1;addhtmlnxt+='<tr class="counter" tempid="'+response.data[i].id+'" >';addhtmlnxt+='<td width="15%">'+j+'</td>';addhtmlnxt+='<td width="10%">'+employeecode+'</td>';addhtmlnxt+='<td width="15%">'+fullname+'</td>';addhtmlnxt+='<td width="15%">'+email+'</td>';addhtmlnxt+='<td width="15%">'+designation+'</td>';addhtmlnxt+='<td width="15%">'+dpdate+'</td>';addhtmlnxt+='<td width="15%">'+companyname+'</td>';addhtmlnxt+='<td width="15%">'+departmentname+'</td>';if(response.data[i].emp_status=='1')
+{addhtmlnxt+='<td width="15%">Active</td>';}
+else if(response.data[i].emp_status=='2')
+{addhtmlnxt+='<td width="15%">Resigned</td>';}
+else if(response.data[i].emp_status=='3')
+{addhtmlnxt+='<td width="15%">Not a DP</td>';}
+if(response.data[i].master_group_id==2)
 {addhtmlnxt+='<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i></td>';}
 else
 {addhtmlnxt+='<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i><i class="fa fa-trash-o faicon dbdeleteme" title="Delete entry" tempid="'+response.data[i].id+'" ></i></td>';}
@@ -53,7 +59,13 @@ website.ajax({url:'usermaster/fetchsingleuser',data:formdata,method:'POST',conte
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {website('#Mymodaledit #appapnd').remove('.closeuser');var addhtmlnxt='';var dept='';var companyname='';for(var i=0;i<response.data.length;i++)
-{var firstname=response.data[i].firstname?response.data[i].firstname:'';var lastname=response.data[i].lastname?response.data[i].lastname:'';var dpdate=response.data[i].dpdate?response.data[i].dpdate:'';var email=response.data[i].email?response.data[i].email:'';var designation=response.data[i].designation?response.data[i].designation:'';var approveid=response.data[i].approvid?response.data[i].approvid:'';var approver=response.data[i].approver?response.data[i].approver:'';var employeecode=response.data[i].employeecode?response.data[i].employeecode:'';var l1firstname=response.data[i].l1firstname?response.data[i].l1firstname:'';var l1lastname=response.data[i].l1lastname?response.data[i].l1lastname:'';var l1email=response.data[i].l1email?response.data[i].l1email:'';var l1empid=response.data[i].l1empid?response.data[i].l1empid:'';var roleid=response.data[i].role_id?response.data[i].role_id:'';website('#Mymodaledit #mlistid').val(response.data[i].id);website('#Mymodaledit #userid').val(response.data[i].wr_id);website('#Mymodaledit #firstname').val(firstname);website('#Mymodaledit #lastname').val(lastname);website('#Mymodaledit #email').val(email);website('#Mymodaledit #empcode').val(employeecode);website('#Mymodaledit #designation').val(designation);website('#Mymodaledit #dpdate').val(dpdate);website('#Mymodaledit #typeofusr').val(response.data[i].master_group_id);website('#Mymodaledit #masterid').val(response.data[i].master_group_id);website('#Mymodaledit #approveid').val(approveid);website('#Mymodaledit #l1firstname').val(l1firstname);website('#Mymodaledit #l1lastname').val(l1lastname);website('#Mymodaledit #l1email').val(l1email);website('#Mymodaledit #l1empid').val(l1empid);website('#Mymodaledit #roleid').val(roleid);var approveuser='';approveuser=approver.split(',');if(approveuser!='')
+{var firstname=response.data[i].firstname?response.data[i].firstname:'';var lastname=response.data[i].lastname?response.data[i].lastname:'';var dpdate=response.data[i].dpdate?response.data[i].dpdate:'';var email=response.data[i].email?response.data[i].email:'';var designation=response.data[i].designation?response.data[i].designation:'';var approveid=response.data[i].approvid?response.data[i].approvid:'';var approver=response.data[i].approver?response.data[i].approver:'';var employeecode=response.data[i].employeecode?response.data[i].employeecode:'';var l1firstname=response.data[i].l1firstname?response.data[i].l1firstname:'';var l1lastname=response.data[i].l1lastname?response.data[i].l1lastname:'';var l1email=response.data[i].l1email?response.data[i].l1email:'';var l1empid=response.data[i].l1empid?response.data[i].l1empid:'';var roleid=response.data[i].role_id?response.data[i].role_id:'';var emp_status=response.data[i].emp_status?response.data[i].emp_status:'';var resignordeletiondate=response.data[i].resignordeletiondate?response.data[i].resignordeletiondate:'';website('#Mymodaledit #mlistid').val(response.data[i].id);website('#Mymodaledit #userid').val(response.data[i].wr_id);website('#Mymodaledit #firstname').val(firstname);website('#Mymodaledit #lastname').val(lastname);website('#Mymodaledit #email').val(email);website('#Mymodaledit #empcode').val(employeecode);website('#Mymodaledit #designation').val(designation);website('#Mymodaledit #dpdate').val(dpdate);website('#Mymodaledit #typeofusr').val(response.data[i].master_group_id);website('#Mymodaledit #masterid').val(response.data[i].master_group_id);website('#Mymodaledit #approveid').val(approveid);website('#Mymodaledit #l1firstname').val(l1firstname);website('#Mymodaledit #l1lastname').val(l1lastname);website('#Mymodaledit #l1email').val(l1email);website('#Mymodaledit #l1empid').val(l1empid);website('#Mymodaledit #roleid').val(roleid);website('#Mymodaledit #emp_status_edit').val(emp_status);if(emp_status=='2')
+{website("#Mymodaledit .resignordeletiondate").css("display","block");website('#Mymodaledit #lblresignordeletiondate').text("Resignation Date*");website('#Mymodaledit #resignordeletiondate').val(resignordeletiondate);}
+else if(emp_status=='3')
+{website("#Mymodaledit .resignordeletiondate").css("display","block");website('#Mymodaledit #lblresignordeletiondate').text("Deletion Date*");website('#Mymodaledit #resignordeletiondate').val(resignordeletiondate);}
+else
+{website("#Mymodaledit .resignordeletiondate").css("display","none");}
+var approveuser='';approveuser=approver.split(',');if(approveuser!='')
 {website('#appapnd').css('display','block');website("#Mymodaledit #appapnd").html('');for(var k=0;k<approveuser.length;k++)
 {website("#Mymodaledit #appapnd").append(approveuser[k]);}}
 else{website('#appapnd').css('display','none');}
@@ -124,4 +136,16 @@ else{website('#myeditlist').css('display','block');var formdata={search:search};
 {var myhtml='<ul>';for(var z=0;z<response.data.length;z++)
 {myhtml+='<li class="editapprover" edituserid="'+response.data[z].wr_id+'" fullname="'+response.data[z].fullname+'">'+response.data[z].fullname+'</li>';myhtml+='<div class="clearelement"></div>';}
 myhtml+='</ul>';website('#myeditlist').html(myhtml);}
-else{website('#myeditlist').html('<div>User Not Found..!!</div>');}},});}});});;
+else{website('#myeditlist').html('<div>User Not Found..!!</div>');}},});}});});website('body').on('change','#emp_status_insert',function(e)
+{var emp_status=website(this).val();if(emp_status=="2")
+{website("#insertmasterlist .resignordeletiondate").css("display","block");website('#insertmasterlist #lblresignordeletiondate').text("Resignation Date*");website("#insertmasterlist #resignordeletiondate").val("");}
+else if(emp_status=="3")
+{website("#insertmasterlist .resignordeletiondate").css("display","block");website('#insertmasterlist #lblresignordeletiondate').text("Deletion Date*");website("#insertmasterlist #resignordeletiondate").val("");}
+else
+{website("#insertmasterlist .resignordeletiondate").css("display","none");website("#insertmasterlist #resignordeletiondate").val("");}});website('body').on('change','#emp_status_edit',function(e)
+{var emp_status=website(this).val();if(emp_status=="2")
+{website("#Mymodaledit .resignordeletiondate").css("display","block");website('#Mymodaledit #lblresignordeletiondate').text("Resignation Date*");website("#Mymodaledit #resignordeletiondate").val("");}
+else if(emp_status=="3")
+{website("#Mymodaledit .resignordeletiondate").css("display","block");website('#Mymodaledit #lblresignordeletiondate').text("Deletion Date*");website("#Mymodaledit #resignordeletiondate").val("");}
+else
+{website("#Mymodaledit .resignordeletiondate").css("display","none");website("#Mymodaledit #resignordeletiondate").val("");}});;

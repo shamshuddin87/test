@@ -24,7 +24,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                     <span>Entries</span>
                 </div>
                 <div class="containergrid">
-                    <input type="hidden" class="compnynmad" value="<?php echo $companynmdept;?>">
+                    <!-- <input type="hidden" class="compnynmad" value="<?php echo $companynmdept;?>"> -->
                     <div class="panel panel-primary">
 
                         <div class="table-responsive">
@@ -40,6 +40,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                         <th>Date Of Becoming Designation Person</th>
                                         <th>Company</th>
                                         <th>Department</th>
+                                        <th>Status</th>
                                         <!-- <th>Reminder Days</th> -->
                                         <th>Action</th>
                                     </tr>
@@ -295,6 +296,27 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                         </div>
                                     </section>
 
+                                    <section class="col col-md-4">
+                                        <label class="control-label">Status*</label>
+                                        <div class="input">
+                                            <select id="emp_status_insert" name="emp_status"
+                                                class="form_fields form-control col-md-7 col-xs-12" required>
+                                                <option value="1">Active</option>
+                                                <option value="2">Resigned</option>
+                                                <option value="3">Not a DP</option>
+                                            </select>
+                                        </div>
+                                    </section>
+
+                                    <section class="col col-md-4 resignordeletiondate" style="display: none;">
+                                        <label id="lblresignordeletiondate" class="control-label"></label>
+                                        <div class="input">
+                                            <input type="text" id="resignordeletiondate" name="resignordeletiondate" required="required"
+                                                class="form_fields form-control col-md-7 col-xs-12 bootdatepick"
+                                                readonly="readonly">
+                                        </div>
+                                    </section>
+
                                     <!--<section class="col col-md-4 ">
                             <label class="control-label">Reminder Days *</label>
                             <div class="input">
@@ -494,6 +516,25 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                 <?php } ?>
                             </select>
                         </div>
+
+                        <div class="control-label form-group col-md-6">
+                            <span class="floatleft"><label>Status*</label></span>
+                            <select id="emp_status_edit" name="emp_status" class="form_fields form-control col-md-7 col-xs-12"
+                                required>
+                                <option value="1">Active</option>
+                                <option value="2">Resigned</option>
+                                <option value="3">Not a DP</option>
+                            </select>
+                        </div>
+
+                        <section class="col col-md-4 resignordeletiondate" style="display: none;">
+                            <label id="lblresignordeletiondate"></label>
+                            <div class="input">
+                                <input type="text" id="resignordeletiondate" name="resignordeletiondate" required="required"
+                                    class="form_fields form-control col-md-7 col-xs-12 bootdatepick"
+                                    readonly="readonly">
+                            </div>
+                        </section>
 
                         <!--<div class="control-label form-group col-lg-6">
                         <span class="floatleft"><b>Reminder Days *</b></span>
