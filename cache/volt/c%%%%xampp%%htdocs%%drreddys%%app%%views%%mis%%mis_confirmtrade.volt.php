@@ -29,7 +29,7 @@ $current_year =  date("Y");
             <input type="text" placeholder="Search By Name" id="srch" class=" form-control" status="0">
         </div>
 
-        <div class="cssfilter" style="float: right;">               
+        <div class="cssfilter" style="float: right;margin-right: 10px;">               
             <div class="control-label form-group">
                 <label>Employee Status</label>
                 <select id="emp_status" name="emp_status" class="form-control">

@@ -79,7 +79,7 @@ $current_year =  date("Y");
             </select>
         </div>
         </div>
-        <div class="cssfilter">               
+        <div class="cssfilter" style="margin: 0 10px;">               
             <div class="control-label form-group">
                 <label>Status Filter</label>
                 <select id="filterstatus" name="filterstatus" class="form-control">
@@ -107,7 +107,7 @@ $current_year =  date("Y");
         </div>
 
         <div class="excelanddownloadbtn">
-            <button type="button" class="btn btn-primary genfile excel_bg">Export Excel</button>
+            <button type="button" class="btn btn-primary genfile excel_bg" style="padding: 8px 12px;">Export Excel</button>
             <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
         </div>
         </div>

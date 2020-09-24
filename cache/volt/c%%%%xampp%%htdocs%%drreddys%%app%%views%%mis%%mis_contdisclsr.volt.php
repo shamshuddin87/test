@@ -57,7 +57,7 @@ $current_year =  date("Y");
                 </div>
             </section>
             <div class="past_search col col-xs-2">
-                 <button type="button" style="margin: 20px 20px 0 20px;" class="btncss btn searchbtn btn-primary">Search Now</button>
+                 <button type="button" style="margin: 23px 20px 0 20px;padding: 8px 12px;" class="btncss btn searchbtn btn-primary ">Search Now</button>
             </div> 
         </div>
         
@@ -103,7 +103,7 @@ $current_year =  date("Y");
 
 
         <div class="excelanddownloadbtn">
-            <button type="button" class="btn btn-primary genfile excel_bg">Export Excel</button>
+            <button type="button" class="btn btn-primary genfile excel_bg" style="    padding: 8px 12px; ">Export Excel</button>
             <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
         </div>
         </div>

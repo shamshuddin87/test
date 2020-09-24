@@ -20,17 +20,17 @@ $condeptsess = $this->session->contractdepartment;
           
   
    <div class="table-responsive table_wraper">
-       <div class="cssnumrws">
+       <div class="cssnumrws form-inline">
                 <span>Show</span>
-                <select id="noofrows" name="noofrows" class="noofrows">
+                <select id="noofrows" name="noofrows" class="noofrows form-control">
                 <option value="10">10</option><option value="25">25</option>
                 <option value="50">50</option><option value="100">100</option>
                 </select> 
                 <span>Entries</span>
 
             <div style="float:right;">
-                <button type="button" class="btn btn-primary genfile pdf_bg" request="pdf" >Export PDF</button>
-                <button type="button" class="btn btn-primary genfile excel_bg" request="excel">Export Excel</button>
+                <button type="button" class="btn btn-primary genfile pdf_bg" request="pdf"  style="padding: 8px 12px;">Export PDF</button>
+                <button type="button" class="btn btn-primary genfile excel_bg" request="excel" style="padding: 8px 12px;">Export Excel</button>
                 <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
             </div>
 

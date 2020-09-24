@@ -41,7 +41,7 @@ $current_year =  date("Y");
                 </div>
         </div>
 
-        <div class="cssfilter">               
+        <div class="cssfilter" style="margin-right: 10px;">               
         <div class="control-label form-group">
             <label>Status Filter</label>
             <select id="filterstatus" name="filterstatus" class="form-control">

@@ -19,7 +19,7 @@ $condeptsess = $this->session->contractdepartment;
 
 
    <div class="table-responsive table_wraper">
-    <div class="cssfilter" style="float: right;">               
+    <div class="cssfilter  form-inline " style="">               
         <div class="control-label form-group">
             <label>Status</label>
             <select id="emp_status" name="emp_status" class="form-control">
