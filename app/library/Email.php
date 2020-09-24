@@ -1382,11 +1382,11 @@ Class Email extends Phalcon\Mvc\User\Component {
 
      if ($mail->Send()) {
       
-         return true;
+         $get = array('logged'=>true,'message'=>'sent');
      }
      else {
          //echo $mail->ErrorInfo; exit;
-        return false;
+        $get = array('logged'=>false,'message'=>'nosent');
      }
 
      return $get;
