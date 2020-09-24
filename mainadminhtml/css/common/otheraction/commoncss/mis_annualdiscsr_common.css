@@ -31,7 +31,7 @@ input#srch {
     border: none;
     border: 1px solid #ccc;
 }
-.form-control { height: 30px; }
+/*.form-control { height: 30px; }*/
 .cssfilter {
     float: right;
 }
