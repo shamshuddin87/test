@@ -938,3 +938,45 @@ website(document).ready(function(){
             website("#Mymodaledit #resignordeletiondate").val("");
         }
     });
+
+
+  website('#uploadempstatus').ajaxForm({
+        dataType:"json",
+        beforeSend: function() 
+        {   website('.preloder_wraper').fadeIn();   },
+        uploadProgress: function(event, position, total, percentComplete) 
+        {},
+        success: function(response, textStatus, jqXHR) 
+        {
+             website('.preloder_wraper').fadeOut();
+             if(response.logged === true)
+             {
+                    
+                    window.location.reload();
+                    //website('#Mymodaledit').fadeOut();
+                    new PNotify({title: 'Alert',
+                            text: response.message,
+                            type: 'university',
+                            hide: true,
+                            styling: 'bootstrap3',
+                            addclass: 'dark ',
+                    }); 
+             }
+             else
+             {    
+                new PNotify({title: 'Alert',
+                        text: response.message,
+                        type: 'university',
+                        hide: true,
+                        styling: 'bootstrap3',
+                        addclass: 'dark ',
+                });
+             }
+        },
+        complete: function(response) 
+        {
+            website('.preloder_wraper').fadeOut();
+        },
+        error: function() 
+        {   }
+});

@@ -610,4 +610,78 @@ class UsermasterController extends ControllerBase
               }
           }
   }
+
+  public function uploadEmpStatusAction()
+    {
+        $this->view->disable();   
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $getuserid.'*'.$cin;exit;
+        $firstname = $this->session->loginauthspuserfront['firstname'];
+        $lastname = $this->session->loginauthspuserfront['lastname'];
+        //echo '<pre>';print_r($this->session->loginauthspuserfront);exit;
+        $timeago = time();
+        
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                //$deptmntid = $this->request->getPost('deptmntname', 'trim');
+                //echo $deptmntid; exit;
+                if(!empty($_FILES['empstatusexcel']))
+                {
+                    $userfile_name = $_FILES['empstatusexcel']['name'];
+                    //echo $userfile_name;exit;
+                    $userfile_tmp = $_FILES['empstatusexcel']['tmp_name'];
+                    $userfile_size = $_FILES['empstatusexcel']['size'];
+                    $userfile_type = $_FILES['empstatusexcel']['type'];
+                    $filename = basename($_FILES['empstatusexcel']['name']);
+                    //echo $filename;exit;
+                    $file_ext = $this->validationcommon->getfileext($filename);
+                    $upload_path = $this->userdocdir."/employeestatus/";
+                    if(!file_exists($upload_path)) 
+                    {
+                        mkdir($upload_path, 0777, true);
+                    }
+                    //echo $upload_path; exit;
+                    $large_imp_name = 'uploadedby-'.$firstname.'_'.$lastname.'_'.$getuserid.'_'.$timeago;               
+                    //echo $large_imp_name."*".$file_ext;exit;
+                    $large_impfile_location = $upload_path.$large_imp_name.".".$file_ext;
+                    $uploadedornot = move_uploaded_file($userfile_tmp, $large_impfile_location);
+                    //echo $uploadedornot; exit; 
+                    $getresponse = $this->phpimportexpogen->updateEmpStatusViaExcel($getuserid,$user_group_id,$cin,$large_impfile_location);
+                    //echo $getresponse; exit;
+
+                    if($getresponse)
+                    {
+                        $data = array("logged" => true,'message' => 'Data updated Successfully !!!');
+                        $this->response->setJsonContent($data);
+                    }
+                    else
+                    {
+                        $data = array("logged" => false,'message' => 'Problem in uploading file!!!');
+                        $this->response->setJsonContent($data);
+                    }
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => 'Please select file..!!');
+                    $this->response->setJsonContent($data);
+                }
+                
+                
+                $this->response->send();            
+            }
+            else
+            {
+                exit('No direct script access allowed isAjax');
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
 }

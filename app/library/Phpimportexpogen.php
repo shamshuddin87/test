@@ -784,4 +784,115 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         //echo '<pre>';print_r($genfile);exit;
         return $genfile;
     }
+
+    public function updateEmpStatusViaExcel($getuserid,$user_group_id,$cin,$excelfilenamepath)
+    {
+        $connection = $this->dbtrd;
+        $time= time();
+
+         /**  Advise the Reader of which WorkSheets we want to load  **/
+         $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+         $objPHPExcel->setActiveSheetIndex(0);
+         $worksheet = $objPHPExcel->getActiveSheet(0);
+
+        try
+        {
+                $objPHPExcel->setActiveSheetIndex(0);
+                $worksheet = $objPHPExcel->getActiveSheet();
+                $highestRow = $worksheet->getHighestRow();
+                //echo $highestRow;exit;
+                $limit = $highestRow;
+                $useremail = $this->fetchUserEmail($getuserid,$user_group_id);
+                //echo"<pre>";print_r($limit);die;
+                for ($row = 2; $row <= $limit ; $row++ )
+                {
+                    $email  = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    $emp_status  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $resignordeletiondate  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    if(!empty($resignordeletiondate))
+                    {
+                        $resignordeletiondate =  PHPExcel_Style_NumberFormat::toFormattedString($resignordeletiondate, "DD-MM-YYYY");
+                    }
+                    
+                    
+
+                    if($emp_status == 'Active')
+                    {
+                        $emp_status = 1;
+                    }
+                    else if($emp_status == 'Resigned')
+                    {
+                        $emp_status = 2;
+                    }
+                    else if($emp_status == 'Not a DP')
+                    {
+                        $emp_status = 3;
+                    }
+
+                    if (in_array($email, $useremail)) 
+                    {
+                        $this->updateEmployeeStatus($email,$emp_status,$resignordeletiondate);
+                    } 
+                }
+                return true;
+        }
+        catch (Exception $e)
+        {
+            return false;
+            $connection->close();
+        }
+    }
+
+
+    public function fetchUserEmail($getuserid,$user_group_id)
+    {
+        $connection = $this->dbtrd;
+        $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+        $querysql = "SELECT `email` FROM `it_memberlist` 
+                     WHERE `wr_id` IN (".$grpusrs['ulstring'].") AND `status`='1'";
+        //echo $querysql;exit;
+        try
+        {
+            $exesql = $connection->query($querysql);
+            $getnum = trim($exesql->numRows());
+            if($getnum>0)
+            {
+                while($row = $exesql->fetch())
+                {
+                    $getlist[] = $row['email'];
+                }
+            }
+            else{
+                $getlist = array();
+            }
+        }
+        catch (Exception $e) {
+            $getlist = array();
+            $connection->close();
+        }        
+       //echo '<pre> lib';print_r($getlist);exit;
+        return $getlist;
+    }
+
+    public function updateEmployeeStatus($email,$emp_status,$resignordeletiondate)
+    {
+        $connection = $this->dbtrd;
+
+        $queryupdate = "UPDATE `it_memberlist` SET
+                        `emp_status`= '".$emp_status."',
+                        `resignordeletiondate`= '".$resignordeletiondate."',
+                        `date_modified`=NOW() 
+                        WHERE `email`='".$email."'";
+         //print_r($queryupdate);
+        try
+        {
+            $exeprev = $connection->query($queryupdate);
+            return true;
+        }
+        catch (Exception $e) 
+        {
+            return false;
+        }
+    }
+
 }
