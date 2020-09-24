@@ -13,15 +13,27 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
             <!-- My messages -->
             <div class="mainelementfom">
                 <h1 class="h1_heading text-center">Master List</h1>
-                <div class="cssnumrws">
+                <div class="cssnumrws form-inline">
                     <span>Show</span>
-                    <select id="noofrows" name="noofrows" class="noofrows">
+                    <select id="noofrows" name="noofrows" class="noofrows form-control">
                         <option value="10">10</option>
                         <option value="25">25</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
                     </select>
                     <span>Entries</span>
+
+                <div class="cssfilter" style="float: right;">               
+                    <div class="control-label form-group">
+                        <label>Employee Status</label>
+                        <select id="emp_status" name="emp_status" class="form-control">
+                            <option value="">All</option>
+                            <option value="1">Active</option>
+                            <option value="2">Resigned</option>
+                            <option value="3">Not a DP</option>
+                        </select>
+                    </div>
+                </div>
                 </div>
                 <div class="containergrid">
                     <!-- <input type="hidden" class="compnynmad" value="<?php echo $companynmdept;?>"> -->

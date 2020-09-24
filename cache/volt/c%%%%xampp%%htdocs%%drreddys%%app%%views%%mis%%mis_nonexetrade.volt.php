@@ -27,12 +27,24 @@ $current_year =  date("Y");
             <div style="float: right;">
                 <input type="text" placeholder="Search By Name" id="srch" status="0" class=" form-control">
             </div>
+            <div class="cssfilter" style="float: right;">               
+              <div class="control-label form-group">
+                  <label>Employee Status</label>
+                  <select id="emp_status" name="emp_status" class="form-control">
+                      <option value="">All</option>
+                      <option value="1">Active</option>
+                      <option value="2">Resigned</option>
+                      <option value="3">Not a DP</option>
+                  </select>
+              </div>
+            </div>
         </div>
         <table class="table table-inverse" id="datableabhi7">
              <thead>
                <tr>
                     <th>Sr No.</th> 
                     <th>Name</th> 
+                    <th>Employee Status</th> 
                   <!--   <th>Name Of Company</th>  -->
                     <!-- <th>Date of Pre-Clearance</th>  -->
                     <th>Shares approved under PC</th> 

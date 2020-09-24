@@ -22,8 +22,9 @@ else
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function()
-{}});getuserlistonload();function getuserlistonload()
-{var noofrows=website('#noofrows').val();var pagenum=website('#pagenum').val();var formdata={noofrows:noofrows,pagenum:pagenum};website.ajax({url:'usermaster/fetchuser',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{}});website('body').on('change','#emp_status',function(e)
+{getuserlistonload();});getuserlistonload();function getuserlistonload()
+{var noofrows=website('#noofrows').val();var pagenum=website('#pagenum').val();var emp_status=website('#emp_status').val();var formdata={noofrows:noofrows,pagenum:pagenum,emp_status:emp_status};website.ajax({url:'usermaster/fetchuser',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)

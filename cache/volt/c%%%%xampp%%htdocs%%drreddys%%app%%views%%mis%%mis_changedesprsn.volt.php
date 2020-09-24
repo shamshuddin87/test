@@ -29,10 +29,24 @@ $current_year =  date("Y");
                 <option value="1">Last 6 months connected persons</option>
                 <option value="0" selected="selected">Other</option>
             </select>
-            
+
             <div style="float: right;">
                 <input type="text" placeholder="Search By Name" id="srch" status="0">
             </div>
+            
+            <div class="cssfilter" style="float: right;">               
+                <div class="control-label form-group">
+                    <label>Employee Status</label>
+                    <select id="emp_status" name="emp_status" class="form-control">
+                        <option value="">All</option>
+                        <option value="1">Active</option>
+                        <option value="2">Resigned</option>
+                        <option value="3">Not a DP</option>
+                    </select>
+                </div>
+            </div>
+            
+            
         </div>
         <div class="srcfac" style="float: right;">
             <input type="text" class="bootdatepick" id="date1"  placeholder="Start Date"  readonly="readonly"/>
@@ -44,6 +58,7 @@ $current_year =  date("Y");
                <tr>
                     <th>Sr No.</th> 
                     <th>Name</th> 
+                    <th>Employee Status</th>
                    <!--  <th>Employee ID</th>  -->
                     <th>Resignation Date</th> 
                     <th>Addition/ Deletion</th> 

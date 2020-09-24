@@ -1,8 +1,9 @@
 
 website(document).ready(function()
 {getdataonload();website('.bootdatepick').datetimepicker({weekStart:1,todayBtn:0,autoclose:1,todayHighlight:0,startView:2,minView:2,forceParse:0,format:"dd-mm-yyyy"}).on('change',function(e,date)
-{var getdate=website(this).val();var getid=website(this).closest('form').attr('id');});});function getdataonload()
-{website.ajax({url:'mis/fetchrecipient',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{var getdate=website(this).val();var getid=website(this).closest('form').attr('id');});});website('body').on('change','#emp_status',function(e)
+{getdataonload();});function getdataonload()
+{var emp_status=website('#emp_status').val();website.ajax({url:'mis/fetchrecipient',data:{emp_status:emp_status},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
@@ -19,10 +20,16 @@ if(response.resdta[i].agreemntfile)
 {addhtmlnxt+='<td width="8%"><a href="'+response.resdta[i].agreemntfile+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';}
 else
 {addhtmlnxt+='<td width="8%"></td>';}
-addhtmlnxt+='<td width="8%">'+addedondte+'</td>';addhtmlnxt+='<td width="8%">'+response.resdta[i].fullname+'</td>';addhtmlnxt+='</tr>';}
+addhtmlnxt+='<td width="8%">'+addedondte+'</td>';addhtmlnxt+='<td width="8%">'+response.resdta[i].fullname+'</td>';if(response.resdta[i].emp_status=='1')
+{addhtmlnxt+='<td width="8%">Active</td>';}
+else if(response.resdta[i].emp_status=='2')
+{addhtmlnxt+='<td width="8%">Resigned</td>';}
+else if(response.resdta[i].emp_status=='3')
+{addhtmlnxt+='<td width="8%">Not a DP</td>';}
+addhtmlnxt+='</tr>';}
 website('.appendrow').html(addhtmlnxt);website('#datableabhi').DataTable();}
 else
-{website('.appendroww').html('');}},complete:function(response)
+{website('.appendrow').html('No Data Found.');}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});}
 function numberalphOnly()

@@ -22,6 +22,11 @@ website('body').on('change','#filterstatus', function(e)
     getannualdisclsr();
 });
 
+website('body').on('change','#emp_status', function(e) 
+{     
+    getannualdisclsr();
+});
+
 
 datepicker();
 function datepicker(){
@@ -58,9 +63,10 @@ function getannualdisclsr()
     var annualyr = website('#annualyear').val();
     var filterstatus = website('#filterstatus').val();
     var search = website('#srch').val();
+    var emp_status = website('#emp_status').val();
     website.ajax({
         url:'mis/pendingannualdisclsr',
-        data:{noofrows:noofrows,pagenum:pagenum,annualyr:annualyr,filterstatus:filterstatus,search:search},
+        data:{noofrows:noofrows,pagenum:pagenum,annualyr:annualyr,filterstatus:filterstatus,search:search,emp_status:emp_status},
         method:'POST',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
         dataType:"json",
@@ -84,6 +90,18 @@ function getannualdisclsr()
                         htmlelements+='<tr>';
                         htmlelements+='<td width="10%">'+j+'</td>';
                         htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
+                        if(response.data[i].emp_status == '1')
+                        {
+                            htmlelements+='<td width="10%">Active</td>';
+                        }
+                        else if(response.data[i].emp_status == '2')
+                        {
+                            htmlelements+='<td width="10%">Resigned</td>';
+                        }
+                        else if(response.data[i].emp_status == '3')
+                        {
+                            htmlelements+='<td width="10%">Not a DP</td>';
+                        }
                         // htmlelements+='<td width="10%">'+response.data[i].employeecode+'</td>';
                         htmlelements+='<td width="10%">'+annualyr+'</td>';
                         htmlelements+='<td width="10%"></td>';
@@ -105,6 +123,18 @@ function getannualdisclsr()
                         htmlelements+='<tr>';
                         htmlelements+='<td width="10%">'+j+'</td>';
                         htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
+                        if(response.data[i].emp_status == '1')
+                        {
+                            htmlelements+='<td width="10%">Active</td>';
+                        }
+                        else if(response.data[i].emp_status == '2')
+                        {
+                            htmlelements+='<td width="10%">Resigned</td>';
+                        }
+                        else if(response.data[i].emp_status == '3')
+                        {
+                            htmlelements+='<td width="10%">Not a DP</td>';
+                        }
                         // htmlelements+='<td width="10%">'+response.data[i].employeecode+'</td>';
                         htmlelements+='<td width="10%">'+response.data[i].annualyear+'</td>';
                         htmlelements+='<td width="10%">'+sent_date+'</td>';
@@ -126,6 +156,18 @@ function getannualdisclsr()
                         htmlelements+='<tr>';
                         htmlelements+='<td width="10%">'+j+'</td>';
                         htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
+                        if(response.data[i].emp_status == '1')
+                        {
+                            htmlelements+='<td width="10%">Active</td>';
+                        }
+                        else if(response.data[i].emp_status == '2')
+                        {
+                            htmlelements+='<td width="10%">Resigned</td>';
+                        }
+                        else if(response.data[i].emp_status == '3')
+                        {
+                            htmlelements+='<td width="10%">Not a DP</td>';
+                        }
                         // htmlelements+='<td width="10%">'+response.data[i].employeecode+'</td>';
                         htmlelements+='<td width="10%">'+annualyr+'</td>';
                         
@@ -179,7 +221,8 @@ website('.genfile').on('click', function(e) {
     var annualyr = website('#annualyear').val();
     var filterstatus = website('#filterstatus').val();
     var search = website('#srch').val();
-    var formdata = {noofrows:noofrows,pagenum:pagenum,annualyr:annualyr,filterstatus:filterstatus,search:search};
+    var emp_status = website('#emp_status').val();
+    var formdata = {noofrows:noofrows,pagenum:pagenum,annualyr:annualyr,filterstatus:filterstatus,search:search,emp_status:emp_status};
     website.ajax({
         url:'mis/exportAnnualDisclsr',
         data:formdata,

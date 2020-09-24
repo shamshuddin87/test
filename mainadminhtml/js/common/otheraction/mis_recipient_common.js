@@ -20,11 +20,18 @@ website(document).ready(function()
     
 });
 
+website('body').on('change','#emp_status', function(e) 
+{
+    getdataonload();
+});
+
 
 function getdataonload()
 {
+    var emp_status = website('#emp_status').val();
     website.ajax({
       url:'mis/fetchrecipient',
+      data:{emp_status:emp_status},
       method:'POST',
       //contentType:'json',
       contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -85,6 +92,18 @@ function getdataonload()
             }
             addhtmlnxt += '<td width="8%">'+addedondte+'</td>';
             addhtmlnxt += '<td width="8%">'+response.resdta[i].fullname+'</td>';
+            if(response.resdta[i].emp_status == '1')
+            {
+                addhtmlnxt+='<td width="8%">Active</td>';
+            }
+            else if(response.resdta[i].emp_status == '2')
+            {
+                addhtmlnxt+='<td width="8%">Resigned</td>';
+            }
+            else if(response.resdta[i].emp_status == '3')
+            {
+                addhtmlnxt+='<td width="8%">Not a DP</td>';
+            }
              
             addhtmlnxt += '</tr>';                        
             //------------------------ Table Fields Insertion END ------------------------
@@ -94,7 +113,7 @@ function getdataonload()
       }
       else
       {
-        website('.appendroww').html('');
+        website('.appendrow').html('No Data Found.');
       }
     },
     complete: function(response)

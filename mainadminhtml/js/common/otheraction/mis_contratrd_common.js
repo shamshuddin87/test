@@ -40,6 +40,11 @@ website('.bootdatepick').datetimepicker({
     });
   }
 
+website('body').on('change','#emp_status', function(e) 
+{
+    getmiscontratrd();
+});
+
 getmiscontratrd();
 
 function getmiscontratrd()
@@ -49,10 +54,11 @@ function getmiscontratrd()
     var pagenum = website('#pagenum').val();
     var startdate= website('#date1').val();
     var enddate= website('#date2').val();
+    var emp_status= website('#emp_status').val();
     //console.log(noofrows+'*'+pagenum);return false;
     website.ajax({
         url:'mis/miscontratrd',
-        data:{noofrows:noofrows,pagenum:pagenum,search:search,startdate:startdate,enddate:enddate},
+        data:{noofrows:noofrows,pagenum:pagenum,search:search,startdate:startdate,enddate:enddate,emp_status:emp_status},
         method:'POST',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
         dataType:"json",
@@ -73,6 +79,18 @@ function getmiscontratrd()
                     htmlelements+='<tr>';
                     htmlelements+='<td width="10%">'+j+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
+                    if(response.data[i].emp_status == '1')
+                    {
+                        htmlelements+='<td width="10%">Active</td>';
+                    }
+                    else if(response.data[i].emp_status == '2')
+                    {
+                        htmlelements+='<td width="10%">Resigned</td>';
+                    }
+                    else if(response.data[i].emp_status == '3')
+                    {
+                        htmlelements+='<td width="10%">Not a DP</td>';
+                    }
                     // htmlelements+='<td width="10%">'+response.data[i].company_name+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].transaction+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].date_of_transaction+'</td>';

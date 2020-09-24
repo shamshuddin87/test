@@ -200,6 +200,10 @@ website('#updatemasterlistid').ajaxForm({
 });
 //###########################################Ajax Form For Update FInish###########################################//
 
+website('body').on('change','#emp_status', function(e) 
+{
+    getuserlistonload();
+});
 
 //##########################################ONLOAD USER MASTER LIST START HERE############################################//
 getuserlistonload();
@@ -207,9 +211,10 @@ function getuserlistonload()
 {
     var noofrows = website('#noofrows').val(); 
     var pagenum = website('#pagenum').val();
+    var emp_status = website('#emp_status').val();
     // var chkclk = '';
     // var numofdata = 'all';
-    var formdata = {noofrows:noofrows,pagenum:pagenum};
+    var formdata = {noofrows:noofrows,pagenum:pagenum,emp_status:emp_status};
     website.ajax({
         url:'usermaster/fetchuser',
         data:formdata,

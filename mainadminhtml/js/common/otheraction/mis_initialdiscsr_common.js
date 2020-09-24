@@ -22,6 +22,11 @@ website('body').on('change','#filterstatus', function(e)
     getinitialdisclsr();
 });
 
+website('body').on('change','#emp_status', function(e) 
+{     
+    getinitialdisclsr();
+});
+
 
 datepicker();
 function datepicker(){
@@ -51,9 +56,10 @@ function getinitialdisclsr()
     var pagenum = website('#pagenum').val();
     var filterstatus = website('#filterstatus').val();
     var search=website('#srch').val();
+    var emp_status = website('#emp_status').val();
     website.ajax({
         url:'mis/pendinginitialdisclsr',
-        data:{noofrows:noofrows,pagenum:pagenum,search:search,filterstatus:filterstatus},
+        data:{noofrows:noofrows,pagenum:pagenum,search:search,filterstatus:filterstatus,emp_status:emp_status},
         method:'POST',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
         dataType:"json",
@@ -75,6 +81,18 @@ function getinitialdisclsr()
                     var sent_date = response.data[i].sent_date?response.data[i].sent_date:'';
                     htmlelements+='<td width="10%">'+j+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
+                    if(response.data[i].emp_status == '1')
+                    {
+                        htmlelements+='<td width="10%">Active</td>';
+                    }
+                    else if(response.data[i].emp_status == '2')
+                    {
+                        htmlelements+='<td width="10%">Resigned</td>';
+                    }
+                    else if(response.data[i].emp_status == '3')
+                    {
+                        htmlelements+='<td width="10%">Not a DP</td>';
+                    }
                     // htmlelements+='<td width="10%">'+response.data[i].employeecode+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].dpdate+'</td>';
                     htmlelements+='<td width="10%">'+sent_date+'</td>';

@@ -157,7 +157,8 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                             '1' => $tblrow['projstartdate'],
                             '2'=> $tblrow['enddate'],
                             '3' => $tblrow[11],
-                            '4' => $tblrow['fullname']
+                            '4' => $tblrow['fullname'],
+                            '5' => $tblrow['emp_status']
                            
                             //'4' => $tblrow['designation']
                            
@@ -487,12 +488,26 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
             {
                 $sentdate = '';
             }
+
+            if($tblrow['emp_status'] == '1')
+            {
+                $emp_status = 'Active';
+            }
+            elseif($tblrow['emp_status'] == '2')
+            {
+                $emp_status = 'Resigned';
+            }
+            elseif($tblrow['emp_status'] == '3')
+            {
+                $emp_status = 'Not a DP';
+            }
             
             $nwexcl[] = array('0' => $j,
                             '1' => $tblrow['fullname'],
-                            '2' => $tblrow['email'],
-                            '3'=> $annualyr,
-                            '4' => $sentdate,
+                            '2' => $emp_status,
+                            '3' => $tblrow['email'],
+                            '4'=> $annualyr,
+                            '5' => $sentdate,
                         );
             $j++;
         }
@@ -705,10 +720,24 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         $j=1;
         foreach($processdata as $tblrow)
         {
+            if($tblrow['emp_status'] == '1')
+            {
+                $emp_status = 'Active';
+            }
+            elseif($tblrow['emp_status'] == '2')
+            {
+                $emp_status = 'Resigned';
+            }
+            elseif($tblrow['emp_status'] == '3')
+            {
+                $emp_status = 'Not a DP';
+            }
+
             $formated_date = date('d-m-Y',strtotime($tblrow['date_added']));
             $nwexcl[] = array('0' => $j,
                             '1' => $tblrow['fullname'],
-                            '2'=> $formated_date
+                            '2' => $emp_status,
+                            '3'=> $formated_date
                         );
             $j++;
         }

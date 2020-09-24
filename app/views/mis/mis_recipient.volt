@@ -17,7 +17,19 @@ $condeptsess = $this->session->contractdepartment;
 
     <h1 class="h1_heading text-center">Database of Connected Person</h1>
 
+
    <div class="table-responsive table_wraper">
+    <div class="cssfilter" style="float: right;">               
+        <div class="control-label form-group">
+            <label>Status</label>
+            <select id="emp_status" name="emp_status" class="form-control">
+                <option value="">All</option>
+                <option value="1">Active</option>
+                <option value="2">Resigned</option>
+                <option value="3">Not a DP</option>
+            </select>
+        </div>
+    </div>
                 <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>
@@ -33,6 +45,7 @@ $condeptsess = $this->session->contractdepartment;
                             <th>Download Confidentiallity Agreement</th> 
                             <th>Added On</th>
                             <th>Added By</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody class="appendrow" appendrow='1'>

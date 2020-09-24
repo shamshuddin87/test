@@ -27,11 +27,26 @@ $condeptsess = $this->session->contractdepartment;
                 <option value="50">50</option><option value="100">100</option>
                 </select> 
                 <span>Entries</span>
-             <div style="float:right;">
+
+            <div style="float:right;">
                 <button type="button" class="btn btn-primary genfile pdf_bg" request="pdf" >Export PDF</button>
                 <button type="button" class="btn btn-primary genfile excel_bg" request="excel">Export Excel</button>
                 <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
             </div>
+
+            <div class="cssfilter" style="float:right;">               
+                <div class="control-label form-group">
+                    <label>Status</label>
+                    <select id="emp_status" name="emp_status" class="form-control">
+                        <option value="">All</option>
+                        <option value="1">Active</option>
+                        <option value="2">Resigned</option>
+                        <option value="3">Not a DP</option>
+                    </select>
+                </div>
+            </div>
+
+            
         </div>
      
                 <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
@@ -43,6 +58,7 @@ $condeptsess = $this->session->contractdepartment;
                             <th>Project End Date</th>
                             <th>Creation Date</th> 
                             <th>Shared By</th> 
+                            <th>Status</th> 
                         </tr>
                     </thead>
                     <tbody class="appendrow" appendrow='1'>

@@ -478,14 +478,26 @@ class UsermasterController extends ControllerBase
                 // ------- Pagination Start -------
                     $noofrows = $this->request->getPost('noofrows','trim');
                     $pagenum = $this->request->getPost('pagenum','trim');
+                    $emp_status = $this->request->getPost('emp_status','trim');
                     //echo $pagenum.'*'.$noofrows; exit;
                     $rsstrt = ($pagenum-1) * $noofrows;
                     //echo $rsstrt; exit;
                 // ------- Pagination End -------
+
+                    $empstatusfilter = '';
+
+                    if($emp_status !== '')
+                    {
+                        $empstatusfilter .= ' AND `emp_status`="'.$emp_status.'"';
+                    }
+                    else
+                    {
+                        $empstatusfilter .= '';
+                    }
                 
                 
-                    $rslmt = 'ORDER BY ID DESC LIMIT '.$rsstrt.','.$noofrows;
-                    $mainqry='';
+                    $rslmt = $empstatusfilter.' ORDER BY ID DESC LIMIT '.$rsstrt.','.$noofrows;
+                    $mainqry= $empstatusfilter;
 
                 
                     $getdata = $this->commonquerycommon->userdetails($getuserid,$usergroup,$rslmt);

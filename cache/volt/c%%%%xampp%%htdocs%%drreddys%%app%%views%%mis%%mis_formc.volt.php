@@ -27,12 +27,21 @@ $current_year =  date("Y");
             <div style="float: right;">
                 <input type="text" placeholder="Search By Name" id="srch" class=" form-control" status="0">
             </div>
-        </div>
-        <div class="cssfilter">               
-            <div class="control-label form-group">
-            
+
+            <div class="cssfilter" style="float: right;">               
+                <div class="control-label form-group">
+                    <label>Employee Status</label>
+                    <select id="emp_status" name="emp_status" class="form-control">
+                        <option value="">All</option>
+                        <option value="1">Active</option>
+                        <option value="2">Resigned</option>
+                        <option value="3">Not a DP</option>
+                    </select>
+                </div>
             </div>
+
         </div>
+
 <div class="full_div">  
     <div class="pending_status col-md-2">
     <label>Status Filter</label>
@@ -55,6 +64,7 @@ $current_year =  date("Y");
                     <th>Sr No.</th> 
                     <!-- <th>PCT NO.</th>  -->
                     <th>Name</th> 
+                    <th>Employee Status</th> 
                   <!--   <th>Name Of Company</th>  -->
                     <th>Date Of Trade</th>
                     <th>Number Of Shares Traded</th>

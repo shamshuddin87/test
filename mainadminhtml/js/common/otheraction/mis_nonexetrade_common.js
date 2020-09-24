@@ -40,6 +40,11 @@ website('.bootdatepick').datetimepicker({
     });
   }
 
+website('body').on('change','#emp_status', function(e) 
+{
+    getmisnonexetrde();
+});
+
 getmisnonexetrde();
 
 function getmisnonexetrde()
@@ -47,10 +52,11 @@ function getmisnonexetrde()
     var search=website('#srch').val();
     var noofrows = website('#noofrows').val(); 
     var pagenum = website('#pagenum').val();
+    var emp_status = website('#emp_status').val();
     //console.log(noofrows+'*'+pagenum);return false;
     website.ajax({
         url:'mis/misnonexetrde',
-        data:{noofrows:noofrows,pagenum:pagenum,search:search},
+        data:{noofrows:noofrows,pagenum:pagenum,search:search,emp_status:emp_status},
         method:'POST',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
         dataType:"json",
@@ -72,6 +78,18 @@ function getmisnonexetrde()
                     htmlelements+='<tr>';
                     htmlelements+='<td width="10%">'+j+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
+                    if(response.data[i].emp_status == '1')
+                    {
+                        htmlelements+='<td width="10%">Active</td>';
+                    }
+                    else if(response.data[i].emp_status == '2')
+                    {
+                        htmlelements+='<td width="10%">Resigned</td>';
+                    }
+                    else if(response.data[i].emp_status == '3')
+                    {
+                        htmlelements+='<td width="10%">Not a DP</td>';
+                    }
                     // htmlelements+='<td width="10%">'+response.data[i].company_name+'</td>';
                     // if(response.data[i].no_of_shares>=25000)
                     // {

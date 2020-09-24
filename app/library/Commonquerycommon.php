@@ -96,7 +96,7 @@ class Commonquerycommon extends Component
     {
         $connection = $this->dbtrd;
         $sqlquery = "SELECT * FROM `it_memberlist` WHERE `user_id`='".$getuserid."'"; 
-        $sqlquery.=" AND `status`=1   ".$mainqry;
+        $sqlquery.=" AND `status`=1 ".$mainqry;
 
          // echo $sqlquery; exit;
         try

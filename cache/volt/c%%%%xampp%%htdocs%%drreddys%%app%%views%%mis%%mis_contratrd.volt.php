@@ -27,6 +27,19 @@ $current_year =  date("Y");
             <div style="float: right;">
                 <input type="text" placeholder="Search By Name" class=" form-control" id="srch" status="0">
             </div>
+
+            <div class="cssfilter" style="float: right;">               
+                <div class="control-label form-group">
+                    <label>Employee Status</label>
+                    <select id="emp_status" name="emp_status" class="form-control">
+                        <option value="">All</option>
+                        <option value="1">Active</option>
+                        <option value="2">Resigned</option>
+                        <option value="3">Not a DP</option>
+                    </select>
+                </div>
+            </div>
+
         </div>
         <div class="srcfac  form-inline " style="float: right;">
             <input type="text" class="bootdatepick form-control" id="date1"  placeholder="Start Date"  readonly="readonly"/>
@@ -38,6 +51,7 @@ $current_year =  date("Y");
                <tr>
                     <th>Sr No.</th> 
                     <th>Name</th> 
+                    <th>Employee Status</th>
                    <!--  <th>Company Name</th>  -->
                     <th>Trade(Buy/Sell)</th> 
                     <th>Date of Trade</th> 
