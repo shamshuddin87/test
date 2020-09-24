@@ -30,7 +30,7 @@ $current_year =  date("Y");
 
             <div class="cssfilter" style="float: right;margin-right: 10px;">               
                 <div class="control-label form-group">
-                    <label style="margin-top: 5px;">Employee Status</label>
+                    <label style="margin-top: 5px;">Status Filter</label>
                     <select id="filterstatus" name="filterstatus" class="form-control">
                         <option value="">All</option>
                         <option value="pending">Pending</option>
