@@ -359,20 +359,20 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                         </div>
                     </div>
 
-                    <div class="excluplod">
+                    <div class="excluplod" style="width: 500px;display: block;margin: auto;">
                         <form action="usermaster/uploadEmpStatus" id="uploadempstatus" method="post" enctype="multipart/form-data">
                             <div class="boxshadow col-md-6 col-md-offset-3"> 
-                                <label class="labelcss">Upload Employee Status Data Through Excel File</label>
+                                <label class="labelcss">Upload Bulk Employee Status Data Through Excel File</label>
                                 <div class="choose_files">
-                                    <input type="file" name="empstatusexcel" id="empstatusexcel">
+                                    <input type="file" name="empstatusexcel" id="empstatusexcel" class="form-control">
                                 </div>
                                 <div class="updatefile">
                                     <div class="sample_down floatleft">
-                                       <a href="samplefile\EmployeeStatus\employeestatus.xlsx" download=""><p class="sample">
-                                        Download Sample Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i></p></a>
+                                       <a href="samplefile\EmployeeStatus\employeestatus.xlsx" download="" style="padding: 5px 0;"><p class="sample">
+                                        Download Sample Excel <i class="fa fa-file-excel-o" aria-hidden="true" style="color: #4c8c13;"></i></p></a>
                                     </div>
                                     <div class="floatright"> 
-                                        <input type="submit" value="Upload" class="btn btn-primary btnlblne uploadcmdbtn">
+                                        <input type="submit" value="Upload" class="btn btn-primary btnlblne uploadcmdbtn" style="float: right;">
                                     </div>
                                     <div class="clearelement"></div> 
                                 </div> 
