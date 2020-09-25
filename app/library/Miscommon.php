@@ -1328,6 +1328,8 @@ class Miscommon extends Component
                  LEFT JOIN  `personal_info` pr  ON ups.`user_id`=pr.`userid` WHERE  ups.`projectowner` IN(".$userid.") ".$rslmt;
                   //print_r($query);exit;
             }
+
+            //print_r($query);die;
             
              $exeget = $connection->query($query);
              $getnum = trim($exeget->numRows());

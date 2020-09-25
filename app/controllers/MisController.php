@@ -1305,13 +1305,27 @@ class MisController extends ControllerBase
                 $emp_status=$this->request->getPost('emp_status');
                 $empstatusfilter = "";
 
-                if($emp_status !== '')
+                if($user_group_id == 2 || $user_group_id == 14)
                 {
-                    $empstatusfilter .= ' AND it.`emp_status`="'.$emp_status.'"';
+                    if($emp_status !== '')
+                    {
+                        $empstatusfilter = 'WHERE it.`emp_status`="'.$emp_status.'"' ;
+                    }
+                    else
+                    {
+                        $empstatusfilter .= '';
+                    }
                 }
                 else
                 {
-                    $empstatusfilter .= '';
+                    if($emp_status !== '')
+                    {
+                        $empstatusfilter .= ' AND it.`emp_status`="'.$emp_status.'"';
+                    }
+                    else
+                    {
+                        $empstatusfilter .= '';
+                    }
                 }
 
                 $mainquery = $empstatusfilter;
@@ -1368,14 +1382,29 @@ class MisController extends ControllerBase
             {
                 $request=$this->request->getPost('request');
                 $emp_status=$this->request->getPost('emp_status');
-                $empstatusfilter = '';
-                if($emp_status !== '')
+                $empstatusfilter = "";
+
+                if($user_group_id == 2 || $user_group_id == 14)
                 {
-                    $empstatusfilter .= ' AND it.`emp_status`="'.$emp_status.'"';
+                    if($emp_status !== '')
+                    {
+                        $empstatusfilter = 'WHERE it.`emp_status`="'.$emp_status.'"' ;
+                    }
+                    else
+                    {
+                        $empstatusfilter .= '';
+                    }
                 }
                 else
                 {
-                    $empstatusfilter .= '';
+                    if($emp_status !== '')
+                    {
+                        $empstatusfilter .= ' AND it.`emp_status`="'.$emp_status.'"';
+                    }
+                    else
+                    {
+                        $empstatusfilter .= '';
+                    }
                 }
 
                 $getres = $this->miscommon->fetchallupsitypes($getuserid,$user_group_id,$empstatusfilter);
