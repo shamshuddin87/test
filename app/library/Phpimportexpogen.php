@@ -152,13 +152,25 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         foreach($processdata as $tblrow)
         {
           
-          
+          if($tblrow['emp_status'] == '1')
+          {
+            $emp_status = 'Active';
+          }
+          elseif($tblrow['emp_status'] == '2')
+          {
+            $emp_status = 'Resigned';
+          }
+          elseif($tblrow['emp_status'] == '3')
+          {
+            $emp_status = 'Not a DP';
+          }
+
             $nwexcl[] = array('0' => $tblrow['upsitype'],
                             '1' => $tblrow['projstartdate'],
                             '2'=> $tblrow['enddate'],
                             '3' => $tblrow[11],
                             '4' => $tblrow['fullname'],
-                            '5' => $tblrow['emp_status']
+                            '5' => $emp_status
                            
                             //'4' => $tblrow['designation']
                            
