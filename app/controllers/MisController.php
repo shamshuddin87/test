@@ -927,12 +927,12 @@ class MisController extends ControllerBase
                     $empstatusfilter .= '';
                 }
 
-               /* if($filter == 'pending')
+                if($filter == 'pending')
                 {
-                    $filterquery = ' AND (formc.send_date IS NULL OR ts.`formcstatus`=0)';
+                    $filterquery = ' AND formc.send_date IS NULL';
                 }
-                else */if($filter == 'submitted')
-                {
+                elseif($filter == 'submitted')
+                { 
                     $filterquery = ' AND formc.send_date IS NOT NULL';
                 }
                 /*count current financial year*/
@@ -960,30 +960,31 @@ class MisController extends ControllerBase
                 /*count current financial year*/
                 if(empty($startdate) && empty($enddate))
                 {
-                    $mainquery = $empstatusfilter.$filterquery.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ORDER BY ts.ID DESC';
+                    $mainquery = $empstatusfilter.$filterquery.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ORDER BY ts.id DESC';
                 }
                 else
                 {
-                    $mainquery = $empstatusfilter.$filterquery.' AND DATE_ADD(STR_TO_DATE(ts.`date_of_transaction`,"%d-%m-%Y"),INTERVAL 2 DAY) BETWEEN STR_TO_DATE("'.$startdate.'","%Y-%m-%d") AND STR_TO_DATE("'.$enddate.'","%Y-%m-%d") AND (memb.`fullname` LIKE "%'.$searchby.'%" ) ORDER BY ts.ID DESC';
+                    $mainquery = $empstatusfilter.$filterquery.' AND DATE_ADD(STR_TO_DATE(ts.`date_of_transaction`,"%d-%m-%Y"),INTERVAL 2 DAY) BETWEEN STR_TO_DATE("'.$startdate.'","%Y-%m-%d") AND STR_TO_DATE("'.$enddate.'","%Y-%m-%d") AND (memb.`fullname` LIKE "%'.$searchby.'%" ) ORDER BY ts.id DESC';
                 }
                 
-                $getres = $this->miscommon->fetchmisformc($getuserid,$user_group_id,$finenddte,$finstrtdte,$mainquery,$filter);
+                $getdata = $this->miscommon->fetchmisformc($getuserid,$user_group_id,$finenddte,$finstrtdte,$mainquery,$filter);
+                //echo"<pre>";print_r($getdata);die;
                 
                 /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
                 if(empty($startdate) && empty($enddate))
                 {
-                    $rslmt = $empstatusfilter.$filterquery.'  AND (memb.`fullname` LIKE "%'.$searchby.'%") ORDER BY ts.ID DESC LIMIT ' .$rsstrt.','.$noofrows;
+                    $rslmt = $empstatusfilter.$filterquery.'  AND (memb.`fullname` LIKE "%'.$searchby.'%") ORDER BY ts.id DESC LIMIT ' .$rsstrt.','.$noofrows;
                 }
                 else
                 {
-                    $rslmt = $empstatusfilter.$filterquery.' AND DATE_ADD(STR_TO_DATE(ts.`date_of_transaction`,"%d-%m-%Y"),INTERVAL 2 DAY) BETWEEN STR_TO_DATE("'.$startdate.'","%Y-%m-%d") AND STR_TO_DATE("'.$enddate.'","%Y-%m-%d") AND (memb.`fullname` LIKE "%'.$searchby.'%") ORDER BY ts.ID DESC LIMIT ' .$rsstrt.','.$noofrows;
+                    $rslmt = $empstatusfilter.$filterquery.' AND DATE_ADD(STR_TO_DATE(ts.`date_of_transaction`,"%d-%m-%Y"),INTERVAL 2 DAY) BETWEEN STR_TO_DATE("'.$startdate.'","%Y-%m-%d") AND STR_TO_DATE("'.$enddate.'","%Y-%m-%d") AND (memb.`fullname` LIKE "%'.$searchby.'%") ORDER BY ts.id DESC LIMIT ' .$rsstrt.','.$noofrows; 
                 }
-                $rscnt=count($getres);
+                $rscnt=count($getdata);
                 $rspgs = ceil($rscnt/$noofrows);
                 $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
                 $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
-                //print_r($getres);exit;
+                //print_r($getdata);exit;
                 
                 $getres = $this->miscommon->fetchmisformc($getuserid,$user_group_id,$finenddte,$finstrtdte,$rslmt,$filter);
                 //print_r($getres);exit;

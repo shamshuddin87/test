@@ -794,46 +794,21 @@ class Miscommon extends Component
         // ************ Get MIS Form C START ************
     public function fetchmisformc($getuserid,$user_group_id,$finstrtdte,$finenddte,$query,$filter)
     {
+      //print_r($filter);die;
         $connection = $this->dbtrd;
        try
         {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $usersid = explode(',',$grpusrs['ulstring']);
-            $getlist = array();
-             // print_r($usersid);exit;
-            for($i= 0;$i<sizeof($usersid);$i++)
-            {
-              $getcmpid=$this->getallcompanyid($usersid[$i]);
-                // print_r($getcmpid);
-               $allcmpid=implode('","',$getcmpid);
-
-               // print_r("------------------");
-               //     print_r($usersid[$n]);
-               //     print_r("~");
-               // print_r($allcmpid);
-               // print_r("------------------");
-             
-//               //   print_r("-------------");
+   
+            $queryget = 'SELECT memb.`fullname`,memb.`emp_status`,lst.`company_name`,ts.`date_of_transaction`,ts.`no_of_share`,formc.`send_date`,ts.`total_amount` 
+              FROM `trading_status` ts
+              LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ts.`user_id` 
+              LEFT JOIN `sebiformc_usrdata` formc ON ts.`id` = formc.`tradeid` 
+              LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
+              LEFT JOIN `listedcmpmodule` lst ON lst.`id`=pr.`id_of_company`
+              WHERE ts.`user_id` IN ('.$grpusrs['ulstring'].') AND ts.`id_of_company` IS NOT NULL AND ts.`total_amount` > 1000000 AND ts.`date_of_transaction` BETWEEN "'.$finstrtdte.'" AND "'.$finenddte.'" '.$query; 
                 
-              
-                  for($k=0;$k<sizeof($getcmpid);$k++)
-                  {
-                    $queryget = 'SELECT memb.`fullname`,memb.`emp_status`,lst.`company_name`,ts.`date_of_transaction`,ts.`no_of_share`,formc.`send_date`,ts.`total_amount` 
-                  
-                      FROM  `trading_status` ts
-                      LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ts.`user_id` 
-                      LEFT JOIN `sebiformc_usrdata` formc ON ts.`id` = formc.`tradeid` 
-                      LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
-                      LEFT JOIN `listedcmpmodule` lst ON lst.`id`=pr.`id_of_company`
-                      WHERE ts.`user_id`= "'.$usersid[$i].'" AND  ts.`id_of_company`="'.$getcmpid[$k].'" AND ts.`date_of_transaction` BETWEEN "'.$finstrtdte.'" AND "'.$finenddte.'" '.$query; 
-                
-                  //print_r($queryget);
-
-                 // print_r("-----------------------------");
-
-                 // echo $i; 
-// 
-                // print_r("---------------------------");
+                //print_r($queryget);die;
                 $exeget = $connection->query($queryget);
                 $getnum = trim($exeget->numRows());
 
@@ -841,45 +816,15 @@ class Miscommon extends Component
 
                 if($getnum>0)
                 {
-                  $totlamnt[$k] = 0;
-                	// print_r("herer");exit;
                     while($row = $exeget->fetch())
                     {
-                        $totlamnt[$k] = $totlamnt[$k]+$row['total_amount'];
-                        $data = $row;
+                        $data[] = $row;
                     }
-                    // print_r($totlamnt[$k]);
                      
-                    if($totlamnt[$k]> 1000000)
-                    {
-                        if($filter == 'pending')
-                        {
-                            $getlist[] = $data;
-                            foreach($data as $key => $values)
-                            {
-                                if(!empty($values['send_date']))
-                                {
-                                    unset($data[$key]);
-                                    $getlist[] = array_values($data);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            $getlist[]= $data;
-                        }
-                    }
-                    else
-                    {   
-                        $data = array();
-                    }
-                    //exit;
-
+                     $getlist = $data;
                 }
-            }
-              //echo '<pre>';print_r($getlist);
-        
-        }
+              //echo '<pre>';print_r($getlist);die;
+
 
       }
         catch (Exception $e)
