@@ -31,16 +31,16 @@ else
 {var addhtmlnxt='';var dept='';var companyname='';for(var i=0;i<response.data.length;i++)
 {var fullname=response.data[i].fullname?response.data[i].fullname:'NONE';var email=response.data[i].email?response.data[i].email:'NONE';var dpdate=response.data[i].dpdate?response.data[i].dpdate:'NONE'
 var designation=response.data[i].designation?response.data[i].designation:'NONE';var companyname=response.data[i].companyname?response.data[i].companyname:'NONE';var departmentname=response.data[i].department?response.data[i].department:'NONE'
-var employeecode=response.data[i].employeecode?response.data[i].employeecode:'';var j=i+1;addhtmlnxt+='<tr class="counter" tempid="'+response.data[i].id+'" >';addhtmlnxt+='<td width="15%">'+j+'</td>';addhtmlnxt+='<td width="10%">'+employeecode+'</td>';addhtmlnxt+='<td width="15%">'+fullname+'</td>';addhtmlnxt+='<td width="15%">'+email+'</td>';addhtmlnxt+='<td width="15%">'+designation+'</td>';addhtmlnxt+='<td width="15%">'+dpdate+'</td>';addhtmlnxt+='<td width="15%">'+companyname+'</td>';addhtmlnxt+='<td width="15%">'+departmentname+'</td>';if(response.data[i].emp_status=='1')
-{addhtmlnxt+='<td width="15%">Active</td>';}
+var employeecode=response.data[i].employeecode?response.data[i].employeecode:'';var j=i+1;addhtmlnxt+='<tr class="counter" tempid="'+response.data[i].id+'" >';addhtmlnxt+='<td width="15%">'+j+'</td>';addhtmlnxt+='<td width="10%">'+employeecode+'</td>';addhtmlnxt+='<td width="15%">'+fullname+'</td>';addhtmlnxt+='<td width="15%">'+email+'</td>';addhtmlnxt+='<td width="15%">'+designation+'</td>';addhtmlnxt+='<td width="15%">'+dpdate+'</td>';addhtmlnxt+='<td width="15%">'+departmentname+'</td>';if(response.data[i].emp_status=='1')
+{addhtmlnxt+='<td width="10%">Active</td>';}
 else if(response.data[i].emp_status=='2')
-{addhtmlnxt+='<td width="15%">Resigned</td>';}
+{addhtmlnxt+='<td width="10%">Resigned</td>';}
 else if(response.data[i].emp_status=='3')
-{addhtmlnxt+='<td width="15%">Not a DP</td>';}
-if(response.data[i].master_group_id==2)
+{addhtmlnxt+='<td width="10%">Not a DP</td>';}
+addhtmlnxt+='<td width="10%">'+response.data[i].resignordeletiondate+'</td>';if(response.data[i].master_group_id==2)
 {addhtmlnxt+='<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i></td>';}
 else
-{addhtmlnxt+='<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i><i class="fa fa-trash-o faicon dbdeleteme" title="Delete entry" tempid="'+response.data[i].id+'" ></i></td>';}
+{addhtmlnxt+='<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i></td>';}
 addhtmlnxt+='</tr>';}}
 else
 {addhtmlnxt+='<tr><td colspan="8" style="text-align:center;">NO DATA FOUND</td></tr>';}

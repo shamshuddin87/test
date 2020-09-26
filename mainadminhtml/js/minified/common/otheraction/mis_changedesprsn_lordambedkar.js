@@ -18,7 +18,7 @@ else if(response.data[i].emp_status=='2')
 {htmlelements+='<td width="10%">Resigned</td>';}
 else if(response.data[i].emp_status=='3')
 {htmlelements+='<td width="10%">Not a DP</td>';}
-htmlelements+='<td width="10%">'+resign+'</td>'
+htmlelements+='<td width="10%">'+resign+'</td>';htmlelements+='<td width="10%">'+response.data[i].resignordeletiondate+'</td>'
 if(response.data[i].status==1)
 {htmlelements+='<td width="10%">Addition</td>';}
 else if(response.data[i].status==0)

@@ -889,22 +889,39 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
     public function updateEmployeeStatus($email,$emp_status,$resignordeletiondate)
     {
         $connection = $this->dbtrd;
+        $conn = $this->db;
+
+        if($emp_status == '1')
+        {
+            $status = '1';
+        }
+        else
+        {
+            $status = '0';
+        }
 
         $queryupdate = "UPDATE `it_memberlist` SET
+                        `status`= '".$status."',
                         `emp_status`= '".$emp_status."',
                         `resignordeletiondate`= '".$resignordeletiondate."',
                         `date_modified`=NOW() 
                         WHERE `email`='".$email."'";
-         //print_r($queryupdate);
+
+        $querywru = "UPDATE `web_register_user` SET 
+                status='".$status."'
+                WHERE email='".$email."'";
+            //echo "<pre>"; print_r($querywru);exit;
+            
         try
         {
-            $exeprev = $connection->query($queryupdate);
+            $exeprev = $connection->query($queryupdate);   
+            $exewru = $conn->query($querywru);    
             return true;
         }
         catch (Exception $e) 
         {
             return false;
-        }
+        }  
     }
 
 }

@@ -103,8 +103,11 @@ function getmischngedesprsn()
                     {
                         htmlelements+='<td width="10%">Not a DP</td>';
                     }
+
                     // htmlelements+='<td width="10%">'+response.data[i].employeecode+'</td>';
-                    htmlelements+='<td width="10%">'+resign+'</td>'
+                    htmlelements+='<td width="10%">'+resign+'</td>';
+
+                    htmlelements+='<td width="10%">'+response.data[i].resignordeletiondate+'</td>'
 
                     if(response.data[i].status==1)
                     {

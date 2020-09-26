@@ -50,11 +50,12 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                         <!--  <th>Mobile</th> -->
                                         <th>Designation</th>
                                         <th>Date Of Becoming Designation Person</th>
-                                        <th>Company</th>
+                                        <!-- <th>Company</th> -->
                                         <th>Department</th>
                                         <th>Status</th>
+                                        <th>Resignation/Deletion date</th>
                                         <!-- <th>Reminder Days</th> -->
-                                        <th>Action</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody class="appendrow" appendrow='1'></tbody>

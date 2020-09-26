@@ -60,7 +60,8 @@ $current_year =  date("Y");
                     <th>Name</th> 
                     <th>Employee Status</th>
                    <!--  <th>Employee ID</th>  -->
-                    <th>Resignation Date</th> 
+                    <th>Date of becoming DP</th> 
+                    <th>Date of Resignation/Deletion</th>
                     <th>Addition/ Deletion</th> 
                     <th>Date of Change</th> 
                 </tr>
