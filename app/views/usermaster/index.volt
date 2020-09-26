@@ -23,7 +23,11 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                     </select>
                     <span>Entries</span>
 
-                <div class="cssfilter" style="float: right;">               
+                <div class="top_margin">
+                    <input style="width: 217px" type="text" placeholder="Search By Emp Id/User Name" class="form-control" id="srch" status="0">
+                </div>
+
+                <div class="cssfilter">               
                     <div class="control-label form-group">
                         <label>Employee Status</label>
                         <select id="emp_status" name="emp_status" class="form-control">

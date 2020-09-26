@@ -479,10 +479,22 @@ class UsermasterController extends ControllerBase
                     $noofrows = $this->request->getPost('noofrows','trim');
                     $pagenum = $this->request->getPost('pagenum','trim');
                     $emp_status = $this->request->getPost('emp_status','trim');
+                    $searchby = $this->request->getPost('search');
                     //echo $pagenum.'*'.$noofrows; exit;
                     $rsstrt = ($pagenum-1) * $noofrows;
                     //echo $rsstrt; exit;
                 // ------- Pagination End -------
+
+                    $searchfilter = '';
+                    if($searchby !== '')
+                    {
+                        $searchfilter .= ' AND (`fullname` LIKE "%'.$searchby.'%" OR `employeecode` LIKE "%'.$searchby.'%")';
+                    }
+                    else
+                    {
+                        $searchfilter .= '';
+                    }
+
 
                     $empstatusfilter = '';
 
@@ -496,8 +508,8 @@ class UsermasterController extends ControllerBase
                     }
                 
                 
-                    $rslmt = $empstatusfilter.' ORDER BY ID DESC LIMIT '.$rsstrt.','.$noofrows;
-                    $mainqry= $empstatusfilter;
+                    $rslmt = $searchfilter.$empstatusfilter.' ORDER BY ID DESC LIMIT '.$rsstrt.','.$noofrows;
+                    $mainqry= $searchfilter.$empstatusfilter;
 
                 
                     $getdata = $this->commonquerycommon->userdetails($getuserid,$usergroup,$rslmt);

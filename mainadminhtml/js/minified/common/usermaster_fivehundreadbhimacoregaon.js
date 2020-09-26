@@ -23,8 +23,10 @@ else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function()
 {}});website('body').on('change','#emp_status',function(e)
-{getuserlistonload();});getuserlistonload();function getuserlistonload()
-{var noofrows=website('#noofrows').val();var pagenum=website('#pagenum').val();var emp_status=website('#emp_status').val();var formdata={noofrows:noofrows,pagenum:pagenum,emp_status:emp_status};website.ajax({url:'usermaster/fetchuser',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{getuserlistonload();});website("#srch").on("keyup",function(){var search=website('#srch').val();var pagenum=website('#pagenum').val();website('#srch').attr('status','0');if(pagenum!=1)
+{website('#pagenum').val(1);}
+getuserlistonload();});getuserlistonload();function getuserlistonload()
+{var noofrows=website('#noofrows').val();var pagenum=website('#pagenum').val();var search=website('#srch').val();var emp_status=website('#emp_status').val();var formdata={noofrows:noofrows,pagenum:pagenum,emp_status:emp_status,search:search};website.ajax({url:'usermaster/fetchuser',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
@@ -37,7 +39,11 @@ else if(response.data[i].emp_status=='2')
 {addhtmlnxt+='<td width="10%">Resigned</td>';}
 else if(response.data[i].emp_status=='3')
 {addhtmlnxt+='<td width="10%">Not a DP</td>';}
-addhtmlnxt+='<td width="10%">'+response.data[i].resignordeletiondate+'</td>';if(response.data[i].master_group_id==2)
+if(response.data[i].resignordeletiondate===null)
+{addhtmlnxt+='<td width="10%"></td>';}
+else
+{addhtmlnxt+='<td width="10%">'+response.data[i].resignordeletiondate+'</td>';}
+if(response.data[i].master_group_id==2)
 {addhtmlnxt+='<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i></td>';}
 else
 {addhtmlnxt+='<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i></td>';}

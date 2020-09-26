@@ -205,16 +205,29 @@ website('body').on('change','#emp_status', function(e)
     getuserlistonload();
 });
 
+
+website("#srch").on("keyup", function() {
+    var search=website('#srch').val();
+    var pagenum = website('#pagenum').val();
+    website('#srch').attr('status','0');
+    if(pagenum!=1)
+    {
+        website('#pagenum').val(1);
+    }
+    getuserlistonload();
+});
+
 //##########################################ONLOAD USER MASTER LIST START HERE############################################//
 getuserlistonload();
 function getuserlistonload()
 {
     var noofrows = website('#noofrows').val(); 
     var pagenum = website('#pagenum').val();
+    var search = website('#srch').val();
     var emp_status = website('#emp_status').val();
     // var chkclk = '';
     // var numofdata = 'all';
-    var formdata = {noofrows:noofrows,pagenum:pagenum,emp_status:emp_status};
+    var formdata = {noofrows:noofrows,pagenum:pagenum,emp_status:emp_status,search:search};
     website.ajax({
         url:'usermaster/fetchuser',
         data:formdata,

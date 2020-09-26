@@ -95,8 +95,9 @@ class Commonquerycommon extends Component
     public function userdetails($getuserid,$usergroup,$mainqry)
     {
         $connection = $this->dbtrd;
-        $sqlquery = "SELECT * FROM `it_memberlist` WHERE `user_id`='".$getuserid."'"; 
-        $sqlquery.=" AND `status`=1 ".$mainqry;
+        $sqlquery = "SELECT * FROM `it_memberlist` WHERE `user_id`='".$getuserid."' "; 
+        // $sqlquery.=" AND `status`=1 ".$mainqry;
+        $sqlquery.=$mainqry;
 
          // echo $sqlquery; exit;
         try
