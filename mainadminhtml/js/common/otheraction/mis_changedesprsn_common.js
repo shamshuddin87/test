@@ -107,7 +107,15 @@ function getmischngedesprsn()
                     // htmlelements+='<td width="10%">'+response.data[i].employeecode+'</td>';
                     htmlelements+='<td width="10%">'+resign+'</td>';
 
-                    htmlelements+='<td width="10%">'+response.data[i].resignordeletiondate+'</td>'
+                    if (response.data[i].resignordeletiondate === null)
+                    {
+                        htmlelements+='<td width="10%"></td>';
+                    }
+                    else
+                    {
+                        htmlelements+='<td width="10%">'+response.data[i].resignordeletiondate+'</td>';
+                    }
+                    
 
                     if(response.data[i].status==1)
                     {

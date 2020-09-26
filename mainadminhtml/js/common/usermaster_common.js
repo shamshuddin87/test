@@ -279,7 +279,15 @@ function getuserlistonload()
                         addhtmlnxt+='<td width="10%">Not a DP</td>';
                     }
 
-                    addhtmlnxt+='<td width="10%">'+response.data[i].resignordeletiondate+'</td>';
+                    if (response.data[i].resignordeletiondate === null)
+                    {
+                        addhtmlnxt+='<td width="10%"></td>';
+                    }
+                    else
+                    {
+                        addhtmlnxt+='<td width="10%">'+response.data[i].resignordeletiondate+'</td>';
+                    }
+                    
 
                     if(response.data[i].master_group_id==2)
                     {
