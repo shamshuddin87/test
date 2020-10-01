@@ -861,7 +861,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         $connection = $this->dbtrd;
         $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
         $querysql = "SELECT `email` FROM `it_memberlist` 
-                     WHERE `wr_id` IN (".$grpusrs['ulstring'].") AND `status`='1'";
+                     WHERE `wr_id` IN (".$grpusrs['ulstring'].")";
         //echo $querysql;exit;
         try
         {
