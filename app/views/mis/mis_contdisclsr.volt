@@ -57,7 +57,7 @@ $current_year =  date("Y");
                 </div>
             </section>
             <div class="past_search col col-xs-2">
-                 <button type="button" style="margin: 20px 20px 0 20px;" class="btncss btn searchbtn btn-primary">Search Now</button>
+                 <button type="button" style="margin: 23px 20px 0 20px;padding: 8px 12px;" class="btncss btn searchbtn btn-primary ">Search Now</button>
             </div> 
         </div>
         
@@ -85,12 +85,25 @@ $current_year =  date("Y");
             </div>
         </div>  -->
 
-         <div class="searhbyname">
+        <div class="cssfilter">               
+            <div class="control-label form-group">
+                <label>Employee Status</label>
+                <select id="emp_status" name="emp_status" class="form-control">
+                    <option value="">All</option>
+                    <option value="1">Active</option>
+                    <option value="2">Resigned</option>
+                    <option value="3">Not a DP</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="searhbyname">
             <input type="text" placeholder="Search By Name" class="form-control " id="srch" status="0">
         </div>
 
+
         <div class="excelanddownloadbtn">
-            <button type="button" class="btn btn-primary genfile excel_bg">Export Excel</button>
+            <button type="button" class="btn btn-primary genfile excel_bg" style="    padding: 8px 12px; ">Export Excel</button>
             <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
         </div>
         </div>
@@ -99,6 +112,7 @@ $current_year =  date("Y");
                <tr>
                     <th>Sr No.</th> 
                     <th>Name</th> 
+                    <th>Employee Status</th> 
                     <!-- <th>Employee ID</th>  -->
                     <th>Date of Submission</th>
                     <!-- <th>Due for receipt</th> -->

@@ -19,12 +19,18 @@ website('body').on('click','.go_button', function(e)
     getdataonload();
 });
 
+website('body').on('click','#emp_status', function(e) 
+{
+    getdataonload();
+});
+
  getdataonload();
 function getdataonload()
 {
     var noofrows = website('#noofrows').val(); 
     var pagenum = website('#pagenum').val();
-    var formdata = {noofrows:noofrows,pagenum:pagenum};
+    var emp_status = website('#emp_status').val();
+    var formdata = {noofrows:noofrows,pagenum:pagenum,emp_status:emp_status};
     website.ajax({
       url:'mis/fetchallupsitypes',
       data:formdata,
@@ -56,6 +62,18 @@ function getdataonload()
                 myhtml+='<td>'+enddate+'</td>';
                 myhtml+='<td>'+response.resdta[i]['dtadd']+'</td>';
                 myhtml+='<td>'+response.resdta[i]['fullname']+'</td>';
+                if(response.resdta[i].emp_status == '1')
+                {
+                    myhtml+='<td>Active</td>';
+                }
+                else if(response.resdta[i].emp_status == '2')
+                {
+                    myhtml+='<td>Resigned</td>';
+                }
+                else if(response.resdta[i].emp_status == '3')
+                {
+                    myhtml+='<td>Not a DP</td>';
+                }
                 myhtml+='</tr>';
             }
 
@@ -88,7 +106,8 @@ website('body').on('click','.getallups', function(e)
 });
   website('.genfile').on('click', function(e) {
     var request=website(this).attr('request');
-    var formdata={request:request}
+    var emp_status = website("#emp_status").val();
+    var formdata={request:request,emp_status:emp_status}
     // alert(request);return false;
  website.ajax({
         url:'mis/fetchallupsiexport',

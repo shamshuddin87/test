@@ -152,12 +152,25 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         foreach($processdata as $tblrow)
         {
           
-          
+          if($tblrow['emp_status'] == '1')
+          {
+            $emp_status = 'Active';
+          }
+          elseif($tblrow['emp_status'] == '2')
+          {
+            $emp_status = 'Resigned';
+          }
+          elseif($tblrow['emp_status'] == '3')
+          {
+            $emp_status = 'Not a DP';
+          }
+
             $nwexcl[] = array('0' => $tblrow['upsitype'],
                             '1' => $tblrow['projstartdate'],
                             '2'=> $tblrow['enddate'],
                             '3' => $tblrow[11],
-                            '4' => $tblrow['fullname']
+                            '4' => $tblrow['fullname'],
+                            '5' => $emp_status
                            
                             //'4' => $tblrow['designation']
                            
@@ -487,12 +500,26 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
             {
                 $sentdate = '';
             }
+
+            if($tblrow['emp_status'] == '1')
+            {
+                $emp_status = 'Active';
+            }
+            elseif($tblrow['emp_status'] == '2')
+            {
+                $emp_status = 'Resigned';
+            }
+            elseif($tblrow['emp_status'] == '3')
+            {
+                $emp_status = 'Not a DP';
+            }
             
             $nwexcl[] = array('0' => $j,
                             '1' => $tblrow['fullname'],
-                            '2' => $tblrow['email'],
-                            '3'=> $annualyr,
-                            '4' => $sentdate,
+                            '2' => $emp_status,
+                            '3' => $tblrow['email'],
+                            '4'=> $annualyr,
+                            '5' => $sentdate,
                         );
             $j++;
         }
@@ -705,10 +732,24 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         $j=1;
         foreach($processdata as $tblrow)
         {
+            if($tblrow['emp_status'] == '1')
+            {
+                $emp_status = 'Active';
+            }
+            elseif($tblrow['emp_status'] == '2')
+            {
+                $emp_status = 'Resigned';
+            }
+            elseif($tblrow['emp_status'] == '3')
+            {
+                $emp_status = 'Not a DP';
+            }
+
             $formated_date = date('d-m-Y',strtotime($tblrow['date_added']));
             $nwexcl[] = array('0' => $j,
                             '1' => $tblrow['fullname'],
-                            '2'=> $formated_date
+                            '2' => $emp_status,
+                            '3'=> $formated_date
                         );
             $j++;
         }
@@ -755,4 +796,132 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         //echo '<pre>';print_r($genfile);exit;
         return $genfile;
     }
+
+    public function updateEmpStatusViaExcel($getuserid,$user_group_id,$cin,$excelfilenamepath)
+    {
+        $connection = $this->dbtrd;
+        $time= time();
+
+         /**  Advise the Reader of which WorkSheets we want to load  **/
+         $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+         $objPHPExcel->setActiveSheetIndex(0);
+         $worksheet = $objPHPExcel->getActiveSheet(0);
+
+        try
+        {
+                $objPHPExcel->setActiveSheetIndex(0);
+                $worksheet = $objPHPExcel->getActiveSheet();
+                $highestRow = $worksheet->getHighestRow();
+                //echo $highestRow;exit;
+                $limit = $highestRow;
+                $useremail = $this->fetchUserEmail($getuserid,$user_group_id);
+                //echo"<pre>";print_r($limit);die;
+                for ($row = 2; $row <= $limit ; $row++ )
+                {
+                    $email  = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    $emp_status  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $resignordeletiondate  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    if(!empty($resignordeletiondate))
+                    {
+                        $resignordeletiondate =  PHPExcel_Style_NumberFormat::toFormattedString($resignordeletiondate, "DD-MM-YYYY");
+                    }
+                    
+                    
+
+                    if($emp_status == 'Active')
+                    {
+                        $emp_status = 1;
+                    }
+                    else if($emp_status == 'Resigned')
+                    {
+                        $emp_status = 2;
+                    }
+                    else if($emp_status == 'Not a DP')
+                    {
+                        $emp_status = 3;
+                    }
+
+                    if (in_array($email, $useremail)) 
+                    {
+                        $this->updateEmployeeStatus($email,$emp_status,$resignordeletiondate);
+                    } 
+                }
+                return true;
+        }
+        catch (Exception $e)
+        {
+            return false;
+            $connection->close();
+        }
+    }
+
+
+    public function fetchUserEmail($getuserid,$user_group_id)
+    {
+        $connection = $this->dbtrd;
+        $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
+        $querysql = "SELECT `email` FROM `it_memberlist` 
+                     WHERE `wr_id` IN (".$grpusrs['ulstring'].") AND `status`='1'";
+        //echo $querysql;exit;
+        try
+        {
+            $exesql = $connection->query($querysql);
+            $getnum = trim($exesql->numRows());
+            if($getnum>0)
+            {
+                while($row = $exesql->fetch())
+                {
+                    $getlist[] = $row['email'];
+                }
+            }
+            else{
+                $getlist = array();
+            }
+        }
+        catch (Exception $e) {
+            $getlist = array();
+            $connection->close();
+        }        
+       //echo '<pre> lib';print_r($getlist);exit;
+        return $getlist;
+    }
+
+    public function updateEmployeeStatus($email,$emp_status,$resignordeletiondate)
+    {
+        $connection = $this->dbtrd;
+        $conn = $this->db;
+
+        if($emp_status == '1')
+        {
+            $status = '1';
+        }
+        else
+        {
+            $status = '0';
+        }
+
+        $queryupdate = "UPDATE `it_memberlist` SET
+                        `status`= '".$status."',
+                        `emp_status`= '".$emp_status."',
+                        `resignordeletiondate`= '".$resignordeletiondate."',
+                        `date_modified`=NOW() 
+                        WHERE `email`='".$email."'";
+
+        $querywru = "UPDATE `web_register_user` SET 
+                status='".$status."'
+                WHERE email='".$email."'";
+            //echo "<pre>"; print_r($querywru);exit;
+            
+        try
+        {
+            $exeprev = $connection->query($queryupdate);   
+            $exewru = $conn->query($querywru);    
+            return true;
+        }
+        catch (Exception $e) 
+        {
+            return false;
+        }  
+    }
+
 }

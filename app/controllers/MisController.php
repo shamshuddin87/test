@@ -128,6 +128,7 @@ class MisController extends ControllerBase
                 $noofrows = $this->request->getPost('noofrows','trim');
                 $pagenum = $this->request->getPost('pagenum','trim');
                 $searchby = $this->request->getPost('search');
+                $emp_status = $this->request->getPost('emp_status');
                 //echo $pagenum.'*'.$noofrows; exit;
                 $rsstrt = ($pagenum-1) * $noofrows;
                 //echo $rsstrt; exit;
@@ -138,17 +139,27 @@ class MisController extends ControllerBase
                 $orderby = ' ORDER BY `wr_id` DESC';
                 //echo $searchby; exit;
 
+                $mainqry = '';
                 if($searchby !== '')
                 {
-                    $mainqry = ' AND `fullname` LIKE "%'.$searchby.'%"';
+                    $mainqry .= ' AND `fullname` LIKE "%'.$searchby.'%"';
                 }
                 else
                 {
-                    $mainqry = '';
+                    $mainqry .= '';
+                }
+
+                if($emp_status !== '')
+                {
+                    $mainqry .= ' AND `emp_status`="'.$emp_status.'"';
+                }
+                else
+                {
+                    $mainqry .= '';
                 }
 
                 $fnlqry = $mainqry.$orderby.$rslmt;
-                //echo $sqlfltr1; exit;
+                //echo $fnlqry; exit;
                 // ------------ Queries End ------------
                                 
                 $getdata = $this->miscommon->fetchsubuser($getuserid,$user_group_id,$fnlqry);
@@ -249,6 +260,19 @@ class MisController extends ControllerBase
             
             $addhtmlnxt .= '<tr class="redirectpg" userid="'.$usrdata['wr_id'].'">';
             $addhtmlnxt .= '<td width="25%">'.$usrdata['fullname'].'</td>';
+            if($usrdata['emp_status'] == '1')
+            {
+                $addhtmlnxt .= '<td width="25%">Active</td>';
+            }
+            elseif($usrdata['emp_status'] == '2')
+            {
+                $addhtmlnxt .= '<td width="25%">Resigned</td>';
+            }
+            elseif($usrdata['emp_status'] == '3')
+            {
+                $addhtmlnxt .= '<td width="25%">Not a DP</td>';
+            }
+            
             $addhtmlnxt .= '<td width="25%">'.$sum1.'</td>';
             $addhtmlnxt .= '<td width="25%">'.$sum2.'</td>';
             //$addhtmlnxt .= '<td width="25%">'.$sum3.'</td>';
@@ -398,7 +422,19 @@ class MisController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
-                $getres = $this->miscommon->fetchrecipient($getuserid,$user_group_id);
+                $emp_status=$this->request->getPost('emp_status');
+                $empstatusfilter = '';
+
+                if($emp_status !== '')
+                {
+                    $empstatusfilter .= ' AND memb.`emp_status`="'.$emp_status.'"';
+                }
+                else
+                {
+                    $empstatusfilter .= '';
+                }
+
+                $getres = $this->miscommon->fetchrecipient($getuserid,$user_group_id,$empstatusfilter);
                 //print_r($getres);exit;
                 if($getres)
                 {
@@ -565,24 +601,36 @@ class MisController extends ControllerBase
                 $startdate = $this->request->getPost('startdate');
                 $enddate = $this->request->getPost('enddate');
                 $dresign=$this->request->getPost('dresign');
+                $emp_status=$this->request->getPost('emp_status');
                 // print_r($dresign);exit;
-                $mainquery = ' AND (`fullname` LIKE "%'.$searchby.'%")';
+                $empstatusfilter = '';
+
+                if($emp_status !== '')
+                {
+                    $empstatusfilter .= ' AND `emp_status`="'.$emp_status.'"';
+                }
+                else
+                {
+                    $empstatusfilter .= '';
+                }
+
+                $mainquery = $empstatusfilter.' AND (`fullname` LIKE "%'.$searchby.'%")';
                 $rsstrt = ($pagenum-1) * $noofrows;
-                $rslmt =' AND (`fullname` LIKE "%'.$searchby.'%" )  LIMIT '.$rsstrt.','.$noofrows;
+                $rslmt = $empstatusfilter.' AND (`fullname` LIKE "%'.$searchby.'%" )  LIMIT '.$rsstrt.','.$noofrows;
                 if(!empty($startdate) && !empty($enddate))
                 {
-                    $mainquery = ' AND STR_TO_DATE(`date_modified`,"%Y-%m-%d") BETWEEN STR_TO_DATE("'.$startdate.'","%Y-%m-%d") AND STR_TO_DATE("'.$enddate.'","%Y-%m-%d") AND (`fullname` LIKE "%'.$searchby.'%" OR `employeecode` LIKE "%'.$searchby.'%")';
+                    $mainquery = ' AND STR_TO_DATE(`date_modified`,"%Y-%m-%d") BETWEEN STR_TO_DATE("'.$startdate.'","%Y-%m-%d") AND STR_TO_DATE("'.$enddate.'","%Y-%m-%d") AND (`fullname` LIKE "%'.$searchby.'%" OR `employeecode` LIKE "%'.$searchby.'%")'.$empstatusfilter;
                     
-                    $rslmt =' AND STR_TO_DATE(`date_modified`,"%Y-%m-%d") BETWEEN STR_TO_DATE("'.$startdate.'","%Y-%m-%d") AND STR_TO_DATE("'.$enddate.'","%Y-%m-%d") AND (`fullname` LIKE "%'.$searchby.'%" OR `employeecode` LIKE "%'.$searchby.'%")  LIMIT '.$rsstrt.','.$noofrows;
+                    $rslmt =' AND STR_TO_DATE(`date_modified`,"%Y-%m-%d") BETWEEN STR_TO_DATE("'.$startdate.'","%Y-%m-%d") AND STR_TO_DATE("'.$enddate.'","%Y-%m-%d") AND (`fullname` LIKE "%'.$searchby.'%" OR `employeecode` LIKE "%'.$searchby.'%")'.$empstatusfilter.'  LIMIT '.$rsstrt.','.$noofrows;
                 }
                 if($dresign==1)
                 {
                      $mydate= date ( "d-m-Y", strtotime("-6 month",time("d-m-Y")));
                      $today=date("d-m-Y");
                      // print_r($mydate);exit; 
-                     $mainquery = ' AND STR_TO_DATE(`dpdate`,"%d-%m-%Y") BETWEEN STR_TO_DATE("'.$mydate.'","%d-%m-%Y") AND STR_TO_DATE("'.$today.'","%d-%m-%Y") AND (`fullname` LIKE "%'.$searchby.'%" )';
+                     $mainquery = ' AND STR_TO_DATE(`dpdate`,"%d-%m-%Y") BETWEEN STR_TO_DATE("'.$mydate.'","%d-%m-%Y") AND STR_TO_DATE("'.$today.'","%d-%m-%Y") AND (`fullname` LIKE "%'.$searchby.'%" )'.$empstatusfilter;
                     
-                    $rslmt =' AND STR_TO_DATE(`dpdate`,"%d-%m-%Y") BETWEEN STR_TO_DATE("'.$mydate.'","%d-%m-%Y") AND STR_TO_DATE("'.$today.'","%d-%m-%Y") AND (`fullname` LIKE "%'.$searchby.'%") LIMIT '.$rsstrt.','.$noofrows;  
+                    $rslmt =' AND STR_TO_DATE(`dpdate`,"%d-%m-%Y") BETWEEN STR_TO_DATE("'.$mydate.'","%d-%m-%Y") AND STR_TO_DATE("'.$today.'","%d-%m-%Y") AND (`fullname` LIKE "%'.$searchby.'%")'.$empstatusfilter.' LIMIT '.$rsstrt.','.$noofrows;  
 
                         // SELECT * FROM `it_memberlist` WHERE user_id = '1' AND  STR_TO_DATE(`resignationdte`,"%d-%m-%Y") BETWEEN STR_TO_DATE("07-02-2019","%d-%m-%Y") AND STR_TO_DATE("07-08-2019","%d-%m-%Y") 
                 }
@@ -642,15 +690,26 @@ class MisController extends ControllerBase
                 $searchby = $this->request->getPost('search');
                 $startdate = $this->request->getPost('startdate');
                 $enddate = $this->request->getPost('enddate');
+                $emp_status = $this->request->getPost('emp_status');
+                $empstatusfilter = '';
+
+                if($emp_status !== '')
+                {
+                    $empstatusfilter .= ' AND memb.`emp_status`="'.$emp_status.'"';
+                }
+                else
+                {
+                    $empstatusfilter .= '';
+                }
                 
-                $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
+                $mainquery = $empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
                 $rsstrt = ($pagenum-1) * $noofrows;
-                $rslmt =' AND (memb.`fullname` LIKE "%'.$searchby.'%" )  LIMIT '.$rsstrt.','.$noofrows;
+                $rslmt = $empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )  LIMIT '.$rsstrt.','.$noofrows;
                 if(!empty($startdate) && !empty($enddate))
                 {
-                    $mainquery = ' AND STR_TO_DATE(ts.`date_of_transaction`,"%d-%m-%Y") BETWEEN STR_TO_DATE("'.$startdate.'","%d-%m-%Y") AND STR_TO_DATE("'.$enddate.'","%d-%m-%Y") AND emb.`fullname` LIKE "%'.$searchby.'%"';
+                    $mainquery = ' AND STR_TO_DATE(ts.`date_of_transaction`,"%d-%m-%Y") BETWEEN STR_TO_DATE("'.$startdate.'","%d-%m-%Y") AND STR_TO_DATE("'.$enddate.'","%d-%m-%Y") AND emb.`fullname` LIKE "%'.$searchby.'%"'.$empstatusfilter;
                     
-                    $rslmt =' AND STR_TO_DATE(ts.`date_of_transaction`,"%d-%m-%Y") BETWEEN STR_TO_DATE("'.$startdate.'","%d-%m-%Y") AND STR_TO_DATE("'.$enddate.'","%d-%m-%Y") AND memb.`fullname` LIKE "%'.$searchby.'%" LIMIT '.$rsstrt.','.$noofrows;
+                    $rslmt =' AND STR_TO_DATE(ts.`date_of_transaction`,"%d-%m-%Y") BETWEEN STR_TO_DATE("'.$startdate.'","%d-%m-%Y") AND STR_TO_DATE("'.$enddate.'","%d-%m-%Y") AND memb.`fullname` LIKE "%'.$searchby.'%"'.$empstatusfilter.' LIMIT '.$rsstrt.','.$noofrows;
                 }
                 $getres = $this->miscommon->fetchmiscontratrd($getuserid,$user_group_id,$mainquery);
                 
@@ -705,12 +764,24 @@ class MisController extends ControllerBase
                 $noofrows = $this->request->getPost('noofrows');
                 $pagenum = $this->request->getPost('pagenum');
                 $searchby = $this->request->getPost('search');
-                $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
+                $emp_status = $this->request->getPost('emp_status');
+                $empstatusfilter = '';
+
+                if($emp_status !== '')
+                {
+                    $empstatusfilter .= ' AND memb.`emp_status`="'.$emp_status.'"';
+                }
+                else
+                {
+                    $empstatusfilter .= '';
+                }
+
+                $mainquery = $empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
                 $getres = $this->miscommon->fetchmisnonexetrde($getuserid,$user_group_id,$mainquery);
                 
                 /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
-                $rslmt =' AND (memb.`fullname` LIKE "%'.$searchby.'%") LIMIT '.$rsstrt.','.$noofrows;
+                $rslmt = $empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%") LIMIT '.$rsstrt.','.$noofrows;
                 $rscnt=count($getres);
                 $rspgs = ceil($rscnt/$noofrows);
                 $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
@@ -762,23 +833,34 @@ class MisController extends ControllerBase
                 $startdate=$this->request->getPost('startdate');
                 $enddate=$this->request->getPost('enddate');
                 $searchby = $this->request->getPost('search');
+                $emp_status = $this->request->getPost('emp_status');
+                $empstatusfilter = '';
+
+                if($emp_status !== '')
+                {
+                    $empstatusfilter .= ' AND memb.`emp_status`="'.$emp_status.'"';
+                }
+                else
+                {
+                    $empstatusfilter .= '';
+                }
 
                 if($startdate=='' && $enddate=='')
                 {
                     $mainquery = '';
-                    $mainquery.= ' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
+                    $mainquery.= $empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
                     $getres = $this->miscommon->misconfirmtrde($getuserid,$user_group_id,$mainquery);
                     $rsstrt = ($pagenum-1) * $noofrows;
-                    $rslmt =' AND (memb.`fullname` LIKE "%'.$searchby.'%") LIMIT '.$rsstrt.','.$noofrows;
+                    $rslmt = $empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%") LIMIT '.$rsstrt.','.$noofrows;
                 }
                 else
                 {
-                    $mainquery = "   AND STR_TO_DATE(`ts`.`date_of_transaction`,'%d-%m-%Y') BETWEEN STR_TO_DATE('".$startdate."','%d-%m-%Y') AND STR_TO_DATE('".$enddate."','%d-%m-%Y')";
+                    $mainquery = " AND STR_TO_DATE(`ts`.`date_of_transaction`,'%d-%m-%Y') BETWEEN STR_TO_DATE('".$startdate."','%d-%m-%Y') AND STR_TO_DATE('".$enddate."','%d-%m-%Y')".$empstatusfilter;
                     $mainquery .= ' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
                     $getres = $this->miscommon->misconfirmtrde($getuserid,$user_group_id,$mainquery);
                     $rsstrt = ($pagenum-1) * $noofrows;
 
-                    $rslmt =" AND STR_TO_DATE(`ts`.`date_of_transaction`,'%d-%m-%Y') BETWEEN STR_TO_DATE('".$startdate."','%d-%m-%Y') AND STR_TO_DATE('".$enddate."','%d-%m-%Y')"  ;
+                    $rslmt =" AND STR_TO_DATE(`ts`.`date_of_transaction`,'%d-%m-%Y') BETWEEN STR_TO_DATE('".$startdate."','%d-%m-%Y') AND STR_TO_DATE('".$enddate."','%d-%m-%Y')".$empstatusfilter;
                     $rslmt .= ' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) LIMIT '.$rsstrt.','.$noofrows;
                 }
 
@@ -832,13 +914,25 @@ class MisController extends ControllerBase
                 $startdate = $this->request->getPost('startdate');
                 $enddate = $this->request->getPost('enddate');
                 $filter = $this->request->getPost('filterstatus');
+                $emp_status = $this->request->getPost('emp_status');
                 $filterquery = '';
-               /* if($filter == 'pending')
+                $empstatusfilter = '';
+
+                if($emp_status !== '')
                 {
-                    $filterquery = ' AND (formc.send_date IS NULL OR ts.`formcstatus`=0)';
+                    $empstatusfilter .= ' AND memb.`emp_status`="'.$emp_status.'"';
                 }
-                else */if($filter == 'submitted')
+                else
                 {
+                    $empstatusfilter .= '';
+                }
+
+                if($filter == 'pending')
+                {
+                    $filterquery = ' AND formc.send_date IS NULL';
+                }
+                elseif($filter == 'submitted')
+                { 
                     $filterquery = ' AND formc.send_date IS NOT NULL';
                 }
                 /*count current financial year*/
@@ -866,30 +960,31 @@ class MisController extends ControllerBase
                 /*count current financial year*/
                 if(empty($startdate) && empty($enddate))
                 {
-                    $mainquery = $filterquery.'   AND (memb.`fullname` LIKE "%'.$searchby.'%") ORDER BY ts.ID DESC';
+                    $mainquery = $empstatusfilter.$filterquery.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ORDER BY ts.id DESC';
                 }
                 else
                 {
-                    $mainquery = $filterquery.' AND DATE_ADD(STR_TO_DATE(ts.`date_of_transaction`,"%d-%m-%Y"),INTERVAL 2 DAY) BETWEEN STR_TO_DATE("'.$startdate.'","%Y-%m-%d") AND STR_TO_DATE("'.$enddate.'","%Y-%m-%d") AND (memb.`fullname` LIKE "%'.$searchby.'%" ) ORDER BY ts.ID DESC';
+                    $mainquery = $empstatusfilter.$filterquery.' AND DATE_ADD(STR_TO_DATE(ts.`date_of_transaction`,"%d-%m-%Y"),INTERVAL 2 DAY) BETWEEN STR_TO_DATE("'.$startdate.'","%Y-%m-%d") AND STR_TO_DATE("'.$enddate.'","%Y-%m-%d") AND (memb.`fullname` LIKE "%'.$searchby.'%" ) ORDER BY ts.id DESC';
                 }
                 
-                $getres = $this->miscommon->fetchmisformc($getuserid,$user_group_id,$finenddte,$finstrtdte,$mainquery,$filter);
+                $getdata = $this->miscommon->fetchmisformc($getuserid,$user_group_id,$finenddte,$finstrtdte,$mainquery,$filter);
+                //echo"<pre>";print_r($getdata);die;
                 
                 /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
                 if(empty($startdate) && empty($enddate))
                 {
-                    $rslmt =$filterquery.'  AND (memb.`fullname` LIKE "%'.$searchby.'%") ORDER BY ts.ID DESC LIMIT ' .$rsstrt.','.$noofrows;
+                    $rslmt = $empstatusfilter.$filterquery.'  AND (memb.`fullname` LIKE "%'.$searchby.'%") ORDER BY ts.id DESC LIMIT ' .$rsstrt.','.$noofrows;
                 }
                 else
                 {
-                    $rslmt =$filterquery.' AND DATE_ADD(STR_TO_DATE(ts.`date_of_transaction`,"%d-%m-%Y"),INTERVAL 2 DAY) BETWEEN STR_TO_DATE("'.$startdate.'","%Y-%m-%d") AND STR_TO_DATE("'.$enddate.'","%Y-%m-%d") AND (memb.`fullname` LIKE "%'.$searchby.'%") ORDER BY ts.ID DESC LIMIT ' .$rsstrt.','.$noofrows;
+                    $rslmt = $empstatusfilter.$filterquery.' AND DATE_ADD(STR_TO_DATE(ts.`date_of_transaction`,"%d-%m-%Y"),INTERVAL 2 DAY) BETWEEN STR_TO_DATE("'.$startdate.'","%Y-%m-%d") AND STR_TO_DATE("'.$enddate.'","%Y-%m-%d") AND (memb.`fullname` LIKE "%'.$searchby.'%") ORDER BY ts.id DESC LIMIT ' .$rsstrt.','.$noofrows; 
                 }
-                $rscnt=count($getres);
+                $rscnt=count($getdata);
                 $rspgs = ceil($rscnt/$noofrows);
                 $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
                 $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
-                //print_r($getres);exit;
+                //print_r($getdata);exit;
                 
                 $getres = $this->miscommon->fetchmisformc($getuserid,$user_group_id,$finenddte,$finstrtdte,$rslmt,$filter);
                 //print_r($getres);exit;
@@ -1002,14 +1097,25 @@ class MisController extends ControllerBase
                 $pagenum = $this->request->getPost('pagenum');
                 $searchby = $this->request->getPost('search');
                 $filterstatus = $this->request->getPost('filterstatus');
+                $emp_status = $this->request->getPost('emp_status');
+                $empstatusfilter = '';
+
+                if($emp_status !== '')
+                {
+                    $empstatusfilter .= ' AND memb.`emp_status`="'.$emp_status.'"';
+                }
+                else
+                {
+                    $empstatusfilter .= '';
+                }
                 
                 if($filterstatus == '')
                 {
-                    $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%") GROUP BY memb.`wr_id`';
+                    $mainquery = $empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%") GROUP BY memb.`wr_id`';
                     $getres = $this->miscommon->fetchallinitialdisclsr($getuserid,$user_group_id,$mainquery);
                     //print_r($getres);exit;
                     $rsstrt = ($pagenum-1) * $noofrows;
-                    $rslmt = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") GROUP BY memb.`wr_id` LIMIT '.$rsstrt.','.$noofrows;
+                    $rslmt = $empstatusfilter.$filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") GROUP BY memb.`wr_id` LIMIT '.$rsstrt.','.$noofrows;
                     $rscnt=count($getres);
                     $rspgs = ceil($rscnt/$noofrows);
                     $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
@@ -1020,11 +1126,11 @@ class MisController extends ControllerBase
                 }
                 else if($filterstatus == 'pending')
                 {
-                    $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%") GROUP BY memb.`wr_id`';
+                    $mainquery = $empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%") GROUP BY memb.`wr_id`';
                     $getres = $this->miscommon->fetchinitlpendig($getuserid,$user_group_id,$mainquery);
                     //print_r($getres);exit;
                     $rsstrt = ($pagenum-1) * $noofrows;
-                    $rslmt = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id` LIMIT '.$rsstrt.','.$noofrows;
+                    $rslmt = $empstatusfilter.$filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id` LIMIT '.$rsstrt.','.$noofrows;
                     $rscnt=count($getres);
                     $rspgs = ceil($rscnt/$noofrows);
                     $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
@@ -1036,12 +1142,12 @@ class MisController extends ControllerBase
                 else if($filterstatus == 'sent_for_approval') 
                 {
                     $filterby = ' AND initial.send_status= 1';
-                    $mainquery = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) ';
+                    $mainquery = $empstatusfilter.$filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) ';
                     $getres = $this->miscommon->fetchmisinitialdisclsr($getuserid,$user_group_id,$mainquery);
                     /* start pagination */
                     
                     $rsstrt = ($pagenum-1) * $noofrows;
-                    $rslmt = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )  LIMIT '.$rsstrt.','.$noofrows;
+                    $rslmt = $empstatusfilter.$filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )  LIMIT '.$rsstrt.','.$noofrows;
                     $rscnt=count($getres);
                     $rspgs = ceil($rscnt/$noofrows);
                     $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
@@ -1091,19 +1197,30 @@ class MisController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $filterby = '';
+                $empstatusfilter = '';
                 $annualyr = $this->request->getPost('annualyr');
                 $noofrows = $this->request->getPost('noofrows');
                 $pagenum = $this->request->getPost('pagenum');
                 $searchby = $this->request->getPost('search');
                 $filterstatus = $this->request->getPost('filterstatus');
+                $emp_status = $this->request->getPost('emp_status');
+
+                if($emp_status !== '')
+                {
+                    $empstatusfilter .= ' AND memb.`emp_status`="'.$emp_status.'"';
+                }
+                else
+                {
+                    $empstatusfilter .= '';
+                }
                 
                 if($filterstatus == '')
                 {
-                    $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id`';
+                    $mainquery = $empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id`';
                     $getres = $this->miscommon->fetchallannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
                     //print_r($getres);exit;
                     $rsstrt = ($pagenum-1) * $noofrows;
-                    $rslmt = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id` LIMIT '.$rsstrt.','.$noofrows;
+                    $rslmt = $filterby.$empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id` LIMIT '.$rsstrt.','.$noofrows;
                     $rscnt=count($getres);
                     $rspgs = ceil($rscnt/$noofrows);
                     $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
@@ -1114,7 +1231,7 @@ class MisController extends ControllerBase
                 }
                 else if($filterstatus == 'pending')
                 {
-                    $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id`';
+                    $mainquery = $empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id`';
                     $getres = $this->miscommon->fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
                     //print_r($getres);exit;
                     $rsstrt = ($pagenum-1) * $noofrows;
@@ -1130,12 +1247,12 @@ class MisController extends ControllerBase
                 else if($filterstatus == 'sent_for_approval') 
                 {
                     $filterby = ' AND (anualdecl.annualyear='.$annualyr.' OR anualdecl.annualyear IS NULL) AND anualdecl.send_status= 1';
-                    $mainquery = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ';
+                    $mainquery = $filterby.$empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ';
                     $getres = $this->miscommon->fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
                     /* start pagination */
                     //print_r($getres);exit;
                     $rsstrt = ($pagenum-1) * $noofrows;
-                    $rslmt = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") LIMIT '.$rsstrt.','.$noofrows;
+                    $rslmt = $filterby.$empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%") LIMIT '.$rsstrt.','.$noofrows;
                     $rscnt=count($getres);
                     $rspgs = ceil($rscnt/$noofrows);
                     $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
@@ -1186,11 +1303,37 @@ class MisController extends ControllerBase
             {
                 $noofrows=$this->request->getPost('noofrows');
                 $pagenum=$this->request->getPost('pagenum');
-                $mainquery = '';
+                $emp_status=$this->request->getPost('emp_status');
+                $empstatusfilter = "";
+
+                if($user_group_id == 2 || $user_group_id == 14)
+                {
+                    if($emp_status !== '')
+                    {
+                        $empstatusfilter = 'WHERE it.`emp_status`="'.$emp_status.'"' ;
+                    }
+                    else
+                    {
+                        $empstatusfilter .= '';
+                    }
+                }
+                else
+                {
+                    if($emp_status !== '')
+                    {
+                        $empstatusfilter .= ' AND it.`emp_status`="'.$emp_status.'"';
+                    }
+                    else
+                    {
+                        $empstatusfilter .= '';
+                    }
+                }
+
+                $mainquery = $empstatusfilter;
                 $getres = $this->miscommon->fetchallupsitypes($getuserid,$user_group_id,$mainquery);
                 /* start pagination */
                 $rsstrt = ($pagenum-1) * $noofrows;
-                $rslmt =' LIMIT '.$rsstrt.','.$noofrows;
+                $rslmt =$empstatusfilter.' LIMIT '.$rsstrt.','.$noofrows;
                 $rscnt=count($getres);
                 $rspgs = ceil($rscnt/$noofrows);
                 $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
@@ -1239,7 +1382,33 @@ class MisController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $request=$this->request->getPost('request');
-                $getres = $this->miscommon->fetchallupsitypes($getuserid,$user_group_id,'');
+                $emp_status=$this->request->getPost('emp_status');
+                $empstatusfilter = "";
+
+                if($user_group_id == 2 || $user_group_id == 14)
+                {
+                    if($emp_status !== '')
+                    {
+                        $empstatusfilter = 'WHERE it.`emp_status`="'.$emp_status.'"' ;
+                    }
+                    else
+                    {
+                        $empstatusfilter .= '';
+                    }
+                }
+                else
+                {
+                    if($emp_status !== '')
+                    {
+                        $empstatusfilter .= ' AND it.`emp_status`="'.$emp_status.'"';
+                    }
+                    else
+                    {
+                        $empstatusfilter .= '';
+                    }
+                }
+
+                $getres = $this->miscommon->fetchallupsitypes($getuserid,$user_group_id,$empstatusfilter);
                // $getinfo = $this->annualdeclarationcommon->fetchpersonlinfo($getuserid,$user_group_id,'');
                 
                 
@@ -1502,27 +1671,38 @@ class MisController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $filterby = '';
+                $empstatusfilter = '';
                 $annualyr = $this->request->getPost('annualyr');
                 $noofrows = $this->request->getPost('noofrows');
                 $pagenum = $this->request->getPost('pagenum');
                 $searchby = $this->request->getPost('search');
                 $filterstatus = $this->request->getPost('filterstatus');
+                $emp_status = $this->request->getPost('emp_status');
                 
+                if($emp_status !== '')
+                {
+                    $empstatusfilter .= ' AND memb.`emp_status`="'.$emp_status.'"';
+                }
+                else
+                {
+                    $empstatusfilter .= '';
+                }
+
                 if($filterstatus == '')
                 {
-                    $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id`';
+                    $mainquery = $empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id`';
                     $getres = $this->miscommon->fetchallannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
                     //print_r($getres);exit;
                 }
                 else if($filterstatus == 'pending')
                 {
-                    $mainquery = ' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id`';
+                    $mainquery = $empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%" ) GROUP BY memb.`wr_id`';
                  
                     $getres = $this->miscommon->fetchpendigannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);                    
                 }
                 else if($filterstatus == 'sent_for_approval') 
                 {
-                    $filterby = ' AND (anualdecl.annualyear='.$annualyr.' OR anualdecl.annualyear IS NULL) AND anualdecl.send_status= 1';
+                    $filterby = $empstatusfilter.' AND (anualdecl.annualyear='.$annualyr.' OR anualdecl.annualyear IS NULL) AND anualdecl.send_status= 1';
                     $mainquery = $filterby.' AND (memb.`fullname` LIKE "%'.$searchby.'%") ';
                     $getres = $this->miscommon->fetchmisannualdisclsr($getuserid,$user_group_id,$annualyr,$mainquery);
                 }
@@ -1570,6 +1750,7 @@ class MisController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $filterby = '';
+                $empstatusfilter = '';
                 //$annualyr = $this->request->getPost('annualyr');
                 $noofrows = $this->request->getPost('noofrows');
                 $pagenum = $this->request->getPost('pagenum');
@@ -1577,6 +1758,7 @@ class MisController extends ControllerBase
                 $filterstatus = $this->request->getPost('filterstatus');
                 $from_date=$this->request->getPost('from_date');
                 $to_date=$this->request->getPost('to_date');
+                $emp_status=$this->request->getPost('emp_status');
 
                 if($from_date != '' && $to_date == '')
                 {
@@ -1599,10 +1781,19 @@ class MisController extends ControllerBase
                         $qrydtfltr = '';
                     }
 
+                    if($emp_status !== '')
+                    {
+                        $empstatusfilter .= ' AND memb.`emp_status`="'.$emp_status.'"';
+                    }
+                    else
+                    {
+                        $empstatusfilter .= '';
+                    }
+
                     if($filterstatus == '')
                     {
 
-                        $mainquery = $qrydtfltr.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
+                        $mainquery = $qrydtfltr.$empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
                         $getres = $this->miscommon->fetchallcontdisclsr($getuserid,$user_group_id,$mainquery);
                         //print_r($getres);exit;
                         $rsstrt = ($pagenum-1) * $noofrows;
@@ -1689,6 +1880,7 @@ class MisController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $filterby = '';
+                $empstatusfilter = '';
                 //$annualyr = $this->request->getPost('annualyr');
                 $noofrows = $this->request->getPost('noofrows');
                 $pagenum = $this->request->getPost('pagenum');
@@ -1696,6 +1888,8 @@ class MisController extends ControllerBase
                 $filterstatus = $this->request->getPost('filterstatus');
                 $from_date=$this->request->getPost('from_date');
                 $to_date=$this->request->getPost('to_date');
+                $emp_status=$this->request->getPost('emp_status');
+                //echo"<pre>";print_r($filterstatus);die;
 
                 if($from_date != '' && $to_date == '')
                 {
@@ -1717,10 +1911,20 @@ class MisController extends ControllerBase
                     {
                         $qrydtfltr = '';
                     }
+
+                    if($emp_status !== '')
+                    {
+                        $empstatusfilter .= ' AND memb.`emp_status`="'.$emp_status.'"';
+                    }
+                    else
+                    {
+                        $empstatusfilter .= '';
+                    }
                 
                     if($filterstatus == '')
                     {
-                        $mainquery = $qrydtfltr.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
+                        //print_r('here');die;
+                        $mainquery = $qrydtfltr.$empstatusfilter.' AND (memb.`fullname` LIKE "%'.$searchby.'%" )';
                         $getres = $this->miscommon->fetchallcontdisclsr($getuserid,$user_group_id,$mainquery);
                     }
                     else if($filterstatus == 'pending')

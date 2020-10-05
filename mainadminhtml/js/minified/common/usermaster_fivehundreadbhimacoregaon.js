@@ -22,24 +22,31 @@ else
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function()
-{}});getuserlistonload();function getuserlistonload()
-{var noofrows=website('#noofrows').val();var pagenum=website('#pagenum').val();var formdata={noofrows:noofrows,pagenum:pagenum};website.ajax({url:'usermaster/fetchuser',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{}});website('body').on('change','#emp_status',function(e)
+{getuserlistonload();});website("#srch").on("keyup",function(){var search=website('#srch').val();var pagenum=website('#pagenum').val();website('#srch').attr('status','0');if(pagenum!=1)
+{website('#pagenum').val(1);}
+getuserlistonload();});getuserlistonload();function getuserlistonload()
+{var noofrows=website('#noofrows').val();var pagenum=website('#pagenum').val();var search=website('#srch').val();var emp_status=website('#emp_status').val();var formdata={noofrows:noofrows,pagenum:pagenum,emp_status:emp_status,search:search};website.ajax({url:'usermaster/fetchuser',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {var addhtmlnxt='';var dept='';var companyname='';for(var i=0;i<response.data.length;i++)
 {var fullname=response.data[i].fullname?response.data[i].fullname:'NONE';var email=response.data[i].email?response.data[i].email:'NONE';var dpdate=response.data[i].dpdate?response.data[i].dpdate:'NONE'
 var designation=response.data[i].designation?response.data[i].designation:'NONE';var companyname=response.data[i].companyname?response.data[i].companyname:'NONE';var departmentname=response.data[i].department?response.data[i].department:'NONE'
-var employeecode=response.data[i].employeecode?response.data[i].employeecode:'';var j=i+1;addhtmlnxt+='<tr class="counter" tempid="'+response.data[i].id+'" >';addhtmlnxt+='<td width="15%">'+j+'</td>';addhtmlnxt+='<td width="10%">'+employeecode+'</td>';addhtmlnxt+='<td width="15%">'+fullname+'</td>';addhtmlnxt+='<td width="15%">'+email+'</td>';addhtmlnxt+='<td width="15%">'+designation+'</td>';addhtmlnxt+='<td width="15%">'+dpdate+'</td>';addhtmlnxt+='<td width="15%">'+companyname+'</td>';addhtmlnxt+='<td width="15%">'+departmentname+'</td>';if(response.data[i].emp_status=='1')
-{addhtmlnxt+='<td width="15%">Active</td>';}
+var employeecode=response.data[i].employeecode?response.data[i].employeecode:'';var j=i+1;addhtmlnxt+='<tr class="counter" tempid="'+response.data[i].id+'" >';addhtmlnxt+='<td width="15%">'+j+'</td>';addhtmlnxt+='<td width="10%">'+employeecode+'</td>';addhtmlnxt+='<td width="15%">'+fullname+'</td>';addhtmlnxt+='<td width="15%">'+email+'</td>';addhtmlnxt+='<td width="15%">'+designation+'</td>';addhtmlnxt+='<td width="15%">'+dpdate+'</td>';addhtmlnxt+='<td width="15%">'+departmentname+'</td>';if(response.data[i].emp_status=='1')
+{addhtmlnxt+='<td width="10%">Active</td>';}
 else if(response.data[i].emp_status=='2')
-{addhtmlnxt+='<td width="15%">Resigned</td>';}
+{addhtmlnxt+='<td width="10%">Resigned</td>';}
 else if(response.data[i].emp_status=='3')
-{addhtmlnxt+='<td width="15%">Not a DP</td>';}
+{addhtmlnxt+='<td width="10%">Not a DP</td>';}
+if(response.data[i].resignordeletiondate===null)
+{addhtmlnxt+='<td width="10%"></td>';}
+else
+{addhtmlnxt+='<td width="10%">'+response.data[i].resignordeletiondate+'</td>';}
 if(response.data[i].master_group_id==2)
 {addhtmlnxt+='<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i></td>';}
 else
-{addhtmlnxt+='<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i><i class="fa fa-trash-o faicon dbdeleteme" title="Delete entry" tempid="'+response.data[i].id+'" ></i></td>';}
+{addhtmlnxt+='<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i></td>';}
 addhtmlnxt+='</tr>';}}
 else
 {addhtmlnxt+='<tr><td colspan="8" style="text-align:center;">NO DATA FOUND</td></tr>';}
@@ -148,4 +155,12 @@ else
 else if(emp_status=="3")
 {website("#Mymodaledit .resignordeletiondate").css("display","block");website('#Mymodaledit #lblresignordeletiondate').text("Deletion Date*");website("#Mymodaledit #resignordeletiondate").val("");}
 else
-{website("#Mymodaledit .resignordeletiondate").css("display","none");website("#Mymodaledit #resignordeletiondate").val("");}});;
+{website("#Mymodaledit .resignordeletiondate").css("display","none");website("#Mymodaledit #resignordeletiondate").val("");}});website('#uploadempstatus').ajaxForm({dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{website('.preloder_wraper').fadeOut();if(response.logged===true)
+{window.location.reload();new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function()
+{}});;

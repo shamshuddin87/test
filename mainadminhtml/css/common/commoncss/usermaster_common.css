@@ -331,3 +331,12 @@ div#edit_1 { text-align: left;}
     width: 100%;
     top: 66px;
 }
+
+.top_margin {
+    float: right;
+    margin: 4px 5px;
+}
+
+.cssfilter {
+    float: right;
+}

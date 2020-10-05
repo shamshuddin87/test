@@ -24,9 +24,23 @@ $current_year =  date("Y");
                 <option value="50">50</option><option value="100">100</option>
              </select> 
         <label>Entries</label>
-            <div style="float: right;">
-                <input type="text" placeholder="Search By Name" id="srch" class=" form-control" status="0">
+        
+        <div style="float: right;">
+            <input type="text" placeholder="Search By Name" id="srch" class=" form-control" status="0">
+        </div>
+
+        <div class="cssfilter" style="float: right;margin-right: 10px;">               
+            <div class="control-label form-group">
+                <label>Employee Status</label>
+                <select id="emp_status" name="emp_status" class="form-control">
+                    <option value="">All</option>
+                    <option value="1">Active</option>
+                    <option value="2">Resigned</option>
+                    <option value="3">Not a DP</option>
+                </select>
             </div>
+        </div>
+
         </div>
         <div class="srcfac  form-inline ">
             <input type="text" class="bootdatepick  form-control" id="date1"  placeholder="Start Date"  readonly="readonly"/>
@@ -38,6 +52,7 @@ $current_year =  date("Y");
                <tr>
                     <th>Sr No.</th> 
                     <th>Name</th> 
+                    <th>Employee Status</th> 
                    <!--  <th>Name Of Company</th>  -->
                     <th>Shares approved under Pre-Clearance</th> 
                     <th>Date of Pre-Clearance</th> 

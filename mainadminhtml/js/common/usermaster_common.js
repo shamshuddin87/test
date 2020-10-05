@@ -200,6 +200,22 @@ website('#updatemasterlistid').ajaxForm({
 });
 //###########################################Ajax Form For Update FInish###########################################//
 
+website('body').on('change','#emp_status', function(e) 
+{
+    getuserlistonload();
+});
+
+
+website("#srch").on("keyup", function() {
+    var search=website('#srch').val();
+    var pagenum = website('#pagenum').val();
+    website('#srch').attr('status','0');
+    if(pagenum!=1)
+    {
+        website('#pagenum').val(1);
+    }
+    getuserlistonload();
+});
 
 //##########################################ONLOAD USER MASTER LIST START HERE############################################//
 getuserlistonload();
@@ -207,9 +223,11 @@ function getuserlistonload()
 {
     var noofrows = website('#noofrows').val(); 
     var pagenum = website('#pagenum').val();
+    var search = website('#srch').val();
+    var emp_status = website('#emp_status').val();
     // var chkclk = '';
     // var numofdata = 'all';
-    var formdata = {noofrows:noofrows,pagenum:pagenum};
+    var formdata = {noofrows:noofrows,pagenum:pagenum,emp_status:emp_status,search:search};
     website.ajax({
         url:'usermaster/fetchuser',
         data:formdata,
@@ -258,21 +276,31 @@ function getuserlistonload()
                     // addhtmlnxt += '<td width="15%">'+mobile+'</td>';
                     addhtmlnxt += '<td width="15%">'+designation+'</td>';
                     addhtmlnxt += '<td width="15%">'+dpdate+'</td>';
-                    addhtmlnxt +='<td width="15%">'+companyname+'</td>';
+                    // addhtmlnxt +='<td width="15%">'+companyname+'</td>';
                     addhtmlnxt+='<td width="15%">'+departmentname+'</td>';
                     // addhtmlnxt += '<td width="15%">'+reminderdays+'</td>';
                     if(response.data[i].emp_status == '1')
                     {
-                        addhtmlnxt+='<td width="15%">Active</td>';
+                        addhtmlnxt+='<td width="10%">Active</td>';
                     }
                     else if(response.data[i].emp_status == '2')
                     {
-                        addhtmlnxt+='<td width="15%">Resigned</td>';
+                        addhtmlnxt+='<td width="10%">Resigned</td>';
                     }
                     else if(response.data[i].emp_status == '3')
                     {
-                        addhtmlnxt+='<td width="15%">Not a DP</td>';
+                        addhtmlnxt+='<td width="10%">Not a DP</td>';
                     }
+
+                    if (response.data[i].resignordeletiondate === null)
+                    {
+                        addhtmlnxt+='<td width="10%"></td>';
+                    }
+                    else
+                    {
+                        addhtmlnxt+='<td width="10%">'+response.data[i].resignordeletiondate+'</td>';
+                    }
+                    
 
                     if(response.data[i].master_group_id==2)
                     {
@@ -280,7 +308,8 @@ function getuserlistonload()
                     }
                     else
                     {
-                    addhtmlnxt += '<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i><i class="fa fa-trash-o faicon dbdeleteme" title="Delete entry" tempid="'+response.data[i].id+'" ></i></td>';
+                    addhtmlnxt += '<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i></td>';
+                    // <i class="fa fa-trash-o faicon dbdeleteme" title="Delete entry" tempid="'+response.data[i].id+'" ></i>
                     }
                     addhtmlnxt += '</tr>';    
 
@@ -933,3 +962,45 @@ website(document).ready(function(){
             website("#Mymodaledit #resignordeletiondate").val("");
         }
     });
+
+
+  website('#uploadempstatus').ajaxForm({
+        dataType:"json",
+        beforeSend: function() 
+        {   website('.preloder_wraper').fadeIn();   },
+        uploadProgress: function(event, position, total, percentComplete) 
+        {},
+        success: function(response, textStatus, jqXHR) 
+        {
+             website('.preloder_wraper').fadeOut();
+             if(response.logged === true)
+             {
+                    
+                    window.location.reload();
+                    //website('#Mymodaledit').fadeOut();
+                    new PNotify({title: 'Alert',
+                            text: response.message,
+                            type: 'university',
+                            hide: true,
+                            styling: 'bootstrap3',
+                            addclass: 'dark ',
+                    }); 
+             }
+             else
+             {    
+                new PNotify({title: 'Alert',
+                        text: response.message,
+                        type: 'university',
+                        hide: true,
+                        styling: 'bootstrap3',
+                        addclass: 'dark ',
+                });
+             }
+        },
+        complete: function(response) 
+        {
+            website('.preloder_wraper').fadeOut();
+        },
+        error: function() 
+        {   }
+});

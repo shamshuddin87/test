@@ -79,7 +79,7 @@ $current_year =  date("Y");
             </select>
         </div>
         </div>
-        <div class="cssfilter">               
+        <div class="cssfilter" style="margin: 0 10px;">               
             <div class="control-label form-group">
                 <label>Status Filter</label>
                 <select id="filterstatus" name="filterstatus" class="form-control">
@@ -90,12 +90,24 @@ $current_year =  date("Y");
             </div>
         </div>
 
+        <div class="cssfilter">               
+            <div class="control-label form-group">
+                <label>Employee Status</label>
+                <select id="emp_status" name="emp_status" class="form-control">
+                    <option value="">All</option>
+                    <option value="1">Active</option>
+                    <option value="2">Resigned</option>
+                    <option value="3">Not a DP</option>
+                </select>
+            </div>
+        </div>
+
          <div class="searhbyname">
             <input type="text" placeholder="Search By Name" class="form-control " id="srch" status="0">
         </div>
 
         <div class="excelanddownloadbtn">
-            <button type="button" class="btn btn-primary genfile excel_bg">Export Excel</button>
+            <button type="button" class="btn btn-primary genfile excel_bg" style="padding: 8px 12px;">Export Excel</button>
             <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
         </div>
         </div>
@@ -105,6 +117,7 @@ $current_year =  date("Y");
                <tr>
                     <th>Sr No.</th> 
                     <th>Name</th> 
+                    <th>Employee Status</th> 
                     <!-- <th>Employee ID</th>  -->
                     <th>Year</th>
                     <th>Date of receipt</th>

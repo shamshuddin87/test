@@ -13,15 +13,31 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
             <!-- My messages -->
             <div class="mainelementfom">
                 <h1 class="h1_heading text-center">Master List</h1>
-                <div class="cssnumrws">
+                <div class="cssnumrws form-inline">
                     <span>Show</span>
-                    <select id="noofrows" name="noofrows" class="noofrows">
+                    <select id="noofrows" name="noofrows" class="noofrows form-control">
                         <option value="10">10</option>
                         <option value="25">25</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
                     </select>
                     <span>Entries</span>
+
+                <div class="top_margin">
+                    <input style="width: 217px" type="text" placeholder="Search By Emp Id/User Name" class="form-control" id="srch" status="0">
+                </div>
+
+                <div class="cssfilter">               
+                    <div class="control-label form-group">
+                        <label>Employee Status</label>
+                        <select id="emp_status" name="emp_status" class="form-control">
+                            <option value="">All</option>
+                            <option value="1">Active</option>
+                            <option value="2">Resigned</option>
+                            <option value="3">Not a DP</option>
+                        </select>
+                    </div>
+                </div>
                 </div>
                 <div class="containergrid">
                     <!-- <input type="hidden" class="compnynmad" value="<?php echo $companynmdept;?>"> -->
@@ -38,11 +54,12 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                         <!--  <th>Mobile</th> -->
                                         <th>Designation</th>
                                         <th>Date Of Becoming Designation Person</th>
-                                        <th>Company</th>
+                                        <!-- <th>Company</th> -->
                                         <th>Department</th>
                                         <th>Status</th>
+                                        <th>Resignation/Deletion date</th>
                                         <!-- <th>Reminder Days</th> -->
-                                        <th>Action</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody class="appendrow" appendrow='1'></tbody>
@@ -345,6 +362,28 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                 </form>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="excluplod" style="width: 500px;display: block;margin: auto;">
+                        <form action="usermaster/uploadEmpStatus" id="uploadempstatus" method="post" enctype="multipart/form-data">
+                            <div class="boxshadow col-md-6 col-md-offset-3"> 
+                                <label class="labelcss">Upload Bulk Employee Status Data Through Excel File</label>
+                                <div class="choose_files">
+                                    <input type="file" name="empstatusexcel" id="empstatusexcel" class="form-control">
+                                </div>
+                                <div class="updatefile">
+                                    <div class="sample_down floatleft">
+                                       <a href="samplefile\EmployeeStatus\employeestatus.xlsx" download="" style="padding: 5px 0;"><p class="sample">
+                                        Download Sample Excel <i class="fa fa-file-excel-o" aria-hidden="true" style="color: #4c8c13;"></i></p></a>
+                                    </div>
+                                    <div class="floatright"> 
+                                        <input type="submit" value="Upload" class="btn btn-primary btnlblne uploadcmdbtn" style="float: right;">
+                                    </div>
+                                    <div class="clearelement"></div> 
+                                </div> 
+                                <div id="message" class="message"></div>    
+                            </div>  
+                        </form>                 
                     </div>
 
                 </div>

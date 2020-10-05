@@ -475,17 +475,17 @@ class Miscommon extends Component
    }
     
     // **************************** recipient mis fetch for table***************************
-    public function fetchrecipient($getuserid,$user_group_id)
+    public function fetchrecipient($getuserid,$user_group_id,$empstatusfilter)
     {
        $connection = $this->dbtrd;
         
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryget = "SELECT sr.* ,memb.fullname,sc.`category` as categoryname FROM `sensitiveinfo_recipient` sr 
+            $queryget = "SELECT sr.* ,memb.fullname,memb.emp_status,sc.`category` as categoryname FROM `sensitiveinfo_recipient` sr 
                         LEFT JOIN `it_memberlist` memb ON memb.wr_id = sr.user_id
                         LEFT JOIN `sensitiveinfo_category` sc ON sr.category = sc.id 
-                        WHERE sr.`user_id` IN (".$grpusrs['ulstring'].")"; 
+                        WHERE sr.`user_id` IN (".$grpusrs['ulstring'].")".$empstatusfilter; 
           
              
             
@@ -685,7 +685,7 @@ class Miscommon extends Component
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryget = "SELECT memb.`fullname`,lst.`company_name`,trans.`transaction`,ts.`date_of_transaction`,pr.`date_added`,ts.`no_of_share`,pr.`trading_date`  
+            $queryget = "SELECT memb.`fullname`,memb.`emp_status`,lst.`company_name`,trans.`transaction`,ts.`date_of_transaction`,pr.`date_added`,ts.`no_of_share`,pr.`trading_date`  
             FROM `trading_status` ts
             LEFT JOIN `it_memberlist` memb ON memb.`wr_id`= ts.`user_id`
             INNER JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
@@ -725,7 +725,7 @@ class Miscommon extends Component
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryget = "SELECT pr.`no_of_shares`,lst.`company_name`,ts.`date_added`,pr.`approved_date`,ts.`trading_status`,memb.`fullname` 
+            $queryget = "SELECT pr.`no_of_shares`,lst.`company_name`,ts.`date_added`,pr.`approved_date`,ts.`trading_status`,memb.`fullname`,memb.`emp_status` 
             FROM `trading_status` ts
             LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
             LEFT JOIN `listedcmpmodule` lst ON lst.`id`=pr.`id_of_company`
@@ -761,7 +761,7 @@ class Miscommon extends Component
         $connection = $this->dbtrd;
         
         $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-        $query="SELECT `ts`.no_of_share AS actualtrade,lst.`company_name`,`ts`.date_of_transaction,pr.`no_of_shares` AS preclrtrade,pr.`approved_date`,pr.`date_added`,pr.`trading_date`,memb.`fullname` 
+        $query="SELECT `ts`.no_of_share AS actualtrade,lst.`company_name`,`ts`.date_of_transaction,pr.`no_of_shares` AS preclrtrade,pr.`approved_date`,pr.`date_added`,pr.`trading_date`,memb.`fullname`,memb.`emp_status`
         FROM trading_status ts  
         INNER JOIN personal_request pr ON ( `pr`.`user_id`=`ts`.user_id AND `pr`.id=`ts`.req_id)
         LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ts.`user_id`
@@ -794,46 +794,21 @@ class Miscommon extends Component
         // ************ Get MIS Form C START ************
     public function fetchmisformc($getuserid,$user_group_id,$finstrtdte,$finenddte,$query,$filter)
     {
+      //print_r($filter);die;
         $connection = $this->dbtrd;
        try
         {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $usersid = explode(',',$grpusrs['ulstring']);
-            $getlist = array();
-             // print_r($usersid);exit;
-            for($i= 0;$i<sizeof($usersid);$i++)
-            {
-              $getcmpid=$this->getallcompanyid($usersid[$i]);
-                // print_r($getcmpid);
-               $allcmpid=implode('","',$getcmpid);
-
-               // print_r("------------------");
-               //     print_r($usersid[$n]);
-               //     print_r("~");
-               // print_r($allcmpid);
-               // print_r("------------------");
-             
-//               //   print_r("-------------");
+   
+            $queryget = 'SELECT memb.`fullname`,memb.`emp_status`,lst.`company_name`,ts.`date_of_transaction`,ts.`no_of_share`,formc.`send_date`,ts.`total_amount` 
+              FROM `trading_status` ts
+              LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ts.`user_id` 
+              LEFT JOIN `sebiformc_usrdata` formc ON ts.`id` = formc.`tradeid` 
+              LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
+              LEFT JOIN `listedcmpmodule` lst ON lst.`id`=pr.`id_of_company`
+              WHERE ts.`user_id` IN ('.$grpusrs['ulstring'].') AND ts.`id_of_company` IS NOT NULL AND ts.`total_amount` > 1000000 AND ts.`date_of_transaction` BETWEEN "'.$finstrtdte.'" AND "'.$finenddte.'" '.$query; 
                 
-              
-                  for($k=0;$k<sizeof($getcmpid);$k++)
-                  {
-                    $queryget = 'SELECT memb.`fullname`,lst.`company_name`,ts.`date_of_transaction`,ts.`no_of_share`,formc.`send_date`,ts.`total_amount` 
-                  
-                      FROM  `trading_status` ts
-                      LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ts.`user_id` 
-                      LEFT JOIN `sebiformc_usrdata` formc ON ts.`id` = formc.`tradeid` 
-                      LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
-                      LEFT JOIN `listedcmpmodule` lst ON lst.`id`=pr.`id_of_company`
-                      WHERE ts.`user_id`= "'.$usersid[$i].'" AND  ts.`id_of_company`="'.$getcmpid[$k].'" AND ts.`date_of_transaction` BETWEEN "'.$finstrtdte.'" AND "'.$finenddte.'" '.$query; 
-                
-                 // print_r($queryget);
-
-                 // print_r("-----------------------------");
-
-                 // echo $i; 
-// 
-                // print_r("---------------------------");
+                //print_r($queryget);die;
                 $exeget = $connection->query($queryget);
                 $getnum = trim($exeget->numRows());
 
@@ -841,45 +816,15 @@ class Miscommon extends Component
 
                 if($getnum>0)
                 {
-                  $totlamnt[$k] = 0;
-                	// print_r("herer");exit;
                     while($row = $exeget->fetch())
                     {
-                        $totlamnt[$k] = $totlamnt[$k]+$row['total_amount'];
-                        $data = $row;
+                        $data[] = $row;
                     }
-                    // print_r($totlamnt[$k]);
                      
-                    if($totlamnt[$k]> 1000000)
-                    {
-                        if($filter == 'pending')
-                        {
-                            $getlist[] = $data;
-                            foreach($data as $key => $values)
-                            {
-                                if(!empty($values['send_date']))
-                                {
-                                    unset($data[$key]);
-                                    $getlist[] = array_values($data);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            $getlist[]= $data;
-                        }
-                    }
-                    else
-                    {   
-                        $data = array();
-                    }
-                    //exit;
-
+                     $getlist = $data;
                 }
-            }
-              // echo '<pre>';print_r($getlist);
-        
-        }
+              //echo '<pre>';print_r($getlist);die;
+
 
       }
         catch (Exception $e)
@@ -1022,7 +967,7 @@ class Miscommon extends Component
             {
                 while($row = $exeget->fetch())
                 {
-                    $queryanual = "SELECT memb.`fullname`,initial.sent_date,initial.pdfpath,initial.send_status,memb.dpdate
+                    $queryanual = "SELECT memb.`fullname`,memb.`emp_status`,initial.sent_date,initial.pdfpath,initial.send_status,memb.dpdate
                     FROM `it_memberlist` memb
                     LEFT JOIN `initial_declaration` initial ON memb.`wr_id`=initial.`user_id`
                     WHERE memb.wr_id = '".$row['wr_id']."' ".$query;
@@ -1059,7 +1004,7 @@ class Miscommon extends Component
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryget = "SELECT memb.`fullname`,initial.sent_date,initial.pdfpath,memb.dpdate 
+            $queryget = "SELECT memb.`fullname`,memb.`emp_status`,initial.sent_date,initial.pdfpath,memb.dpdate 
             FROM `it_memberlist` memb 
             LEFT JOIN `initial_declaration` initial ON memb.`wr_id` = initial.user_id 
             WHERE memb.wr_id IN (".$grpusrs['ulstring'].")  AND (initial.`send_status`=1 OR initial.`send_status` IS NULL)".$query;
@@ -1122,7 +1067,7 @@ class Miscommon extends Component
                 $pendingusers = $grpusrs['ulstring'];
             }
             
-            $queryanual = "SELECT memb.`fullname`,initial.sent_date,initial.pdfpath,initial.send_status,memb.dpdate
+            $queryanual = "SELECT memb.`fullname`,memb.`emp_status`,initial.sent_date,initial.pdfpath,initial.send_status,memb.dpdate
             FROM `it_memberlist` memb
             LEFT JOIN `initial_declaration` initial ON memb.`wr_id`=initial.`user_id`
             WHERE memb.wr_id IN(".$pendingusers.")".$query;
@@ -1187,7 +1132,7 @@ class Miscommon extends Component
                 $pendingusers = $grpusrs['ulstring'];
             }
             
-            $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,memb.`email`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
+            $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,memb.`email`,memb.`emp_status`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
             FROM `it_memberlist` memb
             LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
             WHERE memb.wr_id IN(".$pendingusers.")".$query;
@@ -1225,7 +1170,7 @@ class Miscommon extends Component
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryget = "SELECT anualdecl.`annualyear`,memb.`fullname`,memb.`email`,anualdecl.`sent_date`,anualdecl.`pdfpath` 
+            $queryget = "SELECT anualdecl.`annualyear`,memb.`fullname`,memb.`email`,memb.`emp_status`,anualdecl.`sent_date`,anualdecl.`pdfpath` 
             FROM `it_memberlist` memb 
             LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id` = anualdecl.`user_id` 
             WHERE memb.`wr_id` IN (".$grpusrs['ulstring'].")  AND (anualdecl.annualyear='".$annualyr."' OR anualdecl.annualyear IS NULL OR anualdecl.`send_status`=1)".$query;
@@ -1271,7 +1216,7 @@ class Miscommon extends Component
             {
                 while($row = $exeget->fetch())
                 {
-                    $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,memb.`email`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
+                    $queryanual = "SELECT anualdecl.annualyear,memb.`fullname`,memb.`email`,memb.`emp_status`,anualdecl.sent_date,anualdecl.pdfpath,anualdecl.send_status
                     FROM `it_memberlist` memb
                     LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`=anualdecl.`user_id`
                     WHERE memb.wr_id = '".$row['wr_id']."'".$query;
@@ -1328,6 +1273,8 @@ class Miscommon extends Component
                  LEFT JOIN  `personal_info` pr  ON ups.`user_id`=pr.`userid` WHERE  ups.`projectowner` IN(".$userid.") ".$rslmt;
                   //print_r($query);exit;
             }
+
+            //print_r($query);die;
             
              $exeget = $connection->query($query);
              $getnum = trim($exeget->numRows());
@@ -1369,6 +1316,20 @@ class Miscommon extends Component
             $myhtml.="<td>".$data[$i]['enddate']."</td>";
             $myhtml.="<td>".$data[$i][11]."</td>";
             $myhtml.="<td>".$data[$i]['fullname']."</td>";
+
+            if($data[$i]['emp_status'] == '1')
+            {
+              $myhtml.="<td>Active</td>";
+            }
+            else if($data[$i]['emp_status'] == '2')
+            {
+              $myhtml.="<td>Resigned</td>";
+            }
+            else if($data[$i]['emp_status'] == '3')
+            {
+              $myhtml.="<td>Not a DP</td>";
+            }
+
             $myhtml.="</tr>";
        }
 
@@ -1389,6 +1350,7 @@ class Miscommon extends Component
                <th>Project End Date</th>
                <th>Creation Date</th>
                <th>Shared By</th>
+               <th>Status</th>
             </tr>
          ".$myhtml."
          </table>
@@ -1729,7 +1691,7 @@ class Miscommon extends Component
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryget = "SELECT  anualdecl.`date_added`,anualdecl.`annualyear`,memb.`fullname`,anualdecl.`sent_date`,anualdecl.`pdfpath` 
+            $queryget = "SELECT  anualdecl.`date_added`,anualdecl.`annualyear`,memb.`fullname`,memb.`emp_status`,anualdecl.`sent_date`,anualdecl.`pdfpath` 
             FROM `continuous_initial_declaration` anualdecl 
             LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = anualdecl.`user_id`
             WHERE memb.`wr_id` IN (".$grpusrs['ulstring'].")".$query;

@@ -22,6 +22,11 @@ website('body').on('change','#filterstatus', function(e)
     getannualdisclsr();
 });
 
+website('body').on('change','#emp_status', function(e) 
+{
+    getannualdisclsr();
+});
+
 
 datepicker();
 function datepicker(){
@@ -65,9 +70,10 @@ function getannualdisclsr()
     var from_date = website('#from_date').val();
     var to_date = website('#to_date').val();
     var search = website('#srch').val();
+    var emp_status = website('#emp_status').val();
     website.ajax({
         url:'mis/pendingcontdisclsr',
-        data:{noofrows:noofrows,pagenum:pagenum,filterstatus:filterstatus,search:search, from_date:from_date,to_date:to_date},
+        data:{noofrows:noofrows,pagenum:pagenum,filterstatus:filterstatus,search:search, from_date:from_date,to_date:to_date,emp_status:emp_status},
         method:'POST',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
         dataType:"json",
@@ -137,6 +143,18 @@ function getannualdisclsr()
                         htmlelements+='<tr>';
                         htmlelements+='<td width="10%">'+j+'</td>';
                         htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
+                        if(response.data[i].emp_status == '1')
+                        {
+                            htmlelements+='<td width="10%">Active</td>';
+                        }
+                        else if(response.data[i].emp_status == '2')
+                        {
+                            htmlelements+='<td width="10%">Resigned</td>';
+                        }
+                        else if(response.data[i].emp_status == '3')
+                        {
+                            htmlelements+='<td width="10%">Not a DP</td>';
+                        }
                         // htmlelements+='<td width="10%">'+response.data[i].employeecode+'</td>';
                         htmlelements+='<td width="10%">'+yymmdd+'</td>';
                         
@@ -195,9 +213,12 @@ website('.genfile').on('click', function(e) {
     var noofrows = website('#noofrows').val(); 
     var pagenum = website('#pagenum').val();
     // var annualyr = website('#annualyear').val();
-    var filterstatus = website('#filterstatus').val();
+    var filterstatus = "";
+    var from_date = website('#from_date').val();
+    var to_date = website('#to_date').val();
     var search = website('#srch').val();
-    var formdata = {noofrows:noofrows,pagenum:pagenum,filterstatus:filterstatus,search:search};
+    var emp_status = website('#emp_status').val();
+    var formdata = {noofrows:noofrows,pagenum:pagenum,filterstatus:filterstatus,search:search,emp_status:emp_status,from_date:from_date,to_date:to_date};
     website.ajax({
         url:'mis/exportContDisclsr',
         data:formdata,

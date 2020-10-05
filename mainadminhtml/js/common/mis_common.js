@@ -35,9 +35,10 @@ function getMisData()
     var noofrows = website('#noofrows').val(); 
     var pagenum = website('#pagenum').val();
     var search = website('#srch').val();
+    var emp_status = website('#emp_status').val();
     website.ajax({
         url:'mis/getMisAllusers',
-        data:{noofrows:noofrows,pagenum:pagenum,search:search},
+        data:{noofrows:noofrows,pagenum:pagenum,search:search,emp_status:emp_status},
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -84,5 +85,11 @@ website('body').on('click','.redirectpg', function(e)
     var userid =website(this).attr('userid');
    
     window.location.href =baseHref+"mis/misdetails?userid="+btoa(userid);
+});
+
+
+website('body').on('change','#emp_status', function(e) 
+{     
+    getMisData();
 });
 

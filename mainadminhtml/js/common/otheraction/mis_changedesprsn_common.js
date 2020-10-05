@@ -48,6 +48,11 @@ website('.bootdatepick').datetimepicker({
     getmischngedesprsn();
    }
 
+website('body').on('change','#emp_status', function(e) 
+{
+    getmischngedesprsn();
+});
+
 
 getmischngedesprsn();
 
@@ -59,11 +64,12 @@ function getmischngedesprsn()
     var startdate= website('#date1').val();
     var enddate= website('#date2').val();
     var dresign=website('#dresign').val();
+    var emp_status=website('#emp_status').val();
      // alert(dresign);
     //console.log(noofrows+'*'+pagenum);return false;
     website.ajax({
         url:'mis/mischngedesprsn',
-        data:{noofrows:noofrows,pagenum:pagenum,search:search,startdate:startdate,enddate:enddate,dresign:dresign},
+        data:{noofrows:noofrows,pagenum:pagenum,search:search,startdate:startdate,enddate:enddate,dresign:dresign,emp_status:emp_status},
         method:'POST',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
         dataType:"json",
@@ -85,8 +91,31 @@ function getmischngedesprsn()
                     htmlelements+='<tr>';
                     htmlelements+='<td width="10%">'+j+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
+                    if(response.data[i].emp_status == '1')
+                    {
+                        htmlelements+='<td width="10%">Active</td>';
+                    }
+                    else if(response.data[i].emp_status == '2')
+                    {
+                        htmlelements+='<td width="10%">Resigned</td>';
+                    }
+                    else if(response.data[i].emp_status == '3')
+                    {
+                        htmlelements+='<td width="10%">Not a DP</td>';
+                    }
+
                     // htmlelements+='<td width="10%">'+response.data[i].employeecode+'</td>';
-                    htmlelements+='<td width="10%">'+resign+'</td>'
+                    htmlelements+='<td width="10%">'+resign+'</td>';
+
+                    if (response.data[i].resignordeletiondate === null)
+                    {
+                        htmlelements+='<td width="10%"></td>';
+                    }
+                    else
+                    {
+                        htmlelements+='<td width="10%">'+response.data[i].resignordeletiondate+'</td>';
+                    }
+                    
 
                     if(response.data[i].status==1)
                     {

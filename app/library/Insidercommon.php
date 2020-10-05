@@ -276,16 +276,42 @@ class Insidercommon extends Component
         $conn = $this->db;
         $time = time();
         // echo "<pre>"; print_r($time); exit;
+
+        if($updatemas['emp_status'] == '1')
+        {
+            $status = '1';
+        }
+        else
+        {
+            $status = '0';
+        }
         
         $query="UPDATE `it_memberlist` SET 
-            user_id = '".$updatemas['getuserid']."', master_group_id = '".$updatemas['typeofusr']."', role_id = '".$updatemas['roleid']."', 
+            user_id = '".$updatemas['getuserid']."', 
+            master_group_id = '".$updatemas['typeofusr']."', 
+            role_id = '".$updatemas['roleid']."', 
             fullname = '".$updatemas['fullname']."', 
-            firstname= '".$updatemas['firstname']."', lastname= '".$updatemas['lastname']."',
-            mobile = '".$updatemas['mobile']."', designation = '".$updatemas['designation']."',
-            reminderdays = '".$updatemas['reminderdays']."',employeecode='".$updatemas['employeecode']."', access = '".$updatemas['accrgt']."',
-            deptaccess = '".$updatemas['deptaccessid']."', cmpaccess = '".$updatemas['cmpnyaccessid']."',
-            approvid='".$updatemas['approvername']."', dpdate='".$updatemas['dpdate']."',l1firstname='".$updatemas['l1firstname']."',l1lastname='".$updatemas['l1lastname']."',l1email='".$updatemas['l1email']."',l1empid='".$updatemas['l1empid']."',emp_status='".$updatemas['emp_status']."',resignordeletiondate='".$updatemas['resignordeletiondate']."',
-            date_added = NOW(), date_modified=NOW(), timeago='".$time."'
+            firstname= '".$updatemas['firstname']."', 
+            lastname= '".$updatemas['lastname']."',
+            mobile = '".$updatemas['mobile']."', 
+            designation = '".$updatemas['designation']."',
+            reminderdays = '".$updatemas['reminderdays']."',
+            status = '".$status."',
+            employeecode='".$updatemas['employeecode']."', 
+            access = '".$updatemas['accrgt']."',
+            deptaccess = '".$updatemas['deptaccessid']."', 
+            cmpaccess = '".$updatemas['cmpnyaccessid']."',
+            approvid='".$updatemas['approvername']."', 
+            dpdate='".$updatemas['dpdate']."',
+            l1firstname='".$updatemas['l1firstname']."',
+            l1lastname='".$updatemas['l1lastname']."',
+            l1email='".$updatemas['l1email']."',
+            l1empid='".$updatemas['l1empid']."',
+            emp_status='".$updatemas['emp_status']."',
+            resignordeletiondate='".$updatemas['resignordeletiondate']."',
+            date_added = NOW(), 
+            date_modified=NOW(), 
+            timeago='".$time."'
             WHERE id='".$updatemas['mlistid']."' ";
         //echo "<pre>"; print_r($query);exit;
         $exeml = $connection->query($query);
@@ -294,8 +320,11 @@ class Insidercommon extends Component
         {
             $querywru = "UPDATE `web_register_user` SET 
                 user_group_id='".$updatemas['typeofusr']."', 
-                username='".$updatemas['fullname']."', firstname='".$updatemas['firstname']."', 
-                lastname='".$updatemas['lastname']."', mobile='".$updatemas['mobile']."'
+                username='".$updatemas['fullname']."', 
+                firstname='".$updatemas['firstname']."', 
+                lastname='".$updatemas['lastname']."', 
+                mobile='".$updatemas['mobile']."',
+                status='".$status."'
                 WHERE email='".$updatemas['email']."' ";
             //echo "<pre>"; print_r($querywru);exit;
             $exewru = $conn->query($querywru);
