@@ -380,12 +380,12 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                     </section>
                         
-                    <section class="col col-md-6 col-xs-6">
+                    <!--<section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">CIN/DIN</label>
                                 <input type="text" id="cin" name="cin" class="form_fields form-control " value="" readonly required>
                             </div>
-                    </section>
+                    </section>-->
                
                      <section class="col col-md-6 col-xs-6">
                          <div class="input">
