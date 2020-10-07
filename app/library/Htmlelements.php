@@ -2749,14 +2749,14 @@ public function mailofpersonalinfo($data)
 
              <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
               <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
-                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Holding in Shares:</span>
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">No. of shares held in DRL:</span>
                 <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['shareholdng'].'</span>
               </div>
             </div>
 
              <div style="background:#f8f8f8;width:80%;border-radius:3px;margin:10px 0">
               <div style="border:0;outline:0;color:#333;background:0;width:100%;padding:8px 0;font-weight:600;display:flex">
-                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">Holding in ADRs:</span>
+                <span style="width:35%;text-align:center;color:#5d5d5d;font-size:14px">No. of American Depository Receipts held in DRL:</span>
                 <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">'.$data['adrsholdng'].'</span>
               </div>
             </div>

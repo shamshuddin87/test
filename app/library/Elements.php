@@ -813,4 +813,14 @@ public function sharedmailerhtml($name,$subject,$body)
         if (@file_exists($mghtjs)) {} else {@fopen($mghtjs, "w");}
         /*================This will create Js in desired Controller================*/
     }
+    
+    /* ############## check current Age from Date Of Birth ############## */
+    public function checkCurrentAge($dob)
+    {
+        $bday = new DateTime($dob); // Your date of birth
+        $today = new Datetime(date('d-m-Y'));
+        $diff = $today->diff($bday);
+        return $diff;
+    }
+    /* ############## check current Age from Date Of Birth ############## */
 }
