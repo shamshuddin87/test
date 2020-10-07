@@ -20,15 +20,12 @@ class PortfolioController extends ControllerBase
        // demat Account Detail
       
 
-      $demat = $this->portfoliocommon->getdematsstatus($uid,$usergroup);
-      if(!empty($demat))
-      {
-         $this->view->getdematsstatus=$this->portfoliocommon->getdematsstatus($uid,$usergroup);
-      }
-     
-       //print_r($getdematsstatus);exit;
-        
-            
+        $demat = $this->portfoliocommon->getdematsstatus($uid,$usergroup);
+        if(!empty($demat))
+        {
+            $this->view->getdematsstatus=$this->portfoliocommon->getdematsstatus($uid,$usergroup);
+        }
+        //print_r($getdematsstatus);exit;
     }
     
     public function storeaccnoAction()
@@ -40,55 +37,59 @@ class PortfolioController extends ControllerBase
         {
          if($this->request->isAjax() == true)
          {
-             $flag =0;
-             $accnodata= $this->request->getPost('accno');
-             $self_nation = $this->request->getPost('self_nation');
-             //print_r($accnodata);exit;
+            $flag =0;
+            $accnodata= $this->request->getPost('accno');
+            $self_nation = $this->request->getPost('self_nation');
+            //print_r($accnodata);exit;
             //$clhouse= $this->request->getPost('clhouse');
 
             if($self_nation == 'Indian')
             {
-
-            for($i=0;$i<sizeof($accnodata);$i++)
-            {
-               if(strlen($accnodata[$i]['accno'])<16)
-               {
-                   $data = array("logged" => false,'message' => 'Demat account no. should be 16 characters!!');
-                   $this->response->setJsonContent($data);
-                   $this->response->send();
-                   $flag =0;
-                   break;
-               }
-                else
+                for($i=0;$i<sizeof($accnodata);$i++)
                 {
-                    $flag = 1;
+                   if(strlen($accnodata[$i]['accno'])<16)
+                   {
+                       $data = array("logged" => false,'message' => 'Demat account no. should be 16 characters!!');
+                       $this->response->setJsonContent($data);
+                       $this->response->send();
+                       $flag =0;
+                       break;
+                   }
+                    else
+                    {
+                        $flag = 1;
+                    }
                 }
             }
-           }
-           else
-           {
-            $flag = 1;
-           }
+            else
+            {
+                $flag = 1;
+            }
             if($flag == 1)
             {
+                $isfirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'user_demat_accounts','user_id');
+                //print_r($isfirst);exit;
+                $isDataEmpty = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'relative_demat_accounts','parent_user_id');
+                //print_r($isDataEmpty);exit;
                 
-             $getresponse = $this->portfoliocommon->storeaccno($uid,$usergroup,$accnodata);
-             if($getresponse['status']==true)
+                $getresponse = $this->portfoliocommon->storeaccno($uid,$usergroup,$accnodata);
+                if($getresponse['status']==true)
                 {
-                    $data = array("logged" => true,'message' =>$getresponse['msg']);
+                    $data = array("logged" => true,'message' =>$getresponse['msg'],'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
                     $this->response->setJsonContent($data);
                 }
-                else{
-                    $data = array("logged" => false,'message' => $getresponse['msg']);
+                else
+                {
+                    $data = array("logged" => false,'message' => $getresponse['msg'],'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
                     $this->response->setJsonContent($data);
                 }
             }
-
-                $this->response->send();
+            $this->response->send();
 
          }
       }
     }
+    
     public function getaccnoAction(){
 
         $this->view->disable();

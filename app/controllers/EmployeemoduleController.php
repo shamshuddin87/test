@@ -104,7 +104,7 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Birth Date');
                     $this->response->setJsonContent($data);
                 }
-                 else if($datestatus != "valid")
+                else if($datestatus != "valid")
                 {
                     $data = array("logged" => false,'message' => 'Please provide correct Date of Birth');
                     $this->response->setJsonContent($data);
@@ -182,6 +182,7 @@ class EmployeemoduleController extends ControllerBase
 
                     if($check == true)
                     {
+                        $isfirst = 'no';
                         if(empty($filepath))
                         {
                             $filepath = $this->request->getPost('updtfile','trim');
@@ -195,9 +196,11 @@ class EmployeemoduleController extends ControllerBase
                     }
                     else
                     {
-
-
-                        //print_r($toemail);exit;
+                        $isfirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'personal_info','userid');
+                        //print_r($isfirst);exit;
+                        $isDataEmpty = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'pastemployer','user_id');
+                        //print_r($isDataEmpty);exit;
+                        
                         $result = $this->employeemodulecommon->insmydetail($uid,$usergroup,$data,$filepath);
                         $sendmail = $this->emailer->mailofpersonalinfo($data);
                         //print_r($sendmail);exit;
@@ -206,13 +209,13 @@ class EmployeemoduleController extends ControllerBase
                     //print_r($result);exit;
                     if($result['status']== true && $sendmail['logged'] == true)
                     {
-                        $data = array("logged" => true,'message' => $result['message']);
+                        $data = array("logged" => true,'message' => $result['message'],'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
                         $this->response->setJsonContent($data);
                     }
 
                     else
                     {
-                        $data = array("logged" => false,'message' =>$result['message']);
+                        $data = array("logged" => false,'message' =>$result['message'],'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
                         $this->response->setJsonContent($data);
                     }
                 }
@@ -550,6 +553,11 @@ class EmployeemoduleController extends ControllerBase
                 }
                 else
                 {
+                    $isfirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'relative_info','user_id');
+                    //print_r($isfirst);exit;
+                    $isDataEmpty = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'mfr','user_id');
+                    //print_r($isDataEmpty);exit;
+                    
                     if(!empty($_FILES["file"]))
                     {
                         foreach($_FILES['file']['tmp_name'] as $key => $val )
@@ -577,12 +585,12 @@ class EmployeemoduleController extends ControllerBase
                     
                     if($result['status']==true)
                     {
-                        $data = array("logged" => true,'message' =>$result['message']);
+                        $data = array("logged" => true,'message' =>$result['message'],'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
                         $this->response->setJsonContent($data);
                     }
                     else
                     {
-                        $data = array("logged" => false,'message' =>$result['message']);
+                        $data = array("logged" => false,'message' =>$result['message'],'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
                         $this->response->setJsonContent($data);
                     }
                 }
@@ -1016,6 +1024,12 @@ class EmployeemoduleController extends ControllerBase
                     $flag = 1;
                     $date=date('d-m-Y');
                     $data=$this->request->getPost();
+                    
+                    $isfirst = $this->employeemodulecommon->checkIfFirstData($getuserid,$user_group_id,'pastemployer','user_id');
+                    //print_r($isfirst);exit;
+                    $isDataEmpty = $this->employeemodulecommon->checkIfFirstData($getuserid,$user_group_id,'relative_info','user_id');
+                    //print_r($isDataEmpty);exit;
+                    
                     for($i=0;$i<sizeof($data['myarr']);$i++)
                     { 
                         // print_r($data['myarr']);exit;
@@ -1023,6 +1037,28 @@ class EmployeemoduleController extends ControllerBase
                         $designtn=$data['myarr'][$i]['designtn'];
                         $startdate=$data['myarr'][$i]['strtdte'];
                         $enddate=$data['myarr'][$i]['enddte'];
+                        
+                        /*Date Validation for dates Start (dd-mm-yyyy)*/
+                        if(!empty($startdate))
+                        {
+                            $dateofstart = explode('-', $startdate);
+
+                            $startm = $dateofstart[1];
+                            $starty = $dateofstart[2];
+                            $startd = $dateofstart[0];
+                            $startdatestatus = $this->elements->checkdate($startm,$starty,$startd);
+                        }
+                        
+                        if(!empty($enddate))
+                        {
+                            $dateofend = explode('-', $enddate);
+
+                            $endm = $dateofend[1];
+                            $endy = $dateofend[2];
+                            $endd = $dateofend[0];
+                            $enddatestatus = $this->elements->checkdate($endm,$endy,$endd);
+                        }
+                        /*Date Validation for dates End (dd-mm-yyyy)*/
 
                         $date_overlap = $this->employeemodulecommon->check_dateoverlap($getuserid,$user_group_id,$startdate,$enddate);
                         //print_r($date_overlap);exit;
@@ -1030,6 +1066,13 @@ class EmployeemoduleController extends ControllerBase
                         if(empty($startdate))
                         {
                             $data = array("logged" => false,'message' => 'Start Date should not empty!!');
+                            $this->response->setJsonContent($data);
+                            $flag = 0;
+                            break;
+                        }
+                        else if($startdatestatus != "valid")
+                        {
+                            $data = array("logged" => false,'message' => 'Please provide correct Start Date of Employment');
                             $this->response->setJsonContent($data);
                             $flag = 0;
                             break;
@@ -1044,6 +1087,13 @@ class EmployeemoduleController extends ControllerBase
                         else if(empty($enddate))
                         {
                             $data = array("logged" => false,'message' => 'End Date should not empty!!');
+                            $this->response->setJsonContent($data);
+                            $flag = 0;
+                            break;
+                        }
+                        else if($enddatestatus != "valid")
+                        {
+                            $data = array("logged" => false,'message' => 'Please provide correct End Date of Employment');
                             $this->response->setJsonContent($data);
                             $flag = 0;
                             break;
@@ -1102,12 +1152,12 @@ class EmployeemoduleController extends ControllerBase
                         //echo 'exit;';exit;
                         if($getres)
                         {
-                            $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
+                            $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres,'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
                             $this->response->setJsonContent($data);
                         }
                         else
                         {
-                            $data = array("logged" => false,'message' => "Record Not Added..!!");
+                            $data = array("logged" => false,'message' => "Record Not Added..!!",'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
                             $this->response->setJsonContent($data);
                         } 
                     }
@@ -1415,14 +1465,19 @@ class EmployeemoduleController extends ControllerBase
                 }
                 else
                 {
+                    $isfirst = $this->employeemodulecommon->checkIfFirstData($getuserid,$user_group_id,'mfr','user_id');
+                    //print_r($isfirst);exit;
+                    $isDataEmpty = $this->employeemodulecommon->checkIfFirstData($getuserid,$user_group_id,'user_demat_accounts','user_id');
+                    //print_r($isDataEmpty);exit;
+                    
                     $getres = $this->employeemodulecommon->insertmfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$pan,$address,$transaction,$clientid,$mobile);
                     if($getres)
                     {
-                        $data = array("logged" => true,'message' => 'Data Inserted Successfully..!!!');
+                        $data = array("logged" => true,'message' => 'Data Inserted Successfully..!!!','isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
                     }
                     else
                     {
-                        $data = array("logged" => false,'message' => 'Data Not Inserted..!!!');
+                        $data = array("logged" => false,'message' => 'Data Not Inserted..!!!','isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
                     }
                     $this->response->setJsonContent($data);
                 }
@@ -1923,7 +1978,7 @@ class EmployeemoduleController extends ControllerBase
     }
 
 
-       public function updatepastempAction()
+    public function updatepastempAction()
     {     
         $this->view->disable();
         $getuserid = $this->session->loginauthspuserfront['id'];
@@ -1945,10 +2000,39 @@ class EmployeemoduleController extends ControllerBase
                     $designtn=$data['myarr'][$i]['designtn'];
                     $startdate=$data['myarr'][$i]['strtdte'];
                     $enddate=$data['myarr'][$i]['enddte'];
+                    
+                    /*Date Validation for dates Start (dd-mm-yyyy)*/
+                    if(!empty($startdate))
+                    {
+                        $dateofstart = explode('-', $startdate);
+
+                        $startm = $dateofstart[1];
+                        $starty = $dateofstart[2];
+                        $startd = $dateofstart[0];
+                        $startdatestatus = $this->elements->checkdate($startm,$starty,$startd);
+                    }
+
+                    if(!empty($enddate))
+                    {
+                        $dateofend = explode('-', $enddate);
+
+                        $endm = $dateofend[1];
+                        $endy = $dateofend[2];
+                        $endd = $dateofend[0];
+                        $enddatestatus = $this->elements->checkdate($endm,$endy,$endd);
+                    }
+                    /*Date Validation for dates End (dd-mm-yyyy)*/
 
                     if(empty($startdate))
                     {
                         $data = array("logged" => false,'message' => 'Start Date should not empty!!');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if($startdatestatus != "valid")
+                    {
+                        $data = array("logged" => false,'message' => 'Please provide correct Start Date of Employment');
                         $this->response->setJsonContent($data);
                         $flag = 0;
                         break;
@@ -1963,6 +2047,13 @@ class EmployeemoduleController extends ControllerBase
                     else if(empty($enddate))
                     {
                         $data = array("logged" => false,'message' => 'End Date should not empty!!');
+                        $this->response->setJsonContent($data);
+                        $flag = 0;
+                        break;
+                    }
+                    else if($enddatestatus != "valid")
+                    {
+                        $data = array("logged" => false,'message' => 'Please provide correct End Date of Employment');
                         $this->response->setJsonContent($data);
                         $flag = 0;
                         break;

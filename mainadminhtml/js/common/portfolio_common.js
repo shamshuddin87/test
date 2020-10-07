@@ -1,4 +1,21 @@
- website('.relativesform').hide();
+var url = new URL(window.location.href);
+var action = url.searchParams.has("tab");
+if(action)
+{
+    var actval = atob(url.searchParams.get("tab"));
+    if(actval == 2)
+    {
+        website('.relatives').addClass('active');
+        website('.personal').removeClass('active');
+        website('.relativesform').show();
+        website('.personaldetails').hide();
+    }
+}
+else
+{
+    website('.relativesform').hide();
+}
+
 
  website('.personal').click(function(e) {
    e.preventDefault();
@@ -119,17 +136,30 @@ website("body").on("click","#subdemat",function(e) {
         {   },
         success: function(response, textStatus, jqXHR)
         {
-             if(response.logged===true){
-                  new PNotify({title: 'Alert',
-                    text: response.message,
-                    type: 'university',
-                    hide: true,
-                    styling: 'bootstrap3',
-                    addclass: 'dark ',
-                });
-                  getuseraccno();
-               }
-             else{
+             if(response.logged===true)
+             {
+                if(response.isfirst == 'yes' && response.isnextdataempty == 'yes')
+                {
+                    var baseHref = getbaseurl();
+                    var redirecturl = baseHref + "portfolio?tab=" + btoa(2);
+                    website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Demat Account Details added successfully.<br>Please Insert Relative Demat Account Details.</h5></div><div class="guidebtn"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');
+                    website('#modeluserguide').modal('show');
+                    getuseraccno();
+                }
+                else 
+                {
+                    new PNotify({title: 'Alert',
+                        text: response.message,
+                        type: 'university',
+                        hide: true,
+                        styling: 'bootstrap3',
+                        addclass: 'dark ',
+                        });
+                    getuseraccno();
+                }
+            }
+            else
+            {
 
                new PNotify({title: 'Alert',
                     text: response.message,

@@ -155,11 +155,11 @@ class Employeemodulecommon extends Component
             $originalDate = $data['dob'];
             $newDate = date("d-m-Y", strtotime($originalDate));
             $depdntnature = implode(',',$data['depnature']);
-           // print_r($data);exit;
+           // print_r($data);exit;,`legal_identification_no`,"'.$data['legal_idntfctn_no'].'"
              $query='INSERT INTO `relative_info`
-             (`user_id`,`user_group_id`,`name`,`pan`,`legal_identifier`,`legal_identification_no`,`aadhar`,`relationship`,`dependency_nature`,`dob`,`sex`,`address`,`education`,`institute`,`mobile`,`filepath`,`sharehldng`,`adrshldng`,`occupation`,`company`,`nationality`,`date_added`,`date_modified`,`timeago`)
+             (`user_id`,`user_group_id`,`name`,`pan`,`legal_identifier`,`aadhar`,`relationship`,`dependency_nature`,`dob`,`sex`,`address`,`education`,`institute`,`mobile`,`filepath`,`sharehldng`,`adrshldng`,`occupation`,`company`,`nationality`,`date_added`,`date_modified`,`timeago`)
                 VALUES 
-                ("'.$userid.'","'.$user_group_id.'","'.$data['fname'].'","'.$data['pan'].'","'.$data['legal_idntfr'].'","'.$data['legal_idntfctn_no'].'","'.$data['aadhar'].'","'.$data['relationship'].'","'.$depdntnature.'","'.$newDate.'","'.$data['sex'].'","'.$data['address'].'","'.$data['eduqulfcn'].'","'.$data['relinstitute'].'","'.$data['relmobno'].'","'.$filepath.'","'.$data['shareholdng'].'","'.$data['adrsholdng'].'","'.$data['reloccupation'].'","'.$data['relcompany'].'","'.$data['rel_nation'].'",NOW(),NOW(),"'.$time.'")';
+                ("'.$userid.'","'.$user_group_id.'","'.$data['fname'].'","'.$data['pan'].'","'.$data['legal_idntfr'].'","'.$data['aadhar'].'","'.$data['relationship'].'","'.$depdntnature.'","'.$newDate.'","'.$data['sex'].'","'.$data['address'].'","'.$data['eduqulfcn'].'","'.$data['relinstitute'].'","'.$data['relmobno'].'","'.$filepath.'","'.$data['shareholdng'].'","'.$data['adrsholdng'].'","'.$data['reloccupation'].'","'.$data['relcompany'].'","'.$data['rel_nation'].'",NOW(),NOW(),"'.$time.'")';
 
               // echo $query;exit;
                $exeget = $connection->query($query);
@@ -1086,8 +1086,41 @@ class Employeemodulecommon extends Component
             return false;
         }
     }
-
-
+    
+    /* -------------- Check if it is 1st data START --------------- */
+    public function checkIfFirstData($uid,$usergroup,$table_name,$column_name)
+    {
+        $status = 'no';
+        $query = '';
+        $connection = $this->dbtrd;
+        
+        $queryget = "SELECT * FROM `".$table_name."`  WHERE `".$column_name."` = '".$uid."' ";
+        //echo $queryget;exit;
+        
+        try
+        {
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+            // $getlist=array();
+            if($getnum==0)
+            {
+                $status = 'yes';
+            }
+            else
+            {
+                $status = 'no';
+            }     
+        }
+        catch(Exceptioon $e)
+        {
+            $status = 'no';
+        }
+        return $status;
+    }
+    /* -------------- Check if it is 1st data START --------------- */
+        
+        
+        
   }
 
 

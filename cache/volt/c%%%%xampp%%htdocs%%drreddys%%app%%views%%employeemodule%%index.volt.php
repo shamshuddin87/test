@@ -9,30 +9,48 @@
    <div class="preloder_wraper">
       <a href="javascript:;" class="preloder"></a>
    </div>
-   <div class="col-md-12 col-sm-12 col-lg-offset-2">
+   <div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-2">
       <div class="login-button-container clearfix">
-         <div class="col-md-3 col-xs-12 sign-in register">
+          <button class="btn personal active">
+            Employee Personal Details        
+            </button>          
+          <button class="btn employment">
+            Personal Employment        
+            </button>
+           <button class="btn relatives ">
+            Relatives  Details   
+            </button>
+          <button class="btn mfr">
+            Material Financial Relationship  
+            </button>
+          
+         <!--<div class="col-md-2 col-xs-12 sign-in register">
             <button class="btn personal active">
             Employee Personal Details        
             </button>
          </div>
-         <div class="col-md-3 col-xs-12 register">
+          <div class="col-md-2 col-xs-12 register">
+            <button class="btn employment">
+            Personal Employment        
+            </button>
+         </div>
+         <div class="col-md-2 col-xs-12 register">
             <button class="btn relatives ">
             Relatives  Details   
             </button>
          </div>
-         <div class="col-md-3 col-xs-12 register">
+         <div class="col-md-2 col-xs-12 register">
             <button class="btn mfr">
             Material Financial Relationship  
             </button>
-         </div>
+         </div>-->
       </div>
    </div>
    <div class="col-md-12 col-xs-12">
       <div class="row personaldetails" style="display: block;">
          <div class="tablitiledesc text-center">
             <div class="note">
-               (<strong>Note : </strong>Please fill information on all the 3 tabs.)
+               (<strong>Note : </strong>Please fill information on all the 4 tabs.)
             </div>
          </div>
          <!-------------------------------------------------------------------------------------------->
@@ -276,22 +294,8 @@
             </div>
          </div>
          <!-- My messages -->
-         <h3 style="text-align: center;">Add Past Employer</h3>
-         <div class="col-md-4 col-xs-12">
-            <label for="age">Please Enter No Of Past Employer*</label>
-            <input type="text" id="pastemp" name="pastemp" placeholder="No Of Past Employer">
-         </div>
-         <div class="col-md-4">
-            <button class="add_button">Go</button>
-         </div>
+         
          <div class="mainelementfom">
-            <div class="containergrid">
-               <div class="formcss">
-                  <div class="typography form_pad" id="addnoofforms">
-                     <div class="clearelement"></div>
-                  </div>
-               </div>
-            </div>
             <div class="clearelement"></div>
             <!------------------------------------MODAL BOX FOR EDIT------------------------------------------>
             <div id="mydataedit" class="modal fade" role="dialog">
@@ -1088,6 +1092,29 @@
             </div>
          </div>
       </div>
+      <div class="col-md-12 col-lg-12">
+         <div class="row employmentform" style="display: none;">
+            <h3 style="text-align: center;">Add Past Employer</h3>
+             
+             <div class="col-md-4 col-xs-12">
+                 <div class="tooltip_div">
+                     <a href="javascript:void(0);" data="In case your no. of past employments exceed 5 then please mention only latest 5 employment details here. For rest of the companies please send email to the Compliance Officer" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                  </div>
+                <label for="age">Please Enter No Of Past Employer*</label>
+                <input type="text" id="pastemp" name="pastemp" placeholder="No Of Past Employer">
+             </div>
+             <div class="col-md-4">
+                <button class="add_button">Go</button>
+             </div>
+             <div class="containergrid">
+               <div class="formcss">
+                  <div class="typography form_pad" id="addnoofforms">
+                     <div class="clearelement"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
    </div>
 </div>
 <div id="myModalyesno" class="modal fade" role="dialog">
@@ -1129,4 +1156,26 @@
       </div>
    </div>
 </div>
+
+<!--  ############# User Guide ################## -->
+ <div id="modeluserguide" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;</button>
+                <h4 class="modal-title">
+                </h4>
+            </div>
+            <div class="modal-body" id="modalcontent">
+
+                
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<!--  ############# User Guide ################## -->
 <!-- ########################################## PageContent End ########################################## -->

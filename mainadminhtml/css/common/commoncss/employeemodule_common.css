@@ -80,6 +80,10 @@ button.btn.mfr.active {
     background: #522c8f;
     color: #fff;
 }
+button.btn.employment.active {
+    background: #522c8f;
+    color: #fff;
+}
 .formelementmain{display:none;}
 
 
@@ -104,6 +108,7 @@ section#pstbtn { text-align: right;}
 button.add_button { margin-top: 23px;padding: 9px 26px; /*background: #1A82C3;*/ background: #4a2880; color: #fff; border: none; border-radius: 4px;}
 .col-md-4.top_space {margin-top: 15px;}
 .personaldetails h3 {/* padding-top: 28px; */padding-left: 10px; color: #000;}
+.employmentform h3 {/* padding-top: 28px; */padding-left: 10px; color: #000;}
 .insert {margin-top: 29px;}
 input[type=submit] {
   background-color: #4a2880;
@@ -196,6 +201,8 @@ i.fa.fa-edit.editcmp {
     margin-right: 10px;
 }
 
+.employmentform {width: 98%;margin: 0 auto;background: #fff;box-shadow: 2px 2px 8px #ccc;
+padding: 8px;margin-top: 13px;border-radius: 4px;}
 .mfrdetails {
     margin-top: 25px;
     color: black;
@@ -431,8 +438,8 @@ label {
     font-weight: bold;
 }
 
-.btn.mfr,.btn.relatives{background: #fff;color: #000;}
-.btn.mfr:hover,.btn.relatives:hover{    background: #4a2880; color: white;}
+.btn.mfr,.btn.relatives,.btn.employment{background: #fff;color: #000;}
+.btn.mfr:hover,.btn.relatives:hover,.btn.employment:hover{    background: #4a2880; color: white;}
 
 .input-group .form-control {
     position: relative;

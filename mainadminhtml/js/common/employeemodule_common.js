@@ -17,25 +17,47 @@ website(document).ready(function () {
 
   var action = url.searchParams.has("tab");
 
-  if (action) {
-    var actval = atob(url.searchParams.get("tab"));
-  } else {
-  }
+    if (action) 
+    {
+        var actval = atob(url.searchParams.get("tab"));
+    } 
+    else 
+    {
+        var actval = '';
+    }
 
-  if (actval == "2") {
+  if (actval == "2") //relative tab
+  {
     website(".personal").removeClass("active");
+    website(".employment").removeClass("active");
+    website(".mfr").removeClass("active");
     website(".relatives").addClass("active");
     website(".relativesform").show();
     website(".personaldetails").hide();
+    website(".employmentform").hide();
     website(".mymfr").hide();
-  } else if (actval == "3") {
+  } 
+  else if (actval == "3") //MFR tab
+  {
     website(".mfr").addClass("active");
     website(".relatives").removeClass("active");
     website(".personal").removeClass("active");
+    website(".employment").removeClass("active");
     website(".relativesform").hide();
     website(".personaldetails").hide();
+    website(".employmentform").hide();
     website(".mymfr").show();
-  } else {
+  }
+  else if (actval == "4") //Employement tab
+  {
+    website(".employment").addClass("active");
+    website(".relatives").removeClass("active");
+    website(".personal").removeClass("active");
+    website(".mfr").removeClass("active");
+    website(".relativesform").hide();
+    website(".personaldetails").hide();
+    website(".mymfr").hide();
+    website(".employmentform").show();
   }
 
 
@@ -75,9 +97,11 @@ website(".personal").click(function (e) {
   website(this).addClass("active");
   website(".relatives").removeClass("active");
   website(".mfr").removeClass("active");
+  website(".employment").removeClass("active");
   website(".personaldetails").show();
   website(".mymfr").hide();
   website(".relativesform").hide();
+  website(".employmentform").hide();
 });
 
 website(".relatives").click(function (e) {
@@ -85,18 +109,34 @@ website(".relatives").click(function (e) {
   website(this).addClass("active");
   website(".personal").removeClass("active");
   website(".mfr").removeClass("active");
+  website(".employment").removeClass("active");
   website(".relativesform").show();
   website(".mymfr").hide();
   website(".personaldetails").hide();
+  website(".employmentform").hide();
 });
 website(".mfr").click(function (e) {
   e.preventDefault();
   website(this).addClass("active");
   website(".relatives").removeClass("active");
   website(".personal").removeClass("active");
+  website(".employment").removeClass("active");
   website(".relativesform").hide();
   website(".personaldetails").hide();
+  website(".employmentform").hide();
   website(".mymfr").show();
+ });
+
+website(".employment").click(function (e) {
+  e.preventDefault();
+  website(this).addClass("active");
+  website(".relatives").removeClass("active");
+  website(".personal").removeClass("active");
+  website(".mfr").removeClass("active");
+  website(".relativesform").hide();
+  website(".personaldetails").hide();
+  website(".mymfr").hide();
+  website(".employmentform").show();
 });
 
 // Added input value check on postback/load, removed floatLabel class from select input. Modified the scss, added color map.
@@ -457,35 +497,51 @@ website("body").on("click", "#yesdisclosures1", function (e) {
     dataType: "json",
     cache: false,
     //async:true, Cross domain checking
-    beforeSend: function () {
+    beforeSend: function () 
+    {
       website(".preloder_wraper").fadeIn();
     },
-    uploadProgress: function (event, position, total, percentComplete) {},
-    success: function (response, textStatus, jqXHR) {
-      website(".preloder_wraper").fadeOut();
-      website("#updateholdings1").modal("hide");
-      if (response.logged == true) {
-        getpersonalinfo();
-        new PNotify({
-          title: "Alert",
-          text: response.message,
-          type: "university",
-          hide: true,
-          styling: "bootstrap3",
-          addclass: "dark ",
-        });
-
-        window.location.reload();
-      } else {
-        new PNotify({
-          title: "Alert",
-          text: response.message,
-          type: "university",
-          hide: true,
-          styling: "bootstrap3",
-          addclass: "dark ",
-        });
-      }
+    uploadProgress: function (event, position, total, percentComplete) 
+    {   },
+    success: function (response, textStatus, jqXHR) 
+    {
+        website(".preloder_wraper").fadeOut();
+        website("#updateholdings1").modal("hide");
+        if (response.logged == true) 
+        {
+            if(response.isfirst == 'yes' && response.isnextdataempty == 'yes')
+            {
+                var baseHref = getbaseurl();
+                var redirecturl = baseHref + "employeemodule?tab=" + btoa(4);
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Personal Information added successfully.<br>Please Insert Past Employment Details.</h5></div><div class="guidebtn"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
+                website('#modeluserguide').modal('show');
+                getpersonalinfo();
+            }
+            else 
+            {
+                getpersonalinfo();
+                new PNotify({
+                    title: "Alert",
+                    text: response.message,
+                    type: "university",
+                    hide: true,
+                    styling: "bootstrap3",
+                    addclass: "dark ",
+                    });
+                window.location.reload();
+            }
+        } 
+        else 
+        {
+            new PNotify({
+                title: "Alert",
+                text: response.message,
+                type: "university",
+                hide: true,
+                styling: "bootstrap3",
+                addclass: "dark ",
+                });
+        }
     },
   });
 });
@@ -551,31 +607,45 @@ website("body").on("click", "#yesdisclosures2", function (e) {
       website(".preloder_wraper").fadeIn();
     },
     uploadProgress: function (event, position, total, percentComplete) {},
-    success: function (response, textStatus, jqXHR) {
-      website("#updateholdings2").modal("hide");
-      if (response.logged === true) {
-        getrelationdata();
-        new PNotify({
-          title: "Alert",
-          text: response.message,
-          type: "university",
-          hide: true,
-          styling: "bootstrap3",
-          addclass: "dark ",
-        });
-        var baseHref = getbaseurl();
-
-        window.location.href = baseHref + "employeemodule?tab=" + btoa(2);
-      } else {
-        new PNotify({
-          title: "Alert",
-          text: response.message,
-          type: "university",
-          hide: true,
-          styling: "bootstrap3",
-          addclass: "dark ",
-        });
-      }
+    success: function (response, textStatus, jqXHR) 
+    {
+        website("#updateholdings2").modal("hide");
+        if (response.logged === true) 
+        {
+            if(response.isfirst == 'yes' && response.isnextdataempty == 'yes')
+            {
+                var baseHref = getbaseurl();
+                var redirecturl = baseHref + "employeemodule?tab=" + btoa(3);
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Relatives Details added successfully.<br>Please Insert Material Financial Relationship Details.</h5></div><div class="guidebtn"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
+                website('#modeluserguide').modal('show');
+                getrelationdata();
+            }
+            else 
+            {
+                getrelationdata();
+                new PNotify({
+                title: "Alert",
+                text: response.message,
+                type: "university",
+                hide: true,
+                styling: "bootstrap3",
+                addclass: "dark ",
+                });
+                var baseHref = getbaseurl();
+                window.location.href = baseHref + "employeemodule?tab=" + btoa(2);
+            }
+        } 
+        else 
+        {
+            new PNotify({
+            title: "Alert",
+            text: response.message,
+            type: "university",
+            hide: true,
+            styling: "bootstrap3",
+            addclass: "dark ",
+            });
+        }
     },
     complete: function (response) {
       website(".preloder_wraper").fadeOut();
@@ -1471,22 +1541,32 @@ website("#savemfr").click(function (e) {
     beforeSend: function () {},
     uploadProgress: function (event, position, total, percentComplete) {},
     success: function (response, textStatus, jqXHR) {
-      if (response.logged === true) {
-        getmfrdata();
-
-        new PNotify({
-          title: "Alert",
-          text: response.message,
-          type: "university",
-          hide: true,
-          styling: "bootstrap3",
-          addclass: "dark ",
-        });
-
-        var baseHref = getbaseurl();
-
-        window.location.href = baseHref + "employeemodule?tab=" + btoa(3);
-      } else {
+      if (response.logged === true) 
+      {
+          var baseHref = getbaseurl();
+          if(response.isfirst == 'yes' && response.isnextdataempty == 'yes')
+            {
+               var redirecturl = baseHref + "portfolio";
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Data Inserted Successfully.<br>Please Insert Demat Account Details.</h5></div><div class="guidebtn"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');
+                website('#modeluserguide').modal('show');
+                getmfrdata();
+            }
+            else 
+            {
+                getmfrdata();
+                new PNotify({
+                  title: "Alert",
+                  text: response.message,
+                  type: "university",
+                  hide: true,
+                  styling: "bootstrap3",
+                  addclass: "dark ",
+                });
+                window.location.href = baseHref + "employeemodule?tab=" + btoa(3);
+            }
+      } 
+      else 
+      {
         new PNotify({
           title: "Alert",
           text: response.message,
@@ -2320,15 +2400,15 @@ website("body").on("click", ".add_button", function (e) {
         '<label class="control-label">Start Date of Employment*</label>' +
         '<input type="text" name="strtdte" id="strtdte_' +
         i +
-        '" class="form-control bootdatepick sde" required readonly>' +
+        '" class="form-control sde" placeholder="dd-mm-yyyy" maxlength="10" required>' +
         "</div>" +
         "</section>" +
         '<section class="col col-md-6 col-xs-6">' +
         '<div class="input">' +
-        '<label class="control-label">End Date of employent*</label>' +
+        '<label class="control-label">End Date of employment*</label>' +
         '<input type="text" name="enddte" id="enddte_' +
         i +
-        '" class="form-control bootdatepick ede" required readonly>' +
+        '" class="form-control ede" placeholder="dd-mm-yyyy" maxlength="10" required>' +
         "</div>" +
         "</section>";
     }
@@ -2343,8 +2423,8 @@ website("body").on("click", ".add_button", function (e) {
     datepicker();
   } else {
     new PNotify({
-      title: "Please Enter value Less Than Five",
-      text: "Please Enter value Less Than Five",
+      title: "Alert",
+      text: "The system allows only 5 latest employment details to be entered. In case you have more than 5 past employment details then email additional list to Compliance Officer",
       type: "university",
       hide: true,
       styling: "bootstrap3",
@@ -2595,16 +2675,31 @@ website("body").on("click", "#pastbtnsub", function (e) {
       beforeSend: function () {},
       uploadProgress: function (event, position, total, percentComplete) {},
       success: function (response, textStatus, jqXHR) {
-        if (response.logged == true) {
-          new PNotify({
-            title: "Alert",
-            text: response.message,
-            type: "university",
-            hide: true,
-            styling: "bootstrap3",
-            addclass: "dark ",
-          });
-        } else {
+        if (response.logged == true) 
+        {
+            if(response.isfirst == 'yes' && response.isnextdataempty == 'yes')
+            {
+                var baseHref = getbaseurl();
+                var redirecturl = baseHref + "employeemodule?tab=" + btoa(2);
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Personal Employment Information added successfully.<br>Please Insert Relatives Details.</h5></div><div class="guidebtn"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
+                website('#modeluserguide').modal('show');
+                getpastempdata();
+            }
+            else 
+            {
+              new PNotify({
+                title: "Alert",
+                text: response.message,
+                type: "university",
+                hide: true,
+                styling: "bootstrap3",
+                addclass: "dark ",
+              });
+               getpastempdata();
+            }
+        } 
+        else 
+        {
           new PNotify({
             title: "Alert",
             text: response.message,
@@ -2750,23 +2845,23 @@ function getpastempdata() {
             '<label class="control-label">Start Date of Employment*</label>' +
             '<input type="text" name="strtdte" id="strtdte_' +
             i +
-            '" class="form-control bootdatepick sde" value= "' +
+            '" class="form-control sde" placeholder="dd-mm-yyyy" maxlength="10" value= "' +
             startdate +
             '"  startdate= "' +
             startdate +
-            '"  required readonly>' +
+            '"  required>' +
             "</div>" +
             "</section>" +
             '<section class="col col-md-6 col-xs-6">' +
             '<div class="input">' +
-            '<label class="control-label">End Date of employent*</label>' +
+            '<label class="control-label">End Date of employment*</label>' +
             '<input type="text" name="enddte" id="enddte_' +
             i +
-            '" class="form-control bootdatepick ede" value= "' +
+            '" class="form-control ede" placeholder="dd-mm-yyyy" maxlength="10" value= "' +
             enddate +
             '"  enddate= "' +
             enddate +
-            '" required readonly>' +
+            '" required>' +
             "</div>" +
             "</section></div>";
         }

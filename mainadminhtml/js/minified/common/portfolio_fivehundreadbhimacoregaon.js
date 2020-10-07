@@ -1,5 +1,10 @@
 
-website('.relativesform').hide();website('.personal').click(function(e){e.preventDefault();website(this).addClass('active');website('.relatives').removeClass('active');website('.personaldetails').show();website('.relativesform').hide();});website('.relatives').click(function(e){e.preventDefault();website(this).addClass('active');website('.personal').removeClass('active');website('.relativesform').show();website('.personaldetails').hide();});let yeschecked=website("input[name='pastemp']:checked").val();if(yeschecked==1)
+var url=new URL(window.location.href);var action=url.searchParams.has("tab");if(action)
+{var actval=atob(url.searchParams.get("tab"));if(actval==2)
+{website('.relatives').addClass('active');website('.personal').removeClass('active');website('.relativesform').show();website('.personaldetails').hide();}}
+else
+{website('.relativesform').hide();}
+website('.personal').click(function(e){e.preventDefault();website(this).addClass('active');website('.relatives').removeClass('active');website('.personaldetails').show();website('.relativesform').hide();});website('.relatives').click(function(e){e.preventDefault();website(this).addClass('active');website('.personal').removeClass('active');website('.relativesform').show();website('.personaldetails').hide();});let yeschecked=website("input[name='pastemp']:checked").val();if(yeschecked==1)
 {website("#showdemat").css('display','block');}
 else
 {website("#showdemat").css('display','none');}
@@ -16,8 +21,13 @@ else{new PNotify({title:'Alert',text:"No Of Accounts Must Be Less Than 10",type:
 website.ajax({url:'portfolio/storeaccno',data:{accno:mydata,self_nation:self_nation},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
-{if(response.logged===true){new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});getuseraccno();}
-else{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{if(response.logged===true)
+{if(response.isfirst=='yes'&&response.isnextdataempty=='yes')
+{var baseHref=getbaseurl();var redirecturl=baseHref+"portfolio?tab="+btoa(2);website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Demat Account Details added successfully.<br>Please Insert Relative Demat Account Details.</h5></div><div class="guidebtn"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');website('#modeluserguide').modal('show');getuseraccno();}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});getuseraccno();}}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
 {}});});getuseraccno();function getuseraccno(){website.ajax({url:'portfolio/getaccno',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
