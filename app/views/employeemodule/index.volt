@@ -181,13 +181,19 @@
                <div class="row">
                   <div class="col-md-12 col-xs-12">
                     
-                     <div class="col-md-4 col-xs-12 "> 
-                        <label for="age">Holdings In Shares*</label>  
-                        <input type="text" id="shareholdng" name="shareholdng" value="<?php echo($personaldetails['sharehldng']) ?>" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                     <div class="col-md-4 col-xs-12 ">
+                        <div class="tooltip_div">
+                            <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                        </div>
+                        <label for="age">No. of shares held in DRL*</label>  
+                        <input type="text" id="shareholdng" name="shareholdng" value="<?php echo($personaldetails['sharehldng']) ?>" placeholder="No. of shares held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                      </div>
                      <div class="col-md-4 col-xs-12 "> 
-                        <label for="age">Holdings In ADRs*</label>
-                        <input type="text" id="adrsholdng" name="adrsholdng" value="<?php echo($personaldetails['adrshldng']) ?>" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                         <div class="tooltip_div">
+                            <a href="javascript:void(0);" data="Please enter 0 if no American Depository Receipts of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                        </div>
+                        <label for="age">No. of American Depository Receipts held in DRL*</label>
+                        <input type="text" id="adrsholdng" name="adrsholdng" value="<?php echo($personaldetails['adrshldng']) ?>" placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                      </div>
                   </div>
                </div>
@@ -268,13 +274,19 @@
 
                   <div class="col-md-12 col-xs-12">
                     
-                     <div class="col-md-4 col-xs-12 "> 
-                        <label for="age">Holdings In Shares*</label>  
-                        <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                     <div class="col-md-4 col-xs-12 ">
+                         <div class="tooltip_div">
+                            <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                        </div>
+                        <label for="age">No. of shares held in DRL*</label>  
+                        <input type="text" id="shareholdng" name="shareholdng" placeholder="No. of shares held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="0" >
                      </div>
-                     <div class="col-md-4 col-xs-12 "> 
-                        <label for="age">Holdings In ADRs*</label>
-                        <input type="text" id="adrsholdng" name=" "  placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                     <div class="col-md-4 col-xs-12 ">
+                         <div class="tooltip_div">
+                            <a href="javascript:void(0);" data="Please enter 0 if no American Depository Receipts of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                        </div>
+                        <label for="age">No. of American Depository Receipts held in DRL*</label>
+                        <input type="text" id="adrsholdng" name=" "  placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="0">
                      </div>
                   </div>
                </div>
@@ -515,13 +527,19 @@
                            <input type="text" id="relcompany" name="relcompany"  placeholder="Name of Companies/Firm " >
                         </div>
                        
-                        <div class="col-md-4 "> 
-                           <label for="age">Holdings In Shares*</label>
-                           <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
+                        <div class="col-md-4 ">
+                        <div class="tooltip_div">
+                            <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                        </div>
+                           <label for="age">No. of shares held in DRL*</label>
+                           <input type="text" id="shareholdng" name="shareholdng" placeholder="No. of shares held in DRL"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
                         </div>
                         <div class="col-md-4 col-xs-12"> 
-                           <label for="age">Holdings In ADRs*</label>
-                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                            <div class="tooltip_div">
+                                <a href="javascript:void(0);" data="Please enter 0 if no American Depository Receipts of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                            </div>
+                           <label for="age">No. of American Depository Receipts held in DRL*</label>
+                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                         </div>
                          <div class="col-md-4">
                            <label class="control-label">Upload Identity Proof</label>
@@ -529,6 +547,10 @@
                         </div>
                         <div class="col-md-4">
                            <label>Address*</label>
+                            <span style="margin:0 20px;">
+                              <input type="checkbox" id="copyaddress" name="copyaddress" value="same">
+                            <label>Same as your address</label>
+                            </span><br>
                            <textarea class="" placeholder="Address" id="addr"  name="address" type="text"></textarea>
                         </div>
                      </div>
@@ -559,8 +581,8 @@
                         <th>Date</th>
                         <th>Qualification</th>
                         <th>File</th>
-                        <th>Holding in Shares</th>
-                        <th>Holding in ADRs</th>
+                        <th>No. of shares held in DRL</th>
+                        <th>No. of American Depository Receipts held in DRL</th>
                         <th>Action</th>
                      </tr>
                   </thead>
@@ -695,12 +717,12 @@
                            </div>
                            
                                  <div class="col-md-6">
-                                    <label for="age">Holdings In Shares*</label>
-                                    <input type="text" id="shareholdng" name="shareholdng" placeholder="Holdings In Shares"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
+                                    <label for="age">No. of shares held in DRL*</label>
+                                    <input type="text" id="shareholdng" name="shareholdng" placeholder="No. of shares held in DRL"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
                                  </div>
                                  <div class="col-md-6">
-                                    <label for="age">Holdings In ADRs*</label>
-                                    <input type="text" id="adrsholdng" name="adrsholdng" placeholder="Holdings In ADRs" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                                    <label for="age">No. of American Depository Receipts held in DRL*</label>
+                                    <input type="text" id="adrsholdng" name="adrsholdng" placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                                  </div>
                                  <div class="col-md-6 col-xs-12 "> 
                                     <label for="age">Occupation</label>

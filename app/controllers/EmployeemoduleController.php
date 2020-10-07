@@ -64,15 +64,17 @@ class EmployeemoduleController extends ControllerBase
                 
                 if(!empty($dob))
                 {
-                 /*Date Validation for date of birth Start */
-               
-                $dateofbirth = explode('-', $dob);
+                    $currentage = $this->elements->checkCurrentAge($dob);
+                    //print_r($currentage->y);exit;
+                     /*Date Validation for date of birth Start */
 
-                $m = $dateofbirth[1];
-                $y = $dateofbirth[2];
-                $d = $dateofbirth[0];
-                $datestatus = $this->elements->checkdate($m,$y,$d);
-                /*Date Validation for date of birth End */
+                    $dateofbirth = explode('-', $dob);
+
+                    $m = $dateofbirth[1];
+                    $y = $dateofbirth[2];
+                    $d = $dateofbirth[0];
+                    $datestatus = $this->elements->checkdate($m,$y,$d);
+                    /*Date Validation for date of birth End */
                }
 
 
@@ -112,6 +114,11 @@ class EmployeemoduleController extends ControllerBase
                 else if(strtotime($dob)>=strtotime($date))
                 {
                     $data = array("logged" => false,'message' => 'Birth Date cannot be in future ');
+                    $this->response->setJsonContent($data);
+                }
+                else if($currentage->y<18)
+                {
+                    $data = array("logged" => false,'message' => 'You are less than 18 years of age');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($aadhar) && $nationalty == 'Indian')
@@ -183,6 +190,7 @@ class EmployeemoduleController extends ControllerBase
                     if($check == true)
                     {
                         $isfirst = 'no';
+                        $isDataEmpty = 'no';
                         if(empty($filepath))
                         {
                             $filepath = $this->request->getPost('updtfile','trim');
