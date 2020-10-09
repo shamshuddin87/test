@@ -870,7 +870,7 @@ Class Email extends Phalcon\Mvc\User\Component {
     /******** send mail for form c start ********/
     public function mailformcapprvlrqst($emaildata,$email)
     {
-        $subject = 'Received Form C Request For Approval';
+        $subject = 'Received Form C Request';
         $to =$email;
         //echo $to;exit;
         $gethtml = $this->htmlelements->mailformcapprvlrqst($subject,$emaildata);

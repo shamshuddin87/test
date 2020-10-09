@@ -77,7 +77,7 @@ class Sebicommon extends Component
         $connection = $this->dbtrd;
         try
         {
-            $queryget = "SELECT *  FROM `sebiformb_category` ";
+            $queryget = "SELECT *  FROM `sebiformb_category` WHERE `status`='1' ";
             //echo $queryget;exit;
             $exeget = $connection->query($queryget);
             $getnum = trim($exeget->numRows());
@@ -917,7 +917,7 @@ class Sebicommon extends Component
     {
         $connection = $this->dbtrd; 
         $time = time();
-           $queryinsert = "UPDATE `sebiformc_usrdata` SET `cin`='".$formcupdata['cin']."',`category`='".$formcupdata['category']."', `fromdate`='".$formcupdata['fromdate']."', `todate`='".$formcupdata['todate']."', `pretrans`='".$formcupdata['pretrans']."', `posttrans`='".$formcupdata['posttrans']."', `dateofintimtn`='".$formcupdata['dateofintimtn']."', `acquimode`='".$formcupdata['acquimode']."',`buyvalue`='".$formcupdata['buyvalue']."',`buynumbrunt`='".$formcupdata['buynumbrunt']."',`sellvalue`='".$formcupdata['sellvalue']."',`sellnumbrunt`='".$formcupdata['sellnumbrunt']."',`exetrd`='".$formcupdata['exetrd']."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['upformcid']."'"; 
+           $queryinsert = "UPDATE `sebiformc_usrdata` SET `category`='".$formcupdata['category']."', `fromdate`='".$formcupdata['fromdate']."', `todate`='".$formcupdata['todate']."', `pretrans`='".$formcupdata['pretrans']."', `posttrans`='".$formcupdata['posttrans']."', `dateofintimtn`='".$formcupdata['dateofintimtn']."', `acquimode`='".$formcupdata['acquimode']."',`buyvalue`='".$formcupdata['buyvalue']."',`buynumbrunt`='".$formcupdata['buynumbrunt']."',`sellvalue`='".$formcupdata['sellvalue']."',`sellnumbrunt`='".$formcupdata['sellnumbrunt']."',`exetrd`='".$formcupdata['exetrd']."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['upformcid']."'"; 
         //print_r($queryinsert);exit;
         try
         {
@@ -1140,25 +1140,27 @@ class Sebicommon extends Component
     public function sendemailformc($formcid)
     {
         $getusrdetail = $this->fetchemailofusrformc($formcid);
+        
         $maildetailarray = array(
-                            'fullname'=>$getusrdetail['maildata'][0]['fullname'],
-                            'designation'=>$getusrdetail['maildata'][0]['designation'],
-                            'pan'=>$getusrdetail['maildata'][0]['pan']
-                            );
-            for($i = 0;$i<sizeof($getusrdetail['emailid']);$i++)
-            {
-                $result = $this->emailer->mailformcapprvlrqst($maildetailarray,$getusrdetail['emailid'][$i]);
-            }
-            //print_r($result);exit;
-            if($result['logged']==true)
-            {
-               return true;
-            }
-            else
-            {   
-               return false; 
+            'fullname'=>$getusrdetail['maildata'][0]['fullname'],
+            'designation'=>$getusrdetail['maildata'][0]['designation'],
+            'pan'=>$getusrdetail['maildata'][0]['pan']
+        );
+        
+        for($i = 0;$i<sizeof($getusrdetail['emailid']);$i++)
+        {
+            $result = $this->emailer->mailformcapprvlrqst($maildetailarray,$getusrdetail['emailid'][$i]);
+        }
+        //print_r($result);exit;
 
-            }
+        if($result['logged']==true)
+        {
+           return true;
+        }
+        else
+        {   
+           return false; 
+        }
         // return $results;
     }
     
@@ -1185,9 +1187,13 @@ class Sebicommon extends Component
                         $approverid = explode(",",$row['approverid']);
                         $getmaildata[] = $row;
                     }
-                   for($i = 0;$i<sizeof($approverid);$i++)
+                    
+                    $getapproveremail = array();
+                    for($i = 0;$i<sizeof($approverid);$i++)
                     {
                         $querygetemail = "SELECT email FROM `it_memberlist` WHERE `wr_id` = '".$approverid[$i]."' ";
+                        //print_r($querygetemail);exit;
+                        
                         $exegetemail = $connection->query($querygetemail);
                         $getnumemail = trim($exegetemail->numRows());
                         if($getnumemail>0)
@@ -1198,6 +1204,8 @@ class Sebicommon extends Component
                             }
                         }
                     }
+                    //print_r($getapproveremail);exit;
+                    
                     $getadminemail = $this->tradingplancommon->getadminmailid($approverid[0]);
                     array_push($getapproveremail,$getadminemail);
                     $getlist = array('maildata'=>$getmaildata,'emailid'=>$getapproveremail);
