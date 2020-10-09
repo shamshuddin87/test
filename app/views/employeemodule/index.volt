@@ -560,6 +560,11 @@
                   </div>
                </form>
             </div>
+             <div class="tablitiledesc">
+               <div class="note">
+                  <strong>Note : </strong><div style="display: inline-block;padding: 5px 15px;">When you fill up the details of your relatives in the above form, it will be visible in the table below.</div>
+               </div>
+            </div>
             <!--
                <div class="valida">  
                
@@ -791,6 +796,13 @@
                   </div>
                </div>
             </div>
+             
+             <div class="tablitiledesc">
+               <div class="note">
+                  <strong>Note : </strong><div style="display: inline-block;padding: 5px 15px;">When you fill up the details of your material financial relationships in the above form, it will be visible in the table below.</div>
+               </div>
+            </div>
+             
             <!---------------------------------------------------------------------------------------------->
             <!----TABLE OF INSERTED DATA------------------------------------------------------------------>
             <!--             <h4 class="mfrdetails">Material Financial Relationship</h4> -->

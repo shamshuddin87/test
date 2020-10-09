@@ -8,7 +8,15 @@ website('body').on('click','.paginationmn li',function(e)
 {var rscrntpg=website(this).attr('p');website('.panel.panel-white #pagenum').val(rscrntpg);getalltradingrequest("");});website('body').on('change','#noofrows',function(e)
 {getalltradingrequest("");});website('body').on('click','.go_button',function(e)
 {var rscrntpg=website('.gotobtn').val();website('.panel.panel-white #pagenum').val(rscrntpg);getalltradingrequest("");});website('.relativesform').hide();website('.personal').click(function(e){e.preventDefault();website(this).addClass('active');website('.relatives').removeClass('active');website('.relativesform').hide();});website('.relatives').click(function(e){e.preventDefault();website(this).addClass('active');website('.personal').removeClass('active');website('.relativesform').show();});website('.createreq').click(function(e)
-{website('#Mymodalreq').modal('show');});website("#pricepershare").keyup(function(){var noofshare=website('#noofshare').val();var pricepershare=website('#pricepershare').val();if(noofshare!=''&&pricepershare!='')
+{website.ajax({url:'tradingrequest/FetchUserDemat',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(response.logged==true)
+{website('#Mymodalreq').modal('show');}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{},error:function(jqXHR,textStatus,errorThrown)
+{}});});website("#pricepershare").keyup(function(){var noofshare=website('#noofshare').val();var pricepershare=website('#pricepershare').val();if(noofshare!=''&&pricepershare!='')
 {var totalamt=noofshare*pricepershare;website('#totalamt').val(totalamt)}});onkeysearchcmp();function onkeysearchcmp(){website('#searchcmp').css("display","none");website("#nameofcmp").keyup(function(){var search=website('#nameofcmp').val();var addhtml='';website('#tradinform #searchcmp').html("");var formdata={search:search};if(search==''){website('#searchcmp').css("display","none");}
 else{website.ajax({url:'tradingrequest/searchcompany',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)

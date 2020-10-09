@@ -3020,3 +3020,29 @@ website("#relationship").change(function () {
   } else {
   }
 });
+
+
+website(document).on('click', '#copyaddress', function() {
+
+    if(this.checked) 
+    {
+        var address = website("#address").text();
+        var length= website("#address").val().trim().length;
+        if(length!= 0)
+        { 
+          website("#addr").val(address);
+
+        }
+        else
+        {
+            website("#copyaddress").prop("checked", false);
+            new PNotify({title: 'Alert',
+                        text: 'Please Update Your Address First',
+                        type: 'university',
+                        hide: true,
+                        styling: 'bootstrap3',
+                        addclass: 'dark ',
+                    });
+        }
+    }
+});

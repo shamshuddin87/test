@@ -1826,7 +1826,41 @@ class TradingrequestController extends ControllerBase
         }
     }
 
-    
+    public function FetchUserDematAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $checkdemat = $this->tradingrequestcommon->checkdematacc($getuserid,$user_group_id,'');
+                //print_r($getresult);exit;
+                
+                if(!empty($checkdemat))
+                {
+                    $data = array("logged" => true,'message' => 'You Can Create Request...!!!');
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => 'Please Update Your Demat Account Number');
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                 exit('No direct script access allowed');
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
 
     
   }

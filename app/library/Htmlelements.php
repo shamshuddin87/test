@@ -3196,18 +3196,17 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
 
   <p><b>I hereby undertake and confirm that,</b></p>
   <ol style="padding-left: 17px;">
-    <li>I do not have any access or have not received "Unpublished Price Sensitive Information" up to the time of signing this undertaking</li>
+    <li>I do not have any access or have not received "Unpublished Price Sensitive Information" up to the time of signing this undertaking.</li>
     <li>In case I have access to or have received "Unpublished Price Sensitive Information" after the signing of the undertaking but before the execution of the transaction I shall inform the Compliance Officer of the change in my position and that I or my immediate relatives would completely refrain from dealing in the Securities till the time such information becomes public.</li>
-    <li>I have not contravened the Code (as emended from time to time) and any of the provisions of the Insider Trading Regulations (as applicable).</li>
+    <li>I have not contravened the Code (as amended from time to time) and any of the provisions of the Insider Trading Regulations (as applicable).</li>
   </ol>
 
-  <p>I further confirm that the aforesaid facts are true and correct and I shall be fully responsible for any wrongful acts and / or misrepresentation done by me or my immediate relatives including such penalties as may be imposed by the Company / SEBI<br/><br/>You are requested to provide your approval to the aforesaid transaction. <br/><br/>
+  <p>I further confirm that the aforesaid facts are true and correct and I shall be fully responsible for any wrongful acts and / or misrepresentation done by me or my immediate relatives including such penalties as may be imposed by the Company / SEBI.<br/><br/>You are requested to provide your approval to the aforesaid transaction. <br/><br/>
 
   Thanking you,<br/><br/>
-  Yours faithfully,<br/><br/><br/>
+  Yours faithfully,<br/>
+  '.$itmemberinfo['fullname'].'<br/><br/>
  
-  _____________________<br/>
-  Signature<br/><br/>
   Place '.$place.'<br/>
   Date:'.$date.'<br/>
   </p>
@@ -3218,6 +3217,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
   <ol style="padding-left: 17px;">
     <li>This application has to be submitted through electronic system / mail and followed by a hard copy.</li>
     <li>Fresh application for pre-clearance shall be required if the trade is not executed within 7 days of approval.</li>
+    <li>This is a computer generated document and does not require signature.</li>
   </ol>
   </p>
  
