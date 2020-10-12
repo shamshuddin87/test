@@ -26,8 +26,8 @@ class Employeemodulecommon extends Component
               
                $originalDate = $personal['dob'];
                $newDate = date("d-m-Y", strtotime($originalDate));
-               $queryinsertml = "INSERT INTO `personal_info`(`userid`,`user_group_id`,`name`,`pan`,`legal_identifier`,`legal_identification_no`,`aadhar`,`dob`,`sex`,`address`,`education`,`institute`,`mobileno`,`sharehldng`,`adrshldng`,`filepath`,`nationality`,`date_added`,`date_modified`,`timeago`)
-                VALUES ('".$userid."','".$user_group_id."','".$personal['fname']."','".$personal['pan']."','".$personal['legal_idntfr']."','".$personal['legal_idntfctn_no']."','".$personal['aadhar']."','".$newDate."','".$personal['sex']."','".$personal['address']."','".$personal['eduqulfcn']."','".$personal['institute']."','".$personal['mobno']."','".$personal['shareholdng']."', '".$personal['adrsholdng']."','".$filepath."','".$personal['per_nation']."',NOW(),NOW(),'".$time."')";
+               $queryinsertml = "INSERT INTO `personal_info`(`userid`,`user_group_id`,`name`,`pan`,`legal_identifier`,`legal_identification_no`,`aadhar`,`dob`,`sex`,`address`,`education`,`institute`,`mobileno`,`landline`,`sharehldng`,`adrshldng`,`filepath`,`nationality`,`date_added`,`date_modified`,`timeago`)
+                VALUES ('".$userid."','".$user_group_id."','".$personal['fname']."','".$personal['pan']."','".$personal['legal_idntfr']."','".$personal['legal_idntfctn_no']."','".$personal['aadhar']."','".$newDate."','".$personal['sex']."','".$personal['address']."','".$personal['eduqulfcn']."','".$personal['institute']."','".$personal['mobno']."','".$personal['landline']."','".$personal['shareholdng']."', '".$personal['adrsholdng']."','".$filepath."','".$personal['per_nation']."',NOW(),NOW(),'".$time."')";
                   //print_r($queryinsertml);exit;
                 $exeml = $connection->query($queryinsertml);
            
@@ -92,7 +92,7 @@ class Employeemodulecommon extends Component
               $originalDate = $data['dob'];
               $newDate = date("d-m-Y", strtotime($originalDate));
 
-             $qry = "UPDATE personal_info SET pan ='".$data['pan']."',legal_identifier ='".$data['legal_idntfr']."',legal_identification_no ='".$data['legal_idntfctn_no']."',aadhar ='".$data['aadhar']."',dob ='".$newDate."',sex ='".$data['sex']."',address ='".$data['address']."',mobileno='".$data['mobno']."',education ='".$data['eduqulfcn']."',institute ='".$data['institute']."',filepath ='".$filepath."',sharehldng ='".$data['shareholdng']."',adrshldng ='".$data['adrsholdng']."',adrshldng ='".$data['adrsholdng']."',nationality = '".$data['per_nation']."',date_modified=NOW(),`timeago`='".$time."' WHERE id='".$id."' ";
+             $qry = "UPDATE personal_info SET pan ='".$data['pan']."',legal_identifier ='".$data['legal_idntfr']."',legal_identification_no ='".$data['legal_idntfctn_no']."',aadhar ='".$data['aadhar']."',dob ='".$newDate."',sex ='".$data['sex']."',address ='".$data['address']."',mobileno='".$data['mobno']."',landline='".$data['landline']."',education ='".$data['eduqulfcn']."',institute ='".$data['institute']."',filepath ='".$filepath."',sharehldng ='".$data['shareholdng']."',adrshldng ='".$data['adrsholdng']."',adrshldng ='".$data['adrsholdng']."',nationality = '".$data['per_nation']."',date_modified=NOW(),`timeago`='".$time."' WHERE id='".$id."' ";
              //print_r($qry);exit;
              $exeget = $connection->query($qry);
            

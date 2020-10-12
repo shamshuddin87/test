@@ -2097,7 +2097,7 @@ function addhtml(clicked)
         addhtmlnxt += '<label for="">Date</label>';
         addhtmlnxt += ' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" readonly="readonly" >';
         addhtmlnxt += '</div>';
-        addhtmlnxt += ' <div id = "middle" class="form-group col-md-4">';
+        addhtmlnxt += ' <div id = "middle" class="form-group col-md-3">';
         addhtmlnxt += '<label for="">Transaction</label>';
         addhtmlnxt += ' <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >';
         
@@ -2106,6 +2106,10 @@ function addhtml(clicked)
         addhtmlnxt +=' <div id = "right" class="form-group col-md-4">';
         addhtmlnxt += ' <label for="">No of Shares</label>';
         addhtmlnxt += '<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">';
+        addhtmlnxt += ' </div>';
+        
+        addhtmlnxt +=' <div id = "right" class="form-group col-md-1">';
+        addhtmlnxt += '<i class="fa fa-trash-o" onclick="removehtml('+getlastid+');" style="font-size:15px; color:#F44336;margin-top: 39px;"></i>';
         addhtmlnxt += ' </div>';
         
 
@@ -2153,24 +2157,24 @@ function addhtml(clicked)
 
 function removehtml(clicked)
 {
-
     var rmid = clicked;
-
+    var count = website('.append').attr('plancntr');
     if(rmid == 'remvdiv')
     {
-
-
-        var count = website('.append').attr('plancntr');
-        if(count != 1)
-        {
-              website('.appenddiv #row'+count).remove();
-              website('.append').attr('plancntr',parseInt(count)-1);
-        }
-        else
-        {
-             return false;
-        }
+        var rownumber = count;
     }
-
-  
+    else
+    {
+        var rownumber = clicked;
+    }
+    
+    if(count != 1)
+    {
+        website('#row'+rownumber).remove();
+        website('.append').attr('plancntr',parseInt(count)-1);
+    }
+    else
+    {
+        return false;
+    }
 }
