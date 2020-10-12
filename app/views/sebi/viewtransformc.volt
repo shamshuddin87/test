@@ -400,7 +400,7 @@ $condeptsess = $this->session->contractdepartment;
                         </section>
 
 
-                             <section class="col col-md-6 col-xs-6">
+                        <!--<section class="col col-md-6 col-xs-6">
                          <div class="input">
                             <label class="control-label">Type Of Contract</label>
                             <select id="contracttype" name="contracttype" class="form_fields form-control ">
@@ -409,16 +409,16 @@ $condeptsess = $this->session->contractdepartment;
                                     <option value="2">Options</option>
                             </select>
                             </div>
-                        </section>
+                        </section>-->
 
 
 
-                        <section class="col col-md-6 col-xs-6">
+                        <!--<section class="col col-md-6 col-xs-6">
                             <div class="input">
                             <label class="control-label">Contract Specification</label>
                              <input type="text" id="contractspeci" name="contractspeci" class="form-control">
                             </div>
-                        </section>
+                        </section>-->
                
                        
                         <section class="">
@@ -480,7 +480,7 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                     </section>
                
-                     <section class="">
+                     <!--<section class="">
                             <div class="input">
                             <label class="control-label heading" style="margin: 10px;">Trading in derivatives (Specify type of contract, Futures or Options etc)</label>
                            
@@ -512,7 +512,7 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                        </section>
                          </div>
-                    </section>
+                    </section>-->
                
                     
                         <section class="col col-md-6 col-xs-6">
