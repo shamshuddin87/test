@@ -2587,7 +2587,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
                     <ol type="a">
                       <li>Please note that whenever you share this UPSI with any other person or entity, such person, entity with whom UPSI is being shared shall also be deemed to be an insider, for the purpose Insider Trading Regulations.</li>';
 
-                      $html.="<li>b.  Kindly ensure that your organisation maintains the details with reference tostructural digital database, as required under the Insider Trading Regulations and comply with the said regulations.</li>";
+                      $html.="<li>Kindly ensure that your organisation maintains the details with reference tostructural digital database, as required under the Insider Trading Regulations and comply with the said regulations.</li>";
 
                       $html.="<li>The Company is expected to maintain a database of the UPSI shared within and outside the Company for legitimate purposes. The Company may disclose the details pertaining to such sharing of UPSI with regulatory authorities, as permitted or required by applicable laws or regulatory requirements. In such a case, we will endeavour to disclose only the requested information under the circumstances; as part of the Company’s reporting or disclosure obligations, if so required.</li>";
                     $html.='</ol>
