@@ -1853,7 +1853,9 @@ function checktypeofreq($uid,$usergroup,$data)
         $connection = $this->dbtrd;
         if(empty($relativeid))
         {
-            $querygetdetail = "SELECT * FROM `user_demat_accounts` WHERE user_id='".$getuserid."'";  
+            $querygetdetail = "SELECT demat.* FROM `user_demat_accounts` demat
+            LEFT JOIN `demat_status` dstatus ON demat.user_id = dstatus.user_id
+            WHERE demat.`user_id` = '".$getuserid."' AND dstatus.`status`=1";  
         }
         else
         {

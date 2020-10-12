@@ -8,7 +8,15 @@ website('body').on('click','.paginationmn li',function(e)
 {var rscrntpg=website(this).attr('p');website('.panel.panel-white #pagenum').val(rscrntpg);getalltradingrequest("");});website('body').on('change','#noofrows',function(e)
 {getalltradingrequest("");});website('body').on('click','.go_button',function(e)
 {var rscrntpg=website('.gotobtn').val();website('.panel.panel-white #pagenum').val(rscrntpg);getalltradingrequest("");});website('.relativesform').hide();website('.personal').click(function(e){e.preventDefault();website(this).addClass('active');website('.relatives').removeClass('active');website('.relativesform').hide();});website('.relatives').click(function(e){e.preventDefault();website(this).addClass('active');website('.personal').removeClass('active');website('.relativesform').show();});website('.createreq').click(function(e)
-{website('#Mymodalreq').modal('show');});website("#pricepershare").keyup(function(){var noofshare=website('#noofshare').val();var pricepershare=website('#pricepershare').val();if(noofshare!=''&&pricepershare!='')
+{website.ajax({url:'tradingrequest/FetchUserDemat',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(response.logged==true)
+{website('#Mymodalreq').modal('show');}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{},error:function(jqXHR,textStatus,errorThrown)
+{}});});website("#pricepershare").keyup(function(){var noofshare=website('#noofshare').val();var pricepershare=website('#pricepershare').val();if(noofshare!=''&&pricepershare!='')
 {var totalamt=noofshare*pricepershare;website('#totalamt').val(totalamt)}});onkeysearchcmp();function onkeysearchcmp(){website('#searchcmp').css("display","none");website("#nameofcmp").keyup(function(){var search=website('#nameofcmp').val();var addhtml='';website('#tradinform #searchcmp').html("");var formdata={search:search};if(search==''){website('#searchcmp').css("display","none");}
 else{website.ajax({url:'tradingrequest/searchcompany',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
@@ -326,7 +334,7 @@ else
 {website('.otherreason').css('display','block');}
 else
 {website('.otherreason').css('display','none');}});function addhtml(clicked)
-{var id=clicked;if(id=='adddiv'){var getlastid=website('.append').attr('plancntr');getlastid=++getlastid;var addhtmlnxt='';addhtmlnxt+='<div class=" form-group col-md-12 row'+getlastid+' "  id="row'+getlastid+'" >';addhtmlnxt+=' <div id = "left" class="form-group col-md-4" style="margin-left: -18px;">';addhtmlnxt+='<label for="">Date</label>';addhtmlnxt+=' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" readonly="readonly" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "middle" class="form-group col-md-4">';addhtmlnxt+='<label for="">Transaction</label>';addhtmlnxt+=' <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "right" class="form-group col-md-4">';addhtmlnxt+=' <label for="">No of Shares</label>';addhtmlnxt+='<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">';addhtmlnxt+=' </div>';addhtmlnxt+='</div>';let invalid='';website('input[name^="dateoftrans"]').each(function(){const date=website(this).val();if(!date.length)
+{var id=clicked;if(id=='adddiv'){var getlastid=website('.append').attr('plancntr');getlastid=++getlastid;var addhtmlnxt='';addhtmlnxt+='<div class=" form-group col-md-12 row'+getlastid+' "  id="row'+getlastid+'" >';addhtmlnxt+=' <div id = "left" class="form-group col-md-4" style="margin-left: -18px;">';addhtmlnxt+='<label for="">Date</label>';addhtmlnxt+=' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" readonly="readonly" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "middle" class="form-group col-md-3">';addhtmlnxt+='<label for="">Transaction</label>';addhtmlnxt+=' <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >';addhtmlnxt+='</div>';addhtmlnxt+=' <div id = "right" class="form-group col-md-4">';addhtmlnxt+=' <label for="">No of Shares</label>';addhtmlnxt+='<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">';addhtmlnxt+=' </div>';addhtmlnxt+=' <div id = "right" class="form-group col-md-1">';addhtmlnxt+='<i class="fa fa-trash-o" onclick="removehtml('+getlastid+');" style="font-size:15px; color:#F44336;margin-top: 39px;"></i>';addhtmlnxt+=' </div>';addhtmlnxt+='</div>';let invalid='';website('input[name^="dateoftrans"]').each(function(){const date=website(this).val();if(!date.length)
 {invalid=true;}});if(!invalid)
 {website('.appenddiv').append(addhtmlnxt);website('.append').attr('plancntr',getlastid);}
 else
@@ -334,8 +342,11 @@ else
 datepicker();}
 else{var addhtmlnxt='';}}
 function removehtml(clicked)
-{var rmid=clicked;if(rmid=='remvdiv')
-{var count=website('.append').attr('plancntr');if(count!=1)
-{website('.appenddiv #row'+count).remove();website('.append').attr('plancntr',parseInt(count)-1);}
+{var rmid=clicked;var count=website('.append').attr('plancntr');if(rmid=='remvdiv')
+{var rownumber=count;}
 else
-{return false;}}};
+{var rownumber=clicked;}
+if(count!=1)
+{website('#row'+rownumber).remove();website('.append').attr('plancntr',parseInt(count)-1);}
+else
+{return false;}};

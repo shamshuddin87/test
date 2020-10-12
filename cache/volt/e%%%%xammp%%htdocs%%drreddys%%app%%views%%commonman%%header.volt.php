@@ -180,7 +180,7 @@
                      <li><a href="employeemodule"><i class="" id="cmp_mst"></i>Personal information</a></li>
                      <li><a href="portfolio"><i class=""></i>Demat/Securities Account</a></li>
                      <li><a href="continuousdisclosure"><i class=""></i>Continuous Disclosure</a></li>
-                     <!--<li><a href="tradingrequest"><i class=""></i>Request for Pre-clearance</a></li>-->
+                     <li><a href="tradingrequest"><i class=""></i>Request for Pre-clearance</a></li>
                      <!--     <li><a href="initialdeclaration"><i class=""></i>Initial Declaration</a></li>  -->  
                      <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2'){?>
                      <li><a href="tradingrequest/reqview"><i class="" id="viewreq"></i>View request</a></li>
@@ -269,7 +269,6 @@
                         <a href="sebi/viewformd"><i class="fa fa-eye" id=""></i>Approve FORM D Request</a>
                      </li>
                      <?php } ?>
-                      <li><a href="tradingrequest"><i class=""></i>Request for Pre-clearance</a></li>
                   </ul>
                </li>
                <?php }  ?>
