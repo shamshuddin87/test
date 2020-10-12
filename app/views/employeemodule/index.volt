@@ -180,7 +180,11 @@
                      </div>
                <div class="row">
                   <div class="col-md-12 col-xs-12">
-                    
+                    <div class="col-md-4 col-xs-12 "> 
+                        <label for="age">Landline No</label>
+                        <input type="text" id="landline" name="landline" value="<?php echo($personaldetails['landline']) ?>" placeholder="Landline No" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                     </div>
+                      
                      <div class="col-md-4 col-xs-12 ">
                         <div class="tooltip_div">
                             <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
@@ -274,6 +278,11 @@
 
                   <div class="col-md-12 col-xs-12">
                     
+                    <div class="col-md-4 col-xs-12 "> 
+                      <label for="age">Landline No.</label>
+                      <input type="text" id="landline" name="landline" placeholder="landline No" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                   </div>
+                      
                      <div class="col-md-4 col-xs-12 ">
                          <div class="tooltip_div">
                             <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>

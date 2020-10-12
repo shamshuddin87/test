@@ -454,6 +454,7 @@ website("body").on("click", "#yesdisclosures1", function (e) {
   var eduqulfcn = website("#eduqulfcn").val();
   var institute = website("#institute").val();
   var mobno = website("#mobno").val();
+  var landline = website("#landline").val();
   var hldngfile = website("#hldngfile").val();
   var legal_idntfr = website("#legal_idntfr").val();
   var legal_idntfctn_no = website("#legal_idntfctn_no").val();
@@ -477,6 +478,7 @@ website("body").on("click", "#yesdisclosures1", function (e) {
     eduqulfcn: eduqulfcn,
     institute: institute,
     mobno: mobno,
+    landline: landline,
     hldngfile: hldngfile,
     legal_idntfr: legal_idntfr,
     legal_idntfctn_no: legal_idntfctn_no,

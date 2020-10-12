@@ -228,19 +228,24 @@
 
 
 
-            <div class="form-group col-md-12" style="margin-left: -9px;">
+            <div class="form-group col-md-12" style="margin-left: -9px;" >
                 <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>
-                <div id = "left" class="form-group col-md-4" style="margin-left: -9px;">
-                <label for="">Date</label>
-                <input type="text" class="form-control bootdatepick" id="dateoftrans[]" name="dateoftrans[]" placeholder="Date" readonly="readonly" >
-                </div>
-                <div id = "middle" class="form-group col-md-4">
-                 <label for="">Transaction</label>
-                <input type="text" class="form-control " id="trans[]" name="trans[]" placeholder="Transaction" >
-                </div>
-                <div id = "right" class="form-group col-md-4">
-                <label for="">No of Shares</label>
-                <input type="text" class="form-control " id="sharestrans[]" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">
+                <div id="row1">
+                    <div id = "left" class="form-group col-md-4" style="margin-left: -9px;">
+                    <label for="">Date</label>
+                    <input type="text" class="form-control bootdatepick" id="dateoftrans[]" name="dateoftrans[]" placeholder="Date" readonly="readonly" >
+                    </div>
+                    <div id = "middle" class="form-group col-md-3">
+                     <label for="">Transaction</label>
+                    <input type="text" class="form-control " id="trans[]" name="trans[]" placeholder="Transaction" >
+                    </div>
+                    <div id = "right" class="form-group col-md-4">
+                    <label for="">No of Shares</label>
+                    <input type="text" class="form-control " id="sharestrans[]" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">
+                    </div>
+                    <div id = "right" class="form-group col-md-1">
+                        <i class="fa fa-trash-o" onclick="removehtml(1);" style="font-size:15px; color:#F44336;margin-top: 39px;"></i>
+                    </div>
                 </div>
                
             </div>
