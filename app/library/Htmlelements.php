@@ -2602,7 +2602,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
             </div>
         </div>
 
-        </div>
+        </div> 
     </body>
     </html>';
 
