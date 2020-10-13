@@ -32,9 +32,113 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row boxes -->
+                    
+                    <div class="row shortinfo">
+                      
+                        <div class="col-lg-3 col-md-6" id="">
+                            <a href="sebi/transformc">
+                                <!-- <div class="panel panel-orange"> -->
+                                  <div class="panel panel-blue">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-check-circle fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge" id=""></div>
+                                            <div><br></div>
+                                            <div><br></div>
+                                            <div><br></div>
+                                            <div><br></div>
+                                            <div><br></div>
+                                        </div>
+                                        <div class="col-xs-12 text_name">Create Form C</div>
+                                    </div>
+                                </div>
 
+                                <!-- <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                    <div class="clearfix"></div>
+                                </div> -->
+                                </div>
+                            </a>
+                        </div>
+                        <?php  if($gmnlog['user_group_id'] !='2'){?> 
+                        <div class="col-lg-3 col-md-6" id="">
+                            <a href="annualdeclaration">
+                                <!-- <div class="panel panel-orange"> -->
+                                  <div class="panel panel-green">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-check-circle fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge" id=""></div>
+                                            <div><br></div>
+                                            <div><br></div>
+                                            <div><br></div>
+                                        </div>
+                                        <div class="col-xs-12 text_name">Update Annual/Self Disclosure</div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                    <div class="clearfix"></div>
+                                </div> -->
+                                </div>
+                            </a>
+                        </div>
+                        <?php } ?> 
+                      
+                    
+                  </div>
+                    
                     <div class="row">
-                        <div class="col-xs-6"></div>
+                        <div class="col-xs-6">
+                           
+                           <div class="holdingsummary">
+                              <!-- /.panel-heading -->
+                              <h4>Holding Summary</h4>
+                              </div>
+                              <!-- /.panel-body -->
+                              <div class="panel-body">
+                                 <div class="table-responsive">
+                                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                       <div class="row"></div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-sm-12" id="holdingsummary" style="min-height: 205px;">
+                                          <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+                                             <thead>
+                                                <tr role="row">
+                                                   <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="2" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 212px;">Company Name</th>
+                                                   <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 245px; text-align:center;" colspan="3">Closing Balance</th>
+                                                </tr>
+                                                <tr>
+                                                   <th>Equity Shares</th>
+                                                   <th>ADRs</th>
+                                                   <!--<th>Debentures</th>-->
+                                                </tr>
+                                             </thead>
+                                             <tbody class ="holdingsummry">
+                                             </tbody>
+                                          </table>
+                                          <a href="holdingsummary "><button class="viewmore btn btn-primary">View More</button></a>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- /.table-responsive -->
+                              </div>
+                              <!-- /.table-responsive -->
+                           </div>
+                           <!-- /.panel-body -->
+                        </div>
                         <div class="col-xs-6">
                             <div class="announcementdiv">
                                 <h4>Announcement</h4>
