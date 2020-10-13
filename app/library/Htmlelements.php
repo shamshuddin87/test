@@ -2577,7 +2577,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
 
                       <li>You are required to ensure compliance with the Insider Trading Regulations including duties, responsibilities attached to the receipt of this UPSI  and liabilities related to misuse or unwarranted use of such UPSI.</li>
 
-                      <li>Please note that whenever you share this UPSI with any other person or entity, such person, entity with whom UPSI is being shared shall also be deemed to be an insider, for the purpose Insider Trading Regulations.</li>';
+                      <li>Please note that whenever you share this UPSI with any other person or entity, such person, entity with whom UPSI is being shared shall also be deemed to be an insider, for the purpose Insider Trading Regulations.</li>
 
                       <li>Kindly ensure that your organisation maintains the details with reference to structural digital database, as required under the Insider Trading Regulations and comply with the said regulations.</li>
 
