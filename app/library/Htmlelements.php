@@ -2466,7 +2466,7 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
         <p>Dear '.$toname.'</p>
-        <p>Please note that you have received information pertaining to '.$upsiname.' on '.$sharingdate.'. Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time and the Company&apos;ss Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons (hereinafter collectively referred to as "Insider Trading Regulations").</p>
+        <p>Please note that you have received information pertaining to '.$upsiname.' on '.$sharingdate.'. Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time and the '; $html.="Company's"; $html.='Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons (hereinafter collectively referred to as "Insider Trading Regulations").</p>
         
                 <div class="main">
                     <div style="">Accordingly, you are requested to ensure the below:</div>
@@ -2495,16 +2495,16 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
                       <li>You are responsible for ensuring that the relevant entries of names of designated persons and outsider who are in receipt of this UPSI as shared by you for legitimate purposes are added in the structured digital database required to be maintained by the Company for UPSI under Insider Trading Regulations. </li>
                     </ol>";
                      
-                $html.='</div>
+                $html.="</div>
 
 
-        <p>Regards<br>Corporate Secretarial team<br>Dr. Reddy&apos;s Laboratories Limited </p>
+        <p>Regards<br>Corporate Secretarial team<br>Dr. Reddy's Laboratories Limited </p>
             </div>
         </div>
 
         </div>
     </body>
-    </html>';
+    </html>";
 
     //echo $html; exit; 
 
@@ -2582,7 +2582,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
                       <li>Kindly ensure that your organisation maintains the details with reference to structural digital database, as required under the Insider Trading Regulations and comply with the said regulations.</li>
 
                       <li>The Company is expected to maintain a database of the UPSI shared within and outside the Company for legitimate purposes. The Company may disclose the details pertaining to such sharing of UPSI with regulatory authorities, as permitted or required by applicable laws or regulatory requirements. In such a case, we will endeavour to disclose only the requested information under the circumstances; as part of the Company&apos;s reporting or disclosure obligations, if so required.</li>";
-                    $html.='</ol>
+                    $html.="</ol>
                    
                     
                     
@@ -2590,13 +2590,13 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
                 </div>
 
                 
-        <p>Regards<br>Corporate Secretarial team<br>Dr. Reddy&apos;s Laboratories Limited </p>
+        <p>Regards<br>Corporate Secretarial team<br>Dr. Reddy's Laboratories Limited </p>
             </div>
         </div>
 
         </div> 
     </body>
-    </html>';
+    </html>";
 
     //echo $html; exit; 
 
