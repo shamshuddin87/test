@@ -2466,22 +2466,23 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
         <p>Dear '.$toname.'</p>
-        <p>Please note that you have received information pertaining to '.$upsiname.' on '.$sharingdate.'. Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time and the Company’s Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons(hereinafter collectively referred to as "Insider Trading Regulations").</p>
+        <p>Please note that you have received information pertaining to '.$upsiname.' on '.$sharingdate.'. Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time and the Company&apos;ss Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons (hereinafter collectively referred to as "Insider Trading Regulations").</p>
         
                 <div class="main">
                     <div style="">Accordingly, you are requested to ensure the below:</div>
 
-                    <ol type="a">
-                      <li>Such UPSI should not be shared with any one and should be kept confidential.</li>';
+                    <ol type="a">';
+                      $html.="<li>Such UPSI should not be shared with any one and should be kept confidential.</li>
 
-                      $html.="<li>Since this UPSI is being shared with you, you are deemed to be an insider as defined in Insider Trading Regulations. No insider or his/her immediate relative shall trade / deal in Company's securities when in possession of UPSI pursuant to Insider Trading Regulations.</li>";
+                      <li>Since this UPSI is being shared with you, you are deemed to be an insider as defined in Insider Trading Regulations. No insider or his/her immediate relative shall trade / deal in Company's securities when in possession of UPSI pursuant to Insider Trading Regulations.</li>
 
-                      $html.='<li>You are required to ensure compliance with the Insider Trading Regulations and Company’s Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons (Code)including duties, responsibilitiesattached to the receipt of this UPSI and liabilities related to misuse or unwarranted use of such UPSI.</li>';
+                      <li>You are required to ensure compliance with the Insider Trading Regulations and Company&apos;s Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons (Code) including duties, responsibilities attached to the receipt of this UPSI and liabilities related to misuse or unwarranted use of such UPSI.</li>
 
-                      $html.="<li>d.  You are required to communicate, provide or allow access to this UPSI with other designated person or outsider for legitimate purposes, performance of duties or discharge of your legal obligations as provided under the SEBI Insider Trading Regulations. In case you are required to share this UPSI or a part of such UPSI with any other designated person or outsider, you are required to make an entry of such person/entity in the Insider Trading Compliance software (Volody) of the Company. Please follow the process mentioned below";
+                     <li>You are required to communicate, provide or allow access to this UPSI with other designated person or outsider for legitimate purposes, performance of duties or discharge of your legal obligations as provided under the SEBI Insider Trading Regulations. In case you are required to share this UPSI or a part of such UPSI with any other designated person or outsider, you are required to make an entry of such person/entity in the Insider Trading Compliance software (Volody) of the Company. Please follow the process mentioned below";
+
                         $html.='<ol>
                           <li>Log in to your Insider Trading Compliance software (Volody) through ihub or click on http://insidertrading.mydrreddys.com/</li>
-                          <li>On the left hand menu  UPSI Sharing  Information Sharing.</li>
+                          <li>On the left hand menu &#8594; UPSI Sharing &#8594; Information Sharing.</li>
                           <li>Click on (+) on extreme right column of the relevant UPSI to add or view recipients.</li>
                           <li>Search the name of the recipient through the search option. Automatically his name, category and type of UPSI will get pre-populated.</li>
                           <li>Enter date of information sharing, time of information sharing, nature of data shared. You may also attach any document showing such sharing for e.g. Email screenshot etc.</li>
@@ -2493,16 +2494,11 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
                       <li>You are required to ensure that while sharing this UPSI the recipient of such information is aware of its confidentiality and shall ensure that the recipient use such UPSI in compliance with provision of this Code and Insider Trading Regulations.</li>
                       <li>You are responsible for ensuring that the relevant entries of names of designated persons and outsider who are in receipt of this UPSI as shared by you for legitimate purposes are added in the structured digital database required to be maintained by the Company for UPSI under Insider Trading Regulations. </li>
                     </ol>";
-                   
-
-
-                    
-                   
                      
                 $html.='</div>
 
 
-        <p>Regards<br>Corporate Secretarial team<br>Dr. Reddy’s Laboratories Limited </p>
+        <p>Regards<br>Corporate Secretarial team<br>Dr. Reddy&apos;s Laboratories Limited </p>
             </div>
         </div>
 
@@ -2574,22 +2570,18 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
                 <div class="main">
                     <div style="">Accordingly, you are requested to ensure the below:</div>
 
-                    <ol type="a">
-                      <li>In addition to the Confidentiality and Non-Disclosure agreements, such UPSI should not be shared with any one and should be kept confidential.</li>';
+                    <ol type="a">';
+                      $html.="<li>In addition to the Confidentiality and Non-Disclosure agreements, such UPSI should not be shared with any one and should be kept confidential.</li>
 
-                      $html.="<li>Since this UPSI is being shared with you, you are deemed to be an insider as defined in Insider Trading Regulations. No insider shall trade / deal in Company's securities when in possession of UPSI pursuant to Insider Trading Regulations.</li>
+                      <li>Since this UPSI is being shared with you, you are deemed to be an insider as defined in Insider Trading Regulations. No insider shall trade / deal in Company's securities when in possession of UPSI pursuant to Insider Trading Regulations.</li>
 
-                      <li>You are required to ensure compliance with the Insider Trading Regulations including duties, responsibilities attached to the receipt of this UPSI  and liabilities related to misuse or unwarranted use of such UPSI, as prescribed under the Insider Trading Regulations.</li>";
-                    $html.='</ol>
+                      <li>You are required to ensure compliance with the Insider Trading Regulations including duties, responsibilities attached to the receipt of this UPSI  and liabilities related to misuse or unwarranted use of such UPSI.</li>
 
-
-
-                    <ol type="a">
                       <li>Please note that whenever you share this UPSI with any other person or entity, such person, entity with whom UPSI is being shared shall also be deemed to be an insider, for the purpose Insider Trading Regulations.</li>';
 
-                      $html.="<li>Kindly ensure that your organisation maintains the details with reference tostructural digital database, as required under the Insider Trading Regulations and comply with the said regulations.</li>";
+                      <li>Kindly ensure that your organisation maintains the details with reference to structural digital database, as required under the Insider Trading Regulations and comply with the said regulations.</li>
 
-                      $html.="<li>The Company is expected to maintain a database of the UPSI shared within and outside the Company for legitimate purposes. The Company may disclose the details pertaining to such sharing of UPSI with regulatory authorities, as permitted or required by applicable laws or regulatory requirements. In such a case, we will endeavour to disclose only the requested information under the circumstances; as part of the Company’s reporting or disclosure obligations, if so required.</li>";
+                      <li>The Company is expected to maintain a database of the UPSI shared within and outside the Company for legitimate purposes. The Company may disclose the details pertaining to such sharing of UPSI with regulatory authorities, as permitted or required by applicable laws or regulatory requirements. In such a case, we will endeavour to disclose only the requested information under the circumstances; as part of the Company&apos;s reporting or disclosure obligations, if so required.</li>";
                     $html.='</ol>
                    
                     
@@ -2598,7 +2590,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
                 </div>
 
                 
-        <p>Regards<br>Corporate Secretarial team<br>Dr. Reddy’s Laboratories Limited </p>
+        <p>Regards<br>Corporate Secretarial team<br>Dr. Reddy&apos;s Laboratories Limited </p>
             </div>
         </div>
 
