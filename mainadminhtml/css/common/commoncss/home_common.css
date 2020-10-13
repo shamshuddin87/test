@@ -1141,7 +1141,7 @@ div#obligation:before { left: 43%; }
 
 
 
-.announcementdiv
+.announcementdiv, .holdingsummary
 {
     position: relative;
     box-sizing: border-box;
@@ -1151,7 +1151,7 @@ div#obligation:before { left: 43%; }
 
 }
 
-.announcementdiv h4
+.announcementdiv h4, .holdingsummary h4
 {
     padding: 15px 15px;
     background: #36186e;
@@ -1224,3 +1224,5 @@ div#obligation:before { left: 43%; }
 
 .announcementdiv ul li .announcementli a p
 {}
+
+/* -------------- holding summary dashboard --------*/
