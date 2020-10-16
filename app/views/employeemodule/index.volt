@@ -1223,18 +1223,18 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
                     &times;</button>
+            <!--<div class="modal-header">
                 <h4 class="modal-title">
                 </h4>
-            </div>
-            <div class="modal-body" id="modalcontent">
+            </div>-->
+            <div class="modal-body" id="modalcontent" style="float:none;">
 
                 
             </div>
-            <div class="modal-footer">
-            </div>
+            <!--<div class="modal-footer">
+            </div>-->
         </div>
     </div>
 </div>

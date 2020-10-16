@@ -23,7 +23,7 @@ website.ajax({url:'portfolio/storeaccno',data:{accno:mydata,self_nation:self_nat
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {if(response.isfirst=='yes'&&response.isnextdataempty=='yes')
-{var baseHref=getbaseurl();var redirecturl=baseHref+"portfolio?tab="+btoa(2);website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Demat Account Details added successfully.<br>Please Insert Relative Demat Account Details.</h5></div><div class="guidebtn"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');website('#modeluserguide').modal('show');getuseraccno();}
+{var baseHref=getbaseurl();var redirecturl=baseHref+"portfolio?tab="+btoa(2);website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Demat Account Details added successfully.<br>Please Insert Relative Demat Account Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');website('#modeluserguide').modal('show');getuseraccno();}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});getuseraccno();}}
 else
