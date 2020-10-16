@@ -2466,7 +2466,7 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
         <p>Dear '.$toname.'</p>
-        <p>Please note that you have received information pertaining to '.$upsiname.' on '.$sharingdate.'. Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time and the '; $html.="Company's"; $html.='Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons (hereinafter collectively referred to as "Insider Trading Regulations").</p>
+        <p>Please note that you have received information pertaining to '.$upsiname.' on '.$sharingdate.'. Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time and the '; $html.="Company's "; $html.='Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons (hereinafter collectively referred to as "Insider Trading Regulations").</p>
         
                 <div class="main">
                     <div style="">Accordingly, you are requested to ensure the below:</div>
@@ -2476,7 +2476,7 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
 
                       <li>Since this UPSI is being shared with you, you are deemed to be an insider as defined in Insider Trading Regulations. No insider or his/her immediate relative shall trade / deal in Company's securities when in possession of UPSI pursuant to Insider Trading Regulations.</li>
 
-                      <li>You are required to ensure compliance with the Insider Trading Regulations and Company&apos;s Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons (Code) including duties, responsibilities attached to the receipt of this UPSI and liabilities related to misuse or unwarranted use of such UPSI.</li>
+                      <li>You are required to ensure compliance with the Insider Trading Regulations and Company's Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons (Code) including duties, responsibilities attached to the receipt of this UPSI and liabilities related to misuse or unwarranted use of such UPSI.</li>
 
                      <li>You are required to communicate, provide or allow access to this UPSI with other designated person or outsider for legitimate purposes, performance of duties or discharge of your legal obligations as provided under the SEBI Insider Trading Regulations. In case you are required to share this UPSI or a part of such UPSI with any other designated person or outsider, you are required to make an entry of such person/entity in the Insider Trading Compliance software (Volody) of the Company. Please follow the process mentioned below";
 
@@ -2581,7 +2581,7 @@ public function externalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
 
                       <li>Kindly ensure that your organisation maintains the details with reference to structural digital database, as required under the Insider Trading Regulations and comply with the said regulations.</li>
 
-                      <li>The Company is expected to maintain a database of the UPSI shared within and outside the Company for legitimate purposes. The Company may disclose the details pertaining to such sharing of UPSI with regulatory authorities, as permitted or required by applicable laws or regulatory requirements. In such a case, we will endeavour to disclose only the requested information under the circumstances; as part of the Company&apos;s reporting or disclosure obligations, if so required.</li>";
+                      <li>The Company is expected to maintain a database of the UPSI shared within and outside the Company for legitimate purposes. The Company may disclose the details pertaining to such sharing of UPSI with regulatory authorities, as permitted or required by applicable laws or regulatory requirements. In such a case, we will endeavour to disclose only the requested information under the circumstances; as part of the Company's reporting or disclosure obligations, if so required.</li>";
                     $html.="</ol>
                    
                     
