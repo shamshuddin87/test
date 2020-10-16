@@ -101,6 +101,29 @@ class BlackoutperiodController extends ControllerBase
                 $reason   = $this->request->getPost('reason','trim');
                 $infodata = $this->request->getPost();
                 
+                /*Date Validation for Date From and To Start */
+                if(!empty($blckoutfrom))
+                {
+                    $blckoutfrom_arr = explode('-', $blckoutfrom);
+
+                    $blckoutfromm = $blckoutfrom_arr[1];
+                    $blckoutfromy = $blckoutfrom_arr[2];
+                    $blckoutfromd = $blckoutfrom_arr[0];
+                    $blckoutfromstatus = $this->elements->checkdate($blckoutfromm,$blckoutfromy,$blckoutfromd);
+                    
+                }
+                
+                if(!empty($blckoutto))
+                {
+                    $blckoutto_arr = explode('-', $blckoutto);
+
+                    $blckouttom = $blckoutto_arr[1];
+                    $blckouttoy = $blckoutto_arr[2];
+                    $blckouttod = $blckoutto_arr[0];
+                    $blckouttostatus = $this->elements->checkdate($blckouttom,$blckouttoy,$blckouttod);
+                    
+                }
+                /*Date Validation for Date From and To End */
                 
                 if(empty($compid))
                 {
@@ -112,6 +135,11 @@ class BlackoutperiodController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Black Out Date From should not empty!!');
                     $this->response->setJsonContent($data);
                 }
+                else if($blckoutfromstatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Black Out Date From');
+                    $this->response->setJsonContent($data);
+                }
                 else if(strtotime($date) > strtotime($blckoutfrom))
                 {
                       $data = array("logged" => false,'message' => 'Black Out Date From should be in future!!');
@@ -120,6 +148,11 @@ class BlackoutperiodController extends ControllerBase
                 else if(empty($blckoutto))
                 {
                     $data = array("logged" => false,'message' => 'Black Out Date To should not empty!!');
+                    $this->response->setJsonContent($data);
+                }
+                else if($blckouttostatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Black Out Date To');
                     $this->response->setJsonContent($data);
                 }
                 else if(strtotime($date) > strtotime($blckoutto))

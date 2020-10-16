@@ -190,9 +190,9 @@
                 <select class="form-control" id="typeoftrans" name="typeoftrans">
                     <option value="1">Buy</option>
                     <option value="2">Sell</option>
-                    <option value="3">Pledge creation</option>
+                    <!--<option value="3">Pledge creation</option>
                     <option value="4">Pledge Revocation</option>
-                     <option value="5">Exercise of stock</option>
+                     <option value="5">Exercise of stock</option>-->
                 </select>
             </div>
 
@@ -233,7 +233,7 @@
                 <div id="row1">
                     <div id = "left" class="form-group col-md-4" style="margin-left: -9px;">
                     <label for="">Date</label>
-                    <input type="text" class="form-control bootdatepick" id="dateoftrans[]" name="dateoftrans[]" placeholder="Date" readonly="readonly" >
+                    <input type="text" class="form-control" id="dateoftrans[]" name="dateoftrans[]"  placeholder="dd-mm-yyyy" maxlength="10">
                     </div>
                     <div id = "middle" class="form-group col-md-3">
                      <label for="">Transaction</label>
@@ -385,10 +385,10 @@
         <div class="form-group">
             <label for="">Type Of Transaction</label>
             <select class="form-control" id="typeoftrans" name="typeoftrans">
-                <option value="BUY">BUY</option>
-                <option value="SELL">SELL</option>
-                <option value="BONUS">BONUS</option>
-                <option value="RIGHTS">RIGHTS</option>
+                <option value="1">BUY</option>
+                <option value="2">SELL</option>
+                <!--<option value="BONUS">BONUS</option>
+                <option value="RIGHTS">RIGHTS</option>-->
             </select>
         </div>
         <input type="submit"   value="Update" class="btn btn-primary" style="float: right;"> 
@@ -440,7 +440,7 @@
                             <input type="text" name="total" value="" id="totalamtmodal" class="form-control" readonly>
                         </td>
                         <td>
-                            <input type="text"  name="transdate" value="" id="transdatemodal" class="form-control bootdatepick" readonly>
+                            <input type="text"  name="transdate" value="" id="transdatemodal" class="form-control" placeholder="dd-mm-yyyy" maxlength="10" title="dd-mm-yyyy">
                         </td>
                         <td>
                             <select id="dmatacc" name="dmatacc" class="form_fields form-control col-md-7 col-xs-12" required>

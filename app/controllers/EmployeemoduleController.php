@@ -21,6 +21,12 @@ class EmployeemoduleController extends ControllerBase
         $this->view->sectype = $this->tradingrequestcommon->securitytype();
         $this->view->transctn = $this->employeemodulecommon->trnsctntypes();
         $this->view->personaldetails = $this->employeemodulecommon->getmydetails($uid,$usergroup);
+        
+        $mfr = $this->employeemodulecommon->getmfrstatus($uid,$usergroup);
+        if(!empty($mfr))
+        {
+            $this->view->mfrstatus = $mfr;
+        }
     }
     public function viewpastemployerAction()
     {
@@ -2121,6 +2127,44 @@ class EmployeemoduleController extends ControllerBase
                         $data = array("logged" => false,'message' => "Record Not Updated..!!");
                         $this->response->setJsonContent($data);
                     } 
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }       
+    }
+    
+    public function updatemfrstatusAction()
+    {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $usergroup = $this->session->loginauthspuserfront['user_group_id'];
+        if($this->request->isPost() == true)
+        {
+          if($this->request->isAjax() == true)
+          {
+                $mfrstatusupdt = $this->request->getPost('mfrstatusupdt','trim');
+                // print_r($mfrstatusupdt);exit;
+                $getresponse = $this->employeemodulecommon->updatemfrstatus($uid,$usergroup,$mfrstatusupdt);
+                if($getresponse['status']==true)
+                {
+                    $data = array("logged" => true,"message"=>"Record Saved Successfully");
+                    $this->response->setJsonContent($data);
+
+                }
+                else
+                {
+                    $data = array("logged" => true,"message"=>$getresponse['message']);
+                    $this->response->setJsonContent($data);
                 }
                 $this->response->send();
             }

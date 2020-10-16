@@ -796,6 +796,7 @@ class Miscommon extends Component
     {
       //print_r($filter);die;
         $connection = $this->dbtrd;
+        $getlist = array();
        try
         {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);

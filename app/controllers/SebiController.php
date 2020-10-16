@@ -46,10 +46,11 @@ class SebiController extends ControllerBase
         $this->view->approverid = $getdatauser['approvid'];
         $this->view->pan = $getdatauser['pan'];
         $this->view->address = $getdatauser['address'];
-        $this->view->cin = $getdataformcuser['cin'];
+        //$this->view->cin = $getdataformcuser['cin'];
         $this->view->category = $this->sebicommon->fetchcategory();   //fetch category of usr
         $this->view->security = $this->sebicommon->fetchsecutype();   //fetch security of usr
         $this->view->company = $this->sebicommon->fetchcmpmstr($getuserid,$user_group_id);   //fetch cmp name from mstr
+        $this->view->exchngtrd = $this->sebicommon->getformcexchngetrd();   //fetch exchange on which trade was executed
     }
     public function formdAction()
     {
@@ -112,6 +113,7 @@ class SebiController extends ControllerBase
         $this->view->category = $this->sebicommon->fetchcategory();   //fetch category of usr
         $this->view->security = $this->sebicommon->fetchsecutype();   //fetch security of usr
         $this->view->company = $this->sebicommon->fetchcmpmstr($getuserid,$user_group_id);   //fetch cmp name from mstr
+        $this->view->exchngtrd = $this->sebicommon->getformcexchngetrd();   //fetch exchange on which trade was executed
     }
     
     public function transformdAction()
@@ -900,9 +902,67 @@ class SebiController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $formcupdata = $this->request->getPost();
-                if(empty($formcupdata['fromdate']))
+                
+                /*Date Validation for Date Infimation,From Date and To date Start */
+                if(!empty($formcupdata['dateofintimtn']))
+                {
+                    $dateofintimtn = $formcupdata['dateofintimtn'];
+                    $dateofintimtn_arr = explode('-', $dateofintimtn);
+
+                    $dateofintimtnm = $dateofintimtn_arr[1];
+                    $dateofintimtny = $dateofintimtn_arr[2];
+                    $dateofintimtnd = $dateofintimtn_arr[0];
+                    $dateofintimtnstatus = $this->elements->checkdate($dateofintimtnm,$dateofintimtny,$dateofintimtnd);
+                }
+                
+                if(!empty($formcupdata['fromdate']))
+                {
+                    $fromdate = $formcupdata['fromdate'];
+                    $fromdate_arr = explode('-', $fromdate);
+
+                    $fromdatem = $fromdate_arr[1];
+                    $fromdatey = $fromdate_arr[2];
+                    $fromdated = $fromdate_arr[0];
+                    $fromdatestatus = $this->elements->checkdate($fromdatem,$fromdatey,$fromdated);
+                    $fromdateday = date('l', strtotime($fromdate)); // check week day(cannot be saturday and sunday)
+                }
+                
+                if(!empty($formcupdata['todate']))
+                {
+                    $todate = $formcupdata['todate'];
+                    $todate_arr = explode('-', $todate);
+
+                    $todatem = $todate_arr[1];
+                    $todatey = $todate_arr[2];
+                    $todated = $todate_arr[0];
+                    $todatestatus = $this->elements->checkdate($todatem,$todatey,$todated);
+                    $todateday = date('l', strtotime($todate)); // check week day(cannot be saturday and sunday)
+                }
+                /*Date Validation for Date Infimation,From Date and To date End */
+                
+                if(empty($formcupdata['dateofintimtn']))
+                {
+                    $data = array("logged" => false,'message' => " Date of intimation to company should not empty..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else if($dateofintimtnstatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of intimation to company');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($formcupdata['fromdate']))
                 {
                     $data = array("logged" => false,'message' => " Date of allotment From should not empty..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else if($fromdatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of allotment From');
+                    $this->response->setJsonContent($data);
+                }
+                else if($fromdateday == 'Saturday' || $fromdateday == 'Sunday')
+                {
+                    $data = array("logged" => false,'message' => " Date of allotment From cannot be Saturday and Sunday");
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($formcupdata['todate']))
@@ -910,14 +970,19 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => " Date of allotment To should not empty..!!");
                     $this->response->setJsonContent($data);
                 }
+                else if($todatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of allotment To');
+                    $this->response->setJsonContent($data);
+                }
+                else if($todateday == 'Saturday' || $todateday == 'Sunday')
+                {
+                    $data = array("logged" => false,'message' => " Date of allotment From cannot be Saturday and Sunday");
+                    $this->response->setJsonContent($data);
+                }
                 else if(strtotime($formcupdata['fromdate'])>strtotime($formcupdata['todate']))
                 {
                     $data = array("logged" => false,'message' => " Date of allotment From should not greater than Date of allotment To date..!!");
-                    $this->response->setJsonContent($data);
-                }
-                else if(empty($formcupdata['dateofintimtn']))
-                {
-                    $data = array("logged" => false,'message' => " Date of intimation to company should not empty..!!");
                     $this->response->setJsonContent($data);
                 }
                 else

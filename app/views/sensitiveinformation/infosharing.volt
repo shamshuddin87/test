@@ -74,7 +74,7 @@ $upsiid = $this->session->upsitypeid;
                         <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Date Of Information Sharing*</label>
-                                <input type="text" id="date" name="date" class="form-control bootdatepick" readonly required>
+                                <input type="text" id="date" name="date" class="form-control" placeholder="dd-mm-yyyy" maxlength="10" required>
                                 <input type="hidden" id="wr_id" name="wr_id" class="form_fields form-control col-md-7 col-xs-12" >
                             </div>
                         </section>
@@ -117,7 +117,7 @@ $upsiid = $this->session->upsitypeid;
                          <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">End Date</label>
-                                <input type="text" id="enddate" name="enddate" class="form-control bootdatepick" readonly required>
+                                <input type="text" id="enddate" name="enddate" class="form-control" placeholder="dd-mm-yyyy" maxlength="10">
                             </div>
                         </section>   
 

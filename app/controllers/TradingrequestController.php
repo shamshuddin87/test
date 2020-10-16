@@ -153,16 +153,31 @@ class TradingrequestController extends ControllerBase
                 
                 else
                 {
-                    //print_r($typeofrequests);exit;
+                    //print_r($datetrans);exit;
                     if(!empty($datetrans[0]))
                     {
                         for($i=0;$i<count($datetrans);$i++)
                         {
-                            if(strtotime($datetrans[$i]) > strtotime($todaydate))
+                            $datetrans_arr = explode('-', $datetrans[$i]);
+                            
+                            $datetransm = $datetrans_arr[1];
+                            $datetransy = $datetrans_arr[2];
+                            $datetransd = $datetrans_arr[0];
+                            $datetransstatus = $this->elements->checkdate($datetransm,$datetransy,$datetransd);
+                            //print_r($datetransstatus);exit;
+                            if($datetransstatus != "valid")
                             {
-                            $data = array("logged" => false,'message' => 'Date of transaction cannot be in future');
-                            $this->response->setJsonContent($data);
-                            $this->response->send();
+                                $data = array("logged" => false,'message' => 'Please provide correct Transaction Date');
+                                $this->response->setJsonContent($data);
+                                $this->response->send();
+                                exit;
+                            }
+                            else if(strtotime($datetrans[$i]) > strtotime($todaydate))
+                            {
+                                $data = array("logged" => false,'message' => 'Date of transaction cannot be in future');
+                                $this->response->setJsonContent($data);
+                                $this->response->send();
+                                exit;
                             }
                         }
                     }
@@ -243,7 +258,7 @@ class TradingrequestController extends ControllerBase
                 $demataccountid=$this->request->getPost('demataccount','trim');
                 $place=$this->request->getPost('place','trim');
                 $datetrans=$this->request->getPost('datetrans','trim');
-                  //print_r($typeofrequest);exit;
+                  //print_r($datetrans);exit;
                 $transaction=$this->request->getPost('transaction','trim');
                 $sharestrans=$this->request->getPost('sharestrans','trim');
                 $idofcmp  = '1';
@@ -403,9 +418,9 @@ class TradingrequestController extends ControllerBase
                 {
 
                 
-                $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccountid,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename);
+                    $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccountid,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename);
 
-                $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form I','FormI');
+                    $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form I','FormI');
                     //echo 'in else';exit;
                     if(!empty($sendreq))
                     {
@@ -1059,11 +1074,34 @@ class TradingrequestController extends ControllerBase
                 {
                     $exceptinappr=1;
                 }
+                
+                
+                /*Date Validation for Date of transaction */
+                if(!empty($data['transdate']))
+                {
+                    $transdate_arr = explode('-', $data['transdate']);
 
+                    $transdatem = $transdate_arr[1];
+                    $transdatey = $transdate_arr[2];
+                    $transdated = $transdate_arr[0];
+                    $transdatestatus = $this->elements->checkdate($transdatem,$transdatey,$transdated);
+                    
+                }
+                /*Date Validation for Date of transaction */
 
                 if(empty($_FILES['fileToUpload']['name']))
                 {
                     $data = array("logged" => false,"message" =>"File Not Uploaded");
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($data['transdate']))
+                {
+                    $data = array("logged" => false,"message" =>"Please Enter transaction date");
+                    $this->response->setJsonContent($data); 
+                }
+                else if($transdatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Transaction date');
                     $this->response->setJsonContent($data);
                 }
                 else if(strtotime($data['transdate']) < strtotime($createdttime) || strtotime($data['transdate'])> strtotime($date))
@@ -1094,11 +1132,6 @@ class TradingrequestController extends ControllerBase
                 else if(empty($data['total']))
                 {
                     $data = array("logged" => false,"message" =>"Please Enter total amount");
-                    $this->response->setJsonContent($data); 
-                }
-                else if(empty($data['transdate']))
-                {
-                    $data = array("logged" => false,"message" =>"Please Enter transaction date");
                     $this->response->setJsonContent($data); 
                 }
                 else if((strtotime($data['transdate']) > strtotime($data['tradedate'])) && $typeofbutton=="Upload")

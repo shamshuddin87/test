@@ -32,6 +32,18 @@ class UpsimasterController extends ControllerBase
             {
                 $data = $this->request->getPost();
                 //print_r($data);exit;
+                
+                /*Date Validation for Start Date */
+                if(!empty($data['pstartdte']))
+                {
+                    $pstartdate_arr = explode('-', $data['pstartdte']);
+
+                    $pstartdatem = $pstartdate_arr[1];
+                    $pstartdatey = $pstartdate_arr[2];
+                    $pstartdated = $pstartdate_arr[0];
+                    $pstartdatestatus = $this->elements->checkdate($pstartdatem,$pstartdatey,$pstartdated);
+                }
+                
                 if(empty($data['upname']))
                 {
                    $data = array("logged" => false,'message' => 'Please Enter Type of Upsi');
@@ -41,6 +53,11 @@ class UpsimasterController extends ControllerBase
                 {
                    $data = array("logged" => false,'message' => 'Please Select Project Start Date');
                    $this->response->setJsonContent($data); 
+                }
+                else if($pstartdatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Project Start Date');
+                    $this->response->setJsonContent($data);
                 }
                 else if(empty($data['owner']))
                 {

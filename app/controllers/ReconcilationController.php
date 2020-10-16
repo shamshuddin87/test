@@ -40,7 +40,30 @@ class ReconcilationController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $stmnttill = $this->request->getPost('statemnttil','trim');
-                if(strtotime($stmnttill)>strtotime($date))
+                /*Date Validation for RTA DATE Start */
+                if(!empty($stmnttill))
+                {
+                    $rtadate = explode('-', $stmnttill);
+
+                    $rtadatem = $rtadate[1];
+                    $rtadatey = $rtadate[2];
+                    $rtadated = $rtadate[0];
+                    $rtadatestatus = $this->elements->checkdate($rtadatem,$rtadatey,$rtadated);
+                    
+                }
+                /*Date Validation for RTA DATE End */
+                
+                if(empty($stmnttill)) 
+                {
+                    $data = array("logged" => false,'message' => 'Please Provide Date of RTA');
+                    $this->response->setJsonContent($data);
+                }
+                else if($rtadatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of RTA');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($stmnttill)>strtotime($date))
                 {
                     $data = array("logged" => false,'message' => 'Date of RTA Data Should Be In Past');
                     $this->response->setJsonContent($data);

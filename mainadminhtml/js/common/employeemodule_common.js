@@ -3048,3 +3048,70 @@ website(document).on('click', '#copyaddress', function() {
         }
     }
 });
+
+
+/*   ---------------- MFR Section (onclick yes no)*/
+ website('body').on('click','.mfrstatusupdt',function(e){
+
+   var mfrstatusupdt = website(this).val();
+   website.ajax({
+        url:'employeemodule/updatemfrstatus',
+        data:{mfrstatusupdt:mfrstatusupdt},
+        method:'POST',
+        //contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, Cross domain checking
+        beforeSend: function()
+        {     },
+        uploadProgress: function(event, position, total, percentComplete)
+        {   },
+        success: function(response, textStatus, jqXHR)
+         {
+              //console.log(response);
+              new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                });
+         },
+        complete: function(response)
+        {   },
+        error: function(jqXHR, textStatus, errorThrown)
+        {   }
+   });
+});
+
+function showmfrsection()
+{
+    var section = document.getElementById("showmfr");
+    if (section.style.display === "none") 
+    {
+        section.style.display = "block";
+    } 
+}
+
+function hidemfrsection()
+{
+    var section = document.getElementById("showmfr");
+    if (section.style.display === "block") 
+    {
+        section.style.display = "none";
+    } 
+}
+
+  //show demat when clicked yes
+ let yeschecked = website("input[name='mfrstatus']:checked").val();
+ if(yeschecked == 1)
+ {
+      website("#showmfr").css('display','block');
+ }
+ else
+ {
+    website("#showmfr").css('display','none');
+ }
+/*   ---------------- MFR Section (onclick yes no)*/

@@ -2095,7 +2095,7 @@ function addhtml(clicked)
          // addhtmlnxt += ' <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>';
         addhtmlnxt += ' <div id = "left" class="form-group col-md-4" style="margin-left: -18px;">';
         addhtmlnxt += '<label for="">Date</label>';
-        addhtmlnxt += ' <input type="text" class="form-control bootdatepick" id="dateoftrans" name="dateoftrans[]" placeholder="Date" readonly="readonly" >';
+        addhtmlnxt += ' <input type="text" class="form-control" id="dateoftrans" name="dateoftrans[]" placeholder="dd-mm-yyyy" maxlength="10" >';
         addhtmlnxt += '</div>';
         addhtmlnxt += ' <div id = "middle" class="form-group col-md-3">';
         addhtmlnxt += '<label for="">Transaction</label>';

@@ -766,6 +766,23 @@
       </div>
       <div class="col-md-12 col-lg-12">
          <div class="row relativesform mymfr" style="display: none;">
+            <label class="do">Do you have any Material Financial Relationship? 
+              <?php if(isset($mfrstatus) ){ 
+                if($mfrstatus[0]['status'] == 1){?>
+                Yes<input type="radio" name="mfrstatus" value="1" class="mfrstatusupdt" checked onclick="showmfrsection();" /> 
+                No<input type="radio" name="mfrstatus" value="0" class="mfrstatusupdt" onclick="hidemfrsection();"><br>
+            <?php } else if(isset($mfrstatus) && $mfrstatus[0]['status'] == 0) { ?>
+                Yes<input type="radio" name="mfrstatus" value="1" class="mfrstatusupdt" onclick="showmfrsection();"> 
+                No<input type="radio" name="mfrstatus"value="0" class="mfrstatusupdt" checked onclick="hidemfrsection();"/><br>
+            <?php } else { ?>
+                Yes<input type="radio" name="mfrstatus" value="1" class="mfrstatusupdt" onclick="showmfrsection();"> 
+                No<input type="radio" name="mfrstatus" value="0" class="mfrstatusupdt" onclick="hidemfrsection();"/><br>
+            <?php }} else{ ?>
+                Yes<input type="radio" name="mfrstatus" value="1" class="mfrstatusupdt" onclick="showmfrsection();"> 
+                No<input type="radio" name="mfrstatus"value="0" class="mfrstatusupdtr" onclick="hidemfrsection();"/><br>
+            <?php } ?>
+            </label>
+            <div id = "showmfr" style="display: none;">     
             <h3 class="col col-xs-6" style="margin-top: 30px;">Financial Relationship Details</h3>
             <div class="tooltip_div col col-xs-6" style="margin-top: 30px;">
                <a href="javascript:void(0);" data="The term “material financial relationship” shall mean a relationship in which one person is a recipient of any kind of payment such as by way of a loan or gift during the immediately preceding twelve months, equivalent to at least 25% of designated person’s annual income but shall exclude relationships in which the payment is based on arm’s length transactions" class="tooltip_c">what is material financial relationship <abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
@@ -832,6 +849,7 @@
                   <td></td>
                <tr>
             </table>
+            </div>
          </div>
          <div id="mfrdelmodal" class="modal fade" role="dialog">
             <div class="modal-dialog">

@@ -917,8 +917,9 @@ class Sebicommon extends Component
     {
         $connection = $this->dbtrd; 
         $time = time();
-           $queryinsert = "UPDATE `sebiformc_usrdata` SET `category`='".$formcupdata['category']."', `fromdate`='".$formcupdata['fromdate']."', `todate`='".$formcupdata['todate']."', `pretrans`='".$formcupdata['pretrans']."', `posttrans`='".$formcupdata['posttrans']."', `dateofintimtn`='".$formcupdata['dateofintimtn']."', `acquimode`='".$formcupdata['acquimode']."',`buyvalue`='".$formcupdata['buyvalue']."',`buynumbrunt`='".$formcupdata['buynumbrunt']."',`sellvalue`='".$formcupdata['sellvalue']."',`sellnumbrunt`='".$formcupdata['sellnumbrunt']."',`exetrd`='".$formcupdata['exetrd']."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['upformcid']."'"; 
+           $queryinsert = "UPDATE `sebiformc_usrdata` SET `category`='".$formcupdata['category']."', `fromdate`='".$formcupdata['fromdate']."', `todate`='".$formcupdata['todate']."', `dateofintimtn`='".$formcupdata['dateofintimtn']."', `acquimode`='".$formcupdata['acquimode']."',`exetrd`='".$formcupdata['exetrd']."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['upformcid']."'"; 
         //print_r($queryinsert);exit;
+        //, `pretrans`='".$formcupdata['pretrans']."', `posttrans`='".$formcupdata['posttrans']."',`buyvalue`='".$formcupdata['buyvalue']."',`buynumbrunt`='".$formcupdata['buynumbrunt']."',`sellvalue`='".$formcupdata['sellvalue']."',`sellnumbrunt`='".$formcupdata['sellnumbrunt']."'
         try
         {
             $exeprev = $connection->query($queryinsert);
@@ -2087,6 +2088,39 @@ class Sebicommon extends Component
         return $getlist;
     }
     
+    /**********  fetch mode data of formc start ***********/
+    public function getformcexchngetrd()
+    {
+        $connection = $this->dbtrd;
+        try
+         {
+            $queryget = "SELECT * FROM `sebiformc_exchngtrd` WHERE `status`='1'";
+            //echo $queryget;  exit;
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;
+                }
+                //echo '<pre>';print_r($getlist);exit;
+                
+            }else{
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        //print_r($getlist);exit;
+        return $getlist; 
+        
+    }
+    /**********  fetch mode data of formc end ***********/
     
 }
 

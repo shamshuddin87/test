@@ -39,7 +39,7 @@
                      <section class="col col-md-6 col-xs-6">
                         <label class="control-label">UPSI Start Date*</label>
                         <div class="input">
-                           <input type="text" id="pstartdte" name="pstartdte" required="required" class="form_fields form-control col-md-7 col-xs-12 bootdatepick" readonly>
+                           <input type="text" id="pstartdte" name="pstartdte" required="required" class="form_fields form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy" maxlength="10">
                         </div>
                      </section>
                      <section class="col col-md-6 col-xs-6">
@@ -187,7 +187,7 @@
                            <label class="control-label">UPSI Start Date*</label>
                            <div class="input">
                               <input type="text" id="pstartdtecopy" name="pstartdte"  class="form_fields form-control col-md-7 col-xs-12 " style="display: none">
-                              <input type="text" id="pstartdte" name="pstartdte" required="required" class="form_fields form-control col-md-7 col-xs-12 bootdatepick" readonly>
+                              <input type="text" id="pstartdte" name="pstartdte" required="required" class="form_fields form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy" maxlength="10">
                            </div>
                         </section>
                         <section class="col col-md-12 col-xs-6">
@@ -195,7 +195,7 @@
                            <div class="input">
                               <label class="control-label">UPSI End Date*</label>
                               <input type="text" id="enddatecopy" name="enddate"  class="form_fields form-control col-md-7 col-xs-12"  style="display: none;">
-                              <input type="text" id="enddate" name="enddate" required="required" class="form_fields form-control col-md-7 col-xs-12 bootdatepick" readonly>
+                              <input type="text" id="enddate" name="enddate" required="required" class="form_fields form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy" maxlength="10">
                            </div>
                         </section>
                         <section class="col col-md-12 col-xs-12">
@@ -458,7 +458,7 @@
                      <h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">You have just created an entry for UPSI, would you like to close the trading window.</h5>
                   </div>
                   <div class="modal-footer" style="border-top:none;">
-             <a href="blackoutperiod"><button type="button" class="btn btn-primary" id="tradingwindowyes" >Yes</button> </a>
+             <a><button type="button" class="btn btn-primary" id="tradingwindowyes" >Yes</button> </a>
              <button style="color: #522c8f !important;border-color: #cecece;"  type="button" class="btn btn-default" id="tradingwindowno">No</button>
             </div>
         </div>

@@ -378,6 +378,13 @@ website('body').on('click','.addupsitype',function(e){
     var startdt = website("#addupsimast #pstartdte").val();
     var owner = website("#addupsimast #owner").val();
     
+    if(startdt)
+    {
+        var bits = startdt.split('-');
+        var d = new Date(bits[2] + '-' + bits[1] + '-' + bits[0]);
+        var startdatestatus = !!(d && (d.getMonth() + 1) == bits[1] && d.getDate() == Number(bits[0]));
+    }
+    //console.log(startdatestatus);return false;
     if(!title)
     {
          new PNotify({title: 'Alert',
@@ -399,6 +406,17 @@ website('body').on('click','.addupsitype',function(e){
                  });
   
     }
+    else if(startdatestatus==false)
+    {
+        new PNotify({title: 'Alert',
+                    text: 'Please Enter Correct start date of UPSI',
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                 });
+  
+    }
     else if(!owner)
     {
         new PNotify({title: 'Alert',
@@ -412,6 +430,10 @@ website('body').on('click','.addupsitype',function(e){
     }
     else
     {
+          var bits = startdt.split('-');
+          var d = new Date(bits[2] + '-' + bits[1] + '-' + bits[0]);
+          console.log( !!(d && (d.getMonth() + 1) == bits[1] && d.getDate() == Number(bits[0])));
+        return false;
         website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');
         website('#modaltradingwindowclose #tradingwindowyes').attr('action','insert');
         website('#modaltradingwindowclose').modal('show');
