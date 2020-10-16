@@ -2417,7 +2417,7 @@ public function mailofupdatedp($tomail,$tousername,$pstartdate,$enddate,$today,$
 
  
 public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projctowner)
-  {   
+{   
        $title ="You have been added to digital database of Dr. Reddy's Laboratories Ltd";
             $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <html xmlns="htth3://www.w3.org/1999/xhtml">
