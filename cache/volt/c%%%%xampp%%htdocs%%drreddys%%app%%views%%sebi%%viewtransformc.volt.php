@@ -404,7 +404,7 @@ $condeptsess = $this->session->contractdepartment;
                         <section class="col col-md-4 col-xs-4">
                             <div class="input ">
                                 <label class="control-label">Date of intimation to company</label>
-                                <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control bootdatepick" readonly required>
+                                <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control" placeholder="dd-mm-yyyy" maxlength="10" required>
                             </div>
                         </section> 
                
@@ -436,14 +436,14 @@ $condeptsess = $this->session->contractdepartment;
                         <section class="col col-md-6 col-xs-6" >
                             <div class="input">
                             <label class="control-label">From</label>
-                             <input type="text" id="fromdate" name="fromdate" class="form-control bootdatepick" readonly required>
+                             <input type="text" id="fromdate" name="fromdate" class="form-control" placeholder="dd-mm-yyyy" maxlength="10" required>
                             </div>
                         </section>
                
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">To</label>
-                                <input type="text" id="todate" name="todate" class="form-control bootdatepick" readonly required>
+                                <input type="text" id="todate" name="todate" class="form-control" placeholder="dd-mm-yyyy" maxlength="10" required>
                             </div>
                        </section>
                          </div>
@@ -542,5 +542,22 @@ $condeptsess = $this->session->contractdepartment;
 
 
       </div>
+    </div>
+</div>
+
+<div id="modalredirect" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 style="text-align: center;">Form C submitted successfully.<br> Not update your holdings in personal information.</h4> 
+            </div>
+            <div class="modal-footer">
+              <a href="employeemodule"><button type="button" class="btn btn-primary">Ok</button></a> 
+            </div>
+        </div>
     </div>
 </div>
