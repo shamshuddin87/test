@@ -181,8 +181,8 @@
                <div class="row">
                   <div class="col-md-12 col-xs-12">
                     <div class="col-md-4 col-xs-12 "> 
-                        <label for="age">Landline No</label>
-                        <input type="text" id="landline" name="landline" value="<?php echo($personaldetails['landline']) ?>" placeholder="Landline No" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                        <label for="age">Landline No.</label>
+                        <input type="text" id="landline" name="landline" value="<?php echo($personaldetails['landline']) ?>" placeholder="Landline No." onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 32 || event.charCode == 43'>
                      </div>
                       
                      <div class="col-md-4 col-xs-12 ">
@@ -280,7 +280,7 @@
                     
                     <div class="col-md-4 col-xs-12 "> 
                       <label for="age">Landline No.</label>
-                      <input type="text" id="landline" name="landline" placeholder="landline No" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                      <input type="text" id="landline" name="landline" placeholder="landline No." onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 32 || event.charCode == 43'>
                    </div>
                       
                      <div class="col-md-4 col-xs-12 ">

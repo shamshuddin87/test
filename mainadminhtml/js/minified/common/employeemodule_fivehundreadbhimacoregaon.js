@@ -186,7 +186,7 @@ else
 {website("#copyaddress").prop("checked",false);new PNotify({title:'Alert',text:'Please Update Your Address First',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}}});website('body').on('click','.mfrstatusupdt',function(e){var mfrstatusupdt=website(this).val();website.ajax({url:'employeemodule/updatemfrstatus',data:{mfrstatusupdt:mfrstatusupdt},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});},complete:function(response)
+{},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});});function showmfrsection()
 {var section=document.getElementById("showmfr");if(section.style.display==="none")
