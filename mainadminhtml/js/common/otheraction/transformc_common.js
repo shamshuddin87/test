@@ -171,6 +171,14 @@ website('body').on('click','#formcprevious', function(){
     window.location.href=baseHref+'sebi/viewtransformc';
 });
 
+/* ------------------ Create Form C functionality seperately ------------------ */
+
+website('body').on('click','#formcprevious', function(){
+    var baseHref = getbaseurl(); 
+    window.location.href=baseHref+'sebi/viewtransformc';
+});
+
+/* ------------------ Create Form C functionality seperately ------------------ */
 
 function numberalphOnly() 
 {

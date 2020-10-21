@@ -66,7 +66,7 @@ else
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{window.location.reload();new PNotify({title:'Alert!!!',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+{website('#modalredirect').modal('show');}
 else
 {new PNotify({title:'Alert!!!',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()

@@ -22,6 +22,7 @@ $condeptsess = $this->session->contractdepartment;
             <div class="typography form_pad">
                                       
         <div class="formcbtn">
+         <button type="button" class="btn btn-primary" id="formcprevious">Create Form C</button>
          <button type="button" class="btn btn-primary" id="formcprevious">View Previous</button>
          <button type="button" class="btn btn-primary" id="formcsend">Send</button> 
         <input type="hidden" class="approverid" name="approverid" value="<?php echo $approverid;?>">
