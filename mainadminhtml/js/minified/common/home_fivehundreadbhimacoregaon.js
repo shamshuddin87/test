@@ -83,7 +83,7 @@ function disclosures(id)
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{window.location.href=base_url+"/employeemodule";}
+{window.location.href=base_url+"employeemodule";}
 else
 {}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)

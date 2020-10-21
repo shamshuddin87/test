@@ -64,7 +64,6 @@ website('.bootdatepick').datetimepicker({
   }
 
 getholdingmis();
-
 function getholdingmis()
 {
 	var userid=website('#userid').val();
@@ -100,6 +99,7 @@ function getholdingmis()
                     htmlelements+='<tr>';
                     htmlelements+='<td>'+j+'</td>';
                     htmlelements+='<td>'+response.data[i].company_name+'</td>';
+                    htmlelements+='<td>'+response.data[i].requestmode+'</td>';
                     htmlelements+='<td>'+response.data[i].security_type+'</td>';
                     htmlelements+='<td>'+response.data[i].no_of_share+'</td>';
                     htmlelements+='<td>'+response.data[i].date_of_transaction+'</td>';
@@ -123,8 +123,8 @@ function getholdingmis()
         {   }
     });
 }
-relativeholdingmis();
 
+relativeholdingmis();
 function relativeholdingmis()
 {
 	var userid=website('#userid').val();
@@ -160,7 +160,8 @@ function relativeholdingmis()
                     htmlelements+='<td>'+j+'</td>';
                     htmlelements+='<td>'+response.data[i].relname+'</td>';
                     htmlelements+='<td>'+response.data[i].relationship+'</td>';
-                    htmlelements+='<td>'+response.data[i].company_name+'</td>';
+                    htmlelements+='<td>'+response.data[i].company_name+'</td>';                    
+                    htmlelements+='<td>'+response.data[i].requestmode+'</td>';
                     htmlelements+='<td>'+response.data[i].security_type+'</td>';
                     htmlelements+='<td>'+response.data[i].no_of_share+'</td>';
                     htmlelements+='<td>'+response.data[i].date_of_transaction+'</td>';

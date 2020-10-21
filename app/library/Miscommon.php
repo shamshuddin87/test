@@ -396,24 +396,29 @@ class Miscommon extends Component
         {   $getlist = array(); }
         //echo '<pre>';print_r($getlist);exit;
         return $getlist;
-   }
+    }
 
+    
     public function getholingmis($getuserid,$user_group_id,$mainquery)
- {
+    {
        $connection = $this->dbtrd;
         $myarr=array();
         $time = time();
 
-        $query="SELECT `ts`.no_of_share,`cmpdl`.company_name,`ts`.demat_acc_no,`ts`.date_of_transaction,`sec`.security_type,`obj`.transaction FROM trading_status ts 
-                LEFT JOIN listedcmpmodule cmpdl ON `cmpdl`.id = `ts`.id_of_company
-                INNER JOIN personal_request pr ON   ( `pr`.`user_id`=`ts`.user_id AND `pr`.id=`ts`.req_id)
-                LEFT JOIN type_of_transaction obj ON `obj`.id=`pr`.type_of_transaction
-                JOIN `req_securitytype` sec ON `sec`.id = `pr`.sectype
-                WHERE `ts`.user_id = '".$getuserid."' AND (`pr`.trading_status='1' AND  `ts`.type_of_request='1') AND (`ts`.excepapp_status IS NULL OR `ts`.excepapp_status='1')".$mainquery;
-       
-        // print_r($query);exit;
-
-         try{
+        $query="SELECT ts.no_of_share,ts.demat_acc_no,ts.date_of_transaction,
+            cmpdl.company_name,sec.security_type,obj.transaction, 
+            mrm.requestmode
+            FROM trading_status ts 
+            LEFT JOIN listedcmpmodule cmpdl ON cmpdl.id = ts.id_of_company
+            INNER JOIN personal_request pr ON (pr.`user_id`=ts.user_id AND pr.id=ts.req_id AND pr.`requestmodeid` IN (1,2))
+            LEFT JOIN type_of_transaction obj ON obj.id=pr.type_of_transaction
+            LEFT JOIN master_requestmode mrm ON mrm.id=pr.requestmodeid
+            JOIN `req_securitytype` sec ON sec.id = pr.sectype
+            WHERE ts.user_id = '".$getuserid."' AND (pr.trading_status='1' AND  ts.type_of_request='1') AND (ts.excepapp_status IS NULL OR ts.excepapp_status='1') ".$mainquery;
+        //print_r($query);exit;
+        
+         try
+         {
             $exeget = $connection->query($query);
             $getnum = trim($exeget->numRows());
             if($getnum>0)
@@ -433,26 +438,30 @@ class Miscommon extends Component
         {   $getlist = array(); }
         //echo '<pre>';print_r($getlist);exit;
         return $getlist;
-   }
+    }
 
 
-       public function getrelativegmis($getuserid,$user_group_id,$mainquery)
- {
+    public function getrelativegmis($getuserid,$user_group_id,$mainquery)
+    {
        $connection = $this->dbtrd;
         $myarr=array();
         $time = time();
 
-        $query="SELECT `ts`.no_of_share,`cmpdl`.company_name,`rlin`.name as relname,`rlin`.relationship,`ts`.demat_acc_no,`ts`.date_of_transaction,`sec`.security_type,`obj`.transaction FROM trading_status ts 
-                LEFT JOIN listedcmpmodule cmpdl ON `cmpdl`.id = `ts`.id_of_company
-                INNER JOIN personal_request pr ON   ( `pr`.`user_id`=`ts`.user_id AND `pr`.id=`ts`.req_id)
-                LEFT JOIN type_of_transaction obj ON `obj`.id=`pr`.type_of_transaction
-                LEFT JOIN relative_info rlin ON `rlin`.id = `pr`.relative_id
-                JOIN `req_securitytype` sec ON `sec`.id = `pr`.sectype
-                WHERE `ts`.user_id = '".$getuserid."' AND (`pr`.trading_status='1' AND  `ts`.type_of_request='2') AND (`ts`.excepapp_status IS NULL OR `ts`.excepapp_status='1')".$mainquery;
-       
+        $query="SELECT ts.no_of_share,ts.demat_acc_no,ts.date_of_transaction,
+            cmpdl.company_name,sec.security_type,obj.transaction,rlin.name as relname,rlin.relationship, 
+            mrm.requestmode
+            FROM trading_status ts 
+            LEFT JOIN listedcmpmodule cmpdl ON cmpdl.id = ts.id_of_company
+            INNER JOIN personal_request pr ON (pr.`user_id`=ts.user_id AND pr.id=ts.req_id AND pr.`requestmodeid` IN (1,2))
+            LEFT JOIN type_of_transaction obj ON obj.id=pr.type_of_transaction
+            LEFT JOIN master_requestmode mrm ON mrm.id=pr.requestmodeid
+            JOIN `req_securitytype` sec ON sec.id = pr.sectype
+            LEFT JOIN relative_info rlin ON rlin.id = pr.relative_id
+            WHERE ts.user_id = '".$getuserid."' AND (pr.trading_status='1' AND  ts.type_of_request='2') AND (ts.excepapp_status IS NULL OR ts.excepapp_status='1')".$mainquery;
         // print_r($query);exit;
 
-         try{
+         try
+         {
             $exeget = $connection->query($query);
             $getnum = trim($exeget->numRows());
             if($getnum>0)
@@ -472,7 +481,8 @@ class Miscommon extends Component
         {   $getlist = array(); }
         //echo '<pre>';print_r($getlist);exit;
         return $getlist;
-   }
+    }
+    
     
     // **************************** recipient mis fetch for table***************************
     public function fetchrecipient($getuserid,$user_group_id,$empstatusfilter)
@@ -679,17 +689,20 @@ class Miscommon extends Component
         return $getlist;
     }
 
-       public function fetchmiscontratrd($getuserid,$user_group_id,$query)
+    
+    public function fetchmiscontratrd($getuserid,$user_group_id,$query)
     {
         $connection = $this->dbtrd;
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $queryget = "SELECT memb.`fullname`,memb.`emp_status`,lst.`company_name`,trans.`transaction`,ts.`date_of_transaction`,pr.`date_added`,ts.`no_of_share`,pr.`trading_date`  
+            
+            $queryget = "SELECT memb.`fullname`,memb.`emp_status`,lst.`company_name`,trans.`transaction`,ts.`date_of_transaction`,pr.`date_added`,ts.`no_of_share`,pr.`trading_date`, mrm.requestmode
             FROM `trading_status` ts
             LEFT JOIN `it_memberlist` memb ON memb.`wr_id`= ts.`user_id`
             INNER JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
             LEFT JOIN `type_of_transaction` trans ON trans.`id` = pr.`type_of_transaction`
+            LEFT JOIN master_requestmode mrm ON mrm.id=pr.requestmodeid
             LEFT JOIN `trading_days` trddays ON trddays.`user_id` = memb.`user_id`
             LEFT JOIN `listedcmpmodule` lst ON lst.`id`=pr.`id_of_company`
             WHERE ts.`user_id` IN (".$grpusrs['ulstring'].") AND ts.`trading_status`=1 AND (ts.`excep_approv`=1 OR pr.`sent_contraexeaprvl`=1) ".$query; 
@@ -761,12 +774,12 @@ class Miscommon extends Component
         $connection = $this->dbtrd;
         
         $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-        $query="SELECT `ts`.no_of_share AS actualtrade,lst.`company_name`,`ts`.date_of_transaction,pr.`no_of_shares` AS preclrtrade,pr.`approved_date`,pr.`date_added`,pr.`trading_date`,memb.`fullname`,memb.`emp_status`
+        $query="SELECT ts.no_of_share AS actualtrade,lst.`company_name`,ts.date_of_transaction,pr.`no_of_shares` AS preclrtrade,pr.`approved_date`,pr.`date_added`,pr.`trading_date`,memb.`fullname`,memb.`emp_status`
         FROM trading_status ts  
-        INNER JOIN personal_request pr ON ( `pr`.`user_id`=`ts`.user_id AND `pr`.id=`ts`.req_id)
+        INNER JOIN personal_request pr ON ( pr.`user_id`=ts.user_id AND pr.id=ts.req_id)
         LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ts.`user_id`
         LEFT JOIN `listedcmpmodule` lst ON lst.`id`=pr.`id_of_company`
-        WHERE `ts`.user_id IN (".$grpusrs['ulstring'].") AND (`pr`.trading_status='1' AND  `ts`.type_of_request='1') AND (`ts`.excepapp_status IS NULL OR `ts`.excepapp_status='1')".$mainquery;
+        WHERE ts.user_id IN (".$grpusrs['ulstring'].") AND (pr.trading_status='1' AND  ts.type_of_request='1') AND (ts.excepapp_status IS NULL OR ts.excepapp_status='1')".$mainquery;
 
         // print_r($query);exit;
         try
@@ -848,7 +861,7 @@ class Miscommon extends Component
             $queryget = "SELECT cmpdl.`company_name`,pr.`approved_date`,pr.`date_added`,pr.`no_of_shares`,trans.`transaction`,pr.`sendaprvl_date`,memb.`fullname`,pr.`approved_date`
             FROM `personal_request` pr 
             LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = pr.`user_id` 
-             LEFT JOIN listedcmpmodule cmpdl ON `cmpdl`.id = `pr`.id_of_company
+             LEFT JOIN listedcmpmodule cmpdl ON cmpdl.id = pr.id_of_company
             LEFT JOIN `type_of_transaction` trans ON trans.`id` = pr.`type_of_transaction` 
             WHERE(pr.`send_status`=1) ".$query; 
             // echo $queryget;  exit;
