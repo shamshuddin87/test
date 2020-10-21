@@ -25,7 +25,7 @@ getholdingmis();function getholdingmis()
 {},success:function(response,textStatus,jqXHR)
 {var htmlelements='';if(response.logged==true)
 {for(var i=0;i<response.data.length;i++)
-{var j=i+1;htmlelements+='<tr>';htmlelements+='<td>'+j+'</td>';htmlelements+='<td>'+response.data[i].company_name+'</td>';htmlelements+='<td>'+response.data[i].security_type+'</td>';htmlelements+='<td>'+response.data[i].no_of_share+'</td>';htmlelements+='<td>'+response.data[i].date_of_transaction+'</td>';htmlelements+='<td>'+response.data[i].transaction+'</td>';htmlelements+='<td>'+response.data[i].demat_acc_no+'</td></tr>';}}
+{var j=i+1;htmlelements+='<tr>';htmlelements+='<td>'+j+'</td>';htmlelements+='<td>'+response.data[i].company_name+'</td>';htmlelements+='<td>'+response.data[i].requestmode+'</td>';htmlelements+='<td>'+response.data[i].security_type+'</td>';htmlelements+='<td>'+response.data[i].no_of_share+'</td>';htmlelements+='<td>'+response.data[i].date_of_transaction+'</td>';htmlelements+='<td>'+response.data[i].transaction+'</td>';htmlelements+='<td>'+response.data[i].demat_acc_no+'</td></tr>';}}
 else
 {htmlelements+='<tr>';htmlelements+='<td colspan="8" style="text-align: center;">Data Not Found..!!</td></tr>';}
 website('.accdetails5').html(htmlelements);website('#acc5').html(response.pgnhtml);},complete:function(response)
@@ -37,7 +37,7 @@ relativeholdingmis();function relativeholdingmis()
 {},success:function(response,textStatus,jqXHR)
 {var htmlelements='';if(response.logged==true)
 {for(var i=0;i<response.data.length;i++)
-{var j=i+1;htmlelements+='<tr>';htmlelements+='<td>'+j+'</td>';htmlelements+='<td>'+response.data[i].relname+'</td>';htmlelements+='<td>'+response.data[i].relationship+'</td>';htmlelements+='<td>'+response.data[i].company_name+'</td>';htmlelements+='<td>'+response.data[i].security_type+'</td>';htmlelements+='<td>'+response.data[i].no_of_share+'</td>';htmlelements+='<td>'+response.data[i].date_of_transaction+'</td>';htmlelements+='<td>'+response.data[i].transaction+'</td>';htmlelements+='<td>'+response.data[i].demat_acc_no+'</td></tr>';}}
+{var j=i+1;htmlelements+='<tr>';htmlelements+='<td>'+j+'</td>';htmlelements+='<td>'+response.data[i].relname+'</td>';htmlelements+='<td>'+response.data[i].relationship+'</td>';htmlelements+='<td>'+response.data[i].company_name+'</td>';htmlelements+='<td>'+response.data[i].requestmode+'</td>';htmlelements+='<td>'+response.data[i].security_type+'</td>';htmlelements+='<td>'+response.data[i].no_of_share+'</td>';htmlelements+='<td>'+response.data[i].date_of_transaction+'</td>';htmlelements+='<td>'+response.data[i].transaction+'</td>';htmlelements+='<td>'+response.data[i].demat_acc_no+'</td></tr>';}}
 else
 {htmlelements+='<tr>';htmlelements+='<td colspan="9" style="text-align: center;">Data Not Found</td></tr>';}
 website('.accdetails6').html(htmlelements);website('#acc6').html(response.pgnhtml);},complete:function(response)

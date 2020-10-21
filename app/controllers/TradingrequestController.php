@@ -238,9 +238,11 @@ class TradingrequestController extends ControllerBase
             {   
                 $date=date('d-m-Y');
                 $alldata= $this->request->getPost();
-                $approverid = $this->request->getPost('approverid','trim');
-                $sectype = $this->request->getPost('sectype','trim');
                 
+                $requestmodeid = $this->request->getPost('requestmodeid','trim');
+                //echo '<pre>'; print_r($requestmodeid); exit;
+                $approverid = $this->request->getPost('approverid','trim');
+                $sectype = $this->request->getPost('sectype','trim');                
               
                 $noofshare = $this->request->getPost('noofshare','trim');
                 $typeoftrans  = $this->request->getPost('typeoftrans','trim');
@@ -263,17 +265,18 @@ class TradingrequestController extends ControllerBase
                 $sharestrans=$this->request->getPost('sharestrans','trim');
                 $idofcmp  = '1';
                 $nameofcmp = "Dr Reddy's Laboratories Ltd";
+                
                 if($typeofrequest == 2)
                 {
-
                     if($typeoftrans == 2)
                     { 
-                    $nature = 'Sale';
+                        $nature = 'Sale';
                     }
                     else
                     {
                         $nature = 'Purchase';
                     }
+                    
                     $relativeinfo = $this->tradingrequestcommon->getrelativesingle($selrelative);
                     if(!empty($demataccountid))
                     {
@@ -291,29 +294,29 @@ class TradingrequestController extends ControllerBase
                 }
                 else if($typeofrequest == 1)
                 {
-                   if($typeoftrans == 2)
+                    if($typeoftrans == 2)
                     { 
-                    $nature = 'Sale';
+                        $nature = 'Sale';
                     }
                     else
                     {
                         $nature = 'Purchase';
                     }
+                    
                     $relativename = ' ';
                     //print_r($dematinfo);exit;
-                     if(!empty($demataccountid))
+                    if(!empty($demataccountid))
                     {
-                          $dematinfo = $this->tradingrequestcommon->userdemat($demataccountid);
-                          $dp = $dematinfo['depository_participient'];
-                          $dpacc = $dematinfo['accountno'];
+                        $dematinfo = $this->tradingrequestcommon->userdemat($demataccountid);
+                        $dp = $dematinfo['depository_participient'];
+                        $dpacc = $dematinfo['accountno'];
 
                     }
                     else
                     {
                         $dp = ' ';
                         $dpacc = ' ';
-                    }
-                  
+                    }                  
                 }
                 else
                 {
@@ -333,12 +336,6 @@ class TradingrequestController extends ControllerBase
 
                 $transaction = explode(",", $transaction);
                 $sharestrans = explode(",", $sharestrans);
-              
-
-
-
-                $checkval = $this->tradingrequestcommon->checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans);
-
                 $flag = 1;
                 
                 $checkval = $this->tradingrequestcommon->checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans);
@@ -412,16 +409,14 @@ class TradingrequestController extends ControllerBase
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
-
-                
                 else
                 {
-
-                
+                    
                     $pdf_content = $this->htmlelements->formI($personalinfo,$itmemberinfo,$approxprice,$broker,$demataccountid,$place,$datetrans,$transaction,$sharestrans,$nature,$noofshare,$date,$dp,$dpacc,$relativename);
 
                     $pdfpath = $this->dompdfgen->getpdf($pdf_content,'check','Form I','FormI');
                     //echo 'in else';exit;
+                    
                     if(!empty($sendreq))
                     {
                         $send_status=1;
@@ -462,9 +457,9 @@ class TradingrequestController extends ControllerBase
 
                     if($flag == 1)
                     {
-                        
                         $result = $this->tradingrequestcommon->createrequest($uid,$usergroup,$alldata,$send_status,$pdfpath,$idofcmp);
                         //print_r($result);exit;
+                        
                         if($result['status']==true)
                         {
                             $data = array("logged" => true,'message' =>$msg);
@@ -482,7 +477,6 @@ class TradingrequestController extends ControllerBase
                         $this->response->setJsonContent($data);
                     }
                 }
-
             }
             else
             {
@@ -1637,6 +1631,9 @@ class TradingrequestController extends ControllerBase
                 $date=date('d-m-Y');
                 $alldata= $this->request->getPost();
                 //print_R($alldata);exit;
+                
+                $requestmodeid = $this->request->getPost('requestmodeid','trim');
+                //echo '<pre>'; print_r($requestmodeid); exit;
                 $approverid = $this->request->getPost('approverid','trim');
                 $sectype = $this->request->getPost('sectype','trim');
                 $idofcmp = $this->request->getPost('idofcmp','trim');
@@ -1770,7 +1767,8 @@ class TradingrequestController extends ControllerBase
                     }
                     if($flag == 1)
                     {
-                        $result = $this->tradingrequestcommon->savecontratrdexceptn($uid,$usergroup,$alldata,$send_status);
+                        $result = $this->tradingrequestcommon->savecontratrdexceptn($uid,$usergroup,$alldata,$send_status,$requestmodeid);
+                        
                         if($result['status']==true)
                         {
                             $data = array("logged" => true,'message' =>$msg);

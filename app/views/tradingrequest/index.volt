@@ -68,6 +68,7 @@
                     <thead>
                         <tr>
                             <th><input type="checkbox" class="getallchkbox" name="getallchkbox" chkval="ALL" value="ALL">All</th>
+                            <th>Request Mode</th>
                             <th>Type Of Security</th>
                            <!--  <th>Name Of Company</th> -->
                             <th>Type Of Transaction</th>
@@ -131,139 +132,144 @@
             <input type="hidden" class="form-control" id="approverid" name="approverid" value="<?php  echo $alldetails['approvid']; ?>">
             <input type="hidden" class="form-control" id="reqname" name="reqname" value="<?php  echo $alldetails['fullname']; ?>">
 
-            <!--
             <div class="form-group">
-                <label for="exampleFormControlSelect1">Demat Account No</label>
-                <select id="demataccno" name="demataccno" class="form_fields form-control col-md-7 col-xs-12" required>
-                    <option value="" id="demataccno" >Select Account No</option>
-                    <?php foreach($demataccno as $rel){  ?>
-                    <option value="<?php echo $rel['accountno']; ?>"><?php echo $rel['accountno']; ?></option>
-                    <?php } ?>
-                </select>
+                <label class="gender">Request Mode *</label>
+                <input type="radio" id="requestmodeid" name="requestmodeid" value="1">Pre-Clearance
+                <input type="radio" id="requestmodeid" name="requestmodeid" value="2">Contra Trade
             </div>
-            -->
             
-            <div class="form-group">
-                <label for="">Select Type Of Request</label>
-                <select class="form-control" id="typeofrequest" name="typeofrequest">
-                    <option value="" >Select Type of Request</option>
-                    <option value="1" >Self</option>
-                    <option value="2">Relative</option>
-                </select>
-            </div>
+            <div class="cssHideShow" id="secReqQue">
+                <!--
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Demat Account No</label>
+                    <select id="demataccno" name="demataccno" class="form_fields form-control col-md-7 col-xs-12" required>
+                        <option value="" id="demataccno" >Select Account No</option>
+                        <?php foreach($demataccno as $rel){  ?>
+                        <option value="<?php echo $rel['accountno']; ?>"><?php echo $rel['accountno']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                -->
 
-            <div class="form-group" id="selrel">
-                <label for="exampleFormControlSelect1">Select Relative</label>
-                <select id="selrelative" name="selrelative" class="form_fields form-control col-md-7 col-xs-12" >
-                    <option value="" id="sectyperel" >Select Relative</option>
-                    <?php foreach($relativeinfo as $rel){  ?>
-                    <option value="<?php echo $rel['id']; ?>"><?php echo $rel['name']; ?></option>
-                    <?php } ?>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="">Request for</label>
+                    <select class="form-control" id="typeofrequest" name="typeofrequest">
+                        <option value="" >Select Request for</option>
+                        <option value="1" >Self</option>
+                        <option value="2">Relative</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Type Of Security</label>
-                <select id="sectypeid" name="sectype" class="form_fields form-control col-md-7 col-xs-12" required>
-                    <option value="" id="sectype" >Select Security</option>
-                    <?php foreach($sectype as $rel){  ?>
-                    <option value="<?php echo $rel['id']; ?>"><?php echo $rel['security_type']; ?></option>
-                    <?php } ?>
-                </select>
-            </div>
+                <div class="form-group" id="selrel">
+                    <label for="exampleFormControlSelect1">Select Relative</label>
+                    <select id="selrelative" name="selrelative" class="form_fields form-control col-md-7 col-xs-12" >
+                        <option value="" id="sectyperel" >Select Relative</option>
+                        <?php foreach($relativeinfo as $rel){  ?>
+                        <option value="<?php echo $rel['id']; ?>"><?php echo $rel['name']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
 
-           <!--  <div class="form-group">
-                <label for="exampleFormControlInput1">Name Of Company</label>
-                <input type="hidden" class="form-control" id="idofcmp" name="idofcmp" value="1">
-                <input type="text" class="form-control" id="nameofcmp" name="nameofcmp" value="Dr Reddy's Laboratories Ltd" readonly>
-            </div> -->
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Type Of Security</label>
+                    <select id="sectypeid" name="sectype" class="form_fields form-control col-md-7 col-xs-12" required>
+                        <option value="" id="sectype" >Select Security</option>
+                        <?php foreach($sectype as $rel){  ?>
+                        <option value="<?php echo $rel['id']; ?>"><?php echo $rel['security_type']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
 
-            <div id="searchcmp"></div>
+                <div class="form-group" style="display:none;">
+                    <label for="exampleFormControlInput1">Name Of Company</label>
+                    <input type="hidden" class="form-control" id="idofcmp" name="idofcmp" value="1">
+                    <input type="text" class="form-control" id="nameofcmp" name="nameofcmp" value="Dr Reddy's Laboratories Ltd" readonly>
+                </div> 
 
-            <div class="form-group">
-                <label for="exampleFormControlInput1">No Of Shares</label>
-                <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No Of Share">
-            </div>
+                <div id="searchcmp"></div>
 
-            <div class="form-group">
-                <label for="">Type Of Transaction</label>
-                <select class="form-control" id="typeoftrans" name="typeoftrans">
-                    <option value="1">Buy</option>
-                    <option value="2">Sell</option>
-                    <!--<option value="3">Pledge creation</option>
-                    <option value="4">Pledge Revocation</option>
-                     <option value="5">Exercise of stock</option>-->
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">No Of Shares</label>
+                    <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No Of Share">
+                </div>
 
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Approx price or range (shares/ADRs * market price)</label>
-               
-                <input type="text" class="form-control" id="sharesprice" name="sharesprice" placeholder="Approx price or range (shares/ADRs * market price)" >
-            </div>
+                <div class="form-group">
+                    <label for="">Type Of Transaction</label>
+                    <select class="form-control" id="typeoftrans" name="typeoftrans">
+                        <option value="1">Buy</option>
+                        <option value="2">Sell</option>
+                        <!--<option value="3">Pledge creation</option>
+                        <option value="4">Pledge Revocation</option>
+                         <option value="5">Exercise of stock</option>-->
+                    </select>
+                </div>
 
-             
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Approx price or range (shares/ADRs * market price)</label>
 
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Broker through which dealing will take place</label>
-               
-                <input type="text" class="form-control" id="broker" name="broker" placeholder="Broker through which dealing will take place" >
-            </div>
-
-            <div class="form-group">
-               
-                <label for="">Demat Account</label>
-                <select class="form-control" id="demataccount" name="demataccount">
-                <option value="">Select Demat Account</option>
-                          
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="">Place</label>
-                 <input type="text" class="form-control " id="place" name="place" placeholder="Place" >
-               
-            </div>
+                    <input type="text" class="form-control" id="sharesprice" name="sharesprice" placeholder="Approx price or range (shares/ADRs * market price)" >
+                </div>
 
 
 
+                 <div class="form-group">
+                    <label for="exampleFormControlInput1">Broker through which dealing will take place</label>
 
-            <div class="form-group col-md-12" style="margin-left: -9px;" >
-                <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>
-                <div id="row1">
-                    <div id = "left" class="form-group col-md-4" style="margin-left: -9px;">
-                    <label for="">Date</label>
-                    <input type="text" class="form-control" id="dateoftrans[]" name="dateoftrans[]"  placeholder="dd-mm-yyyy" maxlength="10">
+                    <input type="text" class="form-control" id="broker" name="broker" placeholder="Broker through which dealing will take place" >
+                </div>
+
+                <div class="form-group">
+
+                    <label for="">Demat Account</label>
+                    <select class="form-control" id="demataccount" name="demataccount">
+                    <option value="">Select Demat Account</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Place</label>
+                     <input type="text" class="form-control " id="place" name="place" placeholder="Place" >
+
+                </div>
+
+
+                <div class="secPrClrncMd" >
+                    <div class="form-group col-md-12" style="margin-left: -9px;" >
+                        <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>
+                        <div id="row1">
+                            <div id = "left" class="form-group col-md-4" style="margin-left: -9px;">
+                            <label for="">Date</label>
+                            <input type="text" class="form-control" id="dateoftrans" name="dateoftrans[]"  placeholder="dd-mm-yyyy" maxlength="10">
+                            </div>
+                            <div id = "middle" class="form-group col-md-3">
+                             <label for="">Transaction</label>
+                            <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >
+                            </div>
+                            <div id = "right" class="form-group col-md-4">
+                            <label for="">No of Shares</label>
+                            <input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">
+                            </div>
+                            <div id = "right" class="form-group col-md-1">
+                                <i class="fa fa-trash-o" onclick="removehtml(1);" style="font-size:15px; color:#F44336;margin-top: 39px;"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div id = "middle" class="form-group col-md-3">
-                     <label for="">Transaction</label>
-                    <input type="text" class="form-control " id="trans[]" name="trans[]" placeholder="Transaction" >
+
+                    <div class = "appenddiv" id="appenddiv">
                     </div>
-                    <div id = "right" class="form-group col-md-4">
-                    <label for="">No of Shares</label>
-                    <input type="text" class="form-control " id="sharestrans[]" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">
-                    </div>
-                    <div id = "right" class="form-group col-md-1">
-                        <i class="fa fa-trash-o" onclick="removehtml(1);" style="font-size:15px; color:#F44336;margin-top: 39px;"></i>
+
+                    <div class="adddiv2section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+                        <input type="button" id ="adddiv" class="btn btn-primary "  value="+" onclick="addhtml(this.id);">
+                        <input type="button" id = "remvdiv" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
+                        <input type="hidden" class="append" plancntr="1">
                     </div>
                 </div>
-               
+
+
+                <input type="button" id ="sendrequest" name="sendreq" value="SEND" class="btn btn-primary sendrequst" style="float: right;">  
+                <!-- <input type="button" name="draft" value="SAVE AS DRAFT" id="draftedreq" class="btn btn-primary reqdraft" style="float: right;"> -->
             </div>
-
-             <div class = "appenddiv" id="appenddiv">
-            </div>
-
-            <div class="adddiv2section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
-            <input type="button" id ="adddiv" class="btn btn-primary "  value="+" onclick="addhtml(this.id);">
-            <input type="button" id = "remvdiv" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
-            <input type="hidden" class="append" plancntr="1">
-            </div>
-
-
-
-
-            <input type="button" id ="sendrequest" name="sendreq" value="SEND" class="btn btn-primary sendrequst" style="float: right;">  
-<!--            <input type="button"  name="draft" value="SAVE AS DRAFT" id="draftedreq" class="btn btn-primary reqdraft" style="float: right;"> -->
 
         </form>
     </div>
@@ -555,34 +561,33 @@
             <div class="modal-body">
              <!-- <a id="pdflink" download><input type="button" class="btn btn-success"  value="Download"></a> -->
 
-              <input type="hidden" id="approverid" name="approverid">
-              <input type="hidden" id="reqname" name="reqname">
-              <input type="hidden" id="typeofrequest" name="typeofrequest">
-              <input type="hidden" id="selrelative" name="selrelative">
-              <input type="hidden" id="sectype" name="sectype">
-              <input type="hidden" id="idofcmp" name="idofcmp">
-              <input type="hidden" id="nameofcmp" name="nameofcmp">
-              <input type="hidden" id="noofshare" name="noofshare">
-              <input type="hidden" id="typeoftrans" name="typeoftrans">
-               <input type="hidden" id="sendreq" name="sendreq">
-              <input type="hidden" id="approxprice" name="approxprice">
-             <input type="hidden" id="broker" name="broker">
-             <input type="hidden" id="demataccount" name="demataccount">
-            <input type="hidden" id="place" name="place">
-           <input type="hidden" id="datetrans" name="datetrans">
-          <input type="hidden" id="transaction" name="sendreq">
-         <input type="hidden" id="sharestrans" name="sharestrans">
+                <input type="hidden" id="requestmodeid" name="requestmodeid">
+                <input type="hidden" id="approverid" name="approverid">
+                <input type="hidden" id="reqname" name="reqname">
+                <input type="hidden" id="typeofrequest" name="typeofrequest">
+                <input type="hidden" id="selrelative" name="selrelative">
+                <input type="hidden" id="sectype" name="sectype">
+                <input type="hidden" id="idofcmp" name="idofcmp">
+                <input type="hidden" id="nameofcmp" name="nameofcmp">
+                <input type="hidden" id="noofshare" name="noofshare">
+                <input type="hidden" id="typeoftrans" name="typeoftrans">
+                <input type="hidden" id="sendreq" name="sendreq">
+                <input type="hidden" id="approxprice" name="approxprice">
+                <input type="hidden" id="broker" name="broker">
+                <input type="hidden" id="demataccount" name="demataccount">
+                <input type="hidden" id="place" name="place">
+                <input type="hidden" id="datetrans" name="datetrans">
+                <input type="hidden" id="transaction" name="sendreq">
+                <input type="hidden" id="sharestrans" name="sharestrans">
 
-
-
-                
-       <div id = "showform1">
-       </div>
+                <div id = "showform1">
+                </div>
                
             </div>
+            
             <div class="modal-footer">
-             <input type="submit" class="btn btn-success" id="Yesreqst" value="Yes">
-             <input type="submit" class="btn btn-success" id="Norequest" value="No">
+                <input type="submit" class="btn btn-success" id="Yesreqst" value="Yes">
+                <input type="submit" class="btn btn-success" id="Norequest" value="No">
             </div>
         </div>
     </div>
@@ -701,7 +706,7 @@
                      <button type="button" class="close" data-dismiss="modal">
                      &times;</button>
                  <button type="button" class="btn btn-primary" id="pdflink" download value="Download" style="display:none;"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
-               <h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">This transaction is a contra trade within 6 months of previous trade. You will require an exceptional pre-clearance approval for such trade request. Also, you can raise this request only if you do not hold any UPSI. Please confirm if you want to send exception approval?</h5>
+               <h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Are you sure you want to raise contra trade request?</h5>
                
             </div>
             <div class="modal-footer" style="border-top:none;">

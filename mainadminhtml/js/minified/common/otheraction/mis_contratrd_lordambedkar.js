@@ -17,7 +17,7 @@ else if(response.data[i].emp_status=='2')
 {htmlelements+='<td width="10%">Resigned</td>';}
 else if(response.data[i].emp_status=='3')
 {htmlelements+='<td width="10%">Not a DP</td>';}
-htmlelements+='<td width="10%">'+response.data[i].transaction+'</td>';htmlelements+='<td width="10%">'+response.data[i].date_of_transaction+'</td>';htmlelements+='<td width="10%">'+response.data[i].date_added+'</td>';htmlelements+='<td width="10%">'+response.data[i].no_of_share+'</td>';htmlelements+='<td width="10%">'+response.data[i].trading_date+'</td>';htmlelements+='</tr>';}}
+htmlelements+='<td width="10%">'+response.data[i].requestmode+'</td>';htmlelements+='<td width="10%">'+response.data[i].transaction+'</td>';htmlelements+='<td width="10%">'+response.data[i].date_of_transaction+'</td>';htmlelements+='<td width="10%">'+response.data[i].date_added+'</td>';htmlelements+='<td width="10%">'+response.data[i].no_of_share+'</td>';htmlelements+='<td width="10%">'+response.data[i].trading_date+'</td>';htmlelements+='</tr>';}}
 else
 {htmlelements+='<tr>';htmlelements+='<td colspan="8" style="text-align: center;">Data Not Found..!!</td></tr>';}
 website('.accdetails8').html(htmlelements);website('#acc8').html(response.pgnhtml);},complete:function(response)
