@@ -12,7 +12,7 @@ website('body').on('click','#dtrange',function(e)
 {},success:function(response,textStatus,jqXHR)
 {var htmlelements='';if(response.logged==true)
 {for(var i=0;i<response.data.length;i++)
-{var j=i+1;var tradewindw=response.data[i].trading_date.split("-");var tradewindwdte=new Date(tradewindw[2],tradewindw[1],tradewindw[0]);var trade=response.data[i].date_of_transaction.split("-");var tradedte=new Date(trade[2],trade[1],trade[0]);htmlelements+='<tr>';htmlelements+='<td width="10%">'+j+'</td>';htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';if(response.data[i].emp_status=='1')
+{var j=i+1;var trade=response.data[i].date_of_transaction.split("-");var tradedte=new Date(trade[2],trade[1],trade[0]);htmlelements+='<tr>';htmlelements+='<td width="10%">'+j+'</td>';htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';if(response.data[i].emp_status=='1')
 {htmlelements+='<td width="10%">Active</td>';}
 else if(response.data[i].emp_status=='2')
 {htmlelements+='<td width="10%">Resigned</td>';}

@@ -3071,13 +3071,13 @@ website(document).on('click', '#copyaddress', function() {
         success: function(response, textStatus, jqXHR)
          {
               //console.log(response);
-              new PNotify({title: 'Alert',
+             /* new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
                     hide: true,
                     styling: 'bootstrap3',
                     addclass: 'dark ',
-                });
+                });*/
          },
         complete: function(response)
         {   },

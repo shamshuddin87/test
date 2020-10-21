@@ -1878,7 +1878,7 @@ class TradingrequestController extends ControllerBase
                 }
                 else
                 {
-                    $data = array("logged" => false,'message' => 'Please Update Your Demat Account Number');
+                    $data = array("logged" => false,'message' => 'In order to send pre-clearance request, please update your demat account details by going to My Info ---> Demat / Securities Account');
                     $this->response->setJsonContent($data);
                 }
                 $this->response->send();

@@ -36,8 +36,8 @@ $condeptsess = $this->session->contractdepartment;
           <th>Gender</th>    
           <th>Education</th>                                                
           <th>Institution</th>                                                
-          <th>Holdings In Shares</th>                                                
-          <th>Holdings In ADRs</th>                                                
+          <th>No. of shares held in DRL</th>                                                
+          <th>No. of American Depository Receipts held in DRL</th>                                                
         </tr>
      </thead>
    <tbody class="accdetails1" appendrow='1'>
@@ -111,8 +111,8 @@ $condeptsess = $this->session->contractdepartment;
           <th>Address</th>  
           <th>Gender</th>    
           <th>Education</th>
-          <th>Holdings In Shares</th>                                                
-          <th>Holdings In ADRs</th>
+          <th>No. of shares held in DRL</th>                                                
+          <th>No. of American Depository Receipts held in DRL</th>
         </tr>
      </thead>
    <tbody class="accdetails2" appendrow='1'>

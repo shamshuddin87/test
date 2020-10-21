@@ -27,13 +27,13 @@ $condeptsess = $this->session->contractdepartment;
            <button type="submit" class="btn btn-primary previous"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
             </div>
           <div class="cssnumrws">
-       <span>Show</span>
-        <select id="noofrows" name="noofrows" class="noofrows">
-           <option value="10">10</option><option value="25">25</option>
-            <option value="50">50</option><option value="100">100</option>
-        </select> 
-        <span>Entries</span>
-    </div>
+           <span>Show</span>
+            <select id="noofrows" name="noofrows" class="noofrows">
+               <option value="10">10</option><option value="25">25</option>
+                <option value="50">50</option><option value="100">100</option>
+            </select> 
+            <span>Entries</span>
+            </div>
                 <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>

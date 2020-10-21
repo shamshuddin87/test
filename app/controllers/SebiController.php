@@ -88,13 +88,26 @@ class SebiController extends ControllerBase
     {
         $getuserid = $this->session->loginauthspuserfront['id'];
         $getdataformcuser = $this->sebicommon->getformbdata($getuserid);   //fetch latest data of formb
-        $getdatauser = $this->sebicommon->getusersdata($getuserid); 
-        //print_r( $getdatauser);exit;  //fetch user data of formb
+        $getdatauser = $this->sebicommon->getusersdata($getuserid);   //fetch user data of formb
+        //print_r($getdatauser);exit; 
+        $this->view->name = $getdatauser['fullname'];
+        $this->view->cntctno = $getdatauser['mobileno'];
         $this->view->approverid = $getdatauser['approvid'];
-
-        $this->view->cin = $getdataformcuser['cin'];
-        $this->view->category = $getdataformcuser['category'];
+        $this->view->pan = $getdatauser['pan'];
+        $this->view->address = $getdatauser['address'];
+        
+        $getformcmodedetail = $this->sebicommon->getformcmode();   //fetch mode data of formc
+        $this->view->modeacqui = $getformcmodedetail;
+        
+        $this->view->category = $this->sebicommon->fetchcategory();   //fetch category of usr
+        
+        $this->view->security = $this->tradingrequestcommon->securitytype();   //fetch security Types
+        
+        $this->view->exchngtrd = $this->sebicommon->getformcexchngetrd();   //fetch exchange on which trade was executed
+        
+        $this->view->company = $this->sebicommon->fetchcmpmstr($getuserid,$user_group_id);   //fetch cmp name from mstr
     }
+    
     public function viewtransformcAction()
     {
         $getuserid = $this->session->loginauthspuserfront['id'];
@@ -630,15 +643,20 @@ class SebiController extends ControllerBase
                 $appvrid = $this->request->getPost('apprvid');
                 // print_r("hererr");
                 // print_r($appvrid);exit;
-                $category = $this->request->getPost('category');
-                $cin = $this->request->getPost('cin');
                 $trdeid = explode(',',$trdeid);
                 for($i = 0;$i<sizeof($trdeid);$i++)
                 {
                     $formcdata[] = $this->sebicommon->tradingdata($trdeid[$i]);
+                    $formcdata[$i]['category'] = '';
+                    $formcdata[$i]['intimtndate'] = NULL;
+                    $formcdata[$i]['allotmentfrm'] = '';
+                    $formcdata[$i]['allotmentto'] = '';
+                    $formcdata[$i]['aquimode'] = '';
+                    $formcdata[$i]['exetrd'] = '';
+                    $formcdata[$i]['formctype'] = '1';
                     
                 }
-                $getres = $this->sebicommon->insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid,$category,$cin);
+                $getres = $this->sebicommon->insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid);
                 if($getres)
                 {
                     $uptradingsts = $this->sebicommon->updatetrdsts($formcids);
@@ -780,7 +798,19 @@ class SebiController extends ControllerBase
             {
                 $formcid   = $this->request->getPost('id','trim');
                 $docid   = $this->request->getPost('docid','trim');
-                
+                $formctype   = $this->request->getPost('formctype','trim');
+                if($formctype == '1')
+                {
+                    $docid   = '2';
+                }
+                else if($formctype == '2')
+                {
+                    $docid   = '4';
+                }
+                else if($formctype == '3')
+                {
+                    $docid   = '5';
+                }
                 $getdocres = $this->sebicommon->getdocucontent($getuserid,$user_group_id,$docid);
                 $getres = $this->sebicommon->getformcdata($getuserid,$user_group_id,$formcid);
                 //print_r($getres);exit;
@@ -1848,4 +1878,221 @@ class SebiController extends ControllerBase
             exit('No direct script access allowed');
         }
     }
+    
+    /*  ------------ Form C Types start  ------------ */
+    
+    // Insert Form C type 1
+    public function insertformctype1Action()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $todate = date('d-m-Y');
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $type1data = $this->request->getPost();
+                //print_r($type1data);exit;
+                $rqstMod = '3';
+                $resPersonalReq = $this->sebicommon->inFormcTypePersonalReq($getuserid,$user_group_id,$type1data,$rqstMod);
+                if($resPersonalReq['logged']===true)
+                {
+                    $resTradeStatus = $this->sebicommon->inFormcTypeTradingStatus($getuserid,$user_group_id,$type1data,$resPersonalReq['ReqId']);
+                    if($resTradeStatus['logged']===true)
+                    {
+                        $formcdata[] = $this->sebicommon->tradingdata($resTradeStatus['TradeId']);
+                        $formcids[] = $resTradeStatus['TradeId'];
+                        $appvrid = $type1data['approverid'];
+                        $formcdata[0]['category'] = $type1data['category'];
+                        $formcdata[0]['intimtndate'] = $type1data['dateofintimtn'];
+                        $formcdata[0]['allotmentfrm'] = $type1data['fromdate'];
+                        $formcdata[0]['allotmentto'] = $type1data['todate'];
+                        $formcdata[0]['aquimode'] = $type1data['acquimode'];
+                        $formcdata[0]['exetrd'] = $type1data['exetrd'];
+                        $formcdata[0]['formctype'] = '1';
+                        //print_r($formcdata);exit;
+                        $getres = $this->sebicommon->insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid);
+                        if($getres)
+                        {
+                            //$uptradingsts = $this->sebicommon->updatetrdsts($formcids);
+                            //print_r($uptradingsts);exit;
+                            $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
+                            $this->response->setJsonContent($data);
+                        }
+                        else
+                        {
+                            $data = array("logged" => false,'message' => "Record Not Added..!!");
+                            $this->response->setJsonContent($data);
+                        }
+                    }
+                    else 
+                    {
+                        $data = array("logged" => false,'message' => "Record Not Added..!!");
+                        $this->response->setJsonContent($data);
+                    }
+                }
+                else 
+                {
+                    $data = array("logged" => false,'message' => "Record Not Added..!!");
+                    $this->response->setJsonContent($data);
+                }
+                
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+    
+    // Insert Form C type 2
+    public function insertformctype2Action()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $todate = date('d-m-Y');
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $type2data = $this->request->getPost();
+                //print_r($type2data);exit;
+                $rqstMod = '4';
+                $type2data['typeoftrans'] = '6';
+                $resPersonalReq = $this->sebicommon->inFormcTypePersonalReq($getuserid,$user_group_id,$type2data,$rqstMod);
+                if($resPersonalReq['logged']===true)
+                {
+                    $resTradeStatus = $this->sebicommon->inFormcTypeTradingStatus($getuserid,$user_group_id,$type2data,$resPersonalReq['ReqId']);
+                    if($resTradeStatus['logged']===true)
+                    {
+                        $formcdata[] = $this->sebicommon->tradingdata($resTradeStatus['TradeId']);
+                        $formcids[] = $resTradeStatus['TradeId'];
+                        $appvrid = $type2data['approverid'];
+                        $formcdata[0]['category'] = $type2data['category'];
+                        $formcdata[0]['intimtndate'] = $type2data['dateofintimtn'];
+                        $formcdata[0]['allotmentfrm'] = $type2data['fromdate'];
+                        $formcdata[0]['allotmentto'] = $type2data['todate'];
+                        $formcdata[0]['aquimode'] = 'Allotment after exercise of ESOPs';
+                        $formcdata[0]['exetrd'] = 'Allotment after exercise of ESOPs';
+                        $formcdata[0]['formctype'] = '2';
+                        //print_r($formcdata);exit;
+                        $getres = $this->sebicommon->insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid);
+                        if($getres)
+                        {
+                            $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
+                            $this->response->setJsonContent($data);
+                        }
+                        else
+                        {
+                            $data = array("logged" => false,'message' => "Record Not Added..!!");
+                            $this->response->setJsonContent($data);
+                        }
+                    }
+                    else 
+                    {
+                        $data = array("logged" => false,'message' => "Record Not Added..!!");
+                        $this->response->setJsonContent($data);
+                    }
+                }
+                else 
+                {
+                    $data = array("logged" => false,'message' => "Record Not Added..!!");
+                    $this->response->setJsonContent($data);
+                }
+                
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+    
+    // Insert Form C type 3
+    public function insertformctype3Action()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $todate = date('d-m-Y');
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $type3data = $this->request->getPost();
+                //print_r($type3data);exit;
+                $rqstMod = '5';
+                $type3data['typeoftrans'] = '7';
+                $resPersonalReq = $this->sebicommon->inFormcTypePersonalReq($getuserid,$user_group_id,$type3data,$rqstMod);
+                if($resPersonalReq['logged']===true)
+                {
+                    $resTradeStatus = $this->sebicommon->inFormcTypeTradingStatus($getuserid,$user_group_id,$type3data,$resPersonalReq['ReqId']);
+                    if($resTradeStatus['logged']===true)
+                    {
+                        $formcdata[] = $this->sebicommon->tradingdata($resTradeStatus['TradeId']);
+                        $formcids[] = $resTradeStatus['TradeId'];
+                        $appvrid = $type3data['approverid'];
+                        $formcdata[0]['category'] = $type3data['category'];
+                        $formcdata[0]['intimtndate'] = $type3data['dateofintimtn'];
+                        $formcdata[0]['allotmentfrm'] = $type3data['fromdate'];
+                        $formcdata[0]['allotmentto'] = $type3data['todate'];
+                        $formcdata[0]['aquimode'] = 'Received on exercise of ESOPs';
+                        $formcdata[0]['exetrd'] = 'Received on exercise of ESOPs';
+                        $formcdata[0]['formctype'] = '3';
+                        //print_r($formcdata);exit;
+                        $getres = $this->sebicommon->insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid);
+                        if($getres)
+                        {
+                            $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
+                            $this->response->setJsonContent($data);
+                        }
+                        else
+                        {
+                            $data = array("logged" => false,'message' => "Record Not Added..!!");
+                            $this->response->setJsonContent($data);
+                        }
+                    }
+                    else 
+                    {
+                        $data = array("logged" => false,'message' => "Record Not Added..!!");
+                        $this->response->setJsonContent($data);
+                    }
+                }
+                else 
+                {
+                    $data = array("logged" => false,'message' => "Record Not Added..!!");
+                    $this->response->setJsonContent($data);
+                }
+                
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+    /*  ------------ Form C Types End  ------------ */
 }

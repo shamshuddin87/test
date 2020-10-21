@@ -801,13 +801,14 @@ class Miscommon extends Component
         {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
    
-            $queryget = 'SELECT memb.`fullname`,memb.`emp_status`,lst.`company_name`,ts.`date_of_transaction`,ts.`no_of_share`,formc.`send_date`,ts.`total_amount` 
+            $queryget = 'SELECT memb.`fullname`,memb.`emp_status`,lst.`company_name`,ts.`date_of_transaction`,ts.`no_of_share`,formc.`send_date`,ts.`total_amount`,rqmod.`requestmode` 
               FROM `trading_status` ts
               LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ts.`user_id` 
               LEFT JOIN `sebiformc_usrdata` formc ON ts.`id` = formc.`tradeid` 
               LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
+              LEFT JOIN `master_requestmode` rqmod ON rqmod.`id` = pr.`requestmodeid`
               LEFT JOIN `listedcmpmodule` lst ON lst.`id`=pr.`id_of_company`
-              WHERE ts.`user_id` IN ('.$grpusrs['ulstring'].') AND ts.`id_of_company` IS NOT NULL AND ts.`total_amount` > 1000000 AND ts.`date_of_transaction` BETWEEN "'.$finstrtdte.'" AND "'.$finenddte.'" '.$query; 
+              WHERE ts.`user_id` IN ('.$grpusrs['ulstring'].') AND ts.`id_of_company` IS NOT NULL AND (ts.`total_amount` > 1000000 OR pr.`requestmodeid` IN(3,4,5)) AND ts.`date_of_transaction` BETWEEN "'.$finstrtdte.'" AND "'.$finenddte.'" '.$query; 
                 
                 //print_r($queryget);die;
                 $exeget = $connection->query($queryget);

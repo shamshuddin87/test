@@ -1159,7 +1159,7 @@
              
              <div class="col-md-4 col-xs-12">
                  <div class="tooltip_div">
-                     <a href="javascript:void(0);" data="In case your no. of past employments exceed 5 then please mention only latest 5 employment details here. For rest of the companies please send email to the Compliance Officer" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                     <a href="javascript:void(0);" data="In case your no. of past employments exceed 5 then please mention only latest 5 employment details here. For rest of the companies please send email to the Compliance Officer." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                   </div>
                 <label for="age">Please Enter No Of Past Employer*</label>
                 <input type="text" id="pastemp" name="pastemp" placeholder="No Of Past Employer">
