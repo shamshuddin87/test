@@ -501,6 +501,29 @@ class SensitiveinformationController extends ControllerBase
                 $recipienttype   = $this->request->getPost('rectype','trim');
                 $filepath = '';
                 //print_r($time);
+                
+                /*Date Validation for Date of Information and End date */
+                if(!empty($date))
+                {
+                    $infodate_arr = explode('-', $date);
+
+                    $infodatem = $infodate_arr[1];
+                    $infodatey = $infodate_arr[2];
+                    $infodated = $infodate_arr[0];
+                    $infodatestatus = $this->elements->checkdate($infodatem,$infodatey,$infodated);
+                }
+                
+                if(!empty($enddate))
+                {
+                    $enddate_arr = explode('-', $enddate);
+
+                    $enddatem = $enddate_arr[1];
+                    $enddatey = $enddate_arr[2];
+                    $enddated = $enddate_arr[0];
+                    $enddatestatus = $this->elements->checkdate($enddatem,$enddatey,$enddated);
+                }
+                /*Date Validation for Date of Information and End date */
+                
                 if(empty($date))
                 {
                     $data = array("logged" => false,'message' => 'Please select Date!!');
@@ -509,6 +532,11 @@ class SensitiveinformationController extends ControllerBase
                 else if($flag)
                 {
                      $data = array("logged" => false,'message' => 'Please Check Difference Between information Sharing Date And End Date');
+                    $this->response->setJsonContent($data);
+                }
+                else if($infodatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of Information Sharing');
                     $this->response->setJsonContent($data);
                 }
                 else if(strtotime($date)>strtotime($todaydate))
@@ -526,7 +554,11 @@ class SensitiveinformationController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Time Cannot Exceed 24:59!!');
                     $this->response->setJsonContent($data);
                 }
-
+                else if(!empty($enddate) && $enddatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct End date');
+                    $this->response->setJsonContent($data);
+                }
                 else
                 {
                     $filepath = '';

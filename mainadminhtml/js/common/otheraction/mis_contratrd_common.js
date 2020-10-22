@@ -92,6 +92,7 @@ function getmiscontratrd()
                         htmlelements+='<td width="10%">Not a DP</td>';
                     }
                     // htmlelements+='<td width="10%">'+response.data[i].company_name+'</td>';
+                    htmlelements+='<td width="10%">'+response.data[i].requestmode+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].transaction+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].date_of_transaction+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].date_added+'</td>';

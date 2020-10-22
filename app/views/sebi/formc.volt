@@ -27,13 +27,13 @@ $condeptsess = $this->session->contractdepartment;
            <button type="submit" class="btn btn-primary previous"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
             </div>
           <div class="cssnumrws">
-       <span>Show</span>
-        <select id="noofrows" name="noofrows" class="noofrows">
-           <option value="10">10</option><option value="25">25</option>
-            <option value="50">50</option><option value="100">100</option>
-        </select> 
-        <span>Entries</span>
-    </div>
+           <span>Show</span>
+            <select id="noofrows" name="noofrows" class="noofrows">
+               <option value="10">10</option><option value="25">25</option>
+                <option value="50">50</option><option value="100">100</option>
+            </select> 
+            <span>Entries</span>
+            </div>
                 <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>
@@ -354,7 +354,7 @@ $condeptsess = $this->session->contractdepartment;
            <form id="updateformc" action="sebi/updateformc" method="post" enctype="multipart/form-data" autocomplete="off" > 
                 <input type = "hidden" name="approverid" id="approverid" value="<?php echo $approverid;?>">
                     <input type="hidden" name="upformcid" id="upformcid">
-                     <section class="col col-md-6 col-xs-6">
+                     <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Name</label>
                                 <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $name;?>" readonly required>
@@ -362,27 +362,29 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                     </section>
                         
-                    <section class="col col-md-6 col-xs-6">
+                    <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">PAN</label>
                                 <input type="text" id="pan" name="pan" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $pan;?>" readonly required>
                             </div>
                     </section>
                         
-                    <section class="col col-md-6 col-xs-6">
+                    <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Address</label>
                                 <input type="text" id="address" name="address" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $address;?>" readonly required>
                             </div>
                     </section>
                         
-                    <section class="col col-md-6 col-xs-6">
+                    <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Contact No.</label>
+                                <div><br></div>
                                 <input type="text" id="cntctno" name="cntctno" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $cntctno;?>" readonly required>
                             </div>
                     </section>
                         
+<!--
                     <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">CIN/DIN</label>
@@ -391,10 +393,12 @@ $condeptsess = $this->session->contractdepartment;
                                 
                             </div>
                     </section>
+-->
                
-                     <section class="col col-md-6 col-xs-6">
+                     <section class="col col-md-4 col-xs-4">
                          <div class="input">
                             <label class="control-label">Category</label>
+                             <div><br></div>
                             <select id="category" name="category" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="">Select Category</option>
                                     <?php foreach($category as $shwcategory){  ?>
@@ -403,9 +407,15 @@ $condeptsess = $this->session->contractdepartment;
                                 </select>
                             </div>
                         </section>
-                           
+                        
+                        <section class="col col-md-4 col-xs-4">
+                            <div class="input">
+                                <label class="control-label">Date of intimation to company</label>
+                                <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control " placeholder="dd-mm-yyyy" maxlength="10" required>
+                            </div>
+                    </section> 
 
-                      <section class="col col-md-6 col-xs-6">
+                      <!--<section class="col col-md-6 col-xs-6">
                          <div class="input">
                             <label class="control-label">Type Of Contract</label>
                             <select id="contracttype" name="contracttype" class="form_fields form-control col-md-7 col-xs-12">
@@ -414,16 +424,16 @@ $condeptsess = $this->session->contractdepartment;
                                     <option value="2">Options</option>
                             </select>
                             </div>
-                        </section>
+                        </section>-->
 
 
 
-                        <section class="col col-md-6 col-xs-6">
+                        <!--<section class="col col-md-6 col-xs-6">
                             <div class="input">
                             <label class="control-label">Contract Specification</label>
                              <input type="text" id="contractspeci" name="contractspeci" class="form-control">
                             </div>
-                        </section>
+                        </section>-->
 
                         <section class="">
                             <div class="input ">
@@ -432,30 +442,26 @@ $condeptsess = $this->session->contractdepartment;
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
                             <label class="control-label">From</label>
-                             <input type="text" id="fromdate" name="fromdate" class="form-control bootdatepick" readonly required>
+                             <input type="text" id="fromdate" name="fromdate" class="form-control" placeholder="dd-mm-yyyy" maxlength="10"  required>
                             </div>
                         </section>
                
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">To</label>
-                                <input type="text" id="todate" name="todate" class="form-control bootdatepick" readonly required>
+                                <input type="text" id="todate" name="todate" class="form-control" placeholder="dd-mm-yyyy" maxlength="10" required>
                             </div>
                        </section>
                          </div>
                     </section>
                
                
-                    <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                                <label class="control-label">Date of intimation to company</label>
-                                <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control bootdatepick" readonly required>
-                            </div>
-                    </section> 
+                    
                
                  <section class="col col-md-6 col-xs-6">
                          <div class="input">
                             <label class="control-label">Mode of acquisition</label>
+                             <div><br></div>
                             <select id="acquimode" name="acquimode" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="">Select Mode</option>
                                     <?php foreach($modeacqui as $shwmode){  ?>
@@ -465,7 +471,7 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                     </section>
                
-                     <section class="">
+                     <!--<section class="">
                             <div class="input">
                             <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 10px;">Trading in derivatives (Specify type of contract, Futures or Options etc)</label>
                            
@@ -497,13 +503,19 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                        </section>
                          </div>
-                    </section>
+                    </section>-->
                
                     
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">Exchange on which the trade was executed</label>
-                                <input type="text" id="exetrd" name="exetrd" class="form_fields form-control col-md-7 col-xs-12">
+                                <select id="exetrd" name="exetrd" class="form_fields form-control col-md-7 col-xs-12" required>
+                                    <option value="">Select Option</option>
+                                    <?php foreach($exchngtrd as $shwtrd){  ?>
+                                    <option value="<?php echo $shwtrd['id']; ?>"><?php echo $shwtrd['fieldname']; ?></option>
+                                    <?php } ?>
+                                </select>
+                                <!--<input type="text" id="exetrd" name="exetrd" class="form_fields form-control col-md-7 col-xs-12">-->
                             </div>
                        </section>
                         
@@ -517,5 +529,22 @@ $condeptsess = $this->session->contractdepartment;
 
 
       </div>
+    </div>
+</div>
+
+<div id="modalredirect" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 style="text-align: center;">Form C submitted successfully.<br> Now update your holdings in personal information.</h4> 
+            </div>
+            <div class="modal-footer">
+              <a href="employeemodule"><button type="button" class="btn btn-primary">Ok</button></a> 
+            </div>
+        </div>
     </div>
 </div>

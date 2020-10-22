@@ -515,7 +515,7 @@ website("body").on("click", "#yesdisclosures1", function (e) {
             {
                 var baseHref = getbaseurl();
                 var redirecturl = baseHref + "employeemodule?tab=" + btoa(4);
-                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Personal Information added successfully.<br>Please Insert Past Employment Details.</h5></div><div class="guidebtn"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Personal Information added successfully.<br>Please Insert Past Employment Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
                 website('#modeluserguide').modal('show');
                 getpersonalinfo();
             }
@@ -618,7 +618,7 @@ website("body").on("click", "#yesdisclosures2", function (e) {
             {
                 var baseHref = getbaseurl();
                 var redirecturl = baseHref + "employeemodule?tab=" + btoa(3);
-                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Relatives Details added successfully.<br>Please Insert Material Financial Relationship Details.</h5></div><div class="guidebtn"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Relatives Details added successfully.<br>Please Insert Material Financial Relationship Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
                 website('#modeluserguide').modal('show');
                 getrelationdata();
             }
@@ -1549,7 +1549,7 @@ website("#savemfr").click(function (e) {
           if(response.isfirst == 'yes' && response.isnextdataempty == 'yes')
             {
                var redirecturl = baseHref + "portfolio";
-                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Data Inserted Successfully.<br>Please Insert Demat Account Details.</h5></div><div class="guidebtn"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Data Inserted Successfully.<br>Please Insert Demat Account Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');
                 website('#modeluserguide').modal('show');
                 getmfrdata();
             }
@@ -2683,7 +2683,7 @@ website("body").on("click", "#pastbtnsub", function (e) {
             {
                 var baseHref = getbaseurl();
                 var redirecturl = baseHref + "employeemodule?tab=" + btoa(2);
-                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 45px 50px 25px 50px;line-height: 25px;">Personal Employment Information added successfully.<br>Please Insert Relatives Details.</h5></div><div class="guidebtn"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Personal Employment Information added successfully.<br>Please Insert Relatives Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
                 website('#modeluserguide').modal('show');
                 getpastempdata();
             }
@@ -3048,3 +3048,70 @@ website(document).on('click', '#copyaddress', function() {
         }
     }
 });
+
+
+/*   ---------------- MFR Section (onclick yes no)*/
+ website('body').on('click','.mfrstatusupdt',function(e){
+
+   var mfrstatusupdt = website(this).val();
+   website.ajax({
+        url:'employeemodule/updatemfrstatus',
+        data:{mfrstatusupdt:mfrstatusupdt},
+        method:'POST',
+        //contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, Cross domain checking
+        beforeSend: function()
+        {     },
+        uploadProgress: function(event, position, total, percentComplete)
+        {   },
+        success: function(response, textStatus, jqXHR)
+         {
+              //console.log(response);
+             /* new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark ',
+                });*/
+         },
+        complete: function(response)
+        {   },
+        error: function(jqXHR, textStatus, errorThrown)
+        {   }
+   });
+});
+
+function showmfrsection()
+{
+    var section = document.getElementById("showmfr");
+    if (section.style.display === "none") 
+    {
+        section.style.display = "block";
+    } 
+}
+
+function hidemfrsection()
+{
+    var section = document.getElementById("showmfr");
+    if (section.style.display === "block") 
+    {
+        section.style.display = "none";
+    } 
+}
+
+  //show demat when clicked yes
+ let yeschecked = website("input[name='mfrstatus']:checked").val();
+ if(yeschecked == 1)
+ {
+      website("#showmfr").css('display','block');
+ }
+ else
+ {
+    website("#showmfr").css('display','none');
+ }
+/*   ---------------- MFR Section (onclick yes no)*/

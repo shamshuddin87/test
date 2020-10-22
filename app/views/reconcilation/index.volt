@@ -25,7 +25,7 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="col col-md-6 col-xs-6">
                         <label class="control-label">Date of RTA Data</label>
                         <div class="input">
-                        <input type="text" name="statemnttil" id="statemnttil" class="form-control bootdatepick" required readonly>   
+                        <input type="text" name="statemnttil" id="statemnttil" class="form-control" placeholder="dd-mm-yyyy" maxlength="10" required>   
                         </div>
                     </section>
                         

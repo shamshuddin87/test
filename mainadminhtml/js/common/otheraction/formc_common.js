@@ -100,7 +100,7 @@ function getdataonload()
                  addhtmlnxt += '<td width="20%"><i class="fa fa-check" aria-hidden="true"></i></td>';
             }
             
-            addhtmlnxt += '<td width="20%"><i class="fa fa-file-pdf-o" id="previewc" type="'+response.resdta[i].isitesop+'" doc_id=2 formcid="'+response.resdta[i].id+'"></i></td>';
+            addhtmlnxt += '<td width="20%"><i class="fa fa-file-pdf-o" id="previewc" type="'+response.resdta[i].isitesop+'" doc_id=2 formcid="'+response.resdta[i].id+'" formctype="'+response.resdta[i].typeofformc+'"></i></td>';
             if(response.user_group_id == '7')
             {
                 if(response.resdta[i].final)
@@ -296,15 +296,15 @@ website('body').on('click','.yesapprove',function()
                if(response.logged === true)
                {
                   //fetchmasterlist();
-                  window.location.reload();
-                  //website('#Mymodaledit').fadeOut();
-                  new PNotify({title: 'Alert!!!',
+                  //window.location.reload();
+                  website('#modalredirect').modal('show');
+                  /*new PNotify({title: 'Alert!!!',
                       text: response.message,
                       type: 'university',
                       hide: true,
                       styling: 'bootstrap3',
                       addclass: 'dark ',
-                  }); 
+                  }); */
                }
                else
                {    
@@ -342,8 +342,9 @@ website('body').on('click','#previewc',function()
    var docid = website(this).attr('doc_id');
     var id = website(this).attr('formcid');
     var type=website(this).attr('type');
+    var formctype = website(this).attr('formctype'); // this is form c type like formc type 1 2,3 etc.
     // alert(type);
-    var formdata = {id:id,docid:docid,type:type};
+    var formdata = {id:id,docid:docid,type:type,formctype:formctype};
     website.ajax({
       url:'sebi/previewofformc',
       data:formdata,
@@ -414,16 +415,28 @@ website('body').on('click','#previewc',function()
                 // alert(response.pershare);
                website('.posttrans').html(response.pershare);
                website('.excelposttrans').val(response.pershare);
-                if(response.formdata['typtrans']!=null)
+               if(formctype == '1')
                {
-                     website('.transtype').html(response.formdata['typtrans']);
-                      website('.exceltranstype').html(response.formdata['typtrans']);
+                    if(response.formdata['typtrans']!=null)
+                    {
+                        website('.transtype').html(response.formdata['typtrans']);
+                        website('.exceltranstype').html(response.formdata['typtrans']);
+                    }
+                    else
+                    {
+                        website('.transtype').html('<p style="color:green;">BUY</p>');
+                        website('.exceltranstype').html('BUY');
+                    }
                }
-               else
+               else if(formctype == '2')
                {
-                    website('.transtype').html('<p style="color:green;">BUY</p>');
-                     website('.exceltranstype').html('BUY');
+                   website('.exceltranstype').html('Allotment after exercise of  ESOPs');
                }
+               else if(formctype == '3')
+               {
+                   website('.exceltranstype').html('Received on exercise of  ESOPs');
+               }    
+                
                website('.name').html(response.formdata['fullname']);
                 website('.excelname').val(response.formdata['fullname']);
                website('.cmpnme').html(response.formdata['company_name']);
@@ -465,8 +478,18 @@ website('body').on('click','#previewc',function()
                website('.exceltodate').val(ddmmyyto); //date
                website('.dateofintimtn').html(ddmmyyinti); //date
                website('.exceldateofintimtn').val(ddmmyyinti); //date
-               website('.acquimode').html(response.formdata['acquistnmode']);
-               website('.excelacquimode').val(response.formdata['acquistnmode']);
+               
+                if(formctype == '1')
+                {
+                    website('.acquimode').html(response.formdata['acquistnmode']);
+                    website('.excelacquimode').val(response.formdata['acquistnmode']);
+                }
+                else
+                {
+                    website('.acquimode').html(response.formdata['acquimode']);
+                    website('.excelacquimode').html(response.formdata['acquimode']);
+                }
+               
                website('.buyvalue').html(response.formdata['buyvalue']);
                website('.excelbuyvalue').val(response.formdata['buyvalue']);
                website('.buynumbrunt').html(response.formdata['buynumbrunt']);

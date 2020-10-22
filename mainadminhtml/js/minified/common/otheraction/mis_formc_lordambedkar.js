@@ -22,7 +22,7 @@ else if(response.data[i].emp_status=='2')
 {htmlelements+='<td width="10%">Resigned</td>';}
 else if(response.data[i].emp_status=='3')
 {htmlelements+='<td width="10%">Not a DP</td>';}
-htmlelements+='<td width="10%">'+response.data[i].date_of_transaction+'</td>';htmlelements+='<td width="10%">'+response.data[i].no_of_share+'</td>';htmlelements+='<td width="10%">'+duesubDate+'</td>';htmlelements+='<td width="10%">'+formcsenddate+'</td>';if(response.data[i].send_date)
+htmlelements+='<td width="10%">'+response.data[i].date_of_transaction+'</td>';htmlelements+='<td width="10%">'+response.data[i].no_of_share+'</td>';htmlelements+='<td width="10%">'+response.data[i].requestmode+'</td>';htmlelements+='<td width="10%">'+duesubDate+'</td>';htmlelements+='<td width="10%">'+formcsenddate+'</td>';if(response.data[i].send_date)
 {var senddte=response.data[i].send_date.split("-");var formsenddte=new Date(senddte[2],senddte[1],senddte[0]);}
 var duetrade=duesubDate.split("-");var duetradedte=new Date(duetrade[2],duetrade[1],duetrade[0]);htmlelements+='</tr>';}}
 else

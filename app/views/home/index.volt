@@ -32,7 +32,7 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row boxes -->
-                    
+                    <?php  if($gmnlog['user_group_id'] !='2'){?> 
                     <div class="row shortinfo">
                       
                         <div class="col-lg-3 col-md-6" id="">
@@ -65,7 +65,7 @@
                                 </div>
                             </a>
                         </div>
-                        <?php  if($gmnlog['user_group_id'] !='2'){?> 
+                        
                         <div class="col-lg-3 col-md-6" id="">
                             <a href="annualdeclaration">
                                 <!-- <div class="panel panel-orange"> -->
@@ -94,11 +94,9 @@
                                 </div>
                             </a>
                         </div>
-                        <?php } ?> 
-                      
-                    
-                  </div>
-                    
+                   </div>
+                    <?php } ?>
+                    <?php  if($gmnlog['user_group_id'] !='2'){?> 
                     <div class="row">
                         <div class="col-xs-6">
                            
@@ -139,6 +137,8 @@
                            </div>
                            <!-- /.panel-body -->
                         </div>
+                    <?php } ?> 
+                    
                         <div class="col-xs-6">
                             <div class="announcementdiv">
                                 <h4>Announcement</h4>

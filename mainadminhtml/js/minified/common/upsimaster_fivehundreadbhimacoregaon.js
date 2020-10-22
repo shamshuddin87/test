@@ -60,14 +60,18 @@ else
 {website('#addupsimast #connectedpform #connectdps').attr('required','required');website('#addupsimast #connectedpform').css('display','block');}});website('body').on('change','#upsimodel #upalldps',function(){if(website(this).is(":checked"))
 {website('#updateupsimast #connectdps').removeAttr('required','required');website('#updateupsimast #dpsmodel').css('display','none');}
 else
-{website('#updateupsimast #connectdps').attr('required','required');website('#updateupsimast #dpsmodel').css('display','block');}});website('body').on('click','.addupsitype',function(e){var title=website("#addupsimast #upnm").val();var startdt=website("#addupsimast #pstartdte").val();var owner=website("#addupsimast #owner").val();if(!title)
+{website('#updateupsimast #connectdps').attr('required','required');website('#updateupsimast #dpsmodel').css('display','block');}});website('body').on('click','.addupsitype',function(e){var title=website("#addupsimast #upnm").val();var startdt=website("#addupsimast #pstartdte").val();var owner=website("#addupsimast #owner").val();if(startdt)
+{var bits=startdt.split('-');var d=new Date(bits[2]+'-'+bits[1]+'-'+bits[0]);var startdatestatus=!!(d&&(d.getMonth()+1)==bits[1]&&d.getDate()==Number(bits[0]));}
+if(!title)
 {new PNotify({title:'Alert',text:'Please Enter title of UPSI',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else if(!startdt)
 {new PNotify({title:'Alert',text:'Please Enter start date of UPSI',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
+else if(startdatestatus==false)
+{new PNotify({title:'Alert',text:'Please Enter Correct start date of UPSI',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else if(!owner)
 {new PNotify({title:'Alert',text:'Please Select owner of UPSI',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');website('#modaltradingwindowclose #tradingwindowyes').attr('action','insert');website('#modaltradingwindowclose').modal('show');}});website('body').on('click','#tradingwindowno',function(e){var actiontype=website(this).attr('action');if(actiontype=='insert')
+{var bits=startdt.split('-');var d=new Date(bits[2]+'-'+bits[1]+'-'+bits[0]);console.log(!!(d&&(d.getMonth()+1)==bits[1]&&d.getDate()==Number(bits[0])));return false;website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');website('#modaltradingwindowclose #tradingwindowyes').attr('action','insert');website('#modaltradingwindowclose').modal('show');}});website('body').on('click','#tradingwindowno',function(e){var actiontype=website(this).attr('action');if(actiontype=='insert')
 {website('#addupsimast').submit();}});function pageRedirect(){window.location.replace("blackoutperiod");}
 website('body').on('click','#tradingwindowyes',function(e){var actiontype=website(this).attr('action');if(actiontype=='insert')
 {website('#addupsimast').submit();}});website('body').on('click','#tradingrej',function(e){website('#alertcommon #allalertmsg').html("Upsi Is Not Added..!!!");website('#alertcommon').modal('show');});website('#addupsimast').ajaxForm({dataType:"json",beforeSend:function()

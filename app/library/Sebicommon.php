@@ -260,7 +260,7 @@ class Sebicommon extends Component
     {
         $connection = $this->dbtrd;
         $exegetgeo = "SELECT * FROM `sebiform_url` WHERE `doc_id` ='".$docid."'";
-        //echo $exegetgeo;
+        //echo $exegetgeo;exit;
           try {
                 $exeget = $connection->query($exegetgeo);
                 $getnum = trim($exeget->numRows());
@@ -707,7 +707,7 @@ class Sebicommon extends Component
     /**********  fetch mode data of formc end ***********/
     
     /******* insert form c data start********/
-    public function insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid,$category,$cin)
+    public function insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid)
     {
         //print_r($appvrid);exit;
         $time = time();
@@ -775,9 +775,21 @@ class Sebicommon extends Component
             {
                 $totalamnt = $formcdata[$i]['total_amount'];
                 $clngblnc = $openingblnc+$totalamnt;
-                $queryinsert = "INSERT INTO `sebiformc_usrdata` (`user_id`,`user_group_id`,`tradeid`,`approverid`,`cin`,`category`, `companyid`,`acquimode`,`fromdate`, `todate`, `sectype`, `pretrans`,`posttrans`,`dateofintimtn`,`buyvalue`, `buynumbrunt`, `sellvalue`, `sellnumbrunt`,`exetrd`,`opngblnc`,`totalamnt`,`clsblnc`,`filestatus`,`date_added`, `date_modified`,`timeago`)
-                 VALUES ('".$getuserid."','".$user_group_id."','".$formcdata[$i]['id']."','".$appvrid."','".$cin."','".$category."','".$formcdata[$i]['id_of_company']."','','".$formcdata[$i]['date_of_transaction']."','".$formcdata[$i]['date_of_transaction']."','".$formcdata[$i]['sectype']."','','',NULL,'','','','','','".$openingblnc."','".$totalamnt."','".$clngblnc."','".$tradests."',NOW(),NOW(),'".$time."')"; 
-                // print_r($queryinsert);exit;
+                
+                $datefrom = $formcdata[$i]['date_of_transaction'];
+                $dateto = $formcdata[$i]['date_of_transaction'];
+                if(!empty($formcdata[$i]['allotmentfrm']))
+                {
+                    $datefrom = $formcdata[$i]['allotmentfrm'];
+                }
+                if(!empty($formcdata[$i]['allotmentto']))
+                {
+                   $dateto = $formcdata[$i]['allotmentto'];
+                }
+                
+                $queryinsert = "INSERT INTO `sebiformc_usrdata` (`user_id`,`user_group_id`,`tradeid`,`approverid`,`category`, `companyid`,`acquimode`,`fromdate`, `todate`, `sectype`, `pretrans`,`posttrans`,`dateofintimtn`,`buyvalue`, `buynumbrunt`, `sellvalue`, `sellnumbrunt`,`exetrd`,`opngblnc`,`totalamnt`,`clsblnc`,`filestatus`,`typeofformc`,`date_added`, `date_modified`,`timeago`)
+                 VALUES ('".$getuserid."','".$user_group_id."','".$formcdata[$i]['id']."','".$appvrid."','".$formcdata[$i]['category']."','".$formcdata[$i]['id_of_company']."','".$formcdata[$i]['aquimode']."','".$datefrom."','".$dateto."','".$formcdata[$i]['sectype']."','','','".$formcdata[$i]['intimtndate']."','','','','','".$formcdata[$i]['exetrd']."','".$openingblnc."','".$totalamnt."','".$clngblnc."','".$tradests."','".$formcdata[$i]['formctype']."',NOW(),NOW(),'".$time."')"; 
+                 //print_r($queryinsert);exit;
                 $exeprev = $connection->query($queryinsert);
              }
          }
@@ -873,7 +885,7 @@ class Sebicommon extends Component
     public function getformcdata($getuserid,$user_group_id,$formcid)
     {
         $connection = $this->dbtrd;
-        $queryget = "SELECT formc.*,memb.`fullname`,memb.`mobile`,tr.`no_of_share` AS tdsshare,tr.`req_id`,pr.`place`,pr.`no_of_shares`,pinfo.`pan`,pinfo.`address`,cate.`category`,cmp.`company_name`,formmode.`acquisitionmode` AS acquistnmode ,pinfo.`sharehldng`,sc.`pershare` 
+        $queryget = "SELECT formc.*,memb.`fullname`,pinfo.mobileno AS `mobile`,tr.`no_of_share` AS tdsshare,tr.`req_id`,pr.`place`,pr.`no_of_shares`,pinfo.`pan`,pinfo.`address`,cate.`category`,cmp.`company_name`,formmode.`acquisitionmode` AS acquistnmode ,pinfo.`sharehldng`,sc.`pershare` 
          FROM `sebiformc_usrdata` formc 
          LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id` 
          LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id` 
@@ -917,8 +929,9 @@ class Sebicommon extends Component
     {
         $connection = $this->dbtrd; 
         $time = time();
-           $queryinsert = "UPDATE `sebiformc_usrdata` SET `category`='".$formcupdata['category']."', `fromdate`='".$formcupdata['fromdate']."', `todate`='".$formcupdata['todate']."', `pretrans`='".$formcupdata['pretrans']."', `posttrans`='".$formcupdata['posttrans']."', `dateofintimtn`='".$formcupdata['dateofintimtn']."', `acquimode`='".$formcupdata['acquimode']."',`buyvalue`='".$formcupdata['buyvalue']."',`buynumbrunt`='".$formcupdata['buynumbrunt']."',`sellvalue`='".$formcupdata['sellvalue']."',`sellnumbrunt`='".$formcupdata['sellnumbrunt']."',`exetrd`='".$formcupdata['exetrd']."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['upformcid']."'"; 
+           $queryinsert = "UPDATE `sebiformc_usrdata` SET `category`='".$formcupdata['category']."', `fromdate`='".$formcupdata['fromdate']."', `todate`='".$formcupdata['todate']."', `dateofintimtn`='".$formcupdata['dateofintimtn']."', `acquimode`='".$formcupdata['acquimode']."',`exetrd`='".$formcupdata['exetrd']."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['upformcid']."'"; 
         //print_r($queryinsert);exit;
+        //, `pretrans`='".$formcupdata['pretrans']."', `posttrans`='".$formcupdata['posttrans']."',`buyvalue`='".$formcupdata['buyvalue']."',`buynumbrunt`='".$formcupdata['buynumbrunt']."',`sellvalue`='".$formcupdata['sellvalue']."',`sellnumbrunt`='".$formcupdata['sellnumbrunt']."'
         try
         {
             $exeprev = $connection->query($queryinsert);
@@ -2087,7 +2100,91 @@ class Sebicommon extends Component
         return $getlist;
     }
     
+    /**********  fetch mode data of formc start ***********/
+    public function getformcexchngetrd()
+    {
+        $connection = $this->dbtrd;
+        try
+         {
+            $queryget = "SELECT * FROM `sebiformc_exchngtrd` WHERE `status`='1'";
+            //echo $queryget;  exit;
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;
+                }
+                //echo '<pre>';print_r($getlist);exit;
+                
+            }else{
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+            //$connection->close();
+        }
+        //print_r($getlist);exit;
+        return $getlist; 
+        
+    }
+    /**********  fetch mode data of formc end ***********/
     
+    /*  ------------ Form C Types start  ------------ */
+    
+    // Insert Form C type 1
+    public function inFormcTypePersonalReq($getuserid,$user_group_id,$type1data,$requestmod)
+    {
+        //print_r($type1data);exit;
+        $time = time();
+        $result = array();
+        $connection = $this->dbtrd;
+        try
+        {
+            $query = "INSERT INTO `personal_request`(`user_id`,`user_group`,`type_of_request`,`name_of_requester`,`sectype`,`id_of_company`,`no_of_shares`,`type_of_transaction`,`approver_id`,`send_status`,`trading_status`,`requestmodeid`,`date_added`,`date_modified`,`timeago`) 
+            VALUES('".$getuserid."','".$user_group_id."','1','".$type1data['name']."','".$type1data['sectype']."','1','".$type1data['noofshare']."','".$type1data['typeoftrans']."','".$type1data['approverid']."','1','1','".$requestmod."',NOW(),NOW(),'".$time."')";
+                //echo $query; exit;
+            $exeget = $connection->query($query);
+            if($exeget)
+            {
+                $lastid = $connection->lastInsertId();
+                $result = array('logged'=>true,'ReqId'=>$lastid);
+            }
+        }
+        catch (Exception $e) 
+        {
+            $result = array('logged'=>false,'ReqId'=>'');
+        }
+        return $result;
+    }
+    
+    public function inFormcTypeTradingStatus($getuserid,$user_group_id,$type1data,$req_id)
+    {
+        //print_r($type1data);exit;
+        $time = time();
+        $result = array();
+        $connection = $this->dbtrd;
+        try
+        {
+           $query = "INSERT INTO  `trading_status` (req_id, user_id, user_group_id,`id_of_company`,`sectype`,no_of_share,price_per_share,trading_status,total_amount,date_of_transaction,date_added,date_modified,`type_of_request`,`timeago`) VALUES ('".$req_id."','".$getuserid."','".$user_group_id."','1','".$type1data['sectype']."','".$type1data['noofshare']."','".$type1data['pricepershare']."','1','".$type1data['totalamt']."','".$type1data['dateoftrans']."',NOW(),NOW(),'1','".$time."')";  
+            //print_r($query);exit;
+            $exeget = $connection->query($query);
+            if($exeget)
+            {
+                $lastid = $connection->lastInsertId();
+                $result = array('logged'=>true,'TradeId'=>$lastid);
+            }
+        }
+        catch (Exception $e) 
+        {
+            $result = array('logged'=>false,'TradeId'=>'');
+        }
+        return $result;
+    }
 }
 
 

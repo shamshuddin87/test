@@ -126,6 +126,7 @@ function getmisformc(url_status)
                     // htmlelements+='<td width="10%">'+response.data[i].company_name+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].date_of_transaction+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].no_of_share+'</td>';
+                    htmlelements+='<td width="10%">'+response.data[i].requestmode+'</td>';
                     htmlelements+='<td width="10%">'+duesubDate+'</td>';
                     htmlelements+='<td width="10%">'+formcsenddate+'</td>';
                     if(response.data[i].send_date)

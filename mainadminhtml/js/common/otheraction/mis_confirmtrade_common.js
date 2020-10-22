@@ -82,8 +82,8 @@ function getmisconfrmtrde()
                 {  
                     var j=i+1;
                     // console.log(response.data[i]);
-                    var tradewindw = response.data[i].trading_date.split("-");
-                    var tradewindwdte = new Date(tradewindw[2], tradewindw[1], tradewindw[0]);
+                    /*var tradewindw = response.data[i].trading_date.split("-");
+                    var tradewindwdte = new Date(tradewindw[2], tradewindw[1], tradewindw[0]);*/
                     var trade = response.data[i].date_of_transaction.split("-");
                     var tradedte = new Date(trade[2], trade[1], trade[0]);
                     htmlelements+='<tr>';

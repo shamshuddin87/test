@@ -245,14 +245,18 @@
                <li>
                   <a class="click_board click_board3" href="javascript:;"><i class="fa fa-file-pdf-o"></i>SEBI Form<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                     <li>
+                      <!--   Form B Start -->
+                     <!--<li>
                         <a href="sebi/formb"><i class="fa fa-file-pdf-o" id=""></i>FORM B</a>
-                     </li>
+                     </li>-->
                      <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'){  ?> 
-                     <li>
+                     <!--<li>
                         <a href="sebi/viewformb"><i class="fa fa-eye" id=""></i>Approve FORM B Request</a>
-                     </li>
+                     </li>-->
                      <?php } ?>
+                      <!--   Form B END -->
+                      
+                      <!--   Form C Start -->
                      <li>
                         <a href="sebi/transformc"><i class="fa fa-file-pdf-o" id=""></i>FORM C</a>
                      </li>
@@ -261,14 +265,19 @@
                         <a href="sebi/viewformc"><i class="fa fa-eye" id=""></i>Approve FORM C Request</a>
                      </li>
                      <?php } ?>
-                     <li>
+                      <!--   Form C END -->
+                      
+                      <!--   Form D Start -->
+                     <!--<li>
                         <a href="sebi/transformd"><i class="fa fa-file-pdf-o" id=""></i>FORM D</a>
-                     </li>
+                     </li>-->
                      <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'){  ?> 
-                     <li>
+                     <!--<li>
                         <a href="sebi/viewformd"><i class="fa fa-eye" id=""></i>Approve FORM D Request</a>
-                     </li>
+                     </li>-->
                      <?php } ?>
+                      <!--   Form D END -->
+                      
                       <li><a href="tradingrequest"><i class=""></i>Request for Pre-clearance</a></li>
                   </ul>
                </li>

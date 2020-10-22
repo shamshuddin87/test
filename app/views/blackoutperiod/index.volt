@@ -60,14 +60,14 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="col col-md-4 col-xs-4">
                     <div class="input">
                         <label class="control-label">Trading Window From </label> 
-                        <input type="text" name="blckoutfrom" id="blckoutfrom" class="form-control bootdatepick" required readonly>
+                        <input type="text" name="blckoutfrom" id="blckoutfrom" class="form-control" placeholder="dd-mm-yyyy" maxlength="10" required>
                     </div>
                     </section>
                         
                     <section class="col col-md-4 col-xs-4">
                     <div class="input">
                     <label class="control-label">Trading Window To </label>  
-                        <input type="text" name="blckoutto" id="blckoutto" class="form-control bootdatepick" required readonly>
+                        <input type="text" name="blckoutto" id="blckoutto" class="form-control"  placeholder="dd-mm-yyyy" maxlength="10" required>
                     </div>
                     </section>
 

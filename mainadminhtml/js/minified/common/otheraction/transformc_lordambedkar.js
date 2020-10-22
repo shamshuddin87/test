@@ -21,16 +21,44 @@ else
 {website('.appendrow').html('<tr><td colspan="9" style="text-align:center;">Data Not Found..!!</td></tr>');website('.paginationmn').html(response.pgnhtml);}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});}
-website('body').on('click','#formcsend',function(){var ids=[];website.each(website("input[name='check']:checked"),function(){ids.push(website(this).val());});var trdeid=website(this).attr('trdeid');var place=website(this).attr('place');var apprvid=website('.approverid').val();var cin=website('.cin').val();var category=website('.category').val();if(ids.length==0)
+website('body').on('click','#formcsend',function(){var ids=[];website.each(website("input[name='check']:checked"),function(){ids.push(website(this).val());});var trdeid=website(this).attr('trdeid');var place=website(this).attr('place');var apprvid=website('.approverid').val();if(ids.length==0)
 {new PNotify({title:'Alert!!',text:'Please Select Atleast One Record',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{var formdata={ids:ids,apprvid:apprvid,cin:cin,category:category,trdeid:trdeid,place:place};website.ajax({url:'sebi/insertformc',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{var formdata={ids:ids,apprvid:apprvid,trdeid:trdeid,place:place};website.ajax({url:'sebi/insertformc',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {var baseHref=getbaseurl();window.location.href=baseHref+'sebi/formc';}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
-{}});}});website('body').on('click','#formcprevious',function(){var baseHref=getbaseurl();window.location.href=baseHref+'sebi/viewtransformc';});function numberalphOnly()
+{}});}});website('body').on('click','#formcprevious',function(){var baseHref=getbaseurl();window.location.href=baseHref+'sebi/formc';});website('body').on('click','#formctypes',function(){website('#myModalFormctypes').modal('show');});website('body').on('click','.openFormc',function(){var formctype=website(this).attr('id');if(formctype)
+{website('#myModalFormctypes').modal('hide');website('#Mymodal'+formctype).modal('show');}});website("#Mymodaltype1 #pricepershare").keyup(function(){var noofshare=website('#Mymodaltype1 #noofshare').val();var pricepershare=website('#Mymodaltype1 #pricepershare').val();if(noofshare!=''&&pricepershare!='')
+{var totalamt=noofshare*pricepershare;website('#Mymodaltype1 #totalamt').val(totalamt)}});website("#Mymodaltype2 #pricepershare").keyup(function(){var noofshare=website('#Mymodaltype2 #noofshare').val();var pricepershare=website('#Mymodaltype2 #pricepershare').val();if(noofshare!=''&&pricepershare!='')
+{var totalamt=noofshare*pricepershare;website('#Mymodaltype2 #totalamt').val(totalamt)}});website("#Mymodaltype3 #pricepershare").keyup(function(){var noofshare=website('#Mymodaltype3 #noofshare').val();var pricepershare=website('#Mymodaltype3 #pricepershare').val();if(noofshare!=''&&pricepershare!='')
+{var totalamt=noofshare*pricepershare;website('#Mymodaltype3 #totalamt').val(totalamt)}});website('#insertformctype1').ajaxForm({dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();website('#Mymodaledit .mainprogressbarforall').fadeOut();},error:function()
+{}});website('#insertformctype2').ajaxForm({dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();website('#Mymodaledit .mainprogressbarforall').fadeOut();},error:function()
+{}});website('#insertformctype3').ajaxForm({dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
+else
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();website('#Mymodaledit .mainprogressbarforall').fadeOut();},error:function()
+{}});function numberalphOnly()
 {var charCode=event.keyCode;if((charCode>47&&charCode<58)||charCode==32||(charCode>64&&charCode<91)||(charCode>96&&charCode<123)||charCode==8||charCode==44||charCode==40||charCode==41||charCode==46||charCode==47)
 return true;else
 return false;}

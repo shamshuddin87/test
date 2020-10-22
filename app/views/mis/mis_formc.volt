@@ -72,6 +72,7 @@ $current_year =  date("Y");
                   <!--   <th>Name Of Company</th>  -->
                     <th>Date Of Trade</th>
                     <th>Number Of Shares Traded</th>
+                    <th>Mode of Submission</th>
                     <th>Due Date Of Submission</th>
                     <th>Actual Date Of Submission</th>
                     <!-- <th>Compliance/Non-Compliance</th> -->

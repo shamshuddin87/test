@@ -312,15 +312,16 @@ website('body').on('click','.yesapprove',function()
                if(response.logged === true)
                {
                   //fetchmasterlist();
-                  window.location.reload();
+                  //window.location.reload();
+                   website('#modalredirect').modal('show');
                   //website('#Mymodaledit').fadeOut();
-                  new PNotify({title: 'Alert!!!',
+                  /*new PNotify({title: 'Alert!!!',
                       text: response.message,
                       type: 'university',
                       hide: true,
                       styling: 'bootstrap3',
                       addclass: 'dark ',
-                  }); 
+                  }); */
                }
                else
                {    

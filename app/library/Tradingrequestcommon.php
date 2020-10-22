@@ -495,17 +495,22 @@ function checktypeofreq($uid,$usergroup,$data)
         public function gettradingrequest($uid,$usergroup,$extqry)
         {
             $connection = $this->dbtrd;
-            $queryget= "SELECT pr.*, `cmpdl`.company_name as mycompany,
-              `newrp`.relationshipname as relationship, `relative`.name ,
-                `rt`.request_type, `obj`.transaction, `sec`.security_type 
+            
+            $qrycntra = " AND pr.`sent_contraexeaprvl`= '0' ";
+            
+            $queryget= "SELECT pr.*, cmpdl.company_name as mycompany,
+              newrp.relationshipname as relationship, relative.name ,
+                rt.request_type, obj.transaction, sec.security_type, mrm.requestmode
                 FROM `personal_request` pr 
-                LEFT JOIN listedcmpmodule cmpdl ON `cmpdl`.id = `pr`.id_of_company 
-                LEFT JOIN relative_info relative ON `relative`.id = `pr`.relative_id 
-                LEFT JOIN request_type rt ON `rt`.id = `pr`.type_of_request     
-                LEFT JOIN type_of_transaction obj ON `obj`.id=`pr`.type_of_transaction
-                LEFT JOIN relationship newrp ON `newrp`.id=`relative`.relationship  
-                JOIN `req_securitytype` sec ON `sec`.id = `pr`.sectype
-                WHERE `pr`.user_id = '".$uid."' AND pr.`sent_contraexeaprvl`= '0'  ".$extqry;
+                LEFT JOIN listedcmpmodule cmpdl ON cmpdl.id = pr.id_of_company 
+                LEFT JOIN relative_info relative ON relative.id = pr.relative_id 
+                LEFT JOIN request_type rt ON rt.id = pr.type_of_request     
+                LEFT JOIN `trading_status` ts ON ts.`req_id` = pr.id 
+                LEFT JOIN type_of_transaction obj ON obj.id=pr.type_of_transaction
+                LEFT JOIN relationship newrp ON newrp.id=relative.relationship  
+                JOIN `req_securitytype` sec ON sec.id = pr.sectype
+                JOIN `master_requestmode` mrm ON mrm.id = pr.requestmodeid
+                WHERE pr.user_id = '".$uid."' AND pr.`requestmodeid` IN (1,2) ".$extqry;
             //print_r($queryget);die;
 
             try
@@ -537,16 +542,16 @@ function checktypeofreq($uid,$usergroup,$data)
             $connection = $this->dbtrd;
             if($usergroup!=2)
             {
-                $queryget = "SELECT memb.`deptaccess` AS department,`cmpdl`.company_name as mycompany,`newrp`.relationshipname as relationship,`relative`.name ,`rt`.request_type,ts.`transaction`,pr.*,sec.`security_type`
+                $queryget = "SELECT memb.`deptaccess` AS department,cmpdl.company_name as mycompany,newrp.relationshipname as relationship,relative.name ,rt.request_type,ts.`transaction`,pr.*,sec.`security_type`
                 FROM `personal_request` pr
-                LEFT JOIN listedcmpmodule cmpdl ON `cmpdl`.id = `pr`.id_of_company 
-                LEFT JOIN relative_info relative ON `relative`.id = `pr`.relative_id 
-                LEFT JOIN request_type rt ON `rt`.id = `pr`.type_of_request 
-                LEFT JOIN type_of_transaction ts ON `ts`.id=`pr`.type_of_transaction
-                LEFT JOIN `req_securitytype` sec ON `sec`.id = `pr`.sectype
+                LEFT JOIN listedcmpmodule cmpdl ON cmpdl.id = pr.id_of_company 
+                LEFT JOIN relative_info relative ON relative.id = pr.relative_id 
+                LEFT JOIN request_type rt ON rt.id = pr.type_of_request 
+                LEFT JOIN type_of_transaction ts ON `ts`.id=pr.type_of_transaction
+                LEFT JOIN `req_securitytype` sec ON sec.id = pr.sectype
                 LEFT JOIN `it_memberlist` memb ON memb.`wr_id` =  pr.`user_id`
                 LEFT JOIN `con_dept` dpt ON memb.`deptaccess` = dpt.`id`
-                LEFT JOIN relationship newrp ON `newrp`.id=`relative`.relationship  
+                LEFT JOIN relationship newrp ON newrp.id=relative.relationship  
                 WHERE (pr.`send_status`='1' or pr.`approved_status`='2')  AND FIND_IN_SET('".$uid."',pr.`approver_id`)".$extqry;
             }
             else
@@ -557,17 +562,17 @@ function checktypeofreq($uid,$usergroup,$data)
                 $allusers= implode(",",$allusers);
                 //print_r($allusers);exit;
 
-                $queryget = "SELECT memb.`deptaccess` AS department,`cmpdl`.company_name as mycompany,`newrp`.relationshipname as relationship,`relative`.name  ,`rt`.request_type, ts.`transaction`, pr.*,`sec`.security_type 
+                $queryget = "SELECT memb.`deptaccess` AS department,cmpdl.company_name as mycompany,newrp.relationshipname as relationship,relative.name  ,rt.request_type, ts.`transaction`, pr.*,sec.security_type 
                 FROM `personal_request` pr
-                LEFT JOIN type_of_transaction ts ON `ts`.id=`pr`.type_of_transaction
+                LEFT JOIN type_of_transaction ts ON `ts`.id=pr.type_of_transaction
 
-                LEFT JOIN listedcmpmodule cmpdl ON `cmpdl`.id = `pr`.id_of_company 
-                LEFT JOIN relative_info relative ON `relative`.id = `pr`.relative_id 
-                LEFT JOIN request_type rt ON `rt`.id = `pr`.type_of_request 
-                LEFT JOIN `req_securitytype` sec ON `sec`.id = `pr`.sectype
+                LEFT JOIN listedcmpmodule cmpdl ON cmpdl.id = pr.id_of_company 
+                LEFT JOIN relative_info relative ON relative.id = pr.relative_id 
+                LEFT JOIN request_type rt ON rt.id = pr.type_of_request 
+                LEFT JOIN `req_securitytype` sec ON sec.id = pr.sectype
                 LEFT JOIN `it_memberlist` memb ON memb.`wr_id` =  pr.`user_id`
                 LEFT JOIN `con_dept` dpt ON memb.`deptaccess` = dpt.`id`
-                LEFT JOIN relationship newrp ON `newrp`.id=`relative`.relationship
+                LEFT JOIN relationship newrp ON newrp.id=relative.relationship
                 WHERE (pr.`send_status`='1' or pr.`approved_status`='2') AND pr.`user_id` IN(".$allusers.")".$extqry;
             }
 
@@ -1484,7 +1489,7 @@ function checktypeofreq($uid,$usergroup,$data)
                     }
                     else
                     {
-                        $result = array('status'=>true,'message'=>'Please Complete Your Latest Trade..!!');
+                        $result = array('status'=>true,'message'=>'Please Complete Your Latest Trade..!!', 'cndncntrl'=>true);
                     }
 
                 }
@@ -1963,7 +1968,7 @@ function checktypeofreq($uid,$usergroup,$data)
         $connection = $this->dbtrd;
        
         // $arr=array();
-        $querygetdetail = "SELECT ts.`*`, pr.`type_of_transaction` 
+        $querygetdetail = "SELECT ts.*, pr.`type_of_transaction` 
             FROM `trading_status` ts LEFT JOIN `personal_request` pr ON pr.`id`=ts.`req_id`
             WHERE ts.`user_id`='".$uid."' AND ts.`id_of_company`='".$idofcmp."' 
             AND ts.`sectype`='".$sectype."' AND pr.`type_of_request`='1'" ;
@@ -2012,7 +2017,7 @@ function checktypeofreq($uid,$usergroup,$data)
         return $msg;
     }
     
-    public function savecontratrdexceptn($uid,$usergroup,$data,$send_status)
+    public function savecontratrdexceptn($uid,$usergroup,$data,$send_status,$requestmodeid)
     {
         $connection = $this->dbtrd;
 
@@ -2062,6 +2067,7 @@ function checktypeofreq($uid,$usergroup,$data)
                 $tradingdate='';
             }
         // --------  End GET AUTO APPROVE STATUS --------
+        
         $userdata = $this->tradingrequestcommon->userdetails($uid,$usergroup);
         $userPersonaldata = $this->tradingrequestcommon->userPersonaldetails($uid,$usergroup);
         $pdf_content = $this->htmlelements->Reqform2content($userdata,$data,$userPersonaldata);
@@ -2070,9 +2076,9 @@ function checktypeofreq($uid,$usergroup,$data)
         
             //$pdfpath = $this->tradingrequestcommon->generatepdfreq($uid,$usergroup,$reetiveid,$data['idofcmp'],$data['sectype'],$data['noofshare'],$data['typeoftrans']);
             // -------- Start GET AUTO APPROVE STATUS --------
-                $query = "INSERT INTO `personal_request`(`user_id`,`user_group`,`type_of_request`,`relative_id`,`name_of_requester`,`sectype`,`id_of_company`,`no_of_shares`,`type_of_transaction`,`pdffilepath`,`approver_id`,`sent_contraexeaprvl`,`apprv_contraexedte`,`contraexcapvsts`,`trading_date`,`ex_approve_status`,`exception_reason`,
+                $query = "INSERT INTO `personal_request`(`user_id`,`user_group`,`type_of_request`,`relative_id`,`name_of_requester`,`sectype`,`id_of_company`,`no_of_shares`,`type_of_transaction`,`pdffilepath`,`approver_id`,`sent_contraexeaprvl`,`apprv_contraexedte`,`contraexcapvsts`,`trading_date`,`ex_approve_status`,`exception_reason`,`requestmodeid`,
                 `date_added`,`date_modified`,`timeago`)
-                VALUES('".$uid."','".$usergroup."','".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."','".$data['sectype']."','".$data['idofcmp']."','".$data['noofshare']."','".$data['typeoftrans']."','".$pdfpath."','".$data['approverid']."','".$send_status."',NOW(),'0','".$tradingdate."','0','".$data['reasonmsg']."',
+                VALUES('".$uid."','".$usergroup."','".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."','".$data['sectype']."','".$data['idofcmp']."','".$data['noofshare']."','".$data['typeoftrans']."','".$pdfpath."','".$data['approverid']."','".$send_status."',NOW(),'0','".$tradingdate."','0','".$data['reasonmsg']."','".$requestmodeid."',
                 NOW(),NOW(),'".$time."')";
 
                  //echo $query;exit;

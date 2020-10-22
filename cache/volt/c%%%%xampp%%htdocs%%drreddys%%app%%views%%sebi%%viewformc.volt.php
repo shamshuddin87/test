@@ -17,22 +17,20 @@ $condeptsess = $this->session->contractdepartment;
      
 
     <h1 class="h1_heading text-center">Form C</h1>
+<!--
     <div class="containergrid">       
-          <div class="formcss">                           
+        <div class="formcss">                           
             <div class="typography form_pad">
                                       
-        <div class="formcbtn">
-         <button type="button" class="btn btn-primary" id="formcprevious">View Previous</button>
-         <button type="button" class="btn btn-primary" id="formcsend">Send</button> 
-        <input type="hidden" class="approverid" name="approverid" value="<?php echo $approverid;?>">
-        <input type="hidden" class="cin" name="cin" value="<?php echo $cin;?>">
-        <input type="hidden" class="category" name="category" value="<?php echo $category;?>">
+        <div class="formabtn">
+         <button type="button" class="btn btn-primary" id="formbrqust">Create Request</button> 
       </div> 
                                                
                 <div class="clearelement"></div>
             </div>
-       </div>   
+       </div>     
     </div>
+-->
     
     
    <div class="table-responsive table_wraper">
@@ -44,15 +42,25 @@ $condeptsess = $this->session->contractdepartment;
         </select> 
         <span>Entries</span>
     </div>
+      <div class="excelanddownloadbtn">
+            <button type="button" class="btn btn-primary genfile excel_bg">Export Excel</button>
+            <a class="btn btn-primary exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
+      </div>
                 <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>
+
                             <th></th>
-                           <!--  <th>Company Name</th> -->
-                            <th>Buy/Sell</th>
-                            <th>No.Of Shares</th>
-                            <th>Value Of Shares</th>
-                            <th>Date</th>
+                            <th>Created Date</th>
+                            <th>Name</th>
+                            <th>PAN</th>
+                            <th>CIN/DIN</th>
+                            <th>Address</th>
+                            <th>Contact No</th>
+                            <th>Category Of Person</th>
+<!--                            <th>Date of appointment of Director /KMP</th> -->
+                            <th>View Draft</th> 
+                            <th>Approval Status</th> 
                         </tr>
                     </thead>
                     <tbody class="appendrow" appendrow='1'>
@@ -79,17 +87,17 @@ $condeptsess = $this->session->contractdepartment;
 </div>
 <!-- ########################################## PageContent End ########################################## --> 
 
-<div id="Mymodalformc" class="modal fade" role="dialog" tabIndex=-1>
+<div id="Mymodalformb" class="modal fade" role="dialog" tabIndex=-1>
   <div class="modal-dialog">
 
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title" style="text-align:center;">Form C</h4>
+        <h4 class="modal-title" style="text-align:center;">Form B</h4>
       </div>
         <div class="modal-body">
-           <form id="insertformc" action="sebi/insertformc" method="post" enctype="multipart/form-data" autocomplete="off" > 
-                     <input type = "hidden" name="approverid" id="approverid" value="<?php echo $approverid;?>">
+           <form id="insertformb" action="sebi/insertformb" method="post" enctype="multipart/form-data" autocomplete="off" > 
+                        
                      <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">Name</label>
@@ -121,7 +129,7 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">CIN/DIN</label>
-                                <input type="text" id="cin" name="cin" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $cin;?>" readonly required>
+                                <input type="text" id="cin" name="cin" class="form_fields form-control col-md-7 col-xs-12" required>
                             </div>
                     </section>
                
@@ -131,12 +139,19 @@ $condeptsess = $this->session->contractdepartment;
                             <select id="category" name="category" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="">Select Category</option>
                                     <?php foreach($category as $shwcategory){  ?>
-                                    <option value="<?php echo $shwcategory['id'];?>"><?php echo $shwcategory['category']; ?></option>
+                                    <option value="<?php echo $shwcategory['id']; ?>"><?php echo $shwcategory['category']; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
                         </section>
                         
+                        <section class="col col-md-6 col-xs-6">
+                            <div class="input">
+                                <label class="control-label">Date Of Appointment Of Director</label>
+                                <input type="text" id="date" name="date" class="form-control bootdatepick" readonly required>
+                            </div>
+                        </section>
+               
                         <section class="col col-md-6 col-xs-6">
                          <div class="input">
                             <label class="control-label">Company Name</label>
@@ -149,108 +164,80 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                         </section>
                
+               
                         <section class="col col-md-12 col-xs-12">
                             <div class="input">
-                            <label class="control-label heading">Date of allotment advice/acquisition of shares/sale of shares specify</label>
+                            <label class="control-label heading">Securities held at the time of becoming Promoter/appointment of Director/KMP</label>
                            
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
-                            <label class="control-label">From</label>
-                             <input type="text" id="fromdate" name="fromdate" class="form-control bootdatepick" readonly required>
-                            </div>
-                        </section>
-               
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                                <label class="control-label">To</label>
-                                <input type="text" id="todate" name="todate" class="form-control bootdatepick" readonly required>
-                            </div>
-                       </section>
-                         </div>
-                    </section>
-               
-                    <section class="col col-md-12 col-xs-12">
-                            <div class="input">
-                            <label class="control-label heading">% of shareholding</label>
-                           
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                            <label class="control-label">Pretransaction</label>
-                             <input type="text" id="pretrans" name="pretrans" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
-                            </div>
-                        </section>
-               
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                                <label class="control-label">Posttransaction</label>
-                                <input type="text" id="posttrans" name="posttrans" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
-                            </div>
-                       </section>
-                         </div>
-                    </section>
-               
-                    <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                                <label class="control-label">Date of intimation to company</label>
-                                <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control bootdatepick" readonly required>
-                            </div>
-                    </section> 
-               
-                 <section class="col col-md-6 col-xs-6">
-                         <div class="input">
-                            <label class="control-label">Mode of acquisition</label>
-                            <select id="acquimode" name="acquimode" class="form_fields form-control col-md-7 col-xs-12" required>
-                                    <option value="">Select Mode</option>
-                                    <?php foreach($modeacqui as $shwmode){  ?>
-                                    <option value="<?php echo $shwmode['id']; ?>"><?php echo $shwmode['acquisitionmode']; ?></option>
+                            <label class="control-label">Type Of Security</label>
+                            <select id="security" name="security[]" class="form_fields form-control col-md-7 col-xs-12" required multiple>
+                                    <?php foreach($security as $shwsecurity){  ?>
+                                    <option value="<?php echo $shwsecurity['id']; ?>"><?php echo $shwsecurity['securitytype']; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
-                    </section>
-               
-                     <section class="col col-md-12 col-xs-12">
-                            <div class="input">
-                            <label class="control-label heading">Trading in derivatives (Specify type of contract, Futures or Options etc)</label>
-                           
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                            <label class="control-label">Buy Value</label>
-                             <input type="text" id="buyvalue" name="buyvalue" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
-                            </div>
-                        </section>
-                                
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                                <label class="control-label">Buy Number of units(contracts* lot size)</label>
-                                <input type="text" id="buynumbrunt" name="buynumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
-                            </div>
-                       </section>
-                                
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                            <label class="control-label">Sell Value</label>
-                             <input type="text" id="sellvalue" name="sellvalue" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
-                            </div>
                         </section>
                
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
-                                <label class="control-label">Sell Number of units(contracts* lot size)</label>
-                                <input type="text" id="sellnumbrunt" name="sellnumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
+                                <label class="control-label">Security No.</label>
+                                <input type="text" id="secuno" name="secuno" class="form_fields form-control col-md-7 col-xs-12"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
                             </div>
                        </section>
                          </div>
                     </section>
                
-                    
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-12 col-xs-12">
                             <div class="input">
-                                <label class="control-label">Exchange on which the trade was executed</label>
-                                <input type="text" id="exetrd" name="exetrd" class="form_fields form-control col-md-7 col-xs-12">
+                                <label class="control-label">% of Shareholding</label>
+                                <input type="text" id="shrhldng" name="shrhldng" class="form_fields form-control col-md-7 col-xs-12"  onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46 ' required>
                             </div>
                        </section>
-                    
-                        <section class="col col-md-12 company_asses">
+               
+                     <section class="col col-md-12 col-xs-12">
+                            <div class="input">
+                            <label class="control-label heading">Open Interest of the Future contracts held at the time of becoming Promoter/appointment of Director/KMP</label>
+                           
+                        <section class="col col-md-6 col-xs-6">
+                            <div class="input">
+                            <label class="control-label">Number of units (contracts* lot size)</label>
+                             <input type="text" id="futureunitnum" name="futureunitnum" class="form_fields form-control col-md-7 col-xs-12"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                            </div>
+                        </section>
+               
+                        <section class="col col-md-6 col-xs-6">
+                            <div class="input">
+                                <label class="control-label">Notional value in Rupee terms</label>
+                                <input type="text" id="futurentnlvlue" name="futurentnlvlue" class="form_fields form-control col-md-7 col-xs-12"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                            </div>
+                       </section>
+                         </div>
+                    </section>
+               
+               <section class="col col-md-12 col-xs-12">
+                            <div class="input">
+                            <label class="control-label heading">Open Interest of the Option Contracts held at the time of becoming Promoter/appointment of Director/KMP</label>
+                           
+                        <section class="col col-md-6 col-xs-6">
+                            <div class="input">
+                            <label class="control-label">Number of units (contracts* lot size)</label>
+                             <input type="text" id="optionunitnum" name="optionunitnum" class="form_fields form-control col-md-7 col-xs-12"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                            </div>
+                        </section>
+               
+                        <section class="col col-md-6 col-xs-6">
+                            <div class="input">
+                                <label class="control-label">Notional value in Rupee terms</label>
+                                <input type="text" id="optionntnlvlue" name="optionntnlvlue" class="form_fields form-control col-md-7 col-xs-12"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                            </div>
+                       </section>
+                         </div>
+                    </section>
+               
+                        
+                      <section class="col col-md-12 company_asses">
                             <input type="submit" value="Save As Draft" class="btn btn-primary saveformbbtn">
                         </section>
                         <div class="clearelement"></div>
@@ -291,9 +278,9 @@ $condeptsess = $this->session->contractdepartment;
      
       <div class="modal-header">
         <div class="button_pdf">
-            <input type="hidden" name="formcid" id="formcid">
-             <div class="downloadpdf btn btn-primary floatright"><div class="pdfln floatright"></div><div class="clearelement"></div></div>
-            <button id="" class="formcpdf"><i class="fa fa-file-pdf-o"></i>Generate PDF</button>
+            <input type="hidden" name="formbid" id="formbid">
+             <div class="downloadpdf btn btn-primary floatright"><span class="glyphicon glyphicon-download-alt floatleft"></span><div class="pdfln floatright"></div><div class="clearelement"></div></div>
+            <button id="" class="formbpdf"><i class="fa fa-file-pdf-o"></i>Generate PDF</button>
 <!--            <button id="" style="display: none;" class="down_load"><a target="_blank"></a><i class="fa fa-download"></i>Download</button>-->
         </div>
          <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -313,11 +300,11 @@ $condeptsess = $this->session->contractdepartment;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title" style="text-align:center;">Form C</h4>
+        <h4 class="modal-title" style="text-align:center;">Form B</h4>
       </div>
         <div class="modal-body">
-           <form id="updateformc" action="sebi/updateformc" method="post" enctype="multipart/form-data" autocomplete="off" > 
-                    <input type="hidden" name="upformcid" id="upformcid">
+           <form id="updateformb" action="sebi/updateformb" method="post" enctype="multipart/form-data" autocomplete="off" > 
+                    <input type="hidden" name="upformbid" id="upformbid">
                      <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">Name</label>
@@ -349,7 +336,7 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">CIN/DIN</label>
-                                <input type="text" id="cin" name="cin" class="form_fields form-control col-md-7 col-xs-12" value="" readonly required>
+                                <input type="text" id="cin" name="cin" class="form_fields form-control col-md-7 col-xs-12" required>
                             </div>
                     </section>
                
@@ -359,13 +346,20 @@ $condeptsess = $this->session->contractdepartment;
                             <select id="category" name="category" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="">Select Category</option>
                                     <?php foreach($category as $shwcategory){  ?>
-                                    <option value="<?php echo $shwcategory['id'];?>"><?php echo $shwcategory['category']; ?></option>
+                                    <option value="<?php echo $shwcategory['id']; ?>"><?php echo $shwcategory['category']; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
                         </section>
                         
                         <section class="col col-md-6 col-xs-6">
+                            <div class="input">
+                                <label class="control-label">Date Of Appointment Of Director</label>
+                                <input type="text" id="date" name="date" class="form-control bootdatepick" readonly required>
+                            </div>
+                        </section>
+               
+                         <section class="col col-md-6 col-xs-6">
                          <div class="input">
                             <label class="control-label">Company Name</label>
                             <select id="cmpnme" name="cmpnme" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -377,106 +371,78 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                         </section>
                
+               
                         <section class="col col-md-12 col-xs-12">
                             <div class="input">
-                            <label class="control-label heading">Date of allotment advice/acquisition of shares/sale of shares specify</label>
+                            <label class="control-label heading">Securities held at the time of becoming Promoter/appointment of Director/KMP</label>
                            
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
-                            <label class="control-label">From</label>
-                             <input type="text" id="fromdate" name="fromdate" class="form-control bootdatepick" readonly required>
-                            </div>
-                        </section>
-               
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                                <label class="control-label">To</label>
-                                <input type="text" id="todate" name="todate" class="form-control bootdatepick" readonly required>
-                            </div>
-                       </section>
-                         </div>
-                    </section>
-               
-                    <section class="col col-md-12 col-xs-12">
-                            <div class="input">
-                            <label class="control-label heading">% of shareholding</label>
-                           
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                            <label class="control-label">Pretransaction</label>
-                             <input type="text" id="pretrans" name="pretrans" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
-                            </div>
-                        </section>
-               
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                                <label class="control-label">Posttransaction</label>
-                                <input type="text" id="posttrans" name="posttrans" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
-                            </div>
-                       </section>
-                         </div>
-                    </section>
-               
-                    <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                                <label class="control-label">Date of intimation to company</label>
-                                <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control bootdatepick" readonly required>
-                            </div>
-                    </section> 
-               
-                 <section class="col col-md-6 col-xs-6">
-                         <div class="input">
-                            <label class="control-label">Mode of acquisition</label>
-                            <select id="acquimode" name="acquimode" class="form_fields form-control col-md-7 col-xs-12" required>
-                                    <option value="">Select Mode</option>
-                                    <?php foreach($modeacqui as $shwmode){  ?>
-                                    <option value="<?php echo $shwmode['id']; ?>"><?php echo $shwmode['acquisitionmode']; ?></option>
+                            <label class="control-label">Type Of Security</label>
+                            <select id="security" name="security[]" class="form_fields form-control col-md-7 col-xs-12" required multiple>
+                                    <?php foreach($security as $shwsecurity){  ?>
+                                    <option value="<?php echo $shwsecurity['id']; ?>"><?php echo $shwsecurity['securitytype']; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
-                    </section>
-               
-                     <section class="col col-md-12 col-xs-12">
-                            <div class="input">
-                            <label class="control-label heading">Trading in derivatives (Specify type of contract, Futures or Options etc)</label>
-                           
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                            <label class="control-label">Buy Value</label>
-                             <input type="text" id="buyvalue" name="buyvalue" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
-                            </div>
-                        </section>
-                                
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                                <label class="control-label">Buy Number of units(contracts* lot size)</label>
-                                <input type="text" id="buynumbrunt" name="buynumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
-                            </div>
-                       </section>
-                                
-                        <section class="col col-md-6 col-xs-6">
-                            <div class="input">
-                            <label class="control-label">Sell Value</label>
-                             <input type="text" id="sellvalue" name="sellvalue" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
-                            </div>
                         </section>
                
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
-                                <label class="control-label">Sell Number of units(contracts* lot size)</label>
-                                <input type="text" id="sellnumbrunt" name="sellnumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
+                                <label class="control-label">Security No.</label>
+                                <input type="text" id="secuno" name="secuno" class="form_fields form-control col-md-7 col-xs-12"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
                             </div>
                        </section>
                          </div>
                     </section>
                
-                    
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-12 col-xs-12">
                             <div class="input">
-                                <label class="control-label">Exchange on which the trade was executed</label>
-                                <input type="text" id="exetrd" name="exetrd" class="form_fields form-control col-md-7 col-xs-12">
+                                <label class="control-label">% of Shareholding</label>
+                                <input type="text" id="shrhldng" name="shrhldng" class="form_fields form-control col-md-7 col-xs-12"  onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46 ' required>
                             </div>
                        </section>
+               
+                     <section class="col col-md-12 col-xs-12">
+                            <div class="input">
+                            <label class="control-label heading">Open Interest of the Future contracts held at the time of becoming Promoter/appointment of Director/KMP</label>
+                           
+                        <section class="col col-md-6 col-xs-6">
+                            <div class="input">
+                            <label class="control-label">Number of units (contracts* lot size)</label>
+                             <input type="text" id="futureunitnum" name="futureunitnum" class="form_fields form-control col-md-7 col-xs-12"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                            </div>
+                        </section>
+               
+                        <section class="col col-md-6 col-xs-6">
+                            <div class="input">
+                                <label class="control-label">Notional value in Rupee terms</label>
+                                <input type="text" id="futurentnlvlue" name="futurentnlvlue" class="form_fields form-control col-md-7 col-xs-12"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                            </div>
+                       </section>
+                         </div>
+                    </section>
+               
+               <section class="col col-md-12 col-xs-12">
+                            <div class="input">
+                            <label class="control-label heading">Open Interest of the Option Contracts held at the time of becoming Promoter/appointment of Director/KMP</label>
+                           
+                        <section class="col col-md-6 col-xs-6">
+                            <div class="input">
+                            <label class="control-label">Number of units (contracts* lot size)</label>
+                             <input type="text" id="optionunitnum" name="optionunitnum" class="form_fields form-control col-md-7 col-xs-12"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                            </div>
+                        </section>
+               
+                        <section class="col col-md-6 col-xs-6">
+                            <div class="input">
+                                <label class="control-label">Notional value in Rupee terms</label>
+                                <input type="text" id="optionntnlvlue" name="optionntnlvlue" class="form_fields form-control col-md-7 col-xs-12"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                            </div>
+                       </section>
+                         </div>
+                    </section>
+               
                         
                       <section class="col col-md-12 company_asses">
                             <input type="submit" value="Update" class="btn btn-primary updateformbbtn">

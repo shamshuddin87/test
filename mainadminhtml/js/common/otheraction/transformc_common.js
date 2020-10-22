@@ -118,9 +118,7 @@ website('body').on('click','#formcsend', function(){
     var trdeid = website(this).attr('trdeid');
     var place = website(this).attr('place');
     var apprvid = website('.approverid').val();
-    var cin = website('.cin').val();
     // alert(apprvid);return false;
-    var category = website('.category').val();
     if(ids.length == 0)
     {
         new PNotify({title: 'Alert!!',
@@ -133,7 +131,7 @@ website('body').on('click','#formcsend', function(){
     }
     else
     {
-            var formdata = {ids:ids,apprvid:apprvid,cin:cin,category:category,trdeid:trdeid,place:place};
+            var formdata = {ids:ids,apprvid:apprvid,trdeid:trdeid,place:place};
             website.ajax({
               url:'sebi/insertformc',
               data:formdata,
@@ -168,9 +166,192 @@ website('body').on('click','#formcsend', function(){
 });
 website('body').on('click','#formcprevious', function(){
     var baseHref = getbaseurl(); 
-    window.location.href=baseHref+'sebi/viewtransformc';
+    //window.location.href=baseHref+'sebi/viewtransformc';
+    window.location.href=baseHref+'sebi/formc';
 });
 
+/* ------------------ Create Form c Types START ------------------ */
+
+website('body').on('click','#formctypes', function(){
+    website('#myModalFormctypes').modal('show');
+});
+
+website('body').on('click','.openFormc', function(){
+    var formctype = website(this).attr('id');
+    if(formctype)
+    {
+        website('#myModalFormctypes').modal('hide');
+        website('#Mymodal'+formctype).modal('show');
+    }
+    
+});
+
+website("#Mymodaltype1 #pricepershare").keyup(function(){
+   var noofshare=website('#Mymodaltype1 #noofshare').val();
+   var pricepershare=website('#Mymodaltype1 #pricepershare').val();
+   if(noofshare !='' && pricepershare!='')
+   {
+      var totalamt=noofshare*pricepershare;
+      website('#Mymodaltype1 #totalamt').val(totalamt)
+   }  
+});
+
+website("#Mymodaltype2 #pricepershare").keyup(function(){
+   var noofshare=website('#Mymodaltype2 #noofshare').val();
+   var pricepershare=website('#Mymodaltype2 #pricepershare').val();
+   if(noofshare !='' && pricepershare!='')
+   {
+      var totalamt=noofshare*pricepershare;
+      website('#Mymodaltype2 #totalamt').val(totalamt)
+   }  
+});
+
+website("#Mymodaltype3 #pricepershare").keyup(function(){
+   var noofshare=website('#Mymodaltype3 #noofshare').val();
+   var pricepershare=website('#Mymodaltype3 #pricepershare').val();
+   if(noofshare !='' && pricepershare!='')
+   {
+      var totalamt=noofshare*pricepershare;
+      website('#Mymodaltype3 #totalamt').val(totalamt)
+   }  
+});
+
+website('#insertformctype1').ajaxForm({
+        //data:formdata,
+        //contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType:"json",
+        beforeSend: function() 
+        {   /*website('#Mymodaledit').modal('hide');*/
+            website('.preloder_wraper').fadeIn();  },
+        uploadProgress: function(event, position, total, percentComplete) 
+        { website('.preloder_wraper').fadeIn();},
+        success: function(response, textStatus, jqXHR) 
+        {
+           if(response.logged === true)
+           {
+              //fetchmasterlist();
+              
+              //website('#Mymodaledit').fadeOut();
+              new PNotify({title: 'Alert',
+                  text: response.message,
+                  type: 'university',
+                  hide: true,
+                  styling: 'bootstrap3',
+                  addclass: 'dark ',
+              }); 
+               window.location.reload();
+           }
+           else
+           {    
+              new PNotify({title: 'Alert',
+                  text: response.message,
+                  type: 'university',
+                  hide: true,
+                  styling: 'bootstrap3',
+                  addclass: 'dark ',
+              });
+           }
+        },
+        complete: function(response) 
+        {
+            website('.preloder_wraper').fadeOut();
+            website('#Mymodaledit .mainprogressbarforall').fadeOut(); 
+        },
+        error: function() 
+        {   }
+    });
+
+website('#insertformctype2').ajaxForm({
+        //data:formdata,
+        //contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType:"json",
+        beforeSend: function() 
+        {   /*website('#Mymodaledit').modal('hide');*/
+            website('.preloder_wraper').fadeIn();  },
+        uploadProgress: function(event, position, total, percentComplete) 
+        { website('.preloder_wraper').fadeIn();},
+        success: function(response, textStatus, jqXHR) 
+        {
+           if(response.logged === true)
+           {
+              //fetchmasterlist();
+              
+              //website('#Mymodaledit').fadeOut();
+              new PNotify({title: 'Alert',
+                  text: response.message,
+                  type: 'university',
+                  hide: true,
+                  styling: 'bootstrap3',
+                  addclass: 'dark ',
+              }); 
+               window.location.reload();
+           }
+           else
+           {    
+              new PNotify({title: 'Alert',
+                  text: response.message,
+                  type: 'university',
+                  hide: true,
+                  styling: 'bootstrap3',
+                  addclass: 'dark ',
+              });
+           }
+        },
+        complete: function(response) 
+        {
+            website('.preloder_wraper').fadeOut();
+            website('#Mymodaledit .mainprogressbarforall').fadeOut(); 
+        },
+        error: function() 
+        {   }
+    });
+
+website('#insertformctype3').ajaxForm({
+        //data:formdata,
+        //contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType:"json",
+        beforeSend: function() 
+        {   /*website('#Mymodaledit').modal('hide');*/
+            website('.preloder_wraper').fadeIn();  },
+        uploadProgress: function(event, position, total, percentComplete) 
+        { website('.preloder_wraper').fadeIn();},
+        success: function(response, textStatus, jqXHR) 
+        {
+           if(response.logged === true)
+           {
+              //fetchmasterlist();
+              
+              //website('#Mymodaledit').fadeOut();
+              new PNotify({title: 'Alert',
+                  text: response.message,
+                  type: 'university',
+                  hide: true,
+                  styling: 'bootstrap3',
+                  addclass: 'dark ',
+              }); 
+               window.location.reload();
+           }
+           else
+           {    
+              new PNotify({title: 'Alert',
+                  text: response.message,
+                  type: 'university',
+                  hide: true,
+                  styling: 'bootstrap3',
+                  addclass: 'dark ',
+              });
+           }
+        },
+        complete: function(response) 
+        {
+            website('.preloder_wraper').fadeOut();
+            website('#Mymodaledit .mainprogressbarforall').fadeOut(); 
+        },
+        error: function() 
+        {   }
+    });
+
+/* ------------------ Create Form c Types END ------------------ */
 
 function numberalphOnly() 
 {

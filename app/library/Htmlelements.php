@@ -2417,7 +2417,7 @@ public function mailofupdatedp($tomail,$tousername,$pstartdate,$enddate,$today,$
 
  
 public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projctowner)
-  {   
+{   
        $title ="You have been added to digital database of Dr. Reddy's Laboratories Ltd";
             $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <html xmlns="htth3://www.w3.org/1999/xhtml">
@@ -2466,7 +2466,7 @@ public function internalmember($uniquemail,$sharingdate,$upsiname,$toname,$projc
             <div style="    background-color: #f2f2f2;
         padding: 18px;">
         <p>Dear '.$toname.'</p>
-        <p>Please note that you have received information pertaining to '.$upsiname.' on '.$sharingdate.'. Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time and the '; $html.="Company's"; $html.='Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons (hereinafter collectively referred to as "Insider Trading Regulations").</p>
+        <p>Please note that you have received information pertaining to '.$upsiname.' on '.$sharingdate.'. Please note that the information is Unpublished Price Sensitive Information (UPSI) as defined in SEBI (Prohibition of Insider Trading) Regulations, 2015, as amended from time to time and the '; $html.="Company's "; $html.='Code of Conduct to Regulate, Monitor and Report Trading by Designated Persons (hereinafter collectively referred to as "Insider Trading Regulations").</p>
         
                 <div class="main">
                     <div style="">Accordingly, you are requested to ensure the below:</div>
