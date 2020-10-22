@@ -330,6 +330,7 @@ div#edit_1 { text-align: left;}
   position: absolute;
     width: 100%;
     top: 66px;
+    z-index: 1;
 }
 
 .top_margin {
