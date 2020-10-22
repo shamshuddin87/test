@@ -59,6 +59,7 @@ class Elements extends Component
 
             $getemail = $this->session->loginauthspuserfront['email'];
             //$type = 'empl';
+            $type = '';
             //echo '<pre>';print_r($type);exit;
             $this->logincommon->loginusermnadmintoup($type,$getemail);
 
