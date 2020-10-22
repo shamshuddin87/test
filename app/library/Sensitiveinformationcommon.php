@@ -758,7 +758,7 @@ class Sensitiveinformationcommon extends Component
     {
         $connection = $this->dbtrd;
 
-        $queryget = "SELECT itm.`*`,pinfo.`pan` 
+        $queryget = "SELECT itm.*,pinfo.`pan` 
                 FROM `it_memberlist` itm
                 LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = itm.`wr_id`
                 WHERE `fullname` LIKE '%{$getsearchkywo}%' AND `status`= 1";

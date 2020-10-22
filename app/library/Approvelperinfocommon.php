@@ -14,12 +14,12 @@ class Approvelperinfocommon extends Component
        
         if($usergroup==2)
         {
-            $sqlquery="SELECT  pr.`send_status`,pr.`approved_status`,it.`*` FROM it_memberlist it  LEFT JOIN personal_info pr  ON it.`wr_id`=pr.`userid` WHERE it.`user_id`='".$getuserid."' ".$mainqry;
+            $sqlquery="SELECT  pr.`send_status`,pr.`approved_status`,it.* FROM it_memberlist it  LEFT JOIN personal_info pr  ON it.`wr_id`=pr.`userid` WHERE it.`user_id`='".$getuserid."' ".$mainqry;
 
         }
         else
         {
-            $sqlquery="SELECT pr.`send_status`,pr.`approved_status`,it.`*` FROM it_memberlist it  LEFT JOIN personal_info pr  ON it.`wr_id`=pr.`userid` WHERE FIND_IN_SET('".$getuserid."',`approvid`) ".$mainqry;
+            $sqlquery="SELECT pr.`send_status`,pr.`approved_status`,it.* FROM it_memberlist it  LEFT JOIN personal_info pr  ON it.`wr_id`=pr.`userid` WHERE FIND_IN_SET('".$getuserid."',`approvid`) ".$mainqry;
         }
         // print_r($sqlquery);
         
@@ -50,7 +50,7 @@ class Approvelperinfocommon extends Component
 
         $connection = $this->dbtrd;
 
-        $queryget = "SELECT pr.`*` ,it.`dpdate` FROM personal_info pr INNER JOIN
+        $queryget = "SELECT pr.* ,it.`dpdate` FROM personal_info pr INNER JOIN
         it_memberlist it ON it.`wr_id`=pr.`userid`
         WHERE `userid` = '".$uid."' ";
        // print_r($queryget);exit;
@@ -81,7 +81,7 @@ class Approvelperinfocommon extends Component
 
         $connection = $this->dbtrd;
 
-        $queryget = "SELECT pr.`*` ,it.`dpdate` FROM personal_info pr INNER JOIN
+        $queryget = "SELECT pr.* ,it.`dpdate` FROM personal_info pr INNER JOIN
         it_memberlist it ON it.`wr_id`=pr.`userid`
         WHERE `userid` = '".$uid."' ";
        // print_r($queryget);exit;
