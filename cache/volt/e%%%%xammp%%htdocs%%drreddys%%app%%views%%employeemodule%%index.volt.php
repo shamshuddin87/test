@@ -741,7 +741,7 @@
                                      <div class="tooltip_div">
                                         <a href="javascript:void(0);" data="Please enter 0 if no American Depository Receipts of DRL are held." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                                     </div>
-                                    <label for="age" style="max-width: 95%;">No. of American Depository Receipts held in DRL*</label>
+                                    <label for="age">No. of American Depository Receipts held in DRL*</label>
                                     <input type="text" id="adrsholdng" name="adrsholdng" placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                                  </div>
                                  <div class="col-md-6 col-xs-12 "> 
