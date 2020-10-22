@@ -68,13 +68,13 @@
                     <thead>
                         <tr>
                             <th><input type="checkbox" class="getallchkbox" name="getallchkbox" chkval="ALL" value="ALL">All</th>
-                            <th>Request Mode</th>
-                            <th>Type Of Security</th>
+                            <th>Type of Request</th>
+                            <th>Type of Security</th>
                            <!--  <th>Name Of Company</th> -->
-                            <th>Type Of Transaction</th>
-                            <th>No Of Shares</th>
-                            <th>Type Of Request</th>
-                            <th>Name Of Relative</th>
+                            <th>Type of Transaction</th>
+                            <th>No. of Shares</th>
+                            <th>Request for</th>
+                            <th>Name of Relative</th>
                             <th>Relationship</th>
                             <!--<th>Total Amount</th>-->
 <!--                            <th>Request Status</th>-->
