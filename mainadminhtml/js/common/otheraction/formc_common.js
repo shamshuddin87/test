@@ -194,6 +194,28 @@ var id = website(this).attr('formcid');
             website("#Mymodaledit #pretrans").val(response.data.pretrans);
             website("#Mymodaledit #posttrans").val(response.data.posttrans);
             website("#Mymodaledit #dateofintimtn").val(response.data.dateofintimtn);
+            
+            if(response.data.typeofformc == '1') // type 1 - dropdown
+            {
+                website("#Mymodaledit #modeformctype1 #acquimode").attr('required');
+                website("#Mymodaledit #modeformctype1").show();
+                website("#Mymodaledit #modeformctypeother").hide();
+                
+                website("#Mymodaledit #exeformctype1 #exetrd").attr('required');
+                website("#Mymodaledit #exeformctype1").show();
+                website("#Mymodaledit #exeformctypeother").hide();
+            }
+            else if(response.data.typeofformc == '2' || response.data.typeofformc == '3') // type 2 and 3 - default value
+            {
+                website("#Mymodaledit #modeformctype1 #acquimode").removeAttr('required');
+                website("#Mymodaledit #modeformctype1").hide();
+                website("#Mymodaledit #modeformctypeother").show();
+                
+                website("#Mymodaledit #exeformctype1 #exetrd").removeAttr('required');
+                website("#Mymodaledit #exeformctype1").hide();
+                website("#Mymodaledit #exeformctypeother").show();
+            }
+            
             website("#Mymodaledit #acquimode").val(response.data.acquimode);
             website("#Mymodaledit #buyvalue").val(response.data.buyvalue);
             website("#Mymodaledit #buynumbrunt").val(response.data.buynumbrunt);
@@ -386,7 +408,25 @@ website('body').on('click','#previewc',function()
                     ddmmyyinti = '';
                 }
                 
-               
+               if(formctype == '2' || formctype == '3')
+                {
+                    datefrom = new Date(ddmmyyfrom);  // 2009-11-10
+                    var monthfrom = datefrom.toLocaleString('default', { month: 'short' });
+                    ddmmyyfrom = dtfrom[0]+'-'+monthfrom+'-'+dtfrom[2];
+                    
+                    //date to
+                    dateto = new Date(ddmmyyto);  // 2009-11-10
+                    var monthto = dateto.toLocaleString('default', { month: 'short' });
+                    ddmmyyto = dteto[0]+'-'+monthto+'-'+dteto[2];
+                    
+                    if(ddmmyyinti)
+                    {
+                        dateinti = new Date(ddmmyyinti);  // 2009-11-10
+                        var monthinti = dateinti.toLocaleString('default', { month: 'short' });
+                        ddmmyyinti = dtinti[0]+'-'+monthinti+'-'+dtinti[2];
+                    }
+                    
+                }
                website('#modaldocument .downloadpdf').hide(); 
                website('#modaldocument .docpdf').html(response.docontent);
                if(response.formdata['sectype'] == 1 || response.formdata['sectype'] == 2)

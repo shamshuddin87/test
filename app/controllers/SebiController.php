@@ -106,6 +106,8 @@ class SebiController extends ControllerBase
         $this->view->exchngtrd = $this->sebicommon->getformcexchngetrd();   //fetch exchange on which trade was executed
         
         $this->view->company = $this->sebicommon->fetchcmpmstr($getuserid,$user_group_id);   //fetch cmp name from mstr
+        
+        $this->view->demataccno = $this->tradingrequestcommon->getaccdetails($getuserid,$user_group_id); //demat account no
     }
     
     public function viewtransformcAction()
@@ -1894,33 +1896,141 @@ class SebiController extends ControllerBase
             {
                 $type1data = $this->request->getPost();
                 //print_r($type1data);exit;
-                $rqstMod = '3';
-                $resPersonalReq = $this->sebicommon->inFormcTypePersonalReq($getuserid,$user_group_id,$type1data,$rqstMod);
-                if($resPersonalReq['logged']===true)
+                
+                /*Date Validation for Date of transaction,Date Infimation,From Date and To date Start */
+                
+                if(!empty($type1data['dateoftrans']))
                 {
-                    $resTradeStatus = $this->sebicommon->inFormcTypeTradingStatus($getuserid,$user_group_id,$type1data,$resPersonalReq['ReqId']);
-                    if($resTradeStatus['logged']===true)
+                    $dateoftrans = $type1data['dateoftrans'];
+                    $dateoftrans_arr = explode('-', $dateoftrans);
+
+                    $dateoftransm = $dateoftrans_arr[1];
+                    $dateoftransy = $dateoftrans_arr[2];
+                    $dateoftransd = $dateoftrans_arr[0];
+                    $dateoftransstatus = $this->elements->checkdate($dateoftransm,$dateoftransy,$dateoftransd);
+                }
+                
+                if(!empty($type1data['dateofintimtn']))
+                {
+                    $dateofintimtn = $type1data['dateofintimtn'];
+                    $dateofintimtn_arr = explode('-', $dateofintimtn);
+
+                    $dateofintimtnm = $dateofintimtn_arr[1];
+                    $dateofintimtny = $dateofintimtn_arr[2];
+                    $dateofintimtnd = $dateofintimtn_arr[0];
+                    $dateofintimtnstatus = $this->elements->checkdate($dateofintimtnm,$dateofintimtny,$dateofintimtnd);
+                }
+                
+                if(!empty($type1data['fromdate']))
+                {
+                    $fromdate = $type1data['fromdate'];
+                    $fromdate_arr = explode('-', $fromdate);
+
+                    $fromdatem = $fromdate_arr[1];
+                    $fromdatey = $fromdate_arr[2];
+                    $fromdated = $fromdate_arr[0];
+                    $fromdatestatus = $this->elements->checkdate($fromdatem,$fromdatey,$fromdated);
+                    $fromdateday = date('l', strtotime($fromdate)); // check week day(cannot be saturday and sunday)
+                }
+                
+                if(!empty($type1data['todate']))
+                {
+                    $todate = $type1data['todate'];
+                    $todate_arr = explode('-', $todate);
+
+                    $todatem = $todate_arr[1];
+                    $todatey = $todate_arr[2];
+                    $todated = $todate_arr[0];
+                    $todatestatus = $this->elements->checkdate($todatem,$todatey,$todated);
+                    $todateday = date('l', strtotime($todate)); // check week day(cannot be saturday and sunday)
+                }
+                /*Date Validation for Date of transaction,Date Infimation,From Date and To date End */
+                
+                if($dateoftransstatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of Transaction');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($type1data['dateofintimtn']))
+                {
+                    $data = array("logged" => false,'message' => " Date of intimation to company should not empty..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else if($dateofintimtnstatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of intimation to company');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($type1data['fromdate']))
+                {
+                    $data = array("logged" => false,'message' => " Date of allotment From should not empty..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else if($fromdatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of allotment From');
+                    $this->response->setJsonContent($data);
+                }
+                else if($fromdateday == 'Saturday' || $fromdateday == 'Sunday')
+                {
+                    $data = array("logged" => false,'message' => " Date of allotment From cannot be Saturday and Sunday");
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($type1data['todate']))
+                {
+                    $data = array("logged" => false,'message' => " Date of allotment To should not empty..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else if($todatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of allotment To');
+                    $this->response->setJsonContent($data);
+                }
+                else if($todateday == 'Saturday' || $todateday == 'Sunday')
+                {
+                    $data = array("logged" => false,'message' => " Date of allotment From cannot be Saturday and Sunday");
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($type1data['fromdate'])>strtotime($type1data['todate']))
+                {
+                    $data = array("logged" => false,'message' => " Date of allotment From should not greater than Date of allotment To date..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $rqstMod = '3';
+                    $resPersonalReq = $this->sebicommon->inFormcTypePersonalReq($getuserid,$user_group_id,$type1data,$rqstMod);
+                    if($resPersonalReq['logged']===true)
                     {
-                        $formcdata[] = $this->sebicommon->tradingdata($resTradeStatus['TradeId']);
-                        $formcids[] = $resTradeStatus['TradeId'];
-                        $appvrid = $type1data['approverid'];
-                        $formcdata[0]['category'] = $type1data['category'];
-                        $formcdata[0]['intimtndate'] = $type1data['dateofintimtn'];
-                        $formcdata[0]['allotmentfrm'] = $type1data['fromdate'];
-                        $formcdata[0]['allotmentto'] = $type1data['todate'];
-                        $formcdata[0]['aquimode'] = $type1data['acquimode'];
-                        $formcdata[0]['exetrd'] = $type1data['exetrd'];
-                        $formcdata[0]['formctype'] = '1';
-                        //print_r($formcdata);exit;
-                        $getres = $this->sebicommon->insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid);
-                        if($getres)
+                        $resTradeStatus = $this->sebicommon->inFormcTypeTradingStatus($getuserid,$user_group_id,$type1data,$resPersonalReq['ReqId']);
+                        if($resTradeStatus['logged']===true)
                         {
-                            //$uptradingsts = $this->sebicommon->updatetrdsts($formcids);
-                            //print_r($uptradingsts);exit;
-                            $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
-                            $this->response->setJsonContent($data);
+                            $formcdata[] = $this->sebicommon->tradingdata($resTradeStatus['TradeId']);
+                            $formcids[] = $resTradeStatus['TradeId'];
+                            $appvrid = $type1data['approverid'];
+                            $formcdata[0]['category'] = $type1data['category'];
+                            $formcdata[0]['intimtndate'] = $type1data['dateofintimtn'];
+                            $formcdata[0]['allotmentfrm'] = $type1data['fromdate'];
+                            $formcdata[0]['allotmentto'] = $type1data['todate'];
+                            $formcdata[0]['aquimode'] = $type1data['acquimode'];
+                            $formcdata[0]['exetrd'] = $type1data['exetrd'];
+                            $formcdata[0]['formctype'] = '1';
+                            //print_r($formcdata);exit;
+                            $getres = $this->sebicommon->insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid);
+                            if($getres)
+                            {
+                                //$uptradingsts = $this->sebicommon->updatetrdsts($formcids);
+                                //print_r($uptradingsts);exit;
+                                $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
+                                $this->response->setJsonContent($data);
+                            }
+                            else
+                            {
+                                $data = array("logged" => false,'message' => "Record Not Added..!!");
+                                $this->response->setJsonContent($data);
+                            }
                         }
-                        else
+                        else 
                         {
                             $data = array("logged" => false,'message' => "Record Not Added..!!");
                             $this->response->setJsonContent($data);
@@ -1932,12 +2042,6 @@ class SebiController extends ControllerBase
                         $this->response->setJsonContent($data);
                     }
                 }
-                else 
-                {
-                    $data = array("logged" => false,'message' => "Record Not Added..!!");
-                    $this->response->setJsonContent($data);
-                }
-                
                 $this->response->send();
             }
             else
@@ -1966,32 +2070,140 @@ class SebiController extends ControllerBase
             {
                 $type2data = $this->request->getPost();
                 //print_r($type2data);exit;
-                $rqstMod = '4';
-                $type2data['typeoftrans'] = '6';
-                $resPersonalReq = $this->sebicommon->inFormcTypePersonalReq($getuserid,$user_group_id,$type2data,$rqstMod);
-                if($resPersonalReq['logged']===true)
+                
+                /*Date Validation for Date of transaction,Date Infimation,From Date and To date Start */
+                
+                if(!empty($type2data['dateoftrans']))
                 {
-                    $resTradeStatus = $this->sebicommon->inFormcTypeTradingStatus($getuserid,$user_group_id,$type2data,$resPersonalReq['ReqId']);
-                    if($resTradeStatus['logged']===true)
+                    $dateoftrans = $type2data['dateoftrans'];
+                    $dateoftrans_arr = explode('-', $dateoftrans);
+
+                    $dateoftransm = $dateoftrans_arr[1];
+                    $dateoftransy = $dateoftrans_arr[2];
+                    $dateoftransd = $dateoftrans_arr[0];
+                    $dateoftransstatus = $this->elements->checkdate($dateoftransm,$dateoftransy,$dateoftransd);
+                }
+                
+                if(!empty($type2data['dateofintimtn']))
+                {
+                    $dateofintimtn = $type2data['dateofintimtn'];
+                    $dateofintimtn_arr = explode('-', $dateofintimtn);
+
+                    $dateofintimtnm = $dateofintimtn_arr[1];
+                    $dateofintimtny = $dateofintimtn_arr[2];
+                    $dateofintimtnd = $dateofintimtn_arr[0];
+                    $dateofintimtnstatus = $this->elements->checkdate($dateofintimtnm,$dateofintimtny,$dateofintimtnd);
+                }
+                
+                if(!empty($type2data['fromdate']))
+                {
+                    $fromdate = $type2data['fromdate'];
+                    $fromdate_arr = explode('-', $fromdate);
+
+                    $fromdatem = $fromdate_arr[1];
+                    $fromdatey = $fromdate_arr[2];
+                    $fromdated = $fromdate_arr[0];
+                    $fromdatestatus = $this->elements->checkdate($fromdatem,$fromdatey,$fromdated);
+                    $fromdateday = date('l', strtotime($fromdate)); // check week day(cannot be saturday and sunday)
+                }
+                
+                if(!empty($type2data['todate']))
+                {
+                    $todate = $type2data['todate'];
+                    $todate_arr = explode('-', $todate);
+
+                    $todatem = $todate_arr[1];
+                    $todatey = $todate_arr[2];
+                    $todated = $todate_arr[0];
+                    $todatestatus = $this->elements->checkdate($todatem,$todatey,$todated);
+                    $todateday = date('l', strtotime($todate)); // check week day(cannot be saturday and sunday)
+                }
+                /*Date Validation for Date of transaction,Date Infimation,From Date and To date End */
+                
+                if($dateoftransstatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of Transaction');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($type2data['dateofintimtn']))
+                {
+                    $data = array("logged" => false,'message' => " Date of intimation to company should not empty..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else if($dateofintimtnstatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of intimation to company');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($type2data['fromdate']))
+                {
+                    $data = array("logged" => false,'message' => " Date of purchase / sale of shares From should not empty..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else if($fromdatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of purchase / sale of shares From');
+                    $this->response->setJsonContent($data);
+                }
+                else if($fromdateday == 'Saturday' || $fromdateday == 'Sunday')
+                {
+                    $data = array("logged" => false,'message' => " Date of purchase / sale of shares From cannot be Saturday and Sunday");
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($type2data['todate']))
+                {
+                    $data = array("logged" => false,'message' => " Date of purchase / sale of shares To should not empty..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else if($todatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of purchase / sale of shares To');
+                    $this->response->setJsonContent($data);
+                }
+                else if($todateday == 'Saturday' || $todateday == 'Sunday')
+                {
+                    $data = array("logged" => false,'message' => " Date of purchase / sale of shares From cannot be Saturday and Sunday");
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($type2data['fromdate'])>strtotime($type2data['todate']))
+                {
+                    $data = array("logged" => false,'message' => " Date of purchase / sale of shares From should not greater than Date of purchase / sale of shares To date..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $rqstMod = '4';
+                    $type2data['typeoftrans'] = '7';
+                    $resPersonalReq = $this->sebicommon->inFormcTypePersonalReq($getuserid,$user_group_id,$type2data,$rqstMod);
+                    if($resPersonalReq['logged']===true)
                     {
-                        $formcdata[] = $this->sebicommon->tradingdata($resTradeStatus['TradeId']);
-                        $formcids[] = $resTradeStatus['TradeId'];
-                        $appvrid = $type2data['approverid'];
-                        $formcdata[0]['category'] = $type2data['category'];
-                        $formcdata[0]['intimtndate'] = $type2data['dateofintimtn'];
-                        $formcdata[0]['allotmentfrm'] = $type2data['fromdate'];
-                        $formcdata[0]['allotmentto'] = $type2data['todate'];
-                        $formcdata[0]['aquimode'] = 'Allotment after exercise of ESOPs';
-                        $formcdata[0]['exetrd'] = 'Allotment after exercise of ESOPs';
-                        $formcdata[0]['formctype'] = '2';
-                        //print_r($formcdata);exit;
-                        $getres = $this->sebicommon->insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid);
-                        if($getres)
+                        $resTradeStatus = $this->sebicommon->inFormcTypeTradingStatus($getuserid,$user_group_id,$type2data,$resPersonalReq['ReqId']);
+                        if($resTradeStatus['logged']===true)
                         {
-                            $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
-                            $this->response->setJsonContent($data);
+                            $formcdata[] = $this->sebicommon->tradingdata($resTradeStatus['TradeId']);
+                            $formcids[] = $resTradeStatus['TradeId'];
+                            $appvrid = $type2data['approverid'];
+                            $formcdata[0]['category'] = $type2data['category'];
+                            $formcdata[0]['intimtndate'] = $type2data['dateofintimtn'];
+                            $formcdata[0]['allotmentfrm'] = $type2data['fromdate'];
+                            $formcdata[0]['allotmentto'] = $type2data['todate'];
+                            $formcdata[0]['aquimode'] = 'Allotment after exercise of ESOPs';
+                            $formcdata[0]['exetrd'] = 'Allotment after exercise of ESOPs';
+                            $formcdata[0]['formctype'] = '2';
+                            //print_r($formcdata);exit;
+                            $getres = $this->sebicommon->insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid);
+                            if($getres)
+                            {
+                                $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
+                                $this->response->setJsonContent($data);
+                            }
+                            else
+                            {
+                                $data = array("logged" => false,'message' => "Record Not Added..!!");
+                                $this->response->setJsonContent($data);
+                            }
                         }
-                        else
+                        else 
                         {
                             $data = array("logged" => false,'message' => "Record Not Added..!!");
                             $this->response->setJsonContent($data);
@@ -2003,12 +2215,6 @@ class SebiController extends ControllerBase
                         $this->response->setJsonContent($data);
                     }
                 }
-                else 
-                {
-                    $data = array("logged" => false,'message' => "Record Not Added..!!");
-                    $this->response->setJsonContent($data);
-                }
-                
                 $this->response->send();
             }
             else
@@ -2037,32 +2243,140 @@ class SebiController extends ControllerBase
             {
                 $type3data = $this->request->getPost();
                 //print_r($type3data);exit;
-                $rqstMod = '5';
-                $type3data['typeoftrans'] = '7';
-                $resPersonalReq = $this->sebicommon->inFormcTypePersonalReq($getuserid,$user_group_id,$type3data,$rqstMod);
-                if($resPersonalReq['logged']===true)
+                
+                /*Date Validation for Date of transaction,Date Infimation,From Date and To date Start */
+                
+                if(!empty($type3data['dateoftrans']))
                 {
-                    $resTradeStatus = $this->sebicommon->inFormcTypeTradingStatus($getuserid,$user_group_id,$type3data,$resPersonalReq['ReqId']);
-                    if($resTradeStatus['logged']===true)
+                    $dateoftrans = $type3data['dateoftrans'];
+                    $dateoftrans_arr = explode('-', $dateoftrans);
+
+                    $dateoftransm = $dateoftrans_arr[1];
+                    $dateoftransy = $dateoftrans_arr[2];
+                    $dateoftransd = $dateoftrans_arr[0];
+                    $dateoftransstatus = $this->elements->checkdate($dateoftransm,$dateoftransy,$dateoftransd);
+                }
+                
+                if(!empty($type3data['dateofintimtn']))
+                {
+                    $dateofintimtn = $type3data['dateofintimtn'];
+                    $dateofintimtn_arr = explode('-', $dateofintimtn);
+
+                    $dateofintimtnm = $dateofintimtn_arr[1];
+                    $dateofintimtny = $dateofintimtn_arr[2];
+                    $dateofintimtnd = $dateofintimtn_arr[0];
+                    $dateofintimtnstatus = $this->elements->checkdate($dateofintimtnm,$dateofintimtny,$dateofintimtnd);
+                }
+                
+                if(!empty($type3data['fromdate']))
+                {
+                    $fromdate = $type3data['fromdate'];
+                    $fromdate_arr = explode('-', $fromdate);
+
+                    $fromdatem = $fromdate_arr[1];
+                    $fromdatey = $fromdate_arr[2];
+                    $fromdated = $fromdate_arr[0];
+                    $fromdatestatus = $this->elements->checkdate($fromdatem,$fromdatey,$fromdated);
+                    $fromdateday = date('l', strtotime($fromdate)); // check week day(cannot be saturday and sunday)
+                }
+                
+                if(!empty($type3data['todate']))
+                {
+                    $todate = $type3data['todate'];
+                    $todate_arr = explode('-', $todate);
+
+                    $todatem = $todate_arr[1];
+                    $todatey = $todate_arr[2];
+                    $todated = $todate_arr[0];
+                    $todatestatus = $this->elements->checkdate($todatem,$todatey,$todated);
+                    $todateday = date('l', strtotime($todate)); // check week day(cannot be saturday and sunday)
+                }
+                /*Date Validation for Date of transaction,Date Infimation,From Date and To date End */
+                
+                if($dateoftransstatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of Transaction');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($type3data['dateofintimtn']))
+                {
+                    $data = array("logged" => false,'message' => " Date of intimation to company should not empty..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else if($dateofintimtnstatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of intimation to company');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($type3data['fromdate']))
+                {
+                    $data = array("logged" => false,'message' => " Date of purchase / sale of shares From should not empty..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else if($fromdatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of purchase / sale of shares From');
+                    $this->response->setJsonContent($data);
+                }
+                else if($fromdateday == 'Saturday' || $fromdateday == 'Sunday')
+                {
+                    $data = array("logged" => false,'message' => " Date of purchase / sale of shares From cannot be Saturday and Sunday");
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($type3data['todate']))
+                {
+                    $data = array("logged" => false,'message' => " Date of purchase / sale of shares To should not empty..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else if($todatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of purchase / sale of shares To');
+                    $this->response->setJsonContent($data);
+                }
+                else if($todateday == 'Saturday' || $todateday == 'Sunday')
+                {
+                    $data = array("logged" => false,'message' => " Date of purchase / sale of shares From cannot be Saturday and Sunday");
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($type3data['fromdate'])>strtotime($type3data['todate']))
+                {
+                    $data = array("logged" => false,'message' => " Date of purchase / sale of shares From should not greater than Date of purchase / sale of shares To date..!!");
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $rqstMod = '5';
+                    $type3data['typeoftrans'] = '6';
+                    $resPersonalReq = $this->sebicommon->inFormcTypePersonalReq($getuserid,$user_group_id,$type3data,$rqstMod);
+                    if($resPersonalReq['logged']===true)
                     {
-                        $formcdata[] = $this->sebicommon->tradingdata($resTradeStatus['TradeId']);
-                        $formcids[] = $resTradeStatus['TradeId'];
-                        $appvrid = $type3data['approverid'];
-                        $formcdata[0]['category'] = $type3data['category'];
-                        $formcdata[0]['intimtndate'] = $type3data['dateofintimtn'];
-                        $formcdata[0]['allotmentfrm'] = $type3data['fromdate'];
-                        $formcdata[0]['allotmentto'] = $type3data['todate'];
-                        $formcdata[0]['aquimode'] = 'Received on exercise of ESOPs';
-                        $formcdata[0]['exetrd'] = 'Received on exercise of ESOPs';
-                        $formcdata[0]['formctype'] = '3';
-                        //print_r($formcdata);exit;
-                        $getres = $this->sebicommon->insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid);
-                        if($getres)
+                        $resTradeStatus = $this->sebicommon->inFormcTypeTradingStatus($getuserid,$user_group_id,$type3data,$resPersonalReq['ReqId']);
+                        if($resTradeStatus['logged']===true)
                         {
-                            $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
-                            $this->response->setJsonContent($data);
+                            $formcdata[] = $this->sebicommon->tradingdata($resTradeStatus['TradeId']);
+                            $formcids[] = $resTradeStatus['TradeId'];
+                            $appvrid = $type3data['approverid'];
+                            $formcdata[0]['category'] = $type3data['category'];
+                            $formcdata[0]['intimtndate'] = $type3data['dateofintimtn'];
+                            $formcdata[0]['allotmentfrm'] = $type3data['fromdate'];
+                            $formcdata[0]['allotmentto'] = $type3data['todate'];
+                            $formcdata[0]['aquimode'] = 'Received on exercise of ESOPs';
+                            $formcdata[0]['exetrd'] = 'Received on exercise of ESOPs';
+                            $formcdata[0]['formctype'] = '3';
+                            //print_r($formcdata);exit;
+                            $getres = $this->sebicommon->insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid);
+                            if($getres)
+                            {
+                                $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres);
+                                $this->response->setJsonContent($data);
+                            }
+                            else
+                            {
+                                $data = array("logged" => false,'message' => "Record Not Added..!!");
+                                $this->response->setJsonContent($data);
+                            }
                         }
-                        else
+                        else 
                         {
                             $data = array("logged" => false,'message' => "Record Not Added..!!");
                             $this->response->setJsonContent($data);
@@ -2074,12 +2388,6 @@ class SebiController extends ControllerBase
                         $this->response->setJsonContent($data);
                     }
                 }
-                else 
-                {
-                    $data = array("logged" => false,'message' => "Record Not Added..!!");
-                    $this->response->setJsonContent($data);
-                }
-                
                 $this->response->send();
             }
             else

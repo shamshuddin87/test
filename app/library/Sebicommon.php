@@ -2170,7 +2170,7 @@ class Sebicommon extends Component
         $connection = $this->dbtrd;
         try
         {
-           $query = "INSERT INTO  `trading_status` (req_id, user_id, user_group_id,`id_of_company`,`sectype`,no_of_share,price_per_share,trading_status,total_amount,date_of_transaction,date_added,date_modified,`type_of_request`,`timeago`) VALUES ('".$req_id."','".$getuserid."','".$user_group_id."','1','".$type1data['sectype']."','".$type1data['noofshare']."','".$type1data['pricepershare']."','1','".$type1data['totalamt']."','".$type1data['dateoftrans']."',NOW(),NOW(),'1','".$time."')";  
+           $query = "INSERT INTO  `trading_status` (`req_id`, `user_id`, `user_group_id`,`id_of_company`,`sectype`,`no_of_share`,`price_per_share`,`trading_status`,`demat_acc_no`,`total_amount`,`date_of_transaction`,`date_added`,`date_modified`,`type_of_request`,`timeago`) VALUES ('".$req_id."','".$getuserid."','".$user_group_id."','1','".$type1data['sectype']."','".$type1data['noofshare']."','".$type1data['pricepershare']."','1','".$type1data['demataccno']."','".$type1data['totalamt']."','".$type1data['dateoftrans']."',NOW(),NOW(),'1','".$time."')";  
             //print_r($query);exit;
             $exeget = $connection->query($query);
             if($exeget)
