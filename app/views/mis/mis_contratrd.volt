@@ -53,7 +53,7 @@ $current_year =  date("Y");
                     <th>Name</th> 
                     <th>Employee Status</th>
                     <!--  <th>Company Name</th>  -->
-                    <th>Request Mode</th>
+                    <th>Type of Request</th>
                     <th>Trade(Buy/Sell)</th> 
                     <th>Date of Trade</th> 
                     <th>Date of Contradicting Trade</th> 

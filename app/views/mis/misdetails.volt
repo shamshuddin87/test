@@ -254,14 +254,14 @@ $condeptsess = $this->session->contractdepartment;
         <table class="table table-inverse" id="datableabhi4">
             <thead>
                 <tr>
-                    <th>Sr No</th>
-                    <th>Name Of Company</th> 
-                    <th>Request Mode</th> 
-                    <th>Type Of Security</th> 
-                    <th>No Of Securities</th> 
+                    <th>Sr. No.</th>
+                    <th>Name of Company</th> 
+                    <th>Type of Request</th> 
+                    <th>Type of Security</th> 
+                    <th>No of Securities</th> 
                     <th>Transaction Date</th>
                     <th>Transaction Type</th>
-                    <th>Demat Account No</th>
+                    <th>Demat Account No.</th>
                 </tr>
             </thead>
             <tbody class="accdetails5" appendrow='1'>   
