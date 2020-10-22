@@ -1968,7 +1968,7 @@ function checktypeofreq($uid,$usergroup,$data)
         $connection = $this->dbtrd;
        
         // $arr=array();
-        $querygetdetail = "SELECT ts.`*`, pr.`type_of_transaction` 
+        $querygetdetail = "SELECT ts.*, pr.`type_of_transaction` 
             FROM `trading_status` ts LEFT JOIN `personal_request` pr ON pr.`id`=ts.`req_id`
             WHERE ts.`user_id`='".$uid."' AND ts.`id_of_company`='".$idofcmp."' 
             AND ts.`sectype`='".$sectype."' AND pr.`type_of_request`='1'" ;

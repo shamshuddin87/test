@@ -342,10 +342,10 @@ function removehtml(clicked)
 {var rownumber=count;}
 else
 {var rownumber=clicked;}
-if(count!=1)
+if(count!=1&&rmid=='remvdiv')
 {website('#row'+rownumber).remove();website('.append').attr('plancntr',parseInt(count)-1);}
 else
-{return false;}}
+{website('#row'+rownumber).remove();website('.append').attr('plancntr',parseInt(count)-1);}}
 website('body').on('click','#requestmodeid',function(e)
 {var rqmdval=website('#requestmodeid:checked').val();hideshowRQMD(rqmdval);});function hideshowRQMD(rqmdval)
 {website('#secReqQue').fadeIn();website('.appenddiv').html('');website('.plancntr').val(1);website('#dateoftrans').val('');website('#trans').val('');website('#sharestrans').val('');if(rqmdval==1)

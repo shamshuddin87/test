@@ -2198,14 +2198,15 @@ function removehtml(clicked)
         var rownumber = clicked;
     }
     
-    if(count != 1)
+    if(count != 1 && rmid == 'remvdiv')
     {
         website('#row'+rownumber).remove();
         website('.append').attr('plancntr',parseInt(count)-1);
     }
     else
     {
-        return false;
+        website('#row'+rownumber).remove();
+        website('.append').attr('plancntr',parseInt(count)-1);
     }
 }
 
