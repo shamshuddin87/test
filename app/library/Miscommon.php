@@ -338,7 +338,7 @@ class Miscommon extends Component
         $myarr=array();
         $time = time();
 
-        $query="SELECT obj1.`*` ,obj2.`fullname` as usname FROM user_demat_accounts obj1
+        $query="SELECT obj1.* ,obj2.`fullname` as usname FROM user_demat_accounts obj1
          LEFT JOIN it_memberlist obj2 ON  obj1.`user_id`=obj2.`wr_id` WHERE obj1.`user_id`='".$uid."'";
        
 
@@ -371,7 +371,7 @@ class Miscommon extends Component
         $myarr=array();
         $time = time();
 
-        $query="SELECT relative_info.`name` ,relative_demat_accounts.`id`,relative_demat_accounts.`*`  FROM relative_info INNER JOIN
+        $query="SELECT relative_info.`name` ,relative_demat_accounts.`id`,relative_demat_accounts.*  FROM relative_info INNER JOIN
                 relative_demat_accounts ON relative_info.`id` = relative_demat_accounts.`rel_user_id` 
                 AND relative_demat_accounts.`parent_user_id`='".$uid."'";
         
