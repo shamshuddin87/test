@@ -106,7 +106,7 @@ class Initialdeclarationcommon extends Component
         $connection = $this->dbtrd;
         $myarr=array();
         $time = time();
-        $query="SELECT ri.`*`,rp.`relationshipname` FROM relative_info ri LEFT JOIN relationship  rp ON `rp`.id=ri.`relationship` 
+        $query="SELECT ri.*,rp.`relationshipname` FROM relative_info ri LEFT JOIN relationship  rp ON `rp`.id=ri.`relationship` 
         WHERE user_id='".$uid."' ";
         try
         {

@@ -47,7 +47,11 @@ website('body').on('click','.editformc',function(){var id=website(this).attr('fo
 {website('#Mymodaledit #contracttype option[value=""]').prop('selected','selected').change();}
 else
 {website('#Mymodaledit #contracttype option[value='+typcntr+']').prop('selected','selected').change();}
-website('#Mymodaledit #contractspeci').val(response.data.contract_specification);website("#Mymodaledit #category").val(response.data.category);website("#Mymodaledit #cmpnme").val(response.data.companyid);website("#Mymodaledit #fromdate").val(response.data.fromdate);website("#Mymodaledit #todate").val(response.data.todate);website("#Mymodaledit #pretrans").val(response.data.pretrans);website("#Mymodaledit #posttrans").val(response.data.posttrans);website("#Mymodaledit #dateofintimtn").val(response.data.dateofintimtn);website("#Mymodaledit #acquimode").val(response.data.acquimode);website("#Mymodaledit #buyvalue").val(response.data.buyvalue);website("#Mymodaledit #buynumbrunt").val(response.data.buynumbrunt);website("#Mymodaledit #sellvalue").val(response.data.sellvalue);website("#Mymodaledit #sellnumbrunt").val(response.data.sellnumbrunt);website("#Mymodaledit #exetrd").val(response.data.exetrd);website('#updateformc #upformcid').val(id);website('#Mymodaledit').modal('show');}},complete:function(response)
+website('#Mymodaledit #contractspeci').val(response.data.contract_specification);website("#Mymodaledit #category").val(response.data.category);website("#Mymodaledit #cmpnme").val(response.data.companyid);website("#Mymodaledit #fromdate").val(response.data.fromdate);website("#Mymodaledit #todate").val(response.data.todate);website("#Mymodaledit #pretrans").val(response.data.pretrans);website("#Mymodaledit #posttrans").val(response.data.posttrans);website("#Mymodaledit #dateofintimtn").val(response.data.dateofintimtn);if(response.data.typeofformc=='1')
+{website("#Mymodaledit #modeformctype1 #acquimode").attr('required');website("#Mymodaledit #modeformctype1").show();website("#Mymodaledit #modeformctypeother").hide();website("#Mymodaledit #exeformctype1 #exetrd").attr('required');website("#Mymodaledit #exeformctype1").show();website("#Mymodaledit #exeformctypeother").hide();}
+else if(response.data.typeofformc=='2'||response.data.typeofformc=='3')
+{website("#Mymodaledit #modeformctype1 #acquimode").removeAttr('required');website("#Mymodaledit #modeformctype1").hide();website("#Mymodaledit #modeformctypeother").show();website("#Mymodaledit #exeformctype1 #exetrd").removeAttr('required');website("#Mymodaledit #exeformctype1").hide();website("#Mymodaledit #exeformctypeother").show();}
+website("#Mymodaledit #acquimode").val(response.data.acquimode);website("#Mymodaledit #buyvalue").val(response.data.buyvalue);website("#Mymodaledit #buynumbrunt").val(response.data.buynumbrunt);website("#Mymodaledit #sellvalue").val(response.data.sellvalue);website("#Mymodaledit #sellnumbrunt").val(response.data.sellnumbrunt);website("#Mymodaledit #exetrd").val(response.data.exetrd);website('#updateformc #upformcid').val(id);website('#Mymodaledit').modal('show');}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});});website('#updateformc').ajaxForm({dataType:"json",beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
@@ -78,6 +82,9 @@ else
 {dtinti=response.formdata['dateofintimtn'].split("-");ddmmyyinti=dtinti[2]+'-'+dtinti[1]+'-'+dtinti[0];}
 else
 {ddmmyyinti='';}
+if(formctype=='2'||formctype=='3')
+{datefrom=new Date(ddmmyyfrom);var monthfrom=datefrom.toLocaleString('default',{month:'short'});ddmmyyfrom=dtfrom[0]+'-'+monthfrom+'-'+dtfrom[2];dateto=new Date(ddmmyyto);var monthto=dateto.toLocaleString('default',{month:'short'});ddmmyyto=dteto[0]+'-'+monthto+'-'+dteto[2];if(ddmmyyinti)
+{dateinti=new Date(ddmmyyinti);var monthinti=dateinti.toLocaleString('default',{month:'short'});ddmmyyinti=dtinti[0]+'-'+monthinti+'-'+dtinti[2];}}
 website('#modaldocument .downloadpdf').hide();website('#modaldocument .docpdf').html(response.docontent);if(response.formdata['sectype']==1||response.formdata['sectype']==2)
 {var secutype='Shares';website('.secutype1').html(secutype);website('.secutype2').html(secutype);website('.excelsecutype1').val(secutype);website('.excelsecutype2').val(secutype);}
 else

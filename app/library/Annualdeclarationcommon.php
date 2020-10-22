@@ -34,7 +34,7 @@ class Annualdeclarationcommon extends Component
     $connection = $this->dbtrd;
     $myarr=array();
     $time = time();
-    $query="SELECT personal_info.`*`, it_memberlist.`email` FROM personal_info LEFT JOIN it_memberlist ON personal_info.`userid` = it_memberlist.`wr_id` WHERE userid='".$uid."'";
+    $query="SELECT personal_info.*, it_memberlist.`email` FROM personal_info LEFT JOIN it_memberlist ON personal_info.`userid` = it_memberlist.`wr_id` WHERE userid='".$uid."'";
    
     
       try{
@@ -109,7 +109,7 @@ public function getallrelative($uid,$usergroup)
     $connection = $this->dbtrd;
     $myarr=array();
     $time = time();
-    $query="SELECT ri.`*`,rp.`relationshipname` FROM relative_info ri LEFT JOIN relationship  rp ON `rp`.id=ri.`relationship` 
+    $query="SELECT ri.*,rp.`relationshipname` FROM relative_info ri LEFT JOIN relationship  rp ON `rp`.id=ri.`relationship` 
      WHERE user_id='".$uid."' ";
       try{
             $exeget = $connection->query($query);
@@ -2025,7 +2025,7 @@ public function upannualrelativepubshare($uid,$user_group_id,$relative,$company,
 
         $connection = $this->dbtrd;
         $getlist = array();
-        $query="SELECT rd .`*`,r.`name` FROM `relative_demat_accounts` rd LEFT JOIN `relative_info` r ON r.`id`=rd.`rel_user_id`
+        $query="SELECT rd .*,r.`name` FROM `relative_demat_accounts` rd LEFT JOIN `relative_info` r ON r.`id`=rd.`rel_user_id`
          WHERE `parent_user_id`='".$uid."'";
         //print_r($query);exit; 
         try{
