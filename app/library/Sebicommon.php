@@ -1219,8 +1219,8 @@ class Sebicommon extends Component
                     }
                     //print_r($getapproveremail);exit;
                     
-                    $getadminemail = $this->tradingplancommon->getadminmailid($approverid[0]);
-                    array_push($getapproveremail,$getadminemail);
+                    //$getadminemail = $this->tradingplancommon->getadminmailid($approverid[0]);
+                    //array_push($getapproveremail,$getadminemail);
                     $getlist = array('maildata'=>$getmaildata,'emailid'=>$getapproveremail);
                     //print_r($getlist);exit;
 

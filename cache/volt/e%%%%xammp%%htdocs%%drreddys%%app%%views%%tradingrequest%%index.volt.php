@@ -366,7 +366,7 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleFormControlSelect1">Type Of Security</label>
+            <label for="exampleFormControlSelect1">a Type Of Security</label>
             <select id="sectype" name="sectype" class="form_fields form-control col-md-7 col-xs-12" required>
                 <option value="" id="sectype" >Select Security</option>
                 <?php foreach($sectype as $rel){  ?>
@@ -765,7 +765,7 @@
                 
            <div class="form-group">
                 <label for="">Date of last purchase / sale</label>
-                <input type="text" class="form-control" name="lasttransdate" id="lasttransdate" placeholder="dd-mm-yyyy" maxlength="10" required>
+                <input type="text" class="form-control bootdatepick" name="lasttransdate" id="lasttransdate" readonly placeholder="Date of last purchase / sale" required>
             </div>
             
             <div class="form-group">

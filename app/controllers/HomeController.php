@@ -277,7 +277,7 @@ class HomeController extends ControllerBase
                 else
                 {
 
-                    $data = array("logged" => false,'message' => "Please verify/update your personal information as given under ‘My Info’ first.You will not be allowed access until you verify your personal information.",'data'=>'employeemodule','usergroup'=>$usergroup);
+                    $data = array("logged" => false,'message' => "Please verify/update your personal information as given under ‘My Info’ first. You will not be allowed access until you verify your personal information.",'data'=>'employeemodule','usergroup'=>$usergroup);
                     $this->response->setJsonContent($data);
                 }
 

@@ -1125,22 +1125,39 @@ class SensitiveinformationController extends ControllerBase
                   $endchkdate=new DateTime($enddate);
                   $stdate=new DateTime($getres['sharingdate']);
                     
-                        if($endchkdate>$stdate && $mytoday>=$endchkdate)
-                        {
-                          $flag=0;
-                        }
-                        else
-                        {
-                          $flag=1;
-                        }
+                    if($endchkdate>$stdate && $mytoday>=$endchkdate)
+                    {
+                      $flag=0;
+                    }
+                    else
+                    {
+                      $flag=1;
+                    }
                 
+                /*Date Validation for End Date */
+                if(!empty($enddate))
+                {
+                    $enddate_arr = explode('-', $enddate);
 
+                    $enddatem = $enddate_arr[1];
+                    $enddatey = $enddate_arr[2];
+                    $enddated = $enddate_arr[0];
+                    $enddatestatus = $this->elements->checkdate($enddatem,$enddatey,$enddated);
+                    
+                }
+                /*Date Validation for End Date */
 
 
                 if(empty($enddate))
                 {
                     $data = array("logged" => false,'message' => 'Please select End Date!!');
                     $this->response->setJsonContent($data);
+                }
+                else if($enddatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct End Date.');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
                 }
                 else if($flag)
                 {

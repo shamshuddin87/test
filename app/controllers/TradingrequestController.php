@@ -1661,8 +1661,21 @@ class TradingrequestController extends ControllerBase
 //                }
                 // print_r($usergroup);exit;
                 $checkdemat = $this->tradingrequestcommon->checkdematacc($uid,$usergroup,$selrelative);
-              
                 //print_r($checkdemat);exit;
+                
+                /*Date Validation for Date of last purchase */
+                if(!empty($lasttransdate))
+                {
+                    $lasttransdate_arr = explode('-', $lasttransdate);
+
+                    $lasttransdatem = $lasttransdate_arr[1];
+                    $lasttransdatey = $lasttransdate_arr[2];
+                    $lasttransdated = $lasttransdate_arr[0];
+                    $lasttransdatestatus = $this->elements->checkdate($lasttransdatem,$lasttransdatey,$lasttransdated);
+                    
+                }
+                /*Date Validation for Date of last purchase */
+                
                 if(empty($approverid))
                 {
                     $data = array("logged" => false,'message' => 'You Do Not Have Approval user To Sending Request Please  Contact To Admin User');
@@ -1726,6 +1739,12 @@ class TradingrequestController extends ControllerBase
                 else if(empty($lasttransdate)) 
                 {
                     $data = array("logged" => false,'message' => 'Please select Date of last purchase / sale');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
+                else if($lasttransdatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of last purchase / sale.');
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }

@@ -1178,7 +1178,7 @@ function getrelationdata() {
           myhtml += "<td>" + response.data[i].aadhar + "</td>";
           myhtml += "<td>" + response.data[i].mobile + "</td>";
           myhtml += "<td>" + response.data[i].dob + "</td>";
-          myhtml += "<td>" + education + "</td>";
+          //myhtml += "<td>" + education + "</td>";
           if (response.data[i].filepath) {
             myhtml +=
               '<td><a href="' +
