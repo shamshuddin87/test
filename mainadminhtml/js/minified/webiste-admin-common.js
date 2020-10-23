@@ -84,9 +84,9 @@ else{if(document.cancelFullScreen){document.cancelFullScreen();}
 else if(document.mozCancelFullScreen){document.mozCancelFullScreen();}
 else if(document.webkitCancelFullScreen){document.webkitCancelFullScreen();}}}
 function chlogironmanrajuharry(){var gbaseurl=getbaseurl();website.get("bhimraogeo/checklog",function(response){if(response.status==false){window.location=gbaseurl+"login/logout";}
-setTimeout(function(){chlogironmanrajuharry();},7000);});}
+setTimeout(function(){chlogironmanrajuharry();},1801000);});}
 function chlogiironmanrajuharry(){var gbaseurl=getbaseurl();website.get("bhimraogeo/checklog",function(response){if(response.status==true){window.location=gbaseurl+"home";}
-setTimeout(function(){chlogiironmanrajuharry();},7000);});}
+setTimeout(function(){chlogiironmanrajuharry();},1801000);});}
 function toWords(number)
 {if((number<0)||(number>999999999))
 {return"NUMBER OUT OF RANGE!";}
@@ -221,4 +221,4 @@ website('body').on('click','.bottomulmn',function(e)
 {website.ajax({url:'tradingrequest/deletenotification',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
-{}});});;
+{}});});website('.createreq').click(function(){website('#Mymodalreq').modal({backdrop:'static',keyboard:false});});;

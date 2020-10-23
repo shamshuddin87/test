@@ -6,6 +6,7 @@
 
 <?php //echo"<pre>";print_r($relativeinfo);exit;name user_id ?> 
 
+
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
 <div class="right_col" role="main">
@@ -171,7 +172,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Type Of Security</label>
+                    <label for="exampleFormControlSelect1">Type of Security</label>
                     <select id="sectypeid" name="sectype" class="form_fields form-control col-md-7 col-xs-12" required>
                         <option value="" id="sectype" >Select Security</option>
                         <?php foreach($sectype as $rel){  ?>
@@ -189,12 +190,12 @@
                 <div id="searchcmp"></div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">No Of Shares</label>
+                    <label for="exampleFormControlInput1">No of Shares</label>
                     <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No Of Share">
                 </div>
 
                 <div class="form-group">
-                    <label for="">Type Of Transaction</label>
+                    <label for="">Type of Transaction</label>
                     <select class="form-control" id="typeoftrans" name="typeoftrans">
                         <option value="1">Buy</option>
                         <option value="2">Sell</option>
@@ -366,7 +367,7 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleFormControlSelect1">a Type Of Security</label>
+            <label for="exampleFormControlSelect1">Type of Security</label>
             <select id="sectype" name="sectype" class="form_fields form-control col-md-7 col-xs-12" required>
                 <option value="" id="sectype" >Select Security</option>
                 <?php foreach($sectype as $rel){  ?>
@@ -384,12 +385,12 @@
         <div id="searchcmp"></div>
 
         <div class="form-group">
-            <label for="exampleFormControlInput1">No Of Shares</label>
+            <label for="exampleFormControlInput1">No of Shares</label>
             <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No Of Share">
         </div>
 
         <div class="form-group">
-            <label for="">Type Of Transaction</label>
+            <label for="">Type of Transaction</label>
             <select class="form-control" id="typeoftrans" name="typeoftrans">
                 <option value="1">BUY</option>
                 <option value="2">SELL</option>
