@@ -201,10 +201,10 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                     </section>
 
                                     <section class="col col-md-4">
-                                        <label class="control-label">L+1 Email</label>
+                                        <label class="control-label">L+1 Email *</label>
                                         <div class="input">
                                             <input type="email" id="l1email" name="l1email"
-                                                class="form_fields form-control col-md-7 col-xs-12">
+                                                class="form_fields form-control col-md-7 col-xs-12" required>
                                         </div>
                                     </section>
 

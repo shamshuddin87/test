@@ -672,8 +672,8 @@
         <div class="modal-content">
             <div class="modal-body" style="text-align: center;">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h1 style="font-size: 25px;color: #171717;">Hello</h1>
-                <h4 style="margin-bottom: 10px;margin-top: 15px;font-size:18px;color: #36186e; "> <?php echo $gmnlog['username'] ?>,</h4>
+                <h1 style=" color: #36186e;">Hello</h1>
+                <h4 style="margin-bottom: 10px;margin-top: 5px;font-size: 20px;color: #8a8a8a;"> <?php echo $gmnlog['username'] ?>,</h4>
                 <div class="arng">
                 </div>
             </div>

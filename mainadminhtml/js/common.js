@@ -246,7 +246,7 @@ function chlogironmanrajuharry(){
         if(response.status==false) {
             window.location = gbaseurl+"login/logout"; 
         }
-        setTimeout(function(){  chlogironmanrajuharry(); }, 7000); 
+        setTimeout(function(){  chlogironmanrajuharry(); }, 1801000); 
         });
 }
 function chlogiironmanrajuharry(){
@@ -256,7 +256,7 @@ function chlogiironmanrajuharry(){
         if(response.status==true) {
             window.location = gbaseurl+"home"; 
         }
-        setTimeout(function(){  chlogiironmanrajuharry(); }, 7000); 
+        setTimeout(function(){  chlogiironmanrajuharry(); }, 1801000); 
         });
 }
 //

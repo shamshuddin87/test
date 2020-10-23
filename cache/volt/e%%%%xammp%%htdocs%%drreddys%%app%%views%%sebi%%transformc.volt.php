@@ -562,18 +562,6 @@ $condeptsess = $this->session->contractdepartment;
                     </section>
                
                     <section class="col col-md-4 col-xs-4">
-                            <div class="input">
-                                <label class="control-label">Demat Account No.</label>
-                                <select id="demataccno" name="demataccno" class="form_fields form-control col-md-7 col-xs-12" required>
-                                    <option value="" id="demataccno" >Select Account No.</option>
-                                    <?php foreach($demataccno as $accno){  ?>
-                                    <option value="<?php echo $accno['accountno']; ?>"><?php echo $accno['accountno']; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                    </section>
-               
-                    <section class="col col-md-4 col-xs-4">
                         <div class="input">
                             <label class="control-label">No. Of Shares</label>
                             <input type="text" id="noofshare" name="noofshare" class="form-control" required>
@@ -751,7 +739,7 @@ $condeptsess = $this->session->contractdepartment;
                        </section>
                         
                       <section class="col col-md-12 company_asses">
-                            <input type="submit" value="Submit" class="btn btn-primary updateformbbtn">
+                            <input type="submit" value="Update" class="btn btn-primary updateformbbtn">
                         </section>
                         <div class="clearelement"></div>
                         
@@ -816,18 +804,6 @@ $condeptsess = $this->session->contractdepartment;
                     </section>
                
                     <section class="col col-md-4 col-xs-4">
-                            <div class="input">
-                                <label class="control-label">Demat Account No.</label>
-                                <select id="demataccno" name="demataccno" class="form_fields form-control col-md-7 col-xs-12" required>
-                                    <option value="" id="demataccno" >Select Account No.</option>
-                                    <?php foreach($demataccno as $accno){  ?>
-                                    <option value="<?php echo $accno['accountno']; ?>"><?php echo $accno['accountno']; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                    </section>
-               
-                    <section class="col col-md-4 col-xs-4">
                         <div class="input">
                             <label class="control-label">No. Of Shares</label>
                             <input type="text" id="noofshare" name="noofshare" class="form-control" required>
@@ -864,7 +840,6 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Date of Transaction</label>
-                                <div><br></div>
                                 <input type="text" id="dateoftrans" name="dateoftrans" class="form-control " placeholder="dd-mm-yyyy" maxlength="10" required>
                             </div>
                         </section>
@@ -883,7 +858,6 @@ $condeptsess = $this->session->contractdepartment;
                        <section class="col col-md-4 col-xs-4">
                          <div class="input">
                             <label class="control-label">Category</label>
-                             <div><br></div>
                             <select id="category" name="category" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="">Select Category</option>
                                     <?php foreach($category as $shwcategory){  ?>
@@ -1007,7 +981,7 @@ $condeptsess = $this->session->contractdepartment;
                        </section>-->
                         
                       <section class="col col-md-12 company_asses">
-                            <input type="submit" value="Submit" class="btn btn-primary updateformbbtn">
+                            <input type="submit" value="Update" class="btn btn-primary updateformbbtn">
                         </section>
                         <div class="clearelement"></div>
                         
@@ -1072,18 +1046,6 @@ $condeptsess = $this->session->contractdepartment;
                     </section>
                
                     <section class="col col-md-4 col-xs-4">
-                            <div class="input">
-                                <label class="control-label">Demat Account No.</label>
-                                <select id="demataccno" name="demataccno" class="form_fields form-control col-md-7 col-xs-12" required>
-                                    <option value="" id="demataccno" >Select Account No.</option>
-                                    <?php foreach($demataccno as $accno){  ?>
-                                    <option value="<?php echo $accno['accountno']; ?>"><?php echo $accno['accountno']; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                    </section>
-               
-                    <section class="col col-md-4 col-xs-4">
                         <div class="input">
                             <label class="control-label">No. Of Shares</label>
                             <input type="text" id="noofshare" name="noofshare" class="form-control" required>
@@ -1261,7 +1223,7 @@ $condeptsess = $this->session->contractdepartment;
                        </section>-->
                         
                       <section class="col col-md-12 company_asses">
-                            <input type="submit" value="Submit" class="btn btn-primary updateformbbtn">
+                            <input type="submit" value="Update" class="btn btn-primary updateformbbtn">
                         </section>
                         <div class="clearelement"></div>
                         
