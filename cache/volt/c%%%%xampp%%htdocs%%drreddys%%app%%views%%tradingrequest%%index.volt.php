@@ -765,7 +765,7 @@
                 
            <div class="form-group">
                 <label for="">Date of last purchase / sale</label>
-                <input type="text" class="form-control bootdatepick" name="lasttransdate" id="lasttransdate" readonly placeholder="Date of last purchase / sale" required>
+                <input type="text" class="form-control" name="lasttransdate" id="lasttransdate" placeholder="dd-mm-yyyy" maxlength="10" required>
             </div>
             
             <div class="form-group">

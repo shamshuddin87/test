@@ -124,7 +124,7 @@ class EmployeemoduleController extends ControllerBase
                 }
                 else if($currentage->y<18)
                 {
-                    $data = array("logged" => false,'message' => 'You are less than 18 years of age');
+                    $data = array("logged" => false,'message' => 'Please enter correct date of birth. You need to be atleast 18 years of age to be an employee in DRL.');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($aadhar) && $nationalty == 'Indian')
