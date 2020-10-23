@@ -785,7 +785,7 @@
                 No<input type="radio" name="mfrstatus" value="0" class="mfrstatusupdt" onclick="hidemfrsection();"/><br>
             <?php }} else{ ?>
                 Yes<input type="radio" name="mfrstatus" value="1" class="mfrstatusupdt" onclick="showmfrsection();"> 
-                No<input type="radio" name="mfrstatus"value="0" class="mfrstatusupdtr" onclick="hidemfrsection();"/><br>
+                No<input type="radio" name="mfrstatus"value="0" class="mfrstatusupdt" onclick="hidemfrsection();"/><br>
             <?php } ?>
             </label>
             <div id = "showmfr" style="display: none;">     

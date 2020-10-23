@@ -751,7 +751,7 @@ $condeptsess = $this->session->contractdepartment;
                        </section>
                         
                       <section class="col col-md-12 company_asses">
-                            <input type="submit" value="Update" class="btn btn-primary updateformbbtn">
+                            <input type="submit" value="Submit" class="btn btn-primary updateformbbtn">
                         </section>
                         <div class="clearelement"></div>
                         
@@ -1007,7 +1007,7 @@ $condeptsess = $this->session->contractdepartment;
                        </section>-->
                         
                       <section class="col col-md-12 company_asses">
-                            <input type="submit" value="Update" class="btn btn-primary updateformbbtn">
+                            <input type="submit" value="Submit" class="btn btn-primary updateformbbtn">
                         </section>
                         <div class="clearelement"></div>
                         
@@ -1261,7 +1261,7 @@ $condeptsess = $this->session->contractdepartment;
                        </section>-->
                         
                       <section class="col col-md-12 company_asses">
-                            <input type="submit" value="Update" class="btn btn-primary updateformbbtn">
+                            <input type="submit" value="Submit" class="btn btn-primary updateformbbtn">
                         </section>
                         <div class="clearelement"></div>
                         
