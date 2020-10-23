@@ -355,16 +355,18 @@ class PortfolioController extends ControllerBase
           {
                 $dematup= $this->request->getPost('dematup','trim');
                 // print_r($dematup);exit;
+                $isfirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'demat_status','user_id');
+                //print_r($isfirst);exit;
                 $getresponse = $this->portfoliocommon->zerodematacc($uid,$usergroup,$dematup);
                 if($getresponse['status']==true)
                 {
-                    $data = array("logged" => true,"message"=>"Record Saved Successfully");
+                    $data = array("logged" => true,"message"=>"Record Saved Successfully",'isfirst'=>$isfirst);
                     $this->response->setJsonContent($data);
 
                   }
                 else
                 {
-                    $data = array("logged" => true,"message"=>$getresponse['message']);
+                    $data = array("logged" => true,"message"=>$getresponse['message'],'isfirst'=>$isfirst);
                     $this->response->setJsonContent($data);
                 }
                   $this->response->send();

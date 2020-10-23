@@ -149,7 +149,7 @@
                   </div>
                   <div class="col-md-4 col-xs-12">
                      <div class="tooltip_div">
-                        <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+                        <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
                      </div>
                      <label for="age">Educational Qualification*</label>
                      <input type="text" id="eduqulfcn" name="eduqulfcn" value="<?php echo($personaldetails['education']) ?>" placeholder="Educational Qualification">
@@ -174,8 +174,8 @@
                   </div>
                </div>
                 <div class="col-md-4 col-xs-12 "> 
-                        <label for="age">Mobile No*</label>
-                        <input type="text" id="mobno" name="mobno" value="<?php echo($personaldetails['mobileno']) ?>" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
+                        <label for="age">Mobile No.*</label>
+                        <input type="text" id="mobno" name="mobno" value="<?php echo($personaldetails['mobileno']) ?>" placeholder="Mobile No." maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
                         <span id="mobileappend"></span>
                      </div>
                <div class="row">
@@ -187,14 +187,14 @@
                       
                      <div class="col-md-4 col-xs-12 ">
                         <div class="tooltip_div">
-                            <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                            <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                         </div>
                         <label for="age">No. of shares held in DRL*</label>  
                         <input type="text" id="shareholdng" name="shareholdng" value="<?php echo($personaldetails['sharehldng']) ?>" placeholder="No. of shares held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                      </div>
                      <div class="col-md-4 col-xs-12 "> 
                          <div class="tooltip_div">
-                            <a href="javascript:void(0);" data="Please enter 0 if no American Depository Receipts of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                            <a href="javascript:void(0);" data="Please enter 0 if no American Depository Receipts of DRL are held." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                         </div>
                         <label for="age">No. of American Depository Receipts held in DRL*</label>
                         <input type="text" id="adrsholdng" name="adrsholdng" value="<?php echo($personaldetails['adrshldng']) ?>" placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
@@ -247,7 +247,7 @@
                   </div>
                   <div class="col-md-4 col-xs-12">
                      <div class="tooltip_div">
-                        <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+                        <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
                      </div>
                      <label for="age">Educational Qualification*</label>
                      <input type="text" id="eduqulfcn" name="eduqulfcn"  placeholder="Educational Qualification">
@@ -269,8 +269,8 @@
                   </div>
                </div>
                 <div class="col-md-4 col-xs-12 "> 
-                  <label for="age">Mobile No*</label>
-                  <input type="text" id="mobno" name="mobno" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
+                  <label for="age">Mobile No.*</label>
+                  <input type="text" id="mobno" name="mobno" placeholder="Mobile No." maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10" >
                   <span id="mobileappend"></span>
                </div>
               
@@ -279,20 +279,20 @@
                   <div class="col-md-12 col-xs-12">
                     
                     <div class="col-md-4 col-xs-12 "> 
-                      <label for="age">Landline No.</label>
+                      <label for="">Landline No.</label>
                       <input type="text" id="landline" name="landline" placeholder="landline No." onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 32 || event.charCode == 43'>
                    </div>
                       
                      <div class="col-md-4 col-xs-12 ">
                          <div class="tooltip_div">
-                            <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                            <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                         </div>
                         <label for="age">No. of shares held in DRL*</label>  
                         <input type="text" id="shareholdng" name="shareholdng" placeholder="No. of shares held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="0" >
                      </div>
                      <div class="col-md-4 col-xs-12 ">
                          <div class="tooltip_div">
-                            <a href="javascript:void(0);" data="Please enter 0 if no American Depository Receipts of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                            <a href="javascript:void(0);" data="Please enter 0 if no American Depository Receipts of DRL are held." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                         </div>
                         <label for="age">No. of American Depository Receipts held in DRL*</label>
                         <input type="text" id="adrsholdng" name=" "  placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="0">
@@ -360,13 +360,13 @@
                               <input type="radio" id="sex" name="sex"  value="Other"/>Other
                            </div>
                            <div class="col-md-12">
-                              <label for="age">Mobile No*</label>
+                              <label for="age">Mobile No.*</label>
                               <input type="hidden" id="upmobileno" name="upmobileno" value="">
-                              <input type="text" id="upmobno" name="upmobno" placeholder="Mobile No" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10">
+                              <input type="text" id="upmobno" name="upmobno" placeholder="Mobile No." maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="10" max="10">
                            </div>
                            <div class="col-md-6">
                               <div class="tooltip_div">
-                                 <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+                                 <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
                               </div>
                               <label for="age">Educational Qualification*</label>
                               <input type="text" id="eduqulfcn" name="eduqulfcn" placeholder="Educational Qualification">
@@ -503,7 +503,7 @@
                         </div>
                         <div class="col-md-4">
                            <div class="tooltip_div">
-                              <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+                              <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
                            </div>
                            <label>Educational Qualification</label>
                            <input type="text" id="eduqulfcn" name="eduqulfcn" placeholder="Educational Qualification">
@@ -522,8 +522,8 @@
                            <input class = "relgender"type="radio" id="relother" name="sex"  value="Other"  >Other 
                         </div>
                         <div class="col-md-4  "> 
-                           <label for="control-label">Mobile No*</label>
-                           <input type="text"  id="relmobno" name="relmobno" placeholder="Mobile No"onkeypress='return event.charCode >= 48 && event.charCode <= 57'  maxlength="10"  >
+                           <label for="control-label">Mobile No.*</label>
+                           <input type="text"  id="relmobno" name="relmobno" placeholder="Mobile No."onkeypress='return event.charCode >= 48 && event.charCode <= 57'  maxlength="10"  >
                         </div>
                         <!--  </div>
                            <div class="row"> -->
@@ -538,14 +538,14 @@
                        
                         <div class="col-md-4 ">
                         <div class="tooltip_div">
-                            <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                            <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                         </div>
                            <label for="age">No. of shares held in DRL*</label>
                            <input type="text" id="shareholdng" name="shareholdng" placeholder="No. of shares held in DRL"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
                         </div>
                         <div class="col-md-4 col-xs-12"> 
                             <div class="tooltip_div">
-                                <a href="javascript:void(0);" data="Please enter 0 if no American Depository Receipts of DRL are held" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                <a href="javascript:void(0);" data="Please enter 0 if no American Depository Receipts of DRL are held." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                             </div>
                            <label for="age">No. of American Depository Receipts held in DRL*</label>
                            <input type="text" id="adrsholdng" name="adrsholdng" placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
@@ -557,7 +557,7 @@
                         <div class="col-md-4">
                            <label>Address*</label>
                             <span style="margin:0 20px;">
-                              <input type="checkbox" id="copyaddress" name="copyaddress" value="same">
+                              <input style="margin: 0;" type="checkbox" id="copyaddress" name="copyaddress" value="same">
                             <label>Same as your address</label>
                             </span><br>
                            <textarea class="" placeholder="Address" id="addr"  name="address" type="text"></textarea>
@@ -589,11 +589,11 @@
                         <th>Sr No</th>
                         <th>Relationship</th>
                         <th>Name</th>
-                        <th>Pan</th>
+                        <th>Legal Identifier No.</th>
                         <th>Aadhaar</th>
                         <th>Mobile No</th>
-                        <th>Date</th>
-                        <th>Qualification</th>
+                        <th width="100px">Date of Birth</th>
+                        <!-- <th>Qualification</th> -->
                         <th>File</th>
                         <th>No. of shares held in DRL</th>
                         <th>No. of American Depository Receipts held in DRL</th>
@@ -712,7 +712,7 @@
                            </div>
                            <div class="col-md-6">
                               <div class="tooltip_div">
-                                 <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+                                 <a href="javascript:void(0);" data="Please enter multiple Education Qualifications using semi-colon separator. Educational qualifications to be graduation and above." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
                               </div>
                               <label for="age">Educational Qualification</label>
                               <input type="text" id="eduqulfcn" name="eduqulfcn" placeholder="Educational Qualification">
@@ -722,8 +722,8 @@
                               <input type="text" id="relinstituteup" name="relinstituteup" placeholder="Institute From Which Acquired">
                            </div>
                            <div class="col-md-6 col-xs-12 " style="margin-top: 0px;"> 
-                              <label for="age">Mobile No*</label>
-                              <input type="text"  id="relmobnoup" name="relmobnoup" placeholder="Mobile No" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  maxlength="10"  >
+                              <label for="age">Mobile No.*</label>
+                              <input type="text"  id="relmobnoup" name="relmobnoup" placeholder="Mobile No." onkeypress='return event.charCode >= 48 && event.charCode <= 57'  maxlength="10"  >
                            </div>
                            <div class="col-md-12"> 
                               <label for="subject">Address*</label>
@@ -731,11 +731,17 @@
                            </div>
                            
                                  <div class="col-md-6">
+                                    <div class="tooltip_div">
+                                        <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                    </div>
                                     <label for="age">No. of shares held in DRL*</label>
                                     <input type="text" id="shareholdng" name="shareholdng" placeholder="No. of shares held in DRL"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
                                  </div>
                                  <div class="col-md-6">
-                                    <label for="age">No. of American Depository Receipts held in DRL*</label>
+                                     <div class="tooltip_div">
+                                        <a href="javascript:void(0);" data="Please enter 0 if no American Depository Receipts of DRL are held." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
+                                    </div>
+                                    <label for="age" style="max-width: 95%;">No. of American Depository Receipts held in DRL*</label>
                                     <input type="text" id="adrsholdng" name="adrsholdng" placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                                  </div>
                                  <div class="col-md-6 col-xs-12 "> 
@@ -779,7 +785,7 @@
                 No<input type="radio" name="mfrstatus" value="0" class="mfrstatusupdt" onclick="hidemfrsection();"/><br>
             <?php }} else{ ?>
                 Yes<input type="radio" name="mfrstatus" value="1" class="mfrstatusupdt" onclick="showmfrsection();"> 
-                No<input type="radio" name="mfrstatus"value="0" class="mfrstatusupdtr" onclick="hidemfrsection();"/><br>
+                No<input type="radio" name="mfrstatus"value="0" class="mfrstatusupdt" onclick="hidemfrsection();"/><br>
             <?php } ?>
             </label>
             <div id = "showmfr" style="display: none;">     
@@ -795,7 +801,7 @@
                   </div>
                   <div class="col-md-6">
                      <label>Identity Number (PAN/Aadhaar etc.)*</label>
-                     <input type="text" placeholder="pan" id="adharpan" onkeypress="return isAlphaNumeric(event,this.value);">
+                     <input type="text" placeholder="Identity Number" id="adharpan" onkeypress="return isAlphaNumeric(event,this.value);">
                   </div>
                   <div class="col-md-6">
                      <label>Relationship*</label>
@@ -806,12 +812,12 @@
                      <input type="text" placeholder="Nature of Transaction " id="mfrtransaction">
                   </div>
                   <div class="col-md-6">
-                     <label>Demat Account No*</label>
-                     <input type="text" placeholder="Demat Account No" id="mfrclientid" onkeypress="return isAlphaNumeric(event);" maxlength="16">
+                     <label>Demat Account No.*</label>
+                     <input type="text" placeholder="Demat Account No." id="mfrclientid" onkeypress="return isAlphaNumeric(event);" maxlength="16">
                   </div>
                   <div class="col-md-6">
-                     <label>Mobile No*</label>
-                     <input type="text" placeholder="Mobile No " id="mfrmobile"  maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                     <label>Mobile No.*</label>
+                     <input type="text" placeholder="Mobile No. " id="mfrmobile"  maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                   </div>
                   <div class="col-md-6">
                      <label>Address</label>
@@ -931,7 +937,7 @@
                   </div>
                   <div class="col-md-6">
                      <label>Identity Number (PAN/Aadhaar etc.)*</label>
-                     <input type="text" placeholder="pan" id="adharpanup" onkeypress="return isAlphaNumeric(event,this.value);">
+                     <input type="text" placeholder="Identity Number" id="adharpanup" onkeypress="return isAlphaNumeric(event,this.value);">
                   </div>
                   <div class="col-md-6">
                      <label>Relationship</label>
@@ -942,12 +948,12 @@
                      <input type="text" placeholder="Nature of Transaction " id="mfrtransactionup">
                   </div>
                   <div class="col-md-6">
-                     <label>Demat Account No*</label>
-                     <input type="text" placeholder="Demat Account No" id="mfrclientidup" onkeypress="return isAlphaNumeric(event,this.value); "maxlength="16" pattern="[A-Za-z0-9]{16}">
+                     <label>Demat Account No.*</label>
+                     <input type="text" placeholder="Demat Account No." id="mfrclientidup" onkeypress="return isAlphaNumeric(event,this.value); "maxlength="16" pattern="[A-Za-z0-9]{16}">
                   </div>
                   <div class="col-md-6">
-                     <label>Mobile No*</label>
-                     <input type="text" placeholder="Mobile No " id="mfrmobileup"  maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                     <label>Mobile No.*</label>
+                     <input type="text" placeholder="Mobile No. " id="mfrmobileup"  maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                   </div>
                   <div class="col-md-6">
                      <label>Address</label>

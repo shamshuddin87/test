@@ -1043,122 +1043,137 @@ class EmployeemoduleController extends ControllerBase
                     //print_r($isfirst);exit;
                     $isDataEmpty = $this->employeemodulecommon->checkIfFirstData($getuserid,$user_group_id,'relative_info','user_id');
                     //print_r($isDataEmpty);exit;
-                    
-                    for($i=0;$i<sizeof($data['myarr']);$i++)
-                    { 
-                        // print_r($data['myarr']);exit;
-                        $empname=$data['myarr'][$i]['empname'];
-                        $designtn=$data['myarr'][$i]['designtn'];
-                        $startdate=$data['myarr'][$i]['strtdte'];
-                        $enddate=$data['myarr'][$i]['enddte'];
+                    if(isset($data['myarr']) && sizeof($data['myarr'])!=0)
+                    {
+                        for($i=0;$i<sizeof($data['myarr']);$i++)
+                        { 
+                            // print_r($data['myarr']);exit;
+                            $empname=$data['myarr'][$i]['empname'];
+                            $designtn=$data['myarr'][$i]['designtn'];
+                            $startdate=$data['myarr'][$i]['strtdte'];
+                            $enddate=$data['myarr'][$i]['enddte'];
+
+                            /*Date Validation for dates Start (dd-mm-yyyy)*/
+                            if(!empty($startdate))
+                            {
+                                $dateofstart = explode('-', $startdate);
+
+                                $startm = $dateofstart[1];
+                                $starty = $dateofstart[2];
+                                $startd = $dateofstart[0];
+                                $startdatestatus = $this->elements->checkdate($startm,$starty,$startd);
+                            }
+
+                            if(!empty($enddate))
+                            {
+                                $dateofend = explode('-', $enddate);
+
+                                $endm = $dateofend[1];
+                                $endy = $dateofend[2];
+                                $endd = $dateofend[0];
+                                $enddatestatus = $this->elements->checkdate($endm,$endy,$endd);
+                            }
+                            /*Date Validation for dates End (dd-mm-yyyy)*/
+
+                            $date_overlap = $this->employeemodulecommon->check_dateoverlap($getuserid,$user_group_id,$startdate,$enddate);
+                            //print_r($date_overlap);exit;
+
+                            if(empty($startdate))
+                            {
+                                $data = array("logged" => false,'message' => 'Start Date should not empty!!');
+                                $this->response->setJsonContent($data);
+                                $flag = 0;
+                                break;
+                            }
+                            else if($startdatestatus != "valid")
+                            {
+                                $data = array("logged" => false,'message' => 'Please provide correct Start Date of Employment');
+                                $this->response->setJsonContent($data);
+                                $flag = 0;
+                                break;
+                            }
+                            else if(strtotime($startdate) > strtotime($date))
+                            {
+                                $data = array("logged" => false,'message' => 'Start date of Employment for past employer should be past date only');
+                                $this->response->setJsonContent($data);
+                                $flag = 0;
+                                break;
+                            }
+                            else if(empty($enddate))
+                            {
+                                $data = array("logged" => false,'message' => 'End Date should not empty!!');
+                                $this->response->setJsonContent($data);
+                                $flag = 0;
+                                break;
+                            }
+                            else if($enddatestatus != "valid")
+                            {
+                                $data = array("logged" => false,'message' => 'Please provide correct End Date of Employment');
+                                $this->response->setJsonContent($data);
+                                $flag = 0;
+                                break;
+                            }
+                            else if(strtotime($enddate) > strtotime($date))
+                            {
+                                $data = array("logged" => false,'message' => 'End date of Employment for past employer should be past date only');
+                                $this->response->setJsonContent($data);
+                                $flag = 0;
+                                break;
+                            }
+                            else if(strtotime($startdate) > strtotime($enddate))
+                            {
+                                $data = array("logged" => false,'message' => 'End date of employment cannot be before start date of employment');
+                                $this->response->setJsonContent($data);
+                                $flag = 0;
+                                break;
+                            }
+                            else if(strtotime($enddate) > strtotime($date))
+                            {
+                                $data = array("logged" => false,'message' => 'End Date should not in future!!');
+                                $this->response->setJsonContent($data);
+                                $flag = 0;
+                                break;
+                            }
+                            else if(strtotime($startdate) > strtotime($enddate))
+                            {
+                                $data = array("logged" => false,'message' => 'Start Date should be Greater Than End Date!!');
+                                $this->response->setJsonContent($data);
+                                $flag = 0;
+                                break;
+                            }
+                            else if(strtotime($startdate) == strtotime($enddate))
+                            {
+                                $data = array("logged" => false,'message' => 'Start Date And End Date Should Not Equals!!');
+                                $this->response->setJsonContent($data);
+                                $flag = 0;
+                                break;
+                            }
+                             else if($date_overlap)
+                            {
+                                $data = array("logged" => false,'message' => 'Employment dates cannot overlap each other');
+                                $this->response->setJsonContent($data);
+                                $flag = 0;
+                                break;
+                            }                  
+                            else
+                            {
+                                $startdate =  date("d-m-Y", strtotime($startdate));
+                                $enddate =  date("d-m-Y", strtotime($enddate));
+                                $getres = $this->employeemodulecommon->insertpastemp($getuserid,$user_group_id,$empname,$designtn,$startdate,$enddate);
+                            }
+                        } 
+                    }
+                    else
+                    {
+                        $flag == 1;
                         
-                        /*Date Validation for dates Start (dd-mm-yyyy)*/
-                        if(!empty($startdate))
+                        if($isfirst == 'yes' && $isDataEmpty == 'yes')
                         {
-                            $dateofstart = explode('-', $startdate);
-
-                            $startm = $dateofstart[1];
-                            $starty = $dateofstart[2];
-                            $startd = $dateofstart[0];
-                            $startdatestatus = $this->elements->checkdate($startm,$starty,$startd);
+                            $getres = true;
                         }
-                        
-                        if(!empty($enddate))
-                        {
-                            $dateofend = explode('-', $enddate);
-
-                            $endm = $dateofend[1];
-                            $endy = $dateofend[2];
-                            $endd = $dateofend[0];
-                            $enddatestatus = $this->elements->checkdate($endm,$endy,$endd);
-                        }
-                        /*Date Validation for dates End (dd-mm-yyyy)*/
-
-                        $date_overlap = $this->employeemodulecommon->check_dateoverlap($getuserid,$user_group_id,$startdate,$enddate);
-                        //print_r($date_overlap);exit;
-
-                        if(empty($startdate))
-                        {
-                            $data = array("logged" => false,'message' => 'Start Date should not empty!!');
-                            $this->response->setJsonContent($data);
-                            $flag = 0;
-                            break;
-                        }
-                        else if($startdatestatus != "valid")
-                        {
-                            $data = array("logged" => false,'message' => 'Please provide correct Start Date of Employment');
-                            $this->response->setJsonContent($data);
-                            $flag = 0;
-                            break;
-                        }
-                        else if(strtotime($startdate) > strtotime($date))
-                        {
-                            $data = array("logged" => false,'message' => 'Start date of Employment for past employer should be past date only');
-                            $this->response->setJsonContent($data);
-                            $flag = 0;
-                            break;
-                        }
-                        else if(empty($enddate))
-                        {
-                            $data = array("logged" => false,'message' => 'End Date should not empty!!');
-                            $this->response->setJsonContent($data);
-                            $flag = 0;
-                            break;
-                        }
-                        else if($enddatestatus != "valid")
-                        {
-                            $data = array("logged" => false,'message' => 'Please provide correct End Date of Employment');
-                            $this->response->setJsonContent($data);
-                            $flag = 0;
-                            break;
-                        }
-                        else if(strtotime($enddate) > strtotime($date))
-                        {
-                            $data = array("logged" => false,'message' => 'End date of Employment for past employer should be past date only');
-                            $this->response->setJsonContent($data);
-                            $flag = 0;
-                            break;
-                        }
-                        else if(strtotime($startdate) > strtotime($enddate))
-                        {
-                            $data = array("logged" => false,'message' => 'End date of employment cannot be before start date of employment');
-                            $this->response->setJsonContent($data);
-                            $flag = 0;
-                            break;
-                        }
-                        else if(strtotime($enddate) > strtotime($date))
-                        {
-                            $data = array("logged" => false,'message' => 'End Date should not in future!!');
-                            $this->response->setJsonContent($data);
-                            $flag = 0;
-                            break;
-                        }
-                        else if(strtotime($startdate) > strtotime($enddate))
-                        {
-                            $data = array("logged" => false,'message' => 'Start Date should be Greater Than End Date!!');
-                            $this->response->setJsonContent($data);
-                            $flag = 0;
-                            break;
-                        }
-                        else if(strtotime($startdate) == strtotime($enddate))
-                        {
-                            $data = array("logged" => false,'message' => 'Start Date And End Date Should Not Equals!!');
-                            $this->response->setJsonContent($data);
-                            $flag = 0;
-                            break;
-                        }
-                         else if($date_overlap)
-                        {
-                            $data = array("logged" => false,'message' => 'Employment dates cannot overlap each other');
-                            $this->response->setJsonContent($data);
-                            $flag = 0;
-                            break;
-                        }                  
                         else
                         {
-                            $startdate =  date("d-m-Y", strtotime($startdate));
-                            $enddate =  date("d-m-Y", strtotime($enddate));
-                            $getres = $this->employeemodulecommon->insertpastemp($getuserid,$user_group_id,$empname,$designtn,$startdate,$enddate);
+                            $getres = false;
                         }
                     }
                     if($flag == 1)
@@ -1166,7 +1181,7 @@ class EmployeemoduleController extends ControllerBase
                         //echo 'exit;';exit;
                         if($getres)
                         {
-                            $data = array("logged" => true,'message' => 'Record Added','resdta' => $getres,'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
+                            $data = array("logged" => true,'message' => 'Record Added','isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
                             $this->response->setJsonContent($data);
                         }
                         else
@@ -2154,16 +2169,18 @@ class EmployeemoduleController extends ControllerBase
           {
                 $mfrstatusupdt = $this->request->getPost('mfrstatusupdt','trim');
                 // print_r($mfrstatusupdt);exit;
+                $isfirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'mfrstatus','user_id');
+                //print_r($isfirst);exit;
                 $getresponse = $this->employeemodulecommon->updatemfrstatus($uid,$usergroup,$mfrstatusupdt);
                 if($getresponse['status']==true)
                 {
-                    $data = array("logged" => true,"message"=>"Record Saved Successfully");
+                    $data = array("logged" => true,"message"=>"Record Saved Successfully",'isfirst'=>$isfirst);
                     $this->response->setJsonContent($data);
 
                 }
                 else
                 {
-                    $data = array("logged" => true,"message"=>$getresponse['message']);
+                    $data = array("logged" => true,"message"=>$getresponse['message'],'isfirst'=>$isfirst);
                     $this->response->setJsonContent($data);
                 }
                 $this->response->send();
