@@ -278,7 +278,7 @@
                      <?php } ?>
                       <!--   Form D END -->
                       
-                      <li><a href="tradingrequest"><i class=""></i>Request for Pre-clearance</a></li>
+                      <li><a href="tradingrequest"><i class="fa fa-archive"></i>Request for Pre-clearance</a></li>
                   </ul>
                </li>
                <?php }  ?>
