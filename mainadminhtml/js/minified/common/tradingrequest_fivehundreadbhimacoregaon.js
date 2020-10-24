@@ -3,7 +3,7 @@ datepicker();function datepicker(){website('.bootdatepick').datetimepicker({week
 {var getdate=website(this).val();var getid=website(this).closest('form').attr('id');});}
 checkredirecturl();function checkredirecturl()
 {var redirecturl=website('#redirecturl').val();if(redirecturl=="modal")
-{website('#Mymodalreq').modal('show');}}
+{website('#Mymodalreq').modal({backdrop:'static',keyboard:false});}}
 website('body').on('click','.paginationmn li',function(e)
 {var rscrntpg=website(this).attr('p');website('.panel.panel-white #pagenum').val(rscrntpg);getalltradingrequest("");});website('body').on('change','#noofrows',function(e)
 {getalltradingrequest("");});website('body').on('click','.go_button',function(e)
@@ -11,8 +11,8 @@ website('body').on('click','.paginationmn li',function(e)
 {website.ajax({url:'tradingrequest/FetchUserDemat',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
-{if(response.logged==true)
-{website('#Mymodalreq').modal('show');}
+{if(response.logged===true)
+{website('#Mymodalreq').modal({backdrop:'static',keyboard:false});}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
@@ -107,7 +107,7 @@ else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function()
 {}});var url_string=window.location.href;var url=new URL(url_string);var url_status=url.searchParams.get("status");var newurlchk=new URL(url_string);var newurlchkst=atob(url.searchParams.get("redirect"));if(newurlchkst=='modal')
-{website('#Mymodalreq').modal('show');}
+{website('#Mymodalreq').modal({backdrop:'static',keyboard:false});}
 if(url_status!=null)
 {getalltradingrequest(atob(url_status));}
 else

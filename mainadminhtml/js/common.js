@@ -1232,9 +1232,9 @@ website('body').on('click','.bottomulmn', function(e)
 
 //website('#Mymodalreq').modal({backdrop: 'static', keyboard: false});
 
-website('.createreq').click(function(){
+/*website('.createreq').click(function(){
     website('#Mymodalreq').modal({
         backdrop: 'static',
         keyboard: false
     });
-});
+});*/

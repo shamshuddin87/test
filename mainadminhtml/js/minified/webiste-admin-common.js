@@ -221,4 +221,4 @@ website('body').on('click','.bottomulmn',function(e)
 {website.ajax({url:'tradingrequest/deletenotification',method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
-{}});});website('.createreq').click(function(){website('#Mymodalreq').modal({backdrop:'static',keyboard:false});});;
+{}});});;
