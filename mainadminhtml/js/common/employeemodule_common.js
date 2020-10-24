@@ -614,10 +614,11 @@ website("body").on("click", "#yesdisclosures2", function (e) {
         website("#updateholdings2").modal("hide");
         if (response.logged === true) 
         {
-            if(response.isfirst == 'yes' && response.isnextdataempty == 'yes')
+            //response.isfirst == 'yes' && 
+            if(response.isnextdataempty == 'yes')
             {
                 
-                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Relative Details Updated Succefully.<br>Do you want to add more?</h5></div><div style="float:right;"><button type="button" class="btn btn-primary" id="yesfillinrelatives" data-dismiss="modal">Yes</button><button style="color: #522c8f !important;border-color: #cecece;" type="button" class="btn btn-default" id="notfillinreltv">No</button></div>');
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Relative Details Updated Succefully.<br>Do you want to add more?</h5></div><div style="float:right;"><button type="button" class="btn btn-primary" id="yesfillinrelatives" >Yes</button><button style="color: #522c8f !important;border-color: #cecece;" type="button" class="btn btn-default" id="notfillinreltv">No</button></div>');
                 website('#modeluserguide').modal('show');
                 getrelationdata();
             }
@@ -3129,4 +3130,9 @@ website('body').on('click','#notfillinreltv',function(e){
     var redirecturl = baseHref + "employeemodule?tab=" + btoa(3);
     website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">All relatives detail updated.<br>Please update your material financial relationships Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
     website('#modeluserguide').modal('show');
+});
+
+website('body').on('click','#yesfillinrelatives',function(e){
+    var baseHref = getbaseurl();
+    window.location.href = baseHref + "employeemodule?tab=" + btoa(2);
 });
