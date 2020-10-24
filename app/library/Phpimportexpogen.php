@@ -923,5 +923,238 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
             return false;
         }  
     }
+    
+/* --------------- Start Add info sharing via excel --------------- */
+    public function insertInfoshareViaExcel($getuserid,$user_group_id,$upsitypeid,$upsiname,$excelfilenamepath)
+    {
+        $connection = $this->dbtrd;
+        
+        //$getuserid = $this->session->loginauthspuserfront['id'];
+        //$user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $firstname = $this->session->loginauthspuserfront['firstname'];
+        $lastname = $this->session->loginauthspuserfront['lastname'];
+        $nameoflogged = $this->session->loginauthspuserfront['username'];
+        $loggedemail = $this->session->loginauthspuserfront['email'];
+        //print_r($fullname);exit;
+        
+        $timeago = time();
+        $todaydate=date('d-m-Y');
+        //print_r($todaydate);exit;
+        
+        try
+        {
+            $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+            $objPHPExcel->setActiveSheetIndex(0);
+            $worksheet = $objPHPExcel->getActiveSheet(0);
+            
+            foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
+            {
+                $highestRow = $worksheet->getHighestRow();
+                //echo '<pre>'; print_r($highestRow);exit;
+                for ($row=2; $row<=$highestRow;$row++)
+                {
+                    $recepientemail  = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    $dateofinfo  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $dateofinfo  = PHPExcel_Style_NumberFormat::toFormattedString($dateofinfo, "DD-MM-YYYY");
+                    
+                    $timeofinfo  = $worksheet->getCellByColumnAndRow(2, $row)->getCalculatedValue();
+                    //$timeofinfo = PHPExcel_Style_NumberFormat::toFormattedString($timeofinfo, 'hh:mm:ss');
+                    $timeofinfo = PHPExcel_Style_NumberFormat::toFormattedString($timeofinfo, 'hh:mm');
+                    //echo '<pre>'; print_r($timeofinfo);exit;
+                    
+                    $datashared  = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+                    
+                    $enddate  = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+                    $enddate  = PHPExcel_Style_NumberFormat::toFormattedString($enddate, "DD-MM-YYYY");
+                    //echo '<pre>'; print_r($enddate);exit;
+                    
+                    
+                    // --- Start Get Recipient data ---
+                        $userRcpnt = array();
+                        $queryRcpnt = "SELECT sr.*, cate.`category` AS `categoryname` 
+                            FROM `sensitiveinfo_recipient` sr
+                            LEFT JOIN `sensitiveinfo_category` cate ON cate.`id`=sr.`category`
+                            WHERE sr.`email`='".$recepientemail."' ";
+                        //echo $queryRcpnt; exit;
+                        $exeRcpnt = $connection->query($queryRcpnt);
+                        $getRcpntnum = trim($exeRcpnt->numRows());
+                        //echo $getRcpntnum; exit;
+                    
+                        if($getRcpntnum>0)
+                        {
+                            $userRcpnt = $exeRcpnt->fetch();
+                        }
+                        //echo '<pre>'; print_r($userRcpnt); exit;
+                    // --- End Get Recipient data ---
+                                        
+                    // --- Start Get User data ---
+                        $userdata = array();
+                        $queryUsr = "SELECT * FROM `it_memberlist` WHERE `email`='".$recepientemail."' ";
+                        //echo $queryUsr; exit;
+                        $exeUsr = $connection->query($queryUsr);
+                        $getUsrnum = trim($exeUsr->numRows());
+                        //echo $getUsrnum; exit;
+                    
+                        if($getUsrnum>0)
+                        {
+                            $userdata = $exeUsr->fetch();
+                        }
+                        //echo '<pre>'; print_r($userdata); exit;
+                    // --- End Get User data ---
+                    
+                    
+                    // --- Start data ---
+                        $rectype = '';
+                        $categoryname = '';
+                        $name = '';
+                        $email = '';
+                        $category = '';
+                        $id = '';
+                        $wr_id = '';
+                    
+                        if(!empty($userRcpnt))
+                        {
+                            $rectype = 'connected person';
+                            if($userRcpnt['category'] == '16')
+                            {
+                                $categoryname = $userRcpnt['othercategory'];
+                                $name = $userRcpnt['name'];
+                                $email = $userRcpnt['email'];
+                                $category = $userRcpnt['category'];
+                                $id = $userRcpnt['id'];
+                                $wr_id = '';
+                            }
+                            else if($userRcpnt['category'] == '14')
+                            {
+                                $categoryname = $userRcpnt['categoryname'];
+                                $name = $userRcpnt['name'];
+                                $email = $userRcpnt['email'];
+                                $category = $userRcpnt['category'];
+                                $id = $userRcpnt['id'];
+                                $wr_id = $userRcpnt['wr_id'];
+                            }
+                            else
+                            {
+                                $categoryname = $userRcpnt['categoryname'];
+                                $name = $userRcpnt['name'];
+                                $email = $userRcpnt['email'];
+                                $category = $userRcpnt['category'];
+                                $id = $userRcpnt['id'];
+                                $wr_id = '';
+                            }
+                        }
+                        else if(!empty($userdata))
+                        {
+                            $rectype = 'userlist';
+                            $categoryname ='Employee';
+                            $name = $userdata['fullname'];
+                            $email = $userdata['email'];
+                            $category = 14;
+                            $id = $userdata['wr_id'];
+                            $wr_id = $userdata['wr_id'];
+                        }
+                    // --- End data ---
+                    
+                    
+                    if(!empty($userRcpnt) || !empty($userdata))
+                    {
+                        // --- Start Validate Data ---
+                            $name = $name;
+                            $upsitypeid = $upsitypeid;
+                            $flag=0;
+                            $date = $dateofinfo;
+                            $date1 = date("d-m-Y", strtotime($date));
+                            $stdate = new DateTime($date);
+                            $time = $timeofinfo;
+                            $email = $name;
+                            $wr_id = $wr_id;
+                            //print_r($wr_id);exit;
+                            $enddate = $enddate;
+                            $endchkdate = new DateTime($enddate);
+                            $upsiname = $upsiname;
+
+                            $mytoday=new DateTime($todaydate);
+                            if(!empty($enddate) )
+                            {
+                                if($endchkdate>$stdate && $mytoday>=$endchkdate)
+                                {
+                                    $flag=0;
+                                }
+                                else
+                                {
+                                    $flag=1;
+                                }
+                            }
+
+                            $datashared = $datashared;
+                            //$purpose   = $this->request->getPost('purpose','trim');
+                            $file = '';
+                            $category = $category;
+                            $recipientid = $id;
+                            $recipienttype = $rectype;
+                            $filepath = '';
+                            //print_r($time);
+
+                            /*Date Validation for Date of Information and End date */
+                            $infodatestatus = '';
+                            if(!empty($date))
+                            {
+                                $infodate_arr = explode('-', $date);
+
+                                $infodatem = $infodate_arr[1];
+                                $infodatey = $infodate_arr[2];
+                                $infodated = $infodate_arr[0];
+                                $infodatestatus = $this->elements->checkdate($infodatem,$infodatey,$infodated);
+                            }
+                            //echo $infodatestatus; exit;
+                        
+                            $enddatestatus = '';
+                            if(!empty($enddate))
+                            {
+                                $enddate_arr = explode('-', $enddate);
+
+                                $enddatem = $enddate_arr[1];
+                                $enddatey = $enddate_arr[2];
+                                $enddated = $enddate_arr[0];
+                                $enddatestatus = $this->elements->checkdate($enddatem,$enddatey,$enddated);
+                            }
+                            //echo $enddatestatus; exit;
+                        // --- End Validate Data ---
+                        
+                        //echo $time; exit;
+                        if(!empty($date) && $flag==0 && $infodatestatus=="valid" && (strtotime($date)<strtotime($todaydate)) && !empty(strtotime($time)) && (empty($enddate) || $enddatestatus=="valid"))
+                        {
+                            //echo 'inif'; exit;
+                            
+                            $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail,$nameoflogged,$wr_id);
+                            //print_r($getres);exit;
+                    
+                        }
+                        else
+                        {
+                            //echo 'inelse'; exit;
+                        }
+                    }
+                    
+                }
+            }
+            
+            if($getres)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception $e)
+        {
+            return false;
+            //$connection->close();
+        }
+    }
+/* --------------- End Add info sharing via excel --------------- */
+    
 
 }
