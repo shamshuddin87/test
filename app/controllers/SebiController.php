@@ -1988,7 +1988,7 @@ class SebiController extends ControllerBase
                 }
                 else if($todateday == 'Saturday' || $todateday == 'Sunday')
                 {
-                    $data = array("logged" => false,'message' => " Date of allotment From cannot be Saturday and Sunday");
+                    $data = array("logged" => false,'message' => " Date of allotment To cannot be Saturday and Sunday");
                     $this->response->setJsonContent($data);
                 }
                 else if(strtotime($type1data['fromdate'])>strtotime($type1data['todate']))
