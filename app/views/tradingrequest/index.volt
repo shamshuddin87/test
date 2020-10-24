@@ -124,7 +124,7 @@
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Please Create Request for Pre-Clearance</h4>
+        <h4 class="modal-title">Please Create Request for Pre-Clearance / Contra Trade</h4>
     </div>
     <div class="modal-body show_shadow">
         <form  action="" id="tradinform" method="post" autocomplete="off">
