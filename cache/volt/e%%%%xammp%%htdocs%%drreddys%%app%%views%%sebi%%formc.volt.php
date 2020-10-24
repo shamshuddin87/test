@@ -437,7 +437,7 @@ $condeptsess = $this->session->contractdepartment;
 
                         <section class="">
                             <div class="input ">
-                            <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 10px;">Date of allotment advice/acquisition of shares/sale of shares specify</label>
+                            <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 10px;">aDate of allotment advice/acquisition of shares/sale of shares specify</label>
                            
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">

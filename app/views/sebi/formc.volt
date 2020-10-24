@@ -343,7 +343,7 @@ $condeptsess = $this->session->contractdepartment;
 </div>
 
 <div id="Mymodaledit" class="modal fade" role="dialog" tabIndex=-1>
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="width: 700px;">
 
     <div class="modal-content">
       <div class="modal-header">
@@ -398,8 +398,8 @@ $condeptsess = $this->session->contractdepartment;
                      <section class="col col-md-4 col-xs-4">
                          <div class="input">
                             <label class="control-label">Category</label>
-                             <div><br></div>
-                            <select id="category" name="category" class="form_fields form-control col-md-7 col-xs-12" required>
+                             <!-- <div><br></div>
+ -->                            <select id="category" name="category" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="">Select Category</option>
                                     <?php foreach($category as $shwcategory){  ?>
                                     <option value="<?php echo $shwcategory['id'];?>"><?php echo $shwcategory['category']; ?></option>
@@ -461,7 +461,7 @@ $condeptsess = $this->session->contractdepartment;
                  <section class="col col-md-6 col-xs-6" id="modeformctype1">
                          <div class="input">
                             <label class="control-label">Mode of acquisition</label>
-                             <div><br></div>
+                             <!-- <div><br></div> -->
                             <select id="acquimode" name="acquimode" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="">Select Mode</option>
                                     <?php foreach($modeacqui as $shwmode){  ?>
