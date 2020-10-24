@@ -343,10 +343,10 @@ $condeptsess = $this->session->contractdepartment;
 </div>
 
 <div id="Mymodaledit" class="modal fade" role="dialog" tabIndex=-1>
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="width: 700px;">
 
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="margin: 0;">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title" style="text-align:center;">Form C</h4>
       </div>
@@ -379,7 +379,7 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Contact No.</label>
-                                <div><br></div>
+                                <!-- <div><br></div> -->
                                 <input type="text" id="cntctno" name="cntctno" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $cntctno;?>" readonly required>
                             </div>
                     </section>
@@ -398,8 +398,8 @@ $condeptsess = $this->session->contractdepartment;
                      <section class="col col-md-4 col-xs-4">
                          <div class="input">
                             <label class="control-label">Category</label>
-                             <div><br></div>
-                            <select id="category" name="category" class="form_fields form-control col-md-7 col-xs-12" required>
+                             <!-- <div><br></div>
+ -->                            <select id="category" name="category" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="">Select Category</option>
                                     <?php foreach($category as $shwcategory){  ?>
                                     <option value="<?php echo $shwcategory['id'];?>"><?php echo $shwcategory['category']; ?></option>
@@ -437,7 +437,7 @@ $condeptsess = $this->session->contractdepartment;
 
                         <section class="">
                             <div class="input ">
-                            <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 10px;">aDate of allotment advice/acquisition of shares/sale of shares specify</label>
+                            <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 20px;">Date of allotment advice/acquisition of shares/sale of shares specify</label>
                            
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
@@ -461,7 +461,7 @@ $condeptsess = $this->session->contractdepartment;
                  <section class="col col-md-6 col-xs-6" id="modeformctype1">
                          <div class="input">
                             <label class="control-label">Mode of acquisition</label>
-                             <div><br></div>
+                             <!-- <div><br></div> -->
                             <select id="acquimode" name="acquimode" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="">Select Mode</option>
                                     <?php foreach($modeacqui as $shwmode){  ?>

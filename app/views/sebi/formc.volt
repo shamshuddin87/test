@@ -346,7 +346,7 @@ $condeptsess = $this->session->contractdepartment;
   <div class="modal-dialog" style="width: 700px;">
 
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="margin: 0;">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title" style="text-align:center;">Form C</h4>
       </div>
@@ -379,7 +379,7 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Contact No.</label>
-                                <div><br></div>
+                                <!-- <div><br></div> -->
                                 <input type="text" id="cntctno" name="cntctno" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $cntctno;?>" readonly required>
                             </div>
                     </section>
@@ -437,7 +437,7 @@ $condeptsess = $this->session->contractdepartment;
 
                         <section class="">
                             <div class="input ">
-                            <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 10px;">Date of allotment advice/acquisition of shares/sale of shares specify</label>
+                            <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 20px;">Date of allotment advice/acquisition of shares/sale of shares specify</label>
                            
                         <section class="col col-md-6 col-xs-6">
                             <div class="input">
