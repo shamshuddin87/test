@@ -614,11 +614,11 @@ website("body").on("click", "#yesdisclosures2", function (e) {
         website("#updateholdings2").modal("hide");
         if (response.logged === true) 
         {
-            if(response.isfirst == 'yes' && response.isnextdataempty == 'yes')
+            //response.isfirst == 'yes' && 
+            if(response.isnextdataempty == 'yes')
             {
-                var baseHref = getbaseurl();
-                var redirecturl = baseHref + "employeemodule?tab=" + btoa(3);
-                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Relatives Details added successfully.<br>Please Insert Material Financial Relationship Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
+                
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Relative Details Updated Succefully.<br>Do you want to add more?</h5></div><div style="float:right;"><button type="button" class="btn btn-primary" id="yesfillinrelatives" >Yes</button><button style="color: #522c8f !important;border-color: #cecece;" type="button" class="btn btn-default" id="notfillinreltv">No</button></div>');
                 website('#modeluserguide').modal('show');
                 getrelationdata();
             }
@@ -2664,7 +2664,7 @@ website("body").on("click", "#pastbtnsub", function (e) {
       });
     }
   }
-  if (myarr.length >= 1) {
+  //if (myarr.length >= 1) {
     website.ajax({
       url: "employeemodule/insertpastemp",
       method: "POST",
@@ -2715,7 +2715,6 @@ website("body").on("click", "#pastbtnsub", function (e) {
       complete: function (response) {},
       error: function (jqXHR, textStatus, errorThrown) {},
     });
-  }
 });
 
 website("body").on("click", ".sendfrapp", function (e) {
@@ -3070,14 +3069,24 @@ website(document).on('click', '#copyaddress', function() {
         {   },
         success: function(response, textStatus, jqXHR)
          {
-              //console.log(response);
-             /* new PNotify({title: 'Alert',
-                    text: response.message,
-                    type: 'university',
-                    hide: true,
-                    styling: 'bootstrap3',
-                    addclass: 'dark ',
-                });*/
+             if (response.logged == true) 
+             {
+                if(mfrstatusupdt == 0 && response.isfirst == 'yes')
+                {
+                    var baseHref = getbaseurl();
+                    var redirecturl = baseHref + "portfolio";
+                    website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Updated Successfully.<br>Please Insert Demat Account Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');
+                    website('#modeluserguide').modal('show');
+                  //console.log(response);
+                 /* new PNotify({title: 'Alert',
+                        text: response.message,
+                        type: 'university',
+                        hide: true,
+                        styling: 'bootstrap3',
+                        addclass: 'dark ',
+                    });*/
+                }
+            }
          },
         complete: function(response)
         {   },
@@ -3115,3 +3124,15 @@ function hidemfrsection()
     website("#showmfr").css('display','none');
  }
 /*   ---------------- MFR Section (onclick yes no)*/
+
+website('body').on('click','#notfillinreltv',function(e){
+    var baseHref = getbaseurl();
+    var redirecturl = baseHref + "employeemodule?tab=" + btoa(3);
+    website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">All relatives detail updated.<br>Please update your material financial relationships Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
+    website('#modeluserguide').modal('show');
+});
+
+website('body').on('click','#yesfillinrelatives',function(e){
+    var baseHref = getbaseurl();
+    window.location.href = baseHref + "employeemodule?tab=" + btoa(2);
+});

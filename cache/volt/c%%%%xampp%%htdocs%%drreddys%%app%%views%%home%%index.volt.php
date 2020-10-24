@@ -35,7 +35,7 @@
                     <?php  if($gmnlog['user_group_id'] !='2'){?> 
                     <div class="row shortinfo">
                       
-                        <div class="col-lg-3 col-md-6" id="">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" id="">
                             <a href="sebi/transformc">
                                 <!-- <div class="panel panel-orange"> -->
                                   <div class="panel panel-blue">
@@ -46,8 +46,6 @@
                                         </div>
                                         <div class="col-xs-9 text-right">
                                             <div class="huge" id=""></div>
-                                            <div><br></div>
-                                            <div><br></div>
                                             <div><br></div>
                                             <div><br></div>
                                             <div><br></div>
@@ -66,7 +64,7 @@
                             </a>
                         </div>
                         
-                        <div class="col-lg-3 col-md-6" id="">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" id="">
                             <a href="annualdeclaration">
                                 <!-- <div class="panel panel-orange"> -->
                                   <div class="panel panel-green">
@@ -81,7 +79,7 @@
                                             <div><br></div>
                                             <div><br></div>
                                         </div>
-                                        <div class="col-xs-12 text_name">Update Annual/Self Disclosure</div>
+                                        <div class="col-xs-12 text_name">Update Annual / Self Disclosure</div>
                                     </div>
                                 </div>
 
@@ -96,8 +94,8 @@
                         </div>
                    </div>
                     <?php } ?>
-                    <?php  if($gmnlog['user_group_id'] !='2'){?> 
                     <div class="row">
+                    <?php  if($gmnlog['user_group_id'] !='2'){?> 
                         <div class="col-xs-6">
                            
                            <div class="holdingsummary">
@@ -136,7 +134,6 @@
                               <!-- /.table-responsive -->
                            </div>
                            <!-- /.panel-body -->
-                        </div>
                     <?php } ?> 
                     
                         <div class="col-xs-6">

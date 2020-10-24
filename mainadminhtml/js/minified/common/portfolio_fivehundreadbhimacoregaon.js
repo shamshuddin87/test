@@ -115,7 +115,8 @@ else{new PNotify({title:'Alert',text:response.message,type:'university',hide:tru
 {}});}});website('body').on('click','.dematup',function(e){var dematup=website(this).val();website.ajax({url:'portfolio/zerodematacc',data:{dematup:dematup},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
-{website('#alertcommon #allalertmsg').html(response.message);website('#alertcommon').modal('show');},complete:function(response)
+{if(dematup==0&&response.isfirst=='yes')
+{var baseHref=getbaseurl();var redirecturl=baseHref+"portfolio?tab="+btoa(2);website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Updated successfully.<br>Please Insert Relative Demat Account Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');website('#modeluserguide').modal('show');}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});});function showsection(){var section=document.getElementById("showdemat");if(section.style.display==="none"){section.style.display="block";}}
 function hidesection(){var section=document.getElementById("showdemat");if(section.style.display==="block")

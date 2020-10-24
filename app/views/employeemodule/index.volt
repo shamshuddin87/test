@@ -541,14 +541,14 @@
                             <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                         </div>
                            <label for="age">No. of shares held in DRL*</label>
-                           <input type="text" id="shareholdng" name="shareholdng" placeholder="No. of shares held in DRL"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
+                           <input type="text" id="shareholdng" name="shareholdng" placeholder="No. of shares held in DRL"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="0" >
                         </div>
                         <div class="col-md-4 col-xs-12"> 
                             <div class="tooltip_div">
                                 <a href="javascript:void(0);" data="Please enter 0 if no American Depository Receipts of DRL are held." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                             </div>
                            <label for="age">No. of American Depository Receipts held in DRL*</label>
-                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="0">
                         </div>
                          <div class="col-md-4">
                            <label class="control-label">Upload Identity Proof</label>
@@ -785,7 +785,7 @@
                 No<input type="radio" name="mfrstatus" value="0" class="mfrstatusupdt" onclick="hidemfrsection();"/><br>
             <?php }} else{ ?>
                 Yes<input type="radio" name="mfrstatus" value="1" class="mfrstatusupdt" onclick="showmfrsection();"> 
-                No<input type="radio" name="mfrstatus"value="0" class="mfrstatusupdtr" onclick="hidemfrsection();"/><br>
+                No<input type="radio" name="mfrstatus"value="0" class="mfrstatusupdt" onclick="hidemfrsection();"/><br>
             <?php } ?>
             </label>
             <div id = "showmfr" style="display: none;">     

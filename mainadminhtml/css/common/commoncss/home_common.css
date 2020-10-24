@@ -904,7 +904,7 @@ h4.title {
     font-size: 26px;
     color: #000;
 }
-.text_name { font-size: 17px; padding-top: 15px; }
+.text_name { font-size: 17px; padding-top: 15px;height: 70px; }
 .huge {
     font-size: 26px;
     font-weight: bold;

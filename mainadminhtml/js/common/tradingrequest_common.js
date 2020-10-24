@@ -27,7 +27,11 @@ function checkredirecturl()
     var redirecturl=website('#redirecturl').val();
     if(redirecturl=="modal")
     {
-        website('#Mymodalreq').modal('show');
+        //website('#Mymodalreq').modal('show');
+        website('#Mymodalreq').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
     }
 }
 
@@ -88,9 +92,13 @@ website('.createreq').click(function(e)
         { },
         success: function(response, textStatus, jqXHR) 
         {
-            if(response.logged==true)
+            if(response.logged===true)
             {
-                website('#Mymodalreq').modal('show');
+                //website('#Mymodalreq').modal('show');
+                website('#Mymodalreq').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
             }
             else
             {
@@ -734,7 +742,11 @@ var newurlchkst = atob(url.searchParams.get("redirect"));
   if(newurlchkst=='modal')
   {
     // alert("hi Naresh");
-    website('#Mymodalreq').modal('show');
+    //website('#Mymodalreq').modal('show');
+    website('#Mymodalreq').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
   }
 //console.log(status);
 /* end: fetch url parameter status */
