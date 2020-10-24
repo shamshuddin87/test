@@ -500,7 +500,7 @@ $condeptsess = $this->session->contractdepartment;
         <h4 class="modal-title" style="">Select the Type of Transaction for which you want to generate Form C</h4>
       </div>
             <div class="modal-body show_shadow">
-                <div class="text-center modal_heading">
+                <div class="modal_heading">
                     <div class="openFormc btn btn-primary" id="type1">1.Securities traded on stock exchange.</div><br>
                     <div class="openFormc btn btn-primary" id="type2">2.Exercise of ESOP.</div><br>
                     <div class="openFormc btn btn-primary" id="type3">3.Allotment of ESOP.</div>
