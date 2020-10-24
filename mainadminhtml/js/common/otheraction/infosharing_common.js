@@ -1060,6 +1060,8 @@ website('body').on('click','.btndeletefile',function()
     }    
 });
 /* ----- Start Add/Delete Email Rows ----- */
+
+
 website('body').on('click','#upsiattachmnt',function()
 {
     var filepath = website(this).attr('filepath');
@@ -1092,3 +1094,46 @@ website('body').on('click','#upsiattachmnt',function()
     }
     
 });
+
+
+/* --------------- Start Add info sharing via excel --------------- */
+website('#insertInfoshareViaExcel').ajaxForm({
+    dataType:"json",
+    beforeSend: function()
+    { website('.preloder_wraper').fadeIn();},
+    uploadProgress: function(event, position, total, percentComplete)
+    {  website('.preloder_wraper').fadeIn(); },
+    success: function(response, textStatus, jqXHR)
+    {
+        // console.log(response.empcount);
+        if(response.logged===true)
+        {  
+            new PNotify({title: 'Record Added Successfully',
+                text: response.message,
+                type: 'university',
+                hide: true,
+                styling: 'bootstrap3',
+                addclass: 'dark',
+            });
+
+            setTimeout(function() { window.location.reload(); }, 1000);
+        }
+        else
+        {
+            new PNotify({title: 'Record Not Added',
+                text: response.message,
+                type: 'university',
+                hide: true,
+                styling: 'bootstrap3',
+                addclass: 'dark',
+            });
+        }
+    },
+    complete: function(response)
+    {  website('.preloder_wraper').fadeOut(); },
+    error: function(jqXHR, textStatus, errorThrown)
+    {   }
+});
+/* --------------- End Add info sharing via excel --------------- */
+
+

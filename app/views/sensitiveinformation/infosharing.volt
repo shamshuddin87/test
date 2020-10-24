@@ -154,6 +154,34 @@ $upsiid = $this->session->upsitypeid;
                     </form>
                 </div>                                
                 <div class="clearelement"></div>
+                
+                <div class="cssupldfrm formelementmain"> 
+                    <form id="insertInfoshareViaExcel" action="sensitiveinformation/insertInfoshareViaExcel" method="post" enctype="multipart/form-data" autocomplete="off" > 
+                        <section class="col col-md-6 col-xs-6">
+                            <div class="input">
+                                <label class="control-label">Upload File</label>
+                                <div class="choose_files">
+                                    <input type="file" name="infoshareExcl" id="infoshareExcl" >
+                                    <input type="hidden" name="upsitypeid" class="upsitypeid" id="upsitypeid" value="<?php echo $upsiid;?>">
+                                    <input type="hidden" id="selectupsi" name="selectupsi" value="<?php echo $getupsiname['upsitype']; ?>" >
+                                </div>
+                                <div class="updatefile">
+                                    <div class="sample_down floatleft">
+                                        <a href="samplefile/UPSI/infosharing.xlsx" download>
+                                            <p class="sample">Download Sample Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i></p>
+                                        </a>
+                                    </div>
+                                    <div class="clearelement"></div> 
+                                </div>
+                            </div>
+                        </section>
+                        <div class="col-md-6 submit_b">
+                            <input type="submit" value="Upload" class="btn btn-primary btnexlinfoshare">
+                        </div>   
+                        <div class="clearelement"></div>
+                    </form>
+                </div>
+                
             </div>
        </div>     
     </div>
