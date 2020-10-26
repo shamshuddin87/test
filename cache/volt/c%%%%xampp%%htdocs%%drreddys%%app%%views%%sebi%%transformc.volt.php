@@ -493,17 +493,17 @@ $condeptsess = $this->session->contractdepartment;
 <!-- ##############   Form c Types START  ############## -->
 
 <div id="myModalFormctypes" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"></h4>
-            </div>
+    <div class="modal-dialog" style="width: 650px;">
+        <div class="modal-content" style="width: 100%;">          
+      <div class="modal-header" style="float: none;">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="">Select the Type of Transaction for which you want to generate Form C</h4>
+      </div>
             <div class="modal-body show_shadow">
-                <div class="text-center modal_heading">
-                    <div class="openFormc" id="type1">1.Securities traded on stock exchange.</div><br>
-                    <div class="openFormc" id="type2">2.Exercise of ESOP.</div><br>
-                    <div class="openFormc" id="type3">3.Allotment of ESOP.</div>
+                <div class="modal_heading">
+                    <div class="openFormc btn btn-primary" id="type1">1.Securities traded on stock exchange.</div><br>
+                    <div class="openFormc btn btn-primary" id="type2">2.Exercise of ESOP.</div><br>
+                    <div class="openFormc btn btn-primary" id="type3">3.Allotment of ESOP.</div>
                 </div>
             </div>
           
@@ -754,7 +754,7 @@ $condeptsess = $this->session->contractdepartment;
                        </section>
                         
                       <section class="col col-md-12 company_asses">
-                            <input type="submit" value="Update" class="btn btn-primary updateformbbtn">
+                            <input type="submit" value="Submit" class="btn btn-primary updateformbbtn">
                         </section>
                         <div class="clearelement"></div>
                         
@@ -1010,7 +1010,7 @@ $condeptsess = $this->session->contractdepartment;
                        </section>-->
                         
                       <section class="col col-md-12 company_asses">
-                            <input type="submit" value="Update" class="btn btn-primary updateformbbtn">
+                            <input type="submit" value="Submit" class="btn btn-primary updateformbbtn">
                         </section>
                         <div class="clearelement"></div>
                         
@@ -1264,7 +1264,7 @@ $condeptsess = $this->session->contractdepartment;
                        </section>-->
                         
                       <section class="col col-md-12 company_asses">
-                            <input type="submit" value="Update" class="btn btn-primary updateformbbtn">
+                            <input type="submit" value="Submit" class="btn btn-primary updateformbbtn">
                         </section>
                         <div class="clearelement"></div>
                         
