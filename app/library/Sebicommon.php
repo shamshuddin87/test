@@ -845,15 +845,17 @@ class Sebicommon extends Component
     // ****** form c data fetch for table **********
     
     // ****** form c data fetch for edit **********
-    public function fetchformcedit($getuserid,$user_group_id,$id)
+    public function fetchformcedit($getuserid,$user_group_id,$id,$formctype,$tradeid)
     {
        $connection = $this->dbtrd;
         try
          {
             
-            $queryget = "SELECT formc.*,memb.`designation` FROM `sebiformc_usrdata` formc
+            $queryget = "SELECT formc.*,memb.`designation`,ts.`no_of_share`,ts.`price_per_share`,ts.`total_amount`,ts.`date_of_transaction`,ts.`demat_acc_no`,ts.`sectype`,pr.`type_of_transaction`,pr.`requestmodeid`,pr.`id` AS reqid,ts.`id` AS trdeid FROM `sebiformc_usrdata` formc
                         LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id`
-                        WHERE formc.`id`=  '".$id."' "; 
+                        LEFT JOIN `trading_status` ts ON ts.`id` = formc.`tradeid`
+                        LEFT JOIN `personal_request` pr ON pr.`id` = ts.`req_id`
+                        WHERE formc.`id`=  '".$id."' AND ts.`id`= '".$tradeid."' "; 
           
             //echo $queryget;  exit;
             $exeget = $connection->query($queryget);
@@ -927,14 +929,46 @@ class Sebicommon extends Component
     /******* update form c data start********/
     public function updateformc($getuserid,$user_group_id,$formcupdata)
     {
+        
+        if(strpos('4,5',$formcupdata['requestmodeid']) !== false)
+        {
+            $aquimode = $formcupdata['acquimodeother'];
+            $exetrd = $formcupdata['exetrdother'];
+        }
+        else
+        {
+            $aquimode = $formcupdata['acquimode'];
+            $exetrd = $formcupdata['exetrd'];
+        }
         $connection = $this->dbtrd; 
         $time = time();
-           $queryinsert = "UPDATE `sebiformc_usrdata` SET `category`='".$formcupdata['category']."', `fromdate`='".$formcupdata['fromdate']."', `todate`='".$formcupdata['todate']."', `dateofintimtn`='".$formcupdata['dateofintimtn']."', `acquimode`='".$formcupdata['acquimode']."',`exetrd`='".$formcupdata['exetrd']."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['upformcid']."'"; 
+           $queryinsert = "UPDATE `sebiformc_usrdata` SET `category`='".$formcupdata['category']."', `fromdate`='".$formcupdata['fromdate']."', `todate`='".$formcupdata['todate']."', `dateofintimtn`='".$formcupdata['dateofintimtn']."', `acquimode`='".$aquimode."',`exetrd`='".$exetrd."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['upformcid']."'"; 
         //print_r($queryinsert);exit;
         //, `pretrans`='".$formcupdata['pretrans']."', `posttrans`='".$formcupdata['posttrans']."',`buyvalue`='".$formcupdata['buyvalue']."',`buynumbrunt`='".$formcupdata['buynumbrunt']."',`sellvalue`='".$formcupdata['sellvalue']."',`sellnumbrunt`='".$formcupdata['sellnumbrunt']."'
         try
         {
             $exeprev = $connection->query($queryinsert);
+            if($exeprev)
+            {
+                if(strpos('3,4,5',$formcupdata['requestmodeid']) !== false)
+                {
+                    $querytrd = "UPDATE `trading_status` SET `sectype`='".$formcupdata['sectype']."', `no_of_share`='".$formcupdata['noofshare']."',`price_per_share`='".$formcupdata['pricepershare']."', `total_amount`='".$formcupdata['totalamt']."',`demat_acc_no`='".$formcupdata['demataccno']."',`date_of_transaction`='".$formcupdata['dateoftrans']."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['tradeid']."'"; 
+                    $exetrd = $connection->query($querytrd);
+                    if($exetrd)
+                    {
+                        if($formcupdata['requestmodeid'] == '4')
+                        {
+                            $formcupdata['typeoftrans'] = '6';
+                        }
+                        if($formcupdata['requestmodeid'] == '5')
+                        {
+                            $formcupdata['typeoftrans'] = '7';
+                        }
+                        $queryreq = "UPDATE `personal_request` SET `no_of_shares`='".$formcupdata['noofshare']."', `sectype`='".$formcupdata['sectype']."',`type_of_transaction`='".$formcupdata['typeoftrans']."',`date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['reqid']."'"; 
+                        $exereq = $connection->query($queryreq);
+                    }
+                }
+            }
             return true;
         }
         catch (Exception $e) 

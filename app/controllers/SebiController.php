@@ -48,9 +48,12 @@ class SebiController extends ControllerBase
         $this->view->address = $getdatauser['address'];
         //$this->view->cin = $getdataformcuser['cin'];
         $this->view->category = $this->sebicommon->fetchcategory();   //fetch category of usr
-        $this->view->security = $this->sebicommon->fetchsecutype();   //fetch security of usr
+        //$this->view->security = $this->sebicommon->fetchsecutype();   //fetch security of usr
         $this->view->company = $this->sebicommon->fetchcmpmstr($getuserid,$user_group_id);   //fetch cmp name from mstr
         $this->view->exchngtrd = $this->sebicommon->getformcexchngetrd();   //fetch exchange on which trade was executed
+        
+        $this->view->demataccno = $this->tradingrequestcommon->getaccdetails($getuserid,$user_group_id); //demat account no
+        $this->view->security = $this->tradingrequestcommon->securitytype();   //fetch security Types
     }
     public function formdAction()
     {
@@ -759,7 +762,9 @@ class SebiController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $id = $this->request->getPost('id');
-                $getres = $this->sebicommon->fetchformcedit($getuserid,$user_group_id,$id);
+                $formctype = $this->request->getPost('formctype');
+                $tradeid = $this->request->getPost('tradeid');
+                $getres = $this->sebicommon->fetchformcedit($getuserid,$user_group_id,$id,$formctype,$tradeid);
                 if($getres)
                 {
                     $data = array("logged" => true,'message' => 'Record Added','data' => $getres,'user_group_id'=>$user_group_id);
@@ -929,11 +934,13 @@ class SebiController extends ControllerBase
         $this->view->disable();
         $getuserid = $this->session->loginauthspuserfront['id'];
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $todaysdate = date('d-m-Y');
         if($this->request->isPost() == true)
         {
             if($this->request->isAjax() == true)
             {
                 $formcupdata = $this->request->getPost();
+                //print_r($formcupdata);exit;
                 
                 /*Date Validation for Date Infimation,From Date and To date Start */
                 if(!empty($formcupdata['dateofintimtn']))
@@ -972,7 +979,27 @@ class SebiController extends ControllerBase
                 }
                 /*Date Validation for Date Infimation,From Date and To date End */
                 
-                if(empty($formcupdata['dateofintimtn']))
+                if(strpos('3,4,5',$formcupdata['requestmodeid']) !== false && !empty($formcupdata['dateoftrans']))
+                {
+                    $transdate = $formcupdata['dateoftrans'];
+                    $transdate_arr = explode('-', $transdate);
+
+                    $transdatem = $transdate_arr[1];
+                    $transdatey = $transdate_arr[2];
+                    $transdated = $transdate_arr[0];
+                    $transdatestatus = $this->elements->checkdate($transdatem,$transdatey,$transdated);
+                }
+                if(strpos('3,4,5',$formcupdata['requestmodeid']) !== false && $transdatestatus != "valid")
+                {
+                    $data = array("logged" => false,'message' => 'Please provide correct Date of transaction');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strpos('3,4,5',$formcupdata['requestmodeid']) !== false && strtotime($formcupdata['dateoftrans']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of transaction should not be in future');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($formcupdata['dateofintimtn']))
                 {
                     $data = array("logged" => false,'message' => " Date of intimation to company should not empty..!!");
                     $this->response->setJsonContent($data);
@@ -980,6 +1007,11 @@ class SebiController extends ControllerBase
                 else if($dateofintimtnstatus != "valid")
                 {
                     $data = array("logged" => false,'message' => 'Please provide correct Date of intimation to company');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($formcupdata['dateofintimtn']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of intimation to company should not be in future');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($formcupdata['fromdate']))
@@ -990,6 +1022,11 @@ class SebiController extends ControllerBase
                 else if($fromdatestatus != "valid")
                 {
                     $data = array("logged" => false,'message' => 'Please provide correct Date of allotment From');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($formcupdata['fromdate']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date From should not be in future');
                     $this->response->setJsonContent($data);
                 }
                 else if($fromdateday == 'Saturday' || $fromdateday == 'Sunday')
@@ -1005,6 +1042,11 @@ class SebiController extends ControllerBase
                 else if($todatestatus != "valid")
                 {
                     $data = array("logged" => false,'message' => 'Please provide correct Date of allotment To');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($formcupdata['todate']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date To should not be in future');
                     $this->response->setJsonContent($data);
                 }
                 else if($todateday == 'Saturday' || $todateday == 'Sunday')
@@ -1889,7 +1931,7 @@ class SebiController extends ControllerBase
         $this->view->disable();
         $getuserid = $this->session->loginauthspuserfront['id'];
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
-        $todate = date('d-m-Y');
+        $todaysdate = date('d-m-Y');
         if($this->request->isPost() == true)
         {
             if($this->request->isAjax() == true)
@@ -1908,6 +1950,7 @@ class SebiController extends ControllerBase
                     $dateoftransy = $dateoftrans_arr[2];
                     $dateoftransd = $dateoftrans_arr[0];
                     $dateoftransstatus = $this->elements->checkdate($dateoftransm,$dateoftransy,$dateoftransd);
+                    $transdateday = date('l', strtotime($dateoftrans)); // check week day(cannot be saturday and sunday)
                 }
                 
                 if(!empty($type1data['dateofintimtn']))
@@ -1951,6 +1994,16 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please provide correct Date of Transaction');
                     $this->response->setJsonContent($data);
                 }
+                else if(strtotime($type1data['dateoftrans']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of transaction should not be in future');
+                    $this->response->setJsonContent($data);
+                }
+                else if($transdateday == 'Saturday' || $transdateday == 'Sunday')
+                {
+                    $data = array("logged" => false,'message' => " Date of transaction cannot be Saturday and Sunday");
+                    $this->response->setJsonContent($data);
+                }
                 else if(empty($type1data['dateofintimtn']))
                 {
                     $data = array("logged" => false,'message' => " Date of intimation to company should not empty..!!");
@@ -1961,6 +2014,11 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please provide correct Date of intimation to company');
                     $this->response->setJsonContent($data);
                 }
+                else if(strtotime($type1data['dateofintimtn']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of intimation to company should not be in future');
+                    $this->response->setJsonContent($data);
+                }
                 else if(empty($type1data['fromdate']))
                 {
                     $data = array("logged" => false,'message' => " Date of allotment From should not empty..!!");
@@ -1969,6 +2027,11 @@ class SebiController extends ControllerBase
                 else if($fromdatestatus != "valid")
                 {
                     $data = array("logged" => false,'message' => 'Please provide correct Date of allotment From');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($type1data['fromdate']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of allotment From should not be in future');
                     $this->response->setJsonContent($data);
                 }
                 else if($fromdateday == 'Saturday' || $fromdateday == 'Sunday')
@@ -1984,6 +2047,11 @@ class SebiController extends ControllerBase
                 else if($todatestatus != "valid")
                 {
                     $data = array("logged" => false,'message' => 'Please provide correct Date of allotment To');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($type1data['todate']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of allotment To should not be in future');
                     $this->response->setJsonContent($data);
                 }
                 else if($todateday == 'Saturday' || $todateday == 'Sunday')
@@ -2063,7 +2131,7 @@ class SebiController extends ControllerBase
         $this->view->disable();
         $getuserid = $this->session->loginauthspuserfront['id'];
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
-        $todate = date('d-m-Y');
+        $todaysdate = date('d-m-Y');
         if($this->request->isPost() == true)
         {
             if($this->request->isAjax() == true)
@@ -2082,6 +2150,7 @@ class SebiController extends ControllerBase
                     $dateoftransy = $dateoftrans_arr[2];
                     $dateoftransd = $dateoftrans_arr[0];
                     $dateoftransstatus = $this->elements->checkdate($dateoftransm,$dateoftransy,$dateoftransd);
+                    $transdateday = date('l', strtotime($dateoftrans)); // check week day(cannot be saturday and sunday)
                 }
                 
                 if(!empty($type2data['dateofintimtn']))
@@ -2125,6 +2194,16 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please provide correct Date of Transaction');
                     $this->response->setJsonContent($data);
                 }
+                else if(strtotime($type2data['dateoftrans']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of transaction should not be in future');
+                    $this->response->setJsonContent($data);
+                }
+                else if($transdateday == 'Saturday' || $transdateday == 'Sunday')
+                {
+                    $data = array("logged" => false,'message' => " Date of transaction cannot be Saturday and Sunday");
+                    $this->response->setJsonContent($data);
+                }
                 else if(empty($type2data['dateofintimtn']))
                 {
                     $data = array("logged" => false,'message' => " Date of intimation to company should not empty..!!");
@@ -2135,6 +2214,11 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please provide correct Date of intimation to company');
                     $this->response->setJsonContent($data);
                 }
+                else if(strtotime($type2data['dateofintimtn']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of intimation to company should not be in future');
+                    $this->response->setJsonContent($data);
+                }
                 else if(empty($type2data['fromdate']))
                 {
                     $data = array("logged" => false,'message' => " Date of purchase / sale of shares From should not empty..!!");
@@ -2143,6 +2227,11 @@ class SebiController extends ControllerBase
                 else if($fromdatestatus != "valid")
                 {
                     $data = array("logged" => false,'message' => 'Please provide correct Date of purchase / sale of shares From');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($type2data['fromdate']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of purchase / sale of shares From should not be in future');
                     $this->response->setJsonContent($data);
                 }
                 else if($fromdateday == 'Saturday' || $fromdateday == 'Sunday')
@@ -2160,6 +2249,11 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please provide correct Date of purchase / sale of shares To');
                     $this->response->setJsonContent($data);
                 }
+                else if(strtotime($type2data['todate']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of purchase / sale of shares To should not be in future');
+                    $this->response->setJsonContent($data);
+                }
                 else if($todateday == 'Saturday' || $todateday == 'Sunday')
                 {
                     $data = array("logged" => false,'message' => " Date of purchase / sale of shares From cannot be Saturday and Sunday");
@@ -2173,7 +2267,7 @@ class SebiController extends ControllerBase
                 else
                 {
                     $rqstMod = '4';
-                    $type2data['typeoftrans'] = '7';
+                    $type2data['typeoftrans'] = '6';
                     $resPersonalReq = $this->sebicommon->inFormcTypePersonalReq($getuserid,$user_group_id,$type2data,$rqstMod);
                     if($resPersonalReq['logged']===true)
                     {
@@ -2187,8 +2281,8 @@ class SebiController extends ControllerBase
                             $formcdata[0]['intimtndate'] = $type2data['dateofintimtn'];
                             $formcdata[0]['allotmentfrm'] = $type2data['fromdate'];
                             $formcdata[0]['allotmentto'] = $type2data['todate'];
-                            $formcdata[0]['aquimode'] = 'Allotment after exercise of ESOPs';
-                            $formcdata[0]['exetrd'] = 'Allotment after exercise of ESOPs';
+                            $formcdata[0]['aquimode'] = 'Received on exercise of ESOPs';
+                            $formcdata[0]['exetrd'] = 'Received on exercise of ESOPs';
                             $formcdata[0]['formctype'] = '2';
                             //print_r($formcdata);exit;
                             $getres = $this->sebicommon->insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid);
@@ -2236,7 +2330,7 @@ class SebiController extends ControllerBase
         $this->view->disable();
         $getuserid = $this->session->loginauthspuserfront['id'];
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
-        $todate = date('d-m-Y');
+        $todaysdate = date('d-m-Y');
         if($this->request->isPost() == true)
         {
             if($this->request->isAjax() == true)
@@ -2255,6 +2349,7 @@ class SebiController extends ControllerBase
                     $dateoftransy = $dateoftrans_arr[2];
                     $dateoftransd = $dateoftrans_arr[0];
                     $dateoftransstatus = $this->elements->checkdate($dateoftransm,$dateoftransy,$dateoftransd);
+                    $transdateday = date('l', strtotime($dateoftrans)); // check week day(cannot be saturday and sunday)
                 }
                 
                 if(!empty($type3data['dateofintimtn']))
@@ -2298,6 +2393,16 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please provide correct Date of Transaction');
                     $this->response->setJsonContent($data);
                 }
+                else if(strtotime($type3data['dateoftrans']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of transaction should not be in future');
+                    $this->response->setJsonContent($data);
+                }
+                else if($transdateday == 'Saturday' || $transdateday == 'Sunday')
+                {
+                    $data = array("logged" => false,'message' => " Date of transaction cannot be Saturday and Sunday");
+                    $this->response->setJsonContent($data);
+                }
                 else if(empty($type3data['dateofintimtn']))
                 {
                     $data = array("logged" => false,'message' => " Date of intimation to company should not empty..!!");
@@ -2308,6 +2413,11 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please provide correct Date of intimation to company');
                     $this->response->setJsonContent($data);
                 }
+                else if(strtotime($type3data['dateofintimtn']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of intimation to company should not be in future');
+                    $this->response->setJsonContent($data);
+                }
                 else if(empty($type3data['fromdate']))
                 {
                     $data = array("logged" => false,'message' => " Date of purchase / sale of shares From should not empty..!!");
@@ -2316,6 +2426,11 @@ class SebiController extends ControllerBase
                 else if($fromdatestatus != "valid")
                 {
                     $data = array("logged" => false,'message' => 'Please provide correct Date of purchase / sale of shares From');
+                    $this->response->setJsonContent($data);
+                }
+                else if(strtotime($type3data['fromdate']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of purchase / sale of shares From should not be in future');
                     $this->response->setJsonContent($data);
                 }
                 else if($fromdateday == 'Saturday' || $fromdateday == 'Sunday')
@@ -2333,6 +2448,11 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please provide correct Date of purchase / sale of shares To');
                     $this->response->setJsonContent($data);
                 }
+                else if(strtotime($type3data['todate']) > strtotime($todaysdate))
+                {
+                    $data = array("logged" => false,'message' => 'Date of purchase / sale of shares To should not be in future');
+                    $this->response->setJsonContent($data);
+                }
                 else if($todateday == 'Saturday' || $todateday == 'Sunday')
                 {
                     $data = array("logged" => false,'message' => " Date of purchase / sale of shares From cannot be Saturday and Sunday");
@@ -2346,7 +2466,7 @@ class SebiController extends ControllerBase
                 else
                 {
                     $rqstMod = '5';
-                    $type3data['typeoftrans'] = '6';
+                    $type3data['typeoftrans'] = '7';
                     $resPersonalReq = $this->sebicommon->inFormcTypePersonalReq($getuserid,$user_group_id,$type3data,$rqstMod);
                     if($resPersonalReq['logged']===true)
                     {
@@ -2360,8 +2480,8 @@ class SebiController extends ControllerBase
                             $formcdata[0]['intimtndate'] = $type3data['dateofintimtn'];
                             $formcdata[0]['allotmentfrm'] = $type3data['fromdate'];
                             $formcdata[0]['allotmentto'] = $type3data['todate'];
-                            $formcdata[0]['aquimode'] = 'Received on exercise of ESOPs';
-                            $formcdata[0]['exetrd'] = 'Received on exercise of ESOPs';
+                            $formcdata[0]['aquimode'] = 'Allotment after exercise of ESOPs';
+                            $formcdata[0]['exetrd'] = 'Allotment after exercise of ESOPs';
                             $formcdata[0]['formctype'] = '3';
                             //print_r($formcdata);exit;
                             $getres = $this->sebicommon->insertformc($getuserid,$user_group_id,$formcdata,$formcids,$appvrid);

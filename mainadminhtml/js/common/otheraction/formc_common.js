@@ -126,7 +126,7 @@ function getdataonload()
             }
             else
             {
-                addhtmlnxt += '<td width="20%" ><i class="fa fa-edit faicon floatleft editformc" title="Edit entry" formcid="'+response.resdta[i].id+'"></i></td>';
+                addhtmlnxt += '<td width="20%" ><i class="fa fa-edit faicon floatleft editformc" title="Edit entry" formcid="'+response.resdta[i].id+'" formctype="'+response.resdta[i].typeofformc+'" tradeid="'+response.resdta[i].tradeid+'"></i></td>';
                 
             }
             addhtmlnxt += '</tr>';                        
@@ -154,7 +154,9 @@ function getdataonload()
 
 website('body').on('click','.editformc', function(){
 var id = website(this).attr('formcid');
-    var formdata = {id:id};
+var formctype = website(this).attr('formctype');
+var tradeid = website(this).attr('tradeid');
+    var formdata = {id:id,formctype:formctype,tradeid:tradeid};
     website.ajax({
       url:'sebi/fetchformcedit',
       data:formdata,
@@ -174,7 +176,7 @@ var id = website(this).attr('formcid');
         if(response.logged===true)
         {
             //console.log(response.data);return false;
-               var typcntr=response.data.type_of_contract;
+            var typcntr=response.data.type_of_contract;
             if(typcntr=='')
             {
                   website('#Mymodaledit #contracttype option[value=""]').prop('selected', 'selected').change();
@@ -217,14 +219,54 @@ var id = website(this).attr('formcid');
             }
             
             website("#Mymodaledit #acquimode").val(response.data.acquimode);
+            website("#Mymodaledit #acquimodeother").val(response.data.acquimode);
             website("#Mymodaledit #buyvalue").val(response.data.buyvalue);
             website("#Mymodaledit #buynumbrunt").val(response.data.buynumbrunt);
             website("#Mymodaledit #sellvalue").val(response.data.sellvalue);
             website("#Mymodaledit #sellnumbrunt").val(response.data.sellnumbrunt);
             website("#Mymodaledit #exetrd").val(response.data.exetrd);
+            website("#Mymodaledit #exetrdother").val(response.data.exetrd);
             
            
             website('#updateformc #upformcid').val(id);
+            website('#updateformc #requestmodeid').val(response.data.requestmodeid);
+            website('#updateformc #reqid').val(response.data.reqid);
+            website('#updateformc #tradeid').val(response.data.trdeid);
+            if(response.data.requestmodeid == '3' || response.data.requestmodeid == '4' || response.data.requestmodeid == '5')
+            {
+                website("#Mymodaledit #sectypeid").val(response.data.sectype);
+                website("#Mymodaledit #demataccno").val(response.data.demat_acc_no);
+                website("#Mymodaledit #noofshare").val(response.data.no_of_share);
+                website("#Mymodaledit #pricepershare").val(response.data.price_per_share);
+                website("#Mymodaledit #totalamt").val(response.data.total_amount);
+                website("#Mymodaledit #typeoftrans").val(response.data.type_of_transaction);
+                website("#Mymodaledit #dateoftrans").val(response.data.date_of_transaction);
+                website("#Mymodaledit #formctypesshow").show();
+                if(response.data.requestmodeid == '4' || response.data.requestmodeid == '5')
+                {
+                    website("#Mymodaledit #selecttrans").hide();
+                }
+                else
+                {
+                    website("#Mymodaledit #selecttrans").show();
+                }
+                
+                website("#Mymodaledit #sectypeid").attr('required');
+                website("#Mymodaledit #demataccno").attr('required');
+                website("#Mymodaledit #noofshare").attr('required');
+                website("#Mymodaledit #pricepershare").attr('required');
+                website("#Mymodaledit #dateoftrans").attr('required');
+            }
+            else
+            {
+                website("#Mymodaledit #formctypesshow").hide();
+                
+                website("#Mymodaledit #sectypeid").removeAttr('required');
+                website("#Mymodaledit #demataccno").removeAttr('required');
+                website("#Mymodaledit #noofshare").removeAttr('required');
+                website("#Mymodaledit #pricepershare").removeAttr('required');
+                website("#Mymodaledit #dateoftrans").removeAttr('required'); 
+            }
             website('#Mymodaledit').modal('show');
             
       }
@@ -632,6 +674,26 @@ website('body').on('click','.previous', function(e)
 {
     var baseHref = getbaseurl();
     window.location.href=baseHref+"sebi/transformc";
+});
+
+website("#Mymodaledit #pricepershare").keyup(function(){
+   var noofshare=website('#Mymodaledit #noofshare').val();
+   var pricepershare=website('#Mymodaledit #pricepershare').val();
+   if(noofshare !='' && pricepershare!='')
+   {
+      var totalamt=noofshare*pricepershare;
+      website('#Mymodaledit #totalamt').val(totalamt)
+   }  
+});
+
+website("#Mymodaledit #noofshare").keyup(function(){
+   var noofshare=website('#Mymodaledit #noofshare').val();
+   var pricepershare=website('#Mymodaledit #pricepershare').val();
+   if(noofshare !='' && pricepershare!='')
+   {
+      var totalamt=noofshare*pricepershare;
+      website('#Mymodaledit #totalamt').val(totalamt)
+   }  
 });
 
 function numberalphOnly() 

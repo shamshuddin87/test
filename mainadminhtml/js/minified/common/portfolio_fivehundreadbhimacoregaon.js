@@ -22,7 +22,7 @@ website.ajax({url:'portfolio/storeaccno',data:{accno:mydata,self_nation:self_nat
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{if(response.isfirst=='yes'&&response.isnextdataempty=='yes')
+{if(response.isfilled=='no'&&response.isnextdatafilled=='no')
 {var baseHref=getbaseurl();var redirecturl=baseHref+"portfolio?tab="+btoa(2);website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Demat Account Details added successfully.<br>Please Insert Relative Demat Account Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');website('#modeluserguide').modal('show');getuseraccno();}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});getuseraccno();}}
@@ -115,7 +115,7 @@ else{new PNotify({title:'Alert',text:response.message,type:'university',hide:tru
 {}});}});website('body').on('click','.dematup',function(e){var dematup=website(this).val();website.ajax({url:'portfolio/zerodematacc',data:{dematup:dematup},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
-{if(dematup==0&&response.isfirst=='yes')
+{if(dematup==0&&response.isfilled=='no'&&response.isnextdatafilled=='no')
 {var baseHref=getbaseurl();var redirecturl=baseHref+"portfolio?tab="+btoa(2);website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Updated successfully.<br>Please Insert Relative Demat Account Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');website('#modeluserguide').modal('show');}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});});function showsection(){var section=document.getElementById("showdemat");if(section.style.display==="none"){section.style.display="block";}}

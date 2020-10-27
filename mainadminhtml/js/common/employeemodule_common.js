@@ -511,7 +511,7 @@ website("body").on("click", "#yesdisclosures1", function (e) {
         website("#updateholdings1").modal("hide");
         if (response.logged == true) 
         {
-            if(response.isfirst == 'yes' && response.isnextdataempty == 'yes')
+            if(response.isfilled == 'no' && response.isnextdatafilled == 'no')
             {
                 var baseHref = getbaseurl();
                 var redirecturl = baseHref + "employeemodule?tab=" + btoa(4);
@@ -615,7 +615,7 @@ website("body").on("click", "#yesdisclosures2", function (e) {
         if (response.logged === true) 
         {
             //response.isfirst == 'yes' && 
-            if(response.isnextdataempty == 'yes')
+            if(response.isfilled == 'no' && response.isnextdatafilled == 'no')
             {
                 
                 website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Relative Details Updated Succefully.<br>Do you want to add more?</h5></div><div style="float:right;"><button type="button" class="btn btn-primary" id="yesfillinrelatives" >Yes</button><button style="color: #522c8f !important;border-color: #cecece;" type="button" class="btn btn-default" id="notfillinreltv">No</button></div>');
@@ -1546,7 +1546,7 @@ website("#savemfr").click(function (e) {
       if (response.logged === true) 
       {
           var baseHref = getbaseurl();
-          if(response.isfirst == 'yes' && response.isnextdataempty == 'yes')
+          if(response.isfilled == 'no' && response.isnextdatafilled == 'no')
             {
                var redirecturl = baseHref + "portfolio";
                 website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Data Inserted Successfully.<br>Please Insert Demat Account Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');
@@ -2679,7 +2679,7 @@ website("body").on("click", "#pastbtnsub", function (e) {
       success: function (response, textStatus, jqXHR) {
         if (response.logged == true) 
         {
-            if(response.isfirst == 'yes' && response.isnextdataempty == 'yes')
+            if(response.isfilled == 'no' && response.isnextdatafilled == 'no')
             {
                 var baseHref = getbaseurl();
                 var redirecturl = baseHref + "employeemodule?tab=" + btoa(2);
@@ -3071,7 +3071,7 @@ website(document).on('click', '#copyaddress', function() {
          {
              if (response.logged == true) 
              {
-                if(mfrstatusupdt == 0 && response.isfirst == 'yes')
+                if(mfrstatusupdt == 0 && response.isfilled == 'no' && response.isnextdatafilled == 'no')
                 {
                     var baseHref = getbaseurl();
                     var redirecturl = baseHref + "portfolio";
@@ -3126,10 +3126,36 @@ function hidemfrsection()
 /*   ---------------- MFR Section (onclick yes no)*/
 
 website('body').on('click','#notfillinreltv',function(e){
-    var baseHref = getbaseurl();
-    var redirecturl = baseHref + "employeemodule?tab=" + btoa(3);
-    website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">All relatives detail updated.<br>Please update your material financial relationships Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
-    website('#modeluserguide').modal('show');
+    
+    website.ajax({
+        url:'employeemodule/updateinUserFlow',
+        //data:{},
+        method:'POST',
+        //contentType:'json',
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+        dataType:"json",
+        cache:false,
+        //async:true, Cross domain checking
+        beforeSend: function()
+        {     },
+        uploadProgress: function(event, position, total, percentComplete)
+        {   },
+        success: function(response, textStatus, jqXHR)
+         {
+             if (response.logged == true) 
+             {
+                var baseHref = getbaseurl();
+                var redirecturl = baseHref + "employeemodule?tab=" + btoa(3);
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">All relatives detail updated.<br>Please update your material financial relationships Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
+                website('#modeluserguide').modal('show');
+             }
+        },
+        complete: function(response)
+        {   },
+        error: function(jqXHR, textStatus, errorThrown)
+        {   }
+   });
 });
 
 website('body').on('click','#yesfillinrelatives',function(e){

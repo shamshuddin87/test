@@ -124,7 +124,7 @@ class TradingrequestController extends ControllerBase
                 }
                 else if(empty($noofshare))
                 {
-                    $data = array("logged" => false,'message' => 'Please Select Number Of Shares...!!!');
+                    $data = array("logged" => false,'message' => 'Enter No. of shares');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($typeofrequests))

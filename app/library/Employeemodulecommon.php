@@ -1194,7 +1194,75 @@ class Employeemodulecommon extends Component
        }
         return $result;
     }
-
+    
+    public function inupUserFlow($getuserid,$user_group_id,$columnname,$colval)
+    {
+        $connection = $this->dbtrd;
+        $time=time();
+        $selectquery="SELECT * FROM `userguideflow` WHERE user_id='".$getuserid."'";
+        try
+        {
+            $exe= $connection->query($selectquery);
+            $getnum = trim($exe->numRows());
+            if($getnum==0)
+            {
+                $queryinup = "INSERT INTO `userguideflow` (`user_id`,`user_group_id`,`date_added`,`date_modified`,`timeago`)
+                VALUES ('".$getuserid."','".$user_group_id."',NOW(),NOW(),'".$time."')"; 
+            }
+            else if(!empty($columnname) && !empty($colval))
+            {
+                $queryinup = "UPDATE `userguideflow` SET `".$columnname."` = '".$colval."',`date_modified`=NOW() WHERE `user_id`='".$getuserid."'";
+            }
+            else
+            {
+                $queryinup = "";
+            }
+            //print_r($queryinup);exit;
+            $exeprev = $connection->query($queryinup);
+            if($exeprev)
+            {
+               return true;
+            }
+            else
+            {
+              return false;
+            }
+           
+        }
+        catch (Exception $e) 
+        {
+            //echo "checkng Exception";print_r($e);exit;
+            return false;
+        }
+    }
+    
+    public function fetchUserFlow($getuserid,$user_group_id,$columnname)
+    {
+        $connection = $this->dbtrd;
+        $time=time();
+        $query="SELECT `".$columnname."` FROM `userguideflow` WHERE user_id='".$getuserid."'";
+        //echo $query;exit;
+        try
+        {
+            $exe= $connection->query($query);
+            $getnum = trim($exe->numRows());
+            if($getnum>0)
+            {
+                $row = $exe->fetch();
+                $getlist = $row[$columnname];
+            }
+            else
+            {
+               $getlist = '';
+            }
+        }
+        catch (Exception $e) 
+        {
+            //echo "checkng Exception";print_r($e);exit;
+            $getlist = '';
+        }
+        return $getlist;
+    }
         
         
   }

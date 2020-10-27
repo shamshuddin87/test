@@ -67,20 +67,21 @@ class PortfolioController extends ControllerBase
             }
             if($flag == 1)
             {
-                $isfirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'user_demat_accounts','user_id');
+                $isFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'userdemat');
                 //print_r($isfirst);exit;
-                $isDataEmpty = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'relative_demat_accounts','parent_user_id');
+                $isNextFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'relativedemat');
                 //print_r($isDataEmpty);exit;
                 
                 $getresponse = $this->portfoliocommon->storeaccno($uid,$usergroup,$accnodata);
                 if($getresponse['status']==true)
                 {
-                    $data = array("logged" => true,'message' =>$getresponse['msg'],'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
+                    $inupuserdetail = $this->employeemodulecommon->inupUserFlow($uid,$usergroup,'userdemat','yes');
+                    $data = array("logged" => true,'message' =>$getresponse['msg'],'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                     $this->response->setJsonContent($data);
                 }
                 else
                 {
-                    $data = array("logged" => false,'message' => $getresponse['msg'],'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
+                    $data = array("logged" => false,'message' => $getresponse['msg'],'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                     $this->response->setJsonContent($data);
                 }
             }
@@ -228,6 +229,7 @@ class PortfolioController extends ControllerBase
                 $getresponse = $this->portfoliocommon->storerelativeacc($uid,$usergroup,$myarr,$relitiveid);
                 if($getresponse['status']==true)
                 {
+                    $inupuserdetail = $this->employeemodulecommon->inupUserFlow($uid,$usergroup,'relativedemat','yes');
                     $data = array("logged" => true,"message"=>$getresponse['msg']);
                     $this->response->setJsonContent($data);
                 }
@@ -344,7 +346,7 @@ class PortfolioController extends ControllerBase
       }
 
 
-        public function zerodemataccAction()
+      public function zerodemataccAction()
       {
         $this->view->disable();
         $uid = $this->session->loginauthspuserfront['id'];
@@ -355,18 +357,21 @@ class PortfolioController extends ControllerBase
           {
                 $dematup= $this->request->getPost('dematup','trim');
                 // print_r($dematup);exit;
-                $isfirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'demat_status','user_id');
+                $isFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'userdemat');
                 //print_r($isfirst);exit;
+                $isNextFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'relativedemat');
+                //print_r($isDataEmpty);exit;
+              
                 $getresponse = $this->portfoliocommon->zerodematacc($uid,$usergroup,$dematup);
                 if($getresponse['status']==true)
                 {
-                    $data = array("logged" => true,"message"=>"Record Saved Successfully",'isfirst'=>$isfirst);
+                    $inupuserdetail = $this->employeemodulecommon->inupUserFlow($uid,$usergroup,'userdemat','yes');
+                    $data = array("logged" => true,"message"=>"Record Saved Successfully",'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                     $this->response->setJsonContent($data);
-
-                  }
+                }
                 else
                 {
-                    $data = array("logged" => true,"message"=>$getresponse['message'],'isfirst'=>$isfirst);
+                    $data = array("logged" => true,"message"=>$getresponse['message'],'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                     $this->response->setJsonContent($data);
                 }
                   $this->response->send();
