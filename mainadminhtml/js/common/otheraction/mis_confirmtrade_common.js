@@ -115,6 +115,7 @@ function getmisconfrmtrde()
                     
                     htmlelements+='<td width="10%">'+response.data[i].actualtrade+'</td>';
                     htmlelements+='<td width="10%">'+response.data[i].date_of_transaction+'</td>';
+                    htmlelements+='<td width="10%">'+response.data[i].requestmode+'</td>';
                     // if(tradewindwdte>tradedte)
                     // {
                     //     htmlelements+='<td width="10%">Compliance</td>';

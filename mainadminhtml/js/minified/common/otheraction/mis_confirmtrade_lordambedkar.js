@@ -22,7 +22,7 @@ htmlelements+='<td width="10%">'+response.data[i].preclrtrade+'</td>';if(respons
 {htmlelements+='<td width="10%">'+response.data[i].approved_date+'</td>';}
 else
 {htmlelements+='<td width="10%">'+response.data[i].date_added+'</td>';}
-htmlelements+='<td width="10%">'+response.data[i].actualtrade+'</td>';htmlelements+='<td width="10%">'+response.data[i].date_of_transaction+'</td>';htmlelements+='</tr>';}}
+htmlelements+='<td width="10%">'+response.data[i].actualtrade+'</td>';htmlelements+='<td width="10%">'+response.data[i].date_of_transaction+'</td>';htmlelements+='<td width="10%">'+response.data[i].requestmode+'</td>';htmlelements+='</tr>';}}
 else
 {htmlelements+='<tr>';htmlelements+='<td colspan="8" style="text-align: center;">Data Not Found..!!</td></tr>';}
 website('.accdetails8').html(htmlelements);website('#acc8').html(response.pgnhtml);},complete:function(response)
