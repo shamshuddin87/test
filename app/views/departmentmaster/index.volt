@@ -18,7 +18,7 @@
                     
                     <div class="tablitiledesc text-center">
                             <div class="note" style="color: #000;padding: 12px 0;}">
-                                (<strong>Note : </strong>Fields are marked with * are mandatory fields)
+                                (<strong>Note : </strong>Important Fields are * Specified.)
                             </div>
                     </div>
 
