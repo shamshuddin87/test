@@ -209,12 +209,14 @@ class BhimraogeoController extends ControllerBase
         //echo '<pre>';print_r($getuser);exit;
     }
     /* ########################### Automatic EmailShoot CRAWN End ########################### */
+    
+    
     public function checklogAction()
     {
         $this->view->disable();
-
         $data = $this->elements->checkuserloggedinpage();
-
+        //echo '<pre>'; print_r($data); exit;
+        
         /* --- Start Destroy Session after 30 minutes --- */
         if($data['status']==true)
         {

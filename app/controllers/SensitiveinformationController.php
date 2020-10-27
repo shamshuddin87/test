@@ -638,8 +638,78 @@ class SensitiveinformationController extends ControllerBase
         }
         
     }
-    //----------------------------GET DECRYPT FILE ----------------------//
+    // **************************** infosharing insert end ***************************
+    
+    
+/* --------------- Start Add info sharing via excel --------------- */
+    public function insertInfoshareViaExcelAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];        
+        $firstname = $this->session->loginauthspuserfront['firstname'];
+        $lastname = $this->session->loginauthspuserfront['lastname'];
+        $timeago = time();
+        
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $upsitypeid = $this->request->getPost('upsitypeid','trim');
+                $upsiname = $this->request->getPost('selectupsi','trim');
+                //echo $upsitypeid; exit;
+                
+                // --- Start File Upload ---
+                $userfile_name = $_FILES['infoshareExcl']['name'];
+                //echo $userfile_name;exit;
+                $userfile_tmp = $_FILES['infoshareExcl']['tmp_name'];
+                $userfile_size = $_FILES['infoshareExcl']['size'];
+                $userfile_type = $_FILES['infoshareExcl']['type'];
+                $filename = basename($_FILES['infoshareExcl']['name']);
+                //echo $filename;exit;
+                
+                $file_ext = $this->validationcommon->getfileext($filename);
+                
+                $upload_path = $this->infoshareattachment."/";
+                $large_imp_name = 'uploadedby-'.$getuserid.'_timeago-'.$timeago;
+                $large_impfile_location = $upload_path.$large_imp_name.".".$file_ext;
+                $uploadedornot = move_uploaded_file($userfile_tmp, $large_impfile_location);
+                //echo $uploadedornot; exit;
+                // --- End File Upload ---
+                
+                
 
+                $getresponse = $this->phpimportexpogen->insertInfoshareViaExcel($getuserid,$user_group_id,$upsitypeid,$upsiname,$large_impfile_location);
+                //print_r($employeecount);exit;
+                
+                if($getresponse)
+                {
+                    $data = array("logged" => true,'message' => 'Record Added Successful !!','data'=>$getresponse);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => 'Record Not Added !!');
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();            
+            }
+            else
+            {
+                exit('No direct script access allowed isAjax');
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }        
+    }
+/* --------------- End Add info sharing via excel --------------- */
+    
+    
+    //----------------------------GET DECRYPT FILE ----------------------//
         public function getdecryptedfileAction()
       {
             $this->view->disable();
@@ -710,7 +780,6 @@ class SensitiveinformationController extends ControllerBase
 
     //----------------------------------------------------------------------------//
 
-    // **************************** infosharing insert end ***************************
     
     // **************************** infosharing fetch for table start***************************
     public function fetchinfosharingAction()

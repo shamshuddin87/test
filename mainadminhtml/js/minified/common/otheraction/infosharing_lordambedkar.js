@@ -176,4 +176,12 @@ else
 {var j=i;j++;addhtml+='<tr><td width="50%">'+j+'.</td>';addhtml+='<td width="50%"><i class="fa fa-download getfile" filepath="'+filepath[i]+'" d="uploadattached1" aria-hidden="true"></i></td></tr>';}
 addhtml+='</tr></table>';website('#modalupsiattachmnt .upsifilepath').html(addhtml);website('#modalupsiattachmnt').modal('show');}
 else
-{new PNotify({title:'Alert!!',text:'File not available',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}});;
+{new PNotify({title:'Alert!!',text:'File not available',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}});website('#insertInfoshareViaExcel').ajaxForm({dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
+{if(response.logged===true)
+{new PNotify({title:'Record Added Successfully',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark',});setTimeout(function(){window.location.reload();},1000);}
+else
+{new PNotify({title:'Record Not Added',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark',});}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown)
+{}});;
