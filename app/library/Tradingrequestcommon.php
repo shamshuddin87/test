@@ -1477,7 +1477,7 @@ function checktypeofreq($uid,$usergroup,$data)
                         $years = floor($diff / (365*60*60*24));
                         $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
                         $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-                        if($days<=182 && $row['type_of_transaction']!=$typeoftrans)
+                        if($days<=182 && $row['type_of_transaction']!=$typeoftrans && $row['type_of_transaction']!='6'&& $row['type_of_transaction']!='7')
                         {
                             $result = array('status'=>true,'message'=>'');
                         }

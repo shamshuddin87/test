@@ -138,7 +138,7 @@ website("body").on("click","#subdemat",function(e) {
         {
              if(response.logged===true)
              {
-                if(response.isfirst == 'yes' && response.isnextdataempty == 'yes')
+                if(response.isfilled == 'no' && response.isnextdatafilled == 'no')
                 {
                     var baseHref = getbaseurl();
                     var redirecturl = baseHref + "portfolio?tab=" + btoa(2);
@@ -829,7 +829,7 @@ website("body").on("click","#subreldemat",function(e){
         success: function(response, textStatus, jqXHR)
          {
               //console.log(response);
-            if(dematup == 0 && response.isfirst == 'yes')
+            if(dematup == 0 && response.isfilled == 'no' && response.isnextdatafilled == 'no')
             {
                 var baseHref = getbaseurl();
                 var redirecturl = baseHref + "portfolio?tab=" + btoa(2);

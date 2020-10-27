@@ -142,6 +142,7 @@ class Logincommon extends Component
                     $updatetimelogin = "UPDATE `web_register_user` SET `timeago` = '".$timeago."' WHERE `user_id`='".$robot['user_id']."' ";
 					$connection->query($updatetimelogin);
                     
+                    $inupuserdetail = $this->employeemodulecommon->inupUserFlow($robot['user_id'],$robot['user_group_id'],'','');
                     
                     $data = array("logged" => true,'message' => 'Its Login insert id- ' .$robot['user_id'] , 'user_group_id' => $robot['user_group_id'],'fieldname'=>'loginpage');
                     //echo $dir_uname;exit;

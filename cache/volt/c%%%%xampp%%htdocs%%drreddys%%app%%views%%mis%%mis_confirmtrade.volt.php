@@ -58,6 +58,7 @@ $current_year =  date("Y");
                     <th>Date of Pre-Clearance</th> 
                     <th>Actual Trade</th> 
                     <th>Date of actual Trade</th> 
+                    <th>Mode of Submission</th>
                     <!-- <th>Compliance or Non-Compliance </th> -->
                 </tr>
              </thead>

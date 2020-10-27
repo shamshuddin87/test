@@ -774,14 +774,15 @@ class Miscommon extends Component
         $connection = $this->dbtrd;
         
         $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-        $query="SELECT ts.no_of_share AS actualtrade,lst.`company_name`,ts.date_of_transaction,pr.`no_of_shares` AS preclrtrade,pr.`approved_date`,pr.`date_added`,pr.`trading_date`,memb.`fullname`,memb.`emp_status`
+        $query="SELECT ts.no_of_share AS actualtrade,lst.`company_name`,ts.date_of_transaction,pr.`no_of_shares` AS preclrtrade,pr.`approved_date`,pr.`date_added`,pr.`trading_date`,memb.`fullname`,memb.`emp_status`,rqmod.`requestmode`
         FROM trading_status ts  
         INNER JOIN personal_request pr ON ( pr.`user_id`=ts.user_id AND pr.id=ts.req_id)
         LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = ts.`user_id`
         LEFT JOIN `listedcmpmodule` lst ON lst.`id`=pr.`id_of_company`
+        LEFT JOIN `master_requestmode` rqmod ON rqmod.`id` = pr.`requestmodeid`
         WHERE ts.user_id IN (".$grpusrs['ulstring'].") AND (pr.trading_status='1' AND  ts.type_of_request='1') AND (ts.excepapp_status IS NULL OR ts.excepapp_status='1')".$mainquery;
 
-        // print_r($query);exit;
+        //print_r($query);exit;
         try
         {
             $exeget = $connection->query($query);

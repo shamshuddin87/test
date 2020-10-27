@@ -3200,7 +3200,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
   Yours faithfully,<br/>
   '.$itmemberinfo['fullname'].'<br/><br/>
  
-  Place '.$place.'<br/>
+  Place: '.$place.'<br/>
   Date:'.$date.'<br/>
   </p>
 

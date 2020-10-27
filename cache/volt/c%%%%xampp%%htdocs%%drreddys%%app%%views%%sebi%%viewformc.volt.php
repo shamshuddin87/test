@@ -54,7 +54,7 @@ $condeptsess = $this->session->contractdepartment;
                             <th>Created Date</th>
                             <th>Name</th>
                             <th>PAN</th>
-                            <th>CIN/DIN</th>
+                            <!--<th>CIN/DIN</th>-->
                             <th>Address</th>
                             <th>Contact No</th>
                             <th>Category Of Person</th>

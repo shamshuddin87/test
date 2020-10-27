@@ -210,9 +210,9 @@ class EmployeemoduleController extends ControllerBase
                     }
                     else
                     {
-                        $isfirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'personal_info','userid');
-                        //print_r($isfirst);exit;
-                        $isDataEmpty = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'pastemployer','user_id');
+                        $isFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'personalinfo');
+                        //print_r($isfilled);exit;
+                        $isNextFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'pastemployment');
                         //print_r($isDataEmpty);exit;
                         
                         $result = $this->employeemodulecommon->insmydetail($uid,$usergroup,$data,$filepath);
@@ -223,13 +223,17 @@ class EmployeemoduleController extends ControllerBase
                     //print_r($result);exit;
                     if($result['status']== true && $sendmail['logged'] == true)
                     {
-                        $data = array("logged" => true,'message' => $result['message'],'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
+                        if($isFilled == 'no')
+                        {
+                            $inupuserdetail = $this->employeemodulecommon->inupUserFlow($uid,$usergroup,'personalinfo','yes');
+                        }
+                        $data = array("logged" => true,'message' => $result['message'],'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                         $this->response->setJsonContent($data);
                     }
 
                     else
                     {
-                        $data = array("logged" => false,'message' =>$result['message'],'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
+                        $data = array("logged" => false,'message' =>$result['message'],'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                         $this->response->setJsonContent($data);
                     }
                 }
@@ -567,9 +571,9 @@ class EmployeemoduleController extends ControllerBase
                 }
                 else
                 {
-                    $isfirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'relative_info','user_id');
+                    $isFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'relativeinfo');
                     //print_r($isfirst);exit;
-                    $isDataEmpty = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'mfr','user_id');
+                    $isNextFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'mfr');
                     //print_r($isDataEmpty);exit;
                     
                     if(!empty($_FILES["file"]))
@@ -599,12 +603,12 @@ class EmployeemoduleController extends ControllerBase
                     
                     if($result['status']==true)
                     {
-                        $data = array("logged" => true,'message' =>$result['message'],'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
+                        $data = array("logged" => true,'message' =>$result['message'],'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                         $this->response->setJsonContent($data);
                     }
                     else
                     {
-                        $data = array("logged" => false,'message' =>$result['message'],'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
+                        $data = array("logged" => false,'message' =>$result['message'],'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                         $this->response->setJsonContent($data);
                     }
                 }
@@ -1039,9 +1043,9 @@ class EmployeemoduleController extends ControllerBase
                     $date=date('d-m-Y');
                     $data=$this->request->getPost();
                     
-                    $isfirst = $this->employeemodulecommon->checkIfFirstData($getuserid,$user_group_id,'pastemployer','user_id');
+                    $isFilled = $this->employeemodulecommon->fetchUserFlow($getuserid,$user_group_id,'pastemployment');
                     //print_r($isfirst);exit;
-                    $isDataEmpty = $this->employeemodulecommon->checkIfFirstData($getuserid,$user_group_id,'relative_info','user_id');
+                    $isNextFilled = $this->employeemodulecommon->fetchUserFlow($getuserid,$user_group_id,'relativeinfo');
                     //print_r($isDataEmpty);exit;
                     if(isset($data['myarr']) && sizeof($data['myarr'])!=0)
                     {
@@ -1181,12 +1185,16 @@ class EmployeemoduleController extends ControllerBase
                         //echo 'exit;';exit;
                         if($getres)
                         {
-                            $data = array("logged" => true,'message' => 'Record Added','isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
+                            if($isFilled == 'no')
+                            {
+                                $inupuserdetail = $this->employeemodulecommon->inupUserFlow($getuserid,$user_group_id,'pastemployment','yes');
+                            }
+                            $data = array("logged" => true,'message' => 'Record Added','isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                             $this->response->setJsonContent($data);
                         }
                         else
                         {
-                            $data = array("logged" => false,'message' => "Record Not Added..!!",'isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
+                            $data = array("logged" => false,'message' => "Record Not Added..!!",'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                             $this->response->setJsonContent($data);
                         } 
                     }
@@ -1494,19 +1502,20 @@ class EmployeemoduleController extends ControllerBase
                 }
                 else
                 {
-                    $isfirst = $this->employeemodulecommon->checkIfFirstData($getuserid,$user_group_id,'mfr','user_id');
+                    $isFilled = $this->employeemodulecommon->fetchUserFlow($getuserid,$user_group_id,'mfr');
                     //print_r($isfirst);exit;
-                    $isDataEmpty = $this->employeemodulecommon->checkIfFirstData($getuserid,$user_group_id,'user_demat_accounts','user_id');
+                    $isNextFilled = $this->employeemodulecommon->fetchUserFlow($getuserid,$user_group_id,'userdemat');
                     //print_r($isDataEmpty);exit;
                     
                     $getres = $this->employeemodulecommon->insertmfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$pan,$address,$transaction,$clientid,$mobile);
                     if($getres)
                     {
-                        $data = array("logged" => true,'message' => 'Data Inserted Successfully..!!!','isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
+                        $inupuserdetail = $this->employeemodulecommon->inupUserFlow($getuserid,$user_group_id,'mfr','yes');
+                        $data = array("logged" => true,'message' => 'Data Inserted Successfully..!!!','isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                     }
                     else
                     {
-                        $data = array("logged" => false,'message' => 'Data Not Inserted..!!!','isfirst'=>$isfirst,'isnextdataempty'=>$isDataEmpty);
+                        $data = array("logged" => false,'message' => 'Data Not Inserted..!!!','isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                     }
                     $this->response->setJsonContent($data);
                 }
@@ -2161,26 +2170,67 @@ class EmployeemoduleController extends ControllerBase
     public function updatemfrstatusAction()
     {
         $this->view->disable();
-        $uid = $this->session->loginauthspuserfront['id'];
-        $usergroup = $this->session->loginauthspuserfront['user_group_id'];
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
         if($this->request->isPost() == true)
         {
           if($this->request->isAjax() == true)
           {
                 $mfrstatusupdt = $this->request->getPost('mfrstatusupdt','trim');
                 // print_r($mfrstatusupdt);exit;
-                $isfirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'mfrstatus','user_id');
+                $isFilled = $this->employeemodulecommon->fetchUserFlow($getuserid,$user_group_id,'mfr');
                 //print_r($isfirst);exit;
-                $getresponse = $this->employeemodulecommon->updatemfrstatus($uid,$usergroup,$mfrstatusupdt);
+                $isNextFilled = $this->employeemodulecommon->fetchUserFlow($getuserid,$user_group_id,'userdemat');
+                //print_r($isDataEmpty);exit;
+                $getresponse = $this->employeemodulecommon->updatemfrstatus($getuserid,$user_group_id,$mfrstatusupdt);
                 if($getresponse['status']==true)
                 {
-                    $data = array("logged" => true,"message"=>"Record Saved Successfully",'isfirst'=>$isfirst);
+                    $inupuserdetail = $this->employeemodulecommon->inupUserFlow($getuserid,$user_group_id,'mfr','yes');
+                    
+                    $data = array("logged" => true,"message"=>"Record Saved Successfully",'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                     $this->response->setJsonContent($data);
 
                 }
                 else
                 {
-                    $data = array("logged" => true,"message"=>$getresponse['message'],'isfirst'=>$isfirst);
+                    $data = array("logged" => true,"message"=>$getresponse['message'],'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }       
+    }
+    
+    public function updateinUserFlowAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        if($this->request->isPost() == true)
+        {
+          if($this->request->isAjax() == true)
+          {
+                $inupuserdetail = $this->employeemodulecommon->inupUserFlow($getuserid,$user_group_id,'relativeinfo','yes');
+              
+                if($inupuserdetail)
+                {
+                    $data = array("logged" => true,"message"=>"Record Saved Successfully");
+                    $this->response->setJsonContent($data);
+
+                }
+                else
+                {
+                    $data = array("logged" => true,"message"=>$getresponse['message']);
                     $this->response->setJsonContent($data);
                 }
                 $this->response->send();

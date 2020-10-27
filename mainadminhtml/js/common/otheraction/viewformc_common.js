@@ -86,7 +86,7 @@ function getdataonload()
             
             addhtmlnxt += '<td width="20%">'+response.resdta[i].fullname+'</td>';
             addhtmlnxt += '<td width="15%">'+response.resdta[i].pan+'</td>';
-            addhtmlnxt += '<td width="15%">'+response.resdta[i].cin+'</td>';
+            /*addhtmlnxt += '<td width="15%">'+response.resdta[i].cin+'</td>';*/
             addhtmlnxt += '<td width="15%">'+response.resdta[i].address+'</td>';
             addhtmlnxt += '<td width="15%">'+response.resdta[i].mobile+'</td>';
             addhtmlnxt += '<td width="15%">'+response.resdta[i].category+'</td>';
