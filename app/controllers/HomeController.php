@@ -235,6 +235,29 @@ class HomeController extends ControllerBase
                 //print_r($result);exit;
                 $getdematsstatus=$this->portfoliocommon->getdematsstatus($uid,$usergroup);
                 //print_r($getdematsstatus);exit;
+                
+                $isPastEmpFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'pastemployment');
+                //print_r($isPastEmpFilled);exit;
+                $ispastempFirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'pastemployer','user_id');
+                //print_r($isRelFirst);exit;
+                
+                $isRealtiveInfoFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'relativeinfo');
+                //print_r($isRealtiveInfoFilled);exit;
+                $isRelFirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'relative_info','user_id');
+                //print_r($isRelFirst);exit;
+                
+                $isMFRFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'mfr');
+                //print_r($isMFRFilled);exit;
+                $ismfrFirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'mfr','user_id');
+                //print_r($ismfrFirst);exit;
+                $ismfrstatusFirst = $this->employeemodulecommon->getmfrstatus($uid,$usergroup);
+                //print_r($ismfrstatusFirst);exit;
+                
+                $isRelDematFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'relativedemat');
+                //print_r($isRelDematFilled);exit;
+                $isRelDematFirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'relative_demat_accounts','parent_user_id');
+                //print_r($isRelDematFirst);exit;
+                
                 if(!empty($getdematsstatus))
                 {
                    // print_r($getdematsstatus);exit;
@@ -257,21 +280,48 @@ class HomeController extends ControllerBase
             
                 if(!empty($result))
                 {  
-                    
-
                     $getresponse = $this->portfoliocommon->getaccnoinfo($uid,$usergroup);
                     //print_r($getdematsstatus);exit;
-                    if((empty($getresponse) &&  $getdematsstatus==1) || (empty($getresponse) &&  $getdematsstatus==2))
+                    if($isPastEmpFilled == 'no' && $ispastempFirst == 'yes')
+                    {
+                        $pastempurl = 'employeemodule?tab='.base64_encode(4);
+                        $data = array("logged" => false,'message' => "Please update your past employment details.",'data'=>$pastempurl,'usergroup'=>$usergroup);
+                        $this->response->setJsonContent($data);
+                    }
+                    else if($isRealtiveInfoFilled == 'no' && $isRelFirst == 'yes')
+                    {
+                        $relinfourl = 'employeemodule?tab='.base64_encode(2);
+                        $data = array("logged" => false,'message' => "Please update your relatives details.",'data'=>$relinfourl,'usergroup'=>$usergroup);
+                        $this->response->setJsonContent($data);
+                    }
+                    else if(!empty($ismfrstatusFirst[0]) && $isMFRFilled == 'no' && $ismfrFirst == 'yes' && $ismfrstatusFirst[0]['status'] == '1')
+                    {
+                        $mfrurl = 'employeemodule?tab='.base64_encode(3);
+                        $data = array("logged" => false,'message' => "Please update your Material Financial Relationship Details.",'data'=>$mfrurl,'usergroup'=>$usergroup);
+                        $this->response->setJsonContent($data);
+                    }
+                    else if(empty($ismfrstatusFirst[0]) && $isMFRFilled == 'no' && $ismfrFirst == 'yes')
+                    {
+                        $mfrurl = 'employeemodule?tab='.base64_encode(3);
+                        $data = array("logged" => false,'message' => "Please update your Material Financial Relationship Details.",'data'=>$mfrurl,'usergroup'=>$usergroup);
+                        $this->response->setJsonContent($data);
+                    }
+                    else if((empty($getresponse) &&  $getdematsstatus==1) || (empty($getresponse) &&  $getdematsstatus==2))
                     {
                        $data = array("logged" => false,'message' => "You will not be allowed access until you update your demat account details. Please click  'No' if you don’t have a demat account.",'data'=>'portfolio','usergroup'=>$usergroup);
-                         $this->response->setJsonContent($data);
+                       $this->response->setJsonContent($data);
                        
+                    }
+                    else if($isRelDematFilled == 'no' && $isRelDematFirst == 'yes')
+                    {
+                        $reldematurl = 'portfolio?tab='.base64_encode(2);
+                        $data = array("logged" => false,'message' => "Please update your relatives Demat Account.",'data'=>$reldematurl,'usergroup'=>$usergroup);
+                        $this->response->setJsonContent($data);
                     }
                     else
                     {
                         $data = array("logged" => true,'message' => "Data Fetch Successfully",'data'=>'');
-                             $this->response->setJsonContent($data);
-
+                        $this->response->setJsonContent($data);
                     }
                 }
                 else

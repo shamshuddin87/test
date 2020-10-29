@@ -89,7 +89,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
 
                             <div class="tabcontractledesc text-center">
                                 <div class="note">
-                                    (<strong>Note : </strong>Important Fields are * Specified.)
+                                    (<strong>Note : </strong>Fields are marked with * are mandatory fields)
                                 </div>
                             </div>
                             <div class="formelementmain">
@@ -166,14 +166,14 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                         <div class="input">
                                             <div class="mainradiobtn">
                                                 <div class="floatleft radiobtn">
-                                                    <input type="radio" class="flat" id="gender" name="gender" value="1"
+                                                    <input style="    margin-top: 0;" type="radio" class="flat" id="gender" name="gender" value="1"
                                                         checked="" required />
                                                 </div>
                                                 <div class="floatleft genderlbltxt">Male</div>
                                             </div>
                                             <div class="mainradiobtn">
                                                 <div class="floatleft radiobtn">
-                                                    <input type="radio" class="flat" id="gender" name="gender"
+                                                    <input style="    margin-top: 0;" type="radio" class="flat" id="gender" name="gender"
                                                         value="2" />
                                                 </div>
                                                 <div class="floatleft genderlbltxt">Female</div>
@@ -201,10 +201,10 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                     </section>
 
                                     <section class="col col-md-4">
-                                        <label class="control-label">L+1 Email</label>
+                                        <label class="control-label">L+1 Email *</label>
                                         <div class="input">
                                             <input type="email" id="l1email" name="l1email"
-                                                class="form_fields form-control col-md-7 col-xs-12">
+                                                class="form_fields form-control col-md-7 col-xs-12" required>
                                         </div>
                                     </section>
 
