@@ -49,8 +49,8 @@ $condeptsess = $this->session->contractdepartment;
                             <th></th>
                            <!--  <th>Company Name</th> -->
                             <th>Buy/Sell</th>
-                            <th>No.Of Shares</th>
-                            <th>Value Of Shares</th>
+                            <th>No. of Shares</th>
+                            <th>Value of Shares</th>
                             <th>Date</th>
                         </tr>
                     </thead>
@@ -554,7 +554,7 @@ $condeptsess = $this->session->contractdepartment;
                
                     <section class="col col-md-4 col-xs-4">
                             <div class="input">
-                                <label class="control-label">Type Of Security</label>
+                                <label class="control-label">Type of Security</label>
                                 <select id="sectypeid" name="sectype" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="" id="sectype" >Select Security</option>
                                     <?php foreach($security as $sectype){  ?>
@@ -578,7 +578,7 @@ $condeptsess = $this->session->contractdepartment;
                
                     <section class="col col-md-4 col-xs-4">
                         <div class="input">
-                            <label class="control-label">No. Of Shares</label>
+                            <label class="control-label">No. of Shares</label>
                             <input type="text" id="noofshare" name="noofshare" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57  || event.charCode == 46' required>
                         </div>
                     </section>
@@ -767,7 +767,7 @@ $condeptsess = $this->session->contractdepartment;
 </div>
 
 <div id="Mymodaltype2" class="modal fade" role="dialog" tabIndex=-1>
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="width: width: 750px;">
 
     <div class="modal-content">
       <div class="modal-header">
@@ -808,7 +808,7 @@ $condeptsess = $this->session->contractdepartment;
                
                     <section class="col col-md-4 col-xs-4">
                             <div class="input">
-                                <label class="control-label">Type Of Security</label>
+                                <label class="control-label">Type of Security</label>
                                 <select id="sectypeid" name="sectype" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="" id="sectype" >Select Security</option>
                                     <?php foreach($security as $sectype){  ?>
@@ -832,7 +832,7 @@ $condeptsess = $this->session->contractdepartment;
                
                     <section class="col col-md-4 col-xs-4">
                         <div class="input">
-                            <label class="control-label">No. Of Shares</label>
+                            <label class="control-label">No. of Shares</label>
                             <input type="text" id="noofshare" name="noofshare" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57  || event.charCode == 46' required>
                         </div>
                     </section>
@@ -1062,7 +1062,7 @@ $condeptsess = $this->session->contractdepartment;
                
                     <section class="col col-md-4 col-xs-4">
                             <div class="input">
-                                <label class="control-label">Type Of Security</label>
+                                <label class="control-label">Type of Security</label>
                                 <select id="sectypeid" name="sectype" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="" id="sectype" >Select Security</option>
                                     <?php foreach($security as $sectype){  ?>
@@ -1086,7 +1086,7 @@ $condeptsess = $this->session->contractdepartment;
                
                     <section class="col col-md-4 col-xs-4">
                         <div class="input">
-                            <label class="control-label">No. Of Shares</label>
+                            <label class="control-label">No. of Shares</label>
                             <input type="text" id="noofshare" name="noofshare" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57  || event.charCode == 46' required>
                         </div>
                     </section>
