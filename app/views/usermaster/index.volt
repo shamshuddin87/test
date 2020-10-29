@@ -89,7 +89,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
 
                             <div class="tabcontractledesc text-center">
                                 <div class="note">
-                                    (<strong>Note : </strong>Fields are marked with * are mandatory fields)
+                                    (<strong>Note : </strong>Important Fields are * Specified.)
                                 </div>
                             </div>
                             <div class="formelementmain">

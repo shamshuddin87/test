@@ -189,7 +189,7 @@
                 <div id="searchcmp"></div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">No of Shares</label>
+                    <label for="exampleFormControlInput1">No. of Shares</label>
                     <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No Of Share">
                 </div>
 
@@ -247,8 +247,8 @@
                             <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >
                             </div>
                             <div id = "right" class="form-group col-md-4">
-                            <label for="">No of Shares</label>
-                            <input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">
+                            <label for="">No. of Shares</label>
+                            <input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Shares">
                             </div>
                             <div id = "right" class="form-group col-md-1">
                                 <i class="fa fa-trash-o" onclick="removehtml(1);" style="font-size:15px; color:#F44336;margin-top: 39px;"></i>
@@ -384,7 +384,7 @@
         <div id="searchcmp"></div>
 
         <div class="form-group">
-            <label for="exampleFormControlInput1">No of Shares</label>
+            <label for="exampleFormControlInput1">No. of Shares</label>
             <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No Of Share">
         </div>
 

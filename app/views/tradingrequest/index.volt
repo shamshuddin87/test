@@ -190,7 +190,7 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlInput1">No. of Shares</label>
-                    <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No Of Share">
+                    <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Share">
                 </div>
 
                 <div class="form-group">
@@ -309,7 +309,7 @@
     <span class="close"  data-dismiss="modal">&times;</span>
     <table class="table table-inverse mytable" id="datablerushi" typage="reqview">
      <thead>
-       <tr><th>No Of Share</th><th>Price Per Share</th><th>Total Amount</th><th>Date Of Transaction</th><th>Demat Account No</th><th>File</th></tr></thead>
+       <tr><th>No. of Share</th><th>Price Per Share</th><th>Total Amount</th><th>Date Of Transaction</th><th>Demat Account No</th><th>File</th></tr></thead>
          <tbody class="statustable" appendrow='1'></tbody>
       </table>
     </div>
@@ -385,7 +385,7 @@
 
         <div class="form-group">
             <label for="exampleFormControlInput1">No. of Shares</label>
-            <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No Of Share">
+            <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Share">
         </div>
 
         <div class="form-group">
@@ -426,7 +426,7 @@
             <table class="table table-inverse mytable" id="datablerushi" typage="reqview">
                 <thead>
                     <tr>
-                        <th style="width: 18%">No Of Share</th>
+                        <th style="width: 18%">No. of Share</th>
                         <th style="width: 20%">Price Per Share</th>
                         <th style="width: 25%">Total Amount</th>
                         <th style="width: 15%">Date Of Transaction</th>
@@ -479,7 +479,7 @@
             <table class="table table-inverse mytable" id="datablerushi" typage="reqview">
                 <thead>
                     <tr>
-                        <th style="width: 10%">No Of Share</th>
+                        <th style="width: 10%">No. of Share</th>
                         <th style="width: 20%">Price Per Share</th>
                         <th style="width: 20%">Total Amount</th>
                         <th style="width: 15%">Date Of Transaction</th>
