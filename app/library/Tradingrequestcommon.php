@@ -1452,7 +1452,7 @@ function checktypeofreq($uid,$usergroup,$data)
             //echo "wait here ";exit;
             $mydate=date('d-m-Y');
             $getlist = array();
-            $queryget = "SELECT * FROM `personal_request` WHERE user_id='".$uid."' AND id_of_company='".$idofcmp."' AND `sent_contraexeaprvl`='0'  order by id desc limit 1";
+            $queryget = "SELECT * FROM `personal_request` WHERE user_id='".$uid."' AND id_of_company='".$idofcmp."' AND `sent_contraexeaprvl`='0' AND `approved_status`!='2'  order by id desc limit 1";
             //echo $queryget;exit;
             try
             {
