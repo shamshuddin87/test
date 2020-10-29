@@ -68,7 +68,7 @@ else
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{website('#Mymodalreq').modal('hide');getalltradingrequest("");new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});setTimeout(function(){window.location.reload();},1000);}
+{website('#Mymodalreq').modal('hide');getalltradingrequest("");website('#RequestSuccessMsg').modal('show');}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
@@ -78,7 +78,7 @@ website('body').on('click','#Yesreqst',function(e)
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website('.preloder_wraper').fadeIn();},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});setTimeout(function(){window.location.reload();},1000);}
+{website('#checkappvlrequest').modal('hide');website('#Mymodalreq').modal('hide');website('#RequestSuccessMsg').modal('show');}
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
@@ -351,4 +351,6 @@ website('body').on('click','#requestmodeid',function(e)
 {website('#secReqQue').fadeIn();website('.appenddiv').html('');website('.plancntr').val(1);website('#dateoftrans').val('');website('#trans').val('');website('#sharestrans').val('');if(rqmdval==1)
 {website('.secPrClrncMd').fadeIn();}
 else
-{website('.secPrClrncMd').fadeOut();}};
+{website('.secPrClrncMd').fadeOut();}}
+website('body').on('click','.reloadpage',function(e)
+{setTimeout(function(){window.location.reload();},1000);});;

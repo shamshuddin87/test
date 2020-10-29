@@ -71,8 +71,6 @@ class PortfolioController extends ControllerBase
                 //print_r($isfirst);exit;
                 $isNextFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'relativedemat');
                 //print_r($isDataEmpty);exit;
-                $isFirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'user_demat_accounts','parent_user_id');
-                //print_r($isFirst);exit;
                 $isNextEmpty = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'relative_demat_accounts','parent_user_id');
                 //print_r($isNextEmpty);exit;
                 $getresponse = $this->portfoliocommon->storeaccno($uid,$usergroup,$accnodata);

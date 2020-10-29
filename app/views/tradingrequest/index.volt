@@ -793,3 +793,20 @@
     </div>
 </div>
 </div>
+
+<div id="RequestSuccessMsg" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 style="text-align: center;">Your request has been sent to the Compliance Officer.<br> You will receive an email after the request is approved.</h4> 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary reloadpage">Ok</button> 
+            </div>
+        </div>
+    </div>
+</div>
