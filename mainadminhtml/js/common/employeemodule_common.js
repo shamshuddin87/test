@@ -615,10 +615,17 @@ website("body").on("click", "#yesdisclosures2", function (e) {
         if (response.logged === true) 
         {
             //response.isfirst == 'yes' && 
-            if(response.isfilled == 'no' && response.isnextdatafilled == 'no')
+            if(response.ismfrstatusfirst[0] && response.isfilled == 'no' && response.isnextdatafilled == 'no' && response.ismfrstatusfirst[0].status == '1'  && response.ismfrEmpty == 'yes')
             {
                 
-                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Relative Details Updated Succefully.<br>Do you want to add more?</h5></div><div style="float:right;"><button type="button" class="btn btn-primary" id="yesfillinrelatives" >Yes</button><button style="color: #522c8f !important;border-color: #cecece;" type="button" class="btn btn-default" id="notfillinreltv">No</button></div>');
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Relative Details Updated Successfully.<br>Do you want to add more?</h5></div><div style="float:right;"><button type="button" class="btn btn-primary" id="yesfillinrelatives" >Yes</button><button style="color: #522c8f !important;border-color: #cecece;" type="button" class="btn btn-default" id="notfillinreltv">No</button></div>');
+                website('#modeluserguide').modal('show');
+                getrelationdata();
+            }
+            else if(!response.ismfrstatusfirst[0] && response.isfilled == 'no' && response.isnextdatafilled == 'no' && response.ismfrEmpty == 'yes')
+            {
+                
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Relative Details Updated Successfully.<br>Do you want to add more?</h5></div><div style="float:right;"><button type="button" class="btn btn-primary" id="yesfillinrelatives" >Yes</button><button style="color: #522c8f !important;border-color: #cecece;" type="button" class="btn btn-default" id="notfillinreltv">No</button></div>');
                 website('#modeluserguide').modal('show');
                 getrelationdata();
             }
@@ -1545,10 +1552,17 @@ website("#savemfr").click(function (e) {
     success: function (response, textStatus, jqXHR) {
       if (response.logged === true) 
       {
-          var baseHref = getbaseurl();
-          if(response.isfilled == 'no' && response.isnextdatafilled == 'no')
+            var baseHref = getbaseurl();
+            if(response.dematstatus[0] && response.isfilled == 'no' && response.isnextdatafilled == 'no' && response.dematstatus[0].status == '1'  && response.isdematEmpty == 'yes')
             {
-               var redirecturl = baseHref + "portfolio";
+                var redirecturl = baseHref + "portfolio";
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Data Inserted Successfully.<br>Please Insert Demat Account Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');
+                website('#modeluserguide').modal('show');
+                getmfrdata();
+            }
+            else if(!response.dematstatus[0] && response.isfilled == 'no' && response.isnextdatafilled == 'no' && response.isdematEmpty == 'yes')
+            {
+                var redirecturl = baseHref + "portfolio";
                 website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Data Inserted Successfully.<br>Please Insert Demat Account Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');
                 website('#modeluserguide').modal('show');
                 getmfrdata();
@@ -1556,13 +1570,13 @@ website("#savemfr").click(function (e) {
             else 
             {
                 getmfrdata();
-                new PNotify({
-                  title: "Alert",
-                  text: response.message,
-                  type: "university",
-                  hide: true,
-                  styling: "bootstrap3",
-                  addclass: "dark ",
+                    new PNotify({
+                    title: "Alert",
+                    text: response.message,
+                    type: "university",
+                    hide: true,
+                    styling: "bootstrap3",
+                    addclass: "dark ",
                 });
                 window.location.href = baseHref + "employeemodule?tab=" + btoa(3);
             }
@@ -2683,7 +2697,7 @@ website("body").on("click", "#pastbtnsub", function (e) {
             {
                 var baseHref = getbaseurl();
                 var redirecturl = baseHref + "employeemodule?tab=" + btoa(2);
-                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Personal Employment Information added successfully.<br>Please Insert Relatives Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Past Employment Information added successfully.<br>Please Insert Relatives Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
                 website('#modeluserguide').modal('show');
                 getpastempdata();
             }
@@ -3147,7 +3161,7 @@ website('body').on('click','#notfillinreltv',function(e){
              {
                 var baseHref = getbaseurl();
                 var redirecturl = baseHref + "employeemodule?tab=" + btoa(3);
-                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">All relatives detail updated.<br>Please update your material financial relationships Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
+                website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">All relatives detail updated.<br>Please update your Material Financial Relationship details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success">OK</button></a></div>');
                 website('#modeluserguide').modal('show');
              }
         },

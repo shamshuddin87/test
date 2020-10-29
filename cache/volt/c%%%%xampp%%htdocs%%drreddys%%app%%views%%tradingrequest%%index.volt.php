@@ -189,8 +189,8 @@
                 <div id="searchcmp"></div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">No of Shares</label>
-                    <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No Of Share">
+                    <label for="exampleFormControlInput1">No. of Shares</label>
+                    <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Share">
                 </div>
 
                 <div class="form-group">
@@ -247,8 +247,8 @@
                             <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >
                             </div>
                             <div id = "right" class="form-group col-md-4">
-                            <label for="">No of Shares</label>
-                            <input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">
+                            <label for="">No. of Shares</label>
+                            <input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Shares">
                             </div>
                             <div id = "right" class="form-group col-md-1">
                                 <i class="fa fa-trash-o" onclick="removehtml(1);" style="font-size:15px; color:#F44336;margin-top: 39px;"></i>
@@ -309,7 +309,7 @@
     <span class="close"  data-dismiss="modal">&times;</span>
     <table class="table table-inverse mytable" id="datablerushi" typage="reqview">
      <thead>
-       <tr><th>No Of Share</th><th>Price Per Share</th><th>Total Amount</th><th>Date Of Transaction</th><th>Demat Account No</th><th>File</th></tr></thead>
+       <tr><th>No. of Share</th><th>Price Per Share</th><th>Total Amount</th><th>Date Of Transaction</th><th>Demat Account No</th><th>File</th></tr></thead>
          <tbody class="statustable" appendrow='1'></tbody>
       </table>
     </div>
@@ -384,8 +384,8 @@
         <div id="searchcmp"></div>
 
         <div class="form-group">
-            <label for="exampleFormControlInput1">No of Shares</label>
-            <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No Of Share">
+            <label for="exampleFormControlInput1">No. of Shares</label>
+            <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Share">
         </div>
 
         <div class="form-group">
@@ -426,7 +426,7 @@
             <table class="table table-inverse mytable" id="datablerushi" typage="reqview">
                 <thead>
                     <tr>
-                        <th style="width: 18%">No Of Share</th>
+                        <th style="width: 18%">No. of Share</th>
                         <th style="width: 20%">Price Per Share</th>
                         <th style="width: 25%">Total Amount</th>
                         <th style="width: 15%">Date Of Transaction</th>
@@ -479,7 +479,7 @@
             <table class="table table-inverse mytable" id="datablerushi" typage="reqview">
                 <thead>
                     <tr>
-                        <th style="width: 10%">No Of Share</th>
+                        <th style="width: 10%">No. of Share</th>
                         <th style="width: 20%">Price Per Share</th>
                         <th style="width: 20%">Total Amount</th>
                         <th style="width: 15%">Date Of Transaction</th>
@@ -792,4 +792,21 @@
         </div>
     </div>
 </div>
+</div>
+
+<div id="RequestSuccessMsg" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 style="text-align: center;">Your request has been sent to the Compliance Officer.<br> You will receive an email after the request is approved.</h4> 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary reloadpage">Ok</button> 
+            </div>
+        </div>
+    </div>
 </div>

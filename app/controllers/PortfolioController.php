@@ -71,17 +71,21 @@ class PortfolioController extends ControllerBase
                 //print_r($isfirst);exit;
                 $isNextFilled = $this->employeemodulecommon->fetchUserFlow($uid,$usergroup,'relativedemat');
                 //print_r($isDataEmpty);exit;
-                
+                $isNextEmpty = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'relative_demat_accounts','parent_user_id');
+                //print_r($isNextEmpty);exit;
                 $getresponse = $this->portfoliocommon->storeaccno($uid,$usergroup,$accnodata);
                 if($getresponse['status']==true)
                 {
-                    $inupuserdetail = $this->employeemodulecommon->inupUserFlow($uid,$usergroup,'userdemat','yes');
-                    $data = array("logged" => true,'message' =>$getresponse['msg'],'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
+                    if($isFilled == 'no')
+                    {
+                        $inupuserdetail = $this->employeemodulecommon->inupUserFlow($uid,$usergroup,'userdemat','yes');
+                    }
+                    $data = array("logged" => true,'message' =>$getresponse['msg'],'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled,'isNextEmpty'=>$isNextEmpty);
                     $this->response->setJsonContent($data);
                 }
                 else
                 {
-                    $data = array("logged" => false,'message' => $getresponse['msg'],'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
+                    $data = array("logged" => false,'message' => $getresponse['msg'],'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled,'isNextEmpty'=>$isNextEmpty);
                     $this->response->setJsonContent($data);
                 }
             }
@@ -365,7 +369,10 @@ class PortfolioController extends ControllerBase
                 $getresponse = $this->portfoliocommon->zerodematacc($uid,$usergroup,$dematup);
                 if($getresponse['status']==true)
                 {
-                    $inupuserdetail = $this->employeemodulecommon->inupUserFlow($uid,$usergroup,'userdemat','yes');
+                    if($dematup == 0)
+                    {
+                        $inupuserdetail = $this->employeemodulecommon->inupUserFlow($uid,$usergroup,'userdemat','yes');
+                    }
                     $data = array("logged" => true,"message"=>"Record Saved Successfully",'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled);
                     $this->response->setJsonContent($data);
                 }

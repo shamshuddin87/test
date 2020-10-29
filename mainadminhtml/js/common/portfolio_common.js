@@ -138,7 +138,7 @@ website("body").on("click","#subdemat",function(e) {
         {
              if(response.logged===true)
              {
-                if(response.isfilled == 'no' && response.isnextdatafilled == 'no')
+                if(response.isfilled == 'no' && response.isnextdatafilled == 'no' && response.isNextEmpty == 'yes')
                 {
                     var baseHref = getbaseurl();
                     var redirecturl = baseHref + "portfolio?tab=" + btoa(2);

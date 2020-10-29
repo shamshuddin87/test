@@ -490,15 +490,15 @@ function draftreq()
             {
                 website('#Mymodalreq').modal('hide');
                 getalltradingrequest("");
-
-                new PNotify({title: 'Alert',
+                website('#RequestSuccessMsg').modal('show');
+                /*new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
                     hide: true,
                     styling: 'bootstrap3',
                     addclass: 'dark ',
                 }); 
-                setTimeout(function(){window.location.reload();}, 1000);
+                setTimeout(function(){window.location.reload();}, 1000);*/
             }
             else
             {    
@@ -568,14 +568,17 @@ website('body').on('click','#Yesreqst',function(e)
       {
         if(response.logged === true)
          {
-            new PNotify({title: 'Alert',
+             website('#checkappvlrequest').modal('hide');
+             website('#Mymodalreq').modal('hide');
+             website('#RequestSuccessMsg').modal('show');
+            /*new PNotify({title: 'Alert',
                     text: response.message,
                     type: 'university',
                     hide: true,
                     styling: 'bootstrap3',
                     addclass: 'dark ',
             }); 
-             setTimeout(function(){window.location.reload();}, 1000);
+             setTimeout(function(){window.location.reload();}, 1000);*/
               
          }
          else
@@ -2258,4 +2261,7 @@ function hideshowRQMD(rqmdval)
 }
 /* ---------------- End Request Mode Change ---------------- */
 
-
+website('body').on('click','.reloadpage', function(e) 
+{
+    setTimeout(function(){window.location.reload();}, 1000);
+});
