@@ -15,7 +15,7 @@
             Employee Personal Details        
             </button>          
           <button class="btn employment">
-            Personal Employment        
+            <!-- Personal Employment   -->  Part Employment    
             </button>
            <button class="btn relatives ">
             Relatives  Details   

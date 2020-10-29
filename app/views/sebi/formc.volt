@@ -544,7 +544,7 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="col col-md-6 col-xs-6" id="modeformctypeother" style="display:none;">
                          <div class="input">
                             <label class="control-label">Mode of acquisition</label>
-                             <div><br></div>
+                             <!-- <div><br></div> -->
                              <input type="text" id="acquimodeother" name="acquimodeother" class="form_fields form-control col-md-7 col-xs-12" value="" readonly >
                             </div>
                     </section>

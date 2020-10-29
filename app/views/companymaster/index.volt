@@ -20,7 +20,7 @@
                     
                     <div class="tablitiledesc text-center">
                             <div class="note">
-                                (<strong>Note : </strong>Important Fields are * Specified.)
+                                (<strong>Note : </strong>Fields marked with * are mandatory fields)
                             </div>
                     </div>
                     <div class="formelementmain">                      
