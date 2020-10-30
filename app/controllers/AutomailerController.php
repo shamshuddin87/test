@@ -304,9 +304,9 @@ class AutomailerController extends ControllerBase
                                 
                                 // ---
                                 if(isset($maildata['projectowner']))
-                                {   $projectowner = $maildata['projectowner'];    }
+                                {   $projctowner = $maildata['projectowner'];    }
                                 else
-                                {   $projectowner = '';    }
+                                {   $projctowner = '';    }
                                 
                                 $result = $this->emailer->mailofnewupsisharing($emailid,$sharingdate,$upsiname,$name,$category,$projctowner);
                                 
