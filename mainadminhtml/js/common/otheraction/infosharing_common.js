@@ -143,7 +143,14 @@ function getdataonload()
             addhtmlnxt += '<td width="10%">'+response.resdta[i].datashared+'</td>';
 //            addhtmlnxt += '<td width="10%">'+response.resdta[i].purpose+'</td>';
             addhtmlnxt += '<td width="10%">'+upsiname+'</td>';
-            addhtmlnxt += '<td width="10%"><i class="fa fa-file" aria-hidden="true" id="upsiattachmnt" filepath="'+response.resdta[i].filepath+'"></i></td>';
+            if(response.resdta[i].filepath)
+            {
+                addhtmlnxt += '<td width="10%"><i class="fa fa-file" aria-hidden="true" id="upsiattachmnt" filepath="'+response.resdta[i].filepath+'"></i></td>';
+            }
+            else
+            {
+                addhtmlnxt += '<td width="10%"></td>';
+            }
             
 //            if(response.resdta[i].filepath)
 //            {

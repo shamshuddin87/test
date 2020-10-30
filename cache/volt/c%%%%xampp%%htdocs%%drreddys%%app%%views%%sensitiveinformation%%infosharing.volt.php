@@ -156,11 +156,13 @@ $upsiid = $this->session->upsitypeid;
                 <div class="clearelement"></div>
                 
                 <div class="cssupldfrm formelementmain"> 
+                    <h2 class="text-center">Bulk Upload UPSI Data</h2>
+
                     <form id="insertInfoshareViaExcel" action="sensitiveinformation/insertInfoshareViaExcel" method="post" enctype="multipart/form-data" autocomplete="off" > 
 
                         <section class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">
                             <div class="row">
-                                <section class="col col-md-6 col-xs-6">
+                                <section class="col col-md-8 col-xs-8">
                             <div class="input">
                                 <label class="control-label">Upload File</label>
                                 <div class="choose_files">
@@ -178,7 +180,7 @@ $upsiid = $this->session->upsitypeid;
                                 </div>
                             </div>
                         </section>
-                        <div class="col-md-6 submit_b">
+                        <div class="col-md-4 submit_b">
                             <input style="margin-top: 37px;" type="submit" value="Upload" class="btn btn-primary btnexlinfoshare">
                         </div>
                     </div>

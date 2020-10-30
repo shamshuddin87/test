@@ -685,7 +685,7 @@ class SensitiveinformationController extends ControllerBase
                 
                 if($getresponse['status'] === true)
                 {
-                    $data = array("logged" => true,'message' => 'Record Added Successful !!','data'=>$getresponse);
+                    $data = array("logged" => true,'message' => 'Record Added Successfully !!','data'=>$getresponse);
                     $this->response->setJsonContent($data);
                 }
                 else
