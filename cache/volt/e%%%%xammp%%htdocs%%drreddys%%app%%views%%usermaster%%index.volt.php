@@ -13,6 +13,17 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
             <!-- My messages -->
             <div class="mainelementfom">
                 <h1 class="h1_heading text-center">Master List</h1>
+
+
+
+                    
+                    <div class="tablitiledesc text-center">
+                            <div class="note" style="color: #000;padding: 12px 0;}">
+                                (<strong>Note : </strong>Fields marked with * are mandatory fields)
+                            </div>
+                    </div>
+
+                    
                 <div class="cssnumrws form-inline">
                     <span>Show</span>
                     <select id="noofrows" name="noofrows" class="noofrows form-control">
@@ -89,7 +100,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
 
                             <div class="tabcontractledesc text-center">
                                 <div class="note">
-                                    (<strong>Note : </strong>Fields are marked with * are mandatory fields)
+                                    (<strong>Note : </strong>Important Fields are * Specified.)
                                 </div>
                             </div>
                             <div class="formelementmain">

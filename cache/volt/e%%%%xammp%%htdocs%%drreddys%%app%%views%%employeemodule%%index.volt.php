@@ -15,7 +15,7 @@
             Employee Personal Details        
             </button>          
           <button class="btn employment">
-            Personal Employment        
+            <!-- Personal Employment   -->  Part Employment    
             </button>
            <button class="btn relatives ">
             Relatives  Details   
@@ -541,14 +541,14 @@
                             <a href="javascript:void(0);" data="Please enter 0 if no shares of DRL are held." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                         </div>
                            <label for="age">No. of shares held in DRL*</label>
-                           <input type="text" id="shareholdng" name="shareholdng" placeholder="No. of shares held in DRL"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  >
+                           <input type="text" id="shareholdng" name="shareholdng" placeholder="No. of shares held in DRL"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="0" >
                         </div>
                         <div class="col-md-4 col-xs-12"> 
                             <div class="tooltip_div">
                                 <a href="javascript:void(0);" data="Please enter 0 if no American Depository Receipts of DRL are held." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                             </div>
                            <label for="age">No. of American Depository Receipts held in DRL*</label>
-                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                           <input type="text" id="adrsholdng" name="adrsholdng" placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="0">
                         </div>
                          <div class="col-md-4">
                            <label class="control-label">Upload Identity Proof</label>
@@ -785,7 +785,7 @@
                 No<input type="radio" name="mfrstatus" value="0" class="mfrstatusupdt" onclick="hidemfrsection();"/><br>
             <?php }} else{ ?>
                 Yes<input type="radio" name="mfrstatus" value="1" class="mfrstatusupdt" onclick="showmfrsection();"> 
-                No<input type="radio" name="mfrstatus"value="0" class="mfrstatusupdtr" onclick="hidemfrsection();"/><br>
+                No<input type="radio" name="mfrstatus"value="0" class="mfrstatusupdt" onclick="hidemfrsection();"/><br>
             <?php } ?>
             </label>
             <div id = "showmfr" style="display: none;">     
@@ -1167,8 +1167,8 @@
                  <div class="tooltip_div">
                      <a href="javascript:void(0);" data="In case your no. of past employments exceed 5 then please mention only latest 5 employment details here. For rest of the companies please send email to the Compliance Officer." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                   </div>
-                <label for="age">Please Enter No Of Past Employer*</label>
-                <input type="text" id="pastemp" name="pastemp" placeholder="No Of Past Employer">
+                <label for="age">Please Enter No. of Past Employer*</label>
+                <input type="text" id="pastemp" name="pastemp" placeholder="No. of Past Employer">
              </div>
              <div class="col-md-4">
                 <button class="add_button">Go</button>

@@ -354,6 +354,9 @@ $condeptsess = $this->session->contractdepartment;
            <form id="updateformc" action="sebi/updateformc" method="post" enctype="multipart/form-data" autocomplete="off" > 
                 <input type = "hidden" name="approverid" id="approverid" value="<?php echo $approverid;?>">
                     <input type="hidden" name="upformcid" id="upformcid">
+                    <input type="hidden" name="requestmodeid" id="requestmodeid">
+                    <input type="hidden" name="tradeid" id="tradeid">
+                    <input type="hidden" name="reqid" id="reqid">
                      <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Name</label>
@@ -394,6 +397,7 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                     </section>
 -->
+                    
                
                      <section class="col col-md-4 col-xs-4">
                          <div class="input">
@@ -414,7 +418,73 @@ $condeptsess = $this->session->contractdepartment;
                                 <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control " placeholder="dd-mm-yyyy" maxlength="10" required>
                             </div>
                     </section> 
-
+                    
+                    <div id="formctypesshow" style="display:none">
+                    <section class="col col-md-4 col-xs-4">
+                            <div class="input">
+                                <label class="control-label">Type Of Security</label>
+                                <select id="sectypeid" name="sectype" class="form_fields form-control col-md-7 col-xs-12" required>
+                                    <option value="" id="sectype" >Select Security</option>
+                                    <?php foreach($security as $sectype){  ?>
+                                    <option value="<?php echo $sectype['id']; ?>"><?php echo $sectype['security_type']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                    </section>
+               
+                    <section class="col col-md-4 col-xs-4">
+                            <div class="input">
+                                <label class="control-label">Demat Account No.</label>
+                                <select id="demataccno" name="demataccno" class="form_fields form-control col-md-7 col-xs-12" required>
+                                    <option value="" id="demataccno" >Select Account No.</option>
+                                    <?php foreach($demataccno as $accno){  ?>
+                                    <option value="<?php echo $accno['accountno']; ?>"><?php echo $accno['accountno']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                    </section>
+               
+                    <section class="col col-md-4 col-xs-4">
+                        <div class="input">
+                            <label class="control-label">No. Of Shares</label>
+                            <input type="text" id="noofshare" name="noofshare" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57  || event.charCode == 46' required>
+                        </div>
+                    </section>
+               
+                    <section class="col col-md-4 col-xs-4">
+                        <div class="input">
+                            <label class="control-label">Price Per Share</label>
+                            <input type="text" id="pricepershare" name="pricepershare" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57  || event.charCode == 46' required>
+                        </div>
+                    </section>
+               
+                    <section class="col col-md-4 col-xs-4">
+                        <div class="input">
+                            <label class="control-label">Total Amount</label>
+                            <input type="text" id="totalamt" name="totalamt" class="form-control" readonly required>
+                        </div>
+                    </section>
+               
+                    <section class="col col-md-4 col-xs-4" id="selecttrans">
+                        <div class="input">
+                            <label class="control-label">Type of Transaction</label>
+                            <select class="form-control" id="typeoftrans" name="typeoftrans">
+                                <option value="1">Buy</option>
+                                <option value="2">Sell</option>
+                                <!--<option value="3">Pledge creation</option>
+                                <option value="4">Pledge Revocation</option>
+                                <option value="5">Exercise of stock</option>-->
+                            </select>
+                        </div>
+                    </section>
+               
+                    <section class="col col-md-4 col-xs-4">
+                            <div class="input">
+                                <label class="control-label">Date of Transaction</label>
+                                <input type="text" id="dateoftrans" name="dateoftrans" class="form-control " placeholder="dd-mm-yyyy" maxlength="10" required>
+                            </div>
+                        </section>
+                        </div>
                       <!--<section class="col col-md-6 col-xs-6">
                          <div class="input">
                             <label class="control-label">Type Of Contract</label>
@@ -474,8 +544,8 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="col col-md-6 col-xs-6" id="modeformctypeother" style="display:none;">
                          <div class="input">
                             <label class="control-label">Mode of acquisition</label>
-                             <div><br></div>
-                             <input type="text" id="acquimode" name="acquimode" class="form_fields form-control col-md-7 col-xs-12" value="" readonly >
+                             <!-- <div><br></div> -->
+                             <input type="text" id="acquimodeother" name="acquimodeother" class="form_fields form-control col-md-7 col-xs-12" value="" readonly >
                             </div>
                     </section>
                
@@ -530,7 +600,7 @@ $condeptsess = $this->session->contractdepartment;
                         <section class="col col-md-6 col-xs-6" id="exeformctypeother" style="display:none;">
                          <div class="input">
                             <label class="control-label">Exchange on which the trade was executed</label>
-                             <input type="text" id="exetrd" name="exetrd" class="form_fields form-control col-md-7 col-xs-12" value="" readonly >
+                             <input type="text" id="exetrdother" name="exetrdother" class="form_fields form-control col-md-7 col-xs-12" value="" readonly >
                             </div>
                         </section>         
                

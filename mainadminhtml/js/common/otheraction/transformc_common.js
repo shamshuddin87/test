@@ -368,3 +368,25 @@ function emailOnly()
     var re = /[A-Z0-9a-z@\._-]/.test(event.key);
     if (!re) {return false;}
 }
+
+
+website('#type1').click(function(){
+    website('#Mymodaltype1').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+});
+
+website('#type2').click(function(){
+    website('#Mymodaltype2').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+});
+
+website('#type3').click(function(){
+    website('#Mymodaltype3').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+});
