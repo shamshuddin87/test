@@ -415,6 +415,28 @@ class Upsicommon extends Component
            
         }
         
+        //mail for dp users
+        for($i=0;$i<sizeof($userdatadp);$i++)
+        {
+          
+            $enddate = '';
+            //print_r($data);exit;
+            if(array_key_exists("enddate", $data))
+            {
+                $enddate = $data['enddate'];
+            }
+            $pstartdate = $data['pstartdte'];
+            $todaydate = date('d-m-Y');
+
+          // ----- Start InsertDataInAutomailer -----
+          $qtypeid = '6'; //-- refer email_queuetype table
+
+          $infodata = array('upsitype'=>$data['upname'],'ownername'=>$ownerfullname,'emaildate'=>$todaydate,'projectstart'=>$pstartdate,'date_added'=>$upsiinfo['date_added']);
+          $result1 = $this->automailercommon->insertemailqueue($getuserid,$user_group_id,$qtypeid,$userdatadp[$i]['id'],$userdatadp[$i]['email'],$userdatadp[$i]['fullname'],$infodata);
+
+          // ----- End InsertDataInAutomailer -----
+        }
+        
 
 
          // mail Type One:
