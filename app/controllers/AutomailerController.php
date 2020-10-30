@@ -263,6 +263,93 @@ class AutomailerController extends ControllerBase
                     
                 }
                 
+                if($svl['qtypeid']=='7')
+                {
+                    $emailid = $svl['sendtoemail'];
+                    $username = $svl['sendtoname'];
+
+                    if(!empty($svl['maildata']))
+                    {
+                        $maildata = json_decode($svl['maildata'], true);
+                        //echo '<pre>'; print_r($maildata); exit;
+                        
+                        if(isset($maildata['emailtype']))
+                        {
+                            $emailtype = $maildata['emailtype'];
+                            if($emailtype == 'notifytorecipient')
+                            {
+                                // ---
+                                if(isset($maildata['sharingdate']))
+                                {   $sharingdate = $maildata['sharingdate'];    }
+                                else
+                                {   $sharingdate = '';    }
+                                
+                                // ---
+                                if(isset($maildata['upsiname']))
+                                {   $upsiname = $maildata['upsiname'];    }
+                                else
+                                {   $upsiname = '';    }
+                                
+                                // ---
+                                if(isset($maildata['name']))
+                                {   $name = $maildata['name'];    }
+                                else
+                                {   $name = '';    }
+                                
+                                // ---
+                                if(isset($maildata['category']))
+                                {   $category = $maildata['category'];    }
+                                else
+                                {   $category = '';    }
+                                
+                                // ---
+                                if(isset($maildata['projectowner']))
+                                {   $projectowner = $maildata['projectowner'];    }
+                                else
+                                {   $projectowner = '';    }
+                                
+                                $result = $this->emailer->mailofnewupsisharing($emailid,$sharingdate,$upsiname,$name,$category,$projctowner);
+                                
+                            }
+                            else if($emailtype == 'notifytocreateduser')
+                            {
+                                // ---
+                                if(isset($maildata['name']))
+                                {   $name = $maildata['name'];    }
+                                else
+                                {   $name = '';    }
+                                
+                                // ---
+                                if(isset($maildata['upsiname']))
+                                {   $upsiname = $maildata['upsiname'];    }
+                                else
+                                {   $upsiname = '';    }
+                                
+                                // ---
+                                if(isset($maildata['todaydate']))
+                                {   $todaydate = $maildata['todaydate'];    }
+                                else
+                                {   $todaydate = '';    }
+                                
+                                // ---
+                                if(isset($maildata['dayOfWeek']))
+                                {   $dayOfWeek = $maildata['dayOfWeek'];    }
+                                else
+                                {   $dayOfWeek = '';    }
+                                
+                                // ---
+                                if(isset($maildata['nameoflogged']))
+                                {   $nameoflogged = $maildata['nameoflogged'];    }
+                                else
+                                {   $nameoflogged = '';    }
+                                
+                                $result =$this->emailer->notifysharing($name,$emailid,$upsiname,$todaydate,$dayOfWeek,$nameoflogged);
+                            }
+                        }
+                    }
+                    
+                }
+                
                 if($result['logged']==true)
                 {
                     $del = $this->automailercommon->deleteQID($svl['id']);

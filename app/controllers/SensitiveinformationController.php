@@ -551,7 +551,7 @@ class SensitiveinformationController extends ControllerBase
                 }
                 else if(empty(strtotime($time)))
                 {
-                    $data = array("logged" => false,'message' => 'Time Cannot Exceed 24:59!!');
+                    $data = array("logged" => false,'message' => 'Time Cannot Exceed 23:59!!');
                     $this->response->setJsonContent($data);
                 }
                 else if(!empty($enddate) && $enddatestatus != "valid")
@@ -607,7 +607,7 @@ class SensitiveinformationController extends ControllerBase
                         
                     }
                   //print_r($filepath);exit;
-                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail,$nameoflogged,$wr_id);
+                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail,$nameoflogged,$wr_id,'form');
                   //print_r($getres);exit;
                     
                   if($getres == true)
@@ -681,16 +681,16 @@ class SensitiveinformationController extends ControllerBase
                 
 
                 $getresponse = $this->phpimportexpogen->insertInfoshareViaExcel($getuserid,$user_group_id,$upsitypeid,$upsiname,$large_impfile_location);
-                //print_r($employeecount);exit;
+                //print_r($getresponse);exit;
                 
-                if($getresponse)
+                if($getresponse['status'] === true)
                 {
                     $data = array("logged" => true,'message' => 'Record Added Successful !!','data'=>$getresponse);
                     $this->response->setJsonContent($data);
                 }
                 else
                 {
-                    $data = array("logged" => false,'message' => 'Record Not Added !!');
+                    $data = array("logged" => false,'message' => $getresponse['message']);
                     $this->response->setJsonContent($data);
                 }
                 $this->response->send();            

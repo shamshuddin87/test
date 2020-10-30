@@ -71,7 +71,7 @@ else if(startdatestatus==false)
 else if(!owner)
 {new PNotify({title:'Alert',text:'Please Select owner of UPSI',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}
 else
-{var bits=startdt.split('-');var d=new Date(bits[2]+'-'+bits[1]+'-'+bits[0]);console.log(!!(d&&(d.getMonth()+1)==bits[1]&&d.getDate()==Number(bits[0])));return false;website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');website('#modaltradingwindowclose #tradingwindowyes').attr('action','insert');website('#modaltradingwindowclose').modal('show');}});website('body').on('click','#tradingwindowno',function(e){var actiontype=website(this).attr('action');if(actiontype=='insert')
+{var bits=startdt.split('-');var d=new Date(bits[2]+'-'+bits[1]+'-'+bits[0]);website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');website('#modaltradingwindowclose #tradingwindowyes').attr('action','insert');website('#modaltradingwindowclose').modal('show');}});website('body').on('click','#tradingwindowno',function(e){var actiontype=website(this).attr('action');if(actiontype=='insert')
 {website('#addupsimast').submit();}});function pageRedirect(){window.location.replace("blackoutperiod");}
 website('body').on('click','#tradingwindowyes',function(e){var actiontype=website(this).attr('action');if(actiontype=='insert')
 {website('#addupsimast').submit();}});website('body').on('click','#tradingrej',function(e){website('#alertcommon #allalertmsg').html("Upsi Is Not Added..!!!");website('#alertcommon').modal('show');});website('#addupsimast').ajaxForm({dataType:"json",beforeSend:function()

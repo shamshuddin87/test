@@ -432,8 +432,7 @@ website('body').on('click','.addupsitype',function(e){
     {
           var bits = startdt.split('-');
           var d = new Date(bits[2] + '-' + bits[1] + '-' + bits[0]);
-          console.log( !!(d && (d.getMonth() + 1) == bits[1] && d.getDate() == Number(bits[0])));
-        return false;
+          //console.log( !!(d && (d.getMonth() + 1) == bits[1] && d.getDate() == Number(bits[0])));
         website('#modaltradingwindowclose #tradingwindowno').attr('action','insert');
         website('#modaltradingwindowclose #tradingwindowyes').attr('action','insert');
         website('#modaltradingwindowclose').modal('show');

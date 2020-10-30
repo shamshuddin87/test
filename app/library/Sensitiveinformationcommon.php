@@ -213,7 +213,7 @@ class Sensitiveinformationcommon extends Component
     
     
     // **************************** infosharing insert ***************************
-   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$emailrec,$upsiname,$loggedemail,$nameoflogged,$wr_id)
+   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$emailrec,$upsiname,$loggedemail,$nameoflogged,$wr_id,$type)
     {
         $connection = $this->dbtrd; 
         $times = time();
@@ -237,10 +237,32 @@ class Sensitiveinformationcommon extends Component
            
             
             
-
-            $sendmail = $this->emailer->mailofnewupsisharing($emailrec,$sharingdate,$upsiname,$name,$category,$projctowner);
-            //echo "hello";exit;
-             $notifymail =$this->emailer->notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek,$nameoflogged);
+            if($type == 'form')
+            {
+                $sendmail = $this->emailer->mailofnewupsisharing($emailrec,$sharingdate,$upsiname,$name,$category,$projctowner);
+                //echo "hello";exit;
+                $notifymail =$this->emailer->notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek,$nameoflogged);
+            }
+            else if($type == 'excel')
+            {
+                //print_R($wr_id);exit;
+                // ----- Start InsertDataInAutomailer -----
+                $qtypeid = '7'; //-- refer email_queuetype table
+                $sendtoid = $wr_id;
+                $emailid = $emailrec;    
+                $sendtoname = $name;
+                $infodata = array('sharingdate'=>$sharingdate,'upsiname'=>$upsiname,'name'=>$name,'category'=>$category,'projectowner'=>$projctowner,'emailtype'=>'notifytorecipient');
+                $result = $this->automailercommon->insertemailqueue($getuserid,$user_group_id,$qtypeid,$sendtoid,$emailid,$sendtoname,$infodata);
+                if($result)
+                {
+                    $sendtoid = $getuserid;
+                    $emailid = $loggedemail;    
+                    $sendtoname = $nameoflogged;
+                    $infodata = array('name'=>$name,'upsiname'=>$upsiname,'todaydate'=>$todaydate,'dayOfWeek'=>$dayOfWeek,'nameoflogged'=>$nameoflogged,'emailtype'=>'notifytocreateduser');
+                    $sendmail = $this->automailercommon->insertemailqueue($getuserid,$user_group_id,$qtypeid,$sendtoid,$emailid,$sendtoname,$infodata);
+                }
+            }
+            
 
            
 

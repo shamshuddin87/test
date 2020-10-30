@@ -157,18 +157,21 @@ $upsiid = $this->session->upsitypeid;
                 
                 <div class="cssupldfrm formelementmain"> 
                     <form id="insertInfoshareViaExcel" action="sensitiveinformation/insertInfoshareViaExcel" method="post" enctype="multipart/form-data" autocomplete="off" > 
-                        <section class="col col-md-6 col-xs-6">
+
+                        <section class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">
+                            <div class="row">
+                                <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">Upload File</label>
                                 <div class="choose_files">
-                                    <input type="file" name="infoshareExcl" id="infoshareExcl" >
+                                    <input class="form-control" type="file" name="infoshareExcl" id="infoshareExcl" style="line-height: 24px;">
                                     <input type="hidden" name="upsitypeid" class="upsitypeid" id="upsitypeid" value="<?php echo $upsiid;?>">
                                     <input type="hidden" id="selectupsi" name="selectupsi" value="<?php echo $getupsiname['upsitype']; ?>" >
                                 </div>
                                 <div class="updatefile">
                                     <div class="sample_down floatleft">
                                         <a href="samplefile/UPSI/infosharing.xlsx" download>
-                                            <p class="sample">Download Sample Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i></p>
+                                            <p class="sample" style="margin: 5px 0;">Download Sample Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i></p>
                                         </a>
                                     </div>
                                     <div class="clearelement"></div> 
@@ -176,8 +179,11 @@ $upsiid = $this->session->upsitypeid;
                             </div>
                         </section>
                         <div class="col-md-6 submit_b">
-                            <input type="submit" value="Upload" class="btn btn-primary btnexlinfoshare">
-                        </div>   
+                            <input style="margin-top: 37px;" type="submit" value="Upload" class="btn btn-primary btnexlinfoshare">
+                        </div>
+                    </div>
+                        </section>
+                           
                         <div class="clearelement"></div>
                     </form>
                 </div>
@@ -195,9 +201,8 @@ $upsiid = $this->session->upsitypeid;
                 <option value="50">50</option><option value="100">100</option>
                 </select> 
                 <span>Entries</span>
-            </div>
-            <div class="floatright">
-                <input type="submit" class="btn btn-primary archiveinfoshr" value="Archive" >
+
+                <input type="submit" class="btn btn-primary archiveinfoshr" value="Archive"  style="float: right;">
             </div>
                 <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>

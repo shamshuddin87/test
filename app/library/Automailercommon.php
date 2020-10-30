@@ -24,9 +24,9 @@ class Automailercommon extends Component
             else
             {
            
-            $purpose = htmlentities($infodata['reason'],ENT_QUOTES);
+            /*$purpose = htmlentities($infodata['reason'],ENT_QUOTES);
             unset($infodata['reason']);
-            $infodata['reason'] = $purpose;
+            $infodata['reason'] = $purpose;*/
             $maildata = '';
             $maildata = json_encode($infodata);
             //print_r($maildata);exit;

@@ -312,12 +312,12 @@ class HomeController extends ControllerBase
                        $this->response->setJsonContent($data);
                        
                     }
-                    else if($isRelDematFilled == 'no' && $isRelDematFirst == 'yes')
+                    /*else if($isRelDematFilled == 'no' && $isRelDematFirst == 'yes')
                     {
                         $reldematurl = 'portfolio?tab='.base64_encode(2);
                         $data = array("logged" => false,'message' => "Please update your relatives Demat Account.",'data'=>$reldematurl,'usergroup'=>$usergroup);
                         $this->response->setJsonContent($data);
-                    }
+                    }*/
                     else
                     {
                         $data = array("logged" => true,'message' => "Data Fetch Successfully",'data'=>'');

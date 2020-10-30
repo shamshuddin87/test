@@ -935,10 +935,12 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
         $lastname = $this->session->loginauthspuserfront['lastname'];
         $nameoflogged = $this->session->loginauthspuserfront['username'];
         $loggedemail = $this->session->loginauthspuserfront['email'];
-        //print_r($fullname);exit;
+        //print_r($loggedemail);exit;
         
         $timeago = time();
         $todaydate=date('d-m-Y');
+        $errorMSg = 0;
+        $result = array();
         //print_r($todaydate);exit;
         
         try
@@ -1066,7 +1068,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                             $date1 = date("d-m-Y", strtotime($date));
                             $stdate = new DateTime($date);
                             $time = $timeofinfo;
-                            $email = $name;
+                            $email = $email;
                             $wr_id = $wr_id;
                             //print_r($wr_id);exit;
                             $enddate = $enddate;
@@ -1126,33 +1128,86 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                         {
                             //echo 'inif'; exit;
                             
-                            $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail,$nameoflogged,$wr_id);
+                            $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail,$nameoflogged,$wr_id,'excel');
                             //print_r($getres);exit;
                     
                         }
+                        else if(empty($date))
+                        {
+                            $data = array("logged" => false,'message' => 'Please select Date!!');
+                            $errorMSg = 1;
+                            break;
+                        }
+                        else if($flag)
+                        {
+                             $data = array("logged" => false,'message' => 'Please Check Difference Between information Sharing Date And End Date');
+                            $errorMSg = 1;
+                            break;
+                        }
+                        else if($infodatestatus != "valid")
+                        {
+                            $data = array("logged" => false,'message' => 'Please provide correct Date of Information Sharing');
+                            $errorMSg = 1;
+                            break;
+                        }
+                        else if(strtotime($date)>strtotime($todaydate))
+                        {
+                            $data = array("logged" => false,'message' => 'Date of Information Sharing Should Be In Past!!');
+                            $errorMSg = 1;
+                            break;
+                        }
+                        else if(empty($time))
+                        {
+                            $data = array("logged" => false,'message' => 'Please select Time!!');
+                            $errorMSg = 1;
+                            break;
+                        }
+                        else if(empty(strtotime($time)))
+                        {
+                            $data = array("logged" => false,'message' => 'Time Cannot Exceed 23:59!!');
+                            $errorMSg = 1;
+                            break;
+                        }
+                        else if(!empty($enddate) && $enddatestatus != "valid")
+                        {
+                            $data = array("logged" => false,'message' => 'Please provide correct End date');
+                            $errorMSg = 1;
+                            break;
+                        }
                         else
                         {
+                            $errorMSg = 0;
                             //echo 'inelse'; exit;
                         }
                     }
                     
                 }
+                
             }
-            
-            if($getres)
+            //echo $errorMSg;exit;
+            if($errorMSg == 1)
             {
-                return true;
+                $result = array('status'=>false,'message'=>$data['message']);
             }
             else
             {
-                return false;
+                if($getres)
+                {
+                    $result = array('status'=>true,'message'=>'Record Added Successfully');
+                }
+                else
+                {
+                    $result = array('status'=>false,'message'=>'Record Not Added !!');
+                }
             }
+            
         }
         catch (Exception $e)
         {
-            return false;
+            $result = array('status'=>false,'message'=>'Record Not Added !!');
             //$connection->close();
         }
+        return $result;
     }
 /* --------------- End Add info sharing via excel --------------- */
     
