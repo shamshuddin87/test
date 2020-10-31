@@ -1071,12 +1071,12 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                             $email = $email;
                             $wr_id = $wr_id;
                             //print_r($wr_id);exit;
-                            $enddate = $enddate;
+                            //$enddate = $enddate;
                             $endchkdate = new DateTime($enddate);
                             $upsiname = $upsiname;
 
                             $mytoday=new DateTime($todaydate);
-                            if(!empty($enddate) )
+                            /*if(!empty($enddate) )
                             {
                                 if($endchkdate>$stdate && $mytoday>=$endchkdate)
                                 {
@@ -1086,7 +1086,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                                 {
                                     $flag=1;
                                 }
-                            }
+                            }*/
 
                             $datashared = $datashared;
                             //$purpose   = $this->request->getPost('purpose','trim');
@@ -1110,7 +1110,7 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                             }
                             //echo $infodatestatus; exit;
                         
-                            $enddatestatus = '';
+                            /*$enddatestatus = '';
                             if(!empty($enddate))
                             {
                                 $enddate_arr = explode('-', $enddate);
@@ -1119,16 +1119,16 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
                                 $enddatey = $enddate_arr[2];
                                 $enddated = $enddate_arr[0];
                                 $enddatestatus = $this->elements->checkdate($enddatem,$enddatey,$enddated);
-                            }
+                            }*/
                             //echo $enddatestatus; exit;
                         // --- End Validate Data ---
                         
                         //echo $time; exit;
-                        if(!empty($date) && $flag==0 && $infodatestatus=="valid" && (strtotime($date)<strtotime($todaydate)) && !empty(strtotime($time)) && (empty($enddate) || $enddatestatus=="valid"))
+                        if(!empty($date) && $flag==0 && $infodatestatus=="valid" && (strtotime($date)<strtotime($todaydate)) && !empty(strtotime($time)))
                         {
                             //echo 'inif'; exit;
                             
-                            $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail,$nameoflogged,$wr_id,'excel');
+                            $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail,$nameoflogged,$wr_id,'excel');
                             //print_r($getres);exit;
                     
                         }

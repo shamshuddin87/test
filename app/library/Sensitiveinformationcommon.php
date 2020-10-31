@@ -213,7 +213,7 @@ class Sensitiveinformationcommon extends Component
     
     
     // **************************** infosharing insert ***************************
-   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$emailrec,$upsiname,$loggedemail,$nameoflogged,$wr_id,$type)
+   public function insertinfosharing($getuserid,$user_group_id,$name,$sharingdate,$sharingtime,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$emailrec,$upsiname,$loggedemail,$nameoflogged,$wr_id,$type)
     {
         $connection = $this->dbtrd; 
         $times = time();
@@ -222,8 +222,8 @@ class Sensitiveinformationcommon extends Component
  
       
         $dayOfWeek = date("l", $unixTimestamp);
-        $queryinsert = "INSERT INTO `sensitiveinfo_sharing`(`user_id`,`user_group_id`,`recipientid`,`recipienttype`,`name`,`sharingdate`,`upsitype`,`sharingtime`,`enddate`, `datashared`,`category`,`filepath`,wr_id,`date_added`, `date_modified`,`timeago`)
-         VALUES ('".$getuserid."','".$user_group_id."','".$recipientid."','".$recipienttype."','".$name."','".$sharingdate."','".$upsitypeid."','".$sharingtime."','".$enddate."','".$datashared."','".$category."','".$filepath."','".$wr_id."',NOW(),NOW(),'".$times."')"; 
+        $queryinsert = "INSERT INTO `sensitiveinfo_sharing`(`user_id`,`user_group_id`,`recipientid`,`recipienttype`,`name`,`sharingdate`,`upsitype`,`sharingtime`, `datashared`,`category`,`filepath`,wr_id,`date_added`, `date_modified`,`timeago`)
+         VALUES ('".$getuserid."','".$user_group_id."','".$recipientid."','".$recipienttype."','".$name."','".$sharingdate."','".$upsitypeid."','".$sharingtime."','".$datashared."','".$category."','".$filepath."','".$wr_id."',NOW(),NOW(),'".$times."')"; 
         //print_r($queryinsert);exit;
         try
         {

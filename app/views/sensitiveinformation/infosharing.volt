@@ -114,12 +114,12 @@ $upsiid = $this->session->upsitypeid;
 -->
 
 
-                         <section class="col col-md-4 col-xs-4">
+                         <!--<section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">End Date</label>
                                 <input type="text" id="enddate" name="enddate" class="form-control" placeholder="dd-mm-yyyy" maxlength="10">
                             </div>
-                        </section>   
+                        </section>-->   
 
 					    <section class="col col-md-12 col-xs-12"></section>
                         <div class="appendfile" filecntr='1'>

@@ -477,21 +477,21 @@ class SensitiveinformationController extends ControllerBase
                 $wr_id = $this->request->getPost('wr_id','trim');
 
                 //print_r($wr_id);exit;
-                $enddate   = $this->request->getPost('enddate','trim');
+                //$enddate   = $this->request->getPost('enddate','trim');
                 $upsiname = $this->request->getPost('selectupsi','trim');
-                $endchkdate= new DateTime($enddate);
+                //$endchkdate= new DateTime($enddate);
                 $mytoday=new DateTime($todaydate);
-                if(!empty($enddate) )
-                {
-                    if($endchkdate>$stdate && $mytoday>=$endchkdate)
-                    {
-                        $flag=0;
-                    }
-                    else
-                    {
-                        $flag=1;
-                    }
-                }
+//                if(!empty($enddate) )
+//                {
+//                    if($endchkdate>$stdate && $mytoday>=$endchkdate)
+//                    {
+//                        $flag=0;
+//                    }
+//                    else
+//                    {
+//                        $flag=1;
+//                    }
+//                }
 
                 $datashared   = $this->request->getPost('datashared','trim');
                 //$purpose   = $this->request->getPost('purpose','trim');
@@ -513,7 +513,7 @@ class SensitiveinformationController extends ControllerBase
                     $infodatestatus = $this->elements->checkdate($infodatem,$infodatey,$infodated);
                 }
                 
-                if(!empty($enddate))
+                /*if(!empty($enddate))
                 {
                     $enddate_arr = explode('-', $enddate);
 
@@ -521,7 +521,7 @@ class SensitiveinformationController extends ControllerBase
                     $enddatey = $enddate_arr[2];
                     $enddated = $enddate_arr[0];
                     $enddatestatus = $this->elements->checkdate($enddatem,$enddatey,$enddated);
-                }
+                }*/
                 /*Date Validation for Date of Information and End date */
                 
                 if(empty($date))
@@ -529,11 +529,11 @@ class SensitiveinformationController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please select Date!!');
                     $this->response->setJsonContent($data);
                 }
-                else if($flag)
+                /*else if($flag)
                 {
                      $data = array("logged" => false,'message' => 'Please Check Difference Between information Sharing Date And End Date');
                     $this->response->setJsonContent($data);
-                }
+                }*/
                 else if($infodatestatus != "valid")
                 {
                     $data = array("logged" => false,'message' => 'Please provide correct Date of Information Sharing');
@@ -554,11 +554,11 @@ class SensitiveinformationController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Time Cannot Exceed 23:59!!');
                     $this->response->setJsonContent($data);
                 }
-                else if(!empty($enddate) && $enddatestatus != "valid")
+                /*else if(!empty($enddate) && $enddatestatus != "valid")
                 {
                     $data = array("logged" => false,'message' => 'Please provide correct End date');
                     $this->response->setJsonContent($data);
-                }
+                }*/
                 else
                 {
                     $filepath = '';
@@ -607,7 +607,7 @@ class SensitiveinformationController extends ControllerBase
                         
                     }
                   //print_r($filepath);exit;
-                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$enddate,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail,$nameoflogged,$wr_id,'form');
+                  $getres = $this->sensitiveinformationcommon->insertinfosharing($getuserid,$user_group_id,$name,$date1,$time,$datashared,$category,$upsitypeid,$recipientid,$recipienttype,$filepath,$email,$upsiname,$loggedemail,$nameoflogged,$wr_id,'form');
                   //print_r($getres);exit;
                     
                   if($getres == true)
