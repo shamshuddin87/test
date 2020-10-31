@@ -15,7 +15,7 @@
             Employee Personal Details        
             </button>          
           <button class="btn employment">
-            Personal Employment        
+            <!-- Personal Employment   -->  Past Employment    
             </button>
            <button class="btn relatives ">
             Relatives  Details   
@@ -1167,8 +1167,8 @@
                  <div class="tooltip_div">
                      <a href="javascript:void(0);" data="In case your no. of past employments exceed 5 then please mention only latest 5 employment details here. For rest of the companies please send email to the Compliance Officer." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                   </div>
-                <label for="age">Please Enter No Of Past Employer*</label>
-                <input type="text" id="pastemp" name="pastemp" placeholder="No Of Past Employer">
+                <label for="age">Please enter no. of past employment(s)*</label>
+                <input type="text" id="pastemp" name="pastemp" placeholder="No. of Past Employer">
              </div>
              <div class="col-md-4">
                 <button class="add_button">Go</button>
