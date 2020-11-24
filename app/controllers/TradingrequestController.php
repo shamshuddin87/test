@@ -96,6 +96,7 @@ class TradingrequestController extends ControllerBase
                 $clsstatus=1;
                 $alldata= $this->request->getPost();
                 $idofcmp='1';
+                $requestmodeid = $this->request->getPost('requestmodeid','trim');
                 $typeoftrans=$this->request->getPost('typeoftranss','trim');
                 $sectype=$this->request->getPost('sectypes','trim');
                 $noofshare=$this->request->getPost('noofshares','trim');
@@ -183,8 +184,12 @@ class TradingrequestController extends ControllerBase
                     }
                    
                     $checkval = $this->tradingrequestcommon->checkvalrequest($uid,$usergroup,$idofcmp,$typeoftrans);
-                    //print_r($checkval);exit;    
-
+                    //print_r($checkval);exit;  
+                    if($typeoftrans==2 && $requestmodeid == '2')
+                    {
+                        $checkval = array('status'=>true,'message'=>'');
+                    }
+                    
                     if($typeofrequests==1 && $typeoftrans==2)
                     {
                         $checkopbal = $this->tradingrequestcommon->checkopeningbalance($uid,$usergroup,$idofcmp,$typeoftrans,$sectype,

@@ -1899,8 +1899,8 @@ function checktypeofreq($uid,$usergroup,$data)
          
         $connection = $this->dbtrd;
         
-        $querygetdetail = "SELECT * FROM `opening_balance` 
-            WHERE user_id='".$uid."' AND id_of_company='".$idofcmp."' AND sectype='".$sectype."' ";  
+        $querygetdetail = "SELECT * FROM `personal_info` 
+            WHERE userid='".$uid."' ";  
         //echo $querygetdetail; exit;
         
         try
@@ -1914,16 +1914,16 @@ function checktypeofreq($uid,$usergroup,$data)
                 $row = $exegetdetail->fetch();
                 if($sectype==1)
                 {
-                    $openingbal=$row['equityshare'];
+                    $openingbal=$row['sharehldng'];
                 }
                 else if($sectype==2)
                 {
-                    $openingbal=$row['prefershare'];
+                    $openingbal=$row['adrshldng'];
                 }
-                else
+                /*else
                 {
                     $openingbal=$row['debntrshare'];
-                }
+                }*/
 
                 $checkval = $this->tradingrequestcommon->getdatafromtdstatus($uid,$usergroup,$idofcmp,$typeoftrans,$openingbal,$sectype);
 
