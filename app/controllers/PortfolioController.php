@@ -25,6 +25,12 @@ class PortfolioController extends ControllerBase
         {
             $this->view->getdematsstatus=$this->portfoliocommon->getdematsstatus($uid,$usergroup);
         }
+
+        $reldemat = $this->portfoliocommon->getreldematsstatus($uid,$usergroup);
+        if(!empty($demat))
+        {
+            $this->view->getreldematsstatus=$this->portfoliocommon->getreldematsstatus($uid,$usergroup);
+        }
         //print_r($getdematsstatus);exit;
     }
     
@@ -385,4 +391,33 @@ class PortfolioController extends ControllerBase
           }
         }
       }
-   }
+
+    public function zeroreldemataccAction()
+    {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $usergroup = $this->session->loginauthspuserfront['user_group_id'];
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $dematup= $this->request->getPost('dematup','trim');
+                // print_r($dematup);exit;
+                
+              
+                $getresponse = $this->portfoliocommon->zeroreldematacc($uid,$usergroup,$dematup);
+                if($getresponse['status']==true)
+                {
+                    $data = array("logged" => true,"message"=>"Record Saved Successfully");
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => true,"message"=>$getresponse['message']);
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+        }
+    }
+}

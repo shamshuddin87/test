@@ -22,13 +22,13 @@
 
       <div class="col-xs-6 sign-in">
         <button class="btn personal active">
-          Self Portfolio       
+          Self Demat Account       
         </button>
       </div>
 
       <div class="col-xs-6 register">
         <button class="btn relatives">
-          Relatives Portfolio    
+          Relatives Demat Account   
         </button>
       </div>
 
@@ -185,6 +185,30 @@
 
 <div class="relativesform" style="display: none;">
   <div class="acc">
+    <label class="do">Does any of your relative hold demat account?
+  <?php 
+   //print_r($getdematsstatus);exit;
+  if(isset($getreldematsstatus) ){ 
+    
+
+    if($getreldematsstatus[0]['status'] == 1) { ?>
+        Yes<input type="radio"  name="pastemp1" value="1" class="dematup1" checked onclick="showsection1();" /> 
+        No<input type="radio" name="pastemp1" value="0" class="dematup1" onclick="hidesection1();"><br><br>
+    <?php } else if(isset($getreldematsstatus) && $getreldematsstatus[0]['status'] == 0) { ?>
+
+        Yes<input type="radio" name="pastemp1" value="1" class="dematup1" onclick="showsection1();"> 
+        No<input type="radio" name="pastemp1" value="0" class="dematup1" checked onclick="hidesection1();"/><br>
+    <?php } else { 
+   ?>
+    Yes<input type="radio" name="pastemp1" value="1" class="dematup1" onclick="showsection1();"> 
+    No<input type="radio" name="pastemp1" value="0" class="dematup1" onclick="hidesection1();"/><br><br>
+  <?php } }
+   else{ ?>
+     Yes<input type="radio" name="pastemp1" value="1" class="dematup1" onclick="showsection1();"> 
+    No<input type="radio" name="pastemp1" value="0" class="dematup1" onclick="hidesection1();"/><br><br>
+     <?php } ?>
+     </label>
+     <div id = "showreldemat" style="display: none;">
     <div class="input-group col-md-12"> 
      <section class="col col-md-5 col-xs-5">
         <label class="control-label">Select Name Of Relatives</label>
@@ -231,7 +255,19 @@
           <tbody class="relaccdetails" appendrow='1'></tbody>
         </table>
     <!------------------------------------------------------------------------>
+       <div class="tablitiledesc">
+               <div class="note">
+                  <strong>Note : </strong><br/>
+                  <ol type="1" style="display: inline-block;padding: 5px 15px;">
+                     <li>I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too.</li>
+                     <li>Once your personal information is filled please send 'Declaration form' to the Compliance Officer. <a href="annualdeclaration" style="color:red;">Click here.</a></li>
+                  </ol>
+               </div>
+            </div>
       </div>
+      </div>
+
+
 
       <!----------------------------Delete Relative Modal----------------------------------------->
 <div id="myModalrel" class="modal fade" role="dialog">

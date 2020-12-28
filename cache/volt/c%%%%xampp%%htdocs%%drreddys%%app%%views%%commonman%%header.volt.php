@@ -185,7 +185,7 @@
                      <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2'){?>
                      <li><a href="tradingrequest/reqview"><i class="" id="viewreq"></i>View request</a></li>
                      <?php } ?>
-                     <li><a href="exceptionreq"><i class=""></i>Exception Request</a></li>
+                     
                      <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2'){?>
                      <li><a href="exceptionreq/exception_req"><i class=""></i>View Exception request</a></li>
 <!--                     <li> <a href="approvelperinfo"><i class=""></i>View Personal Info Request</a></li>-->
@@ -249,6 +249,7 @@
                      <!--<li>
                         <a href="sebi/formb"><i class="fa fa-file-pdf-o" id=""></i>FORM B</a>
                      </li>-->
+                     <li><a href="exceptionreq"><i class=""></i>Exception Request</a></li>
                      <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'){  ?> 
                      <!--<li>
                         <a href="sebi/viewformb"><i class="fa fa-eye" id=""></i>Approve FORM B Request</a>
@@ -262,7 +263,7 @@
                      </li>
                      <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'){  ?> 
                      <li>
-                        <a href="sebi/viewformc"><i class="fa fa-eye" id=""></i>Approve FORM C Request</a>
+                        <a href="sebi/viewformc"><i class="fa fa-eye" id=""></i>View Form C of DPs</a>
                      </li>
                      <?php } ?>
                       <!--   Form C END -->

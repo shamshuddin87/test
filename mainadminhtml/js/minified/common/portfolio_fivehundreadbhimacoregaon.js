@@ -8,6 +8,10 @@ website('.personal').click(function(e){e.preventDefault();website(this).addClass
 {website("#showdemat").css('display','block');}
 else
 {website("#showdemat").css('display','none');}
+let yeschecked1=website("input[name='pastemp1']:checked").val();if(yeschecked1==1)
+{website("#showreldemat").css('display','block');}
+else
+{website("#showreldemat").css('display','none');}
 datepicker();function datepicker(){website('.bootdatepick').datetimepicker({weekStart:1,todayBtn:0,autoclose:1,todayHighlight:0,startView:2,minView:2,forceParse:0,format:"dd-mm-yyyy"}).on('change',function(e,date)
 {var getdate=website(this).val();var getid=website(this).closest('form').attr('id');});}
 website("body").on("click","#noofdmat",function(e){var no=website('#noofacc').val();var self_nation=website('#self_nation').val();if(no<=10){var myhtml='<table class="table table-inverse" id="datableabhi"><tr><th>Account No </th><th>Depository Participant </th></tr>';for(var i=1;i<=no;i++)
@@ -109,7 +113,7 @@ if(myarr.length>=1)
 {website.ajax({url:'portfolio/insertrelativeacc',method:'POST',data:{myarr:myarr,relid:relinfo,nationality:nationality},contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
 {},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
-{if(response.logged==true){new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});window.location.reload();}
+{if(response.logged==true){new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});var baseHref=getbaseurl();setTimeout(function(){window.location.href=baseHref+'initialdeclaration';},1000);}
 else{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
 {}});}});website('body').on('click','.dematup',function(e){var dematup=website(this).val();website.ajax({url:'portfolio/zerodematacc',data:{dematup:dematup},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
@@ -118,8 +122,18 @@ else{new PNotify({title:'Alert',text:response.message,type:'university',hide:tru
 {if(dematup==0&&response.isfilled=='no'&&response.isnextdatafilled=='no')
 {var baseHref=getbaseurl();var redirecturl=baseHref+"portfolio?tab="+btoa(2);website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Updated successfully.<br>Please Insert Relative Demat Account Details.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');website('#modeluserguide').modal('show');}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
+{}});});website('body').on('click','.dematup1',function(e){var dematup=website(this).val();website.ajax({url:'portfolio/zeroreldematacc',data:{dematup:dematup},method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
+{},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response,textStatus,jqXHR)
+{if(dematup==0)
+{var baseHref=getbaseurl();var redirecturl=baseHref+"initialdeclaration";website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Updated successfully.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');website('#modeluserguide').modal('show');}},complete:function(response)
+{},error:function(jqXHR,textStatus,errorThrown)
 {}});});function showsection(){var section=document.getElementById("showdemat");if(section.style.display==="none"){section.style.display="block";}}
 function hidesection(){var section=document.getElementById("showdemat");if(section.style.display==="block")
+{section.style.display="none";}}
+function showsection1()
+{var section=document.getElementById("showreldemat");if(section.style.display==="none"){section.style.display="block";}}
+function hidesection1(){var section=document.getElementById("showreldemat");if(section.style.display==="block")
 {section.style.display="none";}}
 function boxshow(name)
 {var classname=name.split(" ");var length=classname.length;if(length==5)

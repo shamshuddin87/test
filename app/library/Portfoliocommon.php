@@ -296,7 +296,37 @@ class Portfoliocommon extends Component
        return $getlist;
      }
 
+    public function getreldematsstatus($uid,$usergroup)
+    {
+        try
+        {   
+            $connection = $this->dbtrd;
+            $result=array();
+            $query="SELECT * FROM `relative_demat_status` WHERE user_id='".$uid."'";
+            // print_r($query);exit;
+            $exe= $connection->query($query);
+            $getnum = trim($exe->numRows());
+            if($getnum>0)
+            {
+                while($row = $exe->fetch())
+                {
+                    
+                       $getlist[] = $row;                     
+                    
+                }
+            }
+            else
+            {
+               $getlist=array();
 
+            }
+        }
+        catch(Exception $e)
+        {
+           $getlist=array();
+        }
+        return $getlist;
+    }
      
      public function zerodematacc($uid,$usergroup,$status)
      {
@@ -352,6 +382,45 @@ class Portfoliocommon extends Component
        
      }
 
+    public function zeroreldematacc($uid,$usergroup,$status)
+    {
+        try
+        {   
+            $connection = $this->dbtrd;
+            $result=array();
+        
+            $chkdata="SELECT * FROM relative_demat_status WHERE user_id='".$uid."'";
+            $exedata= $connection->query($chkdata);
+            $noofrows = trim($exedata->numRows());
+            if($noofrows>0)
+            { 
+                $query2="UPDATE relative_demat_status SET status='".$status."' WHERE user_id='".$uid."'";
+
+            }
+            else
+            {
+                
+              $query2="INSERT INTO relative_demat_status (user_id, status) VALUES ('".$uid."','".$status."')";
+               
+            }
+               
+            $exe2= $connection->query($query2);
+            if($exe2)
+            {
+               $result=array("status"=>true,"message"=>"Data Saved Successfully");
+            }
+            else
+            {
+               $result=array("status"=>false,"message"=>"Something Went To Wrong");
+            }
+        }
+        catch(Exception $e)
+        {
+           $result=array("status"=>false,"message"=>"Exception");
+        }
+
+        return $result;
+    }
 
     public function self_nationality($uid)
      {

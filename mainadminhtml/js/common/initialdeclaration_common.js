@@ -7,6 +7,7 @@ website(document).ready(function()
    addhtmlnxt += '</tr>';
     website('.dpgradu').html(addhtmlnxt);
     website('.mfr').html(addhtmlnxt);
+    website("#infomod").modal('show');
 });
 
 website('body').on('click','.getdata',function(){
@@ -273,6 +274,7 @@ website('body').on('click','.formpdf', function(e)
             {
               website('#Mymodaldeclara .formpdf').css('display','none');
               website("#Mymodaldeclara #downloadpdf").append('<a  href="'+response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon glyphicon-download-alt floatleft">Download</span> </a>');
+              website("#infomod1").modal('show');
               getdataonload();
             }
         },

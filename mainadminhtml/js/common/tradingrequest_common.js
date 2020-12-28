@@ -1372,7 +1372,7 @@ website("body").on("click",".uploadfile",function(e)
                     tradehtml+='<td>'+total_amount+'</td>';
                     tradehtml+='<td>'+date_of_transaction+'</td>';
                     tradehtml+='<td>'+demat_acc_no+'</td>';
-                    tradehtml+='<td>'+dnlfile+'</td>';
+                    //tradehtml+='<td>'+dnlfile+'</td>';
                     tradehtml+='<td><i class="fa fa-trash-o tradedel" delmytrade="'+response.data[i].id+'" style="font-size:15px; color:#F44336;"></i></td>';
                     tradehtml+='</tr>';
                     transactedshares=parseInt(transactedshares)+parseInt(no_of_share);
@@ -1790,7 +1790,7 @@ var reqid=website(this).attr('reqid');
                            addhtmlnxt+='<td>'+total_amount+'</td>';
                            addhtmlnxt+='<td>'+date_of_transaction+'</td>';
                            addhtmlnxt+='<td>'+demat_acc_no+'</td>';
-                           addhtmlnxt+='<td>'+file+'</td>';
+                           //addhtmlnxt+='<td>'+file+'</td>';
                            addhtmlnxt += '</tr>';
 
                           
@@ -2148,12 +2148,18 @@ function addhtml(clicked)
         
         
         addhtmlnxt += '</div>';
-        addhtmlnxt +=' <div id = "right" class="form-group col-md-4">';
-        addhtmlnxt += ' <label for="">No of Shares</label>';
-        addhtmlnxt += '<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No of Shares">';
+        addhtmlnxt += ' <div id = "right" class="form-group col-md-4">';
+        addhtmlnxt += ' <label for="">No. of Shares / ADRs</label>';
+        addhtmlnxt += '<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Shares / ADRs">';
+        addhtmlnxt += ' </div>';
+
+        //addhtmlnxt += '</div>';
+        addhtmlnxt += ' <div id = "right" class="form-group col-md-4">';
+        addhtmlnxt += ' <label for="">Value of transaction</label>';
+        addhtmlnxt += '<input type="text" class="form-control " id="valueoftrans" name="valueoftrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="Value of transaction">';
         addhtmlnxt += ' </div>';
         
-        addhtmlnxt +=' <div id = "right" class="form-group col-md-1">';
+        addhtmlnxt += ' <div id = "right" class="form-group col-md-1">';
         addhtmlnxt += '<i class="fa fa-trash-o" onclick="removehtml('+getlastid+');" style="font-size:15px; color:#F44336;margin-top: 39px;"></i>';
         addhtmlnxt += ' </div>';
         

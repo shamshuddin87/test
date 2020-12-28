@@ -788,7 +788,7 @@ class Sebicommon extends Component
                 }
                 
                 $queryinsert = "INSERT INTO `sebiformc_usrdata` (`user_id`,`user_group_id`,`tradeid`,`approverid`,`category`, `companyid`,`acquimode`,`fromdate`, `todate`, `sectype`, `pretrans`,`posttrans`,`dateofintimtn`,`buyvalue`, `buynumbrunt`, `sellvalue`, `sellnumbrunt`,`exetrd`,`opngblnc`,`totalamnt`,`clsblnc`,`filestatus`,`typeofformc`,`date_added`, `date_modified`,`timeago`)
-                 VALUES ('".$getuserid."','".$user_group_id."','".$formcdata[$i]['id']."','".$appvrid."','".$formcdata[$i]['category']."','".$formcdata[$i]['id_of_company']."','".$formcdata[$i]['aquimode']."','".$datefrom."','".$dateto."','".$formcdata[$i]['sectype']."','','','".$formcdata[$i]['intimtndate']."','','','','','".$formcdata[$i]['exetrd']."','".$openingblnc."','".$totalamnt."','".$clngblnc."','".$tradests."','".$formcdata[$i]['formctype']."',NOW(),NOW(),'".$time."')"; 
+                 VALUES ('".$getuserid."','".$user_group_id."','".$formcdata[$i]['id']."','".$appvrid."','".$formcdata[$i]['category']."','".$formcdata[$i]['id_of_company']."','".$formcdata[$i]['aquimode']."','".$datefrom."','".$dateto."','".$formcdata[$i]['sectype']."','','','','','','','','".$formcdata[$i]['exetrd']."','".$openingblnc."','".$totalamnt."','".$clngblnc."','".$tradests."','".$formcdata[$i]['formctype']."',NOW(),NOW(),'".$time."')"; 
                  //print_r($queryinsert);exit;
                 $exeprev = $connection->query($queryinsert);
              }
@@ -887,7 +887,7 @@ class Sebicommon extends Component
     public function getformcdata($getuserid,$user_group_id,$formcid)
     {
         $connection = $this->dbtrd;
-        $queryget = "SELECT formc.*,memb.`fullname`,pinfo.mobileno AS `mobile`,tr.`no_of_share` AS tdsshare,tr.`req_id`,pr.`place`,pr.`no_of_shares`,pinfo.`pan`,pinfo.`address`,cate.`category`,cmp.`company_name`,formmode.`acquisitionmode` AS acquistnmode ,pinfo.`sharehldng`,sc.`pershare` 
+        $queryget = "SELECT formc.*,memb.`fullname`,pinfo.mobileno AS `mobile`,tr.`no_of_share` AS tdsshare,tr.`req_id`,pr.`place`,pr.`no_of_shares`,pinfo.`pan`,pinfo.`address`,cate.`category`,cmp.`company_name`,formmode.`acquisitionmode` AS acquistnmode ,pinfo.`sharehldng`,sc.`pershare`,se.`fieldname`,pr.`type_of_transaction` 
          FROM `sebiformc_usrdata` formc 
          LEFT JOIN `it_memberlist` memb ON memb.`wr_id` = formc.`user_id` 
          LEFT JOIN `personal_info` pinfo ON pinfo.`userid` = formc.`user_id` 
@@ -896,7 +896,8 @@ class Sebicommon extends Component
          LEFT JOIN `sebiformc_mode` formmode ON formmode.`id` = formc.`acquimode`
          LEFT JOIN `trading_status` tr ON tr.`id` = formc.`tradeid`
          LEFT JOIN personal_request pr ON pr.`id` = tr.`req_id`
-          LEFT JOIN sharecapital sc ON sc.`user_id` = pinfo.`userid`
+         LEFT JOIN sharecapital sc ON sc.`user_id` = pinfo.`userid`
+         LEFT JOIN `sebiformc_exchngtrd` se ON se.`id` = formc.`exetrd`
          WHERE formc.`id`='".$formcid."'";
         //echo $queryget;exit;
         try{
@@ -942,7 +943,7 @@ class Sebicommon extends Component
         }
         $connection = $this->dbtrd; 
         $time = time();
-           $queryinsert = "UPDATE `sebiformc_usrdata` SET `category`='".$formcupdata['category']."', `fromdate`='".$formcupdata['fromdate']."', `todate`='".$formcupdata['todate']."', `dateofintimtn`='".$formcupdata['dateofintimtn']."', `acquimode`='".$aquimode."',`exetrd`='".$exetrd."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['upformcid']."'"; 
+           $queryinsert = "UPDATE `sebiformc_usrdata` SET `category`='".$formcupdata['category']."', `fromdate`='".$formcupdata['fromdate']."', `todate`='".$formcupdata['todate']."', `dateofintimtn`='', `acquimode`='".$aquimode."',`exetrd`='".$exetrd."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['upformcid']."'"; 
         //print_r($queryinsert);exit;
         //, `pretrans`='".$formcupdata['pretrans']."', `posttrans`='".$formcupdata['posttrans']."',`buyvalue`='".$formcupdata['buyvalue']."',`buynumbrunt`='".$formcupdata['buynumbrunt']."',`sellvalue`='".$formcupdata['sellvalue']."',`sellnumbrunt`='".$formcupdata['sellnumbrunt']."'
         try

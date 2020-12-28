@@ -842,9 +842,16 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     Security Type :'.$emaildata['securty_type'].',</div>
                     <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
                     No Of Securities : '.$emaildata['noofshres'].'</div>
-                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
-                      <a href="'.$emaildata['url'].'randomrequest?vote='.base64_encode("1").'&rqst='.base64_encode($emaildata['rqst_id']).'&userid='.base64_encode($uid).'"><button class="button ">Approve</button></a>
-                      <a href="'.$emaildata['url'].'randomrequest?vote='.base64_encode("0").'&rqst='.base64_encode($emaildata['rqst_id']).'&userid='.base64_encode($uid).'"><button class="button  button3">Reject</button></a>
+                    <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px;">
+                    When you complete the transaction please follow below steps after logging in to Volody.
+                    <ol>
+                      <li>Go to Request for Pre-clearance under SEBI Form</li>
+                      <li>Click on icon shown in trading status against the entry for which pre-clearance was taken.</li>
+                      <li>Enter the transaction details.</li>
+                      <li>Click on final submit</li>
+                    </ol>
+                    <!--  <a href="'.$emaildata['url'].'randomrequest?vote='.base64_encode("1").'&rqst='.base64_encode($emaildata['rqst_id']).'&userid='.base64_encode($uid).'"><button class="button ">Approve</button></a>
+                      <a href="'.$emaildata['url'].'randomrequest?vote='.base64_encode("0").'&rqst='.base64_encode($emaildata['rqst_id']).'&userid='.base64_encode($uid).'"><button class="button  button3">Reject</button></a> -->
                 </div>
                 </div>
             </div>
@@ -923,7 +930,14 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                 Security Type :'.$emaildata['securty_type'].',</div>
                 <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
                 No Of Securities : '.$emaildata['noofshres'].'</div>
-                <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
+                <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px;">
+                When you complete the transaction please follow below steps after logging in to Volody. 
+                <ol>
+                  <li>Go to Request for Pre-clearance under SEBI Form</li>
+                  <li>Click on icon shown in trading status against the entry for which pre-clearance was taken.</li>
+                  <li>Enter the transaction details.</li>
+                  <li>Click on final submit</li>
+                </ol>
             </div>
                                                 
             </div>
@@ -3100,7 +3114,7 @@ public function formI($personalinfo,$itmemberinfo,$approxprice,$broker,$dematacc
   <p style="text-align: center;"><b>
     Form I<br/>
     (Application for pre-clearance of trade)  <br/>
-    Under Clause 8.3 of the Code</b>
+    Under Clause 8 of the Code</b>
   </p>
 
   <br/>

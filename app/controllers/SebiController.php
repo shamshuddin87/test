@@ -903,6 +903,8 @@ class SebiController extends ControllerBase
                 //print_r($pdfpath);exit;
                 if(!empty($pdfpath))
                 {
+                    $getres = $this->sebicommon->sendforapprvlformc($uid,$user_group_id,$formcid);
+                    $sendmail = $this->sebicommon->sendemailformc($formcid);
                     $data = array("logged"=>true,'message'=>'PDF Generated..!!', 'pdfpath'=>$pdfpath);
                     $this->response->setJsonContent($data);
                 }
@@ -943,7 +945,7 @@ class SebiController extends ControllerBase
                 //print_r($formcupdata);exit;
                 
                 /*Date Validation for Date Infimation,From Date and To date Start */
-                if(!empty($formcupdata['dateofintimtn']))
+                /*if(!empty($formcupdata['dateofintimtn']))
                 {
                     $dateofintimtn = $formcupdata['dateofintimtn'];
                     $dateofintimtn_arr = explode('-', $dateofintimtn);
@@ -952,7 +954,7 @@ class SebiController extends ControllerBase
                     $dateofintimtny = $dateofintimtn_arr[2];
                     $dateofintimtnd = $dateofintimtn_arr[0];
                     $dateofintimtnstatus = $this->elements->checkdate($dateofintimtnm,$dateofintimtny,$dateofintimtnd);
-                }
+                }*/
                 
                 if(!empty($formcupdata['fromdate']))
                 {
@@ -999,7 +1001,7 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Date of transaction should not be in future');
                     $this->response->setJsonContent($data);
                 }
-                else if(empty($formcupdata['dateofintimtn']))
+                /*else if(empty($formcupdata['dateofintimtn']))
                 {
                     $data = array("logged" => false,'message' => " Date of intimation to company should not empty..!!");
                     $this->response->setJsonContent($data);
@@ -1013,7 +1015,7 @@ class SebiController extends ControllerBase
                 {
                     $data = array("logged" => false,'message' => 'Date of intimation to company should not be in future');
                     $this->response->setJsonContent($data);
-                }
+                }*/
                 else if(empty($formcupdata['fromdate']))
                 {
                     $data = array("logged" => false,'message' => " Date of allotment From should not empty..!!");
@@ -1953,7 +1955,7 @@ class SebiController extends ControllerBase
                     $transdateday = date('l', strtotime($dateoftrans)); // check week day(cannot be saturday and sunday)
                 }
                 
-                if(!empty($type1data['dateofintimtn']))
+                /*if(!empty($type1data['dateofintimtn']))
                 {
                     $dateofintimtn = $type1data['dateofintimtn'];
                     $dateofintimtn_arr = explode('-', $dateofintimtn);
@@ -1962,7 +1964,7 @@ class SebiController extends ControllerBase
                     $dateofintimtny = $dateofintimtn_arr[2];
                     $dateofintimtnd = $dateofintimtn_arr[0];
                     $dateofintimtnstatus = $this->elements->checkdate($dateofintimtnm,$dateofintimtny,$dateofintimtnd);
-                }
+                }*/
                 
                 if(!empty($type1data['fromdate']))
                 {
@@ -2004,7 +2006,7 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => " Date of transaction cannot be Saturday and Sunday");
                     $this->response->setJsonContent($data);
                 }
-                else if(empty($type1data['dateofintimtn']))
+                /*else if(empty($type1data['dateofintimtn']))
                 {
                     $data = array("logged" => false,'message' => " Date of intimation to company should not empty..!!");
                     $this->response->setJsonContent($data);
@@ -2018,7 +2020,7 @@ class SebiController extends ControllerBase
                 {
                     $data = array("logged" => false,'message' => 'Date of intimation to company should not be in future');
                     $this->response->setJsonContent($data);
-                }
+                }*/
                 else if(empty($type1data['fromdate']))
                 {
                     $data = array("logged" => false,'message' => " Date of allotment From should not empty..!!");
@@ -2077,7 +2079,7 @@ class SebiController extends ControllerBase
                             $formcids[] = $resTradeStatus['TradeId'];
                             $appvrid = $type1data['approverid'];
                             $formcdata[0]['category'] = $type1data['category'];
-                            $formcdata[0]['intimtndate'] = $type1data['dateofintimtn'];
+                            // $formcdata[0]['intimtndate'] = $type1data['dateofintimtn'];
                             $formcdata[0]['allotmentfrm'] = $type1data['fromdate'];
                             $formcdata[0]['allotmentto'] = $type1data['todate'];
                             $formcdata[0]['aquimode'] = $type1data['acquimode'];

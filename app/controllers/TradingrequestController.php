@@ -151,7 +151,12 @@ class TradingrequestController extends ControllerBase
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
-                
+                else if($approxprice < 2500000)
+                {
+                    $data = array("logged" => false,'message' => 'Pre-clearance is required if you intend to deal in securities of the Company for an amount of Rs 25 lakhs or above.');
+                    $this->response->setJsonContent($data);
+                    $this->response->send();
+                }
                 else
                 {
                     //print_r($datetrans);exit;
@@ -1088,12 +1093,12 @@ class TradingrequestController extends ControllerBase
                 }
                 /*Date Validation for Date of transaction */
 
-                if(empty($_FILES['fileToUpload']['name']))
+                /*if(empty($_FILES['fileToUpload']['name']))
                 {
                     $data = array("logged" => false,"message" =>"File Not Uploaded");
                     $this->response->setJsonContent($data);
-                }
-                else if(empty($data['transdate']))
+                }*/
+                if(empty($data['transdate']))
                 {
                     $data = array("logged" => false,"message" =>"Please Enter transaction date");
                     $this->response->setJsonContent($data); 

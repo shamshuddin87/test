@@ -105,10 +105,10 @@
                   <input type="text" id="pan" name="PAN" value="<?php echo($personaldetails['pan']) ?>" placeholder="pan" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
                </div>
                <div class="col-md-4 col-xs-12">
-                  <div class="tooltip_div">
+                  <!-- <div class="tooltip_div">
                      <a href="javascript:void(0);" data="Nature of Identifier (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
-                  </div>
-                  <label for="legal_idntfr" style="display: inline;">Nature of Legal Identifier</label>
+                  </div> -->
+                  <label for="legal_idntfr" style="display: inline;">Nature of Legal Identifier (only for overseas employee)</label>
                   <input type="text" id="legal_idntfr" name="legal_idntfr" value="<?php echo($personaldetails['legal_identifier']) ?>" placeholder="Nature of Legal Identifier">
                </div>
               <!--  <div class="col-md-4 col-xs-12">
@@ -164,7 +164,7 @@
                   <textarea id="address" name="address" value="<?php echo($personaldetails['address']) ?>" placeholder="Write address.." style="height:50px"><?php echo($personaldetails['address']) ?></textarea>
                </div>
                <div class="col-md-4 col-xs-12">
-                  <label class="control-label">Upload Identity Proof</label>
+                  <label class="control-label">Upload Identity Proof (PAN, Aadhar or other legal identifier)</label>
                   <?php if(!empty($personaldetails['filepath'])){ ?>
                   <a href="<?php echo ($personaldetails['filepath']); ?>" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a>
                   <input type="hidden" name="updtfile" id="updtfile" value="<?php echo ($personaldetails['filepath']); ?>">
@@ -181,8 +181,8 @@
                <div class="row">
                   <div class="col-md-12 col-xs-12">
                     <div class="col-md-4 col-xs-12 "> 
-                        <label for="age">Landline No.</label>
-                        <input type="text" id="landline" name="landline" value="<?php echo($personaldetails['landline']) ?>" placeholder="Landline No." onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 32 || event.charCode == 43'>
+                        <label for="age">Alternate Phone Number</label>
+                        <input type="text" id="landline" name="landline" value="<?php echo($personaldetails['landline']) ?>" placeholder="Alternate Phone Number" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 32 || event.charCode == 43'>
                      </div>
                       
                      <div class="col-md-4 col-xs-12 ">
@@ -216,10 +216,10 @@
                   <input type="text" id="pan" name="PAN" placeholder="pan" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
                </div>
                <div class="col-md-4 col-xs-12">
-                  <div class="tooltip_div">
+                  <!-- <div class="tooltip_div">
                      <a href="javascript:void(0);" data="Nature of Identifier (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
-                  </div>
-                  <label for="legal_idntfr" style="display: inline;">Nature of Legal Identifier </label>
+                  </div> -->
+                  <label for="legal_idntfr" style="display: inline;">Nature of Legal Identifier (only for overseas employee) </label>
                   <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of Legal Identifier" >
                </div>
                <!-- <div class="col-md-4 col-xs-12">
@@ -263,7 +263,7 @@
                   <textarea id="address" name="address" placeholder="Write address.." style="height:50px"></textarea>
                </div>
                <div class="col-md-4 col-xs-12">
-                  <label class="control-label">Upload Identity Proof</label>
+                  <label class="control-label">Upload Identity Proof (PAN, Aadhar or other legal identifier)</label>
                   <div class="choose_files">
                      <input type="file" name="hldngfile" id="hldngfile" >
                   </div>
@@ -279,8 +279,8 @@
                   <div class="col-md-12 col-xs-12">
                     
                     <div class="col-md-4 col-xs-12 "> 
-                      <label for="">Landline No.</label>
-                      <input type="text" id="landline" name="landline" placeholder="landline No." onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 32 || event.charCode == 43'>
+                      <label for="">Alternate Phone Number</label>
+                      <input type="text" id="landline" name="landline" placeholder="Alternate Phone Number" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 32 || event.charCode == 43'>
                    </div>
                       
                      <div class="col-md-4 col-xs-12 ">
@@ -304,15 +304,7 @@
                   <input class="btn btn-primary" type="button" name="confirmpersonalinfo" value="Submit" id="confirmpersonalinfo" onclick="confirmdisclosure(this.id)"  style="float: right;">
                </div>
             </form>
-            <div class="tablitiledesc">
-               <div class="note">
-                  <strong>Note : </strong><br/>
-                  <ol type="1" style="display: inline-block;padding: 5px 15px;">
-                     <li>I hereby give my consent to use/share any of the information above, with relevant regulatory authorities in case of any investigation or so. I also confirm that I am authorised to share the sensitive personal information of my family members, whose information I am disclosing herein and confirm their consent too.</li>
-                     <li>Once your personal information is filled please send 'Declaration form' to the Compliance Officer. <a href="annualdeclaration" style="color:red;">Click here.</a></li>
-                  </ol>
-               </div>
-            </div>
+         
          </div>
          <!-- My messages -->
          
@@ -339,7 +331,7 @@
                               <input type="text" id="aadhar" name="aadhar" placeholder="aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
                            </div>
                            <div class="col-md-6">
-                              <label for="legal_idntfr">Nature of Legal Identifier</label>
+                              <label for="legal_idntfr">Nature of Legal Identifier (only for overseas employee)</label>
                               <input type="text" id="legal_idntfr" name="legal_idntfr" placeholder="Nature of Legal Identifier">
                            </div>
                            <div class="col-md-6">
@@ -380,7 +372,7 @@
                               <textarea id="address" name="address" placeholder="Write address.." style="height:100px"></textarea>
                            </div>
                            <div class="col-md-6">
-                              <label class="control-label">Upload Identity Proof</label>
+                              <label class="control-label">Upload Identity Proof (PAN, Aadhar or other legal identifier)</label>
                               <div class="choose_files">
                                  <input type="file" name="hldngfile" id="hldngfile" >
                               </div>
@@ -478,10 +470,10 @@
                            <input  class=" panval" placeholder="PAN" class="pan" id="pan"  name="pan" type="text" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10" />
                         </div>
                         <div class="col-md-4">
-                           <div class="tooltip_div">
+                           <!-- <div class="tooltip_div">
                               <a href="javascript:void(0);" data="Nature of Identifier (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
-                           </div>
-                           <label for="legal_idntfr" style="display: inline;">Nature of Legal Identifier </label>
+                           </div> -->
+                           <label for="legal_idntfr" style="display: inline;">Nature of Legal Identifier (only for overseas employee) </label>
                            <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of Legal Identifier">
                         </div>
                         <!-- <div class="col-md-4">
@@ -532,8 +524,8 @@
                            <input type="text" id="reloccupation" name="reloccupation" placeholder="Occupation" >
                         </div>
                         <div class="col-md-4 col-xs-12 "> 
-                           <label for="age">Name of Companies/Firm</label>
-                           <input type="text" id="relcompany" name="relcompany"  placeholder="Name of Companies/Firm " >
+                           <label for="age">Name of Companies/Firm where employed</label>
+                           <input type="text" id="relcompany" name="relcompany"  placeholder="Name of Companies/Firm where employed" >
                         </div>
                        
                         <div class="col-md-4 ">
@@ -551,7 +543,7 @@
                            <input type="text" id="adrsholdng" name="adrsholdng" placeholder="No. of American Depository Receipts held in DRL" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="0">
                         </div>
                          <div class="col-md-4">
-                           <label class="control-label">Upload Identity Proof</label>
+                           <label class="control-label">Upload Identity Proof (PAN, Aadhar or other legal identifier)</label>
                            <input type="file" name="file[]" id="file" >
                         </div>
                         <div class="col-md-4">
@@ -683,10 +675,10 @@
                               <input type="text" id="pan" name="pan" placeholder="PAN" onkeypress="return isAlphaNumeric(event,this.value);" maxlength="10">
                            </div>
                            <div class="col-md-6">
-                              <div class="tooltip_div">
+                              <!-- <div class="tooltip_div">
                                  <a href="javascript:void(0);" data="Nature of Identifier (only for overseas employees)" class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
-                              </div>
-                              <label for="legal_idntfr" style="display: inline;">Nature of Legal Identifier </label>
+                              </div> -->
+                              <label for="legal_idntfr" style="display: inline;">Nature of Legal Identifier (only for overseas employee) </label>
                               <input type="text" id="legal_idntfr" name="legal_idntfr"  placeholder="Nature of Legal Identifier">
                            </div>
                            <!-- <div class="col-md-6">
@@ -749,11 +741,11 @@
                                     <input type="text" id="reloccupationup" name="reloccupationup" placeholder="Occupation"  >
                                  </div>
                                  <div class="col-md-6 col-xs-12 "> 
-                                    <label for="age">Name of Companies/Firm</label>
-                                    <input type="text" id="relcompanyup" name="relcompanyup"  placeholder="Name of Companies/Firm " >
+                                    <label for="age">Name of Companies/Firm where employed</label>
+                                    <input type="text" id="relcompanyup" name="relcompanyup"  placeholder="Name of Companies/Firm where employed" >
                                  </div>
                                  <div class="col-md-6">
-                                    <label class="control-label">Upload Identity Proof</label>
+                                    <label class="control-label">Upload Identity Proof (PAN, Aadhar or other legal identifier)</label>
                                     <input type="file" name="file" id="file" >
                                  </div>
                               
@@ -771,8 +763,11 @@
          </div>
       </div>
       <div class="col-md-12 col-lg-12">
-         <div class="row relativesform mymfr" style="display: none;">
-            <label class="do">Do you have any Material Financial Relationship? 
+        <div class="row relativesform mymfr" style="display: none;">
+            <div class="tooltip_div col col-xs-12" style="margin-top: 10px;float: left;">
+                <a style="float: left;" href="javascript:void(0);" data="The term “material financial relationship” shall mean a relationship in which one person is a recipient of any kind of payment such as by way of a loan or gift during the immediately preceding twelve months, equivalent to at least 25% of designated person’s annual income but shall exclude relationships in which the payment is based on arm’s length transactions" class="tooltip_c">what is material financial relationship <abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
+            </div>
+            <label style="margin-top: 10px;" class="do">Do you have any Material Financial Relationship? 
               <?php if(isset($mfrstatus) ){ 
                 if($mfrstatus[0]['status'] == 1){?>
                 Yes<input type="radio" name="mfrstatus" value="1" class="mfrstatusupdt" checked onclick="showmfrsection();" /> 
@@ -788,11 +783,11 @@
                 No<input type="radio" name="mfrstatus"value="0" class="mfrstatusupdt" onclick="hidemfrsection();"/><br>
             <?php } ?>
             </label>
-            <div id = "showmfr" style="display: none;">     
+            <div id = "showmfr" style="display: none;">   
+
+            <div class="row"> 
             <h3 class="col col-xs-6" style="margin-top: 30px;">Financial Relationship Details</h3>
-            <div class="tooltip_div col col-xs-6" style="margin-top: 30px;">
-               <a href="javascript:void(0);" data="The term “material financial relationship” shall mean a relationship in which one person is a recipient of any kind of payment such as by way of a loan or gift during the immediately preceding twelve months, equivalent to at least 25% of designated person’s annual income but shall exclude relationships in which the payment is based on arm’s length transactions" class="tooltip_c">what is material financial relationship <abbr class="fa fa-info-circle"></abbr><span class="arrow-down"></span></a>
-            </div>
+            
             <div class="col col-xs-12">
                <div class="input-group row">
                   <div class="col-md-6">
@@ -828,10 +823,11 @@
                   </div>
                </div>
             </div>
+         </div>
              
              <div class="tablitiledesc">
                <div class="note">
-                  <strong>Note : </strong><div style="display: inline-block;padding: 5px 15px;">When you fill up the details of your material financial relationships in the above form, it will be visible in the table below.</div>
+                  <strong>Note : </strong><div style="display: inline-block;padding: 5px 15px;">The data submitted in the above form will be visible in the table below.</div>
                </div>
             </div>
              
@@ -1163,16 +1159,30 @@
          <div class="row employmentform" style="display: none;">
             <h3 style="text-align: center;">Add Past Employer</h3>
              
-             <div class="col-md-4 col-xs-12">
-                 <div class="tooltip_div">
+             <div class="col-md-7 col-xs-12">
+                
+                <label for="age">Please enter no. of past employment(s)*
+                 <div class="tooltip_div" style="margin-left: 5px;">
                      <a href="javascript:void(0);" data="In case your no. of past employments exceed 5 then please mention only latest 5 employment details here. For rest of the companies please send email to the Compliance Officer." class="tooltip_c right" style="margin-right:0px;"><abbr class="fa fa-info-circle iji"></abbr><span class="arrow-down"></span></a>
                   </div>
-                <label for="age">Please enter no. of past employment(s)*</label>
-                <input type="text" id="pastemp" name="pastemp" placeholder="No. of Past Employer">
+               </label>
+
+               <div class="note" style="padding: 2px 0;">
+                  (<strong>Note : </strong>Rows corresponding to this number will open up for entry. max 5 past employments.)
+               </div> 
+               <div class="row">
+                  <div class="col-md-8">
+                   <input type="text" id="pastemp" name="pastemp" placeholder="No. of Past Employer">
+                  </div>
+                  <div class="col-md-4">
+                     <button class="add_button" style="margin-top:0;">Go</button>
+                  </div>
+               </div>               
              </div>
-             <div class="col-md-4">
-                <button class="add_button">Go</button>
-             </div>
+             
+            <!-- <div class="note">
+               (<strong>Note : </strong>Rows corresponding to this number will open up for entry. max 5 past employments.)
+            </div> -->
              <div class="containergrid">
                <div class="formcss">
                   <div class="typography form_pad" id="addnoofforms">

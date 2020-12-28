@@ -228,8 +228,8 @@ class Upsicommon extends Component
             //$exesql = 'rdgd';
             if($exesql)
             {  
-                $updatedata['nameaddedby'] = $addedby;
-                $datadiffrnt = $this->upsicommon->chckifdatadiff($getuserid,$usergroup,$updatedata,$username,$updatedata['editid']);
+                /*$updatedata['nameaddedby'] = $addedby;
+                $datadiffrnt = $this->upsicommon->chckifdatadiff($getuserid,$usergroup,$updatedata,$username,$updatedata['editid']);*/
                 //print_r($datadiffrnt);exit;
                 return true;
                  

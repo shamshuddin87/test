@@ -44,6 +44,15 @@ else
     website("#showdemat").css('display','none');
  }
 
+ let yeschecked1 = website("input[name='pastemp1']:checked").val();
+ if(yeschecked1 == 1)
+ {
+      website("#showreldemat").css('display','block');
+ }
+ else
+ {
+    website("#showreldemat").css('display','none');
+ }
 
 datepicker();
 function datepicker(){
@@ -784,7 +793,11 @@ website("body").on("click","#subreldemat",function(e){
                     addclass: 'dark ',
                 });
                   
-                  window.location.reload();  
+                //  window.location.reload();
+                var baseHref = getbaseurl();
+                setTimeout(function() { 
+                    window.location.href = baseHref+'initialdeclaration'; 
+                }, 1000) ; 
 
             } 
             else{
@@ -847,6 +860,44 @@ website("body").on("click","#subreldemat",function(e){
 });
 
 
+website('body').on('click','.dematup1',function(e) {
+
+    var dematup=website(this).val();
+        // alert(dematup)
+    website.ajax({
+            url:'portfolio/zeroreldematacc',
+            data:{dematup:dematup},
+            method:'POST',
+            //contentType:'json',
+            contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+            //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+            dataType:"json",
+            cache:false,
+            //async:true, Cross domain checking
+            beforeSend: function()
+            {     },
+            uploadProgress: function(event, position, total, percentComplete)
+            {   },
+            success: function(response, textStatus, jqXHR)
+            {
+                 //console.log(response);
+                if(dematup == 0)
+                {
+                    var baseHref = getbaseurl();
+                    var redirecturl = baseHref + "initialdeclaration";
+                    website('#modeluserguide #modalcontent').html('<div style="text-align:center;"><h5 style="text-align: center;color: #000;margin: 25px 0;line-height: 25px;">Updated successfully.</h5></div><div class="guidebtn" style="text-align:center;"><a href="'+redirecturl+'"><button type="button" class="btn btn-success" style="border-top:none; text-align: center;">OK</button></a></div>');
+                    website('#modeluserguide').modal('show');
+                }
+                  /*website('#alertcommon #allalertmsg').html(response.message);
+                  website('#alertcommon').modal('show');*/
+            },
+            complete: function(response)
+            {   },
+            error: function(jqXHR, textStatus, errorThrown)
+            {   }
+       });
+});
+
 function showsection(){
 
 
@@ -862,6 +913,29 @@ var section = document.getElementById("showdemat");
 function hidesection(){
 
 var section = document.getElementById("showdemat");
+
+  if (section.style.display === "block") 
+  {
+    section.style.display = "none";
+  } 
+}
+
+function showsection1()
+{
+
+
+var section = document.getElementById("showreldemat");
+
+
+  if (section.style.display === "none") {
+    section.style.display = "block";
+  } 
+
+}
+
+function hidesection1(){
+
+var section = document.getElementById("showreldemat");
 
   if (section.style.display === "block") 
   {

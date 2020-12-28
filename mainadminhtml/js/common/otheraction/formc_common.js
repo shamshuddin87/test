@@ -89,7 +89,7 @@ function getdataonload()
             }
             // addhtmlnxt += '<td width="15%">'+company+'</td>';
             addhtmlnxt += '<td width="20%">'+designation+'</td>';
-            if(response.resdta[i].send_status == 0)
+            /*if(response.resdta[i].send_status == 0)
             {
                 
                   addhtmlnxt += '<td width="20%"><i class="fa fa-paper-plane"  id="sendforaprvformc" formcid="'+response.resdta[i].id+'" pdfurl ="'+draft+'"></i></td>';
@@ -98,7 +98,7 @@ function getdataonload()
             else
             {
                  addhtmlnxt += '<td width="20%"><i class="fa fa-check" aria-hidden="true"></i></td>';
-            }
+            }*/
             
             addhtmlnxt += '<td width="20%"><i class="fa fa-file-pdf-o" id="previewc" type="'+response.resdta[i].isitesop+'" doc_id=2 formcid="'+response.resdta[i].id+'" formctype="'+response.resdta[i].typeofformc+'"></i></td>';
             if(response.user_group_id == '7')
@@ -195,7 +195,7 @@ var tradeid = website(this).attr('tradeid');
             website("#Mymodaledit #todate").val(response.data.todate);
             website("#Mymodaledit #pretrans").val(response.data.pretrans);
             website("#Mymodaledit #posttrans").val(response.data.posttrans);
-            website("#Mymodaledit #dateofintimtn").val(response.data.dateofintimtn);
+            //website("#Mymodaledit #dateofintimtn").val(response.data.dateofintimtn);
             
             if(response.data.typeofformc == '1') // type 1 - dropdown
             {
@@ -499,9 +499,19 @@ website('body').on('click','#previewc',function()
                website('.excelposttrans').val(response.pershare);
                if(formctype == '1')
                {
-                    if(response.formdata['typtrans']!=null)
+                    /*if(response.formdata['typtrans']!=null)
                     {
                         website('.transtype').html(response.formdata['typtrans']);
+                        website('.exceltranstype').html(response.formdata['typtrans']);
+                    }*/
+                    if(response.formdata['type_of_transaction']==1)
+                    {
+                        website('.transtype').html('<p style="color:green;">BUY</p>');
+                        website('.exceltranstype').html(response.formdata['typtrans']);
+                    }
+                    else if(response.formdata['type_of_transaction']==2)
+                    {
+                        website('.transtype').html('<p>SELL</p>');
                         website('.exceltranstype').html(response.formdata['typtrans']);
                     }
                     else
@@ -558,7 +568,8 @@ website('body').on('click','#previewc',function()
                website('.excelfromdate').val(ddmmyyfrom);  //date
                website('.todate').html(ddmmyyto); //date
                website('.exceltodate').val(ddmmyyto); //date
-               website('.dateofintimtn').html(ddmmyyinti); //date
+               //website('.dateofintimtn').html(ddmmyyinti); //date
+               website('.dateofintimtn').html(finaldtadd);
                website('.exceldateofintimtn').val(ddmmyyinti); //date
                
                 if(formctype == '1')
@@ -583,6 +594,8 @@ website('body').on('click','#previewc',function()
                website('.exetrd').html(response.formdata['exetrd']);
                website('.excelexetrd').val(response.formdata['exetrd']);
                website('.formcidexcel').val(id);
+               website('.exchange_on_trade_exec').html(response.formdata['fieldname']);
+               website('.exchange_on_trade_exec').val(response.formdata['fieldname']);
                
               //  website('.address').html(response.formdata['address']);
 
