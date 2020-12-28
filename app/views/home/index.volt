@@ -50,7 +50,7 @@
                                             <div><br></div>
                                             <div><br></div>
                                         </div>
-                                        <div class="col-xs-12 text_name">Request for Pre-clearance</div>
+                                        <div class="col-xs-12 text_name">Request for Pre-clearance <h5>(for transactions more than 25 lakhs in calender month)</h5></div>
                                     </div>
                                 </div>
 
