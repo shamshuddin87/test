@@ -591,7 +591,7 @@
                 <input type="hidden" id="datetrans" name="datetrans">
                 <input type="hidden" id="transaction" name="sendreq">
                 <input type="hidden" id="sharestrans" name="sharestrans">
-
+                <input type="hidden" id="valueoftrans" name="valueoftrans">
                 <div id = "showform1">
                 </div>
                
@@ -757,7 +757,24 @@
               <button type="button" class="close" data-dismiss="modal">
                     &times;</button>
             </div>
+            <form id="data" method="post" action="tradingrequest/savecontratrdexceptn" enctype="multipart/form-data">
             <div class="modal-body">
+            <input type="hidden" id="reasontrans" name="reasonmsg">
+            <input type="hidden" id="approverid" name="approverid">
+            <input type="hidden" id="reqname" name="reqname">
+            <input type="hidden" id="typeofrequest" name="typeofrequest">
+            <input type="hidden" id="dpuserid" name="dpuserid">
+            <input type="hidden" id="dpusergroup" name="dpusergroup">
+            <input type="hidden" id="requestmodeid" name="requestmodeid">
+            <input type="hidden" id="selrelative" name="selrelative">
+            <input type="hidden" id="idofcmp" name="idofcmp">
+            <input type="hidden" id="nameofcmp" name="nameofcmp">
+            <input type="hidden" id="noofshare" name="noofshare">
+            <input type="hidden" id="sectypeid" name="sectype">
+            <input type="hidden" id="typeoftrans" name="typeoftrans">
+            <input type="hidden" id="Yesexcreqst" name="typeofsave">
+            <input type="hidden" id="place" name="form2place">
+
             <div class="form-group">
                 <label for="">I intend to sell/purchase/exercise no. of shares/ADRs/options of the Company because of following reason(s)</label>
                 <select class="form-control" id="reasonoftrans" name="reasonoftrans" required>
@@ -784,7 +801,29 @@
                 <label for="">No. of shares / ADRs purchase/sold</label>
                 <input type="text" class="form-control" name="noofshareoftrans" id="noofshareoftrans" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of shares / ADRs purchase/sold" required>
             </div>
+
+            <div class="form-group">
+                <label for="">Type of Last Transaction</label>
+                <select class="form-control" id="typeoflasttrans" name="typeoflasttrans">
+                    <option value="1">BUY</option>
+                    <option value="2">SELL</option>
+                    <!--<option value="BONUS">BONUS</option>
+                    <option value="RIGHTS">RIGHTS</option>-->
+                </select>
+            </div>
                 
+            <div class="form-group">
+                <input type="file" name="othrdoc[]" id="othrdoc" class="fileimg_additional" filemainid="" multiple>
+            </div>
+                    
+            <div class="appendesc"></div>
+                
+          <!--   <div class="col-md-12 control-label formgroup">
+                <div class="">
+                    <input type="button" class="btn btn-primary btnaddescalation floatleft" value="+" num="1" >
+                    <input type="button" class="btn btn-primary btndeleteescalation floatleft" value="-" num="1">
+                </div>        
+            </div> -->
 <!--
             <div class="form-group">
                 <label for="">Place</label>
@@ -799,8 +838,9 @@
 -->
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" id="reasonexetrans">Submit</button> 
+              <button type="submit" class="btn btn-danger" id="reasonexetrans">Submit</button> 
             </div>
+            </form>
         </div>
     </div>
 </div>

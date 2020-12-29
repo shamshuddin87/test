@@ -2972,7 +2972,7 @@ public function notifysharing($name,$loggedemail,$upsiname,$todaydate,$dayOfWeek
           <table style=" border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
            <tr>';
               $html.="<td>Dr. Reddy's Laboratories Limited</td>";
-              $html.='<td><img src="img/dr reddy logo BnW"></td>                        
+              $html.='<!-- <td><img src="img/dr reddy logo BnW"></td> -->                       
             </tr>
           </table>
 

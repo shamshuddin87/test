@@ -274,10 +274,14 @@ website('body').on('click','.sendrequst',function()
     website('#checkappvlrequest #sharestrans').val(sharestrans);
 
 
+     var valueoftrans =website("input[name='valueoftrans[]']")
+              .map(function(){return website(this).val();}).get();
+
+    website('#checkappvlrequest #valueoftrans').val(valueoftrans);
 
     website.ajax({
         url:'tradingrequest/checkclosebalval',
-        data:{datetrans:datetrans,approxprice:approxprice,broker:broker,place:place,idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeofrequests:typeofrequests,noofshares:noofshares,requestmodeid:rqmdval},
+        data:{datetrans:datetrans,approxprice:approxprice,broker:broker,place:place,idofcmps:idofcmps,typeoftranss:typeoftranss,sectypes:sectypes,typeofrequests:typeofrequests,noofshares:noofshares,requestmodeid:rqmdval,valueoftrans:valueoftrans},
         method:'POST',
         //contentType:'json',
         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
@@ -1999,6 +2003,23 @@ website('body').on("click","#Yesexcreqst",function(e){
   var link =  website('#chckexcptnrequest #pdflink').attr('href');
 
   website('#reasonexceptn #reasonlink').attr('link',link);
+
+  website("#reasonexceptn #reasontrans").val(website("#reasontrans").val());
+  website("#reasonexceptn #approverid").val(website('#approverid').val());
+  website("#reasonexceptn #reqname").val(website('#reqname').val());
+  website("#reasonexceptn #typeofrequest").val(website('#Mymodalreq #typeofrequest').val());
+  website("#reasonexceptn #dpuserid").val(website("#dpuserid").val());
+  website("#reasonexceptn #dpusergroup").val(website("#dpusergroup").val());
+  website("#reasonexceptn #requestmodeid").val(website('#requestmodeid:checked').val());
+  website("#reasonexceptn #selrelative").val(website('#Mymodalreq #selrelative').val());
+  website("#reasonexceptn #idofcmp").val(website('#Mymodalreq #idofcmp').val());
+  website("#reasonexceptn #nameofcmp").val(website('#Mymodalreq #nameofcmp').val());
+  website("#reasonexceptn #noofshare").val(website('#Mymodalreq #noofshare').val());
+  website("#reasonexceptn #sectypeid").val(website('#Mymodalreq #sectypeid').val());
+  website("#reasonexceptn #typeoftrans").val(website('#Mymodalreq #typeoftrans').val());
+  website("#reasonexceptn #Yesexcreqst").val(website('#chckexcptnrequest #Yesexcreqst').attr('requesttype'));
+  website("#reasonexceptn #place").val(website("#Mymodalreq #place").val());
+
   website("#reasonexceptn").modal('show');
 
 });
@@ -2027,8 +2048,9 @@ website('body').on('click','#Noexcrequest',function(e)
 //    }
 //});
 
-website('body').on('click','#reasonexetrans',function(e)
+/*website('body').on('click','#reasonexetrans',function(e)
 {
+
     var reasonmsg = website("#reasontrans").val();
     var approverids = website('#approverid').val();
     var reqname = website('#reqname').val();
@@ -2054,16 +2076,18 @@ website('body').on('click','#reasonexetrans',function(e)
     var noofshares = website('#Mymodalreq #noofshare').val();
     var sectypes = website('#Mymodalreq #sectypeid').val();
     var typeoftranss = website('#Mymodalreq #typeoftrans').val();
-    var typeofsave = website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');
+    var typeofsave = website('#chckexcptnrequest #Yesexcreqst').attr('requesttype');*/
     
     /*----additional questions*/
-    var reasonoftrans = website("#reasonexceptn #reasonoftrans").val();
+    /*var reasonoftrans = website("#reasonexceptn #reasonoftrans").val();
     var otherreason = website("#reasonexceptn #otherreason").val();
     var lasttransdate = website("#reasonexceptn #lasttransdate").val();
     var noofshareoftrans = website("#reasonexceptn #noofshareoftrans").val();
+    var typeoflasttrans = website("#reasonexceptn #typeoflasttrans").val();
     var form2place = website("#Mymodalreq #place").val();
-    
+
     var formdata = {approverid:approverids,reqname:reqname,typeofrequest:typeofrequests,selrelative:selrelatives,idofcmp:idofcmps,nameofcmp:nameofcmps,noofshare:noofshares,sectype:sectypes,typeoftrans:typeoftranss,typeofsave:typeofsave,reasonmsg:reasonmsg,dpuserid:dpuserid,dpusergroup:dpusergroup,reasonoftrans:reasonoftrans,otherreason:otherreason,lasttransdate:lasttransdate,noofshareoftrans:noofshareoftrans,form2place:form2place,requestmodeid:rqmdval}
+
     website.ajax({
         url:'tradingrequest/savecontratrdexceptn',
         data:formdata,
@@ -2073,8 +2097,8 @@ website('body').on('click','#reasonexetrans',function(e)
         //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
         dataType:"json",
         cache:false,
-        //async:true, /*Cross domain checking*/
-        beforeSend: function()
+        //async:true,*/ /*Cross domain checking*/
+        /*beforeSend: function()
         { website('.preloder_wraper').fadeIn();   },
         uploadProgress: function(event, position, total, percentComplete)
         {   },
@@ -2082,11 +2106,11 @@ website('body').on('click','#reasonexetrans',function(e)
         {
             if(response.logged === true)
             {
-                 var baseHref = getbaseurl();
+                 var baseHref = getbaseurl();*/
                  /*var redirecturl=baseHref+"exceptionreq";
                  window.location.href =redirecturl;*/
                 
-                window.location.reload();
+                /*window.location.reload();
             }
             else
             {    
@@ -2104,6 +2128,41 @@ website('body').on('click','#reasonexetrans',function(e)
         error: function() 
         {   }
     });
+});*/
+
+
+website('#data').ajaxForm({
+    //data:formdata,
+    //contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+    dataType:"json",
+    beforeSend: function() 
+    { website('.preloder_wraper').fadeIn(); },
+    uploadProgress: function(event, position, total, percentComplete) 
+    { website('.preloder_wraper').fadeIn();  },
+    success: function(response, textStatus, jqXHR) 
+    {
+        if(response.logged === true)
+        {
+            var baseHref = getbaseurl();
+            /*var redirecturl=baseHref+"exceptionreq";
+            window.location.href =redirecturl;*/
+            window.location.reload();
+        }
+        else
+        {    
+            new PNotify({title: 'Alert',
+                text: response.message,
+                type: 'university',
+                hide: true,
+                styling: 'bootstrap3',
+                addclass: 'dark ',
+            });  
+        }
+    },
+    complete: function(response) 
+    {  website('.preloder_wraper').fadeOut();  },
+    error: function() 
+    {   }
 });
 
 website('body').on('change','#reasonoftrans', function(e) 
@@ -2270,4 +2329,39 @@ function hideshowRQMD(rqmdval)
 website('body').on('click','.reloadpage', function(e) 
 {
     setTimeout(function(){window.location.reload();}, 1000);
+});
+
+var number = '1';//defined globally
+
+website('body').on('click','.btnaddescalation',function(e)
+{
+    var addhtmlnxt='';
+    number++;
+    addhtmlnxt += '<div class="form-group">';
+    addhtmlnxt += '<input type="file" name="othrdoc[]" id="othrdoc'+number+'" class="fileimg_additional" filemainid="">';
+    addhtmlnxt += '</div>';
+
+    website('.appendesc').append(addhtmlnxt);
+    website('.btnaddescalation').attr('num',number);
+    website('.btndeleteescalation').attr('num',number);
+});
+
+
+website('body').on('click','.btndeleteescalation',function()
+{
+    
+    var rownum  = website(this).attr('num');  
+    //console.log(rownum);  
+    if(rownum != 1)
+    {
+        website('.appendesc #othrdoc'+rownum ).remove();
+       // console.log(website('.appendesc .choose_files #num-'+rownum).remove());
+        website('.btnaddescalation').attr('num',parseInt(rownum)-1);
+        website('.btndeleteescalation').attr('num',parseInt(rownum)-1);
+    }
+    else
+    {
+        return false;
+    }
+
 });

@@ -2017,7 +2017,7 @@ function checktypeofreq($uid,$usergroup,$data)
         return $msg;
     }
     
-    public function savecontratrdexceptn($uid,$usergroup,$data,$send_status,$requestmodeid)
+    public function savecontratrdexceptn($uid,$usergroup,$data,$send_status,$requestmodeid,$add_filepath)
     {
         $connection = $this->dbtrd;
 
@@ -2076,12 +2076,10 @@ function checktypeofreq($uid,$usergroup,$data)
         
             //$pdfpath = $this->tradingrequestcommon->generatepdfreq($uid,$usergroup,$reetiveid,$data['idofcmp'],$data['sectype'],$data['noofshare'],$data['typeoftrans']);
             // -------- Start GET AUTO APPROVE STATUS --------
-                $query = "INSERT INTO `personal_request`(`user_id`,`user_group`,`type_of_request`,`relative_id`,`name_of_requester`,`sectype`,`id_of_company`,`no_of_shares`,`type_of_transaction`,`pdffilepath`,`approver_id`,`sent_contraexeaprvl`,`apprv_contraexedte`,`contraexcapvsts`,`trading_date`,`ex_approve_status`,`exception_reason`,`requestmodeid`,
-                `date_added`,`date_modified`,`timeago`)
-                VALUES('".$uid."','".$usergroup."','".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."','".$data['sectype']."','".$data['idofcmp']."','".$data['noofshare']."','".$data['typeoftrans']."','".$pdfpath."','".$data['approverid']."','".$send_status."',NOW(),'0','".$tradingdate."','0','".$data['reasonmsg']."','".$requestmodeid."',
-                NOW(),NOW(),'".$time."')";
+                $query = "INSERT INTO `personal_request`(`user_id`,`user_group`,`type_of_request`,`relative_id`,`name_of_requester`,`sectype`,`id_of_company`,`no_of_shares`,`type_of_transaction`,`pdffilepath`,`approver_id`,`sent_contraexeaprvl`,`apprv_contraexedte`,`contraexcapvsts`,`trading_date`,`ex_approve_status`,`exception_reason`,`requestmodeid`,`type_of_last_transaction`,`date_added`,`date_modified`,`timeago`)
+                VALUES('".$uid."','".$usergroup."','".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."','".$data['sectype']."','".$data['idofcmp']."','".$data['noofshare']."','".$data['typeoftrans']."','".$pdfpath."','".$data['approverid']."','".$send_status."',NOW(),'0','".$tradingdate."','0','".$data['reasonmsg']."','".$requestmodeid."','".$data['typeoflasttrans']."',NOW(),NOW(),'".$time."')";
 
-                 //echo $query;exit;
+                // echo $query;exit;
                 try
                 {
                     $exeget = $connection->query($query);
@@ -2090,6 +2088,14 @@ function checktypeofreq($uid,$usergroup,$data)
                         if($send_status == 1)
                         {
                             $lastid = $connection->lastInsertId();
+                            if(!empty($add_filepath))
+                            {
+                                foreach($add_filepath as $key => $value)
+                                { 
+                                    $insert_other_files = "INSERT INTO `personal_request_file`(`reqid`,`filepath`) VALUES ('".$lastid."','".$value."')";
+                                    $exemlreq = $connection->query($insert_other_files);   
+                                }
+                            }
                             $getsendexcrqstmail = $this->exceptionreqcommon->sendexcrqstmail($lastid,'contratrd');
                         }
                         $msg['status']=true;

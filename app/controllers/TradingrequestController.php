@@ -105,9 +105,24 @@ class TradingrequestController extends ControllerBase
                 $place=$this->request->getPost('place','trim');
                 $datetrans =$this->request->getPost('datetrans','trim');
                 $typeofrequests=$this->request->getPost('typeofrequests');
+                $valueoftrans=$this->request->getPost('valueoftrans');
+                $datetrans = $this->request->getPost('datetrans');
                 $todaydate = date('d-m-Y');
+                $current_month = date('m');
 
-                  
+                $value_array = array();
+                foreach ($datetrans as $key => $value) {
+                    $month = date('m', strtotime($value));
+                    if($current_month == $month)
+                    {
+                        $value_array[] = $valueoftrans[$key];
+                    }
+                }
+
+                $totalvalue = $approxprice + array_sum($value_array);
+                //print_r($totalvalue);exit;
+
+
                 // if(empty($idofcmp))
                 // {
                 //     $data = array("logged" => false,'message' => 'Please Select Company..!!!');
@@ -151,7 +166,7 @@ class TradingrequestController extends ControllerBase
                     $this->response->setJsonContent($data);
                     $this->response->send();
                 }
-                else if($approxprice < 2500000)
+                else if($totalvalue < 2500000 && $requestmodeid == 1)
                 {
                     $data = array("logged" => false,'message' => 'Pre-clearance is required if you intend to deal in securities of the Company for an amount of Rs 25 lakhs or above.');
                     $this->response->setJsonContent($data);
@@ -1632,13 +1647,16 @@ class TradingrequestController extends ControllerBase
     {
         $this->view->disable();
         $uid = $this->session->loginauthspuserfront['id'];
-        $usergroup = $this->session->loginauthspuserfront['user_group_id'];
+        $usergroup = $this->session->loginauthspuserfront['user_group_id'];        
+        $firstname = $this->session->loginauthspuserfront['firstname'];
+        $lastname = $this->session->loginauthspuserfront['lastname'];
         $time = time();
         if($this->request->isPost() == true)
         {
             if($this->request->isAjax() == true)
             {   
                 $date=date('d-m-Y');
+                $add_filepath = array();
                 $alldata= $this->request->getPost();
                 //print_R($alldata);exit;
                 
@@ -1794,11 +1812,40 @@ class TradingrequestController extends ControllerBase
                             }
                         }
                     }
+
+                    if(sizeof($_FILES['othrdoc']['name']) > 0)
+                    {
+                        //print_r(sizeof($_FILES['othrdoc']['name'])); exit;
+                        for($i=0; $i < sizeof($_FILES['othrdoc']['name']); $i++)
+                        {
+                           // print_r($_FILES['othrdoc']['name'][$i]); exit;
+                            $userfile_name = $_FILES['othrdoc']['name'][$i];
+                            $userfile_tmp = $_FILES['othrdoc']['tmp_name'][$i];
+                            $userfile_size = $_FILES['othrdoc']['size'][$i];
+                            $userfile_type = $_FILES['othrdoc']['type'][$i];
+                            $filename = basename($_FILES['othrdoc']['name'][$i]);
+                            $filenm = explode('.', $filename);
+                            $filenms[] = $filenm[0];
+                            $file_ext = $this->validationcommon->getfileext($filename);
+                            $upload_path = $this->userdocdir."/";  
+                            //echo $upload_path;exit; 
+                            $large_imp_name = 'Uploadedby-'.$firstname.'_'.$lastname.'_userid-'.$uid.'file'.'_timeago-'.$time.'-'.$userfile_name;
+                            $leave_filepath = $upload_path.$large_imp_name;
+                            
+                            $uploadedornot = move_uploaded_file($userfile_tmp, $leave_filepath);
+                          
+                            $add_filepath[$i] = $leave_filepath;
+                            //$filepath[] = '';
+                        }
+                    }
+                  
+
                     if($flag == 1)
                     {
-                        $result = $this->tradingrequestcommon->savecontratrdexceptn($uid,$usergroup,$alldata,$send_status,$requestmodeid);
+                        $result = $this->tradingrequestcommon->savecontratrdexceptn($uid,$usergroup,$alldata,$send_status,$requestmodeid,$add_filepath);
+                        //print_r($result);exit;
                         
-                        if($result['status']==true)
+                        if($result['status']===true)
                         {
                             $data = array("logged" => true,'message' =>$msg);
                             $this->response->setJsonContent($data);
