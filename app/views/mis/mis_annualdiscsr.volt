@@ -2,7 +2,8 @@
 $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
 $gtselctedcmp = $this->session->cmpconmemberdoc;
 $condeptsess = $this->session->contractdepartment;
-$current_year =  date("Y");
+//$current_year =  date("Y");
+$current_year =  '2020';
 // print_r($getuserinfo);exit;
 ?>
 
