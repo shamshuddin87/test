@@ -281,7 +281,7 @@ function checktypeofreq($uid,$usergroup,$data)
 
             
             // --------  Start GET AUTO APPROVE STATUS --------
-                $res=$this->tradingrequestcommon->getautoapprovestatus($uid,$usergroup,$data,$send_status);
+                /*$res=$this->tradingrequestcommon->getautoapprovestatus($uid,$usergroup,$data,$send_status);
               
                 if($res>=$data['noofshare'] && $send_status==1)
                 {
@@ -299,10 +299,10 @@ function checktypeofreq($uid,$usergroup,$data)
                     }
                 }
                 else
-                {
+                {*/
                     $autoapst='(NULL)';
                     $tradingdate='';
-                }
+                /*}*/
             // --------  End GET AUTO APPROVE STATUS --------
             
             //print_r($data);exit;
@@ -2096,7 +2096,7 @@ function checktypeofreq($uid,$usergroup,$data)
                                     $exemlreq = $connection->query($insert_other_files);   
                                 }
                             }
-                            $getsendexcrqstmail = $this->exceptionreqcommon->sendexcrqstmail($lastid,'contratrd');
+                            $getsendexcrqstmail = $this->exceptionreqcommon->sendexcrqstmail($lastid,'contratrd',$add_filepath);
                         }
                         $msg['status']=true;
                         $msg['message']="Request Saved Successfully";
@@ -2208,6 +2208,40 @@ function checktypeofreq($uid,$usergroup,$data)
             return $getlist;
 
     }
+
+        public function fetchAdditionalAttachment($getuserid,$user_group_id,$rqstid)
+        { 
+            $connection = $this->dbtrd;
+            //echo "wait here ";exit;
+            $getlist = array();
+            $queryget = "SELECT * FROM `personal_request_file` WHERE `reqid` = '".$rqstid."'";
+
+            //echo $queryget;  exit;
+
+             try{
+                    $exeget = $connection->query($queryget);
+                    $getnum = trim($exeget->numRows());
+
+                    if($getnum>0)
+                    {
+                        while($row = $exeget->fetch())
+                        {
+                            $getlist[] = $row;
+                        }
+                        //echo '<pre>';print_r($getlist);exi//
+                    }
+                    else{
+                        $getlist = array();
+                    }
+                }
+                catch (Exception $e)
+                {
+                    $getlist = array();
+                    //$connection->close();
+                }
+            //echo '<pre>';print_r($getlist);exit;
+            return $getlist;
+        }
 
 
 

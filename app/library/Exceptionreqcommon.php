@@ -981,7 +981,7 @@ class Exceptionreqcommon extends Component
         return $getlist;
     }
     
-    public function sendexcrqstmail($rqstid,$type)
+    public function sendexcrqstmail($rqstid,$type,$add_filepath)
     {
         $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";            
                 $baseuri = $this->url->getBaseUri();
@@ -1005,7 +1005,7 @@ class Exceptionreqcommon extends Component
             for($i = 0;$i<sizeof($excnrqstmaildetail['emailid']);$i++)
             {
 
-                $result = $this->emailer->sendmailexcbrqstapprvl($excnrqstapprvmail,$excnrqstmaildetail['emailid'][$i],$type);
+                $result = $this->emailer->sendmailexcbrqstapprvl($excnrqstapprvmail,$excnrqstmaildetail['emailid'][$i],$type,$add_filepath);
             }
             //print_r($result);exit;
             if($result['logged']==true)

@@ -134,7 +134,7 @@
 
             <div class="form-group">
                 <label class="gender">Request Mode *</label>
-                <input type="radio" id="requestmodeid" name="requestmodeid" value="1">Applicable for transactions equal to or exceeding Rs. 25 lakhs in value in single or series over a calender month<br>
+                <input type="radio" id="requestmodeid" name="requestmodeid" value="1">Pre-clearance - Applicable for transactions equal to or exceeding Rs. 25 lakhs in value in single or series over a calender month<br>
                 <input type="radio" id="requestmodeid" name="requestmodeid" value="2">Contra Trade Waiver
             </div>
             
@@ -659,6 +659,10 @@
                     <tr>
                         <td>Application Copy :</td>
                         <td><span class="pdfpath"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Additional Attachments :</td>
+                        <td><span class="additional_attachment"></span></td>
                     </tr>
                     <tr>
                         <td>Sent for Approval On :</td>

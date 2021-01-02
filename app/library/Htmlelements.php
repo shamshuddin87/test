@@ -843,14 +843,14 @@ public function sendmsgwithmail($subject,$agreementname,$messagenote,$reqname)
                     <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px; text-transform: capitalize;">
                     No Of Securities : '.$emaildata['noofshres'].'</div>
                     <div style="font-size: 14px;margin-bottom: 15px;color: #626262;letter-spacing: .7px;">
-                    When you complete the transaction please follow below steps after logging in to Volody.
+                    <!-- When you complete the transaction please follow below steps after logging in to Volody.
                     <ol>
                       <li>Go to Request for Pre-clearance under SEBI Form</li>
                       <li>Click on icon shown in trading status against the entry for which pre-clearance was taken.</li>
                       <li>Enter the transaction details.</li>
                       <li>Click on final submit</li>
                     </ol>
-                    <!--  <a href="'.$emaildata['url'].'randomrequest?vote='.base64_encode("1").'&rqst='.base64_encode($emaildata['rqst_id']).'&userid='.base64_encode($uid).'"><button class="button ">Approve</button></a>
+                      <a href="'.$emaildata['url'].'randomrequest?vote='.base64_encode("1").'&rqst='.base64_encode($emaildata['rqst_id']).'&userid='.base64_encode($uid).'"><button class="button ">Approve</button></a>
                       <a href="'.$emaildata['url'].'randomrequest?vote='.base64_encode("0").'&rqst='.base64_encode($emaildata['rqst_id']).'&userid='.base64_encode($uid).'"><button class="button  button3">Reject</button></a> -->
                 </div>
                 </div>

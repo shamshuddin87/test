@@ -456,7 +456,7 @@ Class Email extends Phalcon\Mvc\User\Component {
     
     
     /******** send mail to approver of exception rqst start ********/
-    public function sendmailexcbrqstapprvl($emaildata,$mailid,$type)
+    public function sendmailexcbrqstapprvl($emaildata,$mailid,$type,$add_filepath)
     {
         $subject = 'Received Exception Request For Approval';
         $to =$mailid;
@@ -484,6 +484,14 @@ Class Email extends Phalcon\Mvc\User\Component {
         if($type == 'contratrd')
         {
             $mail->addAttachment(''.$emaildata['pdfpath'].'');
+
+            if(!empty($add_filepath))
+            {
+                foreach($add_filepath as $key => $value)
+                { 
+                    $mail->addAttachment(''.$value.'');
+                }
+            }
         }
         
         //send the message, check for errors

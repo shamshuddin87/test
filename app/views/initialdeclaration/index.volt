@@ -137,7 +137,7 @@ $condeptsess = $this->session->contractdepartment;
             <div class="modal-body">
             <h5 style="text-align: center;">Please send the copy to compliance officer.</h5> </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default btn-default-one" data-dismiss="modal">Ok</button> 
+              <button type="button" class="btn btn-default btn-default-one yessend" data-dismiss="modal">Ok</button> 
             </div>
         </div>
     </div>

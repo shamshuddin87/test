@@ -86,4 +86,11 @@ else{new PNotify({title:'Alert',text:"Mail Not Sent..!!! ",type:'university',hid
 {website('#delmod').modal('hide');new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});getdataonload();}
 else{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {},error:function(jqXHR,textStatus,errorThrown)
+{}});});website('body').on('click','.yessend',function(e)
+{var formData={};website.ajax({type:"POST",url:'initialdeclaration/sendForm',data:formData,dataType:"json",beforeSend:function()
+{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{},success:function(response)
+{if(response.logged===true)
+{website('#Mymodaldeclara').modal('hide');website("#infomod1").modal('hide');getdataonload();}},complete:function(response)
+{website('.preloder_wraper').fadeOut();},error:function()
 {}});});;

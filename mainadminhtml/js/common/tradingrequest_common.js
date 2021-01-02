@@ -1875,6 +1875,7 @@ website('body').on("click",".requsttrail",function(e){
       {
         if(response.logged===true)
         {
+            var html = '';
             /* for date_added start */
              dteadded = response.data[0].date_added.split("-");                   
              dteaddedspace = response.data[0].date_added.split(" ");                    
@@ -1906,8 +1907,24 @@ website('body').on("click",".requsttrail",function(e){
             {
                 website('#Mymodalaudittrail .pdfpath').html('');
             }
-           if(response.data[0].send_status == 1)
-           {
+
+            /* -----  Additional attachment ----*/
+            if(response.additional_attachment.length != 0)
+            {
+                website.each(response.additional_attachment, function (index, value) 
+                {  
+                    html += '<a href="'+value['filepath']+'" target="_blank"><i class="fa fa-download" style="font-size:15px;color:black;"></i></a>&nbsp;';
+                });
+
+                website('#Mymodalaudittrail .additional_attachment').html(html); 
+            }
+            else
+            {
+                website('#Mymodalaudittrail .additional_attachment').html('');
+            }
+
+            if(response.data[0].send_status == 1)
+            {
                if(response.data[0].sendaprvl_date)
                 {
                     /* for sent apprvl start */

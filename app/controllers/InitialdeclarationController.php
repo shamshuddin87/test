@@ -724,5 +724,44 @@ class InitialdeclarationController extends ControllerBase
         }
     }
 
+    public function sendFormAction()
+    {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $usergroup = $this->session->loginauthspuserfront['user_group_id'];
+        $time = time();
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {   
+                $getuserapprove = $this->insidercommon->fetchiddata($usergroup,'it_memberlist','wr_id',$uid);
+                $getfile= $this->initialdeclarationcommon->getreqfile1($uid);
+                $sendmail= $this->initialdeclarationcommon->sendmailtoapprover1($uid,$getuserapprove['approvid'],$getuserapprove['fullname'],$getfile);
+                // print_r($getfile[0]['pdfpath']);exit;
+
+                if($sendmail==true)
+                {
+                    $data = array("logged" => true,"message" =>"Mail Sent Successfully..!!!");
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,"message" =>"Nail  Not Sent..!!!");
+                    $this->response->setJsonContent($data);
+                }
+            }
+            else
+            {
+                exit('No direct script access allowed');
+            }
+
+            $this->response->send();
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
    
 }
