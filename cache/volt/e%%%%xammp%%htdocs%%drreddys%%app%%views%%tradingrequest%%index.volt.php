@@ -72,7 +72,7 @@
                             <th>Type of Security</th>
                            <!--  <th>Name Of Company</th> -->
                             <th>Type of Transaction</th>
-                            <th>No. of Shares</th>
+                            <th>No. of Shares / ADRs</th>
                             <th>Request for</th>
                             <th>Name of Relative</th>
                             <th>Relationship</th>
@@ -134,8 +134,9 @@
 
             <div class="form-group">
                 <label class="gender">Request Mode *</label>
-                <input type="radio" id="requestmodeid" name="requestmodeid" value="1">Pre-Clearance
-                <input type="radio" id="requestmodeid" name="requestmodeid" value="2">Contra Trade
+                <input type="radio" id="requestmodeid" name="requestmodeid" value="1">Applicable for transactions equal to or exceeding Rs. 25 lakhs in value in single or series over a calender month<br>
+                <label class="gender" style=" opacity: 0; ">Request Mode *</label>
+                <input type="radio" id="requestmodeid" name="requestmodeid" value="2">Contra Trade Waiver
             </div>
             
             <div class="cssHideShow" id="secReqQue">
@@ -189,8 +190,8 @@
                 <div id="searchcmp"></div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">No. of Shares</label>
-                    <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Share">
+                    <label for="exampleFormControlInput1">No. of Shares / ADRs</label>
+                    <input type="text" class="form-control" name="noofshare" id="noofshare" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Shares / ADRs">
                 </div>
 
                 <div class="form-group">
@@ -205,7 +206,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Approx price or range (shares/ADRs * market price)</label>
+                    <label for="exampleFormControlInput1">Approx price or range (shares/ADRs * market price) [enter value only in Rupees]</label>
 
                     <input type="text" class="form-control" id="sharesprice" name="sharesprice" placeholder="Approx price or range (shares/ADRs * market price)" >
                 </div>
@@ -247,8 +248,12 @@
                             <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >
                             </div>
                             <div id = "right" class="form-group col-md-4">
-                            <label for="">No. of Shares</label>
-                            <input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Shares">
+                            <label for="">No. of Shares / ADRs</label>
+                            <input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Shares / ADRs">
+                            </div>
+                            <div id = "right" class="form-group col-md-4">
+                            <label for="">Value of transaction</label>
+                            <input type="text" class="form-control " id="valueoftrans" name="valueoftrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="Value of transaction">
                             </div>
                             <div id = "right" class="form-group col-md-1">
                                 <i class="fa fa-trash-o" onclick="removehtml(1);" style="font-size:15px; color:#F44336;margin-top: 39px;"></i>
@@ -308,8 +313,16 @@
    
     <span class="close"  data-dismiss="modal">&times;</span>
     <table class="table table-inverse mytable" id="datablerushi" typage="reqview">
-     <thead>
-       <tr><th>No. of Share</th><th>Price Per Share</th><th>Total Amount</th><th>Date Of Transaction</th><th>Demat Account No</th><th>File</th></tr></thead>
+    <thead>
+        <tr>
+            <th>No. of Share</th>
+            <th>Price Per Share</th>
+            <th>Total Amount</th>
+            <th>Date Of Transaction</th>
+            <th>Demat Account No</th>
+            <!-- <th>File</th> -->
+        </tr>
+    </thead>
          <tbody class="statustable" appendrow='1'></tbody>
       </table>
     </div>
@@ -431,7 +444,7 @@
                         <th style="width: 25%">Total Amount</th>
                         <th style="width: 15%">Date Of Transaction</th>
                         <th style="width: 45%">Demat Account No</th>
-                        <th style="width: 15%">Broker Notes</th>
+                        <!-- <th style="width: 15%">Broker Notes</th> -->
                     </tr>
                 </thead>
                 <tbody class="modtable" appendrow='1'>
@@ -453,9 +466,9 @@
                                 <!--<option value="">Select Option</option>-->
                             </select>
                         </td>
-                        <td>
+                        <!-- <td>
                             <input type="file" name="fileToUpload" id="fileToUpload">
-                        </td>
+                        </td> -->
                     </tr>
                 </tbody>
             </table>
@@ -484,7 +497,7 @@
                         <th style="width: 20%">Total Amount</th>
                         <th style="width: 15%">Date Of Transaction</th>
                         <th style="width: 20%">Demat Account No</th>
-                        <th style="width: 20%">File</th>
+                        <!-- <th style="width: 20%">File</th> -->
                         <th style="width: 20%">Action</th>
                     </tr>
                 </thead>
@@ -579,7 +592,7 @@
                 <input type="hidden" id="datetrans" name="datetrans">
                 <input type="hidden" id="transaction" name="sendreq">
                 <input type="hidden" id="sharestrans" name="sharestrans">
-
+                <input type="hidden" id="valueoftrans" name="valueoftrans">
                 <div id = "showform1">
                 </div>
                
@@ -745,7 +758,24 @@
               <button type="button" class="close" data-dismiss="modal">
                     &times;</button>
             </div>
+            <form id="data" method="post" action="tradingrequest/savecontratrdexceptn" enctype="multipart/form-data">
             <div class="modal-body">
+            <input type="hidden" id="reasontrans" name="reasonmsg">
+            <input type="hidden" id="approverid" name="approverid">
+            <input type="hidden" id="reqname" name="reqname">
+            <input type="hidden" id="typeofrequest" name="typeofrequest">
+            <input type="hidden" id="dpuserid" name="dpuserid">
+            <input type="hidden" id="dpusergroup" name="dpusergroup">
+            <input type="hidden" id="requestmodeid" name="requestmodeid">
+            <input type="hidden" id="selrelative" name="selrelative">
+            <input type="hidden" id="idofcmp" name="idofcmp">
+            <input type="hidden" id="nameofcmp" name="nameofcmp">
+            <input type="hidden" id="noofshare" name="noofshare">
+            <input type="hidden" id="sectypeid" name="sectype">
+            <input type="hidden" id="typeoftrans" name="typeoftrans">
+            <input type="hidden" id="Yesexcreqst" name="typeofsave">
+            <input type="hidden" id="place" name="form2place">
+
             <div class="form-group">
                 <label for="">I intend to sell/purchase/exercise no. of shares/ADRs/options of the Company because of following reason(s)</label>
                 <select class="form-control" id="reasonoftrans" name="reasonoftrans" required>
@@ -772,7 +802,29 @@
                 <label for="">No. of shares / ADRs purchase/sold</label>
                 <input type="text" class="form-control" name="noofshareoftrans" id="noofshareoftrans" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of shares / ADRs purchase/sold" required>
             </div>
+
+            <div class="form-group">
+                <label for="">Type of Last Transaction</label>
+                <select class="form-control" id="typeoflasttrans" name="typeoflasttrans">
+                    <option value="1">BUY</option>
+                    <option value="2">SELL</option>
+                    <!--<option value="BONUS">BONUS</option>
+                    <option value="RIGHTS">RIGHTS</option>-->
+                </select>
+            </div>
                 
+            <div class="form-group">
+                <input type="file" name="othrdoc[]" id="othrdoc" class="fileimg_additional" filemainid="" multiple>
+            </div>
+                    
+            <div class="appendesc"></div>
+                
+          <!--   <div class="col-md-12 control-label formgroup">
+                <div class="">
+                    <input type="button" class="btn btn-primary btnaddescalation floatleft" value="+" num="1" >
+                    <input type="button" class="btn btn-primary btndeleteescalation floatleft" value="-" num="1">
+                </div>        
+            </div> -->
 <!--
             <div class="form-group">
                 <label for="">Place</label>
@@ -787,9 +839,27 @@
 -->
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" id="reasonexetrans">Submit</button> 
+              <button type="submit" class="btn btn-danger" id="reasonexetrans">Submit</button> 
             </div>
+            </form>
         </div>
     </div>
 </div>
+</div>
+
+<div id="RequestSuccessMsg" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 style="text-align: center;">Your request has been sent to the Compliance Officer.<br> You will receive an email after the request is approved.</h4> 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary reloadpage">Ok</button> 
+            </div>
+        </div>
+    </div>
 </div>

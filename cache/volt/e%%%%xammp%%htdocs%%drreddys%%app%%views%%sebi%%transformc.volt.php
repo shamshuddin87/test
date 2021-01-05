@@ -188,12 +188,12 @@ $condeptsess = $this->session->contractdepartment;
                          </div>
                     </section>
                
-                    <section class="col col-md-6 col-xs-6">
+                   <!--  <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">Date of intimation to company</label>
                                 <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control bootdatepick" readonly required>
                             </div>
-                    </section> 
+                    </section> --> 
                
                  <section class="col col-md-6 col-xs-6">
                          <div class="input">
@@ -416,12 +416,12 @@ $condeptsess = $this->session->contractdepartment;
                          </div>
                     </section>
                
-                    <section class="col col-md-6 col-xs-6">
+                    <!-- <section class="col col-md-6 col-xs-6">
                             <div class="input">
                                 <label class="control-label">Date of intimation to company</label>
                                 <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control bootdatepick" readonly required>
                             </div>
-                    </section> 
+                    </section>  -->
                
                  <section class="col col-md-6 col-xs-6">
                          <div class="input">
@@ -501,9 +501,10 @@ $condeptsess = $this->session->contractdepartment;
       </div>
             <div class="modal-body show_shadow">
                 <div class="modal_heading">
-                    <div class="openFormc btn btn-primary" id="type1">Form C - Securities traded without taking pre-clearance.</div><br>
-                    <div class="openFormc btn btn-primary" id="type2">Form C - Exercise of ESOP.</div><br>
-                    <div class="openFormc btn btn-primary" id="type3">Form C - Allotment of ESOP.</div>
+                    <p>You can create Form C from here only if the value of shares/ ADRs traded by you does not exceed Rs. 25,00,000.</p>
+                    <div class="openFormc btn btn-primary" id="type1">Create Form C</div><br>
+                    <!-- <div class="openFormc btn btn-primary" id="type2">Form C - Exercise of ESOP.</div><br>
+                    <div class="openFormc btn btn-primary" id="type3">Form C - Allotment of ESOP.</div> -->
                 </div>
             </div>
           
@@ -523,6 +524,19 @@ $condeptsess = $this->session->contractdepartment;
         <div class="modal-body">
            <form id="insertformctype1" action="sebi/insertformctype1" method="post" enctype="multipart/form-data" autocomplete="off" > 
                 <input type = "hidden" name="approverid" id="approverid" value="<?php echo $approverid;?>">
+
+                    <section class="col col-md-4 col-xs-4">
+                     <div class="input">
+                        <label class="control-label">Category</label>
+                        <select id="category" name="category" class="form_fields form-control col-md-7 col-xs-12" required>
+                                <option value="">Select Category</option>
+                                <?php foreach($category as $shwcategory){  ?>
+                                <option value="<?php echo $shwcategory['id'];?>"><?php echo $shwcategory['category']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </section>
+                        
                     <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Name</label>
@@ -578,14 +592,14 @@ $condeptsess = $this->session->contractdepartment;
                
                     <section class="col col-md-4 col-xs-4">
                         <div class="input">
-                            <label class="control-label">No. of Shares</label>
+                            <label class="control-label">No. of Shares / ADRs</label>
                             <input type="text" id="noofshare" name="noofshare" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57  || event.charCode == 46' required>
                         </div>
                     </section>
                
                     <section class="col col-md-4 col-xs-4">
                         <div class="input">
-                            <label class="control-label">Price Per Share</label>
+                            <label class="control-label">Prices per Share / ADR</label>
                             <input type="text" id="pricepershare" name="pricepershare" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57  || event.charCode == 46' required>
                         </div>
                     </section>
@@ -628,26 +642,12 @@ $condeptsess = $this->session->contractdepartment;
                     </section>
 -->
                
-                       <section class="col col-md-4 col-xs-4">
-                         <div class="input">
-                            <label class="control-label">Category</label>
-                            <select id="category" name="category" class="form_fields form-control col-md-7 col-xs-12" required>
-                                    <option value="">Select Category</option>
-                                    <?php foreach($category as $shwcategory){  ?>
-                                    <option value="<?php echo $shwcategory['id'];?>"><?php echo $shwcategory['category']; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </section>
-                        
-                        
-                        
-                        <section class="col col-md-4 col-xs-4">
+                        <!-- <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Date of intimation to company</label>
                                 <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control " placeholder="dd-mm-yyyy" maxlength="10" required>
                             </div>
-                        </section> 
+                        </section>  -->
 
                       <!--<section class="col col-md-6 col-xs-6">
                          <div class="input">
@@ -673,14 +673,14 @@ $condeptsess = $this->session->contractdepartment;
                             <div class="input ">
                             <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 10px;">Date of allotment advice/acquisition of shares/sale of shares specify</label>
                            
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-4 col-xs-4">
                             <div class="input">
                             <label class="control-label">From</label>
                              <input type="text" id="fromdate" name="fromdate" class="form-control" placeholder="dd-mm-yyyy" maxlength="10"  required>
                             </div>
                         </section>
                
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">To</label>
                                 <input type="text" id="todate" name="todate" class="form-control" placeholder="dd-mm-yyyy" maxlength="10" required>
@@ -692,9 +692,9 @@ $condeptsess = $this->session->contractdepartment;
                
                     
                
-                 <section class="col col-md-6 col-xs-6">
+                 <section class="col col-md-64 col-xs-4">
                          <div class="input">
-                            <label class="control-label">Mode of acquisition</label>
+                            <label class="control-label">Mode of transaction</label>
                             <select id="acquimode" name="acquimode" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="">Select Mode</option>
                                     <?php foreach($modeacqui as $shwmode){  ?>
@@ -739,9 +739,9 @@ $condeptsess = $this->session->contractdepartment;
                     </section>-->
                
                     
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-12 col-xs-12">
                             <div class="input">
-                                <label class="control-label">Exchange on which the trade was executed</label>
+                                <label class="control-label">Exchange on which the trade was executed (select NA in case of ESOP)</label>
                                 <select id="exetrd" name="exetrd" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="">Select Option</option>
                                     <?php foreach($exchngtrd as $shwtrd){  ?>

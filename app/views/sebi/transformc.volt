@@ -673,14 +673,14 @@ $condeptsess = $this->session->contractdepartment;
                             <div class="input ">
                             <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 10px;">Date of allotment advice/acquisition of shares/sale of shares specify</label>
                            
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-4 col-xs-4">
                             <div class="input">
                             <label class="control-label">From</label>
                              <input type="text" id="fromdate" name="fromdate" class="form-control" placeholder="dd-mm-yyyy" maxlength="10"  required>
                             </div>
                         </section>
                
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">To</label>
                                 <input type="text" id="todate" name="todate" class="form-control" placeholder="dd-mm-yyyy" maxlength="10" required>
@@ -692,7 +692,7 @@ $condeptsess = $this->session->contractdepartment;
                
                     
                
-                 <section class="col col-md-6 col-xs-6">
+                 <section class="col col-md-64 col-xs-4">
                          <div class="input">
                             <label class="control-label">Mode of transaction</label>
                             <select id="acquimode" name="acquimode" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -739,7 +739,7 @@ $condeptsess = $this->session->contractdepartment;
                     </section>-->
                
                     
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-12 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Exchange on which the trade was executed (select NA in case of ESOP)</label>
                                 <select id="exetrd" name="exetrd" class="form_fields form-control col-md-7 col-xs-12" required>
