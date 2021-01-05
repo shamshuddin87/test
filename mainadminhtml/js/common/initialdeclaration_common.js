@@ -486,3 +486,40 @@ website.ajax({
 });
 
 
+website('body').on('click','.yessend', function(e)
+{
+    var formData = {  };
+    website.ajax({
+        type:"POST",
+        url:'initialdeclaration/sendForm',
+        data: formData,
+        //contentType: "application/json; charset=utf-8",
+        dataType:"json",
+        beforeSend: function()
+        {
+            website('.preloder_wraper').fadeIn();
+        },
+        uploadProgress: function(event, position, total, percentComplete)
+        {
+            
+        },
+        success: function(response) 
+        {
+            // console.log(response.pdfpath); 
+            if(response.logged===true)
+            {
+                website('#Mymodaldeclara').modal('hide');
+                website("#infomod1").modal('hide');
+                getdataonload();
+            }
+        },
+        complete: function(response)
+        {
+            website('.preloder_wraper').fadeOut();
+        },
+        error: function() 
+        {
+            
+        }
+    });
+});

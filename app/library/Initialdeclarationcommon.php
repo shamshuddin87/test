@@ -444,4 +444,89 @@ class Initialdeclarationcommon extends Component
         return $getlist;
     }
 
+
+    public function getreqfile1($uid)
+    {
+        $connection = $this->dbtrd;
+        $myarr=array();
+        $time = time();
+        $query="SELECT * FROM initial_declaration WHERE user_id='".$uid."'";
+        try
+        {
+            $exeget = $connection->query($query);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                $getlist[] = $exeget->fetch();
+
+            }
+            else
+            {   $getlist = array(); }
+        }
+        catch (Exception $e)
+        {   $getlist = array(); }
+
+        return $getlist;
+    }
+
+
+    public function sendmailtoapprover1($uid,$getuserapprove,$getname,$getfile)
+    {
+        $connection = $this->dbtrd;
+        $myarr=array();
+        $time = time();
+        $flag=false;
+        $myarr=explode(",",$getuserapprove);
+        // print_r($myarr);exit;
+        try
+        {
+            for($i=0;$i<count($myarr);$i++)
+            {
+                $query="SELECT email FROM it_memberlist WHERE wr_id='".$myarr[$i]."'";
+                $exeget = $connection->query($query);
+                $getnum = trim($exeget->numRows());
+                if($getnum>0)
+                {
+                    $mail[]= $exeget->fetch();
+                }
+            }
+            for($i=0;$i<count($mail);$i++)
+            {
+                $status=$this->emailer->sendpdfmailappr($mail[$i]['email'],$getfile,$getname);
+                if($status==true)
+                {
+                    $status= $this->initialdeclarationcommon->updateinitialdeclaration1($uid);
+                    $flag=true;
+                }
+            }
+        }
+        catch (Exception $e)
+        {  return false;  }
+
+        return $flag;  
+    }
+
+    public function updateinitialdeclaration1($uid)
+    {
+        $connection = $this->dbtrd;
+        $time = time();
+        try
+        {
+            $queryup = "UPDATE `initial_declaration` SET `send_status`='1',`sent_date`= NOW() WHERE user_id='".$uid."'"; 
+            $exegetqry = $connection->query($queryup);
+            if($exegetqry)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch(Exception $e)
+        {
+            return false;
+        }
+    }
+
 }

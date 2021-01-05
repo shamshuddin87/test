@@ -1447,9 +1447,11 @@ class TradingrequestController extends ControllerBase
                 $rqstid = $this->request->getPost('rqstid');
                 $getres = $this->tradingrequestcommon->fetchreqtrail($getuserid,$user_group_id,$rqstid);
                 $gettransdate = $this->tradingrequestcommon->fetchreqtransdte($getuserid,$user_group_id,$rqstid);
+                $get_additional_attachment = $this->tradingrequestcommon->fetchAdditionalAttachment($getuserid,$user_group_id,$rqstid);
+                //print_r($get_additional_attachment);exit;
                 if($getres)
                 {
-                    $data = array("logged" => true,'message' => 'Record Fetch','data' => $getres,'user_group_id'=>$user_group_id,'user_id'=>$getuserid,'transdate'=>$gettransdate);
+                    $data = array("logged" => true,'message' => 'Record Fetch','data' => $getres,'user_group_id'=>$user_group_id,'user_id'=>$getuserid,'transdate'=>$gettransdate,'additional_attachment'=>$get_additional_attachment);
                     $this->response->setJsonContent($data);
                 }
                 else

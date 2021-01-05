@@ -1168,7 +1168,7 @@
                </label>
 
                <div class="note" style="padding: 2px 0;">
-                  (<strong>Note : </strong>Rows corresponding to this number will open up for entry. max 5 past employments.)
+                  (<strong>Note : </strong>Rows corresponding to this number will open up  for entry. You can enter maximum 5 past employment details.)
                </div> 
                <div class="row">
                   <div class="col-md-8">

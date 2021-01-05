@@ -95,7 +95,7 @@
                      <a href="adminmodule"><i class="" id="cmp_mst"></i>Module Access</a>
                   </li>
                   <li><a href="adminmodule/tradingdays"><i class=""></i>Trading Days</a></li>
-                  <li><a href="adminmodule/autoaprove"><i class=""></i>Auto Approval Shares</a></li>
+                  <!-- <li><a href="adminmodule/autoaprove"><i class=""></i>Auto Approval Shares</a></li> -->
                </ul>
             </li>
             
@@ -249,14 +249,7 @@
                      <!--<li>
                         <a href="sebi/formb"><i class="fa fa-file-pdf-o" id=""></i>FORM B</a>
                      </li>-->
-                     <li><a href="exceptionreq"><i class=""></i>Exception Request</a></li>
-                     <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'){  ?> 
-                     <!--<li>
-                        <a href="sebi/viewformb"><i class="fa fa-eye" id=""></i>Approve FORM B Request</a>
-                     </li>-->
-                     <?php } ?>
-                      <!--   Form B END -->
-                      
+                     <li><a href="tradingrequest"><i class="fa fa-line-chart"></i>Request for Pre-clearance</a></li>
                       <!--   Form C Start -->
                      <li>
                         <a href="sebi/transformc"><i class="fa fa-file-pdf-o" id=""></i>FORM C</a>
@@ -267,6 +260,15 @@
                      </li>
                      <?php } ?>
                       <!--   Form C END -->
+                     <li><a href="exceptionreq"><i class=""></i>Exception Request</a></li>
+                     <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'){  ?> 
+                     <!--<li>
+                        <a href="sebi/viewformb"><i class="fa fa-eye" id=""></i>Approve FORM B Request</a>
+                     </li>-->
+                     <?php } ?>
+                      <!--   Form B END -->
+                      
+                     
                       
                       <!--   Form D Start -->
                      <!--<li>
@@ -279,7 +281,7 @@
                      <?php } ?>
                       <!--   Form D END -->
                       
-                      <li><a href="tradingrequest"><i class="fa fa-line-chart"></i>Request for Pre-clearance</a></li>
+                      
                   </ul>
                </li>
                <?php }  ?>
