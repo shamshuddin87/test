@@ -126,17 +126,17 @@ var total_amount=response.data[i].total_amount?response.data[i].total_amount:'';
 else
 {addhtmlnxt+='<td>'+j+'</td>';}
 addhtmlnxt+='<td>'+response.data[i].requestmode+'</td>';addhtmlnxt+='<td>'+sectype+'</td>';addhtmlnxt+='<td>'+type_of_transaction+'</td>';addhtmlnxt+='<td>'+no_of_shares+'</td>';addhtmlnxt+='<td>'+typeofrequest+'</td>';addhtmlnxt+='<td>'+nameofreq+'</td>';addhtmlnxt+='<td>'+relationship+'</td>';if((requestmodeid==1&&(approved_status==1||(exception_approve==1&&excep_approv==1)))||(requestmodeid==2&&sent_contraexeaprvl==1&&contraexcapvsts==1))
-{addhtmlnxt+='<td><i class="fa fa-check-circle" style="font-size:15px;color:green;"></i></td>';}
+{addhtmlnxt+='<td style="text-align:center;"><i class="fa fa-check-circle" style="font-size:15px;color:green;"></i></td>';}
 else if((requestmodeid==1&&(approved_status==2||(exception_approve==1&&excep_approv==2)))||(requestmodeid==2&&sent_contraexeaprvl==1&&contraexcapvsts==2))
 {addhtmlnxt+='<td class="rejmessage" mymessage="'+message+'"><i class="fa fa-times-circle" style="font-size:15px;color:red;">Rejected</i></td>';}
 else
 {addhtmlnxt+='<td style="color:#F44336;">Not Approved</td>';}
 addhtmlnxt+='<td>'+trading_date+'</td>';addhtmlnxt+='<td>'+date_added+'</td>';if((requestmodeid==1&&(approved_status==1||(exception_approve==1&&excep_approv==1))&&trading_status=='')||(requestmodeid==2&&sent_contraexeaprvl==1&&contraexcapvsts==1&&trading_status==''))
-{addhtmlnxt+='<td>';addhtmlnxt+='<i class="fa fa-line-chart uploadfile" typeofreq="'+type_of_request+'" modtotal="'+total_amount+'" modpriceshare="'+price_per_share+'" modnoofshare="'+no_of_shares+'" modaltransdate="'+transaction_date+'" editid="'+response.data[i].id+'" compid="'+response.data[i].id_of_company+'" sectype="'+response.data[i].sectype+'" trading_date="'+trading_date+'" create_date="'+date_added+'" ></i>';addhtmlnxt+='</td>';}
+{addhtmlnxt+='<td style="text-align:center;">';addhtmlnxt+='<i class="fa fa-line-chart uploadfile" typeofreq="'+type_of_request+'" modtotal="'+total_amount+'" modpriceshare="'+price_per_share+'" modnoofshare="'+no_of_shares+'" modaltransdate="'+transaction_date+'" editid="'+response.data[i].id+'" compid="'+response.data[i].id_of_company+'" sectype="'+response.data[i].sectype+'" trading_date="'+trading_date+'" create_date="'+date_added+'" ></i>';addhtmlnxt+='</td>';}
 else if((requestmodeid==1&&(approved_status==1||(exception_approve==1&&excep_approv==1))&&trading_status==1)||(requestmodeid==2&&sent_contraexeaprvl==1&&contraexcapvsts==1&&trading_status==1))
-{addhtmlnxt+='<td>'+file+'<p reqid="'+response.data[i].id+'" class="checkstatus"><i class="fa fa-line-chart" style="color:green;"></i></p></td>';}
+{addhtmlnxt+='<td  style="text-align:center;">'+file+'<p reqid="'+response.data[i].id+'" class="checkstatus"><i class="fa fa-line-chart" style="color:green;"></i></p></td>';}
 else if((requestmodeid==1&&(approved_status==1||(exception_approve==1&&excep_approv==1))&&trading_status==0)||(requestmodeid==2&&sent_contraexeaprvl==1&&contraexcapvsts==1&&trading_status==0))
-{addhtmlnxt+='<td><i class="fa fa-line-chart" style="color:red;"></i></td>';}
+{addhtmlnxt+='<td style="text-align:center;"><i class="fa fa-line-chart" style="color:red;"></i></td>';}
 else
 {addhtmlnxt+='<td></td>';}
 addhtmlnxt+='<td><i class="fa fa-bar-chart requsttrail" rqstid="'+response.data[i].id+'"></i></td>';addhtmlnxt+='</tr>';}}

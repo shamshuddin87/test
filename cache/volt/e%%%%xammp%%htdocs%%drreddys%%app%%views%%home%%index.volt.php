@@ -34,6 +34,35 @@
                     <!-- /.row boxes -->
                     <?php  if($gmnlog['user_group_id'] !='2'){?> 
                     <div class="row shortinfo">
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" id="">
+                            <a href="tradingrequest">
+                                <!-- <div class="panel panel-orange"> -->
+                                  <div class="panel panel-blue">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-check-circle fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge" id=""></div>
+                                            <div><br></div>
+                                            <div><br></div>
+                                            <div><br></div>
+                                        </div>
+                                        <div class="col-xs-12 text_name">Request for Pre-clearance <h5>(for transactions more than 25 lakhs in calender month)</h5></div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                    <div class="clearfix"></div>
+                                </div> -->
+                                </div>
+                            </a>
+                        </div>
                       
                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" id="">
                             <a href="sebi/transformc">
@@ -114,7 +143,7 @@
                                              <thead>
                                                 <tr role="row">
                                                    <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="2" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 212px;">Company Name</th>
-                                                   <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 245px; text-align:center;" colspan="3">Closing Balance</th>
+                                                   <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 245px; text-align:center;" colspan="3">Current Balance</th>
                                                 </tr>
                                                 <tr>
                                                    <th>Equity Shares</th>

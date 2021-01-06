@@ -1,6 +1,6 @@
 .top_space {
     margin: 26px 0 0 0;
-    float: left;
+    /*float: left;*/
 }
 
 .tooltip_c {
@@ -183,7 +183,7 @@ input#addr {padding: 37px;}
     margin-top: 20px;
   
 } */
-.relativesform {width: 98%;margin: 0 auto;background: #fff;box-shadow: 2px 2px 8px #ccc;padding: 8px;margin-top: 13px;border-radius: 4px;
+.relativesform {width: 100%;margin: 0 auto;background: #fff;box-shadow: 2px 2px 8px #ccc;padding: 8px;margin-top: 13px;border-radius: 4px;
 }
 lable {color: #000;font-weight: bold;}
 .relativesform h3 {
@@ -195,13 +195,13 @@ lable {color: #000;font-weight: bold;}
     border-radius: 4px;
     margin-top: 29px;
 }
-.personaldetails {width: 98%;margin: 0 auto;background: #fff;box-shadow: 2px 2px 8px #ccc;
+.personaldetails {width: 100%;margin: 0 auto;background: #fff;box-shadow: 2px 2px 8px #ccc;
 padding: 8px;margin-top: 13px;border-radius: 4px;}
 i.fa.fa-edit.editcmp {
     margin-right: 10px;
 }
 
-.employmentform {width: 98%;margin: 0 auto;background: #fff;box-shadow: 2px 2px 8px #ccc;
+.employmentform {width: 100%;margin: 0 auto;background: #fff;box-shadow: 2px 2px 8px #ccc;
 padding: 8px;margin-top: 13px;border-radius: 4px;}
 .mfrdetails {
     margin-top: 25px;
