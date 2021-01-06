@@ -16,10 +16,6 @@ addhtmlnxt+='<tr class="counter" aprvllistid="'+response.resdta[i].id+'" >';dtfr
 {addhtmlnxt+='<td width="25%"><a href="'+draft+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a></td>';}
 else
 {addhtmlnxt+='<td width="15%"></td>';}
-if(response.resdta[i].approvestatus==0)
-{addhtmlnxt+='<td width="15%"><button type="button" class="btn btn-primary" id="apprvrqstformc" formcid="'+response.resdta[i].id+'" pdfurl="'+draft+'">Approve</button></td>';}
-else
-{addhtmlnxt+='<td width="15%"><i class="fa fa-check" aria-hidden="true"></i></td>';}
 addhtmlnxt+='</tr>';}
 website('.appendrow').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);}
 else
