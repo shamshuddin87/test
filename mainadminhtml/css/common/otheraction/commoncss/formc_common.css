@@ -47,6 +47,10 @@ i#previewc {
     margin-right: 5px;
 }
 .modal_width { width: 82% }
+@media (max-width: 1360px)
+{
+    .modal_width { width: 96% }
+}
 input[type="radio"], input[type="checkbox"] {
     margin: 4px 5px 0;
     margin-top: 1px 9;
