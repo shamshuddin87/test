@@ -60,7 +60,7 @@ $condeptsess = $this->session->contractdepartment;
                             <th>Category Of Person</th>
 <!--                            <th>Date of appointment of Director /KMP</th> -->
                             <th>View Draft</th> 
-                            <th>Approval Status</th> 
+                            <!-- <th>Approval Status</th> --> 
                         </tr>
                     </thead>
                     <tbody class="appendrow" appendrow='1'>

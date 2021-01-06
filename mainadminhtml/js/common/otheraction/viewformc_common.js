@@ -99,14 +99,15 @@ function getdataonload()
             {
                 addhtmlnxt += '<td width="15%"></td>';
             }
-            if(response.resdta[i].approvestatus == 0)
+            
+            /*if(response.resdta[i].approvestatus == 0)
             {
                 addhtmlnxt += '<td width="15%"><button type="button" class="btn btn-primary" id="apprvrqstformc" formcid="'+response.resdta[i].id+'" pdfurl="'+draft+'">Approve</button></td>';
             }
             else
             {
                 addhtmlnxt += '<td width="15%"><i class="fa fa-check" aria-hidden="true"></i></td>';
-            }
+            }*/
             
 
             addhtmlnxt += '</tr>';                        

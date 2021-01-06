@@ -453,7 +453,7 @@ $condeptsess = $this->session->contractdepartment;
                
                     <section class="col col-md-4 col-xs-4">
                         <div class="input">
-                            <label class="control-label">Prices per Share / ADR</label>
+                            <label class="control-label">Price per Share / ADR</label>
                             <input type="text" id="pricepershare" name="pricepershare" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57  || event.charCode == 46' required>
                         </div>
                     </section>
