@@ -903,7 +903,7 @@ class SebiController extends ControllerBase
                 //print_r($pdfpath);exit;
                 if(!empty($pdfpath))
                 {
-                    $getres = $this->sebicommon->sendforapprvlformc($uid,$user_group_id,$formcid);
+                    $getres = $this->sebicommon->sendforapprvlformc($uid,$user_group_id,$formcid,$pdfpath);
                     $sendmail = $this->sebicommon->sendemailformc($formcid);
                     $data = array("logged"=>true,'message'=>'PDF Generated..!!', 'pdfpath'=>$pdfpath);
                     $this->response->setJsonContent($data);

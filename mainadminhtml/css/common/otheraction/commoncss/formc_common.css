@@ -46,7 +46,7 @@ i#previewc {
     color: #c10000;
     margin-right: 5px;
 }
-.modal_width { width: 82% }
+.modal_width { width: 90% }
 @media (max-width: 1360px)
 {
     .modal_width { width: 96% }

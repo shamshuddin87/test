@@ -74,7 +74,7 @@ $current_year =  '2020';
         <div class="control-label form-group">
             <label>Select Year</label>
             <select class="annualyear form-control" id="annualyear">
-                <?php for ($i = 0 ; $i < 3 ; $i++) { ?>
+                <?php for ($i = 0 ; $i < 6 ; $i++) { ?>
                     <option value="<?php echo($current_year + $i);  ?>"> <?php echo($current_year + $i);  ?></option>
                 <?php } ?>
             </select>

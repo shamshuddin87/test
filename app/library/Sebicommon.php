@@ -981,12 +981,12 @@ class Sebicommon extends Component
     /******* update form c data end********/
     
     /******* send for approval formb start ********/
-    public function sendforapprvlformc($getuserid,$user_group_id,$formcid)
+    public function sendforapprvlformc($getuserid,$user_group_id,$formcid,$pdfpath)
     {
         $connection = $this->dbtrd; 
         $time = time();
         $todate=date('d-m-Y');
-           $queryinsert = "UPDATE `sebiformc_usrdata` SET `send_status`='1',`approvestatus`='1',send_date='".$todate."',`date_modified`=NOW(),`timeago`='".$time."'
+           $queryinsert = "UPDATE `sebiformc_usrdata` SET `send_status`='1',`approvestatus`='1',`final`='".$pdfpath."',send_date='".$todate."',`date_modified`=NOW(),`timeago`='".$time."'
          WHERE `id`='".$formcid."'"; 
         // print_r($queryinsert);exit;
         try
