@@ -280,7 +280,7 @@ $condeptsess = $this->session->contractdepartment;
     </div>
 </div>
 
-<div id="modaldocument" class="modal fade" role="dialog">
+<div id="modaldocument" class="modal fade" tabindex="-1" role="dialog">
    <form id="excelupload" name="excelupload">
                    <input type="hidden" class="excelsecutype1" name="excelsecutype1" value="">
                     <input type="hidden" class="excelsecutype2" name="excelsecutype2" value="">
