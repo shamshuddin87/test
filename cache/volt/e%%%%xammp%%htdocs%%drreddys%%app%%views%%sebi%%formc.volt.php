@@ -42,7 +42,7 @@ $condeptsess = $this->session->contractdepartment;
                            <!--  <th>Company Name</th> -->
                             <th>Designation</th>
                            
-                            <th>Send for Approval</th> 
+                            <!-- <th>Send for Approval</th> --> 
                             <th>View Draft</th> 
                             <?php if($user_group_id == '7'){?><th>View Final</th> <?php } ?>
                             <th>Created Date</th>
@@ -412,12 +412,12 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                         </section>
                         
-                        <section class="col col-md-4 col-xs-4">
+                        <!-- <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Date of intimation to company</label>
                                 <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control " placeholder="dd-mm-yyyy" maxlength="10" required>
                             </div>
-                    </section> 
+                        </section>  -->
                     
                     <div id="formctypesshow" style="display:none">
                     <section class="col col-md-4 col-xs-4">
@@ -446,14 +446,14 @@ $condeptsess = $this->session->contractdepartment;
                
                     <section class="col col-md-4 col-xs-4">
                         <div class="input">
-                            <label class="control-label">No. Of Shares</label>
+                            <label class="control-label">No. of Shares / ADRs</label>
                             <input type="text" id="noofshare" name="noofshare" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57  || event.charCode == 46' required>
                         </div>
                     </section>
                
                     <section class="col col-md-4 col-xs-4">
                         <div class="input">
-                            <label class="control-label">Price Per Share</label>
+                            <label class="control-label">Prices per Share / ADR</label>
                             <input type="text" id="pricepershare" name="pricepershare" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57  || event.charCode == 46' required>
                         </div>
                     </section>
@@ -530,7 +530,7 @@ $condeptsess = $this->session->contractdepartment;
                
                  <section class="col col-md-6 col-xs-6" id="modeformctype1">
                          <div class="input">
-                            <label class="control-label">Mode of acquisition</label>
+                            <label class="control-label">Mode of transaction</label>
                              <!-- <div><br></div> -->
                             <select id="acquimode" name="acquimode" class="form_fields form-control col-md-7 col-xs-12" required>
                                     <option value="">Select Mode</option>
@@ -543,7 +543,7 @@ $condeptsess = $this->session->contractdepartment;
                
                     <section class="col col-md-6 col-xs-6" id="modeformctypeother" style="display:none;">
                          <div class="input">
-                            <label class="control-label">Mode of acquisition</label>
+                            <label class="control-label">Mode of transaction</label>
                              <!-- <div><br></div> -->
                              <input type="text" id="acquimodeother" name="acquimodeother" class="form_fields form-control col-md-7 col-xs-12" value="" readonly >
                             </div>
