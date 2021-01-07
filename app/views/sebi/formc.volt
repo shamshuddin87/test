@@ -44,7 +44,7 @@ $condeptsess = $this->session->contractdepartment;
                            
                             <!-- <th>Send for Approval</th> --> 
                             <th>View Draft</th> 
-                            <?php if($user_group_id == '7'){?><th>View Final</th> <?php } ?>
+                            <?php if($user_group_id == '7'){?><th>View PDF</th> <?php } ?>
                             <th>Created Date</th>
                             <th>Edit</th>
                         </tr>
