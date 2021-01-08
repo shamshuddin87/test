@@ -44,7 +44,7 @@ $condeptsess = $this->session->contractdepartment;
                            
                             <!-- <th>Send for Approval</th> --> 
                             <th>View Draft</th> 
-                            <?php if($user_group_id == '7'){?><th>View Final</th> <?php } ?>
+                            <?php if($user_group_id == '7'){?><th>View PDF</th> <?php } ?>
                             <th>Created Date</th>
                             <th>Edit</th>
                         </tr>
@@ -280,7 +280,7 @@ $condeptsess = $this->session->contractdepartment;
     </div>
 </div>
 
-<div id="modaldocument" class="modal fade" role="dialog">
+<div id="modaldocument" class="modal fade" tabindex="-1" role="dialog">
    <form id="excelupload" name="excelupload">
                    <input type="hidden" class="excelsecutype1" name="excelsecutype1" value="">
                     <input type="hidden" class="excelsecutype2" name="excelsecutype2" value="">

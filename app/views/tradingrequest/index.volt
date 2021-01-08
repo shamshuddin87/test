@@ -239,7 +239,7 @@
                     <div class="form-group col-md-12" style="margin-left: -9px;" >
                         <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>
                         <div id="row1">
-                            <div id = "left" class="form-group col-md-4" style="margin-left: -9px;">
+                            <div id = "left" class="form-group col-md-2" style="margin-left: -9px;">
                             <label for="">Date</label>
                             <input type="text" class="form-control" id="dateoftrans" name="dateoftrans[]"  placeholder="dd-mm-yyyy" maxlength="10">
                             </div>
@@ -247,16 +247,16 @@
                              <label for="">Transaction</label>
                             <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >
                             </div>
-                            <div id = "right" class="form-group col-md-4">
+                            <div id = "right" class="form-group col-md-3">
                             <label for="">No. of Shares / ADRs</label>
                             <input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Shares / ADRs">
                             </div>
-                            <div id = "right" class="form-group col-md-4">
+                            <div id = "right" class="form-group col-md-3">
                             <label for="">Value of transaction</label>
                             <input type="text" class="form-control " id="valueoftrans" name="valueoftrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="Value of transaction">
                             </div>
                             <div id = "right" class="form-group col-md-1">
-                                <i class="fa fa-trash-o" onclick="removehtml(1);" style="font-size:15px; color:#F44336;margin-top: 39px;"></i>
+                                <i class="fa fa-trash-o" onclick="removehtml(1);" style="font-size: 15px;color: #F44336;margin-top: 33px;padding: 8px;    background: #ffdedc;border: 1px solid #F44336;"></i>
                             </div>
                         </div>
                     </div>
