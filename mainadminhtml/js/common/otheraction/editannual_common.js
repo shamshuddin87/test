@@ -1277,7 +1277,7 @@ function getpdfdata(uniqueid) {
                 reldetail +=
                   "<td>" + response.reldetail[i]["education"] + "</td>";
                 reldetail +=
-                  "<td>" + response.reldetail[i]["education"] + "</td>";
+                  "<td>" + response.reldetail[i]["institute"] + "</td>";
                 reldetail +=
                   "<td>" + response.reldetail[i]["sharehldng"] + "</td>";
                 reldetail +=

@@ -1199,7 +1199,7 @@ function getpdfdata(uniqueid)
                             reldetail += '<td>'+response.reldetail[i]['dob']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['address']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['education']+'</td>';
-                            reldetail += '<td>'+response.reldetail[i]['education']+'</td>';
+                            reldetail += '<td>'+response.reldetail[i]['institute']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['sharehldng']+'</td>';
                             reldetail += '<td>'+response.reldetail[i]['adrshldng']+'</td>';
                             reldetail += '</tr>'; 
