@@ -2214,7 +2214,7 @@ function addhtml(clicked)
         
         addhtmlnxt += '<div class=" form-group col-md-12 row'+getlastid+' "  id="row'+getlastid+'" >';
          // addhtmlnxt += ' <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>';
-        addhtmlnxt += ' <div id = "left" class="form-group col-md-4" style="margin-left: -18px;">';
+        addhtmlnxt += ' <div id = "left" class="form-group col-md-2" style="margin-left: -18px;">';
         addhtmlnxt += '<label for="">Date</label>';
         addhtmlnxt += ' <input type="text" class="form-control" id="dateoftrans" name="dateoftrans[]" placeholder="dd-mm-yyyy" maxlength="10" >';
         addhtmlnxt += '</div>';
@@ -2224,19 +2224,19 @@ function addhtml(clicked)
         
         
         addhtmlnxt += '</div>';
-        addhtmlnxt += ' <div id = "right" class="form-group col-md-4">';
+        addhtmlnxt += ' <div id = "right" class="form-group col-md-3">';
         addhtmlnxt += ' <label for="">No. of Shares / ADRs</label>';
         addhtmlnxt += '<input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Shares / ADRs">';
         addhtmlnxt += ' </div>';
 
         //addhtmlnxt += '</div>';
-        addhtmlnxt += ' <div id = "right" class="form-group col-md-4">';
+        addhtmlnxt += ' <div id = "right" class="form-group col-md-3">';
         addhtmlnxt += ' <label for="">Value of transaction</label>';
         addhtmlnxt += '<input type="text" class="form-control " id="valueoftrans" name="valueoftrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="Value of transaction">';
         addhtmlnxt += ' </div>';
         
         addhtmlnxt += ' <div id = "right" class="form-group col-md-1">';
-        addhtmlnxt += '<i class="fa fa-trash-o" onclick="removehtml('+getlastid+');" style="font-size:15px; color:#F44336;margin-top: 39px;"></i>';
+        addhtmlnxt += '<i class="fa fa-trash-o" onclick="removehtml('+getlastid+');" style="font-size: 15px;color: #F44336;margin-top: 33px;padding: 8px;background: #ffdedc;border: 1px solid #F44336;"></i>';
         addhtmlnxt += ' </div>';
         
 

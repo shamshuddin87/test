@@ -239,7 +239,7 @@
                     <div class="form-group col-md-12" style="margin-left: -9px;" >
                         <label for="">Provide, details, of any transaction done in Company’s Security in the last Six months (Except exercise of stock options)</label>
                         <div id="row1">
-                            <div id = "left" class="form-group col-md-4" style="margin-left: -9px;">
+                            <div id = "left" class="form-group col-md-2" style="margin-left: -9px;">
                             <label for="">Date</label>
                             <input type="text" class="form-control" id="dateoftrans" name="dateoftrans[]"  placeholder="dd-mm-yyyy" maxlength="10">
                             </div>
@@ -247,16 +247,16 @@
                              <label for="">Transaction</label>
                             <input type="text" class="form-control " id="trans" name="trans[]" placeholder="Transaction" >
                             </div>
-                            <div id = "right" class="form-group col-md-4">
+                            <div id = "right" class="form-group col-md-3">
                             <label for="">No. of Shares / ADRs</label>
                             <input type="text" class="form-control " id="sharestrans" name="sharestrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of Shares / ADRs">
                             </div>
-                            <div id = "right" class="form-group col-md-4">
+                            <div id = "right" class="form-group col-md-3">
                             <label for="">Value of transaction</label>
                             <input type="text" class="form-control " id="valueoftrans" name="valueoftrans[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="Value of transaction">
                             </div>
                             <div id = "right" class="form-group col-md-1">
-                                <i class="fa fa-trash-o" onclick="removehtml(1);" style="font-size:15px; color:#F44336;margin-top: 39px;"></i>
+                                <i class="fa fa-trash-o" onclick="removehtml(1);" style="font-size: 15px;color: #F44336;margin-top: 33px;padding: 8px;    background: #ffdedc;border: 1px solid #F44336;"></i>
                             </div>
                         </div>
                     </div>
@@ -780,7 +780,9 @@
             <input type="hidden" id="Yesexcreqst" name="typeofsave">
             <input type="hidden" id="place" name="form2place">
 
-            <div class="form-group">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
                 <label for="">I intend to sell/purchase/exercise no. of shares/ADRs/options of the Company because of following reason(s)</label>
                 <select class="form-control" id="reasonoftrans" name="reasonoftrans" required>
                     <option value="">Select Option</option>
@@ -791,23 +793,29 @@
                     <option value="5">Any other reason (Please specify)</option>
                 </select>
             </div>
+                </div>
                 
             <div class="form-group otherreason" style="display:none;">
                 <label for="">Any other reason*</label>
                 <input type="text" class="form-control" name="otherreason" id="otherreason" placeholder="Any other reason (Please specify)">
             </div>
-                
-           <div class="form-group">
+
+            <div class="col-xs-4">
+               <div class="form-group">
                 <label for="">Date of last purchase / sale</label>
                 <input type="text" class="form-control" name="lasttransdate" id="lasttransdate" placeholder="dd-mm-yyyy" maxlength="10" required>
             </div>
-            
-            <div class="form-group">
+            </div>
+
+            <div class="col-xs-4">
+                <div class="form-group">
                 <label for="">No. of shares / ADRs purchase/sold</label>
                 <input type="text" class="form-control" name="noofshareoftrans" id="noofshareoftrans" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="No. of shares / ADRs purchase/sold" required>
             </div>
+            </div>
 
-            <div class="form-group">
+            <div class="col-xs-4">
+                <div class="form-group">
                 <label for="">Type of Last Transaction</label>
                 <select class="form-control" id="typeoflasttrans" name="typeoflasttrans">
                     <option value="1">BUY</option>
@@ -816,9 +824,19 @@
                     <option value="RIGHTS">RIGHTS</option>-->
                 </select>
             </div>
+            </div>
                 
-            <div class="form-group">
+           
+            <div class="col-xs-6">
+                    
+            <div class="form-group" style="margin: 15px 0;">
                 <input type="file" name="othrdoc[]" id="othrdoc" class="fileimg_additional" filemainid="" multiple>
+            </div>  
+            </div>
+            
+
+            
+            
             </div>
                     
             <div class="appendesc"></div>
@@ -843,7 +861,7 @@
 -->
 
             <div class="modal-footer">
-              <button type="submit" class="btn btn-danger" id="reasonexetrans">Submit</button> 
+              <button type="submit" class="btn btn-primary" id="reasonexetrans">Submit</button> 
             </div>
             </form>
         </div>
