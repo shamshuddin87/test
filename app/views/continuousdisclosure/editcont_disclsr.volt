@@ -290,7 +290,7 @@
                  <td><?php echo $reldetail[$i]['dob'];?></td>
                  <td><?php echo $reldetail[$i]['address'];?></td>
                  <td><?php echo $reldetail[$i]['education'];?></td>
-                 <td><?php echo $reldetail[$i]['education'];?></td>
+                 <td><?php echo $reldetail[$i]['institute'];?></td>
                  <td><?php echo $reldetail[$i]['sharehldng'];?></td>
                  <td><?php echo $reldetail[$i]['adrshldng'];?></td>
                 </tr>
@@ -1309,7 +1309,7 @@
                  <td><?php echo $reldetail[$i]['dob'];?></td>
                  <td><?php echo $reldetail[$i]['address'];?></td>
                  <td><?php echo $reldetail[$i]['education'];?></td>
-                 <td><?php echo $reldetail[$i]['education'];?></td>
+                 <td><?php echo $reldetail[$i]['institute'];?></td>
                  <td><?php echo $reldetail[$i]['sharehldng'];?></td>
                  <td><?php echo $reldetail[$i]['adrshldng'];?></td>
                 </tr>
