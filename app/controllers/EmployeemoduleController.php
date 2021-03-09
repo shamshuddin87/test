@@ -70,7 +70,7 @@ class EmployeemoduleController extends ControllerBase
                 
                 if(!empty($dob))
                 {
-                    $currentage = $this->elements->checkCurrentAge($dob);
+                    //$currentage = $this->elements->checkCurrentAge($dob);
                     //print_r($currentage->y);exit;
                      /*Date Validation for date of birth Start */
 
@@ -81,6 +81,10 @@ class EmployeemoduleController extends ControllerBase
                     $d = $dateofbirth[0];
                     $datestatus = $this->elements->checkdate($m,$y,$d);
                     /*Date Validation for date of birth End */
+                    if($datestatus == 'valid')
+                    {
+                        $currentage = $this->elements->checkCurrentAge($dob);
+                    }
                }
 
 

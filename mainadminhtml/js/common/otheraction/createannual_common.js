@@ -1414,7 +1414,7 @@ website("body").on("click", ".sendtype", function (e) {
       // website('#modaldocument .downloadpdf .pdfln').html('');
       // website('#modaldocument .trailpdfdownload').addClass('disabled');
     },
-    uploadProgress: function (event, position, total, percentComplete) {},
+    uploadProgress: function (event, position, total, percentComplete) {website(".preloder_wraper").fadeIn();},
     success: function (response) {
       // console.log(response.pdfpath);
       if (response.logged === true) {
