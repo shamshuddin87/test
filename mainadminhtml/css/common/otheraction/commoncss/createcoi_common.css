@@ -1,0 +1,295 @@
+
+.formelementmain {
+    padding: 30px 0;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px #cccc;
+    margin: 20px 0;
+    float: left;
+    width: 100%;
+}
+/*################ Pagination Start ######################*/
+.paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
+.paginationmn .pagination ul li.inactive,
+.paginationmn .pagination ul li.inactive:hover{background-color:#ededed;
+color:#bababa; border:1px solid #bababa; cursor: default;}
+.paginationmn .data ul li{ list-style: none; font-family: verdana; margin: 5px 0 5px 0; color: #000;font-size: 13px;}
+.paginationmn .pagination{width: 100%;margin: 0px auto; /*height: 25px;*/}
+.paginationmn .pagination ul li{
+    list-style: none;
+    float: left;
+    border: 1px solid #5d6677;
+    padding: 2px 6px 2px 6px;
+    margin: 0 3px 0 3px;
+    font-family: arial;
+    font-size: 14px;
+    color: #5d6677;
+    font-weight: bold;
+    background-color: #f2f2f2;
+    width: auto !important;
+    cursor: pointer;
+}
+.floatright { float: right;}
+.tradeplanview {background-color: #fff; padding:10px;}
+.fa-edit{ cursor: pointer;}
+.margintop { margin-top: 90px;}
+.fa-trash-o{cursor: pointer;}
+/*.inputbox3 , .selectbox4 {margin-top : 20px !important;}*/
+ .selectbox5 { margin-top :40px !important;}
+.inputbox5 { margin-top: 60px !important;}
+
+.typography.form_pad {
+  /*  background: #fff;*/
+    padding: 0 10px;
+    /*box-shadow: 2px 3px 5px #ccc;*/
+    margin: 10px 0;
+}
+input#d2ques1 {
+    margin: 20px 0;
+}
+input#d1ques1 {
+    margin: 20px 0;
+}
+
+div#appenddiv1 {
+    width: 100%;
+    float: left;
+}
+
+.append_row3 {
+    width: 100%;
+    float: left;
+} 
+
+tr,td {
+    padding: 8px;
+
+}
+
+.glyphicon
+{font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;}
+.glyphicon-download-alt:before {
+    content: "\e025";
+    font-family:  'Glyphicons Halflings';
+}
+
+
+a.tooltip_c {
+    text-align: right;
+    float: right;
+    font-size: 16px;
+    margin-right: 50px;
+    font-size: 16px;
+    color: #034383;
+}
+
+.mainelementfom {
+    margin-top: 65px;
+}
+
+.h1_heading {
+    font-size: 28px;
+    font-weight: normal;
+    color: #000;
+    margin-bottom: 18px;
+    padding-left: 9px;
+}
+
+.belowleveluserdetcss
+{
+        position: relative;
+    padding: 15px;
+    border: 1px solid rgb(216, 216, 216);
+    box-shadow: 0 0 10px #00000059;
+        margin-bottom: 20px;
+        background: #fff;
+}
+
+.h2_heading
+{
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.h3_heading
+{
+    color: #000;
+    margin-bottom: 10px;
+    margin-top: 30px;
+        font-size: 16px;
+}
+
+.create_button a button
+{
+    margin: 0;
+    margin-bottom: 18px;
+    margin-top: 10px;
+}
+table.table.tablevertical
+{
+    width: fit-content;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    position: relative;
+}
+
+table.table.tablevertical thead
+{
+    display: block;
+    float: left;
+}
+
+table.table.tablevertical thead tr
+{
+    display: block;
+    border-bottom: none;
+    padding: 0;
+}
+
+table.table.tablevertical thead tr th
+{
+    display: block;
+    text-align: right;
+}
+
+table.table.tablevertical  tbody
+{
+    display: block;
+    width: auto;
+    position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.table.tablevertical  tbody tr
+{
+    display: inline-block;
+    vertical-align: top;
+    padding: 0;
+}
+
+table.table.tablevertical  tbody tr td
+{
+    display: block;
+    min-height: 1.25em;
+    text-align: left;
+    margin: 0;
+    vertical-align: top;
+}
+.modalform .belowleveluserdetcss {
+    position: relative;
+    padding: 15px;
+    border: 0px solid rgb(216,216,216);
+    box-shadow: 0 0 0px #00000000;
+    margin-bottom: 0px;
+}
+
+.overflowXscroll
+{
+    width: 100%;
+    overflow-x: auto;
+}
+
+.create_button .tooltip_c:hover:after {
+    top: 121px !important;
+}
+
+td label span {
+    line-height: normal;
+    font-style: italic;
+    color: #522c8f;
+}
+
+.nav-sm .container.body .col-md-3.left_col {
+    min-height: 100%;
+    width: 70px;
+    padding: 0;
+    /*position: fixed;*/
+    display: flex;
+    z-index: 999;
+    overflow: visible !important;
+    height: 100%;
+}
+
+body.nav-sm .container.body .left_col {
+    height: 100%;
+}
+
+.main_container {
+    position: relative;
+}
+
+body.nav-sm .main_container .top_nav,
+.main_container .top_nav {
+    z-index: 2;
+    position: relative;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td { font-size: 13px;}
+
+#content2::before{
+    content: "\a";
+    white-space: pre;
+}
+
+
+
+.compnamedata_div
+{
+
+}
+
+
+a.compnamedata_btn {
+    text-align: right;
+    float: right;
+    margin-right: 30px;
+    font-size: 16px;
+}
+
+
+.compnamedata_div:hover .compnamedata
+{
+    display: block;    
+}
+
+.compnamedata
+{
+    position: absolute;
+    display: none;
+    top: 35px;
+    background: #ffffff;
+    box-shadow: 0 0 5px #0000006e;
+    right: 10px;
+    width: 500px;
+    height: 600px;
+    overflow-y: scroll;
+    z-index: 1;
+}
+
+.compnamedata table
+{
+    width: 500px;
+    max-width: 500px;
+    color: #000;
+    font-size: 13px;
+}
+
+.compnamedata table tr
+{
+    width: 500px;
+}
+
+.compnamedata table tr:nth-child(even)
+{
+    background: #f4f4f4;
+}
+.compnamedata table td
+{
+    text-align: left;
+}

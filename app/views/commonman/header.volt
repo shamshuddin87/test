@@ -200,7 +200,9 @@
                      <li><a href="annualdeclaration"><i class=""></i>Self Declaration</a></li>
                      <?php } else { ?>
                      <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>
-                     <?php } ?>    
+                     <?php } ?> 
+                     <li><a href="coi"><i class=""></i>COI Declaration</a></li>
+                     <li><a href="coi/viewcoi"><i class=""></i>View COI Declaration</a></li>
                   </ul>
                </li>
                

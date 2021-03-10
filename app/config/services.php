@@ -323,6 +323,9 @@ $di->set('randomexceptioncommon', function () {
 $di->set('sebicommon', function () {
     return new Sebicommon();
 });
+$di->set('coicommon', function () {
+    return new Coicommon();
+});
 /*###################### Important Query Files End #####################################################*/
 
 

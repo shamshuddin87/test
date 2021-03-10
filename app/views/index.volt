@@ -100,6 +100,8 @@ and getcontrolleractionname !="createannual"
 and getcontrolleractionname !="editannual"
 and getcontrolleractionname !="editcont_disclsr"
 and getcontrolleractionname !="createcont_disclsr"
+and getcontrolleractionname !="createcoi"
+and getcontrolleractionname !="viewcoi"
 
 
 
@@ -171,6 +173,8 @@ or getcontrolleractionname == "createannual"
 or getcontrolleractionname == "editannual"
 or getcontrolleractionname == "editcont_disclsr"
 or getcontrolleractionname == "createcont_disclsr"
+or getcontrolleractionname == "createcoi"
+or getcontrolleractionname == "viewcoi"
 
 %}
 {% set otheractioncss = ['css/common/otheraction/',dispatcher.getActionName(),'_common', '.php?v='~timestampfile]|join('') %}
@@ -381,6 +385,8 @@ and getcontrolleractionname != "createannual"
 and getcontrolleractionname != "editannual"
 and getcontrolleractionname != "editcont_disclsr"
 and getcontrolleractionname != "createcont_disclsr"
+and getcontrolleractionname != "createcoi"
+and getcontrolleractionname != "viewcoi"
 %}
 <?php
 
@@ -444,6 +450,8 @@ or getcontrolleractionname == "createannual"
 or getcontrolleractionname == "editannual"
 or getcontrolleractionname == "editcont_disclsr"
 or getcontrolleractionname == "createcont_disclsr"
+or getcontrolleractionname == "createcoi"
+or getcontrolleractionname == "viewcoi"
     
 %}
 <?php
