@@ -295,6 +295,31 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                         </div>
                                     </section>
 
+
+                                    <section class="col col-md-4 ">
+                                        <label class="control-label">COI Accessibility? *</label>
+                                        <div class="input">
+                                            <select id="coiaccess" name="coiaccess"
+                                                class="form_fields form-control col-md-7 col-xs-12">
+                                                <option value="">Select COI Accessibility</option>
+                                                <option value="yes">Yes</option>
+                                                <option value="no">No</option>
+                                            </select>
+                                        </div>
+                                    </section>
+
+                                    <section class="col col-md-4 ">
+                                        <label class="control-label">Manager Type</label>
+                                        <div class="input">
+                                            <select id="managertype" name="managertype"
+                                                class="form_fields form-control col-md-7 col-xs-12">
+                                                <option value="">Select Manager Type</option>
+                                                <option value="hr">HR Manager</option>
+                                                <option value="dept">Department Manager</option>
+                                            </select>
+                                        </div>
+                                    </section>
+
                                     <section class="col col-md-4 ">
                                         <label class="control-label">Department Access *</label>
                                         <div class="input">
@@ -435,8 +460,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="control-label form-group col-md-6">
                             <span class="floatleft"><label>First Name *</label></span>
-                            <input type="text" class="form-control" id="firstname" name="firstname"
-                                onkeypress="return isAlphaNumeric_space(event,this);" required>
+                            <input type="text" class="form-control" id="firstname" name="firstname" onkeypress="return isAlphaNumeric_space(event,this);" required>
                         </div>
                         <div class="control-label form-group col-md-6">
                             <span class="floatleft"><label>Last Name *</label></span>
@@ -530,6 +554,32 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                             </div>
                         </div>
 
+
+                        <div class="control-label form-group col-lg-6 col-xs-12">
+                            <span class="floatleft"><label>COI Accessibility? *</label></span>
+                            <div class="input">
+                                <select id="coiaccess" name="coiaccess"
+                                    class="form_fields form-control col-md-7 col-xs-12">
+                                    <option value="">Select COI Accessibility</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="control-label form-group col-lg-6 col-xs-12">
+                            <span class="floatleft"><label>Manager Type</label></span>
+                            <div class="input">
+                                <select id="managertype" name="managertype"
+                                    class="form_fields form-control col-md-7 col-xs-12">
+                                    <option value="">Select Manager Type</option>
+                                    <option value="hr">HR Manager</option>
+                                    <option value="dept">Department Manager</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="control-label form-group col-lg-6 col-xs-12">
                             <span class="floatleft"><label>Department Access *</label></span>
                             <div class="input">
@@ -543,6 +593,8 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                                 </select>
                             </div>
                         </div>
+
+
 
                         <div class="control-label form-group col-md-12 col-xs-12 typu">
                             <span class="floatleft"><label>Search Approver *</label></span>

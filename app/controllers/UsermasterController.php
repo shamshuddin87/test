@@ -71,6 +71,8 @@ class UsermasterController extends ControllerBase
                 $roleid = $this->request->getPost('roleid','trim');
                 $emp_status = $this->request->getPost('emp_status','trim');
                 $resignordeletiondate = $this->request->getPost('resignordeletiondate','trim');
+                $coiaccess = $this->request->getPost('coiaccess','trim');
+                $managertype = $this->request->getPost('managertype','trim');
                  // print_r($approvername);exit;l1email
               
                 $dupliempcode = $this->commonquerycommon->checkifduplidata($getuserid,$employeecode,'');          
@@ -164,6 +166,11 @@ class UsermasterController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Select Approver');
                     $this->response->setJsonContent($data);
                 }
+                else if(empty($coiaccess))
+                {
+                    $data = array("logged" => false,'message' => 'Please Select COI Accessibility.');
+                    $this->response->setJsonContent($data);
+                }
                 else if($dupliempcode)
                 {
                     $data = array("logged" => false,'message' => 'Employee Code Already Exist..!!');
@@ -213,6 +220,8 @@ class UsermasterController extends ControllerBase
                     $insertmas['roleid']= $roleid;
                     $insertmas['emp_status']= $emp_status;
                     $insertmas['resignordeletiondate']= $resignordeletiondate;
+                    $insertmas['coiaccess']= $coiaccess;
+                    $insertmas['managertype']= $managertype;
 
                     //print_r($insertmas);exit;
 
@@ -286,7 +295,9 @@ class UsermasterController extends ControllerBase
                 $roleid=$this->request->getPost('roleid','trim');
                 $emp_status=$this->request->getPost('emp_status','trim');
                 $resignordeletiondate = $this->request->getPost('resignordeletiondate','trim');
-                
+                $coiaccess=$this->request->getPost('coiaccess','trim');
+                $managertype=$this->request->getPost('managertype','trim');
+
                 if($masterid==2)
                 {
                 	$typeofusr=2;
@@ -388,6 +399,11 @@ class UsermasterController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Select Approver');
                     $this->response->setJsonContent($data);
                 }
+                else if(empty($coiaccess))
+                {
+                    $data = array("logged" => false,'message' => 'Please Select COI Accessibility.');
+                    $this->response->setJsonContent($data);
+                }
                 else if($dupliempcode)
                 {
                     $data = array("logged" => false,'message' => 'Employee Code Already Exist..!!');
@@ -429,6 +445,9 @@ class UsermasterController extends ControllerBase
                     $updatemas['roleid']= $roleid;
                     $updatemas['emp_status']= $emp_status;
                     $updatemas['resignordeletiondate']= $resignordeletiondate;
+                    $updatemas['coiaccess']= $coiaccess;
+                    $updatemas['managertype']= $managertype;
+
                     //print_r($updatemas);exit;
 
                     $chkresponse = $this->insidercommon->updatemasterlist($updatemas);
@@ -582,7 +601,7 @@ class UsermasterController extends ControllerBase
               $id=$this->request->getPost('tempid','trim');
               // print_r($id);exit;
               $result = $this->commonquerycommon->fetchsingleuser($getuserid,$usergroup,$id);
-              // print_r($result);
+              // echo"<pre>";print_r($result);die;
                if($result){
                  $data = array("logged"=>true,"message"=>'User fetch successfully',"data"=>$result);
                  $this->response->setJsonContent($data);

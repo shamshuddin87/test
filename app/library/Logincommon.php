@@ -133,7 +133,7 @@ class Logincommon extends Component
                         'firstname' => trim($this->elements->htmldecode($robot['firstname'])),
                         'lastname' => trim($this->elements->htmldecode($robot['lastname'])),
                         'email' => strtolower($robot['email']), 'moduleaccess'=>$getdtl,
-                        'master' => $robot['master_user_id'],'mastergroup' => $robot['master_group_id']
+                        'master' => $robot['master_user_id'],'mastergroup' => $robot['master_group_id'],'coiaccess'=> $robot['coiaccess']
                         ));
                         //echo '<pre>'; print_r($setsession); exit;
                     /* =================== SET Values In Session END =================== */

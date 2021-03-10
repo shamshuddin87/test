@@ -304,11 +304,11 @@ function getuserlistonload()
 
                     if(response.data[i].master_group_id==2)
                     {
-                       addhtmlnxt += '<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i></td>';
+                       addhtmlnxt += '<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].wr_id+'" ></i></td>';
                     }
                     else
                     {
-                    addhtmlnxt += '<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].id+'" ></i></td>';
+                    addhtmlnxt += '<td width="10%"><i class="fa fa-edit faicon dbeditme" title="Edit entry" tempid="'+response.data[i].wr_id+'" ></i></td>';
                     // <i class="fa fa-trash-o faicon dbdeleteme" title="Delete entry" tempid="'+response.data[i].id+'" ></i>
                     }
                     addhtmlnxt += '</tr>';    
@@ -459,6 +459,8 @@ website('body').on('click','.dbeditme',function(e){
                        var roleid=response.data[i].role_id?response.data[i].role_id:'';
                        var emp_status=response.data[i].emp_status?response.data[i].emp_status:'';
                        var resignordeletiondate=response.data[i].resignordeletiondate?response.data[i].resignordeletiondate:'';
+                       var managertype = response.data[i].managertype?response.data[i].managertype:'';
+                       var coiaccess = response.data[i].coiaccess?response.data[i].coiaccess:'';
 
                           website('#Mymodaledit #mlistid').val(response.data[i].id);
                           website('#Mymodaledit #userid').val(response.data[i].wr_id);
@@ -479,6 +481,8 @@ website('body').on('click','.dbeditme',function(e){
                           website('#Mymodaledit #l1empid').val(l1empid);
                           website('#Mymodaledit #roleid').val(roleid);
                           website('#Mymodaledit #emp_status_edit').val(emp_status);
+                          website('#Mymodaledit #managertype').val(managertype);
+                          website('#Mymodaledit #coiaccess').val(coiaccess);
                           
 
                           // console.log(response.data[i].approver);

@@ -7,7 +7,7 @@ class HomeController extends ControllerBase
         $this->tag->setTitle($getlan['websitetitle']);
 		$this->elements->checkuserloggedin();
 		//$getuserid = $this->session->loginauthspuserfront['id'];
-        //echo ':frontend user::';print_r($this->session->loginauthsuser);exit;
+        // echo '<pre>';print_r($_SESSION);exit;
         parent::initialize();
     }
 
