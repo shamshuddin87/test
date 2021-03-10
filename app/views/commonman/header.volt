@@ -47,8 +47,6 @@
 
             <?php if(!empty($checkpersonal_info) || $gettypm['user_group_id']=='2'  ){ ?>
             <?php if($gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='14'|| $gettypm['user_group_id']=='7'){ ?>
-
-            <?php if ($coiaccess == 'no') { ?>
             <li>
                <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> Masters <span class="fa fa-chevron-down"></span></a>
                <ul class="nav child_menu">
@@ -63,7 +61,6 @@
                   <!--  <li><a href="usermaster/userview"><i class="fa fa-eye"></i>View Users</a></li>   -->
                </ul>
             </li>
-
           
             <!-- <?php if($gettypm['user_group_id']=='2'){ ?> -->
                 
@@ -133,10 +130,8 @@
 -->
             <!--   <?php } ?> -->
             <?php } ?>
-            <?php } ?>
             <!-----------------------------------EMPLOYEE MODULE--------------------------------------->
             <?php if($gettypm['user_group_id'] != '2'){?>
-               <?php if ($coiaccess == 'no') { ?>
             <li>
                   <a class="click_board click_board3" href="javascript:;"><i class="fa fa-share-alt"></i>UPSI Sharing<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
@@ -153,10 +148,8 @@
                      </li>
                   </ul>
                </li>
-               <?php } ?>
             <?php } ?>    
             <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='2') {?>
-               <?php if ($coiaccess == 'no') { ?>
             <li>
                <a class="click_board click_board3" href="javascript:;"><i class="glyphicon glyphicon-cog"></i>MIS<span class="fa fa-chevron-down"></span></a>
                <ul class="nav child_menu">
@@ -179,14 +172,12 @@
                </ul>
             </li>
             <?php } ?>
-            <?php } ?>
                 
             <ul class="nav side-menu">
                <?php if($gettypm['user_group_id']=='14'  || $gettypm['user_group_id']=='7') {?>
                <li>
                   <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> My Info<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                     <?php if ($coiaccess == 'no') { ?>
                      <li><a href="employeemodule"><i class="" id="cmp_mst"></i>Personal information</a></li>
                      <li><a href="portfolio"><i class=""></i>Demat/Securities Account</a></li>
                      <li><a href="continuousdisclosure"><i class=""></i>Continuous Disclosure</a></li>
@@ -209,10 +200,7 @@
                      <li><a href="annualdeclaration"><i class=""></i>Self Declaration</a></li>
                      <?php } else { ?>
                      <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>
-                     <?php } ?>
-                     <?php } else if($coiaccess == 'yes') { ?>   
-                     <li><a href="coi"><i class=""></i>COI Declaration</a></li>
-                     <?php } ?> 
+                     <?php } ?>    
                   </ul>
                </li>
                
@@ -227,7 +215,6 @@
                      </li>
                   </ul>
                </li> -->
-               
                <li>
                   <a href="blackoutperiod"><i class="fa fa-ban fa-5x" id="cmp_mst"></i>Trading Window</a>
                </li>
