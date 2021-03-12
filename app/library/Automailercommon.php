@@ -310,6 +310,172 @@ class Automailercommon extends Component
           
      }
 //--------------------------SEND MAIL TO APPROVER BEFORE ONE DAY FINISH HERE---------------------------------------//
+
+
+
+    public function sendpendapprovmaileveryday()
+     {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT * FROM `coi_declaration` cd
+      -- LEFT JOIN type_of_transaction ts ON `ts`.id=`pr`.type_of_transaction
+      -- LEFT JOIN listedcmpmodule cmpdl ON `cmpdl`.id = `pr`.id_of_company 
+      -- LEFT JOIN relative_info relative ON `relative`.id = `pr`.relative_id 
+      -- LEFT JOIN request_type rt ON `rt`.id = `pr`.type_of_request 
+      -- LEFT JOIN `req_securitytype` sec ON `sec`.id = `pr`.sectype
+      LEFT JOIN `it_memberlist` memb ON memb.`wr_id` =  cd.`user_id`
+      -- LEFT JOIN `con_dept` dpt ON memb.`deptaccess` = dpt.`id`
+      WHERE cd.`sent_status`='1' AND cd.`hrM_processed_status`='pending_approval'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        // $getlist['mycompany'] = $row['mycompany']; 
+                        // $getlist['name_of_requester'] = $row['name_of_requester'];  
+                        // $getlist['email'] = $row['email']; 
+                        // $getlist['no_of_shares']=$row['no_of_shares']; 
+                        // $getlist['approved_date']=$row['approved_date'];
+                        // $getlist['trading_date']=$row['trading_date'];
+                        // $getlist['request_type']=$row['request_type'];
+                        $myarry[]=$getlist;
+
+                        $hrdeptmgrs = $this->getHrDeptMgrs($row['deptaccess'],$row['cmpaccess']);
+
+                        foreach($hrdeptmgrs as $hrdeptmgr)
+                        { 
+                            $result = $this->emailer->sendpendapprovmaileveryday($hrdeptmgr['email'],$getlist);
+                        }
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }
+
+
+     public function sendmailtoccoandcs($reqid)
+     {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT * FROM `coi_declaration` cd
+                    WHERE cd.`id`='".$reqid."'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        // $getlist['mycompany'] = $row['mycompany']; 
+                        // $getlist['name_of_requester'] = $row['name_of_requester'];  
+                        // $getlist['email'] = $row['email']; 
+                        // $getlist['no_of_shares']=$row['no_of_shares']; 
+                        // $getlist['approved_date']=$row['approved_date'];
+                        // $getlist['trading_date']=$row['trading_date'];
+                        // $getlist['request_type']=$row['request_type'];
+                        $myarry[]=$getlist;
+
+                        $result = $this->emailer->sendmailtoccoandcs($myarry);
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }
+
+
+    public function checkYORuser($uid)
+    {
+        $connection = $this->dbtrd;
+        $time = time();
+        
+        try
+        {
+            $sqlqry = "SELECT * FROM `it_memberlist` where wr_id='".$uid."' AND role_id IN ('5','6','7')";         
+            //print_r($sqlqry); exit;            
+            $exeqry = $connection->query($sqlqry);
+            $getnum = trim($exeqry->numRows());
+            //echo '<pre>'; print_r($getnum); exit;            
+            if($getnum > 0)
+            {               
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+    }
+
+     public function getHrDeptMgrs($dept,$cmpny)
+     {
+        $connection = $this->dbtrd;
+        $time = time();
+        
+        $getlist = array();
+        try
+        {
+            $sqlqry = "SELECT `email` FROM `it_memberlist` WHERE `managertype` IN ('dept','hr') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";         
+            //print_r($sqlqry); exit;            
+            $exeqry = $connection->query($sqlqry);
+            $getnum = trim($exeqry->numRows());
+            //echo '<pre>'; print_r($getnum); exit;            
+            if($getnum>0)
+            {
+                while($row = $exeqry->fetch())
+                {
+                    $getlist[] = $row; 
+                }
+                //echo '<pre>'; print_r($getlist); exit;
+            }
+            else
+            {
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+        }
+        //echo '<pre>'; print_r($getlist); exit;
+        
+        return $getlist;
+     }
     
     
     
