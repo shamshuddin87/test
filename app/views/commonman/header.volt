@@ -8,7 +8,7 @@
    $notification =$this->notificationcommon->getallnotification($getuserid);
    $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
    $checkpersonal_info = $this->employeemodulecommon->getmydetails($getuserid,$usergroup);
-   //print_r($checkpersonal_info);exit;
+   //print_r($coiaccess);exit;
     // print_r($notification);exit;
    ?>
 <div class="col-md-3 left_col" id="#style-1">
