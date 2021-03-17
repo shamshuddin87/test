@@ -48,7 +48,7 @@ class CoiController extends ControllerBase
                 }
                 else
                 {
-                    $data  = array('logged' => true, 'data' => ''); 
+                    $data  = array('logged' => false, 'data' => ''); 
                     $this->response->setJsonContent($data);
                 }
                 $this->response->send();
@@ -86,7 +86,7 @@ class CoiController extends ControllerBase
                 {
                     for ($i = 0; $i < sizeof($cateQueData); $i++) 
                     {
-                        $coihtml.= '<input class="coipolicy" type="radio" name="question" id="'.$cateQueData[$i]['idattr'].'" value="'.$cateQueData[$i]['id'].'">
+                        $coihtml.= '<input class="cateque" type="radio" name="question" id="'.$cateQueData[$i]['idattr'].'" value="'.$cateQueData[$i]['id'].'">
                         <label>'.$cateQueData[$i]['question'].'</label>';
                     }
                     //print_r($coihtml);exit;
@@ -95,7 +95,7 @@ class CoiController extends ControllerBase
                 }
                 else
                 {
-                    $data  = array('logged' => true, 'data' => ''); 
+                    $data  = array('logged' => false, 'data' => ''); 
                     $this->response->setJsonContent($data);
                 }
                 $this->response->send();
@@ -124,19 +124,112 @@ class CoiController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 //print_r($this->request->getPost());exit;
+                $formsend_status = 0;
                 $coipolicy = $this->request->getPost('coipolicy');
                 $coicategory = $this->request->getPost('coicategory');
                 $catequeid = $this->request->getPost('question');
+                $others_des = $this->request->getPost('others_des');
+                $coipdfhtml = $this->request->getPost('coipdfhtml');
+                $formsendtype = $this->request->getPost('formsendtype');
+                if($formsendtype == 'yes')
+                {
+                    $formsend_status = 1;
+                }
                 
-                $getres = $this->coicommon->insertcoi($getuserid,$user_group_id,$coipolicy,$coicategory,$catequeid);
-                if($getres)
-                {  
-                    $data = array("logged" => true,'message' => 'Record Added');
+                if(!empty($_FILES["attachment"]))
+                {
+                    foreach($_FILES['attachment']['tmp_name'] as $key => $val )
+                    {
+                        $timeago = time();
+                        $userfile_name = $_FILES['attachment']['name'][$key];
+                        //echo $userfile_name;exit;
+                        $userfile_tmp = $_FILES['attachment']['tmp_name'][$key];
+                        $userfile_size = $_FILES['attachment']['size'][$key];
+                        $userfile_type = $_FILES['attachment']['type'][$key];
+                        $filename = basename($_FILES['attachment']['name'][$key]);
+                        //echo $filename;exit;
+                        $filenm = explode('.', $filename);
+                        $filenms[] = $filenm[0];
+                        $file_ext = $this->validationcommon->getfileext($filename);
+                        $upload_path = $this->coiDir."/Attachments/";
+                        //echo $upload_path;exit;
+                        $large_imp_name = 'COI_Declaration_userid_'.$getuserid.'_timeago_'.$timeago.'_'.$key;
+                        $contract_filepath = $upload_path.$large_imp_name.".".$file_ext;
+                        $uploadedornot = move_uploaded_file($userfile_tmp, $contract_filepath);
+                        //echo $uploadedornot;exit;
+                        $filelist[] = $contract_filepath;
+                    }
+                    $attachments = implode(',',$filelist);
+                    //print_r($filelist);exit;
+                }
+                else
+                {
+                    $attachments='';
+                }
+                
+                if($coipolicy == 'yes' && empty($coicategory))
+                {
+                    $data = array("logged" => false,'message' => "Please select the category.");
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($catequeid))
+                {
+                    $data = array("logged" => false,'message' => "Please select option.");
                     $this->response->setJsonContent($data);
                 }
                 else
                 {
-                    $data = array("logged" => false,'message' => "Record Not Added..!!");
+                    $pdfpath = $this->dompdfgen->getpdf($coipdfhtml,'COI','Declaration','coi');
+                    //print_r($pdfpath);exit;
+                    $getres = $this->coicommon->insertcoi($getuserid,$user_group_id,$coipolicy,$coicategory,$catequeid,$others_des,$attachments,$formsend_status,$pdfpath);
+                    if($getres)
+                    {  
+                        $data = array("logged" => true,'message' => 'Record Added');
+                        $this->response->setJsonContent($data);
+                    }
+                    else
+                    {
+                        $data = array("logged" => false,'message' => "Record Not Added..!!");
+                        $this->response->setJsonContent($data);
+                    }
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed to this area');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+    
+    public function fetchCoiAllDataAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $cin;exit;
+        $timeago = time();
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $coiData = $this->coicommon->fetchCoiAllData($getuserid,$user_group_id);
+                //print_r($coiData);exit;
+                if(!empty($coiData))
+                {
+                    $data  = array('logged' => true, 'data' => $coiData); 
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data  = array('logged' => false, 'data' => ''); 
                     $this->response->setJsonContent($data);
                 }
                 $this->response->send();

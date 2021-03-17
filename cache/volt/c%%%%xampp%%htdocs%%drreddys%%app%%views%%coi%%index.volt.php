@@ -33,7 +33,7 @@ $condeptsess = $this->session->contractdepartment;
         <th>Download</th>                                           
       </tr>
      </thead>
-    <tbody class="allpdf" appendrow='1'></tbody>
+    <tbody class="allcoidata" appendrow='1'></tbody>
     </table>
 </div>
 

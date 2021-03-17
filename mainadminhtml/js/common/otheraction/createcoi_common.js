@@ -1,5 +1,6 @@
 website(document).ready(function () {
     fetchEmpDetails();
+    inittinymace();
 });
 
 function fetchEmpDetails()
@@ -35,6 +36,19 @@ function fetchEmpDetails()
   });
 }
 
+function inittinymace()
+{
+    tinymce.init({
+        selector: 'textarea',  // change this value according to your HTML
+        plugins: ["lists"],
+        a_plugin_option: true,
+        toolbar: 'undo redo | formatselect | ' +
+        'bold italic backcolor | alignleft aligncenter ' +
+        'alignright alignjustify | bullist numlist outdent indent | ' +
+        'removeformat ',
+        a_configuration_option: 400
+    });
+}
 
 website("body").on("click", ".coipolicy", function (e) {
     var coival = website(this).val();
@@ -76,6 +90,46 @@ website("#coicategory").change(function () {
   });
 });
 
+website('body').on('click','.savecoi',function(e)
+{
+    var others_des = tinyMCE.activeEditor.getContent();
+    website('#insertcoi #others_des').val(others_des);
+    var pdfdata = website("div .coihtmldata").html();
+    website('#insertcoi #coipdfhtml').val(pdfdata)
+    //console.log(pdfdata);
+    website(".modalcoihtmldata").html(pdfdata);
+    var coipolicy = website('#insertcoi input[name="coipolicy"]:checked').val();
+    var coicategory = website('#insertcoi #coicategory').val();
+    var cateque = website('#insertcoi input[name="question"]:checked').val();
+    if(coipolicy == 'Yes' && coicategory == '')
+    {
+        new PNotify({
+            title: "Alert",
+            text: 'Please select the category.',
+            type: "university",
+            hide: true,
+            styling: "bootstrap3",
+            addclass: "dark ",
+        });
+    }
+    else if(coipolicy == 'Yes' && !cateque)
+    {
+        new PNotify({
+            title: "Alert",
+            text: 'Please select the category question.',
+            type: "university",
+            hide: true,
+            styling: "bootstrap3",
+            addclass: "dark ",
+        });
+    }
+    else
+    {
+        website("#Mymodalcoideclara").modal("show");
+    }
+    
+});
+
 website("#insertcoi").ajaxForm({
   dataType: "json",
   beforeSend: function () 
@@ -94,6 +148,8 @@ website("#insertcoi").ajaxForm({
             styling: "bootstrap3",
             addclass: "dark ",
         });
+        var baseHref=getbaseurl();
+        setTimeout(function(){window.location.href=baseHref+'coi';},1000);
     } 
     else 
     {
@@ -111,3 +167,61 @@ website("#insertcoi").ajaxForm({
   { website(".preloder_wraper").fadeOut();},
   error: function (jqXHR, textStatus, errorThrown) {},
 });
+
+website("body").on("click", ".coigeneratepdf", function (e) {
+    website("#sendcoiforapproval").modal("show");
+});
+
+website("body").on("click", ".sendcoiform", function (e) {
+    var sendtype = website(this).val();
+    website('#insertcoi #formsendtype').val(sendtype);
+    website('#insertcoi').submit();
+});
+
+website("body").on("click", ".cateque", function (e) {
+    var idattr = website(this).attr('id');
+    //console.log(idattr)
+    if (idattr.indexOf('_others') > -1) 
+    {
+        website('#coiothers').css('display','block');
+    }
+    else
+    {
+        website('#coiothers').css('display','none');
+    }
+});
+
+/* ----- Start Add/Delete Email Rows ----- */
+website('body').on('click','.btnaddfile',function()
+{
+    var getlastid = website('.appendfile').attr('filecntr');
+    //console.log(getlastid); return false;
+    getlastid = ++getlastid;
+    
+    var addhtmlnxt='';
+    addhtmlnxt += '<div class="col-md-12 col-xs-12 " id="row-'+getlastid+'">';
+    addhtmlnxt += '<label class="control-label">Upload File</label>';
+    addhtmlnxt += '<div class="choose_files">';
+    addhtmlnxt += '<input type="file" name="attachment[]" id="attachment" >';
+    addhtmlnxt += '</div>';
+    addhtmlnxt += '</div>';
+    
+    website('.appendfile').append(addhtmlnxt);
+    website('.appendfile').attr('filecntr',getlastid);
+});
+
+website('body').on('click','.btndeletefile',function()
+{
+    var rownum  = website('.appendfile').attr('filecntr');
+    //console.log(rownum); return false;     
+    if(rownum != 1)
+    {
+        website('.appendfile #row-'+rownum).remove();
+        website('.appendfile').attr('filecntr',parseInt(rownum)-1);
+    }
+    else
+    {
+        return false;
+    }    
+});
+/* ----- Start Add/Delete Email Rows ----- */

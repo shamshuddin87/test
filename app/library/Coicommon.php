@@ -101,16 +101,15 @@ class Coicommon extends Component
         return $getlist;
     }
     
-    public function insertcoi($getuserid,$user_group_id,$coipolicy,$coicategory,$catequeid)
+    public function insertcoi($getuserid,$user_group_id,$coipolicy,$coicategory,$catequeid,$others_des,$attachments,$formsend_status,$pdfpath)
     {
         $connection = $this->dbtrd;
         $time = time();
-        $other_des = '';
-        $attachments = '';
+        $todaydate = date('d-m-Y');
         try
         {
-            $queryin = "INSERT INTO `coi_declaration` (`user_id`, `user_group_id`,`coi_policy`,`catid`,`catqueid`,`other_description`,`attachments`,`date_added`,`date_modified`,`timeago`) 
-            VALUES   ('".$getuserid."','".$user_group_id."','".$coipolicy."','".$coicategory."','".$catequeid."','".$attachments."','".$other_des."',NOW(),NOW(),'".$time."')"; 
+            $queryin = "INSERT INTO `coi_declaration` (`user_id`, `user_group_id`,`coi_policy`,`catid`,`catqueid`,`other_description`,`attachments`,`coi_pdfpath`,`sent_status`,`sent_date`,`date_added`,`date_modified`,`timeago`) 
+            VALUES   ('".$getuserid."','".$user_group_id."','".$coipolicy."','".$coicategory."','".$catequeid."','".$others_des."','".$attachments."','".$pdfpath."','".$formsend_status."','".$todaydate."',NOW(),NOW(),'".$time."')"; 
              //echo $queryin; exit;
             $exegetqry = $connection->query($queryin);
 
@@ -128,5 +127,31 @@ class Coicommon extends Component
             //echo 'in catch';
             return false;
         }
+    }
+    
+    public function fetchCoiAllData($getuserid,$user_group_id)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `coi_declaration` WHERE `user_id` = '".$getuserid."'";
+        //print_r($query);exit; 
+        try
+        {
+            $exeget = $connection->query($query);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;
+                }
+            }
+            else
+            {  $getlist = array(); }
+        }
+        catch (Exception $e)
+        {   $getlist = array(); }
+        //print_r($getlist);exit;
+        return $getlist;
     }
 }
