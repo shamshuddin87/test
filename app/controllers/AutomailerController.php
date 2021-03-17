@@ -437,6 +437,12 @@ class AutomailerController extends ControllerBase
          } 
          //-------------- End: CCO and CS email intimation -------------//
 
+         //-------------- Start: Send mail to hr/dept manager for approval --------------------//
+         $deptaccess = $this->coicommon->getDeptaccess($uid);
+         $hrmgr = $this->getHrDeptMgrs($deptaccess,"","hr");
+         $this->coicommon->sendaprvmailtomgr($hrmgr['email'],$reqid);
+         //-------------- End: Send mail to hr/dept manager for approval --------------------//
+
         
         /* ------------------------ Start ------------------------ */
         //$sendremindfrprsnlinfo = $this->remindrofprsnlinfo();
