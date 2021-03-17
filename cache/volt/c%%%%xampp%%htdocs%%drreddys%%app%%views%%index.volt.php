@@ -203,7 +203,7 @@ header("Pragma: no-cache");
 <?php } ?>  
     
     
-<?php if ($getcontrollername == 'meeting') { ?>
+<?php if ($getcontrollername == 'meeting' || $getcontrollername == 'coi') { ?>
 
 <script src="js/editor/tinymce.min.js"></script>
 

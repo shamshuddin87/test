@@ -44,22 +44,7 @@ color:#bababa; border:1px solid #bababa; cursor: default;}
     /*box-shadow: 2px 3px 5px #ccc;*/
     margin: 10px 0;
 }
-input#d2ques1 {
-    margin: 20px 0;
-}
-input#d1ques1 {
-    margin: 20px 0;
-}
 
-div#appenddiv1 {
-    width: 100%;
-    float: left;
-}
-
-.append_row3 {
-    width: 100%;
-    float: left;
-} 
 
 tr,td {
     padding: 8px;
@@ -239,57 +224,13 @@ body.nav-sm .main_container .top_nav,
 
 
 
-.compnamedata_div
-{
-
+.choose_files {
+    margin-bottom: 27px;
 }
 
-
-a.compnamedata_btn {
-    text-align: right;
-    float: right;
-    margin-right: 30px;
-    font-size: 16px;
-}
-
-
-.compnamedata_div:hover .compnamedata
-{
-    display: block;    
-}
-
-.compnamedata
-{
-    position: absolute;
-    display: none;
-    top: 35px;
-    background: #ffffff;
-    box-shadow: 0 0 5px #0000006e;
-    right: 10px;
-    width: 500px;
-    height: 600px;
-    overflow-y: scroll;
-    z-index: 1;
-}
-
-.compnamedata table
-{
-    width: 500px;
-    max-width: 500px;
-    color: #000;
-    font-size: 13px;
-}
-
-.compnamedata table tr
-{
-    width: 500px;
-}
-
-.compnamedata table tr:nth-child(even)
-{
-    background: #f4f4f4;
-}
-.compnamedata table td
-{
-    text-align: left;
+input#attachment {
+    border: 1px solid #ccc;
+    padding: 7px;
+    width: 100%;
+    border-radius: 4px;
 }

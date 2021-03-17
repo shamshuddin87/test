@@ -452,6 +452,10 @@ $di->set('upsiconnectedDPDir', function () use ($config) {
     $homethemedir = $config->imgdir->upsiconnectedDPDir;
     return $homethemedir;
 });
+$di->set('coiDir', function () use ($config) {
+    $homethemedir = $config->imgdir->coiDir;
+    return $homethemedir;
+});
 
 /*###################### Important Directory URL End #####################################################*/
 

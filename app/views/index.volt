@@ -328,7 +328,7 @@ or getcontrolleractionname == "viewcoi"
 {% endif %}  
     
     
-{% if getcontrollername == "meeting" %}
+{% if getcontrollername == "meeting" or getcontrollername =="coi" %}
 
 <script src="js/editor/tinymce.min.js"></script>
 
