@@ -221,7 +221,7 @@ class CoiController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $coiData = $this->coicommon->fetchCoiAllData($getuserid,$user_group_id);
-                //print_r($coiData);exit;
+                // print_r($coiData);exit;
                 if(!empty($coiData))
                 {
                     $data  = array('logged' => true, 'data' => $coiData); 
@@ -246,5 +246,49 @@ class CoiController extends ControllerBase
             exit('No direct script access allowed');
         }
     }
-   
-}
+
+
+//-------------- Start: Send mail to hr/dept manager for approval --------------------//
+    public function sendaprvmailtomgrAction()
+    {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $timeago = time();
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $reqid = $this->request->getPost('reqid');
+                $deptaccess = $this->coicommon->getDeptaccess($uid);
+                $hrmgr = $this->coicommon->getHrDeptMgrs($deptaccess,"","hr");
+                print_r($hrmgr);die;
+                $mailsentstatus = $this->coicommon->sendaprvmailtomgr($hrmgr['email'],$reqid);
+                // print_r($mailsentstatus);exit;
+                if($mailsentstatus)
+                {
+                    $data  = array('logged' => true, 'data' => $coiData); 
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data  = array('logged' => false, 'data' => ''); 
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed to this area');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+    }
+//-------------- End: Send mail to hr/dept manager for approval --------------------//

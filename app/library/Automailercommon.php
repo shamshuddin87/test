@@ -414,52 +414,6 @@ class Automailercommon extends Component
           
      }
 
-
-     public function sendaprvmailtomgr($emailto,$reqid)
-     {
-        $connection = $this->dbtrd;
-
-        $sqlquery = "SELECT * FROM `coi_declaration` cd
-                    WHERE cd.`id`='".$reqid."'";
-      // print_r($sqlquery);exit;
-         
-        try
-        {
-            $exeget = $connection->query($sqlquery);
-            $getnum = trim($exeget->numRows());
-              
-            if($getnum>0)
-            {
-                while($row = $exeget->fetch())
-                {
-                        // $getlist['mycompany'] = $row['mycompany']; 
-                        // $getlist['name_of_requester'] = $row['name_of_requester'];  
-                        // $getlist['email'] = $row['email']; 
-                        // $getlist['no_of_shares']=$row['no_of_shares']; 
-                        // $getlist['approved_date']=$row['approved_date'];
-                        // $getlist['trading_date']=$row['trading_date'];
-                        // $getlist['request_type']=$row['request_type'];
-                        $myarry[]=$getlist;
-
-                        $result = $this->emailer->sendaprvmailtomgr($emailto,$myarry);
-                }
-            }
-            else
-            {
-                $getlist = array();
-            }            
-        }
-        catch(Exception $e)
-        {
-           $getlist = array();
-        } 
-
-        // print_r("result aprover");
-        // print_r($result);exit;   
-          
-     }
-
-
     public function checkYORuser($uid)
     {
         $connection = $this->dbtrd;
@@ -487,92 +441,8 @@ class Automailercommon extends Component
         }
     }
 
-     public function getHrDeptMgrs($dept,$cmpny,$type)
-     {
-        $connection = $this->dbtrd;
-        $time = time();
-        
-        $getlist = array();
-        try
-        {
-            if($type == 'hr')
-            {
-                $sqlqry = "SELECT `email` FROM `it_memberlist` WHERE `managertype` IN ('hr') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
-            }
-            else if($type == 'dept')
-            {
-                $sqlqry = "SELECT `email` FROM `it_memberlist` WHERE `managertype` IN ('dept') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
-            }
-            else
-            {
-                $sqlqry = "SELECT `email` FROM `it_memberlist` WHERE `managertype` IN ('dept','hr') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
-            }
-                   
-            //print_r($sqlqry); exit;            
-            $exeqry = $connection->query($sqlqry);
-            $getnum = trim($exeqry->numRows());
-            //echo '<pre>'; print_r($getnum); exit;            
-            if($getnum>0)
-            {
-                while($row = $exeqry->fetch())
-                {
-                    $getlist[] = $row; 
-                }
-                //echo '<pre>'; print_r($getlist); exit;
-            }
-            else
-            {
-                $getlist = array();
-            }
-        }
-        catch (Exception $e)
-        {
-            $getlist = array();
-        }
-        //echo '<pre>'; print_r($getlist); exit;
-        
-        return $getlist;
-     }
+     
 
-
-     public function getDeptaccess($uid)
-     {
-        $connection = $this->dbtrd;
-        $time = time();
-        
-        $getlist = array();
-        try
-        {
-            $sqlqry = "SELECT `deptaccess` FROM `it_memberlist` WHERE wr_id='".$uid."'";         
-            //print_r($sqlqry); exit;            
-            $exeqry = $connection->query($sqlqry);
-            $getnum = trim($exeqry->numRows());
-            //echo '<pre>'; print_r($getnum); exit;            
-            if($getnum>0)
-            {
-                while($row = $exeqry->fetch())
-                {
-                    $getlist = $row['deptaccess']; 
-                }
-                //echo '<pre>'; print_r($getlist); exit;
-            }
-            else
-            {
-                $getlist = array();
-            }
-        }
-        catch (Exception $e)
-        {
-            $getlist = array();
-        }
-        //echo '<pre>'; print_r($getlist); exit;
-        
-        return $getlist;
-     }
-    
-    
-    
-    
    public function sendmailtousers()
    {
         $connection = $this->dbtrd;

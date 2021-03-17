@@ -42,12 +42,18 @@ function fetchCoiAllData()
                 }
                 addhtmlnxt += '</td>';
                 
-                addhtmlnxt += '<td width="11%"></td>';
-                addhtmlnxt += '<td width="11%"></td>';
-                addhtmlnxt += '<td width="11%"></td>';
-                addhtmlnxt += '<td width="11%"></td>';
-                addhtmlnxt += '<td width="11%"></td>';
-                addhtmlnxt += '<td width="11%">';
+                addhtmlnxt += '<td width="11%" style="text-align:center">';
+                addhtmlnxt += '<i class="fa fa-external-link faicon" id="sendtohrM" reqid="'+response.data[i]["id"]+'" title="Send to HR Manager"></i>';
+                addhtmlnxt += '&nbsp;&nbsp;&nbsp;<i class="fa fa-check-circle-o faicon" style="font-size:20px;" title="Already sent"></i>';
+                addhtmlnxt += '</td>';
+                addhtmlnxt += '<td width="11%" style="text-align:center">';
+                addhtmlnxt += '<i class="fa fa-external-link faicon sendtodeptM" reqid="'+response.data[i]["id"]+'" title="Send to Department Manager"></i>';
+                addhtmlnxt += '&nbsp;&nbsp;&nbsp;<i class="fa fa-check-circle-o faicon" style="font-size:20px;" title="Already sent"></i>';
+                addhtmlnxt += '</td>';
+                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-list-ul faicon" title="Audit Trail"></i></td>';
+                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-edit"></i></td>';
+                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-trash"></i></td>';
+                addhtmlnxt += '<td width="11%" style="text-align:center">';
                 if(response.data[i]["coi_pdfpath"])
                 {
                     addhtmlnxt += '<a  href="'+response.data[i]["coi_pdfpath"]+'"  class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a>';
@@ -77,6 +83,55 @@ function fetchCoiAllData()
   });
 }
 
+website("#sendtohrM").click(function()
+{
+    alert('dssdd');
+    var reqid = website(this).attr("reqid");
+    formdata = {reqid : reqid};
+    website.ajax({
+            url: "coi/sendaprvmailtomgr",
+            data:formdata,
+            method: "POST",
+            //contentType:'json',
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+            dataType: "json",
+            cache: false,
+            beforeSend: function() 
+            {  website('.preloder_wraper').fadeIn();   },
+            uploadProgress: function(event, position, total, percentComplete) 
+            {   },
+            success: function(response, textStatus, jqXHR) 
+            {
+                if(response.logged === true)
+                {
+                    new PNotify({title: 'Alert',
+                        text: response.message,
+                        type: 'university',
+                        hide: true,
+                        styling: 'bootstrap3',
+                        addclass: 'dark ',
+                    }); 
+                         getcmplist()
+                    
+                }
+                else
+                {    
+                   
+                    new PNotify({title: 'Alert',
+                        text: response.message,
+                        type: 'university',
+                        hide: true,
+                        styling: 'bootstrap3',
+                        addclass: 'dark ',
+                    }); 
 
+                }
+            },
+            complete: function(response) 
+            { website('.preloder_wraper').fadeOut();    },
+            error: function() {  }
+        });
+});
 
 
