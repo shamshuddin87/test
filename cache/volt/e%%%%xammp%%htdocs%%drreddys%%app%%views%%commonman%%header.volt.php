@@ -3,11 +3,12 @@
    $getuserid=$this->session->loginauthspuserfront['id'];
    $usergroup = $this->session->loginauthspuserfront['user_group_id'];
    $gettypm = $this->session->loginauthspuserfront;
+   $coiaccess = $this->session->coiaccess;
    $gettermscond =$this->termsandconditionscommon->getalluserfiles($getuserid);
    $notification =$this->notificationcommon->getallnotification($getuserid);
    $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
    $checkpersonal_info = $this->employeemodulecommon->getmydetails($getuserid,$usergroup);
-   //print_r($checkpersonal_info);exit;
+   //print_r($coiaccess);exit;
     // print_r($notification);exit;
    ?>
 <div class="col-md-3 left_col" id="#style-1">
@@ -36,6 +37,7 @@
      
       <!-- sidebar menu Start -->
       <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+          <?php if($coiaccess == 'yes'){?>
          <div class="menu_section">
             <ul class="nav side-menu">
             <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='7') {?>
@@ -199,7 +201,9 @@
                      <li><a href="annualdeclaration"><i class=""></i>Self Declaration</a></li>
                      <?php } else { ?>
                      <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>
-                     <?php } ?>    
+                     <?php } ?> 
+                     <li><a href="coi"><i class=""></i>COI Declaration</a></li>
+                     <li><a href="coi/viewcoi"><i class=""></i>View COI Declaration</a></li>
                   </ul>
                </li>
                
@@ -294,6 +298,19 @@
             <?php } ?>           
             </ul>
          </div>
+          <?php } else {?>
+          <div class="menu_section">
+            <ul class="nav side-menu"><li>
+                  <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> My Info<span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                     <li><a href="coi"><i class=""></i>COI Declaration</a></li>
+                     <li><a href="coi/viewcoi"><i class=""></i>View COI Declaration</a></li>
+                  </ul>
+               </li>
+                
+            </ul>
+         </div>
+          <?php } ?>
       </div>
 
       <!-- /sidebar menu End -->

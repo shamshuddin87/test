@@ -14,7 +14,7 @@ addhtmlnxt+='</td>';addhtmlnxt+='</tr>';}}
 else
 {addhtmlnxt+='<tr class="counter"><td>Data Not Found</td></tr>';}
 website('.allcoidata').html(addhtmlnxt);},complete:function(response){},error:function(jqXHR,textStatus,errorThrown){},});}
-website("i#sendtohrM").click(function()
+website("#sendtohrM").click(function()
 {alert('dssdd');var reqid=website(this).attr("reqid");formdata={reqid:reqid};website.ajax({url:"coi/sendaprvmailtomgr",data:formdata,method:"POST",contentType:"application/x-www-form-urlencoded; charset=UTF-8",dataType:"json",cache:false,beforeSend:function()
 {website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
