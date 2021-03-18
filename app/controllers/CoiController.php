@@ -22,6 +22,11 @@ class CoiController extends ControllerBase
         
     }
     
+    public function editcoiAction()
+    {
+        
+    }
+    
     public function viewcoiAction()
     {
         

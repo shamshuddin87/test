@@ -46,13 +46,17 @@ function fetchCoiAllData()
                 addhtmlnxt += '<i class="fa fa-external-link faicon" id="sendtohrM" reqid="'+response.data[i]["id"]+'" title="Send to HR Manager"></i>';
                 addhtmlnxt += '&nbsp;&nbsp;&nbsp;<i class="fa fa-check-circle-o faicon" style="font-size:20px;" title="Already sent"></i>';
                 addhtmlnxt += '</td>';
+                
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
                 addhtmlnxt += '<i class="fa fa-external-link faicon sendtodeptM" reqid="'+response.data[i]["id"]+'" title="Send to Department Manager"></i>';
                 addhtmlnxt += '&nbsp;&nbsp;&nbsp;<i class="fa fa-check-circle-o faicon" style="font-size:20px;" title="Already sent"></i>';
                 addhtmlnxt += '</td>';
+                
                 addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-list-ul faicon" title="Audit Trail"></i></td>';
-                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-edit"></i></td>';
-                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-trash"></i></td>';
+                
+                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-edit coiedit" reqid="'+response.data[i]["id"]+'" title="Edit Entry"></i></td>';
+                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-trash coidelete" reqid="'+response.data[i]["id"]+'" title="Delete Entry"></i></td>';
+                
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
                 if(response.data[i]["coi_pdfpath"])
                 {
@@ -82,6 +86,13 @@ function fetchCoiAllData()
     error: function (jqXHR, textStatus, errorThrown) {},
   });
 }
+
+website("body").on("click", ".coiedit", function (e) {
+    var coi_id = website(this).attr('reqid');
+    coi_id = btoa(coi_id);
+    var baseHref=getbaseurl();
+    setTimeout(function(){window.location.href=baseHref+'coi/editcoi?coiid='+coi_id;},1000);
+});
 
 website("#sendtohrM").click(function()
 {
@@ -133,5 +144,7 @@ website("#sendtohrM").click(function()
             error: function() {  }
         });
 });
+
+
 
 
