@@ -180,7 +180,7 @@ class Insidercommon extends Component
                 {
                     $row = $exessa->fetch();
                     
-                    $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$row['user_id'],$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid'],$insertmas['emp_status'],$insertmas['resignordeletiondate']);
+                    $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$row['user_id'],$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid'],$insertmas['emp_status'],$insertmas['resignordeletiondate'],$insertmas['managertype']);
                     
                     if($data)
                     {
@@ -217,16 +217,16 @@ class Insidercommon extends Component
            {
                 $querysubuser = "INSERT INTO `web_register_user`
                     (`user_group_id`,`username`,`firstname`,`lastname`,`email`,`mobile`,
-                    `gender_id`,`status`,`password`, `salt`,`master_user_id`,`master_group_id`,`subuserlimit`,
+                    `gender_id`,`status`,`password`, `salt`,`master_user_id`,`master_group_id`,`subuserlimit`,`coiaccess`,
                     `date_added`,`date_modified`,`timeago`)
-                     VALUES ('".$insertmas['typeofusr']."','".$insertmas['fullname']."','".$insertmas['firstname']."','".$insertmas['lastname']."','".$insertmas['email']."','".$insertmas['mobile']."','".$insertmas['gender']."','1','".$insertmas['password']."','".$insertmas['saltget']."','".$insertmas['getuserid']."','".$insertmas['user_group_id']."','100',NOW(),NOW(),'".$time."')";
+                     VALUES ('".$insertmas['typeofusr']."','".$insertmas['fullname']."','".$insertmas['firstname']."','".$insertmas['lastname']."','".$insertmas['email']."','".$insertmas['mobile']."','".$insertmas['gender']."','1','".$insertmas['password']."','".$insertmas['saltget']."','".$insertmas['getuserid']."','".$insertmas['user_group_id']."','100','".$insertmas['coiaccess']."',NOW(),NOW(),'".$time."')";
                 //echo $querysubuser; exit;
                 $result = $connection->query($querysubuser);
                 $lastid = $connection->lastInsertId();
                 // print_r($lastid);exit;     
                
                
-                $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$lastid,$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid'],$insertmas['emp_status'],$insertmas['resignordeletiondate']);
+                $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$lastid,$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid'],$insertmas['emp_status'],$insertmas['resignordeletiondate'],$insertmas['managertype']);
                
                
                 if($data)
@@ -309,6 +309,7 @@ class Insidercommon extends Component
             l1empid='".$updatemas['l1empid']."',
             emp_status='".$updatemas['emp_status']."',
             resignordeletiondate='".$updatemas['resignordeletiondate']."',
+            managertype='".$updatemas['managertype']."',
             date_added = NOW(), 
             date_modified=NOW(), 
             timeago='".$time."'
@@ -324,7 +325,8 @@ class Insidercommon extends Component
                 firstname='".$updatemas['firstname']."', 
                 lastname='".$updatemas['lastname']."', 
                 mobile='".$updatemas['mobile']."',
-                status='".$status."'
+                status='".$status."',
+                coiaccess='".$updatemas['coiaccess']."'
                 WHERE email='".$updatemas['email']."' ";
             //echo "<pre>"; print_r($querywru);exit;
             $exewru = $conn->query($querywru);

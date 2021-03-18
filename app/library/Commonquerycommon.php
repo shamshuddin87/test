@@ -4,7 +4,7 @@ use Phalcon\Mvc\User\Component;
 class Commonquerycommon extends Component
 {
     
-    public function commoninsertlogic($getuserid,$cin,$user_group_id,$last_id,$fullname,$firstname,$lastname,$email,$mobile,$gender,$designation,$reminderdays,$pwdemail,$accrgt,$deptaccessid,$approvid,$dpdate,$empcode,$l1firstname,$l1lastname,$l1email,$l1empid,$roleid,$emp_status,$resignordeletiondate)
+    public function commoninsertlogic($getuserid,$cin,$user_group_id,$last_id,$fullname,$firstname,$lastname,$email,$mobile,$gender,$designation,$reminderdays,$pwdemail,$accrgt,$deptaccessid,$approvid,$dpdate,$empcode,$l1firstname,$l1lastname,$l1email,$l1empid,$roleid,$emp_status,$resignordeletiondate,$managertype)
     {
         // $connection = $this->db;
         $connectiondbtrd = $this->dbtrd;
@@ -15,11 +15,11 @@ class Commonquerycommon extends Component
             `wr_id`,`role_id`,`fullname`,`firstname`,`lastname`,
             `email`,`mobile`,`gender_id`,`employeecode`,`designation`,
             `reminderdays`,`access`,`deptaccess`,`cmpaccess`,`dpdate`,`l1firstname`,
-            `l1lastname`,`l1email`,`l1empid`,`emp_status`,`resignordeletiondate`,`date_added`,`date_modified`,`timeago`,`approvid`,`status`)
+            `l1lastname`,`l1email`,`l1empid`,`emp_status`,`resignordeletiondate`,`managertype`,`date_added`,`date_modified`,`timeago`,`approvid`,`status`)
             VALUES ('".$getuserid."','".$user_group_id."',
             '".$last_id."','".$roleid."','".$fullname."','".$firstname."','".$lastname."',
             '".$email."','".$mobile."','".$gender."','".$empcode."','".$designation."',
-            '".$reminderdays."','".$accrgt."','".$deptaccessid."','".$cin."','".$dpdate."','".$l1firstname."','".$l1lastname."','".$l1email."','".$l1empid."','".$emp_status."','".$resignordeletiondate."',
+            '".$reminderdays."','".$accrgt."','".$deptaccessid."','".$cin."','".$dpdate."','".$l1firstname."','".$l1lastname."','".$l1email."','".$l1empid."','".$emp_status."','".$resignordeletiondate."','".$managertype."',
             NOW(),NOW(),'".$time."','".$approvid."',1) ";
          // print_r($queryinsertml); exit;
         
@@ -220,8 +220,9 @@ class Commonquerycommon extends Component
  //------------------------------------------------------------------------------------------------------------
  public function fetchsingleuser($getuserid,$usergroup,$id){
   
-    $connection = $this->dbtrd;
-       $sqlquery = "SELECT * FROM `it_memberlist` WHERE `id`='".$id."'"; 
+        $connection = $this->dbtrd;
+        $connmamajarvis = $this->db;
+        $sqlquery = "SELECT * FROM `it_memberlist` WHERE `wr_id`='".$id."'"; 
         
        // echo $sqlquery; exit;
        try{
@@ -235,6 +236,24 @@ class Commonquerycommon extends Component
                        $getlist[] = $row;                     
                     
                 }
+                // echo"<pre>";print_r($getlist);die;
+
+            //---------------------------- COI ACCESS -------------------------//
+            $sqlquery = "SELECT `coiaccess` FROM `web_register_user` WHERE `user_id`='".$id."'";
+            $exeget = $connmamajarvis->query($sqlquery);  
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+                {
+                    while($row = $exeget->fetch())
+                    {
+                        $coiaccess = $row['coiaccess'];
+                    }
+                    $getlist[0]['coiaccess'] = $coiaccess;
+                }
+            // echo"<pre>";print_r($sqlquery);die;
+
+            //---------------------------- COI ACCESS -------------------------//
+
                  //----------------------fetch company---------------------//
                 foreach ($getlist as $k => $val) {
                         $cmpnm=array();

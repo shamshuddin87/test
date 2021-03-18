@@ -100,6 +100,9 @@ and getcontrolleractionname !="createannual"
 and getcontrolleractionname !="editannual"
 and getcontrolleractionname !="editcont_disclsr"
 and getcontrolleractionname !="createcont_disclsr"
+and getcontrolleractionname !="createcoi"
+and getcontrolleractionname !="viewcoi"
+and getcontrolleractionname !="editcoi"
 
 
 
@@ -171,6 +174,9 @@ or getcontrolleractionname == "createannual"
 or getcontrolleractionname == "editannual"
 or getcontrolleractionname == "editcont_disclsr"
 or getcontrolleractionname == "createcont_disclsr"
+or getcontrolleractionname == "createcoi"
+or getcontrolleractionname == "viewcoi"
+or getcontrolleractionname == "editcoi"
 
 %}
 {% set otheractioncss = ['css/common/otheraction/',dispatcher.getActionName(),'_common', '.php?v='~timestampfile]|join('') %}
@@ -324,7 +330,7 @@ or getcontrolleractionname == "createcont_disclsr"
 {% endif %}  
     
     
-{% if getcontrollername == "meeting" %}
+{% if getcontrollername == "meeting" or getcontrollername =="coi" %}
 
 <script src="js/editor/tinymce.min.js"></script>
 
@@ -381,6 +387,9 @@ and getcontrolleractionname != "createannual"
 and getcontrolleractionname != "editannual"
 and getcontrolleractionname != "editcont_disclsr"
 and getcontrolleractionname != "createcont_disclsr"
+and getcontrolleractionname != "createcoi"
+and getcontrolleractionname != "viewcoi"
+and getcontrolleractionname != "editcoi"
 %}
 <?php
 
@@ -444,6 +453,9 @@ or getcontrolleractionname == "createannual"
 or getcontrolleractionname == "editannual"
 or getcontrolleractionname == "editcont_disclsr"
 or getcontrolleractionname == "createcont_disclsr"
+or getcontrolleractionname == "createcoi"
+or getcontrolleractionname == "viewcoi"
+or getcontrolleractionname == "editcoi"
     
 %}
 <?php

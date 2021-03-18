@@ -424,6 +424,19 @@ class AutomailerController extends ControllerBase
         //annual declaration mail on 15th april every year if not done
          $sendremindfranualdecln = $this->remindrofanualdecln(); 
 
+         //-------------- Start: pending approval mail to hr and dept mgr -------------//
+         $this->automailercommon->sendpendapprovmaileveryday();
+         //-------------- End: pending approval mail to hr and dept mgr -------------//
+
+         //-------------- Start: CCO and CS email intimation -------------//
+         $uid = $this->session->loginauthspuserfront['id'];
+         $YORuser = $this->coicommon->checkYORuser($uid);
+         if($YORuser)
+         {
+            $this->coicommon->sendmailtoccoandcs($reqid);
+         } 
+         //-------------- End: CCO and CS email intimation -------------//
+
         
         /* ------------------------ Start ------------------------ */
         //$sendremindfrprsnlinfo = $this->remindrofprsnlinfo();

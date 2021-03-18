@@ -367,6 +367,7 @@
             <thead>
             <tr>
                 <th>Sr No.</th>
+                <th>Relative Names</th>
                 <th>Demat/Securities Account No.*</th>
                 <th>Name of Depository Participant*</th>
             </tr>
@@ -1474,10 +1475,7 @@
                <div class="paginationmn"></div>
                <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
             </div>
-            <div class="clearelement"></div>
-            <div class="preloder_wraper">
-               <a href="javascript:;" class="preloder"></a>
-            </div>
+            
             <div class="clearelement"></div>
 
          </div>
@@ -1485,6 +1483,7 @@
          <!-- /main content -->
       </div>
    </div>
+
 </div>
 <?php } ?>
 <!-- ########################################## PageContent End ########################################## --> 
@@ -1492,20 +1491,18 @@
    <div class="modal-dialog">
       <div class="modal-content" style="width:950px;">
          <div class="modal-header">
-             <input type="hidden" name="annualyear" id="annualyear" value="2020">
-<!--
+             <!--<input type="hidden" name="annualyear" id="annualyear" value="2020">-->
+             <!--<select class="form-control" id="annualyear" name="annualyear">-->
              <?php 
                 $current_year = date('Y'); 
                 $earliest_year = 2025; 
                 $latest_year = 2020; ?>
                 <select id="annualyear" name="annualyear">
                <?php foreach ( range( $latest_year, $earliest_year ) as $i ) {?>
-                <option value="<?php echo $i; ?>"
-                <?php  if($i == $current_year){ ?> selected="selected" <?php } ?> ><?php echo $i;?></option>
+                <option value="<?php echo $i; ?>" ><?php echo $i;?></option>
                 <?php } ?>
              ?> 
             </select>
--->
 
           
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1560,4 +1557,8 @@
          </div>
       </div>
    </div>
+</div>
+<div class="clearelement"></div>
+<div class="preloder_wraper">
+   <a href="javascript:;" class="preloder"></a>
 </div>

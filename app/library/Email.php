@@ -1191,6 +1191,120 @@ Class Email extends Phalcon\Mvc\User\Component {
     }
 
 
+    public function sendpendapprovmaileveryday($mailid,$myarry)
+    {
+      
+        $subject = 'You Have Received Reminder For Pending Approval Request';
+        $to =$mailid;
+        $gethtml = $this->htmlelements->sendpendapprovmaileveryday($myarry);
+        //echo $gethtml; exit;
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        
+        $mail->addAddress($to, 'Volody');
+        $mail->Subject = $subject;
+        $mail->msgHTML($gethtml);
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            $get = array('logged'=>true);
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false);
+        }
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+    }
+
+
+    public function sendmailtoccoandcs($myarry)
+    {
+      
+        $subject = '';
+        $to =$mailid;
+        $gethtml = $this->htmlelements->sendmailtoccoandcs($myarry);
+        //echo $gethtml; exit;
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        
+        $mail->addAddress($to, 'Volody');
+        $mail->Subject = $subject;
+        $mail->msgHTML($gethtml);
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            $get = array('logged'=>true);
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false);
+        }
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+    }
+
+
+    public function sendaprvmailtomgr($emailto,$myarry)
+    {
+      
+        $subject = '';
+        $to =$mailid;
+        $gethtml = $this->htmlelements->sendaprvmailtomgr($myarry);
+        //echo $gethtml; exit;
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        
+        $mail->addAddress($emailto, 'Volody');
+        $mail->Subject = $subject;
+        $mail->msgHTML($gethtml);
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            $get = array('logged'=>true);
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false);
+        }
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+    }
+
+
     public function sendpdfmailappr($mailids,$getfile,$getname)
     {
         $subject = 'Initial Declaration';

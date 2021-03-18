@@ -323,6 +323,9 @@ $di->set('randomexceptioncommon', function () {
 $di->set('sebicommon', function () {
     return new Sebicommon();
 });
+$di->set('coicommon', function () {
+    return new Coicommon();
+});
 /*###################### Important Query Files End #####################################################*/
 
 
@@ -447,6 +450,10 @@ $di->set('sebiDir', function () use ($config) {
 });
 $di->set('upsiconnectedDPDir', function () use ($config) {
     $homethemedir = $config->imgdir->upsiconnectedDPDir;
+    return $homethemedir;
+});
+$di->set('coiDir', function () use ($config) {
+    $homethemedir = $config->imgdir->coiDir;
     return $homethemedir;
 });
 

@@ -1409,12 +1409,10 @@ website("body").on("click", ".sendtype", function (e) {
     data: formData,
     //contentType: "application/json; charset=utf-8",
     dataType: "json",
-    beforeSend: function () {
-      website(".preloder_wraper").fadeIn();
-      // website('#modaldocument .downloadpdf .pdfln').html('');
-      // website('#modaldocument .trailpdfdownload').addClass('disabled');
-    },
-    uploadProgress: function (event, position, total, percentComplete) {},
+    beforeSend: function()
+    {   website('.preloder_wraper').fadeIn();   },
+    uploadProgress: function(event, position, total, percentComplete)
+    {   website('.preloder_wraper').fadeIn(); },
     success: function (response) {
       // console.log(response.pdfpath);
       if (response.logged === true) {
@@ -1429,9 +1427,9 @@ website("body").on("click", ".sendtype", function (e) {
       } else {
       }
     },
-    complete: function (response) {
-      website(".preloder_wraper").fadeOut();
-      //window.location.reload();
+    complete: function(response) 
+    {     
+        website('.preloder_wraper').fadeOut();
     },
     error: function () {},
   });

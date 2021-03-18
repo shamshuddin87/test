@@ -31,6 +31,7 @@ Class Dompdfgen extends Phalcon\Mvc\User\Component {
         else if($typeof=="mispersnlinfo"){$path = 'img/mis';}
         else if($typeof=="FormI"){$path = 'img/preclearance_request/form1';}
         else if($typeof=="FormII"){$path = 'img/preclearance_request/form2';}
+        else if($typeof=="coi"){$path = $this->coiDir.'/coi_pdfpath';}
         else{$path='';}
 
         if($typeof=="configvcs"){$stylesheet = file_get_contents('css/pdf/pdf.css');}
@@ -47,7 +48,8 @@ Class Dompdfgen extends Phalcon\Mvc\User\Component {
         else if($typeof=="misrecip"){$stylesheet = file_get_contents('css/pdf/misrecip.css');}
         else if($typeof=="mispersnlinfo"){$stylesheet = file_get_contents('css/pdf/mispersnlinfo.css');}
         else if($typeof=="FormI"){$stylesheet = file_get_contents('css/pdf/preclerance.css');}
-         else if($typeof=="FormII"){$stylesheet = file_get_contents('css/pdf/preclerance.css');}
+        else if($typeof=="FormII"){$stylesheet = file_get_contents('css/pdf/preclerance.css');}
+        else if($typeof=="coi"){$stylesheet = file_get_contents('css/pdf/coi.css');}
         else{$path='';$stylesheet='';}
         
         //echo $stylesheet; exit;

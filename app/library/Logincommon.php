@@ -114,6 +114,18 @@ class Logincommon extends Component
                         //echo '<pre>';print_r($getdtl);exit;
                     // ------------------ ModuleData End ------------------
 
+
+                    //------------------- Start: it_memberlist(managertype) --------------------
+
+                        $getinfo = "SELECT `managertype`
+                            FROM `it_memberlist` 
+                            WHERE LOWER(`email`) = '".$getemail."'";
+                        $result_get = $connectiondbtrd->query($getinfo);
+                        $result = $result_get->fetch();
+                        $managertype = $result['managertype'];
+
+                    //------------------- End: it_memberlist(managertype) --------------------
+
                     // ------------------ BoardData Start ------------------
                         /*$board = $this->logincommon->boardappdata($robot['user_id'],$getemail);
                         //echo '<pre>';print_r($board);exit;
@@ -133,7 +145,7 @@ class Logincommon extends Component
                         'firstname' => trim($this->elements->htmldecode($robot['firstname'])),
                         'lastname' => trim($this->elements->htmldecode($robot['lastname'])),
                         'email' => strtolower($robot['email']), 'moduleaccess'=>$getdtl,
-                        'master' => $robot['master_user_id'],'mastergroup' => $robot['master_group_id']
+                        'master' => $robot['master_user_id'],'mastergroup' => $robot['master_group_id'],'coiaccess'=> $robot['coiaccess'],'managertype'=>$managertype
                         ));
                         //echo '<pre>'; print_r($setsession); exit;
                     /* =================== SET Values In Session END =================== */
