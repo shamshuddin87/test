@@ -105,7 +105,7 @@ $category = $this->coicommon->fetchCategory();
               </div>  
             </form>
             <div class="col-md-12 text-right" style="margin-top: 20px;"> 
-                <button type="submit" class="btn btn-primary savecoi">Submit</button>
+                <button type="submit" class="btn btn-primary savecoi">Update</button>
             </div>
         </div>
     </div>

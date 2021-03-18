@@ -50,7 +50,7 @@ $condeptsess = $this->session->contractdepartment;
                     <thead>
                         <tr>
 
-                            <th></th>
+                            <!--<th></th>-->
                             <th>Created Date</th>
                             <th>Name</th>
                             <th>PAN</th>

@@ -81,7 +81,7 @@ function getdataonload()
             dtfrmt = dtfrmtspace[0].split("-");
             ddmmyy = dtfrmt[2]+'-'+dtfrmt[1]+'-'+dtfrmt[0];
             times = dtfrmtspace[1];
-            addhtmlnxt += '<td width="5%"><input type="checkbox"  name="chkbox"  size="30px;" value='+response.resdta[i].id+'></td>';
+            //addhtmlnxt += '<td width="5%"><input type="checkbox"  name="chkbox"  size="30px;" value='+response.resdta[i].id+'></td>';
             addhtmlnxt += '<td width="15%" >'+ddmmyy+'  '+times+'</td>';
             
             addhtmlnxt += '<td width="20%">'+response.resdta[i].fullname+'</td>';

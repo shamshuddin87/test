@@ -62,7 +62,7 @@ $category = $this->coicommon->fetchCategory();
                     </div>
                 </div>
             
-                <div class="divcoipolicy" style="color: #000;display:block;">
+                <div class="divcoipolicy" style="color: #000;display:none;">
                     <h2 class="h2_heading" style="text-align:center;">Information</h2>
                     <p>Please describe below the actual or potential conflict of interest.</p>
                     <p>Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. Click Here to download policy.</p>
@@ -100,7 +100,7 @@ $category = $this->coicommon->fetchCategory();
                 <h2 class="h2_heading" style="text-align:center;">Declaration</h2>
                 <div class="" style="color: #000">
                     <p>I hereby declare that the information provided above is true and complete to best of my knowledge and belief.In addition,I affirm that i will make further disclosures as may be required in future in the event of any change of circustances. I have read and understood the Conflict of Interest policy and agree to abide with the same.</p>
-                    <p>Date:</p>
+                    <p>Date:<?php echo date('d-m-Y');?></p>
                 </div>
               </div>  
             </form>
