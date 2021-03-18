@@ -3,7 +3,7 @@
    $getuserid=$this->session->loginauthspuserfront['id'];
    $usergroup = $this->session->loginauthspuserfront['user_group_id'];
    $gettypm = $this->session->loginauthspuserfront;
-   $coiaccess = $this->session->coiaccess;
+   $coiaccess = $this->session->loginauthspuserfront['coiaccess'];
    $gettermscond =$this->termsandconditionscommon->getalluserfiles($getuserid);
    $notification =$this->notificationcommon->getallnotification($getuserid);
    $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
@@ -37,7 +37,7 @@
      
       <!-- sidebar menu Start -->
       <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-          <!--<?php /*if($coiaccess == 'yes'){*/?>-->
+          <?php if($coiaccess == 'yes'){?>
          <div class="menu_section">
             <ul class="nav side-menu">
             <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='7') {?>
@@ -298,7 +298,7 @@
             <?php } ?>           
             </ul>
          </div>
-          <!--<?php /*} else {*/?>-->
+          <?php } else {?>
           <div class="menu_section">
             <ul class="nav side-menu"><li>
                   <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> My Info<span class="fa fa-chevron-down"></span></a>
@@ -310,7 +310,7 @@
                 
             </ul>
          </div>
-          <?php /*}*/ ?>
+          <?php } ?>
       </div>
 
       <!-- /sidebar menu End -->
