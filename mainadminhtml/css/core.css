@@ -75,7 +75,7 @@ body.nav-sm .nav.side-menu li a i {
     margin-bottom: 5px;
 }
 
-body.nav-sm ul.nav.child_menu {
+/*body.nav-sm ul.nav.child_menu {
     left: 100%;
     position: absolute;
     top: 0;
@@ -84,6 +84,17 @@ body.nav-sm ul.nav.child_menu {
     z-index: 4000;
     background: #7e6db1;
     display: none;
+}*/
+
+body.nav-sm ul.nav.child_menu {
+  left: 0;
+  position: relative;
+  top: 0;
+  padding: 2px;
+  width: 100%;
+  z-index: 1;
+  background: #7e6db1;
+  display: none;
 }
 
 body.nav-sm ul.nav.child_menu li {

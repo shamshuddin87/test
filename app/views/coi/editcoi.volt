@@ -21,11 +21,9 @@ $category = $this->coicommon->fetchCategory();
             <input type="hidden" name="coipdfhtml" id="coipdfhtml" value="">
             <input type="hidden" name="formsendtype" id="formsendtype" value="">
              <div class="coihtmldata">
-                <div class="sectionbox">
+                <div>
                     <h2 class="h2_heading" style="text-align:center;">Employee Details</h2>
-                    <div class="p-15px">
-                      <div class="table-responsive">
-                    <table border="1" width="100" style="border-collapse: collapse; border: 1px solid #ccc;" class="table  table-inverse" width="100%">
+                    <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;  width: 600px;" class="table table-responsive table-inverse" width="100%">
                         <thead>
                         <tr>
                             <th>Employee Name</th>
@@ -47,33 +45,24 @@ $category = $this->coicommon->fetchCategory();
                           </tr>
                         </tbody>
                     </table>
-                    </div>
-                    </div>
                 </div>
             
-                <div class="sectionbox">
+                <div>
                     <h2 class="h2_heading" style="text-align:center;">Confirmation</h2>
-                    <div class="p-15px" style="color: ">
-                        <p style="color: #000;">Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. Click Here to download policy.</p>
-                        <div class="checkbox-inline">                          
+                    <div style="color: #000">
+                        <div class="form-check form-check-inline">
+                            <p>Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. Click Here to download policy.</p>
                           <input class="coipolicy" type="radio" name="coipolicy" id="coiyes" value="Yes">
                           <label>Yes</label>
                         </div>
-                        <div class="checkbox-inline">
+                        <div class="form-check form-check-inline">
                           <input class="coipolicy" type="radio" name="coipolicy" id="coino" value="No" checked>
                           <label>No</label>
                         </div>
                     </div>
                 </div>
             
-
                 <div class="divcoipolicy" style="color: #000;display:block;">
-                   <div class="sectionbox">
-                      <h2 class="h2_heading" style="text-align:center;">Information</h2>
-                    <div class="p-15px">
-                      <p>Please describe below the actual or potential conflict of interest.</p>
-
-                <div class="divcoipolicy" style="color: #000;display:none;">
                     <h2 class="h2_heading" style="text-align:center;">Information</h2>
                     <p>Please describe below the actual or potential conflict of interest.</p>
                     <p>Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. Click Here to download policy.</p>
@@ -92,39 +81,31 @@ $category = $this->coicommon->fetchCategory();
                             <input type="hidden" name="others_des" id="others_des" value="">
                         </div>
                     </div>
-                    </div>
-                   </div>
 
-                    <div class="sectionbox">
-                      <h2 class="h2_heading" style="text-align:center;">Attachments</h2>
-                    <div class="p-15px">
+                    <h2 class="h2_heading" style="text-align:center;">Attachments</h2>
+                    <div class="col-md-12 col-xs-12 ">
                       <label class="control-label">Upload File</label>
                       <div class="choose_files">
                          <input type="file" name="attachment[]" id="attachment" >
                       </div>
+                    </div>
                     <div class="appendfile"  filecntr='1'></div>
                     <div class="">
                         <input type="button" class="btn btn-primary btnaddfile" value="+" >
                         <input type="button" class="btn btn-primary btndeletefile" value="-" >                    
-                    </div>
                     </div>  
-                    </div>
                 </div>
             
             
-                <div class="sectionbox">
-                  <h2 class="h2_heading" style="text-align:center;">Declaration</h2>
-                <div class="p-15px">
-                  <div class="" style="color: #000">
+                <h2 class="h2_heading" style="text-align:center;">Declaration</h2>
+                <div class="" style="color: #000">
                     <p>I hereby declare that the information provided above is true and complete to best of my knowledge and belief.In addition,I affirm that i will make further disclosures as may be required in future in the event of any change of circustances. I have read and understood the Conflict of Interest policy and agree to abide with the same.</p>
-                    <p>Date:<?php echo date('d-m-Y');?></p>
-                </div>
-                </div>
+                    <p>Date:</p>
                 </div>
               </div>  
             </form>
-            <div class="" style="margin-top: 20px;text-align: right;"> 
-                <button type="submit" class="btn btn-primary savecoi">Submit</button>
+            <div class="col-md-12 text-right" style="margin-top: 20px;"> 
+                <button type="submit" class="btn btn-primary savecoi">Update</button>
             </div>
         </div>
     </div>
@@ -149,8 +130,8 @@ $category = $this->coicommon->fetchCategory();
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <div id="downloadpdf" style="float: right;margin: 20px; z-index: 2; "></div>
-            <div class="in_box" style="display: inline-block;  width: 100%;">
-               <button type="button" class="btn btn-primary coigeneratepdf floatright" style="z-index: 2;">Generate PDF</button>
+            <div class="in_box">
+               <button type="button" class="btn btn-primary coigeneratepdf floatright" style="margin: 20px;z-index: 2;">Generate PDF</button>
             </div>
             <div class="modalcoihtmldata"></div>
          </div>

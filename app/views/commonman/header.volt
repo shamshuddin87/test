@@ -3,7 +3,7 @@
    $getuserid=$this->session->loginauthspuserfront['id'];
    $usergroup = $this->session->loginauthspuserfront['user_group_id'];
    $gettypm = $this->session->loginauthspuserfront;
-   $coiaccess = $this->session->coiaccess;
+   $coiaccess = $this->session->loginauthspuserfront['coiaccess'];
    $gettermscond =$this->termsandconditionscommon->getalluserfiles($getuserid);
    $notification =$this->notificationcommon->getallnotification($getuserid);
    $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);

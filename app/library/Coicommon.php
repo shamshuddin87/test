@@ -29,7 +29,7 @@ class Coicommon extends Component
                     {
                         while($rowmgrtyp = $exegetmgrtyp->fetch())
                         {
-                            $row[$rowmgrtyp['managertype']] = $rowmgrtyp['fullname'];
+                            $row[$rowmgrtyp['managertype']] = $rowmgrtyp['fullname'].'('.$rowmgrtyp['email'].')';
                         }
                     }
                     else

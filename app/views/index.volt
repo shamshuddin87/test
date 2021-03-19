@@ -102,6 +102,7 @@ and getcontrolleractionname !="editcont_disclsr"
 and getcontrolleractionname !="createcont_disclsr"
 and getcontrolleractionname !="createcoi"
 and getcontrolleractionname !="viewcoi"
+and getcontrolleractionname !="editcoi"
 
 
 
@@ -175,6 +176,7 @@ or getcontrolleractionname == "editcont_disclsr"
 or getcontrolleractionname == "createcont_disclsr"
 or getcontrolleractionname == "createcoi"
 or getcontrolleractionname == "viewcoi"
+or getcontrolleractionname == "editcoi"
 
 %}
 {% set otheractioncss = ['css/common/otheraction/',dispatcher.getActionName(),'_common', '.php?v='~timestampfile]|join('') %}
@@ -387,6 +389,7 @@ and getcontrolleractionname != "editcont_disclsr"
 and getcontrolleractionname != "createcont_disclsr"
 and getcontrolleractionname != "createcoi"
 and getcontrolleractionname != "viewcoi"
+and getcontrolleractionname != "editcoi"
 %}
 <?php
 
@@ -452,6 +455,7 @@ or getcontrolleractionname == "editcont_disclsr"
 or getcontrolleractionname == "createcont_disclsr"
 or getcontrolleractionname == "createcoi"
 or getcontrolleractionname == "viewcoi"
+or getcontrolleractionname == "editcoi"
     
 %}
 <?php

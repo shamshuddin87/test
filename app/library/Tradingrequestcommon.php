@@ -312,12 +312,12 @@ function checktypeofreq($uid,$usergroup,$data)
                     `type_of_request`,`relative_id`,`name_of_requester`,
                     `sectype`,`id_of_company`,`no_of_shares`,
                     `type_of_transaction`,`pdffilepath`,`approver_id`,`send_status`,
-                    `sendaprvl_date`,`approved_status`,`trading_date`,`sent_contraexeaprvl`,`ex_approve_status`,approxprice,broker,demat,place,dateoftransaction,trans,shares,
+                    `sendaprvl_date`,`approved_status`,`trading_date`,`sent_contraexeaprvl`,`ex_approve_status`,approxprice,broker,demat,place,dateoftransaction,trans,shares,requestmodeid,
                     `date_added`,`date_modified`,`timeago`) VALUES('".$uid."','".$usergroup."',
                     '".$data['typeofrequest']."','".$reetiveid."','".$data['reqname']."',
                     '".$data['sectype']."','".$idofcmp."','".$data['noofshare']."',
                     '".$data['typeoftrans']."','".$pdfpath."','".$data['approverid']."','".$send_status."',
-                    NOW(),'".$autoapst."','".$tradingdate."','0','0','".$data['approxprice']."','".$data['broker']."','".$data['demataccount']."','".$data['place']."','".$data['datetrans']."','".$data['transaction']."','".$data['sharestrans']."',
+                    NOW(),'".$autoapst."','".$tradingdate."','0','0','".$data['approxprice']."','".$data['broker']."','".$data['demataccount']."','".$data['place']."','".$data['datetrans']."','".$data['transaction']."','".$data['sharestrans']."','".$data['requestmodeid']."',
                     NOW(),NOW(),'".$time."')";
                 //echo $query; exit;
             

@@ -22,11 +22,9 @@ class IndexController extends ControllerBase
 /*--------------------------------VIDM AND SAP-----------------------------------*/
         $as = new SimpleSAML_Auth_Simple('drreddy-sp');
         $as->requireAuth();
-        $attributes = $as->getAttributes();
-        //echo"<pre>";print_r($attributes);die;
+        //$attributes = $as->getAttributes();
         //$vidm_loggedemail = $attributes['email'][0];
-        //$vidm_userid = $as->getAuthData("saml:sp:NameID")->value;
-        $vidm_userid = $attributes['UserName'][0];
+        $vidm_userid = $as->getAuthData("saml:sp:NameID")->value;
         //echo"<pre>";print_r($vidm_userid);die;
         // $auth_userid = "P40000266"; // it should be same auth_userid used for sap api
         // $pasword = "SAPCloud@99"; // it sud be same for each user
