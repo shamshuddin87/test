@@ -54,7 +54,37 @@ $condeptsess = $this->session->contractdepartment;
         </div>
     </div>
 </div>
-</div>    
+</div>  
+
+
+<div id="auditTrailModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Audit Trail</h4>
+            </div>
+            <div class="modal-body show_shadow">
+              <div class="text-center adminform_heading">
+                  <div class="clearelement"></div> 
+                  <table width="100%" border="1" class="table table-inverse" id="datableabhi">
+                 <thead>
+                  <tr>
+                    <th>Sr no</th> 
+                    <th>Activity Name</th>  
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Recommendation</th>                                                
+                  </tr>
+                 </thead>
+                <tbody id="audittrail" appendrow='1'></tbody>
+                </table>
+                 
+              </div>            
+          </div>      
+      </div>
+  </div>
+</div>   
         
 <div class="clearelement"></div>
 <div class="preloder_wraper">

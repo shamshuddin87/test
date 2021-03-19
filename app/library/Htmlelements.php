@@ -2153,16 +2153,17 @@ public function sendmailforpersinfo($subject,$fullname){
           <head>
           <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8"/>
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-          <title>Phoenix Peth</title>
+          <title></title>
           </head>
           <body style="margin: 0px;padding: 0px;font-family: Arial;width: 100%;max-width:600px;margin: 0 auto;border-top: 5px solid #373F89;background:#fff;">
-          <h1>You Have Recieved Reminder For Pending Trading Request</h1>
-          <h3>Requester Name:'.$myarr['name_of_requester'].'
-          <h3>Company:'.$myarr['mycompany'].'</h3>
-          <h3>No Of Shares:'.$myarr['no_of_shares'].'</h3>
-          <h3>Approved Date:'.$myarr['approved_date'].'</h3>
-          <h3>Trading Date:'.$myarr['trading_date'].'</h3>
-          <h3>Type Of Request:'.$myarr['request_type'].'</h3>
+          <h3>Dear '.$myarr['mgrname'].'</h3>
+          <h3>A Conflict of Interest declaration has been received from '.$myarr['requestername'].' for your consideration and approval. Below is the summary.</h3>
+          <h3>COI Declaration Details</h3>
+          <h3>Request Number:'.$myarr['reqno'].'</h3>
+          <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
+          <h3>Department: '.$myarr['deptname'].'</h3>
+          <h3>Please <a href="#">click here</a> for more details.</h3>
+          <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
           </html>';
 
