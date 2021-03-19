@@ -572,6 +572,7 @@ website("body").on("click", "#yesdisclosures2", function (e) {
   var relinstitute = website("#getdata_1 #relinstitute").val();
   var relmobno = website("#getdata_1 #relmobno").val();
   var rel_nation = website("#getdata_1 #rel_nation").val();
+  var isbusiness_partner = website("#getdata_1 #cmppartner").val();
 
   var formdata = {
     relmobno: relmobno,
@@ -592,7 +593,8 @@ website("body").on("click", "#yesdisclosures2", function (e) {
     reloccupation: reloccupation,
     relcompany: relcompany,
     depnature: depnature,
-    rel_nation:rel_nation
+    rel_nation:rel_nation,
+    isbusiness_partner:isbusiness_partner
   };
   website.ajax({
     url: "employeemodule/relationdata",
@@ -688,6 +690,7 @@ website("body").on("click", "#yesdisclosures3", function (e) {
   var relinstituteup = website("#reledit #relinstituteup").val();
   var relmobnoup = website("#reledit #relmobnoup").val();
   var rel_nation_update = website("#reledit #rel_nation_update").val();
+  var isbusiness_partner = website("#reledit #cmppartner").val();
    
   var formdata = {
     relmobnoup: relmobnoup,
@@ -709,8 +712,8 @@ website("body").on("click", "#yesdisclosures3", function (e) {
     reloccupationup: occupation,
     relcompanyup: company,
     depnature: depnature,
-    rel_nation_update:rel_nation_update
-
+    rel_nation_update:rel_nation_update,
+    isbusiness_partner:isbusiness_partner
   };
 
   website.ajax({
@@ -1322,6 +1325,7 @@ website("body").on("click", ".editrel", function () {
         var mobile = response.data.mobile ? response.data.mobile : "";
         var institute = response.data.institute ? response.data.institute : "";
         var nationality = response.data.nationality ? response.data.nationality : "";
+        var isbusiness_partner = response.data.isbusiness_partner ? response.data.isbusiness_partner : "";
         var filepath = response.data.filepath;
         jQuery("#reledit input[value='" + sex + "']").attr("checked", true);
         website("#reledit #name").val(name);
@@ -1343,6 +1347,7 @@ website("body").on("click", ".editrel", function () {
         website("#reledit #reloccupationup").val(occupation);
         website("#reledit #relcompanyup").val(company);
         website("#reledit #relinstituteup").val(institute);
+        website("#reledit #cmppartner").val(isbusiness_partner);
         website("#reledit #relmobnoup").val(mobile);
 
         dependantnature = dependantnature.split(",");
@@ -1461,6 +1466,7 @@ website("body").on("click", ".viewdetail", function () {
 });
 
 website("#upmfrmod").click(function (e) {
+    
   var mfreditid = website("#mfreditid").val();
   var mfrname = website("#mfrnameup").val();
   var panup = website("#adharpanup").val();
@@ -1469,6 +1475,8 @@ website("#upmfrmod").click(function (e) {
   var transaction = website("#mfrtransactionup").val();
   var clientid = website("#mfrclientidup").val();
   var mobile = website("#mfrmobileup").val();
+  var mfr_thirdparty = website("#mfrdelmodaledit #mfr_thirdparty").val();
+    
   website.ajax({
     url: "employeemodule/updatemfr",
     data: {
@@ -1480,6 +1488,7 @@ website("#upmfrmod").click(function (e) {
       addressup: addressup,
       transaction: transaction,
       clientid: clientid,
+      mfr_thirdparty: mfr_thirdparty
     },
     method: "POST",
     //contentType:'json',
@@ -1529,6 +1538,7 @@ website("#savemfr").click(function (e) {
   var transaction = website("#mfrtransaction").val();
   var clientid = website("#mfrclientid").val();
   var mobile = website("#mfrmobile").val();
+  var mfr_thirdparty = website("#mfr_thirdparty").val();
   website.ajax({
     url: "employeemodule/savemfr",
     data: {
@@ -1539,6 +1549,7 @@ website("#savemfr").click(function (e) {
       address: address,
       transaction: transaction,
       clientid: clientid,
+      mfr_thirdparty:mfr_thirdparty
     },
     method: "POST",
     //contentType:'json',
@@ -1674,6 +1685,7 @@ website("body").on("click", ".mymfredit", function (e) {
         var transaction = response.data[0].transaction;
         var clientid = response.data[0].clientid;
         var mobile = response.data[0].mobile;
+        var mfr_thirdparty = response.data[0].mfr_thirdparty;
         website("#mfrnameup").val(mfrnameu);
         website("#mfrrelationup").val(mfrrel);
         website("#adharpanup").val(mrfpan);
@@ -1681,6 +1693,7 @@ website("body").on("click", ".mymfredit", function (e) {
         website("#mfrtransactionup").val(transaction);
         website("#mfrclientidup").val(clientid);
         website("#mfrmobileup").val(mobile);
+        website("#mfrdelmodaledit #mfr_thirdparty").val(mfr_thirdparty);
         website("#mfreditid").val(editid);
         website("#mfrdelmodaledit").modal("show");
       } else {

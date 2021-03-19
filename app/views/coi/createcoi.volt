@@ -14,13 +14,14 @@ $category = $this->coicommon->fetchCategory();
 <!-- My messages -->
 <div class="mainelementfom">
     
-    <h1 class="h1_heading text-center" style="text-align: center;">Conflict Of Interest Declaration Form</h1>
+    
     <div class="containergrid">
         <div class="formcss">
             <form action="coi/insertcoi" id="insertcoi" method="post" autocomplete="off" enctype="multipart/form-data">
             <input type="hidden" name="coipdfhtml" id="coipdfhtml" value="">
             <input type="hidden" name="formsendtype" id="formsendtype" value="">
              <div class="coihtmldata">
+                 <h1 class="h1_heading text-center" style="text-align: center;">Conflict Of Interest Declaration Form</h1>
                 <div class="sectionbox">
                     <h2 class="h2_heading" style="text-align:center;">Employee Details</h2>
                     <div class="p-15px">
@@ -66,7 +67,7 @@ $category = $this->coicommon->fetchCategory();
                     </div>
                 </div>
             
-                <div class="divcoipolicy" style="color: #000;display:block;">
+                <div class="divcoipolicy" style="color: #000;display:none;">
                    <div class="sectionbox">
                       <h2 class="h2_heading" style="text-align:center;">Information</h2>
                     <div class="p-15px">
@@ -81,16 +82,18 @@ $category = $this->coicommon->fetchCategory();
                     </select>
                     <div class="coicateque"></div>
                     <div class="form-group" id="coiothers" style="display:none;">
-                        <label for="content">Content</label>
                         <div class="" name="content">
                             <textarea class="textareforedit"></textarea>
                             <input type="hidden" name="others_des" id="others_des" value="">
                         </div>
                     </div>
                     </div>
+                    <div id="textarea_others"></div>
                    </div>
-
-                    <div class="sectionbox">
+                 </div>
+                 
+                 <div id="attachment_section" style="color: #000;display:none;">
+                     <div class="sectionbox">
                       <h2 class="h2_heading" style="text-align:center;">Attachments</h2>
                     <div class="p-15px">
                       <label class="control-label">Upload File</label>
@@ -102,7 +105,7 @@ $category = $this->coicommon->fetchCategory();
                         <input type="button" class="btn btn-primary btnaddfile" value="+" >
                         <input type="button" class="btn btn-primary btndeletefile" value="-" >                    
                     </div>
-                    </div>  
+                    </div> 
                     </div>
                 </div>
             
@@ -112,7 +115,7 @@ $category = $this->coicommon->fetchCategory();
                 <div class="p-15px">
                   <div class="" style="color: #000">
                     <p>I hereby declare that the information provided above is true and complete to best of my knowledge and belief.In addition,I affirm that i will make further disclosures as may be required in future in the event of any change of circustances. I have read and understood the Conflict of Interest policy and agree to abide with the same.</p>
-                    <p>Date:</p>
+                    <p>Date: <?php echo date('d-M-Y'); ?></p>
                 </div>
                 </div>
                 </div>

@@ -177,7 +177,7 @@ class CoiController extends ControllerBase
                     $data = array("logged" => false,'message' => "Please select the category.");
                     $this->response->setJsonContent($data);
                 }
-                else if(empty($catequeid))
+                else if($coipolicy == 'yes' && empty($catequeid))
                 {
                     $data = array("logged" => false,'message' => "Please select option.");
                     $this->response->setJsonContent($data);
@@ -189,12 +189,12 @@ class CoiController extends ControllerBase
                     $getres = $this->coicommon->insertcoi($getuserid,$user_group_id,$coipolicy,$coicategory,$catequeid,$others_des,$attachments,$formsend_status,$pdfpath);
                     if($getres)
                     {  
-                        $data = array("logged" => true,'message' => 'Record Added');
+                        $data = array("logged" => true,'message' => 'Record Added','pdfpath'=>$pdfpath);
                         $this->response->setJsonContent($data);
                     }
                     else
                     {
-                        $data = array("logged" => false,'message' => "Record Not Added..!!");
+                        $data = array("logged" => false,'message' => "Record Not Added..!!",'pdfpath'=>'');
                         $this->response->setJsonContent($data);
                     }
                 }
@@ -225,16 +225,42 @@ class CoiController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
-                $coiData = $this->coicommon->fetchCoiAllData($getuserid,$user_group_id);
+                // ------- Pagination Start -------
+                    $noofrows = $this->request->getPost('noofrows','trim');
+                    $pagenum = $this->request->getPost('pagenum','trim');
+                    //echo $pagenum.'*'.$noofrows; exit;
+                    $rsstrt = ($pagenum-1) * $noofrows;
+                    //echo $rsstrt; exit;
+                // ------- Pagination End -------
+                
+                    $rslmt = ' LIMIT '.$rsstrt.','.$noofrows;
+                    //echo '<pre>'; print_r($rslmt); exit;
+                    $orderby = ' ORDER BY `id` DESC ';
+                    //echo $query; exit;
+
+                    $mainqry = $orderby;
+                    $fnlqry = $mainqry.$rslmt;
+                    // echo $fnlqry; exit;
+                
+                $coiData = $this->coicommon->fetchCoiAllData($getuserid,$user_group_id,$fnlqry);
+                $allrows = $this->coicommon->fetchCoiAllData($getuserid,$user_group_id,$mainqry);
                 // print_r($coiData);exit;
+                
+                // ------- Pagination Start -------
+                    $rscnt = count($allrows);
+                    $rspgs = ceil($rscnt/$noofrows);
+                    $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                    $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                    //echo '<pre>';print_r($pgnhtml);exit;
+                // ------- Pagination End -------
                 if(!empty($coiData))
                 {
-                    $data  = array('logged' => true, 'data' => $coiData); 
+                    $data  = array('logged' => true, 'data' => $coiData,"pgnhtml"=>$pgnhtml); 
                     $this->response->setJsonContent($data);
                 }
                 else
                 {
-                    $data  = array('logged' => false, 'data' => ''); 
+                    $data  = array('logged' => false, 'data' => '',"pgnhtml"=>$pgnhtml); 
                     $this->response->setJsonContent($data);
                 }
                 $this->response->send();

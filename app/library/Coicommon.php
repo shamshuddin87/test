@@ -129,11 +129,11 @@ class Coicommon extends Component
         }
     }
     
-    public function fetchCoiAllData($getuserid,$user_group_id)
+    public function fetchCoiAllData($getuserid,$user_group_id,$extqry)
     {
         $connection = $this->dbtrd;
         $getlist = array();
-        $query="SELECT * FROM `coi_declaration` WHERE `user_id` = '".$getuserid."'";
+        $query="SELECT * FROM `coi_declaration` WHERE `user_id` = '".$getuserid."'".$extqry;
         // print_r($query);exit; 
         try
         {

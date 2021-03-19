@@ -474,6 +474,7 @@ class EmployeemoduleController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $reldata = $this->request->getPost();
+                //print_r($reldata);exit;
                 $fname   = $this->request->getPost('fname','trim');
                 $pan   = $this->request->getPost('pan','trim');
                 $dob   = $this->request->getPost('dob','trim');
@@ -486,6 +487,7 @@ class EmployeemoduleController extends ControllerBase
                 $depnature   = $this->request->getPost('depnature','trim');
                 $mobno   = $this->request->getPost('relmobno','trim');
                 $rel_nation = $this->request->getPost('rel_nation','trim');
+                $isbusiness_partner = $this->request->getPost('isbusiness_partner','trim');
 
                  /*Date Validation for date of birth Start */
                 if(!empty($dob))
@@ -521,7 +523,7 @@ class EmployeemoduleController extends ControllerBase
                    $data = array("logged" => false,'message' => 'Your Pan No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
                 }
-                   else if(empty($aadhaar) && $rel_nation == 'Indian') 
+                else if(empty($aadhaar) && $rel_nation == 'Indian') 
                 {
                     $data = array("logged" => false,'message' => 'Please Enter Aadhar Number');
                     $this->response->setJsonContent($data);
@@ -571,6 +573,11 @@ class EmployeemoduleController extends ControllerBase
                 else if(empty($address))
                 {
                     $data = array("logged" => false,'message' => 'Please Provide address');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($isbusiness_partner))
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Is the Company / Firm business partner of Dr. Reddy’s');
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -845,6 +852,7 @@ class EmployeemoduleController extends ControllerBase
                 $prevfilepath = $this->request->getPost('filepath','trim');
                 $mobno   = $this->request->getPost('relmobnoup','trim');
                 $rel_nation_update = $this->request->getPost('rel_nation_update','trim');
+                $isbusiness_partner = $this->request->getPost('isbusiness_partner','trim');
                 //print_r($rel_nation_update);exit;
 
                 /*Date Validation for date of birth Start */
@@ -925,7 +933,12 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Insert address');
                     $this->response->setJsonContent($data);
                 }
-               else 
+                else if(empty($isbusiness_partner))
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Is the Company / Firm business partner of Dr. Reddy’s');
+                    $this->response->setJsonContent($data);
+                }
+                else 
                 {
                     if(!empty($_FILES["file"]))
                     {
@@ -1468,6 +1481,7 @@ class EmployeemoduleController extends ControllerBase
                 $transaction = $this->request->getPost('transaction','trim');
                 $clientid = $this->request->getPost('clientid','trim');
                 $mobile = $this->request->getPost('mobile','trim');
+                $mfr_thirdparty = $this->request->getPost('mfr_thirdparty','trim');
                 
                 if($mfrname=='')
                 {
@@ -1509,6 +1523,11 @@ class EmployeemoduleController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Please Provide Valid Mobile No');
                     $this->response->setJsonContent($data);
                 }
+                else if(empty($mfr_thirdparty))
+                {
+                    $data = array("logged" => false,'message' => 'Please Select Is the person with whom material financial relationship exists, a third party associated with Dr. Reddy’s?');
+                    $this->response->setJsonContent($data);
+                }
                 else
                 {
                     $isFilled = $this->employeemodulecommon->fetchUserFlow($getuserid,$user_group_id,'mfr');
@@ -1520,7 +1539,7 @@ class EmployeemoduleController extends ControllerBase
                     $isdematstatusFirst = $this->portfoliocommon->getdematsstatus($getuserid,$user_group_id);
                     //print_r($isdematstatusFirst);exit;
                     
-                    $getres = $this->employeemodulecommon->insertmfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$pan,$address,$transaction,$clientid,$mobile);
+                    $getres = $this->employeemodulecommon->insertmfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$pan,$address,$transaction,$clientid,$mobile,$mfr_thirdparty);
                     if($getres)
                     {
                         if($isFilled == 'no')
@@ -1567,7 +1586,8 @@ class EmployeemoduleController extends ControllerBase
                 $addressup = $this->request->getPost('addressup','trim');
                 $transaction = $this->request->getPost('transaction','trim');
                 $clientid = $this->request->getPost('clientid','trim');
-                  $mobile = $this->request->getPost('mobile','trim');
+                $mobile = $this->request->getPost('mobile','trim');
+                $mfr_thirdparty = $this->request->getPost('mfr_thirdparty','trim');
                 if($mfrname=='')
                 {
                     $data = array("logged" => false,'message' => 'Please Select Name of the Related party');
@@ -1610,7 +1630,7 @@ class EmployeemoduleController extends ControllerBase
                 }
                 else
                 {
-                    $getres = $this->employeemodulecommon->updatemfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$mfreditid,$panup,$addressup,$transaction,$clientid,$mobile);
+                    $getres = $this->employeemodulecommon->updatemfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$mfreditid,$panup,$addressup,$transaction,$clientid,$mobile,$mfr_thirdparty);
                     if($getres)
                     {
                         $data = array("logged" => true,'message' => 'Data Updated Successfully..!!!');
