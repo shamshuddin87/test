@@ -129,11 +129,11 @@ class Coicommon extends Component
         }
     }
     
-    public function fetchCoiAllData($getuserid,$user_group_id,$extqry)
+    public function fetchCoiAllData($getuserid,$user_group_id)
     {
         $connection = $this->dbtrd;
         $getlist = array();
-        $query="SELECT * FROM `coi_declaration` WHERE `user_id` = '".$getuserid."'".$extqry;
+        $query="SELECT * FROM `coi_declaration` WHERE `user_id` = '".$getuserid."' ORDER BY `id` DESC";
         // print_r($query);exit; 
         try
         {
@@ -163,7 +163,9 @@ class Coicommon extends Component
         $getlist = array();
         try
         {
-            $sqlqry = "SELECT `deptaccess` FROM `it_memberlist` WHERE wr_id='".$uid."'";         
+            $sqlqry = "SELECT im.`deptaccess`,GROUP_CONCAT(DISTINCT cd.`deptname`) as deptname FROM `it_memberlist` im
+                LEFT JOIN `con_dept` cd ON FIND_IN_SET(cd.`id`,im.`deptaccess`)
+                WHERE im.`wr_id`='".$uid."'";         
             //print_r($sqlqry); exit;            
             $exeqry = $connection->query($sqlqry);
             $getnum = trim($exeqry->numRows());
@@ -172,7 +174,8 @@ class Coicommon extends Component
             {
                 while($row = $exeqry->fetch())
                 {
-                    $getlist = $row['deptaccess']; 
+                    $getlist['deptid'] = $row['deptaccess']; 
+                    $getlist['deptname'] = $row['deptname'];
                 }
                 //echo '<pre>'; print_r($getlist); exit;
             }
@@ -191,7 +194,7 @@ class Coicommon extends Component
      }
 
 
-      public function sendaprvmailtomgr($emailto,$reqid)
+      public function sendaprvmailtomgr($deptname,$mgrname,$emailto,$reqid)
      {
         $connection = $this->dbtrd;
 
@@ -210,26 +213,27 @@ class Coicommon extends Component
             {
                 while($row = $exeget->fetch())
                 {
-                        // $getlist['mycompany'] = $row['mycompany']; 
-                        // $getlist['name_of_requester'] = $row['name_of_requester'];  
-                        // $getlist['email'] = $row['email']; 
-                        // $getlist['no_of_shares']=$row['no_of_shares']; 
-                        // $getlist['approved_date']=$row['approved_date'];
-                        // $getlist['trading_date']=$row['trading_date'];
-                        // $getlist['request_type']=$row['request_type'];
-                        $myarry[]=$getlist;
+                    $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
 
-                        $result = $this->emailer->sendaprvmailtomgr($emailto,$myarry);
+                    $getlist['reqno'] = $reqno; 
+                    $getlist['mgrname'] = $mgrname;  
+                    $getlist['requestername'] = $row['requestername']; 
+                    $getlist['nature_of_conflict']=$row['nature_of_conflict']; 
+                    $getlist['deptname'] = $deptname; 
+                    $myarry=$getlist;
+
+                    $result = $this->emailer->sendaprvmailtomgr($emailto,$myarry); 
                 }
+                return $result;
             }
             else
             {
-                $getlist = array();
+                return false;
             }            
         }
         catch(Exception $e)
         {
-           $getlist = array();
+           return false;
         }           
      }
 
@@ -244,15 +248,15 @@ class Coicommon extends Component
         {
             if($type == 'hr')
             {
-                $sqlqry = "SELECT `email` FROM `it_memberlist` WHERE `managertype` IN ('hr') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
+                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('hr') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
             }
             else if($type == 'dept')
             {
-                $sqlqry = "SELECT `email` FROM `it_memberlist` WHERE `managertype` IN ('dept') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
+                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('dept') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
             }
             else
             {
-                $sqlqry = "SELECT `email` FROM `it_memberlist` WHERE `managertype` IN ('dept','hr') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
+                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('dept','hr') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
             }
                    
             //print_r($sqlqry); exit;            
@@ -263,7 +267,8 @@ class Coicommon extends Component
             {
                 while($row = $exeqry->fetch())
                 {
-                    $getlist[] = $row; 
+                    $getlist['mgrname'] = $row['mgrname']; 
+                    $getlist['email'] = $row['email']; 
                 }
                 //echo '<pre>'; print_r($getlist); exit;
             }
@@ -280,4 +285,245 @@ class Coicommon extends Component
         
         return $getlist;
      }
+
+    public function updateCOIRequest($reqid,$action)
+    {
+        $connection = $this->dbtrd;
+        $managertype = $this->session->loginauthspuserfront['managertype'];
+
+        if($action == "sent")
+        {
+            $queryget = "UPDATE `coi_declaration` 
+                     SET `hrM_processed_status` = 'Pending Approval',
+                     `deptM_processed_status`= 'To Be Send'
+                     WHERE id =  '".$reqid."' " ;
+        }
+        else if($action == "approval")
+        {
+            if($managertype == "hr")
+            {
+                $queryget = "UPDATE `coi_declaration` 
+                     SET `hrM_processed_status` = 'Approved',
+                     `deptM_processed_status`= 'Pending Approval'
+                     WHERE id =  '".$reqid."' " ;
+            }
+            else if($managertype == "dept")
+            {
+                $queryget = "UPDATE `coi_declaration` 
+                     SET `deptM_processed_status`= 'Approved'
+                     WHERE id =  '".$reqid."' " ;
+            }
+            
+        }
+        else if($action == "reject")
+        {
+            if($managertype == "hr")
+            {
+                $queryget = "UPDATE `coi_declaration` 
+                     SET `hrM_processed_status` = 'Rejected'
+                     WHERE id =  '".$reqid."' " ;
+            }
+            // else if($managertype == "dept")
+            // {
+            //     $queryget = "UPDATE `coi_declaration` 
+            //          SET `deptM_processed_status`= 'Rejected'
+            //          WHERE id =  '".$reqid."' " ;
+            // }
+            
+        }
+        else if($action == "return")
+        {
+            if($managertype == "hr")
+            {
+                $queryget = "UPDATE `coi_declaration` 
+                     SET `hrM_processed_status` = 'Returned'
+                     WHERE id =  '".$reqid."' " ;
+            }
+            else if($managertype == "dept")
+            {
+                $queryget = "UPDATE `coi_declaration` 
+                     SET `deptM_processed_status`= 'Returned',
+                     `hrM_processed_status` = 'To Be Send'
+                     WHERE id =  '".$reqid."' " ;
+            }
+            
+        }
+        
+
+        $exeget = $connection->query($queryget);
+
+        $getnum = trim($exeget->numRows());
+
+        
+        if($getnum>0)
+        {
+           return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    public function getDeptUsers($deptid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+
+        $query="SELECT * FROM `it_memberlist` 
+                WHERE `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$deptid."', ',', '|'), ')(,|$)') AND `status`='1'";
+        // print_r($query);exit; 
+        try
+        {
+            $exeget = $connection->query($query);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row['wr_id'];
+                }
+            }
+            else
+            {  $getlist = array(); }
+        }
+        catch (Exception $e)
+        {   $getlist = array(); }
+        //print_r($getlist);exit;
+        return $getlist;
+    }
+
+    public function fetchCoiMgrData($getuserid,$user_group_id)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+
+        $deptInfo = $this->getDeptaccess($getuserid);
+        $deptusers = $this->getDeptUsers($deptInfo['deptid']);
+        $deptUserList = implode(",", $deptusers);
+        // print_r($deptUserList);die;
+        $query="SELECT im.`employeecode` as reqempid,im.`fullname` as reqname,GROUP_CONCAT(DISTINCT dept.`deptname`) as reqdeptname,cd.`date_added` as reqdate,cd.`hrM_processed_status` as hrMstatus,cd.`deptM_processed_status` as deptMstatus,cd.`id` as reqid FROM `coi_declaration` cd
+                LEFT JOIN `it_memberlist` im ON im.`wr_id`=cd.`user_id`
+                LEFT JOIN `con_dept` dept ON FIND_IN_SET(dept.`id`,im.`deptaccess`)
+                WHERE cd.`user_id` IN (".$deptUserList.") AND cd.`hrM_processed_status` != 'to_be_send' GROUP BY cd.`id` ORDER BY cd.`id` DESC";
+        // print_r($query);exit; 
+        try
+        {
+            $exeget = $connection->query($query);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;
+                }
+            }
+            else
+            {  $getlist = array(); }
+        }
+        catch (Exception $e)
+        {   $getlist = array(); }
+        //print_r($getlist);exit;
+        return $getlist;
+    }
+
+    public function insertCOIAuditTrail($req_id,$action,$recommendation)
+    {
+        $connection = $this->dbtrd;
+        $managertype = $this->session->loginauthspuserfront['managertype'];
+        $time = time();
+        $todaydate = date('d-m-Y');
+        try
+        {
+            if($action == "sent")
+            {
+                $query = "INSERT INTO `coi_audit_trail` (`req_id`, `action`,`action_date`,`status`,`recommendation`,`date_added`,`date_modified`,`timeago`) 
+            VALUES   ('".$req_id."','Request Sent','".$todaydate."','Sent','".$recommendation."',NOW(),NOW(),'".$time."')"; 
+            }
+            else if($action == "approval")
+            {
+                if($managertype == "hr")
+                {
+                    $query = "INSERT INTO `coi_audit_trail` (`req_id`, `action`,`action_date`,`status`,`recommendation`,`date_added`,`date_modified`,`timeago`) 
+            VALUES   ('".$req_id."','HR Manager Approval','".$todaydate."','Approved','".$recommendation."',NOW(),NOW(),'".$time."')"; 
+                }
+                else if($managertype == "dept")
+                {
+                    $query = "INSERT INTO `coi_audit_trail` (`req_id`, `action`,`action_date`,`status`,`recommendation`,`date_added`,`date_modified`,`timeago`) 
+            VALUES   ('".$req_id."','Dept Manager Approval','".$todaydate."','Approved','".$recommendation."',NOW(),NOW(),'".$time."')"; 
+                }
+            }
+            else if($action == "reject")
+            {
+                if($managertype == "hr")
+                {
+                    $query = "INSERT INTO `coi_audit_trail` (`req_id`, `action`,`action_date`,`status`,`recommendation`,`date_added`,`date_modified`,`timeago`) 
+            VALUES   ('".$req_id."','HR Manager Approval','".$todaydate."','Rejected','".$recommendation."',NOW(),NOW(),'".$time."')"; 
+                }
+            //     else if($managertype == "dept")
+            //     {
+            //         $query = "INSERT INTO `coi_audit_trail` (`req_id`, `action`,`action_date`,`status`,`date_added`,`date_modified`,`timeago`) 
+            // VALUES   ('".$req_id."','Dept Manager Approval','".$todaydate."','Approved',NOW(),NOW(),'".$time."')"; 
+            //     }
+            }
+            else if($action == "return")
+            {
+                if($managertype == "hr")
+                {
+                    $query = "INSERT INTO `coi_audit_trail` (`req_id`, `action`,`action_date`,`status`,`recommendation`,`date_added`,`date_modified`,`timeago`) 
+            VALUES   ('".$req_id."','HR Manager Approval','".$todaydate."','Returned','".$recommendation."',NOW(),NOW(),'".$time."')"; 
+                }
+                else if($managertype == "dept")
+                {
+                    $query = "INSERT INTO `coi_audit_trail` (`req_id`, `action`,`action_date`,`status`,`recommendation`,`date_added`,`date_modified`,`timeago`) 
+            VALUES   ('".$req_id."','Dept Manager Approval','".$todaydate."','Returned','".$recommendation."',NOW(),NOW(),'".$time."')"; 
+                }
+            }
+            
+             // echo $query; exit;
+            $exegetqry = $connection->query($query);
+
+            if($exegetqry)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }                            
+        }
+        catch(Exception $e)
+        {
+            //echo 'in catch';
+            return false;
+        }
+    }
+
+    public function fetchAuditTrail($reqid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `coi_audit_trail` WHERE `req_id` = '".$reqid."' ORDER BY date_added ASC";
+        // print_r($query);exit; 
+        try
+        {
+            $exeget = $connection->query($query);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist[] = $row;
+                }
+            }
+            else
+            {  $getlist = array(); }
+        }
+        catch (Exception $e)
+        {   $getlist = array(); }
+        //print_r($getlist);exit;
+        return $getlist;
+    }
+    
 }

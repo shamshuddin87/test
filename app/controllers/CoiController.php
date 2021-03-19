@@ -279,8 +279,8 @@ class CoiController extends ControllerBase
     }
 
 
-//-------------- Start: Send mail to hr/dept manager for approval --------------------//
-    public function sendaprvmailtomgrAction()
+//-------------- Start: Send mail to hr manager for approval --------------------//
+    public function sendaprvmailtohrmgrAction()
     {
         $this->view->disable();
         $uid = $this->session->loginauthspuserfront['id'];
@@ -292,14 +292,58 @@ class CoiController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $reqid = $this->request->getPost('reqid');
-                $deptaccess = $this->coicommon->getDeptaccess($uid);
-                $hrmgr = $this->coicommon->getHrDeptMgrs($deptaccess,"","hr");
-                print_r($hrmgr);die;
-                $mailsentstatus = $this->coicommon->sendaprvmailtomgr($hrmgr['email'],$reqid);
+                $deptdata = $this->coicommon->getDeptaccess($uid);
+                $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
+                // print_r($hrmgr);die;
+                $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$hrmgr['mgrname'],$hrmgr['email'],$reqid);
                 // print_r($mailsentstatus);exit;
                 if($mailsentstatus)
                 {
-                    $data  = array('logged' => true, 'data' => $coiData); 
+                    $this->coicommon->updateCOIRequest($reqid,"sent");
+                    $this->coicommon->insertCOIAuditTrail($reqid,"sent","");
+                    $data  = array('logged' => true, 'message' => 'Mail Sent Successfully.'); 
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data  = array('logged' => false, 'message' => 'Mail not sent.'); 
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed to this area');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+    
+//-------------- End: Send mail to hr manager for approval --------------------//
+
+    public function fetchCoiMgrDataAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $managertype = $this->session->loginauthspuserfront['managertype'];
+        //echo $cin;exit;
+        $timeago = time();
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $coiData = $this->coicommon->fetchCoiMgrData($getuserid,$user_group_id);
+                // print_r($coiData);exit;
+                if(!empty($coiData))
+                {
+                    $data  = array('logged' => true, 'data' => $coiData,'managertype'=>$managertype); 
                     $this->response->setJsonContent($data);
                 }
                 else
@@ -321,5 +365,193 @@ class CoiController extends ControllerBase
             exit('No direct script access allowed');
         }
     }
+
+
+    public function approveRequestAction()
+    {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $managertype = trim($this->session->loginauthspuserfront['managertype']);
+        $timeago = time();
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $reqid = $this->request->getPost('reqid');
+                if($managertype == "hr")
+                {
+                    $deptdata = $this->coicommon->getDeptaccess($uid);
+                    $deptmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","dept");
+                    // print_r($deptmgr);die;
+                    $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$deptmgr['mgrname'],$deptmgr['email'],$reqid);
+                    // print_r($mailsentstatus);exit;
+                    if($mailsentstatus)
+                    {
+                        $this->coicommon->updateCOIRequest($reqid,"approval");
+                        $this->coicommon->insertCOIAuditTrail($reqid,"approval","");
+                        $data  = array('logged' => true, 'message' => 'Approval Granted.'); 
+                        $this->response->setJsonContent($data);
+                    }
+                    else
+                    {
+                        $data  = array('logged' => false, 'message' => 'Unable to approve request.'); 
+                        $this->response->setJsonContent($data);
+                    }
+                }
+                else if($managertype == "dept")
+                {
+                    $this->coicommon->updateCOIRequest($reqid,"approval");
+                    $this->coicommon->insertCOIAuditTrail($reqid,"approval","");
+                    $data  = array('logged' => true, 'message' => 'Approval Granted.'); 
+                    $this->response->setJsonContent($data);
+                }
+                
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed to this area');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
     }
-//-------------- End: Send mail to hr/dept manager for approval --------------------//
+
+    public function fetchAuditTrailAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $managertype = $this->session->loginauthspuserfront['managertype'];
+        //echo $cin;exit;
+        $timeago = time();
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $reqid = $this->request->getPost('reqid');
+                $auditTrailData = $this->coicommon->fetchAuditTrail($reqid);
+                // print_r($coiData);exit;
+                if(!empty($auditTrailData))
+                {
+                    $data  = array('logged' => true, 'data' => $auditTrailData); 
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data  = array('logged' => false, 'data' => ''); 
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed to this area');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+
+
+    public function rejectRequestAction()
+    {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $managertype = trim($this->session->loginauthspuserfront['managertype']);
+        $timeago = time();
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $reqid = $this->request->getPost('reqid');
+                $recommendation = $this->request->getPost('recommendation');
+                if($managertype == "hr")
+                {
+                        $this->coicommon->updateCOIRequest($reqid,"reject");
+                        $this->coicommon->insertCOIAuditTrail($reqid,"reject",$recommendation);
+                        $data  = array('logged' => true, 'message' => 'Request Rejected.'); 
+                        $this->response->setJsonContent($data);
+                }
+                // else if($managertype == "dept")
+                // {
+                //     $this->coicommon->updateCOIRequest($reqid,"reject");
+                //     $this->coicommon->insertCOIAuditTrail($reqid,"reject");
+                //     $data  = array('logged' => true, 'message' => 'Request Rejected.'); 
+                //     $this->response->setJsonContent($data);
+                // }
+                
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed to this area');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+
+
+    public function returnRequestAction()
+    {
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $managertype = trim($this->session->loginauthspuserfront['managertype']);
+        $timeago = time();
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $reqid = $this->request->getPost('reqid');
+                $recommendation = $this->request->getPost('recommendation');
+                if($managertype == "hr")
+                {
+                        $this->coicommon->updateCOIRequest($reqid,"return");
+                        $this->coicommon->insertCOIAuditTrail($reqid,"return",$recommendation);
+                        $data  = array('logged' => true, 'message' => 'Request Returned.'); 
+                        $this->response->setJsonContent($data);
+                }
+                else if($managertype == "dept")
+                {
+                    $this->coicommon->updateCOIRequest($reqid,"return");
+                    $this->coicommon->insertCOIAuditTrail($reqid,"return",$recommendation);
+                    $data  = array('logged' => true, 'message' => 'Request Returned.'); 
+                    $this->response->setJsonContent($data);
+                }
+                
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed to this area');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+}
+

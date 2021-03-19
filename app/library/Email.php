@@ -1270,8 +1270,7 @@ Class Email extends Phalcon\Mvc\User\Component {
     public function sendaprvmailtomgr($emailto,$myarry)
     {
       
-        $subject = '';
-        $to =$mailid;
+        $subject = 'Conflict Of Interest Approval';
         $gethtml = $this->htmlelements->sendaprvmailtomgr($myarry);
         //echo $gethtml; exit;
         //Create a new PHPMailer instance
@@ -1294,14 +1293,13 @@ Class Email extends Phalcon\Mvc\User\Component {
         //send the message, check for errors
 
         if ($mail->Send()) {
-            $get = array('logged'=>true);
+            return true;
         }
         else {
             //echo $mail->ErrorInfo; exit;
-            $get = array('logged'=>false);
+            return false;
         }
         //echo '<pre>'; print_r($get); exit;
-        return $get;
     }
 
 
