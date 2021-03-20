@@ -276,3 +276,7 @@ span.informationqus
 {
     margin: 10px 0;
 }
+.modalcoihtmldata 
+{
+    pointer-events: none;
+}

@@ -3,12 +3,39 @@ website(document).ready(function()
   fetchCoiAllData();
 });
 
+/* ---------------- Start Pagination ---------------- */
+website('body').on('click','.paginationmn li', function(e) 
+{
+    var rscrntpg = website(this).attr('p');
+    //alert(rscrntpg);
+    website('.panel.panel-white #pagenum').val(rscrntpg);
+    // var noofrows = website('#noofrows').val(); 
+
+    fetchCoiAllData();
+});
+
+website('body').on('change','#noofrows', function(e) 
+{
+    fetchCoiAllData();
+});
+
+website('body').on('click','.go_button', function(e) 
+{
+    var rscrntpg = website('.gotobtn').val();
+    // alert(rscrntpg);
+    website('.panel.panel-white #pagenum').val(rscrntpg);
+    fetchCoiAllData();
+});
+/* ---------------- End Pagination ---------------- */
 
 function fetchCoiAllData()
 {
+    var noofrows = website('#noofrows').val(); 
+    var pagenum = website('#pagenum').val();
+    var formdata = {noofrows:noofrows,pagenum:pagenum}
     website.ajax({
     url: "coi/fetchCoiAllData",
-    //data:formdata,
+    data:formdata,
     method: "POST",
     //contentType:'json',
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -68,7 +95,7 @@ function fetchCoiAllData()
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
                 if(response.data[i]["coi_pdfpath"])
                 {
-                    addhtmlnxt += '<a  href="'+response.data[i]["coi_pdfpath"]+'"  class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a>';
+                    addhtmlnxt += '<a  href="'+response.data[i]["coi_pdfpath"]+'" target="_blank" class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a>';
                 }
                 addhtmlnxt += '</td>';
                 
@@ -88,6 +115,7 @@ function fetchCoiAllData()
         {
             addhtmlnxt += '<tr class="counter"><td>Data Not Found</td></tr>';
         }
+        website('.paginationmn').html(response.pgnhtml);
         website('.allcoidata').html(addhtmlnxt);
     },
     complete: function (response) {},

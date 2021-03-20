@@ -157,9 +157,9 @@ class Employeemodulecommon extends Component
             $depdntnature = implode(',',$data['depnature']);
            // print_r($data);exit;,`legal_identification_no`,"'.$data['legal_idntfctn_no'].'"
              $query='INSERT INTO `relative_info`
-             (`user_id`,`user_group_id`,`name`,`pan`,`legal_identifier`,`aadhar`,`relationship`,`dependency_nature`,`dob`,`sex`,`address`,`education`,`institute`,`mobile`,`filepath`,`sharehldng`,`adrshldng`,`occupation`,`company`,`nationality`,`date_added`,`date_modified`,`timeago`)
+             (`user_id`,`user_group_id`,`name`,`pan`,`legal_identifier`,`aadhar`,`relationship`,`dependency_nature`,`dob`,`sex`,`address`,`education`,`institute`,`mobile`,`filepath`,`sharehldng`,`adrshldng`,`occupation`,`company`,`nationality`,`isbusiness_partner`,`date_added`,`date_modified`,`timeago`)
                 VALUES 
-                ("'.$userid.'","'.$user_group_id.'","'.$data['fname'].'","'.$data['pan'].'","'.$data['legal_idntfr'].'","'.$data['aadhar'].'","'.$data['relationship'].'","'.$depdntnature.'","'.$newDate.'","'.$data['sex'].'","'.$data['address'].'","'.$data['eduqulfcn'].'","'.$data['relinstitute'].'","'.$data['relmobno'].'","'.$filepath.'","'.$data['shareholdng'].'","'.$data['adrsholdng'].'","'.$data['reloccupation'].'","'.$data['relcompany'].'","'.$data['rel_nation'].'",NOW(),NOW(),"'.$time.'")';
+                ("'.$userid.'","'.$user_group_id.'","'.$data['fname'].'","'.$data['pan'].'","'.$data['legal_idntfr'].'","'.$data['aadhar'].'","'.$data['relationship'].'","'.$depdntnature.'","'.$newDate.'","'.$data['sex'].'","'.$data['address'].'","'.$data['eduqulfcn'].'","'.$data['relinstitute'].'","'.$data['relmobno'].'","'.$filepath.'","'.$data['shareholdng'].'","'.$data['adrsholdng'].'","'.$data['reloccupation'].'","'.$data['relcompany'].'","'.$data['rel_nation'].'","'.$data['isbusiness_partner'].'",NOW(),NOW(),"'.$time.'")';
 
               // echo $query;exit;
                $exeget = $connection->query($query);
@@ -278,7 +278,7 @@ class Employeemodulecommon extends Component
               $depdntnature = implode(',',$data['depnature']);
               //print_r($data);exit;
            
-             $qry = 'UPDATE relative_info SET name ="'.$data['name'].'",pan ="'.$data['pan'].'",legal_identifier ="'.$data['legal_idntfr'].'",aadhar ="'.$data['aadhar'].'",dob ="'.$newDate.'",sex ="'.$data['sex'].'",address ="'.$data['address'].'",relationship ="'.$data['relationship'].'",dependency_nature ="'.$depdntnature.'",education ="'.$data['eduqulfcn'].'",institute ="'.$data['relinstituteup'].'",mobile ="'.$data['relmobnoup'].'",filepath ="'.$filepath.'",sharehldng ="'.$data['shareholdng'].'",adrshldng ="'.$data['adrsholdng'].'",occupation ="'.$data['reloccupationup'].'",company ="'.$data['relcompanyup'].'",nationality ="'.$data['rel_nation_update'].'",date_modified=NOW(),timeago="'.$time.'" WHERE id="'.$releditid.'" ';
+             $qry = 'UPDATE relative_info SET name ="'.$data['name'].'",pan ="'.$data['pan'].'",legal_identifier ="'.$data['legal_idntfr'].'",aadhar ="'.$data['aadhar'].'",dob ="'.$newDate.'",sex ="'.$data['sex'].'",address ="'.$data['address'].'",relationship ="'.$data['relationship'].'",dependency_nature ="'.$depdntnature.'",education ="'.$data['eduqulfcn'].'",institute ="'.$data['relinstituteup'].'",mobile ="'.$data['relmobnoup'].'",filepath ="'.$filepath.'",sharehldng ="'.$data['shareholdng'].'",adrshldng ="'.$data['adrsholdng'].'",occupation ="'.$data['reloccupationup'].'",company ="'.$data['relcompanyup'].'",nationality ="'.$data['rel_nation_update'].'",isbusiness_partner ="'.$data['isbusiness_partner'].'",date_modified=NOW(),timeago="'.$time.'" WHERE id="'.$releditid.'" ';
              // echo $qry;exit;
              $exeget = $connection->query($qry);
              
@@ -569,11 +569,11 @@ class Employeemodulecommon extends Component
           
       
     }
-    public function updatemfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$mfreditid,$panup,$addressup,$transaction,$clientid,$mobile)
+    public function updatemfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$mfreditid,$panup,$addressup,$transaction,$clientid,$mobile,$mfr_thirdparty)
     {
        $time=time();
        $connection = $this->dbtrd;
-       $queryupdate="UPDATE `mfr` SET `related_party`='".$mfrname."',`relationship`='".$mfrrelation."',`pan`='".$panup."',`address`='".$addressup."',`transaction`='".$transaction."',`clientid`='".$clientid."',`mobile`='".$mobile."',`date_modified`=NOW(),`timeago`='".$time."' WHERE id='".$mfreditid."'";
+       $queryupdate="UPDATE `mfr` SET `related_party`='".$mfrname."',`relationship`='".$mfrrelation."',`pan`='".$panup."',`address`='".$addressup."',`transaction`='".$transaction."',`clientid`='".$clientid."',`mobile`='".$mobile."',`mfr_thirdparty`='".$mfr_thirdparty."',`date_modified`=NOW(),`timeago`='".$time."' WHERE id='".$mfreditid."'";
        //print_r($queryupdate);exit;
      
             try
@@ -595,13 +595,13 @@ class Employeemodulecommon extends Component
             return false;
         }
     }
-    public function insertmfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$pan,$address,$transaction,$clientid,$mobile)
+    public function insertmfrindb($getuserid,$user_group_id,$mfrname,$mfrrelation,$pan,$address,$transaction,$clientid,$mobile,$mfr_thirdparty)
     {
         $connection = $this->dbtrd;
         $time=time();
         $queryinsert = "INSERT INTO `mfr`
-        (`user_id`,`user_group_id`,`related_party`,`relationship`,`pan`,`address`,`transaction`,`clientid`,`mobile`,`date_added`,`date_modified`,`timeago`)
-         VALUES ('".$getuserid."','".$user_group_id."','".$mfrname."','".$mfrrelation."','".$pan."','".$address."','".$transaction."','".$clientid."','".$mobile."',NOW(),NOW(),'".$time."')"; 
+        (`user_id`,`user_group_id`,`related_party`,`relationship`,`pan`,`address`,`transaction`,`clientid`,`mobile`,`mfr_thirdparty`,`date_added`,`date_modified`,`timeago`)
+         VALUES ('".$getuserid."','".$user_group_id."','".$mfrname."','".$mfrrelation."','".$pan."','".$address."','".$transaction."','".$clientid."','".$mobile."','".$mfr_thirdparty."',NOW(),NOW(),'".$time."')"; 
         
         // print_r($queryinsert);exit;
         try

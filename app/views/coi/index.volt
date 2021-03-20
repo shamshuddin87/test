@@ -18,7 +18,14 @@ $condeptsess = $this->session->contractdepartment;
     <div class="create_button">
         <a href="coi/createcoi"> <button type="button" class="btn btn-primary getdata">Create Declaration</button></a>
     </div>
-
+    <div class="cssnumrws form-inline">
+        <label>Show</label>
+        <select id="noofrows" name="noofrows" class="noofrows form-control">
+            <option value="10">10</option><option value="25">25</option>
+            <option value="50">50</option><option value="100">100</option>
+        </select> 
+        <label>Entries</label>
+    </div> 
     <table width="100%" border="1" class="table table-inverse" id="datableabhi">
      <thead>
       <tr>
@@ -35,6 +42,10 @@ $condeptsess = $this->session->contractdepartment;
      </thead>
     <tbody class="allcoidata" appendrow='1'></tbody>
     </table>
+    <div class="panel panel-white">
+        <div class="paginationmn"></div>
+        <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
+    </div>
 </div>
 
 <div id="sendmod" class="modal fade" role="dialog">

@@ -39,11 +39,11 @@ function fetchEmpDetails()
 function inittinymace()
 {
     tinymce.init({
-        selector: 'textarea',  // change this value according to your HTML
+        selector: 'textarea.textareforedit',  // change this value according to your HTML
         plugins: ["lists"],
         a_plugin_option: true,
         toolbar: 'undo redo | formatselect | ' +
-        'bold italic backcolor | alignleft aligncenter ' +
+        'bold italic backcolor | alignleft aligncenttextareforediter ' +
         'alignright alignjustify | bullist numlist outdent indent | ' +
         'removeformat ',
         a_configuration_option: 400
@@ -54,11 +54,15 @@ website("body").on("click", ".coipolicy", function (e) {
     var coival = website(this).val();
     if(coival == 'Yes')
     {
+        website("input[name=coipolicy][value=No]").removeAttr('checked');
+        website("input[name=coipolicy][value=Yes]").attr('checked', 'checked');
         website('.divcoipolicy').css('display','block');
+        website('#attachment_section').css('display','block');
     }
     else if(coival == 'No')
     {
         website('.divcoipolicy').css('display','none');
+        website('#attachment_section').css('display','none');
     }
 });
 
@@ -94,13 +98,15 @@ website('body').on('click','.savecoi',function(e)
 {
     var others_des = tinyMCE.activeEditor.getContent();
     website('#insertcoi #others_des').val(others_des);
-    var pdfdata = website("div .coihtmldata").html();
-    website('#insertcoi #coipdfhtml').val(pdfdata)
-    //console.log(pdfdata);
-    website(".modalcoihtmldata").html(pdfdata);
     var coipolicy = website('#insertcoi input[name="coipolicy"]:checked').val();
     var coicategory = website('#insertcoi #coicategory').val();
     var cateque = website('#insertcoi input[name="question"]:checked').val();
+    var catequeid = website('#insertcoi input[name="question"]:checked').attr('id');
+    //console.log(catequeid)
+    website('#insertcoi .coicategory option[value="'+coicategory+'"]').attr("selected", "selected");
+    website('input[name=question][value="'+cateque+'"]').attr('checked', 'checked');
+    
+    
     if(coipolicy == 'Yes' && coicategory == '')
     {
         new PNotify({
@@ -125,6 +131,21 @@ website('body').on('click','.savecoi',function(e)
     }
     else
     {
+        website('#insertcoi #attachment_section').css("display", "none");
+        website('#insertcoi #textarea_others').html('<div class="form-group"><textarea class="form-control rounded-0" id="textarea_othershtml"></textarea></div>');
+        website('#insertcoi #textarea_others').css("display", "block");
+        website('#insertcoi #coiothers').css("display", "none");
+        var decoded_others_des = website("<div/>").html(others_des).text();
+        website('#insertcoi #textarea_othershtml').html(decoded_others_des);
+        var pdfdata = website("div .coihtmldata").html();
+        website('#insertcoi #coipdfhtml').val(pdfdata)
+        //console.log(pdfdata);
+        /*website('#insertcoi #attachment_section').css("display", "block");*/
+        website(".modalcoihtmldata").html(pdfdata);
+        
+        //website('.modalcoihtmldata #textarea_othershtml').html(others_des);
+        website('.modalcoihtmldata #attachment_section').css("display", "none");
+        /*website('.modalcoihtmldata #textarea_others').css("display", "none");*/
         website("#Mymodalcoideclara").modal("show");
     }
     
@@ -140,6 +161,9 @@ website("#insertcoi").ajaxForm({
   {
     if(response.logged === true) 
     {
+        website('#sendcoiforapproval').modal('hide');
+        website("#Mymodalcoideclara .coigeneratepdf").css("display", "none");
+        
         new PNotify({
             title: "Alert",
             text: response.message,
@@ -148,8 +172,13 @@ website("#insertcoi").ajaxForm({
             styling: "bootstrap3",
             addclass: "dark ",
         });
-        var baseHref=getbaseurl();
-        setTimeout(function(){window.location.href=baseHref+'coi';},1000);
+         website("#Mymodalcoideclara #downloadpdf").append('<a  href="' +
+            response.pdfpath +
+            '" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon-download-alt floatleft">Download</span> </a>'
+        );
+        
+        /*var baseHref=getbaseurl();
+        setTimeout(function(){window.location.href=baseHref+'coi';},1000);*/
     } 
     else 
     {
