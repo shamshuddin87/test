@@ -24,7 +24,9 @@ class CoiController extends ControllerBase
     
     public function editcoiAction()
     {
-        
+        $coiid = $_GET['coiid'];
+        $this->view->coieditid = base64_decode($coiid);
+        //print_r($coiid);exit;
     }
     
     public function viewcoiAction()
@@ -553,5 +555,49 @@ class CoiController extends ControllerBase
             exit('No direct script access allowed');
         }
     }
+    
+    public function fetchSingleCoiDataAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        //echo $cin;exit;
+        $timeago = time();
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                // ------- Pagination Start -------
+                $coieditid = $this->request->getPost('coieditid','trim');
+                    
+                $coiSingleData = $this->coicommon->fetchSingleCoiData($getuserid,$user_group_id,$coieditid);
+                //print_r($coiSingleData);exit;
+                
+                if(!empty($coiSingleData))
+                {
+                    $data  = array('logged' => true, 'data' => $coiSingleData); 
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data  = array('logged' => false, 'data' => ''); 
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed to this area');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+    //updatecoi
 }
 

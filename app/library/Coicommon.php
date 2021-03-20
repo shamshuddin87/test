@@ -526,4 +526,29 @@ class Coicommon extends Component
         return $getlist;
     }
     
+    public function fetchSingleCoiData($getuserid,$user_group_id,$coieditid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = '';
+        $query="SELECT * FROM `coi_declaration` WHERE `id` = '".$coieditid."' ";
+        // print_r($query);exit; 
+        try
+        {
+            $exeget = $connection->query($query);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist = $row;
+                }
+            }
+            else
+            {  $getlist = ''; }
+        }
+        catch (Exception $e)
+        {   $getlist = ''; }
+        //print_r($getlist);exit;
+        return $getlist;
+    }
 }

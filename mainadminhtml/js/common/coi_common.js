@@ -59,7 +59,7 @@ function fetchCoiAllData()
                 addhtmlnxt += '<td width="5%">'+j+'</td>';
                 addhtmlnxt += '<td width="11%">'+response.data[i]['date_added']+'</td>';
                 addhtmlnxt += '<td width="11%">';
-                if(response.data[i]["hrM_processed_status"] == 'To Be Send' || response.data[i]["hrM_processed_status"] == 'Returned')
+                if(response.data[i]["sent_status"] == '0' || response.data[i]["hrM_processed_status"] == 'To Be Send' || response.data[i]["hrM_processed_status"] == 'Returned')
                 {
                     addhtmlnxt += 'Pending';
                 }
@@ -89,9 +89,23 @@ function fetchCoiAllData()
                 // }
                 addhtmlnxt += response.data[i]["deptM_processed_status"];
                 addhtmlnxt += '</td>';
+                
                 addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-list-ul faicon" id="audit_trail" reqid="'+response.data[i]["id"]+'" title="Audit Trail"></i></td>';
-                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-edit coiedit" reqid="'+response.data[i]["id"]+'" title="Edit Entry"></i></td>';
-                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-trash coidelete" reqid="'+response.data[i]["id"]+'" title="Delete Entry"></i></td>';
+                
+                addhtmlnxt += '<td width="11%" style="text-align:center">';
+                if(response.data[i]["sent_status"] == '0')
+                {
+                    addhtmlnxt += '<i class="fa fa-edit coiedit" reqid="'+response.data[i]["id"]+'" title="Edit Entry"></i>';
+                }
+                addhtmlnxt += '</td>';
+                
+                addhtmlnxt += '<td width="11%" style="text-align:center">';
+                if(response.data[i]["sent_status"] == '0')
+                {
+                    addhtmlnxt += '<i class="fa fa-trash coidelete" reqid="'+response.data[i]["id"]+'" title="Delete Entry"></i>';
+                }
+                addhtmlnxt += '</td>';
+                
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
                 if(response.data[i]["coi_pdfpath"])
                 {
