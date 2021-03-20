@@ -525,5 +525,132 @@ class Coicommon extends Component
         //print_r($getlist);exit;
         return $getlist;
     }
-    
+ 
+
+  public function checkYORuser($uid)
+    {
+        $connection = $this->dbtrd;
+        $time = time();
+        
+        try
+        {
+            $sqlqry = "SELECT * FROM `it_memberlist` where wr_id='".$uid."' AND role_id IN ('5','6','7')";         
+            //print_r($sqlqry); exit;            
+            $exeqry = $connection->query($sqlqry);
+            $getnum = trim($exeqry->numRows());
+            //echo '<pre>'; print_r($getnum); exit;            
+            if($getnum > 0)
+            {               
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+    }
+
+
+    public function sendapprmailtoccoandcs($reqid,$recipientname,$deptname,$emailid,$approvalName)
+     {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    LEFT JOIN `it_memberlist` im ON im.wr_id = cd.user_id
+                    WHERE cd.`id`='".$reqid."'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+                        $getlist['reqno'] = $reqno; 
+                        $getlist['recipientname'] = $recipientname;  
+                        $getlist['requestername'] = $row['requestername']; 
+                        $getlist['nature_of_conflict']=$row['nature_of_conflict']; 
+                        $getlist['deptname'] = $deptname;
+                        $getlist['disclosure_made_by'] = $row['requestername']; 
+                        $getlist['approved_by'] = $approvalName;
+                        $myarry=$getlist;
+
+                        $result = $this->emailer->sendapprmailtoccoandcs($myarry,$emailid);
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }   
+
+     public function getReqUserId($reqid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `coi_declaration` WHERE `id` = '".$reqid."'";
+        // print_r($query);exit; 
+        try
+        {
+            $exeget = $connection->query($query);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist = $row['user_id'];
+                }
+            }
+            else
+            {  $getlist = array(); }
+        }
+        catch (Exception $e)
+        {   $getlist = array(); }
+        //print_r($getlist);exit;
+        return $getlist;
+    }
+
+    public function getApprovalName($uid)
+    {
+        $connection = $this->dbtrd;
+        $getlist = array();
+        $query="SELECT * FROM `it_memberlist` WHERE `wr_id` = '".$uid."'";
+        // print_r($query);exit; 
+        try
+        {
+            $exeget = $connection->query($query);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $getlist = $row['fullname'];
+                }
+            }
+            else
+            {  $getlist = array(); }
+        }
+        catch (Exception $e)
+        {   $getlist = array(); }
+        //print_r($getlist);exit;
+        return $getlist;
+    }
 }

@@ -370,78 +370,8 @@ class Automailercommon extends Component
      }
 
 
-     public function sendmailtoccoandcs($reqid)
-     {
-        $connection = $this->dbtrd;
-
-        $sqlquery = "SELECT * FROM `coi_declaration` cd
-                    WHERE cd.`id`='".$reqid."'";
-      // print_r($sqlquery);exit;
-         
-        try
-        {
-            $exeget = $connection->query($sqlquery);
-            $getnum = trim($exeget->numRows());
-              
-            if($getnum>0)
-            {
-                while($row = $exeget->fetch())
-                {
-                        // $getlist['mycompany'] = $row['mycompany']; 
-                        // $getlist['name_of_requester'] = $row['name_of_requester'];  
-                        // $getlist['email'] = $row['email']; 
-                        // $getlist['no_of_shares']=$row['no_of_shares']; 
-                        // $getlist['approved_date']=$row['approved_date'];
-                        // $getlist['trading_date']=$row['trading_date'];
-                        // $getlist['request_type']=$row['request_type'];
-                        $myarry[]=$getlist;
-
-                        $result = $this->emailer->sendmailtoccoandcs($myarry);
-                }
-            }
-            else
-            {
-                $getlist = array();
-            }            
-        }
-        catch(Exception $e)
-        {
-           $getlist = array();
-        } 
-
-        // print_r("result aprover");
-        // print_r($result);exit;   
-          
-     }
-
-    public function checkYORuser($uid)
-    {
-        $connection = $this->dbtrd;
-        $time = time();
-        
-        try
-        {
-            $sqlqry = "SELECT * FROM `it_memberlist` where wr_id='".$uid."' AND role_id IN ('5','6','7')";         
-            //print_r($sqlqry); exit;            
-            $exeqry = $connection->query($sqlqry);
-            $getnum = trim($exeqry->numRows());
-            //echo '<pre>'; print_r($getnum); exit;            
-            if($getnum > 0)
-            {               
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        catch (Exception $e)
-        {
-            return false;
-        }
-    }
-
      
+
 
    public function sendmailtousers()
    {

@@ -1229,12 +1229,12 @@ Class Email extends Phalcon\Mvc\User\Component {
     }
 
 
-    public function sendmailtoccoandcs($myarry)
+    public function sendapprmailtoccoandcs($myarry,$emailid)
     {
       
-        $subject = '';
-        $to =$mailid;
-        $gethtml = $this->htmlelements->sendmailtoccoandcs($myarry);
+        $subject = 'Request Approved By Initiator.';
+        $to =$emailid;
+        $gethtml = $this->htmlelements->sendapprmailtoccoandcs($myarry);
         //echo $gethtml; exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
