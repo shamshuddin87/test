@@ -4,7 +4,6 @@
    $usergroup = $this->session->loginauthspuserfront['user_group_id'];
    $gettypm = $this->session->loginauthspuserfront;
    $coiaccess = $this->session->loginauthspuserfront['coiaccess'];
-   $managertype = $this->session->loginauthspuserfront['managertype'];
    $gettermscond =$this->termsandconditionscommon->getalluserfiles($getuserid);
    $notification =$this->notificationcommon->getallnotification($getuserid);
    $userlevel = $this->annualdeclarationcommon->FetchUserLevel($getuserid);
@@ -38,7 +37,7 @@
      
       <!-- sidebar menu Start -->
       <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-          <?php if($coiaccess!= 'yes'){?>
+          <?php if($coiaccess == 'yes'){?>
          <div class="menu_section">
             <ul class="nav side-menu">
             <?php if($gettypm['user_group_id']=='14' || $gettypm['user_group_id']=='2' || $gettypm['user_group_id']=='7') {?>
@@ -203,6 +202,8 @@
                      <?php } else { ?>
                      <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>
                      <?php } ?> 
+                     <li><a href="coi"><i class=""></i>COI Declaration</a></li>
+                     <li><a href="coi/viewcoi"><i class=""></i>View COI Declaration</a></li>
                   </ul>
                </li>
                
@@ -303,9 +304,7 @@
                   <a class="click_board click_board3" href="javascript:;"><i class="fa fa-edit"></i> My Info<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                      <li><a href="coi"><i class=""></i>COI Declaration</a></li>
-                     <?php if($managertype == 'hr' || $managertype == 'dept'){?>
                      <li><a href="coi/viewcoi"><i class=""></i>View COI Declaration</a></li>
-                      <?php } ?>
                   </ul>
                </li>
                 

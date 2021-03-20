@@ -301,6 +301,21 @@ class CoiController extends ControllerBase
                 // print_r($mailsentstatus);exit;
                 if($mailsentstatus)
                 {
+
+                    //-------------- Start: CCO and CS email intimation -------------//
+                         $YORuser = $this->coicommon->checkYORuser($uid);
+                         $recipientnames = array("CCO","CS");
+                         $recipientemailids = array("cco@volody.com","cs@volody.com");
+                         if($YORuser)
+                            {
+                             for ($i=0; $i < count($recipientnames); $i++) 
+                                { 
+                                    $this->coicommon->sendapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i],$approvalName);
+                                } 
+                            }
+                         
+                    //-------------- End: CCO and CS email intimation -------------//
+                            
                     $this->coicommon->updateCOIRequest($reqid,"sent");
                     $this->coicommon->insertCOIAuditTrail($reqid,"sent","");
                     $data  = array('logged' => true, 'message' => 'Mail Sent Successfully.'); 
@@ -382,15 +397,32 @@ class CoiController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $reqid = $this->request->getPost('reqid');
+                $approvalName = $this->coicommon->getApprovalName($uid);
+                $reqUserId = $this->coicommon->getReqUserId($reqid);          
+                $deptdata = $this->coicommon->getDeptaccess($reqUserId);
                 if($managertype == "hr")
                 {
-                    $deptdata = $this->coicommon->getDeptaccess($uid);
                     $deptmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","dept");
                     // print_r($deptmgr);die;
                     $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$deptmgr['mgrname'],$deptmgr['email'],$reqid);
                     // print_r($mailsentstatus);exit;
                     if($mailsentstatus)
                     {
+                        //-------------- Start: CCO and CS email intimation -------------//
+
+                         $YORuser = $this->coicommon->checkYORuser($uid);
+                         $recipientnames = array("CCO","CS");
+                         $recipientemailids = array("cco@volody.com","cs@volody.com");
+                         if($YORuser)
+                            {
+                             for ($i=0; $i < count($recipientnames); $i++) 
+                                { 
+                                    $this->coicommon->sendapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i],$approvalName);
+                                } 
+                            }
+                         
+                        //-------------- End: CCO and CS email intimation -------------//
+
                         $this->coicommon->updateCOIRequest($reqid,"approval");
                         $this->coicommon->insertCOIAuditTrail($reqid,"approval","");
                         $data  = array('logged' => true, 'message' => 'Approval Granted.'); 
@@ -404,6 +436,20 @@ class CoiController extends ControllerBase
                 }
                 else if($managertype == "dept")
                 {
+                    //-------------- Start: CCO and CS email intimation -------------//
+                         $YORuser = $this->coicommon->checkYORuser($uid);
+                         $recipientnames = array("CCO","CS");
+                         $recipientemailids = array("cco@volody.com","cs@volody.com");
+                         if($YORuser)
+                            {
+                             for ($i=0; $i < count($recipientnames); $i++) 
+                                { 
+                                    $this->coicommon->sendapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i],$approvalName);
+                                } 
+                            }
+                         
+                    //-------------- End: CCO and CS email intimation -------------//
+
                     $this->coicommon->updateCOIRequest($reqid,"approval");
                     $this->coicommon->insertCOIAuditTrail($reqid,"approval","");
                     $data  = array('logged' => true, 'message' => 'Approval Granted.'); 
