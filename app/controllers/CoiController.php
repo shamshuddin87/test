@@ -644,6 +644,125 @@ class CoiController extends ControllerBase
             exit('No direct script access allowed');
         }
     }
-    //updatecoi
+    
+    public function updatecoiAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                //print_r($this->request->getPost());
+                $formsend_status = 0;
+                $coipolicy = $this->request->getPost('coipolicy');
+                $coicategory = $this->request->getPost('coicategory');
+                $catequeid = $this->request->getPost('question');
+                $others_des = $this->request->getPost('others_des');
+                $coipdfhtml = $this->request->getPost('coipdfhtml');
+                $formsendtype = $this->request->getPost('formsendtype');
+                $coieditid = $this->request->getPost('coieditid');
+                $upattachment = $this->request->getPost('upattachment');
+                $attachment = $this->request->getPost('attachment');
+                if($formsendtype == 'yes')
+                {
+                    $formsend_status = 1;
+                }
+                
+               
+                
+                if(!empty($_FILES["attachment"]))
+                {
+                    foreach($_FILES['attachment']['tmp_name'] as $key => $val )
+                    {
+                        $timeago = time();
+                        $userfile_name = $_FILES['attachment']['name'][$key];
+                        //echo $userfile_name;exit;
+                        $userfile_tmp = $_FILES['attachment']['tmp_name'][$key];
+                        $userfile_size = $_FILES['attachment']['size'][$key];
+                        $userfile_type = $_FILES['attachment']['type'][$key];
+                        $filename = basename($_FILES['attachment']['name'][$key]);
+                        //echo $filename;exit;
+                        $filenm = explode('.', $filename);
+                        $filenms[] = $filenm[0];
+                        $file_ext = $this->validationcommon->getfileext($filename);
+                        $upload_path = $this->coiDir."/Attachments/";
+                        //echo $upload_path;exit;
+                        $large_imp_name = 'COI_Declaration_userid_'.$getuserid.'_timeago_'.$timeago.'_'.$key;
+                        $contract_filepath = $upload_path.$large_imp_name.".".$file_ext;
+                        $uploadedornot = move_uploaded_file($userfile_tmp, $contract_filepath);
+                        //echo $uploadedornot;exit;
+                        $filelist[$key] = $contract_filepath;
+                    }
+                    //print_r($filelist);exit;
+                    if(!empty($upattachment))
+                    {
+                        foreach($upattachment as $upkey => $upval)
+                        {
+                            if(isset($filelist[$upkey]))
+                            {
+                                $files[$upkey] = $filelist[$upkey];
+                            }
+                            else if(!empty($upval))
+                            {
+                                $files[$upkey] = $upval;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        $files = $filelist;
+                    }
+                    //print_r($files);exit;
+                    $attachments = implode(',',$files);
+                    //print_r($attachments);exit;
+                }
+                else
+                {
+                    $attachments = implode(',',$upattachment);
+                }
+                
+                if($coipolicy == 'yes' && empty($coicategory))
+                {
+                    $data = array("logged" => false,'message' => "Please select the category.");
+                    $this->response->setJsonContent($data);
+                }
+                else if($coipolicy == 'yes' && empty($catequeid))
+                {
+                    $data = array("logged" => false,'message' => "Please select option.");
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $pdfpath = $this->dompdfgen->getpdf($coipdfhtml,'COI','Declaration','coi');
+                    //print_r($pdfpath);exit;
+                    $getres = $this->coicommon->updatecoi($getuserid,$user_group_id,$coipolicy,$coicategory,$catequeid,$others_des,$attachments,$formsend_status,$pdfpath,$coieditid);
+                    if($getres)
+                    {  
+                        $data = array("logged" => true,'message' => 'Record Updated','pdfpath'=>$pdfpath);
+                        $this->response->setJsonContent($data);
+                    }
+                    else
+                    {
+                        $data = array("logged" => false,'message' => "Record Not Updated..!!",'pdfpath'=>'');
+                        $this->response->setJsonContent($data);
+                    }
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed to this area');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
 }
 

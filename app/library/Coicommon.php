@@ -678,4 +678,31 @@ class Coicommon extends Component
         {   $getlist = ''; }
         return $getlist;
     }
+    
+    public function updatecoi($getuserid,$user_group_id,$coipolicy,$coicategory,$catequeid,$others_des,$attachments,$formsend_status,$pdfpath,$coieditid)
+    {
+        $connection = $this->dbtrd;
+        $time = time();
+        $todaydate = date('d-m-Y');
+        try
+        {
+            $queryup = "UPDATE `coi_declaration` SET `coi_policy`='".$coipolicy."',`catid`='".$coicategory."',`catqueid`='".$catequeid."',`other_description`='".$others_des."',`attachments`='".$attachments."',`coi_pdfpath`='".$pdfpath."',`sent_status`='".$formsend_status."',`sent_date`='".$todaydate."',`date_modified`=NOW() WHERE `id`='".$coieditid."'"; 
+             //echo $queryin; exit;
+            $exegetqry = $connection->query($queryup);
+
+            if($exegetqry)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }                            
+        }
+        catch(Exception $e)
+        {
+            //echo 'in catch';
+            return false;
+        }
+    }
 }

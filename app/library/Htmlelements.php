@@ -2022,7 +2022,7 @@ public function sendmailforpersinfo($subject,$fullname){
           <body style="margin: 0px;padding: 0px;font-family: Arial;width: 100%;max-width:600px;margin: 0 auto;border-top: 5px solid #373F89;background:#fff;">
           <h3>you have recieved a new request from  '.$fullname.'</h3>
 
-          <h4> for approvel of personal information  please login into the software and approve it</h4>
+          <h4> for approval of personal information  please login into the software and approve it</h4>
 
 
           </body>                                                                                        

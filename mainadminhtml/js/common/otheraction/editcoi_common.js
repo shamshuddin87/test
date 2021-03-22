@@ -38,9 +38,6 @@ function fetchEmpDetails()
 
 function inittinymace(otherdes)
 {
-    //console.log(otherdes);
-    //var otherdes = '<p>asd</p>'
-    console.log(otherdes);
     tinymce.init({
         selector: 'textarea.textareforedit',  // change this value according to your HTML
         plugins: ["lists"],
@@ -83,6 +80,7 @@ function fetchSingleCoiData()
             website('#updatecoi input[name=coipolicy][value="'+response.data.coi_policy+'"]').attr('checked', 'checked');
             if(response.data.coi_policy == 'Yes')
             {
+                website('#updatecoi input[name=coipolicy][value="No"]').removeAttr('checked', 'checked');
                 inittinymace(response.data.other_description);
                 website('#updatecoi .divcoipolicy').css('display','block');
                 website('#updatecoi #attachment_section').css('display','block');
@@ -103,9 +101,9 @@ function fetchSingleCoiData()
                         addattachment+='<div class="col-md-12 col-xs-12 " id="row-'+row+'">';
                         addattachment+='<label class="control-label">Upload File</label>';
                         addattachment+='<a href="'+attachmentArray[i]+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a>';
-                        addattachment+='<input type="hidden" name="upattachment" id="upattachment" value="'+attachmentArray[i]+'">';
+                        addattachment+='<input type="hidden" name="upattachment['+i+']" id="upattachment" value="'+attachmentArray[i]+'">';
                         addattachment+='<div class="choose_files">';
-                        addattachment+='<input type="file" name="attachment[]" id="attachment" >';
+                        addattachment+='<input type="file" name="attachment['+i+']" id="attachment" >';
                         addattachment+='</div>';
                         addattachment+='</div>';
                     }
@@ -221,7 +219,8 @@ website('body').on('click','.updatecoi',function(e)
     var coicategory = website('#updatecoi #coicategory').val();
     var cateque = website('#updatecoi input[name="question"]:checked').val();
     var catequeid = website('#updatecoi input[name="question"]:checked').attr('id');
-    //console.log(catequeid)
+    //console.log(coipolicy)
+    //website('input[name=coipolicy][value="'+coipolicy+'"]').attr('checked', 'checked');
     website('#updatecoi .coicategory option[value="'+coicategory+'"]').attr("selected", "selected");
     website('input[name=question][value="'+cateque+'"]').attr('checked', 'checked');
     
@@ -348,13 +347,15 @@ website('body').on('click','.btnaddfile',function()
 {
     var getlastid = website('.appendfile').attr('filecntr');
     //console.log(getlastid); return false;
+    var arrIndex = getlastid;
     getlastid = ++getlastid;
     
     var addhtmlnxt='';
     addhtmlnxt += '<div class="col-md-12 col-xs-12 " id="row-'+getlastid+'">';
     addhtmlnxt += '<label class="control-label">Upload File</label>';
     addhtmlnxt += '<div class="choose_files">';
-    addhtmlnxt += '<input type="file" name="attachment[]" id="attachment" >';
+    addhtmlnxt+='<input type="hidden" name="upattachment['+arrIndex+']" id="upattachment" value="">';
+    addhtmlnxt += '<input type="file" name="attachment['+arrIndex+']" id="attachment" >';
     addhtmlnxt += '</div>';
     addhtmlnxt += '</div>';
     
