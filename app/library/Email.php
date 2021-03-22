@@ -1815,7 +1815,40 @@ Class Email extends Phalcon\Mvc\User\Component {
     }
     /*---- Send Auto Mail to User For Annual Declaration -----*/
     
+    public function sendAckMailtoReq($emailto,$myarry)
+    {
+      
+        $subject = 'Submission of Conflict of Interest Request ('.$myarry['reqno'].')';
+        $gethtml = $this->htmlelements->sendAckMailtoReq($myarry);
+        //echo $gethtml; exit;
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        
+        $mail->addAddress($emailto, 'Volody');
+        $mail->Subject = $subject;
+        $mail->msgHTML($gethtml);
+        //send the message, check for errors
 
+        if ($mail->Send()) {
+            return true;
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            return false;
+        }
+        //echo '<pre>'; print_r($get); exit;
+    }
 
     
 }

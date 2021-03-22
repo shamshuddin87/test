@@ -126,6 +126,7 @@ class CoiController extends ControllerBase
         $getuserid = $this->session->loginauthspuserfront['id'];
         $cin = $this->session->memberdoccin;
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $email = $this->session->loginauthspuserfront['email'];
         if($this->request->isPost() == true)
         {
             if($this->request->isAjax() == true)
@@ -189,8 +190,23 @@ class CoiController extends ControllerBase
                     $pdfpath = $this->dompdfgen->getpdf($coipdfhtml,'COI','Declaration','coi');
                     //print_r($pdfpath);exit;
                     $getres = $this->coicommon->insertcoi($getuserid,$user_group_id,$coipolicy,$coicategory,$catequeid,$others_des,$attachments,$formsend_status,$pdfpath);
-                    if($getres)
+                    
+                    if($getres['status'] === true)
                     {  
+                        $deptdata = $this->coicommon->getDeptaccess($getuserid);
+                        /* Send Mail to Requestor after submit form */
+                        $mailtoReq = $this->coicommon->sendAckMailtoReq($deptdata['deptname'],$email,$getres['coiid']);
+                        /* Send Mail to Requestor after submit form */
+                        
+                        /* Send Mail to HR for Approval */
+                        if($formsendtype == 'yes')
+                        {
+                            
+                            $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
+                            // print_r($hrmgr);die;
+                            $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$hrmgr['mgrname'],$hrmgr['email'],$getres['coiid']);
+                        }
+                        /* Send Mail to HR for Approval */
                         $data = array("logged" => true,'message' => 'Record Added','pdfpath'=>$pdfpath);
                         $this->response->setJsonContent($data);
                     }
@@ -671,8 +687,6 @@ class CoiController extends ControllerBase
                     $formsend_status = 1;
                 }
                 
-               
-                
                 if(!empty($_FILES["attachment"]))
                 {
                     foreach($_FILES['attachment']['tmp_name'] as $key => $val )
@@ -740,7 +754,14 @@ class CoiController extends ControllerBase
                     //print_r($pdfpath);exit;
                     $getres = $this->coicommon->updatecoi($getuserid,$user_group_id,$coipolicy,$coicategory,$catequeid,$others_des,$attachments,$formsend_status,$pdfpath,$coieditid);
                     if($getres)
-                    {  
+                    { 
+                        if($formsendtype == 'yes')
+                        {
+                            $deptdata = $this->coicommon->getDeptaccess($getuserid);
+                            $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
+                            // print_r($hrmgr);die;
+                            $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$hrmgr['mgrname'],$hrmgr['email'],$coieditid);
+                        }
                         $data = array("logged" => true,'message' => 'Record Updated','pdfpath'=>$pdfpath);
                         $this->response->setJsonContent($data);
                     }

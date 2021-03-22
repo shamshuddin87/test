@@ -3460,9 +3460,37 @@ return $html;
 }
     /*---- Send Auto Mail to User For Annual Declaration -----*/
 
+      /* Send Mail to Requestor after submit form */
+     public function sendAckMailtoReq($myarr)
+     {
 
+          // print_r($myarr);exit;
+          $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+          <html xmlns="htth3://www.w3.org/1999/xhtml">
+          <head>
+          <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+          <title></title>
+          </head>
+          <body style="margin: 0px;padding: 0px;font-family: Arial;width: 100%;max-width:600px;margin: 0 auto;border-top: 5px solid #373F89;background:#fff;">
+          <h3>Dear '.$myarr['requestername'].'</h3>
+          <h3>This is to confirm that your Conflict of Interest declaration has been submitted. You may view your request summary below.</h3>
+          <h3>COI Declaration Details</h3>
+          <h3>Request Number:'.$myarr['reqno'].'</h3>
+          <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
+          <h3>Department: '.$myarr['deptname'].'</h3>
+          <h3>Disclosure made by: '.$myarr['requestername'].'</h3>
+          <h3>You will be duly notified of any change in status of approval.</h3>
+          <h3>Please <a href="#">click here</a> for more details.</h3>
+          <h3>This mail is generated automatically. Please do not reply.</h3>
+          </body>
+          </html>';
 
+          // print_r($html);exit;
+      return $html;
+     }
 
+    /* Send Mail to Requestor after submit form */
 
 
 

@@ -10,7 +10,7 @@ class Coicommon extends Component
         $query="SELECT memb.`employeecode`,memb.`fullname`,memb.`designation`,
                 GROUP_CONCAT(DISTINCT dept.`deptname`) AS deptname,memb.`deptaccess` 
                 FROM `it_memberlist` memb 
-                LEFT JOIN `con_dept` dept ON FIND_IN_SET(memb.`deptaccess`,dept.`id`)
+                LEFT JOIN `con_dept` dept ON FIND_IN_SET(dept.`id`,memb.`deptaccess`)
                 WHERE memb.`status`='1' AND memb.`wr_id` = '3'";
         //print_r($query);exit; 
         try
@@ -112,21 +112,23 @@ class Coicommon extends Component
             VALUES   ('".$getuserid."','".$user_group_id."','".$coipolicy."','".$coicategory."','".$catequeid."','".$others_des."','".$attachments."','".$pdfpath."','".$formsend_status."','".$todaydate."',NOW(),NOW(),'".$time."')"; 
              //echo $queryin; exit;
             $exegetqry = $connection->query($queryin);
+            $lastid = $connection->lastInsertId();
 
             if($exegetqry)
             {
-                return true;
+                $result = array('status'=>true,'coiid'=>$lastid);
             }
             else
             {
-                return false;
+                $result = array('status'=>false,'coiid'=>'');
             }                            
         }
         catch(Exception $e)
         {
             //echo 'in catch';
-            return false;
+            $result = array('status'=>false,'coiid'=>'');
         }
+        return $result;
     }
     
     public function fetchCoiAllData($getuserid,$user_group_id,$extqry)
@@ -527,7 +529,7 @@ class Coicommon extends Component
     }
 
 
-  public function checkYORuser($uid)
+    public function checkYORuser($uid)
     {
         $connection = $this->dbtrd;
         $time = time();
@@ -705,4 +707,46 @@ class Coicommon extends Component
             return false;
         }
     }
+    
+    public function sendAckMailtoReq($deptname,$useremail,$reqid)
+    {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    LEFT JOIN `it_memberlist` im ON im.wr_id = cd.user_id
+                    WHERE cd.`id`='".$reqid."'";
+        //print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                    $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+
+                    $getlist['reqno'] = $reqno;  
+                    $getlist['requestername'] = $row['requestername']; 
+                    $getlist['nature_of_conflict']=$row['nature_of_conflict']; 
+                    $getlist['deptname'] = $deptname; 
+                    $myarry=$getlist;
+                    $emailto = $useremail;
+                    $result = $this->emailer->sendAckMailtoReq($emailto,$myarry); 
+                }
+                return $result;
+            }
+            else
+            {
+                return false;
+            }            
+        }
+        catch(Exception $e)
+        {
+           return false;
+        }           
+     }
 }
