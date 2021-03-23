@@ -3492,7 +3492,49 @@ return $html;
 
     /* Send Mail to Requestor after submit form */
 
+    public function sendRemindtoReqstr($username)
+    {
+        $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <html xmlns="htth3://www.w3.org/1999/xhtml">
+            <head>
+            <meta htth3-equiv="Content-Tyh3e" content="text/html; charset=utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+            <title>Phoenix Peth</title>
+            </head>
+            <body style="margin: 0px;padding: 0px;font-family: Arial;width: 100%;max-width:600px;margin: 0 auto;border-top: 5px solid #373F89;background:#fff;">
+            <div class="container" style="width:100%; max-width:600px; margin: 0 auto; border-top: 5px solid #373F89;    box-shadow: 0 0 20px rgba(0,0,0,.3);">
+            <div class="main_container" style="max-width:550px; margin:0 20px;">
+            <div class="header" style="margin-bottom:50px;">
+            <div class="header_img" style="width:300px;float:none;display: block;margin: 0px auto;text-align:center;margin-top: 10px;font-size:31px;color:#fff;font-weight:bold;">
+            <div style="text-shadow: 1px 0px 2px #626262;color: #626262;">Volody</div>
+            </div>
 
+            <div style="clear:both;"></div></div>
+
+            <div class="main">
+            <div class="circlech" style="background: -webkit-linear-gradient(top,rgba(255,255,255,.8) 0,rgba(255,255,255,.6) 20%,rgba(255,255,255,.8));background: linear-gradient(to bottom,rgba(255,255,255,.8) 0,rgba(255,255,255,.6) 20%,rgba(255,255,255,.8));border-radius: 50%;width: 250px;height: 100px;line-height: normal;text-align: center;max-width: 100%;    position: relative;top: 0px;left: 0px;right:0px; z-index: 1;margin:0px auto;">
+            <div style="padding: 0px 0px;"><div  style="font-size: 25px;color: #215c86;">Dear '.$username.',</div>
+            <div style="color: #67b9c7;font-weight: bold;">Your Conflict of Interest Declaration Form is Pending.</div>
+            </div>
+            </div>
+
+            </div>
+            </div>
+            <div class="footer" style="width:100%; max-width:600px; margin: 0 auto; position:relative;padding-bottom: 10px;">
+
+            <div class="mnfootetext" style="position: relative;z-index: 1;margin: 0 20px;margin-top: 50px;background: rgba(255,255,255,1);box-shadow: 0 0 20px rgba(0,0,0,.3);">
+
+            <div style="clear:both;"></div>
+            <div class="footer_text_down" style="text; margin-top: 10px;">
+            <div style="padding: 8px 0px; color:#626262; font-size:12px; text-align:center;">&copy; Volody. All rights reserved </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </body>
+            </html>';
+            return $html;
+    }
 
     
 }

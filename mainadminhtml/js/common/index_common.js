@@ -146,7 +146,14 @@ errorPlacement: function(error, element) {
                     website('.loginleftmn').removeClass('chmnleft');
                     website('.loginrightmn').removeClass('chmnright');
                     website('.progressnew').fadeOut();                    
-                    window.location.href=baseHref+'home';
+                    if(response.coiaccess == 'yes')
+                    {
+                        window.location.href=baseHref+'coi';
+                    }
+                    else
+                    {
+                        window.location.href=baseHref+'home';
+                    }
                     website('.loginnowbtn').removeClass('disabled');
                     website('.progress-indeterminate').fadeOut();
 
