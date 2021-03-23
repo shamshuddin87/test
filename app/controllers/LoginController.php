@@ -92,12 +92,12 @@ class LoginController extends ControllerBase
                     $getdata = $this->logincommon->checkuserlogin($getemail,$pwd);
 
                     $resetlogin = $this->logincommon->updatetlogin($getemail);
-
+                    $coiaccess = $this->session->loginauthspuserfront['coiaccess'];
                     //$getdata = $this->logincommon->checkusermylogin($getemail,$pwd);
                     //echo '<pre>';print_r($getdata);exit;
                     if($getdata['logged']==true)
                     {
-                        $data = array("logged" => true,'message' => 'Login Successfully');
+                        $data = array("logged" => true,'message' => 'Login Successfully','coiaccess'=>$coiaccess);
                         $this->response->setJsonContent($data);
                     }
                     else

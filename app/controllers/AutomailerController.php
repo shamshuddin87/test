@@ -428,6 +428,7 @@ class AutomailerController extends ControllerBase
          $this->automailercommon->sendpendapprovmaileveryday();
          //-------------- End: pending approval mail to hr and dept mgr -------------//
         
+         //$sendRemindtoReqstr = $this->automailercommon->sendRemindtoReqstreveryday();
         /* ------------------------ Start ------------------------ */
         //$sendremindfrprsnlinfo = $this->remindrofprsnlinfo();
         //$sendremindfrhldngstmnt = $this->remindrofhldngstmnt();
