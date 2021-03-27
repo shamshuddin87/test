@@ -180,7 +180,9 @@ reldetail+='<td>'+deptype+'</td>';if(response.reldetail[i]["nationality"]=='Indi
 {reldetail+="<td>"+response.reldetail[i]["pan"]+"</td>";reldetail+="<td></td>";reldetail+="<td></td>";}
 else if(response.reldetail[i]["nationality"]=='Other')
 {reldetail+="<td></td>";reldetail+="<td>"+response.reldetail[i]["pan"]+"</td>";reldetail+="<td>"+response.reldetail[i]["legal_identifier"]+"</td>";}
-reldetail+='<td>'+response.reldetail[i]['aadhar']+'</td>';reldetail+='<td>'+response.reldetail[i]['dob']+'</td>';reldetail+='<td>'+response.reldetail[i]['address']+'</td>';reldetail+='<td>'+response.reldetail[i]['education']+'</td>';reldetail+='<td>'+response.reldetail[i]['education']+'</td>';reldetail+='<td>'+response.reldetail[i]['sharehldng']+'</td>';reldetail+='<td>'+response.reldetail[i]['adrshldng']+'</td>';reldetail+='</tr>';}}}
+else
+{reldetail+="<td></td>";reldetail+="<td></td>";reldetail+="<td></td>";}
+reldetail+='<td>'+response.reldetail[i]['aadhar']+'</td>';reldetail+='<td>'+response.reldetail[i]['dob']+'</td>';reldetail+='<td>'+response.reldetail[i]['address']+'</td>';reldetail+='<td>'+response.reldetail[i]['education']+'</td>';reldetail+='<td>'+response.reldetail[i]['institute']+'</td>';reldetail+='<td>'+response.reldetail[i]['sharehldng']+'</td>';reldetail+='<td>'+response.reldetail[i]['adrshldng']+'</td>';reldetail+='</tr>';}}}
 else
 {reldetail='<tr><td colspan ="14">No Data Found..</td></tr>';}
 if(response.relDematdetail.length>0)

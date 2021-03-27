@@ -48,12 +48,14 @@ $condeptsess = $this->session->contractdepartment;
             <input type="text" class="bootdatepick form-control" id="date1"  placeholder="Start Date"  readonly="readonly"/>
             <input type="text" class="bootdatepick form-control" id="date2" placeholder="End Date" readonly="readonly"/>
             <input type="button" id="dtrange" class="btn btn-primary form-control" Value="Search" style="margin: 0 5px;"/>
+
+          <a class="floatright exportcss dwnldExcel btn btn-primary" href="" style="display: none;" download>Download</a>
+          <button type="button" class="floatright btn btn-primary genfile pdf_bg" request="pdf">Export PDF</button>
+          <button type="button" class="floatright btn btn-primary genfile excel_bg" request="excel">Export Excel</button>
         </div>
         
         <div class="">
-          <a class="exportcss dwnldExcel" href="" style="display: none;" download>Download</a>
-          <button type="button" class="btn btn-primary genfile pdf_bg" request="pdf">Export PDF</button>
-          <button type="button" class="btn btn-primary genfile excel_bg" request="excel">Export Excel</button>
+          
         </div>
     </div>
     
