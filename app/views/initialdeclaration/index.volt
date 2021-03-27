@@ -37,8 +37,8 @@ $condeptsess = $this->session->contractdepartment;
 
 
 
-<div id="Mymodaldeclara" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+<div id="Mymodaldeclara" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" style="width:950px;">
 
     <div class="modal-content" style="width:950px;">
       <div class="modal-header">
