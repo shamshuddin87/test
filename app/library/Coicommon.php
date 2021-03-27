@@ -22,7 +22,8 @@ class Coicommon extends Component
                 while($row = $exeget->fetch())
                 { 
                     $deptaccess = $row['deptaccess'];
-                    $querymgrtyp="SELECT * FROM `it_memberlist` WHERE deptaccess = '".$deptaccess."' AND (managertype = 'hr' OR managertype = 'dept')";
+                    $querymgrtyp="SELECT * FROM `it_memberlist` WHERE `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$deptaccess."', ',', '|'), ')(,|$)') AND (managertype = 'hr' OR managertype = 'dept')";
+                    //echo $querymgrtyp;exit;
                     $exegetmgrtyp = $connection->query($querymgrtyp);
                     $getnummgrtyp = trim($exegetmgrtyp->numRows());
                     if($getnummgrtyp>0)
@@ -108,8 +109,16 @@ class Coicommon extends Component
         $todaydate = date('d-m-Y');
         try
         {
-            $queryin = "INSERT INTO `coi_declaration` (`user_id`, `user_group_id`,`coi_policy`,`catid`,`catqueid`,`other_description`,`attachments`,`coi_pdfpath`,`sent_status`,`sent_date`,`date_added`,`date_modified`,`timeago`) 
-            VALUES   ('".$getuserid."','".$user_group_id."','".$coipolicy."','".$coicategory."','".$catequeid."','".$others_des."','".$attachments."','".$pdfpath."','".$formsend_status."','".$todaydate."',NOW(),NOW(),'".$time."')"; 
+            if($formsend_status == '0')
+            {
+                $hrmsts = 'To Be Send';
+            }
+            else if($formsend_status == '1')
+            {
+                $hrmsts = 'Pending Approval';
+            }
+            $queryin = "INSERT INTO `coi_declaration` (`user_id`, `user_group_id`,`coi_policy`,`catid`,`catqueid`,`other_description`,`attachments`,`coi_pdfpath`,`sent_status`,`sent_date`,`hrM_processed_status`,`deptM_processed_status`,`date_added`,`date_modified`,`timeago`) 
+            VALUES   ('".$getuserid."','".$user_group_id."','".$coipolicy."','".$coicategory."','".$catequeid."','".$others_des."','".$attachments."','".$pdfpath."','".$formsend_status."','".$todaydate."','".$hrmsts."','To Be Send',NOW(),NOW(),'".$time."')"; 
              //echo $queryin; exit;
             $exegetqry = $connection->query($queryin);
             $lastid = $connection->lastInsertId();
@@ -396,7 +405,7 @@ class Coicommon extends Component
         return $getlist;
     }
 
-    public function fetchCoiMgrData($getuserid,$user_group_id)
+    public function fetchCoiMgrData($getuserid,$user_group_id,$managertype,$extquery)
     {
         $connection = $this->dbtrd;
         $getlist = array();
@@ -405,11 +414,20 @@ class Coicommon extends Component
         $deptusers = $this->getDeptUsers($deptInfo['deptid']);
         $deptUserList = implode(",", $deptusers);
         // print_r($deptUserList);die;
-        $query="SELECT im.`employeecode` as reqempid,im.`fullname` as reqname,GROUP_CONCAT(DISTINCT dept.`deptname`) as reqdeptname,cd.`date_added` as reqdate,cd.`hrM_processed_status` as hrMstatus,cd.`deptM_processed_status` as deptMstatus,cd.`id` as reqid FROM `coi_declaration` cd
+        if($managertype == 'hr')
+        {
+            $extquery = " AND cd.`hrM_processed_status` != 'To Be Send' ".$extquery;
+        }
+        if($managertype == 'dept')
+        {
+             $extquery = " AND cd.`hrM_processed_status` = 'Approved' ".$extquery;
+        }
+        $query="SELECT im.`employeecode` as reqempid,im.`fullname` as reqname,GROUP_CONCAT(DISTINCT dept.`deptname`) as reqdeptname,cd.`date_added` as reqdate,cd.`hrM_processed_status` as hrMstatus,cd.`deptM_processed_status` as deptMstatus,cd.`id` as reqid,cd.`coi_pdfpath` 
+                FROM `coi_declaration` cd
                 LEFT JOIN `it_memberlist` im ON im.`wr_id`=cd.`user_id`
                 LEFT JOIN `con_dept` dept ON FIND_IN_SET(dept.`id`,im.`deptaccess`)
-                WHERE cd.`user_id` IN (".$deptUserList.") AND cd.`hrM_processed_status` != 'to_be_send' GROUP BY cd.`id` ORDER BY cd.`id` DESC";
-        // print_r($query);exit; 
+                WHERE cd.`user_id` IN (".$deptUserList.") ".$extquery;
+        //print_r($query);exit; 
         try
         {
             $exeget = $connection->query($query);
@@ -428,6 +446,57 @@ class Coicommon extends Component
         {   $getlist = array(); }
         //print_r($getlist);exit;
         return $getlist;
+    }
+    
+    public function fetchCoiMgrHtml($data,$managertype)
+    {
+        //print_r($data);exit;
+        $myhtml='';
+        for($i=0;$i<sizeof($data);$i++)
+        {
+            // print_r($data[$i]);exit;
+            $j=$i+1;
+            $myhtml.="<tr>";
+            $myhtml.="<td>".$j."</td>";
+            $myhtml.="<td>".$data[$i]['reqempid']."</td>";
+            $myhtml.="<td>".$data[$i]['reqname']."</td>";
+            $myhtml.="<td>".$data[$i]['reqdeptname']."</td>";
+            $myhtml.="<td>".$data[$i]['reqdate']."</td>";
+            if($managertype == 'hr')
+            {
+                $myhtml.="<td>".$data[$i]['hrMstatus']."</td>";
+            }
+            else if($managertype == 'dept')
+            {
+                $myhtml.="<td>".$data[$i]['deptMstatus']."</td>";
+            }
+            $myhtml.="</tr>";
+         }
+
+       // print_r($myhtml);exit;
+
+      $html="<!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+      </head>
+      <body>
+         <h5 style='text-align:center;'>Database of UPSI Shared</h5>
+         <table>
+            <tr>
+               <th>Sr No</th>
+               <th>Requester ID</th>
+               <th>Requester Name</th>
+               <th>Requestor Dept</th>
+               <th>Request Date</th>
+               <th>Status</th>
+            </tr>
+         ".$myhtml."
+         </table>
+        </body>
+      </html>";
+   
+       return $html;
     }
 
     public function insertCOIAuditTrail($req_id,$action,$recommendation)
@@ -749,4 +818,290 @@ class Coicommon extends Component
            return false;
         }           
      }
+    
+    public function requestapprmailtoccoandcs($reqid,$recipientname,$deptname,$emailid)
+    {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    LEFT JOIN `it_memberlist` im ON im.wr_id = cd.user_id
+                    WHERE cd.`id`='".$reqid."'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+                        $getlist['reqno'] = $reqno; 
+                        $getlist['recipientname'] = $recipientname;  
+                        $getlist['requestername'] = $row['requestername']; 
+                        $getlist['nature_of_conflict']=$row['nature_of_conflict']; 
+                        $getlist['deptname'] = $deptname;
+                        $myarry=$getlist;
+
+                        $result = $this->emailer->requestapprmailtoccoandcs($myarry,$emailid);
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }
+
+
+     public function rejectmailtoccoandcs($reqid,$recipientname,$deptname,$emailid)
+     {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    LEFT JOIN `it_memberlist` im ON im.wr_id = cd.user_id
+                    WHERE cd.`id`='".$reqid."'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+                        $getlist['reqno'] = $reqno; 
+                        $getlist['recipientname'] = $recipientname;  
+                        $getlist['requestername'] = $row['requestername']; 
+                        $getlist['nature_of_conflict']=$row['nature_of_conflict']; 
+                        $getlist['deptname'] = $deptname;
+                        $myarry=$getlist;
+
+                        $result = $this->emailer->rejectmailtoccoandcs($myarry,$emailid);
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }
+
+
+     public function getRequestorData($uid)
+     {
+        $connection = $this->dbtrd;
+        $time = time();
+        
+        $getlist = array();
+        try
+        {
+            $sqlqry = "SELECT im.`deptaccess`,GROUP_CONCAT(DISTINCT cd.`deptname`) as deptname,im.`email`,im.`fullname` FROM `it_memberlist` im
+                LEFT JOIN `con_dept` cd ON FIND_IN_SET(cd.`id`,im.`deptaccess`)
+                WHERE im.`wr_id`='".$uid."'";         
+            //print_r($sqlqry); exit;            
+            $exeqry = $connection->query($sqlqry);
+            $getnum = trim($exeqry->numRows());
+            //echo '<pre>'; print_r($getnum); exit;            
+            if($getnum>0)
+            {
+                while($row = $exeqry->fetch())
+                {
+                    $getlist['deptid'] = $row['deptaccess']; 
+                    $getlist['deptname'] = $row['deptname'];
+                    $getlist['email'] = $row['email'];
+                    $getlist['fullname'] = $row['fullname'];
+                }
+                //echo '<pre>'; print_r($getlist); exit;
+            }
+            else
+            {
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+        }
+        //echo '<pre>'; print_r($getlist); exit;
+        
+        return $getlist;
+     }
+
+     public function returnMailToRequestor($reqid,$recipientname,$deptname,$emailid,$recommendation)
+     {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict
+                    FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    WHERE cd.`id`='".$reqid."'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+                        $getlist['reqno'] = $reqno; 
+                        $getlist['recipientname'] = $recipientname;   
+                        $getlist['nature_of_conflict']=$row['nature_of_conflict']; 
+                        $getlist['reason_for_return']=$recommendation; 
+                        $getlist['deptname'] = $deptname;
+                        $myarry=$getlist;
+
+                        $result = $this->emailer->returnMailToRequestor($myarry,$emailid);
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }
+
+
+     public function approvalMailToRequestor($reqid,$recipientname,$deptname,$emailid)
+     {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict
+                    FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    WHERE cd.`id`='".$reqid."'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+                        $getlist['reqno'] = $reqno; 
+                        $getlist['recipientname'] = $recipientname;   
+                        $getlist['nature_of_conflict']=$row['nature_of_conflict'];
+                        $getlist['deptname'] = $deptname;
+                        $myarry=$getlist;
+
+                        $result = $this->emailer->approvalMailToRequestor($myarry,$emailid);
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }
+
+     public function rejectMailToRequestor($reqid,$recipientname,$deptname,$emailid)
+     {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict
+                    FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    WHERE cd.`id`='".$reqid."'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+                        $getlist['reqno'] = $reqno; 
+                        $getlist['recipientname'] = $recipientname;   
+                        $getlist['nature_of_conflict']=$row['nature_of_conflict'];
+                        $getlist['deptname'] = $deptname;
+                        $myarry=$getlist;
+
+                        $result = $this->emailer->rejectMailToRequestor($myarry,$emailid);
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }
+    
+    public function deleteCoiData($coi_id)
+    {
+        $connection = $this->dbtrd;
+        
+        $querydelete1 = "DELETE FROM `coi_declaration` WHERE id =  '".$coi_id."' " ;
+        $querydelete2 = "DELETE FROM `coi_audit_trail` WHERE req_id =  '".$coi_id."' " ;
+        
+        $exeget1 = $connection->query($querydelete1);
+        $exeget2 = $connection->query($querydelete2);
+
+        if($exeget1 && $exeget2)
+        {
+           return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

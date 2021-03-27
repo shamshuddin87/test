@@ -314,19 +314,15 @@ class Automailercommon extends Component
 
 
     public function sendpendapprovmaileveryday()
-     {
+    {
         $connection = $this->dbtrd;
 
-        $sqlquery = "SELECT * FROM `coi_declaration` cd
-      -- LEFT JOIN type_of_transaction ts ON `ts`.id=`pr`.type_of_transaction
-      -- LEFT JOIN listedcmpmodule cmpdl ON `cmpdl`.id = `pr`.id_of_company 
-      -- LEFT JOIN relative_info relative ON `relative`.id = `pr`.relative_id 
-      -- LEFT JOIN request_type rt ON `rt`.id = `pr`.type_of_request 
-      -- LEFT JOIN `req_securitytype` sec ON `sec`.id = `pr`.sectype
-      LEFT JOIN `it_memberlist` memb ON memb.`wr_id` =  cd.`user_id`
-      -- LEFT JOIN `con_dept` dpt ON memb.`deptaccess` = dpt.`id`
-      WHERE cd.`sent_status`='1' AND cd.`hrM_processed_status`='pending_approval'";
-      // print_r($sqlquery);exit;
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername,GROUP_CONCAT(DISTINCT dept.`deptname`) as deptname FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    LEFT JOIN `it_memberlist` im ON im.wr_id = cd.user_id
+                    LEFT JOIN `con_dept` dept ON FIND_IN_SET(dept.`id`,im.`deptaccess`)
+                    WHERE cd.`sent_status`='1' AND cd.`hrM_processed_status`='Pending Approval'";
+            //print_r($sqlquery);exit;
          
         try
         {
@@ -337,20 +333,19 @@ class Automailercommon extends Component
             {
                 while($row = $exeget->fetch())
                 {
-                        // $getlist['mycompany'] = $row['mycompany']; 
-                        // $getlist['name_of_requester'] = $row['name_of_requester'];  
-                        // $getlist['email'] = $row['email']; 
-                        // $getlist['no_of_shares']=$row['no_of_shares']; 
-                        // $getlist['approved_date']=$row['approved_date'];
-                        // $getlist['trading_date']=$row['trading_date'];
-                        // $getlist['request_type']=$row['request_type'];
-                        $myarry[]=$getlist;
+                        $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+                        $getlist['reqno'] = $reqno;   
+                        $getlist['requestername'] = $row['requestername']; 
+                        $getlist['nature_of_conflict']=$row['nature_of_conflict']; 
+                        $getlist['deptname'] = $row['deptname'];
+                        $getlist['disclosure_made_by'] = $row['requestername']; 
+                        $myarry=$getlist;
 
-                        $hrdeptmgrs = $this->getHrDeptMgrs($row['deptaccess'],$row['cmpaccess'],"");
+                        $hrdeptmgrs = $this->coicommon->getHrDeptMgrs($row['deptaccess'],$row['cmpaccess'],"");
 
                         foreach($hrdeptmgrs as $hrdeptmgr)
                         { 
-                            $result = $this->emailer->sendpendapprovmaileveryday($hrdeptmgr['email'],$getlist);
+                            $result = $this->emailer->sendpendapprovmaileveryday($hrdeptmgr['email'],$hrdeptmgr['mgrname'],$myarry);
                         }
                 }
             }
@@ -367,11 +362,7 @@ class Automailercommon extends Component
         // print_r("result aprover");
         // print_r($result);exit;   
           
-     }
-
-
-     
-
+    }
 
    public function sendmailtousers()
    {

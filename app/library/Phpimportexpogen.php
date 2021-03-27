@@ -1211,5 +1211,81 @@ Class Phpimportexpogen extends Phalcon\Mvc\User\Component {
     }
 /* --------------- End Add info sharing via excel --------------- */
     
+    public function fetchCoiMgrExportExcel($getuserid,$user_group_id,$processdata,$managertype)
+    {
+
+        //echo '<pre>'; print_r($processdata);exit;
+        $connection = $this->db;
+        $time = time();
+        
+        $excelfilenamepath = 'samplefile/Coi/coi_excel.xlsx';
+        $newfilepath = 'img/coi/coi_exports/coi_declaration'.'_'.$time.'.xlsx';
+        $j=1;
+        
+        foreach($processdata as $tblrow)
+        {
+            if($managertype == 'hr')
+            {
+                $coistatus = $tblrow['hrMstatus'];
+            }
+            else if($managertype == 'dept')
+            {
+                $coistatus = $tblrow['deptMstatus'];
+            }
+           $nwexcl[] = array('0' => $j,
+                            '1' => $tblrow['reqempid'],
+                            '2'=> $tblrow['reqname'],
+                            '3' => $tblrow['reqdeptname'],
+                            '4' => $tblrow['reqdate'],
+                            '5' => $coistatus
+                            );
+            $j++;
+         }
+
+        
+       
+        $objPHPExcel = PHPExcel_IOFactory::load($excelfilenamepath);
+        
+        $objPHPExcel->setActiveSheetIndex(0);
+        $worksheet = $objPHPExcel->getActiveSheet();
+        $highestColumn = $worksheet->getHighestColumn();
+        $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
+        $highestRow = $worksheet->getHighestRow();
+        $worksheet = $objPHPExcel->getActiveSheet();
+               //echo "yo";exit;  
+            //echo '<pre>';print_r($nwexcl);exit;
+            if(count($nwexcl)>0)
+            {
+                $row = 2; // 1-based index
+
+                foreach($nwexcl as $rowdata)
+                {
+                    $col = 0;
+                    foreach($rowdata as $key=>$value) 
+                    {
+                        //echo $col." ".$row." ".$value.'<br>';
+                        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+                        $col++;
+                    }                    
+                    $row++;
+                }
+
+                $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+                //echo '<pre>';print_r($newfilepath);exit;
+                $objWriter->save($newfilepath);
+                //echo $newfilepath;exit;
+
+                $genfile = $newfilepath;
+            }
+            else
+            {
+                $genfile = '';
+            }
+
+        //echo '<pre>';print_r($genfile);exit;
+        return $genfile;
+
+    }
+    
 
 }

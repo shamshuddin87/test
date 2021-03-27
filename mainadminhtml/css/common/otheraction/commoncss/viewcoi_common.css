@@ -293,3 +293,30 @@ a.compnamedata_btn {
 {
     text-align: left;
 }
+
+.cssfilter {
+    float: right;
+}
+
+.top_margin {
+    float: right;
+    margin: 4px 5px;
+}
+.panel-primary {
+    border: 1px solid #ddd;
+}
+
+.exportcss {
+    background: #1a82c3;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'robotoregular';
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+.csspointernone
+{
+    pointer-events: none;
+}

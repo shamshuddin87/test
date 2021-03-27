@@ -1,13 +1,88 @@
 website(document).ready(function () {
+        website('.bootdatepick').datetimepicker({
+        weekStart: 1,
+        todayBtn:  0,
+        autoclose: 1,
+        todayHighlight: 0,
+        startView: 2,
+        minView: 2,
+        forceParse: 0,
+        format: "dd-mm-yyyy"
+
+    }).on('change', function(e, date)
+    {
+        var getdate = website(this).val();
+        // console.log(getdate);
+        var getid = website(this).closest('form').attr('id');
+    });
   fetchCoiMgrData();
 });
 
 
+/* ---------------- Start Pagination ---------------- */
+website('body').on('click','.paginationmn li', function(e) 
+{
+    var rscrntpg = website(this).attr('p');
+    //alert(rscrntpg);
+    website('.panel.panel-white #pagenum').val(rscrntpg);
+    // var noofrows = website('#noofrows').val(); 
+
+    fetchCoiMgrData();
+});
+
+website('body').on('change','#noofrows', function(e) 
+{
+    fetchCoiMgrData();
+});
+
+website('body').on('click','.go_button', function(e) 
+{
+    var rscrntpg = website('.gotobtn').val();
+    // alert(rscrntpg);
+    website('.panel.panel-white #pagenum').val(rscrntpg);
+    fetchCoiMgrData();
+});
+/* ---------------- End Pagination ---------------- */
+
+/* ---------------- Start Filter ---------------- */
+website('body').on('change','#filterstatus', function(e) 
+{     
+    fetchCoiMgrData();
+});
+/* ---------------- End Filter ---------------- */
+
+/* ---------------- Start Search  ---------------- */
+website("#srch").on("keyup", function() {
+    var pagenum = website('#pagenum').val();
+    website('#srch').attr('status','0');
+    if(pagenum!=1)
+    {
+        website('#pagenum').val(1);
+    }
+    fetchCoiMgrData();
+});
+/* ---------------- End Search ---------------- */
+
+/* ---------------- Start search date range ---------------- */
+website('body').on('click','#dtrange', function(e) 
+{
+   fetchCoiMgrData();
+});
+/* ---------------- End search date range ---------------- */
+
 function fetchCoiMgrData()
 {
+    var noofrows = website('#noofrows').val(); 
+    var pagenum = website('#pagenum').val();
+    var filterstatus = website('#filterstatus').val();
+    var srchbyusr = website('#srch').val();
+    var startdate= website('#date1').val();
+    var enddate= website('#date2').val();
+    
+    var formdata = {noofrows:noofrows,pagenum:pagenum,filterstatus:filterstatus,srchbyusr:srchbyusr,startdate:startdate,enddate:enddate}
     website.ajax({
     url: "coi/fetchCoiMgrData",
-    //data:formdata,
+    data:formdata,
     method: "POST",
     //contentType:'json',
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -36,18 +111,30 @@ function fetchCoiMgrData()
                 if(response.managertype == "hr")
                 {
                   addhtmlnxt += '<td width="10%">'+response.data[i]['hrMstatus']+'</td>';
+                  var status = response.data[i]['hrMstatus'];
                 }
                 else if(response.managertype == "dept")
                 {
                   addhtmlnxt += '<td width="10%">'+response.data[i]['deptMstatus']+'</td>';
+                  var status = response.data[i]['deptMstatus'];
                 }
                 
                 addhtmlnxt += '<td width="10%" style="text-align:center">';
-                addhtmlnxt += '<i class="fa fa-check" id="approve" reqid="'+response.data[i]["reqid"]+'" title="Approve"></i>';
-                addhtmlnxt += '&nbsp;&nbsp;&nbsp;<i class="fa fa-times" id="reject" reqid="'+response.data[i]["reqid"]+'" title="Reject"></i>';
-                addhtmlnxt += '&nbsp;&nbsp;&nbsp;<i class="fa fa-exchange" id="return" reqid="'+response.data[i]["reqid"]+'" title="Return"></i>';
+                if(status == 'Returned' || status == 'Rejected' || status == 'Approved')
+                {
+                    var cssvar = 'csspointernone';
+                }
+                else
+                {
+                    var cssvar = '';
+                }
+                addhtmlnxt += '<i class="fa fa-check '+cssvar+'" id="approve" reqid="'+response.data[i]["reqid"]+'" title="Approve"></i>';
+                addhtmlnxt += '&nbsp;&nbsp;&nbsp;<i class="fa fa-times '+cssvar+'" id="reject" reqid="'+response.data[i]["reqid"]+'" title="Reject"></i>';
+                addhtmlnxt += '&nbsp;&nbsp;&nbsp;<i class="fa fa-exchange '+cssvar+'" id="return" reqid="'+response.data[i]["reqid"]+'" title="Return"></i>';
                 addhtmlnxt += '</td>';
+                
                 addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-list-ul faicon" id="audit_trail" reqid="'+response.data[i]["reqid"]+'" title="Audit Trail"></i></td>';
+                
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
                 if(response.data[i]["coi_pdfpath"])
                 {
@@ -62,11 +149,65 @@ function fetchCoiMgrData()
             addhtmlnxt += '<tr class="counter"><td>Data Not Found</td></tr>';
         }
         website('.approvaldata').html(addhtmlnxt);
+        website('.paginationmn').html(response.pgnhtml);
     },
     complete: function (response) {},
     error: function (jqXHR, textStatus, errorThrown) {},
   });
 }
+
+website('.genfile').on('click', function(e) {
+    var exporttype = website(this).attr('request');
+    var filterstatus = website('#filterstatus').val();
+    var srchbyusr = website('#srch').val();
+    var startdate= website('#date1').val();
+    var enddate= website('#date2').val();
+    
+    var formdata = {exporttype:exporttype,filterstatus:filterstatus,srchbyusr:srchbyusr,startdate:startdate,enddate:enddate}
+    website.ajax({
+    url: "coi/exportCoiMgrData",
+    data:formdata,
+    method: "POST",
+    //contentType:'json',
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    //default: 'application/x-www-form-urlencoded; charset=UTF-8' ,'multipart/form-data' , 'text/plain'
+    dataType: "json",
+    cache: false,
+    //async:true, /*Cross domain checking*/
+    beforeSend: function () { website(".preloder_wraper").fadeIn(); },
+    uploadProgress: function (event, position, total, percentComplete) { website(".preloder_wraper").fadeIn(); },
+    success: function (response, textStatus, jqXHR) 
+    {
+        if(response.logged==true)
+        {
+            website('.dwnldExcel').fadeIn();
+            website('.dwnldExcel').attr('href',response.genfile);
+            new PNotify({title: 'Alert',
+               text: response.message,
+               type: 'university',
+               hide: true,
+               styling: 'bootstrap3',
+               addclass: 'dark ',
+             }); 
+        }
+        else
+        {
+            new PNotify({title: 'Alert',
+               text: response.message,
+               type: 'university',
+               hide: true,
+               styling: 'bootstrap3',
+               addclass: 'dark ',
+             }); 
+        }
+
+    },
+    complete: function(response) 
+    {  website('.preloder_wraper').fadeOut();  },
+    error:function(response)
+    { website('.preloder_wraper').fadeOut();  }
+});
+});
 
 website('body').on('click','#approve', function(e) 
 {
@@ -176,7 +317,7 @@ website('body').on('click','#reject', function(e)
 website('body').on('click','#rejectConfirm', function(e) 
 {
     var reqid = website(this).attr("reqid");
-    var recommendation = website("#recommendation").val();
+    var recommendation = website("#rejectModal #recommendation").val();
     var formdata = { reqid : reqid , recommendation:recommendation};
     website.ajax({
     url: "coi/rejectRequest",
@@ -211,8 +352,8 @@ website('body').on('click','#rejectConfirm', function(e)
                     });     
         }
     },
-    complete: function (response) {website('.preloder_wraper').fadeIn();},
-    error: function (jqXHR, textStatus, errorThrown) {},
+    complete: function (response) {website('.preloder_wraper').fadeOut();},
+    error: function (jqXHR, textStatus, errorThrown) {website('.preloder_wraper').fadeOut();},
   });
 });
 
@@ -227,7 +368,7 @@ website('body').on('click','#return', function(e)
 website('body').on('click','#returnConfirm', function(e) 
 {
     var reqid = website(this).attr("reqid");
-    var recommendation = website("#recommendation").val();
+    var recommendation = website("#returnModal #recommendation").val();
     var formdata = { reqid : reqid , recommendation:recommendation};
     website.ajax({
     url: "coi/returnRequest",
@@ -262,7 +403,7 @@ website('body').on('click','#returnConfirm', function(e)
                     });     
         }
     },
-    complete: function (response) {website('.preloder_wraper').fadeIn();},
-    error: function (jqXHR, textStatus, errorThrown) {},
+    complete: function (response) {website('.preloder_wraper').fadeOut();},
+    error: function (jqXHR, textStatus, errorThrown) {website('.preloder_wraper').fadeOut();},
   });
 });

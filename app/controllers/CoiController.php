@@ -205,6 +205,25 @@ class CoiController extends ControllerBase
                             $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
                             // print_r($hrmgr);die;
                             $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$hrmgr['mgrname'],$hrmgr['email'],$getres['coiid']);
+                            if($mailsentstatus)
+                            {
+                                 //-------------- Start: On request for approval: CCO and CS email intimation -------------//
+                                $YORuser = $this->coicommon->checkYORuser($getuserid);
+                                $recipientnames = array("CCO","CS");
+                                $recipientemailids = array("cco@volody.com","cs@volody.com");
+                                if($YORuser)
+                                {
+                                    for ($i=0; $i < count($recipientnames); $i++) 
+                                    { 
+                                        $this->coicommon->requestapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
+                                    } 
+                                }
+                         
+                                //-------------- End: On request for approval: CCO and CS email intimation -------------//
+                            
+                                //$this->coicommon->updateCOIRequest($reqid,"sent");
+                                $this->coicommon->insertCOIAuditTrail($getres['coiid'],"sent","");
+                            }
                         }
                         /* Send Mail to HR for Approval */
                         $data = array("logged" => true,'message' => 'Record Added','pdfpath'=>$pdfpath);
@@ -318,7 +337,7 @@ class CoiController extends ControllerBase
                 if($mailsentstatus)
                 {
 
-                    //-------------- Start: CCO and CS email intimation -------------//
+                    //-------------- Start: On request for approval: CCO and CS email intimation -------------//
                          $YORuser = $this->coicommon->checkYORuser($uid);
                          $recipientnames = array("CCO","CS");
                          $recipientemailids = array("cco@volody.com","cs@volody.com");
@@ -326,11 +345,11 @@ class CoiController extends ControllerBase
                             {
                              for ($i=0; $i < count($recipientnames); $i++) 
                                 { 
-                                    $this->coicommon->sendapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i],$approvalName);
+                                    $this->coicommon->requestapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
                                 } 
                             }
                          
-                    //-------------- End: CCO and CS email intimation -------------//
+                    //-------------- End: On request for approval: CCO and CS email intimation -------------//
                             
                     $this->coicommon->updateCOIRequest($reqid,"sent");
                     $this->coicommon->insertCOIAuditTrail($reqid,"sent","");
@@ -372,16 +391,68 @@ class CoiController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
-                $coiData = $this->coicommon->fetchCoiMgrData($getuserid,$user_group_id);
+                //print_r($this->request->getPost());exit;
+                // ------- Pagination Start -------
+                $noofrows = $this->request->getPost('noofrows','trim');
+                $pagenum = $this->request->getPost('pagenum','trim');
+                $filterstatus = $this->request->getPost('filterstatus','trim');
+                $startdate = $this->request->getPost('startdate','trim');
+                $enddate = $this->request->getPost('enddate','trim');
+                $srchbyusr = $this->request->getPost('srchbyusr','trim');
+                //echo $pagenum.'*'.$noofrows; exit;
+                $rsstrt = ($pagenum-1) * $noofrows;
+                //echo $rsstrt; exit;
+                // ------- Pagination End -------
+
+                $rslmt = ' LIMIT '.$rsstrt.','.$noofrows;
+                //echo '<pre>'; print_r($rslmt); exit;
+                $orderby = ' GROUP BY cd.`id` ORDER BY cd.`id` DESC ';
+                //echo $query; exit;
+
+                $mainqry = '';
+                if(!empty($filterstatus))
+                {
+                    if($managertype == 'hr')
+                    {
+                        $mainqry.= " AND `hrM_processed_status` = '".$filterstatus."'";
+                    }
+                    else if($managertype == 'dept')
+                    {
+                        $mainqry.= " AND `deptM_processed_status` = '".$filterstatus."'";
+                    }
+                }
+                if(!empty($startdate) && !empty($enddate))
+                {
+                    $startdate = date('Y-m-d', strtotime($startdate));
+                    $enddate = date('Y-m-d', strtotime($enddate));
+                    $mainqry.= " AND STR_TO_DATE(cd.`date_added`,'%Y-%m-%d') BETWEEN STR_TO_DATE('".$startdate."','%Y-%m-%d') AND STR_TO_DATE('".$enddate."','%Y-%m-%d')";
+                }
+                if(!empty($srchbyusr))
+                {
+                    $mainqry.= " AND im.`employeecode` LIKE '%".$srchbyusr."%' OR im.`fullname` LIKE '%".$srchbyusr."%' ";
+                }
+                $fnlqry = $mainqry.$orderby.$rslmt;
+                // echo $fnlqry; exit;
+                
+                $coiData = $this->coicommon->fetchCoiMgrData($getuserid,$user_group_id,$managertype,$fnlqry);
+                $allrows = $this->coicommon->fetchCoiMgrData($getuserid,$user_group_id,$managertype,$mainqry);
                 // print_r($coiData);exit;
+                
+                // ------- Pagination Start -------
+                    $rscnt = count($allrows);
+                    $rspgs = ceil($rscnt/$noofrows);
+                    $pgndata = $this->elements->paginatndata($pagenum,$rspgs);
+                    $pgnhtml = $this->elements->paginationhtml($pagenum,$pgndata['start_loop'],$pgndata['end_loop'],$rspgs);
+                    //echo '<pre>';print_r($pgnhtml);exit;
+                // ------- Pagination End -------
                 if(!empty($coiData))
                 {
-                    $data  = array('logged' => true, 'data' => $coiData,'managertype'=>$managertype); 
+                    $data  = array('logged' => true, 'data' => $coiData,'managertype'=>$managertype,"pgnhtml"=>$pgnhtml); 
                     $this->response->setJsonContent($data);
                 }
                 else
                 {
-                    $data  = array('logged' => false, 'data' => ''); 
+                    $data  = array('logged' => false, 'data' => '',"pgnhtml"=>$pgnhtml); 
                     $this->response->setJsonContent($data);
                 }
                 $this->response->send();
@@ -399,6 +470,92 @@ class CoiController extends ControllerBase
         }
     }
 
+    public function exportCoiMgrDataAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $cin = $this->session->memberdoccin;
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $managertype = $this->session->loginauthspuserfront['managertype'];
+        //echo $getuserid.'*'.$cin;exit;
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $filterstatus = $this->request->getPost('filterstatus','trim');
+                $startdate = $this->request->getPost('startdate','trim');
+                $enddate = $this->request->getPost('enddate','trim');
+                $srchbyusr = $this->request->getPost('srchbyusr','trim');
+                $exporttype = $this->request->getPost('exporttype','trim');
+                $orderby = ' GROUP BY cd.`id` ORDER BY cd.`id` DESC ';
+                //echo $query; exit;
+
+                $mainqry = '';
+                if(!empty($filterstatus))
+                {
+                    if($managertype == 'hr')
+                    {
+                        $mainqry.= " AND `hrM_processed_status` = '".$filterstatus."'";
+                    }
+                    else if($managertype == 'dept')
+                    {
+                        $mainqry.= " AND `deptM_processed_status` = '".$filterstatus."'";
+                    }
+                }
+                if(!empty($startdate) && !empty($enddate))
+                {
+                    $startdate = date('Y-m-d', strtotime($startdate));
+                    $enddate = date('Y-m-d', strtotime($enddate));
+                    $mainqry.= " AND STR_TO_DATE(cd.`date_added`,'%Y-%m-%d') BETWEEN STR_TO_DATE('".$startdate."','%Y-%m-%d') AND STR_TO_DATE('".$enddate."','%Y-%m-%d')";
+                }
+                if(!empty($srchbyusr))
+                {
+                    $mainqry.= " AND im.`employeecode` LIKE '%".$srchbyusr."%' OR im.`fullname` LIKE '%".$srchbyusr."%' ";
+                }
+                $fnlqry = $mainqry.$orderby;
+                // echo $fnlqry; exit;
+
+                $getres = $this->coicommon->fetchCoiMgrData($getuserid,$user_group_id,$managertype,$fnlqry);
+                
+                if($exporttype == "pdf")
+                {
+                   $gethtml = $this->coicommon->fetchCoiMgrHtml($getres,$managertype);
+                   $genfile = $this->dompdfgen->getpdf($gethtml,"Coi","Declaration","configCoi");
+                }
+                else
+                {
+                    $genfile = $this->phpimportexpogen->fetchCoiMgrExportExcel($getuserid,$user_group_id,$getres,$managertype);
+                }
+              
+                 // print_r($genfile);exit;
+
+                if(!empty($genfile))
+                {
+                    $data = array("logged" => true,'message' => 'File Generated..!!' , 'genfile'=> $genfile);
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data = array("logged" => false,'message' => "File Not Generated..!!");
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+           
+            }
+            else
+            {
+                exit('No direct script access allowed');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+        
+    }
 
     public function approveRequestAction()
     {
@@ -416,6 +573,13 @@ class CoiController extends ControllerBase
                 $approvalName = $this->coicommon->getApprovalName($uid);
                 $reqUserId = $this->coicommon->getReqUserId($reqid);          
                 $deptdata = $this->coicommon->getDeptaccess($reqUserId);
+                
+                //------ Start: Approval Mail to requester
+                    $reqUserId = $this->coicommon->getReqUserId($reqid);          
+                    $requestordata = $this->coicommon->getRequestorData($reqUserId);
+                    $this->coicommon->approvalMailToRequestor($reqid,$requestordata['fullname'],$requestordata['deptname'],$requestordata['email']);
+                //------ End: Approval Mail to requester
+                
                 if($managertype == "hr")
                 {
                     $deptmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","dept");
@@ -424,8 +588,7 @@ class CoiController extends ControllerBase
                     // print_r($mailsentstatus);exit;
                     if($mailsentstatus)
                     {
-                        //-------------- Start: CCO and CS email intimation -------------//
-
+                        
                          $YORuser = $this->coicommon->checkYORuser($uid);
                          $recipientnames = array("CCO","CS");
                          $recipientemailids = array("cco@volody.com","cs@volody.com");
@@ -433,8 +596,16 @@ class CoiController extends ControllerBase
                             {
                              for ($i=0; $i < count($recipientnames); $i++) 
                                 { 
+                        //-------------- Start: CCO and CS email intimation
+                        //------------------- Start: On approval-----------------//
                                     $this->coicommon->sendapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i],$approvalName);
-                                } 
+                        //------------------- End: On approval -----------------//
+
+                        //---------- Start: On request for approval  --------------//
+                                    $this->coicommon->requestapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
+                        //--------- End: On request for approval -----------------//
+                        //-------------- End: CCO and CS email intimation
+                                }
                             }
                          
                         //-------------- End: CCO and CS email intimation -------------//
@@ -460,8 +631,12 @@ class CoiController extends ControllerBase
                             {
                              for ($i=0; $i < count($recipientnames); $i++) 
                                 { 
+                        //-------------- Start: CCO and CS email intimation
+                        //------------------- Start: On approval-----------------//
                                     $this->coicommon->sendapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i],$approvalName);
-                                } 
+                        //------------------- End: On approval -----------------//
+                        //-------------- End: CCO and CS email intimation
+                                }  
                             }
                          
                     //-------------- End: CCO and CS email intimation -------------//
@@ -543,20 +718,42 @@ class CoiController extends ControllerBase
             {
                 $reqid = $this->request->getPost('reqid');
                 $recommendation = $this->request->getPost('recommendation');
+
+                //------ Start: Reject Mail to requester
+                    $reqUserId = $this->coicommon->getReqUserId($reqid);          
+                    $requestordata = $this->coicommon->getRequestorData($reqUserId);
+                    $this->coicommon->rejectMailToRequestor($reqid,$requestordata['fullname'],$requestordata['deptname'],$requestordata['email']);
+                //------ End: Reject Mail to requester
+
+                //-------------- Start: On reject: CCO and CS email intimation -------------//
+                $reqUserId = $this->coicommon->getReqUserId($reqid);          
+                $deptdata = $this->coicommon->getDeptaccess($reqUserId);
+                 $YORuser = $this->coicommon->checkYORuser($uid);
+                 $recipientnames = array("CCO","CS");
+                 $recipientemailids = array("cco@volody.com","cs@volody.com");
+                 if($YORuser)
+                    {
+                     for ($i=0; $i < count($recipientnames); $i++) 
+                        { 
+                            $this->coicommon->rejectmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
+                        } 
+                    }
+                //-------------- End: On reject: CCO and CS email intimation -------------//
+
                 if($managertype == "hr")
                 {
-                        $this->coicommon->updateCOIRequest($reqid,"reject");
-                        $this->coicommon->insertCOIAuditTrail($reqid,"reject",$recommendation);
-                        $data  = array('logged' => true, 'message' => 'Request Rejected.'); 
-                        $this->response->setJsonContent($data);
+                    $this->coicommon->updateCOIRequest($reqid,"reject");
+                    $this->coicommon->insertCOIAuditTrail($reqid,"reject",$recommendation);
+                    $data  = array('logged' => true, 'message' => 'Request Rejected.'); 
+                    $this->response->setJsonContent($data);
                 }
-                // else if($managertype == "dept")
-                // {
-                //     $this->coicommon->updateCOIRequest($reqid,"reject");
-                //     $this->coicommon->insertCOIAuditTrail($reqid,"reject");
-                //     $data  = array('logged' => true, 'message' => 'Request Rejected.'); 
-                //     $this->response->setJsonContent($data);
-                // }
+                else if($managertype == "dept")
+                {
+                    $this->coicommon->updateCOIRequest($reqid,"reject");
+                    $this->coicommon->insertCOIAuditTrail($reqid,"reject");
+                    $data  = array('logged' => true, 'message' => 'Request Rejected.'); 
+                    $this->response->setJsonContent($data);
+                }
                 
                 $this->response->send();
             }
@@ -588,12 +785,19 @@ class CoiController extends ControllerBase
             {
                 $reqid = $this->request->getPost('reqid');
                 $recommendation = $this->request->getPost('recommendation');
+                //print_r($this->request->getPost());exit;
+                //------ Start: Return Mail to requester
+                    $reqUserId = $this->coicommon->getReqUserId($reqid);          
+                    $requestordata = $this->coicommon->getRequestorData($reqUserId);
+                    $this->coicommon->returnMailToRequestor($reqid,$requestordata['fullname'],$requestordata['deptname'],$requestordata['email'],$recommendation);
+                //------ End: Return Mail to requester
+
                 if($managertype == "hr")
                 {
-                        $this->coicommon->updateCOIRequest($reqid,"return");
-                        $this->coicommon->insertCOIAuditTrail($reqid,"return",$recommendation);
-                        $data  = array('logged' => true, 'message' => 'Request Returned.'); 
-                        $this->response->setJsonContent($data);
+                    $this->coicommon->updateCOIRequest($reqid,"return");
+                    $this->coicommon->insertCOIAuditTrail($reqid,"return",$recommendation);
+                    $data  = array('logged' => true, 'message' => 'Request Returned.'); 
+                    $this->response->setJsonContent($data);
                 }
                 else if($managertype == "dept")
                 {
@@ -770,6 +974,47 @@ class CoiController extends ControllerBase
                         $data = array("logged" => false,'message' => "Record Not Updated..!!",'pdfpath'=>'');
                         $this->response->setJsonContent($data);
                     }
+                }
+                $this->response->send();
+            }
+            else
+            {
+                exit('No direct script access allowed to this area');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+    
+    public function deletecoireqAction()
+    {
+        $this->view->disable();
+        $getuserid = $this->session->loginauthspuserfront['id'];
+        $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $managertype = $this->session->loginauthspuserfront['managertype'];
+        //echo $cin;exit;
+        $timeago = time();
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                $coi_id = $this->request->getPost('coi_id');
+                $result = $this->coicommon->deleteCoiData($coi_id);
+                // print_r($result);exit;
+                if($result)
+                {
+                    $data  = array('logged' => true, 'message' => 'Record Deleted'); 
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data  = array('logged' => false, 'message' => 'Record Not Deleted'); 
+                    $this->response->setJsonContent($data);
                 }
                 $this->response->send();
             }
