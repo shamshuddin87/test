@@ -318,6 +318,7 @@
             <thead>
             <tr>
                 <th>Sr No.</th>
+                <th>Relative Names</th>
                 <th>Demat/Securities Account No.</th>
                 <th>Name of Depository Participant</th>
             </tr>
@@ -1694,7 +1695,7 @@
 <div class="modal-content" style="width:950px;">
 <div class="modal-header">
 <select id="annualyear" name="annualyear">
-<option value="2020">2020</option>
+<!--<option value="2020">2020</option>-->
 <option value="2021">2021</option>
 <option value="2022">2022</option>
 <option value="2023">2023</option>

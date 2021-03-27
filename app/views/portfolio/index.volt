@@ -187,8 +187,8 @@
   <div class="acc">
     <label class="do">Does any of your relative hold demat account?
   <?php 
-   //print_r($getdematsstatus);exit;
-  if(isset($getreldematsstatus) ){ 
+   //print_r($getreldematsstatus);exit;
+  if(!empty($getreldematsstatus) ){  
     
 
     if($getreldematsstatus[0]['status'] == 1) { ?>

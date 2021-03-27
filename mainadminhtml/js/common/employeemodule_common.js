@@ -70,23 +70,25 @@ website(document).ready(function () {
      website("#perdetail #pan").removeAttr("maxlength");
      website("#pan_label").text("Local Legal Identification Number*");
      website("#perdetail #pan").attr("placeholder",'Local Legal Identification Number');
-     website("#aadhar_label").text("Aadhaar");
+     website("#aadhar_label").text("Aadhaar (only for Indian employees)");
      website("#perdetail #mobno").removeAttr("maxlength");
      website("#perdetail #mobno").removeAttr("onkeypress");
     website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43 || event.charCode == 45 ');
      website("#perdetail #legal_idntfr").removeAttr("readonly");
     website("#perdetail #aadhar").attr("readonly",'readonly');
+    website("#perdetail #aadhar").css("background-color",'#d8d8d9');
     }
     else
     {
         website("#perdetail #pan").attr("maxlength",'10');
         website("#pan_label").text("PAN*");
         website("#perdetail #pan").attr("placeholder",'PAN');
-        website("#aadhar_label").text("Aadhaar*");
+        website("#aadhar_label").text("Aadhaar (only for Indian employees)*");
         website("#perdetail #mobno").attr("maxlength",'10');
         website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
         website("#perdetail #legal_idntfr").attr("readonly",'readonly');
         website("#perdetail #aadhar").removeAttr("readonly");
+        website("#perdetail #aadhar").removeAttr("style");
     } 
 });
 
@@ -325,12 +327,13 @@ website('#reledit').on('show.bs.modal', function() {
     website("#perdetail #pan").removeAttr("maxlength");
     website("#pan_label").text("Local Legal Identification Number*");
     website("#perdetail #pan").attr("placeholder",'Local Legal Identification Number');
-    website("#aadhar_label").text("Aadhaar");
+    website("#aadhar_label").text("Aadhaar (only for Indian employees)");
     website("#perdetail #mobno").removeAttr("maxlength");
     website("#perdetail #mobno").removeAttr("onkeypress");
     website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43 || event.charCode == 45 ');
     website("#perdetail #legal_idntfr").removeAttr("readonly");
     website("#perdetail #aadhar").attr("readonly",'readonly');
+    website("#perdetail #aadhar").css("background-color",'#d8d8d9');
 
     }
     else
@@ -338,11 +341,12 @@ website('#reledit').on('show.bs.modal', function() {
          website("#perdetail #pan").attr("maxlength",'10');
          website("#pan_label").text("PAN*");
         website("#perdetail #pan").attr("placeholder",'PAN');
-        website("#aadhar_label").text("Aadhaar*");
+        website("#aadhar_label").text("Aadhaar (only for Indian employees)*");
         website("#perdetail #mobno").attr("maxlength",'10');
         website("#perdetail #mobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
         website("#perdetail #legal_idntfr").attr("readonly",'readonly');
         website("#perdetail #aadhar").removeAttr("readonly");
+        website("#perdetail #aadhar").removeAttr("style");
     } 
    
   } 
@@ -357,23 +361,25 @@ website('#reledit').on('show.bs.modal', function() {
      website("#getdata_1 #pan").removeAttr("maxlength");
      website("#getdata_1 #rel_pan_label").text("Local Legal Identification Number*");
       website("#getdata_1 #pan").attr("placeholder",'Local Legal Identification Number');
-      website("#getdata_1 #rel_aadhar_label").text("Aadhaar");
+      website("#getdata_1 #rel_aadhar_label").text("Aadhaar (only for Indian employees)");
      website("#getdata_1 #relmobno").removeAttr("maxlength");
      website("#getdata_1 #relmobno").removeAttr("onkeypress");
     website("#getdata_1 #relmobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43 || event.charCode == 45 ');
     website("#getdata_1 #legal_idntfr").removeAttr("readonly");
     website("#getdata_1 #aadhar").attr("readonly",'readonly');
+    website("#getdata_1 #aadhar").css("background-color",'#d8d8d9');
     }
     else
     {
          website("#getdata_1 #pan").attr("maxlength",'10');
          website("#getdata_1 #rel_pan_label").text("PAN*");
           website("#getdata_1 #pan").attr("placeholder",'PAN');
-          website("#getdata_1 #rel_aadhar_label").text("Aadhaar*");
+          website("#getdata_1 #rel_aadhar_label").text("Aadhaar (only for Indian employees)*");
          website("#getdata_1 #relmobno").attr("maxlength",'10');
          website("#getdata_1 #relmobno").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
          website("#getdata_1 #legal_idntfr").attr("readonly",'readonly');
          website("#getdata_1 #aadhar").removeAttr("readonly");
+         website("#getdata_1 #aadhar").removeAttr("style");
     } 
   } 
   else if (id == "rel_nation_update") 
@@ -387,23 +393,25 @@ website('#reledit').on('show.bs.modal', function() {
      website("#reledit #pan").removeAttr("maxlength");
      website("#reledit #edit_pan_label").text("Local Legal Identification Number*");
       website("#reledit #pan").attr("placeholder",'Local Legal Identification Number');
-      website("#reledit #edit_aadhar_label").text("Aadhaar");
+      website("#reledit #edit_aadhar_label").text("Aadhaar (only for Indian employees)");
      website("#reledit #relmobnoup").removeAttr("maxlength");
      website("#reledit #relmobnoup").removeAttr("onkeypress");
      website("#reledit #relmobnoup").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43 || event.charCode == 45 ');
      website("#reledit #legal_idntfr").removeAttr("readonly");
       website("#reledit #aadhar").attr("readonly",'readonly');
+        website("#reledit #aadhar").css("background-color",'#d8d8d9');
     }
     else
     {
          website("#reledit #pan").attr("maxlength",'10');
          website("#reledit #edit_pan_label").text("PAN*");
           website("#reledit #pan").attr("placeholder",'PAN');
-          website("#reledit #edit_aadhar_label").text("Aadhaar*");
+          website("#reledit #edit_aadhar_label").text("Aadhaar (only for Indian employees)*");
          website("#reledit #relmobnoup").attr("maxlength",'10');
          website("#reledit #relmobnoup").attr("onkeypress",'return event.charCode >= 48 && event.charCode <= 57');
          website("#reledit #legal_idntfr").attr("readonly",'readonly');
          website("#reledit #aadhar").removeAttr("readonly");
+         website("#reledit #aadhar").removeAttr("style");
     } 
   }
 }
