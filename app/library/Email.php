@@ -1191,12 +1191,12 @@ Class Email extends Phalcon\Mvc\User\Component {
     }
 
 
-    public function sendpendapprovmaileveryday($mailid,$myarry)
+    public function sendpendapprovmaileveryday($mailid,$mgrname,$myarry)
     {
       
-        $subject = 'You Have Received Reminder For Pending Approval Request';
+        $subject = 'Conflict Of Interest declaration is waiting for Approval:'.$myarry['reqno'];
         $to =$mailid;
-        $gethtml = $this->htmlelements->sendpendapprovmaileveryday($myarry);
+        $gethtml = $this->htmlelements->sendpendapprovmaileveryday($mgrname,$myarry);
         //echo $gethtml; exit;
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
@@ -1814,8 +1814,192 @@ Class Email extends Phalcon\Mvc\User\Component {
         return $get;
     }
     /*---- Send Auto Mail to User For Annual Declaration -----*/
-    
 
+    public function requestapprmailtoccoandcs($myarry,$emailid)
+    {
+      
+        $subject = 'COI Request Submitted By Initiator.';
+        $to =$emailid;
+        $gethtml = $this->htmlelements->requestapprmailtoccoandcs($myarry);
+        //echo $gethtml; exit;
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        
+        $mail->addAddress($to, 'Volody');
+        $mail->Subject = $subject;
+        $mail->msgHTML($gethtml);
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            $get = array('logged'=>true);
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false);
+        }
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+    }
+
+
+    public function rejectmailtoccoandcs($myarry,$emailid)
+    {
+      
+        $subject = 'COI Request Rejected By Manager/Hr.';
+        $to =$emailid;
+        $gethtml = $this->htmlelements->rejectmailtoccoandcs($myarry);
+        //echo $gethtml; exit;
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        
+        $mail->addAddress($to, 'Volody');
+        $mail->Subject = $subject;
+        $mail->msgHTML($gethtml);
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            $get = array('logged'=>true);
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false);
+        }
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+    }
+    
+public function returnMailToRequestor($myarry,$emailid)
+    {
+      
+        $subject = 'Conflict Of Interest declaration request is returned'.$myarry['reqno'];
+        $to =$emailid;
+        $gethtml = $this->htmlelements->returnMailToRequestor($myarry);
+        //echo $gethtml; exit;
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        
+        $mail->addAddress($to, 'Volody');
+        $mail->Subject = $subject;
+        $mail->msgHTML($gethtml);
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            $get = array('logged'=>true);
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false);
+        }
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+    }
+
+    public function approvalMailToRequestor($myarry,$emailid)
+    {
+      
+        $subject = 'Conflict Of Interest declaration request has been approved.';
+        $to =$emailid;
+        $gethtml = $this->htmlelements->approvalMailToRequestor($myarry);
+        //echo $gethtml; exit;
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        
+        $mail->addAddress($to, 'Volody');
+        $mail->Subject = $subject;
+        $mail->msgHTML($gethtml);
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            $get = array('logged'=>true);
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false);
+        }
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+    }
+
+    public function rejectMailToRequestor($myarry,$emailid)
+    {
+      
+        $subject = 'Conflict Of Interest declaration request has been rejected.';
+        $to =$emailid;
+        $gethtml = $this->htmlelements->rejectMailToRequestor($myarry);
+        //echo $gethtml; exit;
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $this->Hostname;
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = $this->hosemail;
+        $mail->Password = $this->pwdemail;
+        $mail->setFrom($this->hosemail, 'Volody');
+        $mail->addReplyTo($this->hosemail, 'Volody');
+        
+        $mail->addAddress($to, 'Volody');
+        $mail->Subject = $subject;
+        $mail->msgHTML($gethtml);
+        //send the message, check for errors
+
+        if ($mail->Send()) {
+            $get = array('logged'=>true);
+        }
+        else {
+            //echo $mail->ErrorInfo; exit;
+            $get = array('logged'=>false);
+        }
+        //echo '<pre>'; print_r($get); exit;
+        return $get;
+    }
 
     
 }

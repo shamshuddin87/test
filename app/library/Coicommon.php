@@ -653,4 +653,270 @@ class Coicommon extends Component
         //print_r($getlist);exit;
         return $getlist;
     }
+
+    public function requestapprmailtoccoandcs($reqid,$recipientname,$deptname,$emailid)
+     {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    LEFT JOIN `it_memberlist` im ON im.wr_id = cd.user_id
+                    WHERE cd.`id`='".$reqid."'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+                        $getlist['reqno'] = $reqno; 
+                        $getlist['recipientname'] = $recipientname;  
+                        $getlist['requestername'] = $row['requestername']; 
+                        $getlist['nature_of_conflict']=$row['nature_of_conflict']; 
+                        $getlist['deptname'] = $deptname;
+                        $myarry=$getlist;
+
+                        $result = $this->emailer->requestapprmailtoccoandcs($myarry,$emailid);
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }
+
+
+     public function rejectmailtoccoandcs($reqid,$recipientname,$deptname,$emailid)
+     {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    LEFT JOIN `it_memberlist` im ON im.wr_id = cd.user_id
+                    WHERE cd.`id`='".$reqid."'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+                        $getlist['reqno'] = $reqno; 
+                        $getlist['recipientname'] = $recipientname;  
+                        $getlist['requestername'] = $row['requestername']; 
+                        $getlist['nature_of_conflict']=$row['nature_of_conflict']; 
+                        $getlist['deptname'] = $deptname;
+                        $myarry=$getlist;
+
+                        $result = $this->emailer->rejectmailtoccoandcs($myarry,$emailid);
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }
+
+
+     public function getRequestorData($uid)
+     {
+        $connection = $this->dbtrd;
+        $time = time();
+        
+        $getlist = array();
+        try
+        {
+            $sqlqry = "SELECT im.`deptaccess`,GROUP_CONCAT(DISTINCT cd.`deptname`) as deptname,im.`email`,im.`fullname` FROM `it_memberlist` im
+                LEFT JOIN `con_dept` cd ON FIND_IN_SET(cd.`id`,im.`deptaccess`)
+                WHERE im.`wr_id`='".$uid."'";         
+            //print_r($sqlqry); exit;            
+            $exeqry = $connection->query($sqlqry);
+            $getnum = trim($exeqry->numRows());
+            //echo '<pre>'; print_r($getnum); exit;            
+            if($getnum>0)
+            {
+                while($row = $exeqry->fetch())
+                {
+                    $getlist['deptid'] = $row['deptaccess']; 
+                    $getlist['deptname'] = $row['deptname'];
+                    $getlist['email'] = $row['email'];
+                    $getlist['fullname'] = $row['fullname'];
+                }
+                //echo '<pre>'; print_r($getlist); exit;
+            }
+            else
+            {
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+        }
+        //echo '<pre>'; print_r($getlist); exit;
+        
+        return $getlist;
+     }
+
+     public function returnMailToRequestor($reqid,$recipientname,$deptname,$emailid,$recommendation)
+     {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict
+                    FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    WHERE cd.`id`='".$reqid."'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+                        $getlist['reqno'] = $reqno; 
+                        $getlist['recipientname'] = $recipientname;   
+                        $getlist['nature_of_conflict']=$row['nature_of_conflict']; 
+                        $getlist['reason_for_return']=$recommendation; 
+                        $getlist['deptname'] = $deptname;
+                        $myarry=$getlist;
+
+                        $result = $this->emailer->returnMailToRequestor($myarry,$emailid);
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }
+
+
+     public function approvalMailToRequestor($reqid,$recipientname,$deptname,$emailid)
+     {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict
+                    FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    WHERE cd.`id`='".$reqid."'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+                        $getlist['reqno'] = $reqno; 
+                        $getlist['recipientname'] = $recipientname;   
+                        $getlist['nature_of_conflict']=$row['nature_of_conflict'];
+                        $getlist['deptname'] = $deptname;
+                        $myarry=$getlist;
+
+                        $result = $this->emailer->approvalMailToRequestor($myarry,$emailid);
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }
+
+     public function rejectMailToRequestor($reqid,$recipientname,$deptname,$emailid)
+     {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict
+                    FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    WHERE cd.`id`='".$reqid."'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+                        $getlist['reqno'] = $reqno; 
+                        $getlist['recipientname'] = $recipientname;   
+                        $getlist['nature_of_conflict']=$row['nature_of_conflict'];
+                        $getlist['deptname'] = $deptname;
+                        $myarry=$getlist;
+
+                        $result = $this->emailer->rejectMailToRequestor($myarry,$emailid);
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }
 }

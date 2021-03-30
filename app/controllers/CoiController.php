@@ -300,7 +300,7 @@ class CoiController extends ControllerBase
                 if($mailsentstatus)
                 {
 
-                    //-------------- Start: CCO and CS email intimation -------------//
+//-------------- Start: On request for approval: CCO and CS email intimation -------------//
                          $YORuser = $this->coicommon->checkYORuser($uid);
                          $recipientnames = array("CCO","CS");
                          $recipientemailids = array("cco@volody.com","cs@volody.com");
@@ -308,11 +308,11 @@ class CoiController extends ControllerBase
                             {
                              for ($i=0; $i < count($recipientnames); $i++) 
                                 { 
-                                    $this->coicommon->sendapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i],$approvalName);
+                                    $this->coicommon->requestapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
                                 } 
                             }
                          
-                    //-------------- End: CCO and CS email intimation -------------//
+//-------------- End: On request for approval: CCO and CS email intimation -------------//
                             
                     $this->coicommon->updateCOIRequest($reqid,"sent");
                     $this->coicommon->insertCOIAuditTrail($reqid,"sent","");
@@ -398,6 +398,13 @@ class CoiController extends ControllerBase
                 $approvalName = $this->coicommon->getApprovalName($uid);
                 $reqUserId = $this->coicommon->getReqUserId($reqid);          
                 $deptdata = $this->coicommon->getDeptaccess($reqUserId);
+
+                //------ Start: Approval Mail to requester
+                    $reqUserId = $this->coicommon->getReqUserId($reqid);          
+                    $requestordata = $this->coicommon->getRequestorData($reqUserId);
+                    $this->coicommon->approvalMailToRequestor($reqid,$requestordata['fullname'],$requestordata['deptname'],$requestordata['email']);
+                //------ End: Approval Mail to requester
+
                 if($managertype == "hr")
                 {
                     $deptmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","dept");
@@ -406,8 +413,6 @@ class CoiController extends ControllerBase
                     // print_r($mailsentstatus);exit;
                     if($mailsentstatus)
                     {
-                        //-------------- Start: CCO and CS email intimation -------------//
-
                          $YORuser = $this->coicommon->checkYORuser($uid);
                          $recipientnames = array("CCO","CS");
                          $recipientemailids = array("cco@volody.com","cs@volody.com");
@@ -415,11 +420,17 @@ class CoiController extends ControllerBase
                             {
                              for ($i=0; $i < count($recipientnames); $i++) 
                                 { 
+                        //-------------- Start: CCO and CS email intimation
+                        //------------------- Start: On approval-----------------//
                                     $this->coicommon->sendapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i],$approvalName);
+                        //------------------- End: On approval -----------------//
+
+                        //---------- Start: On request for approval  --------------//
+                                    $this->coicommon->requestapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
+                        //--------- End: On request for approval -----------------//
+                        //-------------- End: CCO and CS email intimation
                                 } 
-                            }
-                         
-                        //-------------- End: CCO and CS email intimation -------------//
+                            } 
 
                         $this->coicommon->updateCOIRequest($reqid,"approval");
                         $this->coicommon->insertCOIAuditTrail($reqid,"approval","");
@@ -434,7 +445,6 @@ class CoiController extends ControllerBase
                 }
                 else if($managertype == "dept")
                 {
-                    //-------------- Start: CCO and CS email intimation -------------//
                          $YORuser = $this->coicommon->checkYORuser($uid);
                          $recipientnames = array("CCO","CS");
                          $recipientemailids = array("cco@volody.com","cs@volody.com");
@@ -442,11 +452,13 @@ class CoiController extends ControllerBase
                             {
                              for ($i=0; $i < count($recipientnames); $i++) 
                                 { 
+                        //-------------- Start: CCO and CS email intimation
+                        //------------------- Start: On approval-----------------//
                                     $this->coicommon->sendapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i],$approvalName);
+                        //------------------- End: On approval -----------------//
+                        //-------------- End: CCO and CS email intimation
                                 } 
                             }
-                         
-                    //-------------- End: CCO and CS email intimation -------------//
 
                     $this->coicommon->updateCOIRequest($reqid,"approval");
                     $this->coicommon->insertCOIAuditTrail($reqid,"approval","");
@@ -525,20 +537,42 @@ class CoiController extends ControllerBase
             {
                 $reqid = $this->request->getPost('reqid');
                 $recommendation = $this->request->getPost('recommendation');
+
+                //------ Start: Reject Mail to requester
+                    $reqUserId = $this->coicommon->getReqUserId($reqid);          
+                    $requestordata = $this->coicommon->getRequestorData($reqUserId);
+                    $this->coicommon->rejectMailToRequestor($reqid,$requestordata['fullname'],$requestordata['deptname'],$requestordata['email']);
+                //------ End: Reject Mail to requester
+
+//-------------- Start: On reject: CCO and CS email intimation -------------//
+                $reqUserId = $this->coicommon->getReqUserId($reqid);          
+                $deptdata = $this->coicommon->getDeptaccess($reqUserId);
+                 $YORuser = $this->coicommon->checkYORuser($uid);
+                 $recipientnames = array("CCO","CS");
+                 $recipientemailids = array("cco@volody.com","cs@volody.com");
+                 if($YORuser)
+                    {
+                     for ($i=0; $i < count($recipientnames); $i++) 
+                        { 
+                            $this->coicommon->rejectmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
+                        } 
+                    }
+//-------------- End: On reject: CCO and CS email intimation -------------//
+
                 if($managertype == "hr")
                 {
-                        $this->coicommon->updateCOIRequest($reqid,"reject");
-                        $this->coicommon->insertCOIAuditTrail($reqid,"reject",$recommendation);
-                        $data  = array('logged' => true, 'message' => 'Request Rejected.'); 
-                        $this->response->setJsonContent($data);
+                    $this->coicommon->updateCOIRequest($reqid,"reject");
+                    $this->coicommon->insertCOIAuditTrail($reqid,"reject",$recommendation);
+                    $data  = array('logged' => true, 'message' => 'Request Rejected.'); 
+                    $this->response->setJsonContent($data);
                 }
-                // else if($managertype == "dept")
-                // {
-                //     $this->coicommon->updateCOIRequest($reqid,"reject");
-                //     $this->coicommon->insertCOIAuditTrail($reqid,"reject");
-                //     $data  = array('logged' => true, 'message' => 'Request Rejected.'); 
-                //     $this->response->setJsonContent($data);
-                // }
+                else if($managertype == "dept")
+                {
+                    $this->coicommon->updateCOIRequest($reqid,"reject");
+                    $this->coicommon->insertCOIAuditTrail($reqid,"reject");
+                    $data  = array('logged' => true, 'message' => 'Request Rejected.'); 
+                    $this->response->setJsonContent($data);
+                }
                 
                 $this->response->send();
             }
@@ -570,12 +604,19 @@ class CoiController extends ControllerBase
             {
                 $reqid = $this->request->getPost('reqid');
                 $recommendation = $this->request->getPost('recommendation');
+
+                //------ Start: Return Mail to requester
+                    $reqUserId = $this->coicommon->getReqUserId($reqid);          
+                    $requestordata = $this->coicommon->getRequestorData($reqUserId);
+                    $this->coicommon->returnMailToRequestor($reqid,$requestordata['fullname'],$requestordata['deptname'],$requestordata['email'],$recommendation);
+                //------ End: Return Mail to requester
+
                 if($managertype == "hr")
                 {
-                        $this->coicommon->updateCOIRequest($reqid,"return");
-                        $this->coicommon->insertCOIAuditTrail($reqid,"return",$recommendation);
-                        $data  = array('logged' => true, 'message' => 'Request Returned.'); 
-                        $this->response->setJsonContent($data);
+                    $this->coicommon->updateCOIRequest($reqid,"return");
+                    $this->coicommon->insertCOIAuditTrail($reqid,"return",$recommendation);
+                    $data  = array('logged' => true, 'message' => 'Request Returned.'); 
+                    $this->response->setJsonContent($data);
                 }
                 else if($managertype == "dept")
                 {
