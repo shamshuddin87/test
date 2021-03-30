@@ -204,6 +204,44 @@ class Coicommon extends Component
         return $getlist;
      }
 
+     public function getMgrDeptaccess($uid)
+     {
+        $connection = $this->dbtrd;
+        $time = time();
+        
+        $getlist = array();
+        try
+        {
+            $sqlqry = "SELECT im.`mgrindept`,GROUP_CONCAT(DISTINCT cd.`deptname`) as deptname FROM `it_memberlist` im
+                LEFT JOIN `con_dept` cd ON FIND_IN_SET(cd.`id`,im.`mgrindept`)
+                WHERE im.`wr_id`='".$uid."'";         
+            //print_r($sqlqry); exit;            
+            $exeqry = $connection->query($sqlqry);
+            $getnum = trim($exeqry->numRows());
+            //echo '<pre>'; print_r($getnum); exit;            
+            if($getnum>0)
+            {
+                while($row = $exeqry->fetch())
+                {
+                    $getlist['deptid'] = $row['mgrindept']; 
+                    $getlist['deptname'] = $row['deptname'];
+                }
+                //echo '<pre>'; print_r($getlist); exit;
+            }
+            else
+            {
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+        }
+        //echo '<pre>'; print_r($getlist); exit;
+        
+        return $getlist;
+     }
+
 
       public function sendaprvmailtomgr($deptname,$mgrname,$emailto,$reqid)
      {
@@ -259,15 +297,15 @@ class Coicommon extends Component
         {
             if($type == 'hr')
             {
-                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('hr') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
+                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('hr') AND `mgrindept` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
             }
             else if($type == 'dept')
             {
-                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('dept') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
+                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('dept') AND `mgrindept` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
             }
             else
             {
-                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('dept','hr') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
+                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('dept','hr') AND `mgrindept` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
             }
                    
             // print_r($sqlqry); exit;            
@@ -283,7 +321,7 @@ class Coicommon extends Component
                     $getlist[$i]['email'] = $row['email']; 
                     $i++;
                 }
-                //echo '<pre>'; print_r($getlist); exit;
+                // echo '<pre>'; print_r($getlist); exit;
             }
             else
             {
@@ -412,7 +450,8 @@ class Coicommon extends Component
         $connection = $this->dbtrd;
         $getlist = array();
 
-        $deptInfo = $this->getDeptaccess($getuserid);
+        $deptInfo = $this->getMgrDeptaccess($getuserid);
+        // print_r($deptInfo);die;
         $deptusers = $this->getDeptUsers($deptInfo['deptid']);
         $deptUserList = implode(",", $deptusers);
         // print_r($deptUserList);die;
