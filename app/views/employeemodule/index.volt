@@ -486,8 +486,8 @@
                         <!-- </div>
                            <div class="row"> -->
                         <div class="col-md-4"> 
-                           <label id= "rel_aadhar_label">Aadhaar*</label>
-                           <input  class=" aadhar" placeholder="Aadhaar" id="aadhar"  name="aadhar" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}" />
+                           <label id= "rel_aadhar_label">Aadhaar (only for Indian employees)*</label>
+                           <input  class=" aadhar" placeholder="Aadhaar (only for Indian employees)" id="aadhar"  name="aadhar" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}" />
                         </div>
                         <div class="col-md-4">
                            <label>Date of Birth (dd-mm-yyyy)*</label>
@@ -590,7 +590,7 @@
                         <th>Relationship</th>
                         <th>Name</th>
                         <th>Legal Identifier No.</th>
-                        <th>Aadhaar</th>
+                        <th>Aadhaar (only for Indian employees)</th>
                         <th>Mobile No</th>
                         <th width="100px">Date of Birth</th>
                         <!-- <th>Qualification</th> -->
@@ -697,8 +697,8 @@
                               <input type="text" id="legal_idntfctn_no" name="legal_idntfctn_no" onkeypress="return IsAlphaNumeric(event);" placeholder="Any other legal identification number">
                            </div> -->
                            <div class="col-md-6">
-                              <label id= "edit_aadhar_label" for="aadhar">Aadhaar*</label>
-                              <input type="text" id="aadhar" name="aadhar" placeholder="Aadhaar" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
+                              <label id= "edit_aadhar_label" for="aadhar">Aadhaar (only for Indian employees)*</label>
+                              <input type="text" id="aadhar" name="aadhar" placeholder="Aadhaar (only for Indian employees)"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" pattern="[0-9]{12}">
                            </div>
                            <div class="col-md-6">
                               <label for="Dob">Date of Birth (dd-mm-yyyy)*</label>

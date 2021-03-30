@@ -31,7 +31,7 @@ $condeptsess = $this->session->contractdepartment;
       <tr>
         <th>Srno</th> 
         <th>Request Date</th>  
-        <th>Status</th>
+        <!--<th>Status</th>-->
         <th>HR Review</th>
         <th>Manager Review</th>      
         <th>Audit Trail</th>                                           
@@ -96,6 +96,46 @@ $condeptsess = $this->session->contractdepartment;
       </div>
   </div>
 </div>   
+    
+<div id="modaldelcoi" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+            &times;</button>
+         </div>
+         <div class="modal-body">
+            <input type="hidden" id="deleteid" value="" name="">
+            <h5 style="text-align: center;">Are You Sure To Delete This Request?</h5>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-danger" id="confirmdeletereq" tempid="">Delete</button> 
+         </div>
+      </div>
+   </div>
+</div>
+    
+<div id="sendcoiforapproval" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="modal-body show_shadow">
+             <input type="hidden" id="coi_id" value="" name="">
+            <div class="text-center modal_heading">
+               <div class="clearelement"></div>
+               Do you want to send the Conflict of Interest Declaration form.
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-primary sendcoiform" name="sendtype" id="" value="yes" tempid="">Yes</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal"  value="no" tempid="">No</button>
+         </div>
+      </div>
+   </div>
+</div>
         
 <div class="clearelement"></div>
 <div class="preloder_wraper">

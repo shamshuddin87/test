@@ -88,9 +88,14 @@ class EmployeemoduleController extends ControllerBase
                }
 
 
-                if(empty($pan))
+                if(empty($pan) && $nationalty == 'Indian')
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Pan Number');
+                    $this->response->setJsonContent($data);
+                }
+                else if(empty($pan) && $nationalty == 'Other')
+                {
+                    $data = array("logged" => false,'message' => 'Please Provide Local Legal Identification Number');
                     $this->response->setJsonContent($data);
                 }
                 else if(empty($mobile) || $mobile=='')
@@ -513,7 +518,7 @@ class EmployeemoduleController extends ControllerBase
                     $this->response->setJsonContent($data);
                 }
                
-                else if(empty($pan))
+                else if(empty($pan) && $rel_nation == 'Indian')
                 {
                     $data = array("logged" => false,'message' => 'Please Provide Pan Number');
                     $this->response->setJsonContent($data);
@@ -522,6 +527,11 @@ class EmployeemoduleController extends ControllerBase
                 {
                    $data = array("logged" => false,'message' => 'Your Pan No Should Be 10 Digit!!');
                    $this->response->setJsonContent($data); 
+                }
+                else if(empty($pan) && $rel_nation == 'Other')
+                {
+                    $data = array("logged" => false,'message' => 'Please Provide Local Legal Identification Number');
+                    $this->response->setJsonContent($data);
                 }
                 else if(empty($aadhaar) && $rel_nation == 'Indian') 
                 {

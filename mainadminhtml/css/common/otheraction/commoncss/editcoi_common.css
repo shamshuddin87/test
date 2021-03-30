@@ -51,8 +51,8 @@ tr,td {
 
 }
 
-.glyphicon
-{font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;}
+/*.glyphicon
+{font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;}*/
 .glyphicon-download-alt:before {
     content: "\e025";
     font-family:  'Glyphicons Halflings';
@@ -70,14 +70,20 @@ a.tooltip_c {
 
 .mainelementfom {
     margin-top: 65px;
+  padding: 0px 15px 15px 15px;
+  border: 1px solid #ddd;
+  background: #fff;
 }
 
 .h1_heading {
     font-size: 28px;
-    font-weight: normal;
-    color: #000;
-    margin-bottom: 18px;
-    padding-left: 9px;
+  font-weight: normal;
+  color: #fff;
+  margin-bottom: 18px;
+  padding-left: 9px;
+  margin: 0px -15px 5px -15px;
+  padding: 10px;
+  background: #36186e;
 }
 
 .belowleveluserdetcss
@@ -92,10 +98,12 @@ a.tooltip_c {
 
 .h2_heading
 {
-    font-size: 20px;
-    font-weight: 600;
-    color: black;
-    margin-bottom: 20px;
+    background: #7c6cad;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
 }
 
 .h3_heading
@@ -233,4 +241,42 @@ input#attachment {
     padding: 7px;
     width: 100%;
     border-radius: 4px;
+}
+
+
+.sectionbox {
+  /*padding: 15px;*/
+  background: #f8f6ff;
+  border: 1px solid #ddd;
+  margin: 15px 0;
+}
+
+.radio-inline, .checkbox-inline
+{
+    padding-left: 0;
+}
+
+.p-15px
+{
+    padding: 15px;
+}
+
+label.informationlable
+{
+    display: flex;
+}
+
+span.informationqus
+{
+    margin-left: 5px;
+  display: inline-block;
+}
+
+.coicateque
+{
+    margin: 10px 0;
+}
+.modalcoihtmldata 
+{
+    pointer-events: none;
 }

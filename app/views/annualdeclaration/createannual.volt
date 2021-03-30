@@ -1496,7 +1496,7 @@
              <?php 
                 $current_year = date('Y'); 
                 $earliest_year = 2025; 
-                $latest_year = 2020; ?>
+                $latest_year = 2021; ?>
                 <select id="annualyear" name="annualyear">
                <?php foreach ( range( $latest_year, $earliest_year ) as $i ) {?>
                 <option value="<?php echo $i; ?>" ><?php echo $i;?></option>

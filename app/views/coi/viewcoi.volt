@@ -16,23 +16,75 @@ $condeptsess = $this->session->contractdepartment;
 <div class="mainelementfom">
    
     <h1 class="h1_heading text-center" style="text-align: center;">View COI Declaration</h1>
+    <div class="cssnumrws form-inline">
+        <label>Show</label>
+        <select id="noofrows" name="noofrows" class="noofrows form-control">
+            <option value="10">10</option><option value="25">25</option>
+            <option value="50">50</option><option value="100">100</option>
+        </select> 
+        <label>Entries</label>
+        
+        <div class="top_margin">
+        <input style="width: 217px" type="text" placeholder="Search By Requester ID / Name" class="form-control" id="srch" status="0">
+    </div>
+        
+        <div class="cssfilter form-inline">               
+        <div class="control-label form-group">
+            <label>Status Filter</label>
+            <select id="filterstatus" name="filterstatus" class="form-control">
+                <option value="">All</option>
+                <option value="To Be Send">To Be Send</option>
+                <option value="Pending Approval">Pending Approval</option>
+                <option value="Returned">Returned</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Approved">Approved</option>
+            </select>
+        </div>
+        </div>
+      </div> 
+    <div class="cssnumrws form-inline">
+    
+        <div class="srcfac  form-inline ">
+            <input type="text" class="bootdatepick form-control" id="date1"  placeholder="Start Date"  readonly="readonly"/>
+            <input type="text" class="bootdatepick form-control" id="date2" placeholder="End Date" readonly="readonly"/>
+            <input type="button" id="dtrange" class="btn btn-primary form-control" Value="Search" style="margin: 0 5px;"/>
 
-    <table width="100%" border="1" class="table table-inverse" id="datableabhi">
-     <thead>
-      <tr>
-        <th>Srno</th>
-        <th>Requester EmpID</th> 
-        <th>Requester Name</th>  
-        <th>Requestor Dept</th>
-        <th>Request Date</th>      
-        <th>Status</th>                                           
-        <th>Action</th>                                           
-        <th>Audit Trail</th>                                           
-        <th>Download</th>                                           
-      </tr>
-     </thead>
-    <tbody class="approvaldata" appendrow='1'></tbody>
-    </table>
+          <a class="floatright exportcss dwnldExcel btn btn-primary" href="" style="display: none;" download>Download</a>
+          <button type="button" class="floatright btn btn-primary genfile pdf_bg" request="pdf">Export PDF</button>
+          <button type="button" class="floatright btn btn-primary genfile excel_bg" request="excel">Export Excel</button>
+        </div>
+        
+        <div class="">
+          
+        </div>
+    </div>
+    
+    <div class="containergrid">
+    <div class="panel panel-primary">
+        <div class="table-responsive">
+        <table class="table table-inverse" id="datablerushi">
+         <thead>
+          <tr>
+            <th>Srno</th>
+            <th>Requester ID</th> 
+            <th>Requester Name</th>  
+            <th>Requestor Dept</th>
+            <th>Request Date</th>      
+            <th>Status</th>                                           
+            <th>Action</th>                                           
+            <th>Audit Trail</th>                                           
+            <th>Download</th>                                           
+          </tr>
+         </thead>
+        <tbody class="approvaldata" appendrow='1'></tbody>
+        </table>
+    <div class="panel panel-white">
+        <div class="paginationmn"></div>
+        <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
+    </div>
+    </div>
+    </div>
+    </div>
 </div>
 
 <div id="sendmod" class="modal fade" role="dialog">

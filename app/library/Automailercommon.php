@@ -314,7 +314,7 @@ class Automailercommon extends Component
 
 
     public function sendpendapprovmaileveryday()
-     {
+    {
         $connection = $this->dbtrd;
 
         $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername,GROUP_CONCAT(DISTINCT dept.`deptname`) as deptname FROM `coi_declaration` cd
@@ -362,11 +362,7 @@ class Automailercommon extends Component
         // print_r("result aprover");
         // print_r($result);exit;   
           
-     }
-
-
-     
-
+    }
 
    public function sendmailtousers()
    {
@@ -822,5 +818,43 @@ class Automailercommon extends Component
     }
 /* ------------------------ End ------------------------ */    
     
+    /* for pending creating coi application */
+    public function sendRemindtoReqstreveryday()
+    {
+        $connection = $this->dbtrd;
+        $isreldata = '';
+        $ismfrdata = '';
+        $allUsers = $this->getallusers();
+        foreach($allUsers as $key => $val)
+        {
+            $userid = $val['wr_id'];
+            $useremail = $val['email'];
+            $username = $val['fullname'];
+            $queryrel = "SELECT * FROM `relative_info` WHERE `user_id`= '".$userid."' "; 
+            //echo $queryrel;  exit;
+            $querymfr = "SELECT * FROM `mfr` WHERE `user_id`= '".$userid."' ";
+            //echo $querymfr;
+            $exegetrel = $connection->query($queryrel);
+            $exegetmfr = $connection->query($querymfr);
+            $getnumrel = trim($exegetrel->numRows());
+            $getnummfr = trim($exegetmfr->numRows());
+            if($getnumrel>0)
+            {
+                $rowrel = $exegetrel->fetch();
+                $isreldata = $rowrel['isbusiness_partner'];
+                //echo '<pre>';print_r($getlist);exit;
+            }
+            if($getnummfr>0)
+            {
+                $rowmfr = $exegetmfr->fetch();
+                $ismfrdata = $rowmfr['mfr_thirdparty'];
+            }
+            if($isreldata == 'Yes' || $ismfrdata == 'Yes')
+            {
+                $mailstatus = $this->emailer->sendRemindtoReqstr($useremail,$username);
+            }
+        }
+    }
+    /* for pending creating coi application */
     
 }

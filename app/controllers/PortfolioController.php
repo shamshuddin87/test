@@ -27,7 +27,7 @@ class PortfolioController extends ControllerBase
         }
 
         $reldemat = $this->portfoliocommon->getreldematsstatus($uid,$usergroup);
-        if(!empty($demat))
+        if(!empty($reldemat))
         {
             $this->view->getreldematsstatus=$this->portfoliocommon->getreldematsstatus($uid,$usergroup);
         }

@@ -39,16 +39,37 @@ function fetchEmpDetails()
 function inittinymace()
 {
     tinymce.init({
-        selector: 'textarea.textareforedit',  // change this value according to your HTML
+        selector: '.textareforedit',  // change this value according to your HTML
         plugins: ["lists"],
         a_plugin_option: true,
         toolbar: 'undo redo | formatselect | ' +
         'bold italic backcolor | alignleft aligncenttextareforediter ' +
         'alignright alignjustify | bullist numlist outdent indent | ' +
         'removeformat ',
-        a_configuration_option: 400
+        a_configuration_option: 400,
     });
+    
 }
+
+/*function inittinymaceappendval(otherdes)
+{
+    console.log(otherdes)
+    tinymce.init({
+        selector: 'textarea.textareforedit1',  // change this value according to your HTML
+        plugins: ["lists"],
+        a_plugin_option: true,
+        toolbar: 'undo redo | formatselect | ' +
+        'bold italic backcolor | alignleft aligncenttextareforediter ' +
+        'alignright alignjustify | bullist numlist outdent indent | ' +
+        'removeformat ',
+        a_configuration_option: 400,
+        setup: function (editor) {
+            editor.on('init', function () {
+                editor.setContent(otherdes);
+            });
+          }
+    });
+}*/
 
 website("body").on("click", ".coipolicy", function (e) {
     var coival = website(this).val();
@@ -132,21 +153,38 @@ website('body').on('click','.savecoi',function(e)
     else
     {
         website('#insertcoi #attachment_section').css("display", "none");
-        website('#insertcoi #textarea_others').html('<div class="form-group"><textarea class="form-control rounded-0" id="textarea_othershtml"></textarea></div>');
-        website('#insertcoi #textarea_others').css("display", "block");
-        website('#insertcoi #coiothers').css("display", "none");
-        var decoded_others_des = website("<div/>").html(others_des).text();
-        website('#insertcoi #textarea_othershtml').html(decoded_others_des);
+        if(others_des)
+        {
+            
+            /*var target = 'textareforedit';
+            tinymce.get(target).setContent('contentkjk');*/
+            website('#insertcoi #textarea_othersbox').html('<div class="form-group"><textarea class="form-control rounded-0" id="textarea_othershtml" rows="5" style="pointer-events: all;"></textarea></div>');
+            website('#insertcoi #textarea_othersbox').css("display", "block");
+            website('#insertcoi #coiothers').css("display", "none");
+            var decoded_others_des = website("<div/>").html(others_des).text();
+            website('#insertcoi #textarea_othershtml').html(decoded_others_des);
+        }
+        
         var pdfdata = website("div .coihtmldata").html();
+        //console.log(pdfdata)
         website('#insertcoi #coipdfhtml').val(pdfdata)
         //console.log(pdfdata);
         /*website('#insertcoi #attachment_section').css("display", "block");*/
         website(".modalcoihtmldata").html(pdfdata);
         
+        website('.modalcoihtmldata #textarea_othersbox').css("display", "block");
+        if(others_des)
+        {
+            website('#insertcoi #coiothers').css("display", "block");
+        }
+        website('#insertcoi #textarea_othersbox').css("display", "none");
+        website('#insertcoi #attachment_section').css("display", "block");
+        
         //website('.modalcoihtmldata #textarea_othershtml').html(others_des);
         website('.modalcoihtmldata #attachment_section').css("display", "none");
         /*website('.modalcoihtmldata #textarea_others').css("display", "none");*/
         website("#Mymodalcoideclara").modal("show");
+        
     }
     
 });
