@@ -582,7 +582,7 @@
                </div>
                -->
             <!-------------------------------------------Relative Details Table----------------------------------->
-            <div class="table_data">
+            <div class="table_data table-responsive">
                <table class="table table-inverse" id="datableabhi">
                   <thead>
                      <tr>
