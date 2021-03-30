@@ -423,12 +423,14 @@ class AutomailerController extends ControllerBase
 
         //annual declaration mail on 15th april every year if not done
          $sendremindfranualdecln = $this->remindrofanualdecln(); 
+        
+         $sendRemindtoReqstr = $this->automailercommon->sendRemindtoReqstreveryday();
+
 
          //-------------- Start: pending approval mail to hr and dept mgr -------------//
          $this->automailercommon->sendpendapprovmaileveryday();
          //-------------- End: pending approval mail to hr and dept mgr -------------//
-        
-         $sendRemindtoReqstr = $this->automailercommon->sendRemindtoReqstreveryday();
+
         /* ------------------------ Start ------------------------ */
         //$sendremindfrprsnlinfo = $this->remindrofprsnlinfo();
         //$sendremindfrhldngstmnt = $this->remindrofhldngstmnt();

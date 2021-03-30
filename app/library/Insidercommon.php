@@ -180,7 +180,7 @@ class Insidercommon extends Component
                 {
                     $row = $exessa->fetch();
                     
-                    $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$row['user_id'],$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid'],$insertmas['emp_status'],$insertmas['resignordeletiondate'],$insertmas['managertype']);
+                    $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$row['user_id'],$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid'],$insertmas['emp_status'],$insertmas['resignordeletiondate'],$insertmas['managertype'],$insertmas['mgrindept']);
                     
                     if($data)
                     {
@@ -226,7 +226,7 @@ class Insidercommon extends Component
                 // print_r($lastid);exit;     
                
                
-                $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$lastid,$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid'],$insertmas['emp_status'],$insertmas['resignordeletiondate'],$insertmas['managertype']);
+                $data = $this->commonquerycommon->commoninsertlogic($insertmas['getuserid'],$cmpnyaccessid,$insertmas['typeofusr'],$lastid,$insertmas['fullname'],$insertmas['firstname'],$insertmas['lastname'],$insertmas['email'],$insertmas['mobile'],$insertmas['gender'],$insertmas['designation'],$insertmas['reminderdays'],$insertmas['password'],$insertmas['accrgt'],$insertmas['deptaccessid'],$insertmas['approvername'],$insertmas['dpdate'],$insertmas['employeecode'],$insertmas['l1firstname'],$insertmas['l1lastname'],$insertmas['l1email'],$insertmas['l1empid'],$insertmas['roleid'],$insertmas['emp_status'],$insertmas['resignordeletiondate'],$insertmas['managertype'],$insertmas['mgrindept']);
                
                
                 if($data)
@@ -310,6 +310,7 @@ class Insidercommon extends Component
             emp_status='".$updatemas['emp_status']."',
             resignordeletiondate='".$updatemas['resignordeletiondate']."',
             managertype='".$updatemas['managertype']."',
+            mgrindept='".$updatemas['mgrindept']."',
             date_added = NOW(), 
             date_modified=NOW(), 
             timeago='".$time."'

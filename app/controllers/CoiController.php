@@ -718,6 +718,7 @@ class CoiController extends ControllerBase
             {
                 $reqid = $this->request->getPost('reqid');
                 $recommendation = $this->request->getPost('recommendation');
+                $rejectorName = $this->coicommon->getApprovalName($uid);
 
                 //------ Start: Reject Mail to requester
                     $reqUserId = $this->coicommon->getReqUserId($reqid);          
@@ -735,7 +736,7 @@ class CoiController extends ControllerBase
                     {
                      for ($i=0; $i < count($recipientnames); $i++) 
                         { 
-                            $this->coicommon->rejectmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
+                            $this->coicommon->rejectmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i],$rejectorName);
                         } 
                     }
                 //-------------- End: On reject: CCO and CS email intimation -------------//
@@ -791,6 +792,21 @@ class CoiController extends ControllerBase
                     $requestordata = $this->coicommon->getRequestorData($reqUserId);
                     $this->coicommon->returnMailToRequestor($reqid,$requestordata['fullname'],$requestordata['deptname'],$requestordata['email'],$recommendation);
                 //------ End: Return Mail to requester
+
+                //-------------- Start: On return: CCO and CS email intimation -------------//
+                $reqUserId = $this->coicommon->getReqUserId($reqid);          
+                $deptdata = $this->coicommon->getDeptaccess($reqUserId);
+                 $YORuser = $this->coicommon->checkYORuser($uid);
+                 $recipientnames = array("CCO","CS");
+                 $recipientemailids = array("cco@volody.com","cs@volody.com");
+                 if($YORuser)
+                    {
+                     for ($i=0; $i < count($recipientnames); $i++) 
+                        { 
+                            $this->coicommon->returnmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
+                        } 
+                    }
+                //-------------- End: On return: CCO and CS email intimation -------------//
 
                 if($managertype == "hr")
                 {

@@ -38,6 +38,7 @@ class UsermasterController extends ControllerBase
         {
             if($this->request->isAjax() == true)
             {
+                // echo"<pre>";print_r($_POST);die;
                 $firstname = $this->request->getPost('firstname','trim');
                 
                 $lastname  = $this->request->getPost('lastname','trim');
@@ -73,6 +74,7 @@ class UsermasterController extends ControllerBase
                 $resignordeletiondate = $this->request->getPost('resignordeletiondate','trim');
                 $coiaccess = $this->request->getPost('coiaccess','trim');
                 $managertype = $this->request->getPost('managertype','trim');
+                $mgrindept = $this->request->getPost('mgrindept','trim');
                  // print_r($approvername);exit;l1email
               
                 $dupliempcode = $this->commonquerycommon->checkifduplidata($getuserid,$employeecode,'');          
@@ -179,6 +181,7 @@ class UsermasterController extends ControllerBase
                 else
                 {
                     $deptaccessid = implode(',', $deptaccessid);
+                    $mgrindept = implode(',', $mgrindept);
                     // $cmpnyaccessid=explode(',', $cmpnyaccessid);
                     if(!empty($accrgt))
                     {   $accrgt = implode(',',$accrgt); }
@@ -222,6 +225,7 @@ class UsermasterController extends ControllerBase
                     $insertmas['resignordeletiondate']= $resignordeletiondate;
                     $insertmas['coiaccess']= $coiaccess;
                     $insertmas['managertype']= $managertype;
+                    $insertmas['mgrindept']= $mgrindept;
 
                     //print_r($insertmas);exit;
 
@@ -297,6 +301,7 @@ class UsermasterController extends ControllerBase
                 $resignordeletiondate = $this->request->getPost('resignordeletiondate','trim');
                 $coiaccess=$this->request->getPost('coiaccess','trim');
                 $managertype=$this->request->getPost('managertype','trim');
+                $mgrindept=$this->request->getPost('mgrindept','trim');
 
                 if($masterid==2)
                 {
@@ -413,6 +418,7 @@ class UsermasterController extends ControllerBase
                 {
                     $deptaccessid = implode(',', $deptaccessid);
                     $cmpnyaccessid=implode(',', $cmpnyaccessid);
+                    $mgrindept=implode(',', $mgrindept);
                     
                     if(!empty($accrgt))
                     {   $accrgt = implode(',',$accrgt); }
@@ -447,6 +453,7 @@ class UsermasterController extends ControllerBase
                     $updatemas['resignordeletiondate']= $resignordeletiondate;
                     $updatemas['coiaccess']= $coiaccess;
                     $updatemas['managertype']= $managertype;
+                    $updatemas['mgrindept']= $mgrindept;
 
                     //print_r($updatemas);exit;
 
