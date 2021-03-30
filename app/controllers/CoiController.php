@@ -94,7 +94,7 @@ class CoiController extends ControllerBase
                     for ($i = 0; $i < sizeof($cateQueData); $i++) 
                     {
                         $coihtml.= '<label class="informationlable"><input class="cateque" type="radio" name="question" id="'.$cateQueData[$i]['idattr'].'" value="'.$cateQueData[$i]['id'].'">
-                        <span class="informationqus">'.$cateQueData[$i]['question'].'</span></label>';
+                        <span class="informationqus">'.$cateQueData[$i]['question'].'</span></label></br>';
                     }
                     //print_r($coihtml);exit;
                     $data  = array('logged' => true, 'data' => $coihtml);
