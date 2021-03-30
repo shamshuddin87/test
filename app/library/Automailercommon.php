@@ -317,12 +317,12 @@ class Automailercommon extends Component
     {
         $connection = $this->dbtrd;
 
-        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername,GROUP_CONCAT(DISTINCT dept.`deptname`) as deptname FROM `coi_declaration` cd
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername,GROUP_CONCAT(DISTINCT dept.`deptname`) as deptname,im.`deptaccess`,im.`cmpaccess` FROM `coi_declaration` cd
                     LEFT JOIN `coi_category` cc ON cd.catid = cc.id
                     LEFT JOIN `it_memberlist` im ON im.wr_id = cd.user_id
                     LEFT JOIN `con_dept` dept ON FIND_IN_SET(dept.`id`,im.`deptaccess`)
-                    WHERE cd.`sent_status`='1' AND cd.`hrM_processed_status`='Pending Approval'";
-            //print_r($sqlquery);exit;
+                    WHERE cd.`hrM_processed_status`='Pending Approval' || cd.`deptM_processed_status`='Pending Approval'";
+            // print_r($sqlquery);exit;
          
         try
         {
@@ -342,6 +342,7 @@ class Automailercommon extends Component
                         $myarry=$getlist;
 
                         $hrdeptmgrs = $this->coicommon->getHrDeptMgrs($row['deptaccess'],$row['cmpaccess'],"");
+                        // echo"<pre>";print_r($hrdeptmgrs);die;
 
                         foreach($hrdeptmgrs as $hrdeptmgr)
                         { 

@@ -562,6 +562,34 @@ website('body').on('click','.dbeditme',function(e){
                               }
                            //--------------------------------------------------------------------------//
 
+                           //-------------------------------Mgr In Dept selection---------------------------------------------//
+                          
+                             var  mgrindept= response.data[i].mgrindept;
+                             // console.log(mgrindept);
+                             if(mgrindept)
+                             {
+                                website("#Mymodaledit #main_mgrindept").show();
+                                var mgrindept = mgrindept.split(',');
+                                if (mgrindept!= '')
+                                 {
+                                    website.each(mgrindept, function(k, v) 
+                                    {  //console.log("checking values hre ");console.log(v);
+                                      website("#Mymodaledit #mgrindept option[value='"+v+"']").prop("selected",true);
+                                     });
+                                 }
+                               else
+                                 {
+                                       website("#Mymodaledit #mgrindept option").prop("selected",false);
+                                  }
+                             }
+                             else
+                             {
+                                website("#Mymodaledit #main_mgrindept").hide();
+                             }
+                             
+                           //--------------------------------------------------------------------------//
+
+
                         //-----------------------select company--------------------------------------//
                              var  cmpny= response.data[i].cmpaccess;
                              var cmpny = cmpny.split(',');
@@ -1007,4 +1035,17 @@ website(document).ready(function(){
         },
         error: function() 
         {   }
+});
+
+website('body').on('click','#managertype', function(e) 
+{
+    var mgrtype = website(this).val();
+    if(mgrtype)
+    {   
+        website("#main_mgrindept").show();
+    }
+    else
+    {
+        website("#main_mgrindept").hide();
+    }
 });
