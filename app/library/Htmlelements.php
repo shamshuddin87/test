@@ -3477,10 +3477,22 @@ return $html;
           <h3>Dear '.$myarr['requestername'].'</h3>
           <h3>This is to confirm that your Conflict of Interest declaration has been submitted. You may view your request summary below.</h3>
           <h3>COI Declaration Details</h3>
-          <h3>Request Number:'.$myarr['reqno'].'</h3>
-          <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
-          <h3>Department: '.$myarr['deptname'].'</h3>
-          <h3>Disclosure made by: '.$myarr['requestername'].'</h3>
+          <table width="100%" border="1px" cellpadding="5px" style="border-collapse: collapse;width: 100%;">
+            <tbody>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Request Number:</b></th><td>'.$myarr['reqno'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Nature of Conflict:</b></th><td>'.$myarr['nature_of_conflict'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Department:</b></th><td>'.$myarr['deptname'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Disclosure made by:</b></th><td>'.$myarr['requestername'].'</td>
+              </tr>
+            </tbody>
+          </table>
           <h3>You will be duly notified of any change in status of approval.</h3>
           <h3>Please <a href="#">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
@@ -3551,9 +3563,19 @@ return $html;
           <h3>Dear '.$myarr['recipientname'].'</h3>
           <h3>A Conflict of Interest declaration has been submitted by '.$myarr['requestername'].' for approval by their HR and Manager. This is for your information. Below is the summary.</h3>
           <h3>COI Declaration Details</h3>
-          <h3>Request Number:'.$myarr['reqno'].'</h3>
-          <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
-          <h3>Department: '.$myarr['deptname'].'</h3>
+          <table width="100%" border="1px" cellpadding="5px" style="border-collapse: collapse;width: 100%;">
+            <tbody>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Request Number:</b></th><td>'.$myarr['reqno'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Nature of Conflict:</b></th><td>'.$myarr['nature_of_conflict'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Department:</b></th><td>'.$myarr['deptname'].'</td>
+              </tr>
+            </tbody>
+          </table>
           <h3>Please <a href="#">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
@@ -3577,11 +3599,25 @@ return $html;
           <h3>Dear '.$myarr['recipientname'].'</h3>
           <h3>A Conflict of Interest declaration submitted by '.$myarr['requestername'].' has been Rejected by their HR and Manager and accordingly communicated to them. This is for your information. Below is the summary.</h3>
           <h3>COI Declaration Details</h3>
-          <h3>Request Number:'.$myarr['reqno'].'</h3>
-          <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
-          <h3>Department: '.$myarr['deptname'].'</h3>
-          <h3>Disclosure made by: '.$myarr['requestername'].'</h3>
-          <h3>Rejected by: '.$myarr['rejected_by'].'</h3>
+          <table width="100%" border="1px" cellpadding="5px" style="border-collapse: collapse;width: 100%;">
+            <tbody>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Request Number:</b></th><td>'.$myarr['reqno'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Nature of Conflict:</b></th><td>'.$myarr['nature_of_conflict'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Department:</b></th><td>'.$myarr['deptname'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Disclosure made by:</b></th><td>'.$myarr['requestername'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Rejected by:</b></th><td>'.$myarr['rejected_by'].'</td>
+              </tr>
+            </tbody>
+          </table>
           <h3>Please <a href="#">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
@@ -3606,11 +3642,25 @@ return $html;
           <h3>Dear '.$myarr['recipientname'].'</h3>
           <h3>A Conflict of Interest declaration submitted by '.$myarr['requestername'].' has been Returned by their HR and Manager and accordingly communicated to them. This is for your information. Below is the summary.</h3>
           <h3>COI Declaration Details</h3>
-          <h3>Request Number:'.$myarr['reqno'].'</h3>
-          <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
-          <h3>Department: '.$myarr['deptname'].'</h3>
-          <h3>Disclosure made by: '.$myarr['requestername'].'</h3>
-          <h3>Returned by: '.$myarr['returned_by'].'</h3>
+          <table width="100%" border="1px" cellpadding="5px" style="border-collapse: collapse;width: 100%;">
+            <tbody>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Request Number:</b></th><td>'.$myarr['reqno'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Nature of Conflict:</b></th><td>'.$myarr['nature_of_conflict'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Department:</b></th><td>'.$myarr['deptname'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Disclosure made by:</b></th><td>'.$myarr['requestername'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Returned by:</b></th><td>'.$myarr['returned_by'].'</td>
+              </tr>
+            </tbody>
+          </table>
           <h3>Please <a href="#">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
@@ -3634,10 +3684,22 @@ return $html;
           <h3>Dear '.$myarr['recipientname'].'</h3>
           <h3>This is to inform you that your Conflict of Interest declaration request has been Returned. You may review the comments below and resubmit your request:</h3>
           <h3>COI Declaration Details</h3>
-          <h3>Request Number:'.$myarr['reqno'].'</h3>
-          <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
-          <h3>Reason For Return: '.$myarr['reason_for_return'].'</h3>
-          <h3>Department: '.$myarr['deptname'].'</h3>
+          <table width="100%" border="1px" cellpadding="5px" style="border-collapse: collapse;width: 100%;">
+            <tbody>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Request Number:</b></th><td>'.$myarr['reqno'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Nature of Conflict:</b></th><td>'.$myarr['nature_of_conflict'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Reason For Return:</b></th><td>'.$myarr['reason_for_return'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Department:</b></th><td>'.$myarr['deptname'].'</td>
+              </tr>
+            </tbody>
+          </table>
           <h3>Please <a href="#">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
@@ -3661,9 +3723,19 @@ return $html;
           <h3>Dear '.$myarr['recipientname'].'</h3>
           <h3>This is to inform you that your Conflict of Interest declaration request has been Approved. Below is the summary.</h3>
           <h3>COI Declaration Details</h3>
-          <h3>Request Number:'.$myarr['reqno'].'</h3>
-          <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
-          <h3>Department: '.$myarr['deptname'].'</h3>
+          <table width="100%" border="1px" cellpadding="5px" style="border-collapse: collapse;width: 100%;">
+            <tbody>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Request Number:</b></th><td>'.$myarr['reqno'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Nature of Conflict:</b></th><td>'.$myarr['nature_of_conflict'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Department:</b></th><td>'.$myarr['deptname'].'</td>
+              </tr>
+            </tbody>
+          </table>
           <h3>Please <a href="#">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
@@ -3687,9 +3759,19 @@ return $html;
           <h3>Dear '.$myarr['recipientname'].'</h3>
           <h3>This is to inform you that your Conflict of Interest declaration request has been Rejected. Below is the summary. </h3>
           <h3>COI Declaration Details</h3>
-          <h3>Request Number:'.$myarr['reqno'].'</h3>
-          <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
-          <h3>Department: '.$myarr['deptname'].'</h3>
+          <table width="100%" border="1px" cellpadding="5px" style="border-collapse: collapse;width: 100%;">
+            <tbody>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Request Number:</b></th><td>'.$myarr['reqno'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Nature of Conflict:</b></th><td>'.$myarr['nature_of_conflict'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Department:</b></th><td>'.$myarr['deptname'].'</td>
+              </tr>
+            </tbody>
+          </table>
           <h3>Please <a href="#">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
