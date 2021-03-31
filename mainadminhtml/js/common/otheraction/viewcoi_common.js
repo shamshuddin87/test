@@ -128,9 +128,9 @@ function fetchCoiMgrData()
                 {
                     var cssvar = '';
                 }
-                addhtmlnxt += '<i class="fa fa-check '+cssvar+'" id="approve" reqid="'+response.data[i]["reqid"]+'" title="Approve"></i>';
-                addhtmlnxt += '&nbsp;&nbsp;&nbsp;<i class="fa fa-times '+cssvar+'" id="reject" reqid="'+response.data[i]["reqid"]+'" title="Reject"></i>';
-                addhtmlnxt += '&nbsp;&nbsp;&nbsp;<i class="fa fa-exchange '+cssvar+'" id="return" reqid="'+response.data[i]["reqid"]+'" title="Return"></i>';
+                addhtmlnxt += '<i class="fa fa-check faiconbtn '+cssvar+'" id="approve" reqid="'+response.data[i]["reqid"]+'"  title="Approve"></i>';
+                addhtmlnxt += '&nbsp;&nbsp;<i class="fa fa-times faiconbtn '+cssvar+'" id="reject" reqid="'+response.data[i]["reqid"]+'"  title="Reject"></i>';
+                addhtmlnxt += '&nbsp;&nbsp;<i class="fa fa-exchange faiconbtn '+cssvar+'" id="return" reqid="'+response.data[i]["reqid"]+'"  title="Return"></i>';
                 addhtmlnxt += '</td>';
                 
                 addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-list-ul faicon" id="audit_trail" reqid="'+response.data[i]["reqid"]+'" title="Audit Trail"></i></td>';

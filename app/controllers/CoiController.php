@@ -94,7 +94,7 @@ class CoiController extends ControllerBase
                     for ($i = 0; $i < sizeof($cateQueData); $i++) 
                     {
                         $coihtml.= '<label class="informationlable"><input class="cateque" type="radio" name="question" id="'.$cateQueData[$i]['idattr'].'" value="'.$cateQueData[$i]['id'].'">
-                        <span class="informationqus">'.$cateQueData[$i]['question'].'</span></label>';
+                        <span class="informationqus">'.$cateQueData[$i]['question'].'</span></label></br>';
                     }
                     //print_r($coihtml);exit;
                     $data  = array('logged' => true, 'data' => $coihtml);
@@ -204,7 +204,11 @@ class CoiController extends ControllerBase
                             
                             $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
                             // print_r($hrmgr);die;
-                            $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$hrmgr['mgrname'],$hrmgr['email'],$getres['coiid']);
+                            foreach($hrmgr as $mgr)
+                            { 
+                                $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$mgr['mgrname'],$mgr['email'],$getres['coiid']);
+                            }
+
                             if($mailsentstatus)
                             {
                                  //-------------- Start: On request for approval: CCO and CS email intimation -------------//
@@ -332,7 +336,11 @@ class CoiController extends ControllerBase
                 $deptdata = $this->coicommon->getDeptaccess($uid);
                 $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
                 // print_r($hrmgr);die;
-                $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$hrmgr['mgrname'],$hrmgr['email'],$reqid);
+                foreach($hrmgr as $mgr)
+                {
+                    $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$mgr['mgrname'],$mgr['email'],$reqid);
+                }
+                
                 // print_r($mailsentstatus);exit;
                 if($mailsentstatus)
                 {
@@ -584,7 +592,11 @@ class CoiController extends ControllerBase
                 {
                     $deptmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","dept");
                     // print_r($deptmgr);die;
-                    $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$deptmgr['mgrname'],$deptmgr['email'],$reqid);
+                    foreach($deptmgr as $mgr)
+                    {
+                        $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$mgr['mgrname'],$mgr['email'],$reqid);
+                    }
+                    
                     // print_r($mailsentstatus);exit;
                     if($mailsentstatus)
                     {
@@ -718,6 +730,7 @@ class CoiController extends ControllerBase
             {
                 $reqid = $this->request->getPost('reqid');
                 $recommendation = $this->request->getPost('recommendation');
+                $rejectorName = $this->coicommon->getApprovalName($uid);
 
                 //------ Start: Reject Mail to requester
                     $reqUserId = $this->coicommon->getReqUserId($reqid);          
@@ -735,7 +748,7 @@ class CoiController extends ControllerBase
                     {
                      for ($i=0; $i < count($recipientnames); $i++) 
                         { 
-                            $this->coicommon->rejectmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
+                            $this->coicommon->rejectmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i],$rejectorName);
                         } 
                     }
                 //-------------- End: On reject: CCO and CS email intimation -------------//
@@ -791,6 +804,21 @@ class CoiController extends ControllerBase
                     $requestordata = $this->coicommon->getRequestorData($reqUserId);
                     $this->coicommon->returnMailToRequestor($reqid,$requestordata['fullname'],$requestordata['deptname'],$requestordata['email'],$recommendation);
                 //------ End: Return Mail to requester
+
+                //-------------- Start: On return: CCO and CS email intimation -------------//
+                $reqUserId = $this->coicommon->getReqUserId($reqid);          
+                $deptdata = $this->coicommon->getDeptaccess($reqUserId);
+                 $YORuser = $this->coicommon->checkYORuser($uid);
+                 $recipientnames = array("CCO","CS");
+                 $recipientemailids = array("cco@volody.com","cs@volody.com");
+                 if($YORuser)
+                    {
+                     for ($i=0; $i < count($recipientnames); $i++) 
+                        { 
+                            $this->coicommon->returnmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
+                        } 
+                    }
+                //-------------- End: On return: CCO and CS email intimation -------------//
 
                 if($managertype == "hr")
                 {
@@ -964,7 +992,11 @@ class CoiController extends ControllerBase
                             $deptdata = $this->coicommon->getDeptaccess($getuserid);
                             $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
                             // print_r($hrmgr);die;
-                            $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$hrmgr['mgrname'],$hrmgr['email'],$coieditid);
+                            foreach($hrmgr as $mgr)
+                            {
+                                $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$mgr['mgrname'],$mgr['email'],$coieditid);
+                            }
+                            
                         }
                         $data = array("logged" => true,'message' => 'Record Updated','pdfpath'=>$pdfpath);
                         $this->response->setJsonContent($data);

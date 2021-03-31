@@ -204,6 +204,44 @@ class Coicommon extends Component
         return $getlist;
      }
 
+     public function getMgrDeptaccess($uid)
+     {
+        $connection = $this->dbtrd;
+        $time = time();
+        
+        $getlist = array();
+        try
+        {
+            $sqlqry = "SELECT im.`mgrindept`,GROUP_CONCAT(DISTINCT cd.`deptname`) as deptname FROM `it_memberlist` im
+                LEFT JOIN `con_dept` cd ON FIND_IN_SET(cd.`id`,im.`mgrindept`)
+                WHERE im.`wr_id`='".$uid."'";         
+            //print_r($sqlqry); exit;            
+            $exeqry = $connection->query($sqlqry);
+            $getnum = trim($exeqry->numRows());
+            //echo '<pre>'; print_r($getnum); exit;            
+            if($getnum>0)
+            {
+                while($row = $exeqry->fetch())
+                {
+                    $getlist['deptid'] = $row['mgrindept']; 
+                    $getlist['deptname'] = $row['deptname'];
+                }
+                //echo '<pre>'; print_r($getlist); exit;
+            }
+            else
+            {
+                $getlist = array();
+            }
+        }
+        catch (Exception $e)
+        {
+            $getlist = array();
+        }
+        //echo '<pre>'; print_r($getlist); exit;
+        
+        return $getlist;
+     }
+
 
       public function sendaprvmailtomgr($deptname,$mgrname,$emailto,$reqid)
      {
@@ -259,29 +297,31 @@ class Coicommon extends Component
         {
             if($type == 'hr')
             {
-                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('hr') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
+                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('hr') AND `mgrindept` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
             }
             else if($type == 'dept')
             {
-                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('dept') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
+                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('dept') AND `mgrindept` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
             }
             else
             {
-                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('dept','hr') AND `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
+                $sqlqry = "SELECT `fullname` as mgrname,`email` FROM `it_memberlist` WHERE `managertype` IN ('dept','hr') AND `mgrindept` REGEXP CONCAT('(^|,)(', REPLACE('".$dept."', ',', '|'), ')(,|$)') AND `status`='1'";  
             }
                    
-            //print_r($sqlqry); exit;            
+            // print_r($sqlqry); exit;            
             $exeqry = $connection->query($sqlqry);
             $getnum = trim($exeqry->numRows());
             //echo '<pre>'; print_r($getnum); exit;            
             if($getnum>0)
             {
+                $i=0;
                 while($row = $exeqry->fetch())
                 {
-                    $getlist['mgrname'] = $row['mgrname']; 
-                    $getlist['email'] = $row['email']; 
+                    $getlist[$i]['mgrname'] = $row['mgrname']; 
+                    $getlist[$i]['email'] = $row['email']; 
+                    $i++;
                 }
-                //echo '<pre>'; print_r($getlist); exit;
+                // echo '<pre>'; print_r($getlist); exit;
             }
             else
             {
@@ -410,7 +450,8 @@ class Coicommon extends Component
         $connection = $this->dbtrd;
         $getlist = array();
 
-        $deptInfo = $this->getDeptaccess($getuserid);
+        $deptInfo = $this->getMgrDeptaccess($getuserid);
+        // print_r($deptInfo);die;
         $deptusers = $this->getDeptUsers($deptInfo['deptid']);
         $deptUserList = implode(",", $deptusers);
         // print_r($deptUserList);die;
@@ -420,14 +461,14 @@ class Coicommon extends Component
         }
         if($managertype == 'dept')
         {
-             $extquery = " AND cd.`hrM_processed_status` = 'Approved' ".$extquery;
+             $extquery = " AND (cd.`hrM_processed_status` = 'Approved' || cd.`deptM_processed_status` = 'Rejected' || cd.`deptM_processed_status` = 'Returned' || cd.`deptM_processed_status` = 'Approved') ".$extquery;
         }
         $query="SELECT im.`employeecode` as reqempid,im.`fullname` as reqname,GROUP_CONCAT(DISTINCT dept.`deptname`) as reqdeptname,cd.`date_added` as reqdate,cd.`hrM_processed_status` as hrMstatus,cd.`deptM_processed_status` as deptMstatus,cd.`id` as reqid,cd.`coi_pdfpath` 
                 FROM `coi_declaration` cd
                 LEFT JOIN `it_memberlist` im ON im.`wr_id`=cd.`user_id`
                 LEFT JOIN `con_dept` dept ON FIND_IN_SET(dept.`id`,im.`deptaccess`)
                 WHERE cd.`user_id` IN (".$deptUserList.") ".$extquery;
-        //print_r($query);exit; 
+        // print_r($query);exit; 
         try
         {
             $exeget = $connection->query($query);
@@ -481,7 +522,7 @@ class Coicommon extends Component
         <style>
       </head>
       <body>
-         <h5 style='text-align:center;'>Database of UPSI Shared</h5>
+         <h5 style='text-align:center;'>COI Declaration Data</h5>
          <table>
             <tr>
                <th>Sr No</th>
@@ -865,7 +906,7 @@ class Coicommon extends Component
      }
 
 
-     public function rejectmailtoccoandcs($reqid,$recipientname,$deptname,$emailid)
+     public function rejectmailtoccoandcs($reqid,$recipientname,$deptname,$emailid,$rejectorName)
      {
         $connection = $this->dbtrd;
 
@@ -890,9 +931,56 @@ class Coicommon extends Component
                         $getlist['requestername'] = $row['requestername']; 
                         $getlist['nature_of_conflict']=$row['nature_of_conflict']; 
                         $getlist['deptname'] = $deptname;
+                        $getlist['rejected_by'] = $rejectorName;
                         $myarry=$getlist;
 
                         $result = $this->emailer->rejectmailtoccoandcs($myarry,$emailid);
+                }
+            }
+            else
+            {
+                $getlist = array();
+            }            
+        }
+        catch(Exception $e)
+        {
+           $getlist = array();
+        } 
+
+        // print_r("result aprover");
+        // print_r($result);exit;   
+          
+     }
+
+     public function returnmailtoccoandcs($reqid,$recipientname,$deptname,$emailid,$returned_by)
+     {
+        $connection = $this->dbtrd;
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername FROM `coi_declaration` cd
+                    LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+                    LEFT JOIN `it_memberlist` im ON im.wr_id = cd.user_id
+                    WHERE cd.`id`='".$reqid."'";
+      // print_r($sqlquery);exit;
+         
+        try
+        {
+            $exeget = $connection->query($sqlquery);
+            $getnum = trim($exeget->numRows());
+              
+            if($getnum>0)
+            {
+                while($row = $exeget->fetch())
+                {
+                        $reqno = "COI".str_pad($row['reqno'], 7, '0', STR_PAD_LEFT);
+                        $getlist['reqno'] = $reqno; 
+                        $getlist['recipientname'] = $recipientname;  
+                        $getlist['requestername'] = $row['requestername']; 
+                        $getlist['nature_of_conflict']=$row['nature_of_conflict']; 
+                        $getlist['deptname'] = $deptname;
+                        $getlist['returned_by'] = $returned_by;
+                        $myarry=$getlist;
+
+                        $result = $this->emailer->returnmailtoccoandcs($myarry,$emailid);
                 }
             }
             else

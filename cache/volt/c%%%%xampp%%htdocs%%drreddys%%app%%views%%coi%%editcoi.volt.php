@@ -17,7 +17,8 @@ $category = $this->coicommon->fetchCategory();
     
     <div class="containergrid">
         <div class="formcss">
-            <form action="coi/insertcoi" id="insertcoi" method="post" autocomplete="off" enctype="multipart/form-data">
+            <form action="coi/updatecoi" id="updatecoi" method="post" autocomplete="off" enctype="multipart/form-data">
+            <input type="hidden" name="coieditid" id="coieditid" value="<?php echo $coieditid;?>">
             <input type="hidden" name="coipdfhtml" id="coipdfhtml" value="">
             <input type="hidden" name="formsendtype" id="formsendtype" value="">
              <div class="coihtmldata">
@@ -83,12 +84,12 @@ $category = $this->coicommon->fetchCategory();
                     <div class="coicateque"></div>
                     <div class="form-group" id="coiothers" style="display:none;">
                         <div class="" name="content">
-                            <textarea class="textareforedit" id="textareforedit" cols="90"></textarea>
-                            <input type="hidden" name="others_des" id="others_des" value=""  cols="90">
+                            <textarea class="textareforedit" id="textareforedit"></textarea>
+                            <input type="hidden" name="others_des" id="others_des" value="">
                         </div>
                     </div>
                     </div>
-                    <div class="p-15px" id="textarea_othersbox"></div>
+                    <div id="textarea_others"></div>
                    </div>
                  </div>
                  
@@ -122,7 +123,7 @@ $category = $this->coicommon->fetchCategory();
               </div>  
             </form>
             <div class="" style="margin-top: 20px;text-align: right;"> 
-                <button type="submit" class="btn btn-primary savecoi">Submit</button>
+                <button type="submit" class="btn btn-primary updatecoi">Submit</button>
             </div>
         </div>
     </div>
