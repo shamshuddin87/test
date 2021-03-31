@@ -335,7 +335,7 @@ class CoiController extends ControllerBase
                 $reqid = $this->request->getPost('reqid');
                 $deptdata = $this->coicommon->getDeptaccess($uid);
                 $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
-                // print_r($hrmgr);die;
+                // print_r($deptdata);die;
                 foreach($hrmgr as $mgr)
                 {
                     $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$mgr['mgrname'],$mgr['email'],$reqid);

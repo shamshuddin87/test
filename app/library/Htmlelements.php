@@ -2092,6 +2092,10 @@ public function sendmailforpersinfo($subject,$fullname){
 
      public function sendpendapprovmaileveryday($mgrname,$myarr)
      {
+         $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";            
+            $baseuri = $this->url->getBaseUri();
+            $baseurl = $server_link.$baseuri;
+         
           // print_r($myarr);exit;
           $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
           <html xmlns="htth3://www.w3.org/1999/xhtml">
@@ -2108,7 +2112,7 @@ public function sendmailforpersinfo($subject,$fullname){
           <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
           <h3>Department: '.$myarr['deptname'].'</h3>
           <h3>Disclosure by: '.$myarr['disclosure_made_by'].'</h3>
-          <h3>Please <a href="#">click here</a> for more details.</h3>
+          <h3>Please <a href="'.$baseurl.'">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
           </html>';
@@ -2120,6 +2124,9 @@ public function sendmailforpersinfo($subject,$fullname){
 
      public function sendapprmailtoccoandcs($myarr)
      {
+         $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";            
+            $baseuri = $this->url->getBaseUri();
+            $baseurl = $server_link.$baseuri;
 
           // print_r($myarr);exit;
           $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -2138,7 +2145,7 @@ public function sendmailforpersinfo($subject,$fullname){
           <h3>Department: '.$myarr['deptname'].'</h3>
           <h3>Disclosure made by: '.$myarr['requestername'].'</h3>
           <h3>Approved by: '.$myarr['approved_by'].'</h3>
-          <h3>Please <a href="#">click here</a> for more details.</h3>
+          <h3>Please <a href="'.$baseurl.'">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
           </html>';
@@ -2150,7 +2157,10 @@ public function sendmailforpersinfo($subject,$fullname){
 
      public function sendaprvmailtomgr($myarr)
      {
-
+         $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";            
+            $baseuri = $this->url->getBaseUri();
+            $baseurl = $server_link.$baseuri;
+         
           // print_r($myarr);exit;
           $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
           <html xmlns="htth3://www.w3.org/1999/xhtml">
@@ -2166,7 +2176,7 @@ public function sendmailforpersinfo($subject,$fullname){
           <h3>Request Number:'.$myarr['reqno'].'</h3>
           <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
           <h3>Department: '.$myarr['deptname'].'</h3>
-          <h3>Please <a href="#">click here</a> for more details.</h3>
+          <h3>Please <a href="'.$baseurl.'">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
           </html>';
@@ -3464,7 +3474,10 @@ return $html;
       /* Send Mail to Requestor after submit form */
      public function sendAckMailtoReq($myarr)
      {
-
+         $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";            
+            $baseuri = $this->url->getBaseUri();
+            $baseurl = $server_link.$baseuri;
+         
           // print_r($myarr);exit;
           $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
           <html xmlns="htth3://www.w3.org/1999/xhtml">
@@ -3494,7 +3507,7 @@ return $html;
             </tbody>
           </table>
           <h3>You will be duly notified of any change in status of approval.</h3>
-          <h3>Please <a href="#">click here</a> for more details.</h3>
+          <h3>Please <a href="'.$baseurl.'">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
           </html>';
@@ -3551,6 +3564,10 @@ return $html;
     
     public function requestapprmailtoccoandcs($myarr)
     {
+        $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";            
+            $baseuri = $this->url->getBaseUri();
+            $baseurl = $server_link.$baseuri;
+        
           // print_r($myarr);exit;
           $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
           <html xmlns="htth3://www.w3.org/1999/xhtml">
@@ -3576,7 +3593,7 @@ return $html;
               </tr>
             </tbody>
           </table>
-          <h3>Please <a href="#">click here</a> for more details.</h3>
+          <h3>Please <a href="'.$baseurl.'">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
           </html>';
@@ -3587,6 +3604,10 @@ return $html;
 
     public function rejectmailtoccoandcs($myarr)
     {
+        $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";            
+            $baseuri = $this->url->getBaseUri();
+            $baseurl = $server_link.$baseuri;
+        
           // print_r($myarr);exit;
           $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
           <html xmlns="htth3://www.w3.org/1999/xhtml">
@@ -3618,7 +3639,7 @@ return $html;
               </tr>
             </tbody>
           </table>
-          <h3>Please <a href="#">click here</a> for more details.</h3>
+          <h3>Please <a href="'.$baseurl.'">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
           </html>';
@@ -3630,6 +3651,10 @@ return $html;
 
     public function returnmailtoccoandcs($myarr)
     {
+        $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";            
+            $baseuri = $this->url->getBaseUri();
+            $baseurl = $server_link.$baseuri;
+        
           // print_r($myarr);exit;
           $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
           <html xmlns="htth3://www.w3.org/1999/xhtml">
@@ -3661,7 +3686,7 @@ return $html;
               </tr>
             </tbody>
           </table>
-          <h3>Please <a href="#">click here</a> for more details.</h3>
+          <h3>Please <a href="'.$baseurl.'">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
           </html>';
@@ -3672,6 +3697,10 @@ return $html;
 
      public function returnMailToRequestor($myarr)
      {
+         $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";            
+            $baseuri = $this->url->getBaseUri();
+            $baseurl = $server_link.$baseuri;
+         
           // print_r($myarr);exit;
           $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
           <html xmlns="htth3://www.w3.org/1999/xhtml">
@@ -3700,7 +3729,7 @@ return $html;
               </tr>
             </tbody>
           </table>
-          <h3>Please <a href="#">click here</a> for more details.</h3>
+          <h3>Please <a href="'.$baseurl.'">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
           </html>';
@@ -3711,6 +3740,10 @@ return $html;
 
      public function approvalMailToRequestor($myarr)
      {
+         $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";            
+            $baseuri = $this->url->getBaseUri();
+            $baseurl = $server_link.$baseuri;
+         
           // print_r($myarr);exit;
           $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
           <html xmlns="htth3://www.w3.org/1999/xhtml">
@@ -3736,7 +3769,7 @@ return $html;
               </tr>
             </tbody>
           </table>
-          <h3>Please <a href="#">click here</a> for more details.</h3>
+          <h3>Please <a href="'.$baseurl.'">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
           </html>';
@@ -3747,6 +3780,10 @@ return $html;
 
      public function rejectMailToRequestor($myarr)
      {
+            $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";            
+            $baseuri = $this->url->getBaseUri();
+            $baseurl = $server_link.$baseuri;
+         
           // print_r($myarr);exit;
           $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth3://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
           <html xmlns="htth3://www.w3.org/1999/xhtml">
@@ -3772,7 +3809,7 @@ return $html;
               </tr>
             </tbody>
           </table>
-          <h3>Please <a href="#">click here</a> for more details.</h3>
+          <h3>Please <a href="'.$baseurl.'">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
           </html>';
