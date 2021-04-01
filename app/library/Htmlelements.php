@@ -2108,10 +2108,22 @@ public function sendmailforpersinfo($subject,$fullname){
           <h3>Dear '.$mgrname.'</h3>
           <h3>This is to inform you that the following Conflict of Interest declaration request is waiting for Approval.Below is the summary.</h3>
           <h3>COI Declaration Details</h3>
-          <h3>Request Number:'.$myarr['reqno'].'</h3>
-          <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
-          <h3>Department: '.$myarr['deptname'].'</h3>
-          <h3>Disclosure by: '.$myarr['disclosure_made_by'].'</h3>
+          <table width="100%" border="1px" cellpadding="5px" style="border-collapse: collapse;width: 100%;">
+            <tbody>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Request Number:</b></th><td>'.$myarr['reqno'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Nature of Conflict:</b></th><td>'.$myarr['nature_of_conflict'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Department:</b></th><td>'.$myarr['deptname'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Disclosure by:</b></th><td>'.$myarr['disclosure_made_by'].'</td>
+              </tr>
+            </tbody>
+          </table>
           <h3>Please <a href="'.$baseurl.'">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
@@ -2140,11 +2152,26 @@ public function sendmailforpersinfo($subject,$fullname){
           <h3>Dear '.$myarr['recipientname'].'</h3>
           <h3>A Conflict of Interest declaration submitted by '.$myarr['requestername'].' has been Approved by their HR and Manager and accordingly communicated to them. This is for your information. Below is the summary.</h3>
           <h3>COI Declaration Details</h3>
-          <h3>Request Number:'.$myarr['reqno'].'</h3>
-          <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
-          <h3>Department: '.$myarr['deptname'].'</h3>
-          <h3>Disclosure made by: '.$myarr['requestername'].'</h3>
-          <h3>Approved by: '.$myarr['approved_by'].'</h3>
+          <table width="100%" border="1px" cellpadding="5px" style="border-collapse: collapse;width: 100%;">
+            <tbody>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Request Number:</b></th><td>'.$myarr['reqno'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Nature of Conflict:</b></th><td>'.$myarr['nature_of_conflict'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Department:</b></th><td>'.$myarr['deptname'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Disclosure made by:</b></th><td>'.$myarr['requestername'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Approved by:</b></th><td>'.$myarr['approved_by'].'</td>
+              </tr>
+            </tbody>
+          </table>
+
           <h3>Please <a href="'.$baseurl.'">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
@@ -2173,9 +2200,19 @@ public function sendmailforpersinfo($subject,$fullname){
           <h3>Dear '.$myarr['mgrname'].'</h3>
           <h3>A Conflict of Interest declaration has been received from '.$myarr['requestername'].' for your consideration and approval. Below is the summary.</h3>
           <h3>COI Declaration Details</h3>
-          <h3>Request Number:'.$myarr['reqno'].'</h3>
-          <h3>Nature of Conflict: '.$myarr['nature_of_conflict'].'</h3>
-          <h3>Department: '.$myarr['deptname'].'</h3>
+          <table width="100%" border="1px" cellpadding="5px" style="border-collapse: collapse;width: 100%;">
+            <tbody>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Request Number:</b></th><td>'.$myarr['reqno'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Nature of Conflict:</b></th><td>'.$myarr['nature_of_conflict'].'</td>
+              </tr>
+              <tr>
+                <th bgcolor="#f1f1f1" align="left"><b>Department:</b></th><td>'.$myarr['deptname'].'</td>
+              </tr>
+            </tbody>
+          </table>
           <h3>Please <a href="'.$baseurl.'">click here</a> for more details.</h3>
           <h3>This mail is generated automatically. Please do not reply.</h3>
           </body>
