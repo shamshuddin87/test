@@ -204,7 +204,11 @@ class CoiController extends ControllerBase
                             
                             $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
                             // print_r($hrmgr);die;
-                            $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$hrmgr['mgrname'],$hrmgr['email'],$getres['coiid']);
+                            foreach($hrmgr as $mgr)
+                            { 
+                                $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$mgr['mgrname'],$mgr['email'],$getres['coiid']);
+                            }
+
                             if($mailsentstatus)
                             {
                                  //-------------- Start: On request for approval: CCO and CS email intimation -------------//
@@ -331,8 +335,12 @@ class CoiController extends ControllerBase
                 $reqid = $this->request->getPost('reqid');
                 $deptdata = $this->coicommon->getDeptaccess($uid);
                 $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
-                // print_r($hrmgr);die;
-                $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$hrmgr['mgrname'],$hrmgr['email'],$reqid);
+                // print_r($deptdata);die;
+                foreach($hrmgr as $mgr)
+                {
+                    $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$mgr['mgrname'],$mgr['email'],$reqid);
+                }
+                
                 // print_r($mailsentstatus);exit;
                 if($mailsentstatus)
                 {
@@ -584,7 +592,11 @@ class CoiController extends ControllerBase
                 {
                     $deptmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","dept");
                     // print_r($deptmgr);die;
-                    $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$deptmgr['mgrname'],$deptmgr['email'],$reqid);
+                    foreach($deptmgr as $mgr)
+                    {
+                        $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$mgr['mgrname'],$mgr['email'],$reqid);
+                    }
+                    
                     // print_r($mailsentstatus);exit;
                     if($mailsentstatus)
                     {
@@ -980,7 +992,11 @@ class CoiController extends ControllerBase
                             $deptdata = $this->coicommon->getDeptaccess($getuserid);
                             $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
                             // print_r($hrmgr);die;
-                            $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$hrmgr['mgrname'],$hrmgr['email'],$coieditid);
+                            foreach($hrmgr as $mgr)
+                            {
+                                $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$mgr['mgrname'],$mgr['email'],$coieditid);
+                            }
+                            
                         }
                         $data = array("logged" => true,'message' => 'Record Updated','pdfpath'=>$pdfpath);
                         $this->response->setJsonContent($data);

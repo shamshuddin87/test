@@ -83,12 +83,12 @@ $category = $this->coicommon->fetchCategory();
                     <div class="coicateque"></div>
                     <div class="form-group" id="coiothers" style="display:none;">
                         <div class="" name="content">
-                            <textarea class="textareforedit" id="textareforedit"></textarea>
-                            <input type="hidden" name="others_des" id="others_des" value="">
+                            <textarea class="textareforedit" id="textareforedit" cols="90"></textarea>
+                            <input type="hidden" name="others_des" id="others_des" value=""  cols="90">
                         </div>
                     </div>
                     </div>
-                    <div id="textarea_othersbox"></div>
+                    <div class="p-15px" id="textarea_othersbox"></div>
                    </div>
                  </div>
                  
