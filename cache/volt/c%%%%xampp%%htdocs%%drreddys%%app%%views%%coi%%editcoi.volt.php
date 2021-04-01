@@ -1,4 +1,8 @@
 <?php 
+
+$server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";         $baseuri = $this->url->getBaseUri();
+$baseurl = $server_link.$baseuri;
+
 $gmnlog = $this->session->loginauthspuserfront;
 //echo"<pre>";print_r($gmnlog); exit;
 $category = $this->coicommon->fetchCategory();
@@ -56,7 +60,7 @@ $category = $this->coicommon->fetchCategory();
                 <div class="sectionbox">
                     <h2 class="h2_heading" style="text-align:center;">Confirmation</h2>
                     <div class="p-15px" style="color: ">
-                        <p style="color: #000;">Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. Click Here to download policy.</p>
+                        <p style="color: #000;">Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. <a href="samplefile/Coi/agreement.pdf">Click Here</a> to download policy.</p>
                         <div class="checkbox-inline">                          
                           <input class="coipolicy" type="radio" name="coipolicy" id="coiyes" value="Yes">
                           <label>Yes</label>

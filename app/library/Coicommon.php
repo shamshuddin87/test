@@ -22,7 +22,7 @@ class Coicommon extends Component
                 while($row = $exeget->fetch())
                 { 
                     $deptaccess = $row['deptaccess'];
-                    $querymgrtyp="SELECT * FROM `it_memberlist` WHERE `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$deptaccess."', ',', '|'), ')(,|$)') AND (managertype = 'hr' OR managertype = 'dept')";
+                    $querymgrtyp="SELECT * FROM `it_memberlist` WHERE `mgrindept` REGEXP CONCAT('(^|,)(', REPLACE('".$deptaccess."', ',', '|'), ')(,|$)') AND (managertype = 'hr' OR managertype = 'dept')";
                     //echo $querymgrtyp;exit;
                     $exegetmgrtyp = $connection->query($querymgrtyp);
                     $getnummgrtyp = trim($exegetmgrtyp->numRows());
@@ -740,7 +740,7 @@ class Coicommon extends Component
         return $getlist;
     }
 
-    public function getApprovalName($uid)
+    public function getUserName($uid)
     {
         $connection = $this->dbtrd;
         $getlist = array();
