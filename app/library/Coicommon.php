@@ -11,7 +11,7 @@ class Coicommon extends Component
                 GROUP_CONCAT(DISTINCT dept.`deptname`) AS deptname,memb.`deptaccess` 
                 FROM `it_memberlist` memb 
                 LEFT JOIN `con_dept` dept ON FIND_IN_SET(dept.`id`,memb.`deptaccess`)
-                WHERE memb.`status`='1' AND memb.`wr_id` = '3'";
+                WHERE memb.`status`='1' AND memb.`wr_id` = '".$getuserid."'";
         //print_r($query);exit; 
         try
         {
