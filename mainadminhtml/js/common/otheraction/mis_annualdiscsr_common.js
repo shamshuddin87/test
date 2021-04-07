@@ -72,7 +72,7 @@ function getannualdisclsr()
         dataType:"json",
         cache:false,
         beforeSend: function()
-        {   },
+        {   website('.preloder_wraper').fadeIn();  },
         uploadProgress: function(event, position, total, percentComplete)
         {   },
         success: function(response, textStatus, jqXHR) 
@@ -161,7 +161,7 @@ function getannualdisclsr()
             website('#acc7').html(response.pgnhtml);
         },
         complete: function(response) 
-        {   },
+        {   website('.preloder_wraper').fadeOut();   },
         error: function(jqXHR, textStatus, errorThrown)
         {   }
     });
