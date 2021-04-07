@@ -139,6 +139,9 @@ $current_year =  '2020';
 </div>
 </div>
 </div>
+<div class="preloder_wraper">
+    <a href="javascript:;" class="preloder"></a>
+</div>
 <!-- ########################################## PageContent End ########################################## --> 
  
 
