@@ -199,7 +199,7 @@ class Htmlelements extends Component
                 <div style="border:0;outline:0;color:#333;background:0;width:100%;padding-top:13px;font-weight:600">
                   <span style="width:35%;float:left;text-align:center;color:#5d5d5d;font-size:14px">User Name :</span>
                   <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">
-                    <a href="#" style="color:#5d5d5d;text-decoration:none" target="_blank">Your SSO Username.</a></span>
+                    <a href="#" style="color:#5d5d5d;text-decoration:none" target="_blank">Your SSO Username</a></span>
                   </div>
                 </div>
                 <div style="background:#f8f8f8;width:80%;height:45px;border-radius:3px;margin-top:15px">
@@ -219,36 +219,10 @@ class Htmlelements extends Component
         </div>
         </td>
       </tr>
-     
-      <tr>
-          <td style="padding:0px 0 20px 0; background: #f7f7f7; padding: 10px;" colspan="2">
-          <table cellpadding="0" cellspacing="0" border="0" width="100%">
-            <tr>
-              <td align="center" colspan="2">
-                <p style="font-weight:600; letter-spacing: 1px; color:#333; font-size:20px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">For Support</p>
-              </td>
-            </tr>
-
-              <tr>
-                  <td align="center" style="width:340px">
-                  <img src="'.$baseurl.'/mainadminhtml/img/emailer/phone.png" style="display:block; border:0"/>
-                  <p style="margin:5px 0 0; color:#333; font-family:\'Roboto\',Arial,Helvetica,sans-serif; font-size:15px;">+91 8080809301</p>
-                  </td>
-
-
-                  <td align="center" style="width:340px">
-                    <img src="'.$baseurl.'/mainadminhtml/img/emailer/gmailicon.png" style="display:block; border:0"/>
-                    <p style="margin:5px 0 0; font-family:\'Roboto\',Arial,Helvetica,sans-serif; font-size:15px;"><a href="mailto:care@pretr.com" style="color:#333; text-decoration:none; border:0; outline:0;"> connect@volody.in</a></p>
-                  </td>
-              </tr>
-
-          </table>
-          </td>
-      </tr>
 
       <tr>
            <td align="center" colspan="2" style="max-width:100%; line-height:25px; background: #333;">
-           <p style="margin:0px; padding:8px 0 8px 0;  color:#fff; font-size:12px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">© 2019-20 Volody Products Pvt Ltd. - volody.com </p>
+           <p style="margin:0px; padding:8px 0 8px 0;  color:#fff; font-size:12px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">© 2020-21 Volody Products Pvt Ltd. - volody.com </p>
             </td>
       </tr>
 
