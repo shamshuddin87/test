@@ -239,7 +239,7 @@ class Htmlelements extends Component
 
       <tr>
            <td align="center" colspan="2" style="max-width:100%; line-height:25px; background: #333;">
-           <p style="margin:0px; padding:8px 0 8px 0;  color:#fff; font-size:12px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">© 2020-21 Volody Products Pvt Ltd. - volody.com </p>
+           <p style="margin:0px; padding:8px 0 8px 0;  color:#fff; font-size:12px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">© 2021-22 Volody Products Pvt Ltd. - volody.com </p>
             </td>
       </tr>
 
