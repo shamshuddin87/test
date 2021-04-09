@@ -219,6 +219,23 @@ class Htmlelements extends Component
         </div>
         </td>
       </tr>
+     
+      <tr>
+          <td style="padding:0px 0 20px 0; background: #f7f7f7; padding: 10px;" colspan="2">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%">
+
+              <tr>
+                  <td align="center" style="width:340px">
+                  </td>
+
+
+                  <td align="center" style="width:340px">
+                  </td>
+              </tr>
+
+          </table>
+          </td>
+      </tr>
 
       <tr>
            <td align="center" colspan="2" style="max-width:100%; line-height:25px; background: #333;">
