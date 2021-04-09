@@ -317,7 +317,13 @@ class Automailercommon extends Component
     {
         $connection = $this->dbtrd;
 
-        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername,GROUP_CONCAT(DISTINCT dept.`deptname`) as deptname,im.`deptaccess`,im.`cmpaccess` FROM `coi_declaration` cd
+        // $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername,GROUP_CONCAT(DISTINCT dept.`deptname`) as deptname,im.`deptaccess`,im.`cmpaccess` FROM `coi_declaration` cd
+        //             LEFT JOIN `coi_category` cc ON cd.catid = cc.id
+        //             LEFT JOIN `it_memberlist` im ON im.wr_id = cd.user_id
+        //             LEFT JOIN `con_dept` dept ON FIND_IN_SET(dept.`id`,im.`deptaccess`)
+        //             WHERE cd.`hrM_processed_status`='Pending Approval' || cd.`deptM_processed_status`='Pending Approval'";
+
+        $sqlquery = "SELECT cd.`id` as reqno,cc.`category` as nature_of_conflict,im.`fullname` as requestername,dept.`deptname`,im.`deptaccess`,im.`cmpaccess` FROM `coi_declaration` cd
                     LEFT JOIN `coi_category` cc ON cd.catid = cc.id
                     LEFT JOIN `it_memberlist` im ON im.wr_id = cd.user_id
                     LEFT JOIN `con_dept` dept ON FIND_IN_SET(dept.`id`,im.`deptaccess`)

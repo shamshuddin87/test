@@ -199,14 +199,14 @@ class Htmlelements extends Component
                 <div style="border:0;outline:0;color:#333;background:0;width:100%;padding-top:13px;font-weight:600">
                   <span style="width:35%;float:left;text-align:center;color:#5d5d5d;font-size:14px">User Name :</span>
                   <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">
-                    <a href="#" style="color:#5d5d5d;text-decoration:none" target="_blank">Your SSO Username</a></span>
+                    <a href="#" style="color:#5d5d5d;text-decoration:none" target="_blank">"'.$to.'"</a></span>
                   </div>
                 </div>
                 <div style="background:#f8f8f8;width:80%;height:45px;border-radius:3px;margin-top:15px">
                   <div style="border:0;outline:0;color:#333;background:0;width:100%;padding-top:13px;font-weight:600">
                     <span style="width:35%;float:left;text-align:center;color:#5d5d5d;font-size:14px">Password :</span>
                     <span style="width:65%;float:right;text-align:left;color:#5d5d5d;font-size:12px;font-weight:600">
-                    Your SSO Password</span> </div>
+                    Your system password</span> </div>
                   </div>
                 </form>
          </td>
@@ -223,7 +223,11 @@ class Htmlelements extends Component
       <tr>
           <td style="padding:0px 0 20px 0; background: #f7f7f7; padding: 10px;" colspan="2">
           <table cellpadding="0" cellspacing="0" border="0" width="100%">
-
+            <tr>
+              <td align="center" colspan="2">
+                <p style="font-weight:600; letter-spacing: 1px; color:#333; font-size:20px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">In case you are unable to login form, write to sudhaj@drreddys.com</p>
+              </td>
+            </tr>
               <tr>
                   <td align="center" style="width:340px">
                   </td>
