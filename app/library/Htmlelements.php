@@ -225,7 +225,8 @@ class Htmlelements extends Component
           <table cellpadding="0" cellspacing="0" border="0" width="100%">
             <tr>
               <td align="center" colspan="2">
-                <p style="text-align:center;line-height: 20px;color:#333; font-size:15px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">In case of login issues, please contact </br> techease (techease@drreddys.com)</p>
+                <p style="text-align:center;line-height: 20px;color:#333; font-size:15px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">In case of login issues, please contact</p>
+                <p style="text-align:center;line-height: 20px;color:#333; font-size:15px; font-family:\'Roboto\',Arial,Helvetica,sans-serif;">techease (techease@drreddys.com)</p>
               </td>
             </tr>
               <tr>
