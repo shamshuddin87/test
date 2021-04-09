@@ -214,7 +214,7 @@ class CoiController extends ControllerBase
                                  //-------------- Start: On request for approval: CCO and CS email intimation -------------//
                                 $YORuser = $this->coicommon->checkYORuser($getuserid);
                                 $recipientnames = array("CCO","CS");
-                                $recipientemailids = array("cco@volody.com","cs@volody.com");
+                                $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
                                 if($YORuser)
                                 {
                                     for ($i=0; $i < count($recipientnames); $i++) 
@@ -335,7 +335,7 @@ class CoiController extends ControllerBase
                 $reqid = $this->request->getPost('reqid');
                 $deptdata = $this->coicommon->getDeptaccess($uid);
                 $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
-                // print_r($hrmgr);die;
+                // print_r($deptdata);die;
                 foreach($hrmgr as $mgr)
                 {
                     $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$mgr['mgrname'],$mgr['email'],$reqid);
@@ -348,7 +348,7 @@ class CoiController extends ControllerBase
                     //-------------- Start: On request for approval: CCO and CS email intimation -------------//
                          $YORuser = $this->coicommon->checkYORuser($uid);
                          $recipientnames = array("CCO","CS");
-                         $recipientemailids = array("cco@volody.com","cs@volody.com");
+                         $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
                          if($YORuser)
                             {
                              for ($i=0; $i < count($recipientnames); $i++) 
@@ -578,7 +578,7 @@ class CoiController extends ControllerBase
             if($this->request->isAjax() == true)
             {
                 $reqid = $this->request->getPost('reqid');
-                $approvalName = $this->coicommon->getApprovalName($uid);
+                $approvalName = $this->coicommon->getUserName($uid);
                 $reqUserId = $this->coicommon->getReqUserId($reqid);          
                 $deptdata = $this->coicommon->getDeptaccess($reqUserId);
                 
@@ -603,7 +603,7 @@ class CoiController extends ControllerBase
                         
                          $YORuser = $this->coicommon->checkYORuser($uid);
                          $recipientnames = array("CCO","CS");
-                         $recipientemailids = array("cco@volody.com","cs@volody.com");
+                         $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
                          if($YORuser)
                             {
                              for ($i=0; $i < count($recipientnames); $i++) 
@@ -638,7 +638,7 @@ class CoiController extends ControllerBase
                     //-------------- Start: CCO and CS email intimation -------------//
                          $YORuser = $this->coicommon->checkYORuser($uid);
                          $recipientnames = array("CCO","CS");
-                         $recipientemailids = array("cco@volody.com","cs@volody.com");
+                         $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
                          if($YORuser)
                             {
                              for ($i=0; $i < count($recipientnames); $i++) 
@@ -730,7 +730,7 @@ class CoiController extends ControllerBase
             {
                 $reqid = $this->request->getPost('reqid');
                 $recommendation = $this->request->getPost('recommendation');
-                $rejectorName = $this->coicommon->getApprovalName($uid);
+                $rejectorName = $this->coicommon->getUserName($uid);
 
                 //------ Start: Reject Mail to requester
                     $reqUserId = $this->coicommon->getReqUserId($reqid);          
@@ -743,7 +743,7 @@ class CoiController extends ControllerBase
                 $deptdata = $this->coicommon->getDeptaccess($reqUserId);
                  $YORuser = $this->coicommon->checkYORuser($uid);
                  $recipientnames = array("CCO","CS");
-                 $recipientemailids = array("cco@volody.com","cs@volody.com");
+                 $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
                  if($YORuser)
                     {
                      for ($i=0; $i < count($recipientnames); $i++) 
@@ -799,6 +799,8 @@ class CoiController extends ControllerBase
                 $reqid = $this->request->getPost('reqid');
                 $recommendation = $this->request->getPost('recommendation');
                 //print_r($this->request->getPost());exit;
+                
+                $returnBy = $this->coicommon->getUserName($uid);
                 //------ Start: Return Mail to requester
                     $reqUserId = $this->coicommon->getReqUserId($reqid);          
                     $requestordata = $this->coicommon->getRequestorData($reqUserId);
@@ -810,12 +812,12 @@ class CoiController extends ControllerBase
                 $deptdata = $this->coicommon->getDeptaccess($reqUserId);
                  $YORuser = $this->coicommon->checkYORuser($uid);
                  $recipientnames = array("CCO","CS");
-                 $recipientemailids = array("cco@volody.com","cs@volody.com");
+                 $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
                  if($YORuser)
                     {
                      for ($i=0; $i < count($recipientnames); $i++) 
                         { 
-                            $this->coicommon->returnmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
+                            $this->coicommon->returnmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i],$returnBy);
                         } 
                     }
                 //-------------- End: On return: CCO and CS email intimation -------------//

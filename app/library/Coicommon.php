@@ -11,7 +11,7 @@ class Coicommon extends Component
                 GROUP_CONCAT(DISTINCT dept.`deptname`) AS deptname,memb.`deptaccess` 
                 FROM `it_memberlist` memb 
                 LEFT JOIN `con_dept` dept ON FIND_IN_SET(dept.`id`,memb.`deptaccess`)
-                WHERE memb.`status`='1' AND memb.`wr_id` = '3'";
+                WHERE memb.`status`='1' AND memb.`wr_id` = '".$getuserid."'";
         //print_r($query);exit; 
         try
         {
@@ -22,7 +22,7 @@ class Coicommon extends Component
                 while($row = $exeget->fetch())
                 { 
                     $deptaccess = $row['deptaccess'];
-                    $querymgrtyp="SELECT * FROM `it_memberlist` WHERE `deptaccess` REGEXP CONCAT('(^|,)(', REPLACE('".$deptaccess."', ',', '|'), ')(,|$)') AND (managertype = 'hr' OR managertype = 'dept')";
+                    $querymgrtyp="SELECT * FROM `it_memberlist` WHERE `mgrindept` REGEXP CONCAT('(^|,)(', REPLACE('".$deptaccess."', ',', '|'), ')(,|$)') AND (managertype = 'hr' OR managertype = 'dept')";
                     //echo $querymgrtyp;exit;
                     $exegetmgrtyp = $connection->query($querymgrtyp);
                     $getnummgrtyp = trim($exegetmgrtyp->numRows());
@@ -740,7 +740,7 @@ class Coicommon extends Component
         return $getlist;
     }
 
-    public function getApprovalName($uid)
+    public function getUserName($uid)
     {
         $connection = $this->dbtrd;
         $getlist = array();

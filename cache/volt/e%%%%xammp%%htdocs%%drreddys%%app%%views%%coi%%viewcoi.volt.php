@@ -168,10 +168,10 @@ $condeptsess = $this->session->contractdepartment;
                 <h4 class="modal-title">Reject</h4>
             </div>
             <div class="modal-body show_shadow">
-              <div class="text-center adminform_heading">
+              <div class="adminform_heading">
                   <div class="clearelement"></div> 
-                  <label for="recommendation">Recommendation:</label>
-                    <textarea id="recommendation" name="recommendation" rows="4" cols="20">
+                  <label for="recommendation" style="display: block;">Recommendation:</label>
+                    <textarea style="width: 100%;" id="recommendation" name="recommendation" rows="4">
                     </textarea>
               </div>            
           </div>      
@@ -192,10 +192,10 @@ $condeptsess = $this->session->contractdepartment;
                 <h4 class="modal-title">Return</h4>
             </div>
             <div class="modal-body show_shadow">
-              <div class="text-center adminform_heading">
+              <div class="adminform_heading">
                   <div class="clearelement"></div> 
-                  <label for="recommendation">Recommendation:</label>
-                    <textarea id="recommendation" name="recommendation" rows="4" cols="20">
+                  <label for="recommendation" style="display: block;">Recommendation:</label>
+                    <textarea style="width: 100%;" id="recommendation" name="recommendation" rows="4" cols="20">
                     </textarea>
               </div>            
           </div>      

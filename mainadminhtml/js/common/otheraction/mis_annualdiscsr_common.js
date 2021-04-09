@@ -72,7 +72,7 @@ function getannualdisclsr()
         dataType:"json",
         cache:false,
         beforeSend: function()
-        {   },
+        {   website('.preloder_wraper').fadeIn();  },
         uploadProgress: function(event, position, total, percentComplete)
         {   },
         success: function(response, textStatus, jqXHR) 
@@ -83,25 +83,26 @@ function getannualdisclsr()
                 //console.log(response.data);return false;
                 for(var i=0;i<response.data.length;i++)
                 {
+                    var j=i+1;
+                    var sent_date = response.data[i].sent_date?response.data[i].sent_date:'';
+                    htmlelements+='<tr>';
+                    htmlelements+='<td width="10%">'+j+'</td>';
+                    htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
+                    if(response.data[i].emp_status == '1')
+                    {
+                        htmlelements+='<td width="10%">Active</td>';
+                    }
+                    else if(response.data[i].emp_status == '2')
+                    {
+                        htmlelements+='<td width="10%">Resigned</td>';
+                    }
+                    else if(response.data[i].emp_status == '3')
+                    {
+                        htmlelements+='<td width="10%">Not a DP</td>';
+                    }
+                    
                     if(filterstatus == 'pending')
                     {
-                        var j=i+1;
-                        var sent_date = response.data[i].sent_date?response.data[i].sent_date:'';
-                        htmlelements+='<tr>';
-                        htmlelements+='<td width="10%">'+j+'</td>';
-                        htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
-                        if(response.data[i].emp_status == '1')
-                        {
-                            htmlelements+='<td width="10%">Active</td>';
-                        }
-                        else if(response.data[i].emp_status == '2')
-                        {
-                            htmlelements+='<td width="10%">Resigned</td>';
-                        }
-                        else if(response.data[i].emp_status == '3')
-                        {
-                            htmlelements+='<td width="10%">Not a DP</td>';
-                        }
                         // htmlelements+='<td width="10%">'+response.data[i].employeecode+'</td>';
                         htmlelements+='<td width="10%">'+annualyr+'</td>';
                         htmlelements+='<td width="10%"></td>';
@@ -113,28 +114,11 @@ function getannualdisclsr()
                         {
                             htmlelements+='<td width="10%"></td>';
                         }
-                        htmlelements+='</tr>';
+                        
                         //console.log(htmlelements);return false;
                     }
                     else if(filterstatus =='sent_for_approval')
                     {
-                        var j=i+1;
-                        var sent_date = response.data[i].sent_date?response.data[i].sent_date:'';
-                        htmlelements+='<tr>';
-                        htmlelements+='<td width="10%">'+j+'</td>';
-                        htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
-                        if(response.data[i].emp_status == '1')
-                        {
-                            htmlelements+='<td width="10%">Active</td>';
-                        }
-                        else if(response.data[i].emp_status == '2')
-                        {
-                            htmlelements+='<td width="10%">Resigned</td>';
-                        }
-                        else if(response.data[i].emp_status == '3')
-                        {
-                            htmlelements+='<td width="10%">Not a DP</td>';
-                        }
                         // htmlelements+='<td width="10%">'+response.data[i].employeecode+'</td>';
                         htmlelements+='<td width="10%">'+response.data[i].annualyear+'</td>';
                         htmlelements+='<td width="10%">'+sent_date+'</td>';
@@ -146,28 +130,9 @@ function getannualdisclsr()
                         {
                             htmlelements+='<td width="10%"></td>';
                         }
-                        htmlelements+='</tr>';
                     }
                     else if(filterstatus =='')
                     {
-                        
-                        var j=i+1;
-                        var sent_date = response.data[i].sent_date?response.data[i].sent_date:'';
-                        htmlelements+='<tr>';
-                        htmlelements+='<td width="10%">'+j+'</td>';
-                        htmlelements+='<td width="10%">'+response.data[i].fullname+'</td>';
-                        if(response.data[i].emp_status == '1')
-                        {
-                            htmlelements+='<td width="10%">Active</td>';
-                        }
-                        else if(response.data[i].emp_status == '2')
-                        {
-                            htmlelements+='<td width="10%">Resigned</td>';
-                        }
-                        else if(response.data[i].emp_status == '3')
-                        {
-                            htmlelements+='<td width="10%">Not a DP</td>';
-                        }
                         // htmlelements+='<td width="10%">'+response.data[i].employeecode+'</td>';
                         htmlelements+='<td width="10%">'+annualyr+'</td>';
                         
@@ -181,8 +146,8 @@ function getannualdisclsr()
                              htmlelements+='<td width="10%"></td>';
                              htmlelements+='<td width="10%"></td>';
                          }
-                         htmlelements+='</tr>';
                     }
+                    htmlelements+='</tr>';
                 }
             }
             else
@@ -196,7 +161,7 @@ function getannualdisclsr()
             website('#acc7').html(response.pgnhtml);
         },
         complete: function(response) 
-        {   },
+        {   website('.preloder_wraper').fadeOut();   },
         error: function(jqXHR, textStatus, errorThrown)
         {   }
     });
