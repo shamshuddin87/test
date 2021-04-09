@@ -387,7 +387,7 @@ class AutomailerController extends ControllerBase
 
     public function insiderDailyRemindersAction()
     {
-        //echo '<pre>'; print_r('inhere'); exit;
+        // echo '<pre>'; print_r('inhere'); exit;
         
         /* ----- Start Truncate if empty (email_queue) ----- */
             $trn = $this->automailercommon->truncateQ();
