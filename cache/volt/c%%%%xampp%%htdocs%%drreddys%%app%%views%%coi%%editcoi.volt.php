@@ -1,8 +1,4 @@
 <?php 
-
-$server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";         $baseuri = $this->url->getBaseUri();
-$baseurl = $server_link.$baseuri;
-
 $gmnlog = $this->session->loginauthspuserfront;
 //echo"<pre>";print_r($gmnlog); exit;
 $category = $this->coicommon->fetchCategory();
@@ -60,7 +56,7 @@ $category = $this->coicommon->fetchCategory();
                 <div class="sectionbox">
                     <h2 class="h2_heading" style="text-align:center;">Confirmation</h2>
                     <div class="p-15px" style="color: ">
-                        <p style="color: #000;">Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. <a href="samplefile/Coi/agreement.pdf">Click Here</a> to download policy.</p>
+                        <p style="color: #000;">Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. <a href="img/Coi/agreement.pdf" target="_blank">Click Here</a> to download policy.</p>
                         <div class="checkbox-inline">                          
                           <input class="coipolicy" type="radio" name="coipolicy" id="coiyes" value="Yes">
                           <label>Yes</label>
@@ -77,7 +73,7 @@ $category = $this->coicommon->fetchCategory();
                       <h2 class="h2_heading" style="text-align:center;">Information</h2>
                     <div class="p-15px">
                       <p>Please describe below the actual or potential conflict of interest.</p>
-                    <p>Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. Click Here to download policy.</p>
+                    <p>Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. <a href="img/Coi/agreement.pdf" target="_blank">Click Here</a> to download policy.</p>
                     <label>Please select the category</label>
                     <select class="form-control coicategory" id="coicategory" name="coicategory" required>
                        <option value="">Select Category</option>
@@ -119,7 +115,7 @@ $category = $this->coicommon->fetchCategory();
                   <h2 class="h2_heading" style="text-align:center;">Declaration</h2>
                 <div class="p-15px">
                   <div class="" style="color: #000">
-                    <p>I hereby declare that the information provided above is true and complete to best of my knowledge and belief.In addition,I affirm that i will make further disclosures as may be required in future in the event of any change of circustances. I have read and understood the Conflict of Interest policy and agree to abide with the same.</p>
+                    <p>I hereby declare that the information provided above is true and complete to the best of my knowledge and belief.In addition,I affirm that I will make further disclosures as may be required in future in the event of any change of circumstances. I have read and understood the Conflict of Interest policy and agree to abide with the same.</p>
                     <p>Date: <?php echo date('d-M-Y'); ?></p>
                 </div>
                 </div>

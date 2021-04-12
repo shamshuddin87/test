@@ -24,7 +24,15 @@ website('body').on('click','.go_button', function(e)
     var rscrntpg = website('.gotobtn').val();
     // alert(rscrntpg);
     website('.panel.panel-white #pagenum').val(rscrntpg);
-    fetchCoiAllData();
+    //Getting value of last page of pagination
+    var lastPage = website('.pagination .paginateul li').last().attr('p');
+
+    //Validation added for goto button value should be less than last page value
+    if(parseInt(rscrntpg) <= parseInt(lastPage))
+    {
+        fetchCoiAllData();
+    }
+    
 });
 /* ---------------- End Pagination ---------------- */
 

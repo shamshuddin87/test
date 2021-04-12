@@ -1186,44 +1186,33 @@ class Miscommon extends Component
         try
          {
             $grpusrs = $this->insidercommon->getGroupUsers($getuserid,$user_group_id);
-            $getusers = "SELECT * FROM `it_memberlist` memb WHERE memb.`wr_id` IN (".$grpusrs['ulstring'].") AND memb.`status`='1'".$query;
-            $exegetusers = $connection->query($getusers);
-            $getnumuser = trim($exegetusers->numRows());
-            if($getnumuser > 0)
+            $queryget = "SELECT anualdecl.`annualyear`,memb.`fullname`,memb.`email`,memb.`emp_status`,anualdecl.`sent_date`,anualdecl.`pdfpath` 
+            FROM `it_memberlist` memb 
+            LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id` = anualdecl.`user_id` 
+            WHERE memb.`wr_id` IN (".$grpusrs['ulstring'].")  AND (anualdecl.annualyear='".$annualyr."' OR anualdecl.annualyear IS NULL OR anualdecl.`send_status`=1)".$query;
+            //echo $queryget;  exit;
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+
+            if($getnum>0)
             {
-                while($rowuser = $exegetusers->fetch())
+                while($row = $exeget->fetch())
                 {
-                    $queryget = "SELECT anualdecl.`annualyear`,memb.`employeecode`,memb.`fullname`,memb.`emp_status`,anualdecl.`sent_date`,anualdecl.`pdfpath` FROM `it_memberlist` memb LEFT JOIN `annual_initial_declaration` anualdecl ON memb.`wr_id`= anualdecl.`user_id` WHERE anualdecl.`user_id` = '".$rowuser['wr_id']."' AND anualdecl.`annualyear`='".$annualyr."'";
-                $exeget = $connection->query($queryget);
-                $getnum = trim($exeget->numRows());
-                if($getnum > 0)
-                {
-                    while($rowanual = $exeget->fetch())
-                        {
-                            $getlist[]=$rowanual;
-                        }
+                    $getlist[] = $row;
                 }
-                else
-                {
-                    $row_arr = array();
-                    $row_arr['annualyear']='';
-                    $row_arr['employeecode']=$rowuser['employeecode'];
-                    $row_arr['emp_status']=$rowuser['emp_status'];
-                    $row_arr['fullname']=$rowuser['fullname'];
-                    $row_arr['pdfpath']='';
-                    $row_arr['sent_date']='';
-                    $getlist[] = $row_arr;
-                }
-                }
+                //echo '<pre>';print_r($getlist);exit;
                 
+            }else{
+                $getlist = array();
             }
-            
+         
         }
         catch (Exception $e)
         {
             $getlist = array();
+            //$connection->close();
         }
-        //print_r($getlist);exit;
+        
         return $getlist;
     }
 

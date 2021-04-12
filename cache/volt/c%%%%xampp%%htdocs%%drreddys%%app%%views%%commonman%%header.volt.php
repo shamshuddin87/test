@@ -1,4 +1,8 @@
 <?php
+
+    $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";     $baseuri = $this->url->getBaseUri();
+    $baseurl = $server_link.$baseuri;
+
    $gettyp = 'empl';
    $getuserid=$this->session->loginauthspuserfront['id'];
    $usergroup = $this->session->loginauthspuserfront['user_group_id'];
@@ -15,7 +19,7 @@
 <div class="col-md-3 left_col" id="#style-1">
    <div class="left_col scroll-view">
       <div class="navbar nav_title nav_bg" style="border: 0;">
-         <a href="https://www.volody.com/user/home" class="site_title">
+         <a href="login" class="site_title">
          <i class="responsive"><img src="img/logo_responsive.png"></i>
          <span><img src="img/logo.png" alt=""></span>
          </a>

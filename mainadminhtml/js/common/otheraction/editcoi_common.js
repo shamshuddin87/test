@@ -202,6 +202,12 @@ function fetchCateQuestions(coicate,coicateque)
                   website('#coiothers').css('display','none');
                }
             }
+            else
+            {
+                /*var target = 'textareforedit';
+                tinymce.get(target).setContent('');*/
+                website('#updatecoi #coiothers').css("display", "none");
+            }
         }
     },
     complete: function (response) {},
@@ -213,12 +219,15 @@ function fetchCateQuestions(coicate,coicateque)
 
 website('body').on('click','.updatecoi',function(e)
 {
-    var others_des = tinyMCE.activeEditor.getContent();
-    website('#updatecoi #others_des').val(others_des);
     var coipolicy = website('#updatecoi input[name="coipolicy"]:checked').val();
     var coicategory = website('#updatecoi #coicategory').val();
     var cateque = website('#updatecoi input[name="question"]:checked').val();
     var catequeid = website('#updatecoi input[name="question"]:checked').attr('id');
+    if (catequeid.indexOf('_others') > -1) 
+    {
+        var others_des = tinyMCE.activeEditor.getContent();
+        website('#updatecoi #others_des').val(others_des);
+    }
     //console.log(coipolicy)
     //website('input[name=coipolicy][value="'+coipolicy+'"]').attr('checked', 'checked');
     website('#updatecoi .coicategory option[value="'+coicategory+'"]').attr("selected", "selected");
@@ -334,6 +343,9 @@ website("body").on("click", ".cateque", function (e) {
     //console.log(idattr)
     if (idattr.indexOf('_others') > -1) 
     {
+        inittinymace('');
+        var target = 'textareforedit';
+        tinymce.get(target).setContent('');
         website('#coiothers').css('display','block');
     }
     else

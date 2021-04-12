@@ -40,7 +40,15 @@ website('body').on('click','.go_button', function(e)
     var rscrntpg = website('.gotobtn').val();
     // alert(rscrntpg);
     website('.panel.panel-white #pagenum').val(rscrntpg);
-    fetchCoiMgrData();
+    //Getting value of last page of pagination
+    var lastPage = website('.pagination .paginateul li').last().attr('p');
+
+    //Validation added for goto button value should be less than last page value
+    if(parseInt(rscrntpg) <= parseInt(lastPage))
+    {
+        fetchCoiMgrData();
+    }
+    
 });
 /* ---------------- End Pagination ---------------- */
 
@@ -138,7 +146,7 @@ function fetchCoiMgrData()
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
                 if(response.data[i]["coi_pdfpath"])
                 {
-                    addhtmlnxt += '<a  href="'+response.data[i]["coi_pdfpath"]+'"  class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a>';
+                    addhtmlnxt += '<a  href="'+response.data[i]["coi_pdfpath"]+'" target="_blank"  class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a>';
                 }
                 addhtmlnxt += '</td>';                
                 addhtmlnxt += '</tr>';      

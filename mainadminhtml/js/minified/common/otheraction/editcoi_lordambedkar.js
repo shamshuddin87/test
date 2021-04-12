@@ -32,9 +32,13 @@ if(coicateque!='')
 {website('#updatecoi input[name=question][value="'+coicateque+'"]').attr('checked','checked');var catequeid=website('#updatecoi input[name="question"]:checked').attr('id');if(catequeid.indexOf('_others')>-1)
 {website('#coiothers').css('display','block');}
 else
-{website('#coiothers').css('display','none');}}}},complete:function(response){},error:function(jqXHR,textStatus,errorThrown){},});}
+{website('#coiothers').css('display','none');}}
+else
+{website('#updatecoi #coiothers').css("display","none");}}},complete:function(response){},error:function(jqXHR,textStatus,errorThrown){},});}
 website('body').on('click','.updatecoi',function(e)
-{var others_des=tinyMCE.activeEditor.getContent();website('#updatecoi #others_des').val(others_des);var coipolicy=website('#updatecoi input[name="coipolicy"]:checked').val();var coicategory=website('#updatecoi #coicategory').val();var cateque=website('#updatecoi input[name="question"]:checked').val();var catequeid=website('#updatecoi input[name="question"]:checked').attr('id');website('#updatecoi .coicategory option[value="'+coicategory+'"]').attr("selected","selected");website('input[name=question][value="'+cateque+'"]').attr('checked','checked');if(coipolicy=='Yes'&&coicategory=='')
+{var coipolicy=website('#updatecoi input[name="coipolicy"]:checked').val();var coicategory=website('#updatecoi #coicategory').val();var cateque=website('#updatecoi input[name="question"]:checked').val();var catequeid=website('#updatecoi input[name="question"]:checked').attr('id');if(catequeid.indexOf('_others')>-1)
+{var others_des=tinyMCE.activeEditor.getContent();website('#updatecoi #others_des').val(others_des);}
+website('#updatecoi .coicategory option[value="'+coicategory+'"]').attr("selected","selected");website('input[name=question][value="'+cateque+'"]').attr('checked','checked');if(coipolicy=='Yes'&&coicategory=='')
 {new PNotify({title:"Alert",text:'Please select the category.',type:"university",hide:true,styling:"bootstrap3",addclass:"dark ",});}
 else if(coipolicy=='Yes'&&!cateque)
 {new PNotify({title:"Alert",text:'Please select the category question.',type:"university",hide:true,styling:"bootstrap3",addclass:"dark ",});}
@@ -51,7 +55,7 @@ response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="
 else
 {new PNotify({title:"Alert",text:response.message,type:"university",hide:true,styling:"bootstrap3",addclass:"dark ",});}},complete:function(response)
 {website(".preloder_wraper").fadeOut();},error:function(jqXHR,textStatus,errorThrown){},});website("body").on("click",".coigeneratepdf",function(e){website("#sendcoiforapproval").modal("show");});website("body").on("click",".sendcoiform",function(e){var sendtype=website(this).val();website('#updatecoi #formsendtype').val(sendtype);website('#updatecoi').submit();});website("body").on("click",".cateque",function(e){var idattr=website(this).attr('id');if(idattr.indexOf('_others')>-1)
-{website('#coiothers').css('display','block');}
+{inittinymace('');var target='textareforedit';tinymce.get(target).setContent('');website('#coiothers').css('display','block');}
 else
 {website('#coiothers').css('display','none');}});website('body').on('click','.btnaddfile',function()
 {var getlastid=website('.appendfile').attr('filecntr');var arrIndex=getlastid;getlastid=++getlastid;var addhtmlnxt='';addhtmlnxt+='<div class="col-md-12 col-xs-12 " id="row-'+getlastid+'">';addhtmlnxt+='<label class="control-label">Upload File</label>';addhtmlnxt+='<div class="choose_files">';addhtmlnxt+='<input type="hidden" name="upattachment['+arrIndex+']" id="upattachment" value="">';addhtmlnxt+='<input type="file" name="attachment['+arrIndex+']" id="attachment" >';addhtmlnxt+='</div>';addhtmlnxt+='</div>';website('.appendfile').append(addhtmlnxt);website('.appendfile').attr('filecntr',getlastid);});website('body').on('click','.btndeletefile',function()

@@ -107,6 +107,9 @@ website("#coicategory").change(function () {
     {
         if(response.logged === true) 
         {
+            var target = 'textareforedit';
+            tinymce.get(target).setContent('');
+            website('#insertcoi #coiothers').css("display", "none");
             website('.coicateque').html(response.data)
         }
     },
@@ -117,9 +120,13 @@ website("#coicategory").change(function () {
 
 website('body').on('click','.savecoi',function(e)
 {
-    var others_des = tinyMCE.activeEditor.getContent();
-    website('#insertcoi #others_des').val(others_des);
     var coipolicy = website('#insertcoi input[name="coipolicy"]:checked').val();
+    //alert(coipolicy)
+    if(coipolicy == 'Yes')
+    {
+        var others_des = tinyMCE.activeEditor.getContent();
+        website('#insertcoi #others_des').val(others_des);
+    }
     var coicategory = website('#insertcoi #coicategory').val();
     var cateque = website('#insertcoi input[name="question"]:checked').val();
     var catequeid = website('#insertcoi input[name="question"]:checked').attr('id');
@@ -210,13 +217,13 @@ website("#insertcoi").ajaxForm({
             styling: "bootstrap3",
             addclass: "dark ",
         });
-         website("#Mymodalcoideclara #downloadpdf").append('<a  href="' +
+         /*website("#Mymodalcoideclara #downloadpdf").append('<a  href="' +
             response.pdfpath +
             '" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon-download-alt floatleft">Download</span> </a>'
-        );
+        );*/
         
-        /*var baseHref=getbaseurl();
-        setTimeout(function(){window.location.href=baseHref+'coi';},1000);*/
+        var baseHref=getbaseurl();
+        setTimeout(function(){window.location.href=baseHref+'coi';},1000);
     } 
     else 
     {
