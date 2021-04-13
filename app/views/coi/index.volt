@@ -34,10 +34,12 @@ $condeptsess = $this->session->contractdepartment;
         <!--<th>Status</th>-->
         <th>HR Review</th>
         <th>Manager Review</th>      
-        <th>Audit Trail</th>                                           
+        <th>Audit Trail</th> 
+        <th>Attachment</th>
         <th>Edit</th>                                           
         <th>Delete</th>                                           
-        <th>Download</th>                                           
+        <th>Declaration</th> 
+        
       </tr>
      </thead>
     <tbody class="allcoidata" appendrow='1'></tbody>
@@ -137,6 +139,32 @@ $condeptsess = $this->session->contractdepartment;
    </div>
 </div>
         
+<div id="attachmentsModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Attachments</h4>
+        </div>
+        <div class="modal-body show_shadow">
+          <div class="text-center adminform_heading">
+              <div class="clearelement"></div> 
+              <table width="100%" border="1" class="table table-inverse" id="datableabhi">
+             <thead>
+              <tr>
+                <th>Sr no</th> 
+                <th>Attachment</th>                                                 
+              </tr>
+             </thead>
+            <tbody id="attachment" appendrow='1'></tbody>
+            </table>
+
+          </div>            
+      </div>      
+  </div>
+  </div>
+</div> 
+    
 <div class="clearelement"></div>
 <div class="preloder_wraper">
     <a href="javascript:;" class="preloder"></a>

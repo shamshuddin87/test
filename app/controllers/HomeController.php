@@ -258,6 +258,13 @@ class HomeController extends ControllerBase
                 $isRelDematFirst = $this->employeemodulecommon->checkIfFirstData($uid,$usergroup,'relative_demat_accounts','parent_user_id');
                 //print_r($isRelDematFirst);exit;
                 
+                /* ------------------ Coi accessibility -------------- */
+                $isCoiAplicable = $this->homecommon->checkIfCoiApplicable($uid,$usergroup);
+                //print_r($isCoiAplicable);exit;
+                $isCoiFilled = $this->homecommon->checkIfCoiFilled($uid,$usergroup);
+                //print_r($isCoiAplicable);exit;
+                /* ------------------ Coi accessibility -------------- */
+                
                 if(!empty($getdematsstatus))
                 {
                    // print_r($getdematsstatus);exit;
@@ -318,6 +325,12 @@ class HomeController extends ControllerBase
                         $data = array("logged" => false,'message' => "Please update your relatives Demat Account.",'data'=>$reldematurl,'usergroup'=>$usergroup);
                         $this->response->setJsonContent($data);
                     }*/
+                    else if($isCoiAplicable == 'Yes' && $isCoiFilled == 'No')
+                    {
+                        $coiurl = 'coi';
+                        $data = array("logged" => false,'message' => "Please update COI Application form.",'data'=>$coiurl,'usergroup'=>$usergroup);
+                       $this->response->setJsonContent($data);
+                    }
                     else
                     {
                         $data = array("logged" => true,'message' => "Data Fetch Successfully",'data'=>'');

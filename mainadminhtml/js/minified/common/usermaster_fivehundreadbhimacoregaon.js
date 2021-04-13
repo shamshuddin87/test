@@ -27,7 +27,7 @@ else
 {website('#pagenum').val(1);}
 getuserlistonload();});getuserlistonload();function getuserlistonload()
 {var noofrows=website('#noofrows').val();var pagenum=website('#pagenum').val();var search=website('#srch').val();var emp_status=website('#emp_status').val();var formdata={noofrows:noofrows,pagenum:pagenum,emp_status:emp_status,search:search};website.ajax({url:'usermaster/fetchuser',data:formdata,method:'POST',contentType:'application/x-www-form-urlencoded; charset=UTF-8',dataType:"json",cache:false,beforeSend:function()
-{website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete)
+{if(!search){website('.preloder_wraper').fadeIn();}},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {var addhtmlnxt='';var dept='';var companyname='';for(var i=0;i<response.data.length;i++)

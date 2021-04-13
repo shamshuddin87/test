@@ -318,7 +318,7 @@ a.compnamedata_btn {
 }
 .csspointernone
 {
-    /*pointer-events: none;*/
+    pointer-events: none;
 }
 
 .srcfac{

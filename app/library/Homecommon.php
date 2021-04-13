@@ -485,6 +485,72 @@ class Homecommon extends Component
         return $getlist;
     }
     
+    public function checkIfCoiApplicable($uid,$usergroup)
+    {
+        $connection = $this->dbtrd;
+        $isAplicable = 'No';
+        try
+        {
+            $querygetRel = "SELECT * FROM `relative_info`
+            WHERE `user_id` = '".$uid."' AND `isbusiness_partner` = 'Yes'";
+            //echo $queryget;exit;
+            $exegetRel = $connection->query($querygetRel);
+            $getnumRel = trim($exegetRel->numRows());
+            if($getnumRel>0)
+            {
+                $isAplicable = 'Yes';
+            }
+            else
+            {
+                $querygetMfr = "SELECT * FROM `mfr`
+                WHERE `user_id` = '".$uid."' AND `mfr_thirdparty` = 'Yes'";
+                //echo $queryget;exit;
+                $exegetMfr = $connection->query($querygetMfr);
+                $getnumMfr = trim($exegetMfr->numRows());
+                if($getnumMfr>0)
+                {
+                    $isAplicable = 'Yes';
+                }
+                else
+                {
+                    $isAplicable = 'No';
+                }
+            }
+        }
+        catch (Exception $e)
+        {
+            $isAplicable = 'No';
+        }
+        return $isAplicable;
+    }
+    
+    public function checkIfCoiFilled($uid,$usergroup)
+    {
+        $connection = $this->dbtrd;
+        $isFilled = 'Yes';
+        try
+        {
+            $queryget = "SELECT * FROM `coi_declaration`
+            WHERE `user_id` = '".$uid."'";
+            //echo $queryget;exit;
+            $exeget = $connection->query($queryget);
+            $getnum = trim($exeget->numRows());
+            if($getnum>0)
+            {
+                $isFilled = 'Yes';
+            }
+            else
+            {
+                $isFilled = 'No';
+            }
+        }
+        catch (Exception $e)
+        {
+            $isFilled = 'No';
+        }
+        return $isFilled;
+    }
+    
     
     
 }

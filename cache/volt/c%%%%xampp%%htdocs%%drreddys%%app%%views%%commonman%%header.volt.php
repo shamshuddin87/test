@@ -1,8 +1,4 @@
 <?php
-
-    $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";     $baseuri = $this->url->getBaseUri();
-    $baseurl = $server_link.$baseuri;
-
    $gettyp = 'empl';
    $getuserid=$this->session->loginauthspuserfront['id'];
    $usergroup = $this->session->loginauthspuserfront['user_group_id'];

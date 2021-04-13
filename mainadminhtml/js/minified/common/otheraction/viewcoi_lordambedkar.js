@@ -3,7 +3,8 @@ website(document).ready(function(){website('.bootdatepick').datetimepicker({week
 {var getdate=website(this).val();var getid=website(this).closest('form').attr('id');});fetchCoiMgrData();});website('body').on('click','.paginationmn li',function(e)
 {var rscrntpg=website(this).attr('p');website('.panel.panel-white #pagenum').val(rscrntpg);fetchCoiMgrData();});website('body').on('change','#noofrows',function(e)
 {fetchCoiMgrData();});website('body').on('click','.go_button',function(e)
-{var rscrntpg=website('.gotobtn').val();website('.panel.panel-white #pagenum').val(rscrntpg);fetchCoiMgrData();});website('body').on('change','#filterstatus',function(e)
+{var rscrntpg=website('.gotobtn').val();website('.panel.panel-white #pagenum').val(rscrntpg);var lastPage=website('.pagination .paginateul li').last().attr('p');if(parseInt(rscrntpg)<=parseInt(lastPage))
+{fetchCoiMgrData();}});website('body').on('change','#filterstatus',function(e)
 {fetchCoiMgrData();});website("#srch").on("keyup",function(){var pagenum=website('#pagenum').val();website('#srch').attr('status','0');if(pagenum!=1)
 {website('#pagenum').val(1);}
 fetchCoiMgrData();});website('body').on('click','#dtrange',function(e)
@@ -20,8 +21,8 @@ addhtmlnxt+='<td width="10%" style="text-align:center">';if(status=='Returned'||
 {var cssvar='csspointernone';}
 else
 {var cssvar='';}
-addhtmlnxt+='<i class="fa fa-check faiconbtn '+cssvar+'" id="approve" reqid="'+response.data[i]["reqid"]+'"  title="Approve"></i>';addhtmlnxt+='&nbsp;&nbsp;<i class="fa fa-times faiconbtn '+cssvar+'" id="reject" reqid="'+response.data[i]["reqid"]+'"  title="Reject"></i>';addhtmlnxt+='&nbsp;&nbsp;<i class="fa fa-exchange faiconbtn '+cssvar+'" id="return" reqid="'+response.data[i]["reqid"]+'"  title="Return"></i>';addhtmlnxt+='</td>';addhtmlnxt+='<td width="11%" style="text-align:center"><i class="fa fa-list-ul faicon" id="audit_trail" reqid="'+response.data[i]["reqid"]+'" title="Audit Trail"></i></td>';addhtmlnxt+='<td width="11%" style="text-align:center">';if(response.data[i]["coi_pdfpath"])
-{addhtmlnxt+='<a  href="'+response.data[i]["coi_pdfpath"]+'"  class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a>';}
+addhtmlnxt+='<i class="fa fa-check faiconbtn '+cssvar+'" id="approve" reqid="'+response.data[i]["reqid"]+'"  title="Approve"></i>';addhtmlnxt+='&nbsp;&nbsp;<i class="fa fa-times faiconbtn '+cssvar+'" id="reject" reqid="'+response.data[i]["reqid"]+'"  title="Reject"></i>';addhtmlnxt+='&nbsp;&nbsp;<i class="fa fa-exchange faiconbtn '+cssvar+'" id="return" reqid="'+response.data[i]["reqid"]+'"  title="Return"></i>';addhtmlnxt+='</td>';addhtmlnxt+='<td width="11%" style="text-align:center"><i class="fa fa-list-ul faicon" id="audit_trail" reqid="'+response.data[i]["reqid"]+'" title="Audit Trail"></i></td>';addhtmlnxt+='<td width="11%" style="text-align:center"><i class="fa fa-file faicon" id="coi_attachment" reqid="'+response.data[i]["reqid"]+'" attachments="'+response.data[i]["attachments"]+'" title="Attachment"></i></td>';addhtmlnxt+='<td width="11%" style="text-align:center">';if(response.data[i]["coi_pdfpath"])
+{addhtmlnxt+='<a  href="'+response.data[i]["coi_pdfpath"]+'" target="_blank"  class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a>';}
 addhtmlnxt+='</td>';addhtmlnxt+='</tr>';}}
 else
 {addhtmlnxt+='<tr class="counter"><td>Data Not Found</td></tr>';}
@@ -47,15 +48,27 @@ else
 else
 {addhtmlnxt+='<tr class="counter"><td>No Audit Trail Found!!!</td></tr>';}
 website('#audittrail').html(addhtmlnxt);},complete:function(response){},error:function(jqXHR,textStatus,errorThrown){},});});website('body').on('click','#reject',function(e)
-{website("#rejectModal").modal("show");var reqid=website(this).attr("reqid");website("#rejectConfirm").attr("reqid",reqid);});website('body').on('click','#rejectConfirm',function(e)
-{var reqid=website(this).attr("reqid");var recommendation=website("#rejectModal #recommendation").val();var formdata={reqid:reqid,recommendation:recommendation};website.ajax({url:"coi/rejectRequest",data:formdata,method:"POST",contentType:"application/x-www-form-urlencoded; charset=UTF-8",dataType:"json",cache:false,beforeSend:function(){website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete){},success:function(response,textStatus,jqXHR)
+{website("#rejectModal #recommendation").val('');website("#rejectModal").modal("show");var reqid=website(this).attr("reqid");website("#rejectConfirm").attr("reqid",reqid);});website('body').on('click','#rejectConfirm',function(e)
+{var reqid=website(this).attr("reqid");var recommendation=website("#rejectModal #recommendation").val();if(recommendation)
+{var formdata={reqid:reqid,recommendation:recommendation};website.ajax({url:"coi/rejectRequest",data:formdata,method:"POST",contentType:"application/x-www-form-urlencoded; charset=UTF-8",dataType:"json",cache:false,beforeSend:function(){website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete){},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark '});setTimeout(function(){window.location.reload()},2000);}
 else
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark '});}},complete:function(response){website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown){website('.preloder_wraper').fadeOut();},});});website('body').on('click','#return',function(e)
-{website("#returnModal").modal("show");var reqid=website(this).attr("reqid");website("#returnConfirm").attr("reqid",reqid);});website('body').on('click','#returnConfirm',function(e)
-{var reqid=website(this).attr("reqid");var recommendation=website("#returnModal #recommendation").val();var formdata={reqid:reqid,recommendation:recommendation};website.ajax({url:"coi/returnRequest",data:formdata,method:"POST",contentType:"application/x-www-form-urlencoded; charset=UTF-8",dataType:"json",cache:false,beforeSend:function(){website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete){},success:function(response,textStatus,jqXHR)
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark '});}},complete:function(response){website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown){website('.preloder_wraper').fadeOut();},});}
+else
+{new PNotify({title:'Alert',text:'Please fill Recommendation detail.',type:'university',hide:true,styling:'bootstrap3',addclass:'dark '});}});website('body').on('click','#return',function(e)
+{website("#returnModal #recommendation").val('');website("#returnModal").modal("show");var reqid=website(this).attr("reqid");website("#returnConfirm").attr("reqid",reqid);});website('body').on('click','#returnConfirm',function(e)
+{var reqid=website(this).attr("reqid");var recommendation=website("#returnModal #recommendation").val();if(recommendation)
+{var formdata={reqid:reqid,recommendation:recommendation};website.ajax({url:"coi/returnRequest",data:formdata,method:"POST",contentType:"application/x-www-form-urlencoded; charset=UTF-8",dataType:"json",cache:false,beforeSend:function(){website('.preloder_wraper').fadeIn();},uploadProgress:function(event,position,total,percentComplete){},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark '});setTimeout(function(){window.location.reload()},2000);}
 else
-{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark '});}},complete:function(response){website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown){website('.preloder_wraper').fadeOut();},});});;
+{new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark '});}},complete:function(response){website('.preloder_wraper').fadeOut();},error:function(jqXHR,textStatus,errorThrown){website('.preloder_wraper').fadeOut();},});}
+else
+{new PNotify({title:'Alert',text:'Please fill Recommendation detail.',type:'university',hide:true,styling:'bootstrap3',addclass:'dark '});}});website('body').on('click','#coi_attachment',function(e)
+{var attachments=website(this).attr("attachments");var addhtmlnxt='';if(attachments)
+{var attachment=attachments.split(",");for(var i=0;i<attachment.length;i++)
+{var j=i+1;addhtmlnxt+='<tr class="counter">';addhtmlnxt+='<td width="5%">'+j+'</td>';addhtmlnxt+='<td width="5%"><a  href="'+attachment[i]+'" target="_blank"  class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a></td>';addhtmlnxt+='</tr>';}
+website('#attachment').html(addhtmlnxt);website("#attachmentsModal").modal("show");}
+else
+{new PNotify({title:'Alert',text:'Attachment not found',type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}});;

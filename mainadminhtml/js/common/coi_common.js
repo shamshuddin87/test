@@ -100,6 +100,8 @@ function fetchCoiAllData()
                 
                 addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-list-ul faicon" id="audit_trail" reqid="'+response.data[i]["id"]+'" title="Audit Trail"></i></td>';
                 
+                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-file faicon" id="coi_attachment" reqid="'+response.data[i]["id"]+'" attachments="'+response.data[i]["attachments"]+'" title="Attachment"></i></td>';
+                
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
                 if(response.data[i]["hrM_processed_status"] == "Returned" || response.data[i]["hrM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")
                 {
@@ -298,4 +300,36 @@ website('body').on('click','#audit_trail', function(e)
     complete: function (response) {},
     error: function (jqXHR, textStatus, errorThrown) {},
   });
+});
+
+website('body').on('click','#coi_attachment', function(e) 
+{
+    var attachments = website(this).attr("attachments");
+    //console.log(attachments)
+    var addhtmlnxt = '';
+    if(attachments)
+    {
+        var attachment = attachments.split(",");
+        for(var i=0;i<attachment.length;i++)
+        {
+            var j=i+1;
+            // console.log(response);
+            addhtmlnxt += '<tr class="counter">';
+            addhtmlnxt += '<td width="5%">'+j+'</td>';
+            addhtmlnxt += '<td width="5%"><a  href="'+attachment[i]+'" target="_blank"  class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a></td>';                    
+            addhtmlnxt += '</tr>';      
+        }
+        website('#attachment').html(addhtmlnxt);
+        website("#attachmentsModal").modal("show");
+    }
+    else
+    {
+        new PNotify({title: 'Alert',
+               text: 'Attachment not found',
+               type: 'university',
+               hide: true,
+               styling: 'bootstrap3',
+               addclass: 'dark ',
+             }); 
+    }
 });

@@ -312,7 +312,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
 
 
                                     <section class="col col-md-4 ">
-                                        <label class="control-label">COI Accessibility? *</label>
+                                        <label class="control-label">Only COI Accessibility? *</label>
                                         <div class="input">
                                             <select id="coiaccess" name="coiaccess"
                                                 class="form_fields form-control col-md-7 col-xs-12">
@@ -582,7 +582,7 @@ $user_group_id = trim($this->session->loginauthspuserfront['user_group_id']);
                         </div>
 
                         <div class="control-label form-group col-lg-6 col-xs-12">
-                            <span class="floatleft"><label>COI Accessibility? *</label></span>
+                            <span class="floatleft"><label>Only COI Accessibility? *</label></span>
                             <div class="input">
                                 <select id="coiaccess" name="coiaccess"
                                     class="form_fields form-control col-md-7 col-xs-12">

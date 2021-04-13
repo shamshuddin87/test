@@ -143,6 +143,8 @@ function fetchCoiMgrData()
                 
                 addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-list-ul faicon" id="audit_trail" reqid="'+response.data[i]["reqid"]+'" title="Audit Trail"></i></td>';
                 
+                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-file faicon" id="coi_attachment" reqid="'+response.data[i]["reqid"]+'" attachments="'+response.data[i]["attachments"]+'" title="Attachment"></i></td>';
+                
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
                 if(response.data[i]["coi_pdfpath"])
                 {
@@ -316,9 +318,10 @@ website('body').on('click','#audit_trail', function(e)
 
 website('body').on('click','#reject', function(e) 
 {
-  website("#rejectModal").modal("show");
-  var reqid = website(this).attr("reqid");
-  website("#rejectConfirm").attr("reqid",reqid);
+    website("#rejectModal #recommendation").val('');
+    website("#rejectModal").modal("show");
+    var reqid = website(this).attr("reqid");
+    website("#rejectConfirm").attr("reqid",reqid);
 });
 
 
@@ -326,50 +329,65 @@ website('body').on('click','#rejectConfirm', function(e)
 {
     var reqid = website(this).attr("reqid");
     var recommendation = website("#rejectModal #recommendation").val();
-    var formdata = { reqid : reqid , recommendation:recommendation};
-    website.ajax({
-    url: "coi/rejectRequest",
-    data:formdata,
-    method: "POST",
-    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-    dataType: "json",
-    cache: false,
-    beforeSend: function () {website('.preloder_wraper').fadeIn();},
-    uploadProgress: function (event, position, total, percentComplete) {},
-    success: function (response, textStatus, jqXHR) 
+    if(recommendation)
     {
-        if(response.logged === true) 
+        var formdata = { reqid : reqid , recommendation:recommendation};
+        website.ajax({
+        url: "coi/rejectRequest",
+        data:formdata,
+        method: "POST",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType: "json",
+        cache: false,
+        beforeSend: function () {website('.preloder_wraper').fadeIn();},
+        uploadProgress: function (event, position, total, percentComplete) {},
+        success: function (response, textStatus, jqXHR) 
         {
-            new PNotify({title: 'Alert',
-                text: response.message,
-                type: 'university',
-                hide: true,
-                styling: 'bootstrap3',
-                addclass: 'dark '
-                    });  
-            setTimeout(function() {window.location.reload()}, 2000);   
-        }
-        else
-        {
-            new PNotify({title: 'Alert',
-                text: response.message,
-                type: 'university',
-                hide: true,
-                styling: 'bootstrap3',
-                addclass: 'dark '
-                    });     
-        }
-    },
-    complete: function (response) {website('.preloder_wraper').fadeOut();},
-    error: function (jqXHR, textStatus, errorThrown) {website('.preloder_wraper').fadeOut();},
-  });
+            if(response.logged === true) 
+            {
+                new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark '
+                        });  
+                setTimeout(function() {window.location.reload()}, 2000);   
+            }
+            else
+            {
+                new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark '
+                        });     
+            }
+        },
+        complete: function (response) {website('.preloder_wraper').fadeOut();},
+        error: function (jqXHR, textStatus, errorThrown) {website('.preloder_wraper').fadeOut();},
+      });
+    }
+    else
+    {
+        new PNotify({title: 'Alert',
+            text: 'Please fill Recommendation detail.',
+            type: 'university',
+            hide: true,
+            styling: 'bootstrap3',
+            addclass: 'dark '
+        });   
+    }
+    
 });
 
 website('body').on('click','#return', function(e) 
 {
-  website("#returnModal").modal("show");
-  var reqid = website(this).attr("reqid");
-  website("#returnConfirm").attr("reqid",reqid);
+    website("#returnModal #recommendation").val('');
+    website("#returnModal").modal("show");
+    var reqid = website(this).attr("reqid");
+    website("#returnConfirm").attr("reqid",reqid);
 });
 
 
@@ -377,41 +395,86 @@ website('body').on('click','#returnConfirm', function(e)
 {
     var reqid = website(this).attr("reqid");
     var recommendation = website("#returnModal #recommendation").val();
-    var formdata = { reqid : reqid , recommendation:recommendation};
-    website.ajax({
-    url: "coi/returnRequest",
-    data:formdata,
-    method: "POST",
-    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-    dataType: "json",
-    cache: false,
-    beforeSend: function () {website('.preloder_wraper').fadeIn();},
-    uploadProgress: function (event, position, total, percentComplete) {},
-    success: function (response, textStatus, jqXHR) 
+    if(recommendation)
     {
-        if(response.logged === true) 
+        var formdata = { reqid : reqid , recommendation:recommendation};
+        website.ajax({
+        url: "coi/returnRequest",
+        data:formdata,
+        method: "POST",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType: "json",
+        cache: false,
+        beforeSend: function () {website('.preloder_wraper').fadeIn();},
+        uploadProgress: function (event, position, total, percentComplete) {},
+        success: function (response, textStatus, jqXHR) 
         {
-            new PNotify({title: 'Alert',
-                text: response.message,
-                type: 'university',
-                hide: true,
-                styling: 'bootstrap3',
-                addclass: 'dark '
-                    });  
-            setTimeout(function() {window.location.reload()}, 2000);   
-        }
-        else
+            if(response.logged === true) 
+            {
+                new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark '
+                        });  
+                setTimeout(function() {window.location.reload()}, 2000);   
+            }
+            else
+            {
+                new PNotify({title: 'Alert',
+                    text: response.message,
+                    type: 'university',
+                    hide: true,
+                    styling: 'bootstrap3',
+                    addclass: 'dark '
+                        });     
+            }
+        },
+        complete: function (response) {website('.preloder_wraper').fadeOut();},
+        error: function (jqXHR, textStatus, errorThrown) {website('.preloder_wraper').fadeOut();},
+      });
+    }
+    else
+    {
+        new PNotify({title: 'Alert',
+            text: 'Please fill Recommendation detail.',
+            type: 'university',
+            hide: true,
+            styling: 'bootstrap3',
+            addclass: 'dark '
+        });   
+    }
+});
+
+website('body').on('click','#coi_attachment', function(e) 
+{
+    var attachments = website(this).attr("attachments");
+    //console.log(attachments)
+    var addhtmlnxt = '';
+    if(attachments)
+    {
+        var attachment = attachments.split(",");
+        for(var i=0;i<attachment.length;i++)
         {
-            new PNotify({title: 'Alert',
-                text: response.message,
-                type: 'university',
-                hide: true,
-                styling: 'bootstrap3',
-                addclass: 'dark '
-                    });     
+            var j=i+1;
+            // console.log(response);
+            addhtmlnxt += '<tr class="counter">';
+            addhtmlnxt += '<td width="5%">'+j+'</td>';
+            addhtmlnxt += '<td width="5%"><a  href="'+attachment[i]+'" target="_blank"  class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a></td>';                    
+            addhtmlnxt += '</tr>';      
         }
-    },
-    complete: function (response) {website('.preloder_wraper').fadeOut();},
-    error: function (jqXHR, textStatus, errorThrown) {website('.preloder_wraper').fadeOut();},
-  });
+        website('#attachment').html(addhtmlnxt);
+        website("#attachmentsModal").modal("show");
+    }
+    else
+    {
+        new PNotify({title: 'Alert',
+               text: 'Attachment not found',
+               type: 'university',
+               hide: true,
+               styling: 'bootstrap3',
+               addclass: 'dark ',
+             }); 
+    }
 });

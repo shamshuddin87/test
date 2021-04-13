@@ -374,12 +374,12 @@ class Coicommon extends Component
                      SET `hrM_processed_status` = 'Rejected'
                      WHERE id =  '".$reqid."' " ;
             }
-            // else if($managertype == "dept")
-            // {
-            //     $queryget = "UPDATE `coi_declaration` 
-            //          SET `deptM_processed_status`= 'Rejected'
-            //          WHERE id =  '".$reqid."' " ;
-            // }
+             else if($managertype == "dept")
+             {
+                 $queryget = "UPDATE `coi_declaration` 
+                      SET `deptM_processed_status`= 'Rejected'
+                      WHERE id =  '".$reqid."' " ;
+             }
             
         }
         else if($action == "return")
@@ -400,7 +400,7 @@ class Coicommon extends Component
             
         }
         
-
+        //echo $queryget;exit;
         $exeget = $connection->query($queryget);
 
         $getnum = trim($exeget->numRows());
@@ -463,7 +463,7 @@ class Coicommon extends Component
         {
              $extquery = " AND (cd.`hrM_processed_status` = 'Approved' || cd.`deptM_processed_status` = 'Rejected' || cd.`deptM_processed_status` = 'Returned' || cd.`deptM_processed_status` = 'Approved') ".$extquery;
         }
-        $query="SELECT im.`employeecode` as reqempid,im.`fullname` as reqname,GROUP_CONCAT(DISTINCT dept.`deptname`) as reqdeptname,cd.`date_added` as reqdate,cd.`hrM_processed_status` as hrMstatus,cd.`deptM_processed_status` as deptMstatus,cd.`id` as reqid,cd.`coi_pdfpath` 
+        $query="SELECT im.`employeecode` as reqempid,im.`fullname` as reqname,GROUP_CONCAT(DISTINCT dept.`deptname`) as reqdeptname,cd.`date_added` as reqdate,cd.`hrM_processed_status` as hrMstatus,cd.`deptM_processed_status` as deptMstatus,cd.`id` as reqid,cd.`coi_pdfpath`,cd.`attachments`
                 FROM `coi_declaration` cd
                 LEFT JOIN `it_memberlist` im ON im.`wr_id`=cd.`user_id`
                 LEFT JOIN `con_dept` dept ON FIND_IN_SET(dept.`id`,im.`deptaccess`)
@@ -573,11 +573,11 @@ class Coicommon extends Component
                     $query = "INSERT INTO `coi_audit_trail` (`req_id`, `action`,`action_date`,`status`,`recommendation`,`date_added`,`date_modified`,`timeago`) 
             VALUES   ('".$req_id."','HR Manager Approval','".$todaydate."','Rejected','".$recommendation."',NOW(),NOW(),'".$time."')"; 
                 }
-            //     else if($managertype == "dept")
-            //     {
-            //         $query = "INSERT INTO `coi_audit_trail` (`req_id`, `action`,`action_date`,`status`,`date_added`,`date_modified`,`timeago`) 
-            // VALUES   ('".$req_id."','Dept Manager Approval','".$todaydate."','Approved',NOW(),NOW(),'".$time."')"; 
-            //     }
+                 else if($managertype == "dept")
+                 {
+                     $query = "INSERT INTO `coi_audit_trail` (`req_id`, `action`,`action_date`,`status`,`date_added`,`date_modified`,`timeago`) 
+             VALUES   ('".$req_id."','Dept Manager Approval','".$todaydate."','Approved',NOW(),NOW(),'".$time."')"; 
+                 }
             }
             else if($action == "return")
             {

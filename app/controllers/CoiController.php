@@ -335,7 +335,7 @@ class CoiController extends ControllerBase
                 $reqid = $this->request->getPost('reqid');
                 $deptdata = $this->coicommon->getDeptaccess($uid);
                 $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
-                // print_r($deptdata);die;
+                // print_r($hrmgr);die;
                 foreach($hrmgr as $mgr)
                 {
                     $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$mgr['mgrname'],$mgr['email'],$reqid);
@@ -437,9 +437,10 @@ class CoiController extends ControllerBase
                 }
                 if(!empty($srchbyusr))
                 {
-                    $mainqry.= " AND im.`employeecode` LIKE '%".$srchbyusr."%' OR im.`fullname` LIKE '%".$srchbyusr."%' ";
+                    $mainqry.= " AND (im.`employeecode` LIKE '%".$srchbyusr."%' OR im.`fullname` LIKE '%".$srchbyusr."%') ";
                 }
                 $fnlqry = $mainqry.$orderby.$rslmt;
+                $mainqry = $mainqry.$orderby;
                 // echo $fnlqry; exit;
                 
                 $coiData = $this->coicommon->fetchCoiMgrData($getuserid,$user_group_id,$managertype,$fnlqry);
@@ -763,7 +764,7 @@ class CoiController extends ControllerBase
                 else if($managertype == "dept")
                 {
                     $this->coicommon->updateCOIRequest($reqid,"reject");
-                    $this->coicommon->insertCOIAuditTrail($reqid,"reject");
+                    $this->coicommon->insertCOIAuditTrail($reqid,"reject",$recommendation);
                     $data  = array('logged' => true, 'message' => 'Request Rejected.'); 
                     $this->response->setJsonContent($data);
                 }
@@ -969,7 +970,15 @@ class CoiController extends ControllerBase
                 }
                 else
                 {
-                    $attachments = implode(',',$upattachment);
+                    if(!empty($upattachment))
+                    {
+                        $attachments = implode(',',$upattachment);
+                    }
+                    else
+                    {
+                        $attachments = '';
+                    }
+                    
                 }
                 
                 if($coipolicy == 'yes' && empty($coicategory))
@@ -997,6 +1006,26 @@ class CoiController extends ControllerBase
                             foreach($hrmgr as $mgr)
                             {
                                 $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$mgr['mgrname'],$mgr['email'],$coieditid);
+                            }
+                            
+                            if($mailsentstatus)
+                            {
+                                 //-------------- Start: On request for approval: CCO and CS email intimation -------------//
+                                $YORuser = $this->coicommon->checkYORuser($getuserid);
+                                $recipientnames = array("CCO","CS");
+                                $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
+                                if($YORuser)
+                                {
+                                    for ($i=0; $i < count($recipientnames); $i++) 
+                                    { 
+                                        $this->coicommon->requestapprmailtoccoandcs($coieditid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
+                                    } 
+                                }
+                         
+                                //-------------- End: On request for approval: CCO and CS email intimation -------------//
+                            
+                                $this->coicommon->updateCOIRequest($coieditid,"sent");
+                                $this->coicommon->insertCOIAuditTrail($coieditid,"sent","");
                             }
                             
                         }

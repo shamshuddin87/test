@@ -626,10 +626,17 @@ class EmployeemoduleController extends ControllerBase
                         }
                     }
                     $result = $this->employeemodulecommon->relativeinfo($uid,$usergroup,$reldata,$filepath);
-                    
+                    if($isbusiness_partner == 'Yes')
+                    {
+                        $meassage = 'Since you have select COI as Yes in the option, you have to fill "Conflict Of Interest" form from the software.';
+                    }
+                    else
+                    {
+                        $meassage = $result['message'];
+                    }
                     if($result['status']==true)
                     {
-                        $data = array("logged" => true,'message' =>$result['message'],'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled,'isFirst'=>$isFirst,'ismfrEmpty'=>$ismfrFirst,'ismfrstatusfirst'=>$ismfrstatusFirst);
+                        $data = array("logged" => true,'message' =>$meassage,'isfilled'=>$isFilled,'isnextdatafilled'=>$isNextFilled,'isFirst'=>$isFirst,'ismfrEmpty'=>$ismfrFirst,'ismfrstatusfirst'=>$ismfrstatusFirst);
                         $this->response->setJsonContent($data);
                     }
                     else

@@ -239,7 +239,7 @@ function getuserlistonload()
         cache:false,
         //async:true, Cross domain checking
         beforeSend: function()
-        {   website('.preloder_wraper').fadeIn();   },
+        {   if(!search){website('.preloder_wraper').fadeIn();}   },
         uploadProgress: function(event, position, total, percentComplete)
         {   },
         success: function(response, textStatus, jqXHR)
