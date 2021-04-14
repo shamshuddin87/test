@@ -56,7 +56,7 @@ $category = $this->coicommon->fetchCategory();
                 <div class="sectionbox">
                     <h2 class="h2_heading" style="text-align:center;">Confirmation</h2>
                     <div class="p-15px" style="color: ">
-                        <p style="color: #000;">Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. <a href="img/Coi/agreement.pdf" target="_blank">Click Here</a> to download policy.</p>
+                        <p style="color: #000;">Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. <a href="img/coi/Agreement.pdf" target="_blank">Click Here</a> to download policy.</p>
                         <div class="checkbox-inline">                          
                           <input class="coipolicy" type="radio" name="coipolicy" id="coiyes" value="Yes">
                           <label>Yes</label>
@@ -73,7 +73,7 @@ $category = $this->coicommon->fetchCategory();
                       <h2 class="h2_heading" style="text-align:center;">Information</h2>
                     <div class="p-15px">
                       <p>Please describe below the actual or potential conflict of interest.</p>
-                    <p>Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. <a href="img/Coi/agreement.pdf" target="_blank">Click Here</a> to download policy.</p>
+                    <p>Do you have any actual / potential conflict of interest situations you are facing as per 'Conflict of Interest' Policy. <a href="img/coi/Agreement.pdf" target="_blank">Click Here</a> to download policy.</p>
                     <label>Please select the category</label>
                     <select class="form-control coicategory" id="coicategory" name="coicategory" required>
                        <option value="">Select Category</option>

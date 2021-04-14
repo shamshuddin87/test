@@ -223,7 +223,7 @@ website('body').on('click','.updatecoi',function(e)
     var coicategory = website('#updatecoi #coicategory').val();
     var cateque = website('#updatecoi input[name="question"]:checked').val();
     var catequeid = website('#updatecoi input[name="question"]:checked').attr('id');
-    if (catequeid.indexOf('_others') > -1) 
+    if (coipolicy == 'Yes' && catequeid.indexOf('_others') > -1) 
     {
         var others_des = tinyMCE.activeEditor.getContent();
         website('#updatecoi #others_des').val(others_des);
@@ -303,13 +303,13 @@ website("#updatecoi").ajaxForm({
             styling: "bootstrap3",
             addclass: "dark ",
         });
-         website("#Mymodalcoideclara #downloadpdf").append('<a  href="' +
+         /*website("#Mymodalcoideclara #downloadpdf").append('<a  href="' +
             response.pdfpath +
             '" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon-download-alt floatleft">Download</span> </a>'
-        );
+        );*/
         
-        /*var baseHref=getbaseurl();
-        setTimeout(function(){window.location.href=baseHref+'coi';},1000);*/
+        var baseHref=getbaseurl();
+        setTimeout(function(){window.location.href=baseHref+'coi';},1000);
     } 
     else 
     {

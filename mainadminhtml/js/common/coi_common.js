@@ -66,36 +66,37 @@ function fetchCoiAllData()
                 addhtmlnxt += '<tr class="counter">';
                 addhtmlnxt += '<td width="5%">'+j+'</td>';
                 addhtmlnxt += '<td width="11%">'+response.data[i]['date_added']+'</td>';
-                /*addhtmlnxt += '<td width="11%">';
-                if(response.data[i]["sent_status"] == '0' || response.data[i]["hrM_processed_status"] == 'To Be Send' || response.data[i]["hrM_processed_status"] == 'Returned')
-                {
-                    addhtmlnxt += 'Pending';
-                }
-                else
-                {
-                    addhtmlnxt += 'Sent';
-                }
-                addhtmlnxt += '</td>';*/
+                
                 
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
-
-                if(response.data[i]["hrM_processed_status"] == "Returned" || response.data[i]["hrM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")
+                if(response.managertype == 'hr')
                 {
-                // addhtmlnxt += '<i class="fa fa-check-circle-o faicon" style="font-size:20px;" title="Already sent"></i>';
-                   addhtmlnxt += '<i class="fa fa-external-link faicon" id="sendtohrM" reqid="'+response.data[i]["id"]+'" title="Send to HR Manager"></i>';
+                    addhtmlnxt += 'NA';
                 }
                 else
                 {
-                    addhtmlnxt += response.data[i]["hrM_processed_status"];
+                   if(response.data[i]["hrM_processed_status"] == "Returned" || response.data[i]["hrM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")
+                    {
+                    // addhtmlnxt += '<i class="fa fa-check-circle-o faicon" style="font-size:20px;" title="Already sent"></i>';
+                       addhtmlnxt += '<i class="fa fa-external-link faicon" id="sendtohrM" reqid="'+response.data[i]["id"]+'" title="Send to HR Manager"></i>';
+                    }
+                    else
+                    {
+                        addhtmlnxt += response.data[i]["hrM_processed_status"];
+                    } 
                 }
+                
                 addhtmlnxt += '</td>';
+                
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
-                // if(response.data[i]["deptM_processed_status"] == "Returned" || response.data[i]["deptM_processed_status"] == "To Be Send")
-                // {
-                //     addhtmlnxt += '<i class="fa fa-external-link faicon sendtodeptM" reqid="'+response.data[i]["id"]+'" title="Send to Department Manager"></i>';
-                    // addhtmlnxt += '<i class="fa fa-check-circle-o faicon" style="font-size:20px;" title="Already sent"></i>';    
-                // }
-                addhtmlnxt += response.data[i]["deptM_processed_status"];
+                if(response.managertype == 'dept')
+                {
+                    addhtmlnxt += 'NA';
+                }
+                else
+                {
+                    addhtmlnxt += response.data[i]["deptM_processed_status"];
+                }
                 addhtmlnxt += '</td>';
                 
                 addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-list-ul faicon" id="audit_trail" reqid="'+response.data[i]["id"]+'" title="Audit Trail"></i></td>';
@@ -103,14 +104,14 @@ function fetchCoiAllData()
                 addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-file faicon" id="coi_attachment" reqid="'+response.data[i]["id"]+'" attachments="'+response.data[i]["attachments"]+'" title="Attachment"></i></td>';
                 
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
-                if(response.data[i]["hrM_processed_status"] == "Returned" || response.data[i]["hrM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")
+                if((response.managertype == '' && (response.data[i]["hrM_processed_status"] == "Returned" || response.data[i]["hrM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'hr' && (response.data[i]["deptM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'dept' && (response.data[i]["deptM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")))
                 {
                     addhtmlnxt += '<i class="fa fa-edit coiedit" reqid="'+response.data[i]["id"]+'" title="Edit Entry"></i>';
                 }
                 addhtmlnxt += '</td>';
                 
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
-                if(response.data[i]["hrM_processed_status"] == "Returned" || response.data[i]["hrM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")
+                if((response.managertype == '' && (response.data[i]["hrM_processed_status"] == "Returned" || response.data[i]["hrM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'hr' && (response.data[i]["deptM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'dept' && (response.data[i]["deptM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")))
                 {
                     addhtmlnxt += '<i class="fa fa-trash coidelete" reqid="'+response.data[i]["id"]+'" title="Delete Entry"></i>';
                 }

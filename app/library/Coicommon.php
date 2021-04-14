@@ -105,20 +105,40 @@ class Coicommon extends Component
     public function insertcoi($getuserid,$user_group_id,$coipolicy,$coicategory,$catequeid,$others_des,$attachments,$formsend_status,$pdfpath)
     {
         $connection = $this->dbtrd;
+        $managertype = $this->session->loginauthspuserfront['managertype'];
         $time = time();
         $todaydate = date('d-m-Y');
         try
         {
             if($formsend_status == '0')
             {
-                $hrmsts = 'To Be Send';
+                if($managertype == 'hr')
+                {
+                    $deptmsts = 'To Be Send';
+                    $hrmsts = 'To Be Send';
+                }
+                else
+                {
+                    $hrmsts = 'To Be Send';
+                    $deptmsts = 'To Be Send';
+                }
+                
             }
             else if($formsend_status == '1')
             {
-                $hrmsts = 'Pending Approval';
+                if($managertype == 'hr')
+                {
+                    $deptmsts = 'Pending Approval';
+                    $hrmsts = 'To Be Send';
+                }
+                else
+                {
+                    $hrmsts = 'Pending Approval';
+                    $deptmsts = 'To Be Send';
+                }
             }
             $queryin = "INSERT INTO `coi_declaration` (`user_id`, `user_group_id`,`coi_policy`,`catid`,`catqueid`,`other_description`,`attachments`,`coi_pdfpath`,`sent_status`,`sent_date`,`hrM_processed_status`,`deptM_processed_status`,`date_added`,`date_modified`,`timeago`) 
-            VALUES   ('".$getuserid."','".$user_group_id."','".$coipolicy."','".$coicategory."','".$catequeid."','".$others_des."','".$attachments."','".$pdfpath."','".$formsend_status."','".$todaydate."','".$hrmsts."','To Be Send',NOW(),NOW(),'".$time."')"; 
+            VALUES   ('".$getuserid."','".$user_group_id."','".$coipolicy."','".$coicategory."','".$catequeid."','".$others_des."','".$attachments."','".$pdfpath."','".$formsend_status."','".$todaydate."','".$hrmsts."','".$deptmsts."',NOW(),NOW(),'".$time."')"; 
              //echo $queryin; exit;
             $exegetqry = $connection->query($queryin);
             $lastid = $connection->lastInsertId();
@@ -344,10 +364,24 @@ class Coicommon extends Component
 
         if($action == "sent")
         {
-            $queryget = "UPDATE `coi_declaration` 
+            /*$queryget = "UPDATE `coi_declaration` 
+                     SET `hrM_processed_status` = 'Pending Approval',
+                     `deptM_processed_status`= 'To Be Send'
+                     WHERE id =  '".$reqid."' " ;*/
+            if($managertype == "hr")
+            {
+                $queryget = "UPDATE `coi_declaration` 
+                     SET `hrM_processed_status` = 'To Be Send',
+                     `deptM_processed_status`= 'Pending Approval'
+                     WHERE id =  '".$reqid."' " ;
+            }
+            else if($managertype == "dept")
+            {
+                $queryget = "UPDATE `coi_declaration` 
                      SET `hrM_processed_status` = 'Pending Approval',
                      `deptM_processed_status`= 'To Be Send'
                      WHERE id =  '".$reqid."' " ;
+            }
         }
         else if($action == "approval")
         {
@@ -453,6 +487,13 @@ class Coicommon extends Component
         $deptInfo = $this->getMgrDeptaccess($getuserid);
         // print_r($deptInfo);die;
         $deptusers = $this->getDeptUsers($deptInfo['deptid']);
+        
+        if (($key = array_search($getuserid, $deptusers)) !== false) 
+        {
+            unset($deptusers[$key]);
+            array_values($deptusers);
+        }
+        //print_r($deptusers);exit;
         $deptUserList = implode(",", $deptusers);
         // print_r($deptUserList);die;
         if($managertype == 'hr')
@@ -461,14 +502,15 @@ class Coicommon extends Component
         }
         if($managertype == 'dept')
         {
-             $extquery = " AND (cd.`hrM_processed_status` = 'Approved' || cd.`deptM_processed_status` = 'Rejected' || cd.`deptM_processed_status` = 'Returned' || cd.`deptM_processed_status` = 'Approved') ".$extquery;
+             $extquery = " AND ((cd.`hrM_processed_status` = 'Approved' || cd.`deptM_processed_status` = 'Rejected' || cd.`deptM_processed_status` = 'Returned' || cd.`deptM_processed_status` = 'Approved')  OR 
+                (cd.`hrM_processed_status` = 'To Be Send' AND (cd.`deptM_processed_status` = 'Pending Approval'|| cd.`deptM_processed_status` = 'Rejected' || cd.`deptM_processed_status` = 'Returned' || cd.`deptM_processed_status` = 'Approved')))".$extquery;
         }
         $query="SELECT im.`employeecode` as reqempid,im.`fullname` as reqname,GROUP_CONCAT(DISTINCT dept.`deptname`) as reqdeptname,cd.`date_added` as reqdate,cd.`hrM_processed_status` as hrMstatus,cd.`deptM_processed_status` as deptMstatus,cd.`id` as reqid,cd.`coi_pdfpath`,cd.`attachments`
                 FROM `coi_declaration` cd
                 LEFT JOIN `it_memberlist` im ON im.`wr_id`=cd.`user_id`
                 LEFT JOIN `con_dept` dept ON FIND_IN_SET(dept.`id`,im.`deptaccess`)
                 WHERE cd.`user_id` IN (".$deptUserList.") ".$extquery;
-        // print_r($query);exit; 
+        //print_r($query);exit; 
         try
         {
             $exeget = $connection->query($query);
@@ -1007,7 +1049,7 @@ class Coicommon extends Component
         $getlist = array();
         try
         {
-            $sqlqry = "SELECT im.`deptaccess`,GROUP_CONCAT(DISTINCT cd.`deptname`) as deptname,im.`email`,im.`fullname` FROM `it_memberlist` im
+            $sqlqry = "SELECT im.`deptaccess`,GROUP_CONCAT(DISTINCT cd.`deptname`) as deptname,im.`email`,im.`fullname`,im.`managertype` FROM `it_memberlist` im
                 LEFT JOIN `con_dept` cd ON FIND_IN_SET(cd.`id`,im.`deptaccess`)
                 WHERE im.`wr_id`='".$uid."'";         
             //print_r($sqlqry); exit;            
@@ -1022,6 +1064,7 @@ class Coicommon extends Component
                     $getlist['deptname'] = $row['deptname'];
                     $getlist['email'] = $row['email'];
                     $getlist['fullname'] = $row['fullname'];
+                    $getlist['managertype'] = $row['managertype'];
                 }
                 //echo '<pre>'; print_r($getlist); exit;
             }

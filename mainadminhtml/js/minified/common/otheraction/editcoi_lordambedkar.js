@@ -36,7 +36,7 @@ else
 else
 {website('#updatecoi #coiothers').css("display","none");}}},complete:function(response){},error:function(jqXHR,textStatus,errorThrown){},});}
 website('body').on('click','.updatecoi',function(e)
-{var coipolicy=website('#updatecoi input[name="coipolicy"]:checked').val();var coicategory=website('#updatecoi #coicategory').val();var cateque=website('#updatecoi input[name="question"]:checked').val();var catequeid=website('#updatecoi input[name="question"]:checked').attr('id');if(catequeid.indexOf('_others')>-1)
+{var coipolicy=website('#updatecoi input[name="coipolicy"]:checked').val();var coicategory=website('#updatecoi #coicategory').val();var cateque=website('#updatecoi input[name="question"]:checked').val();var catequeid=website('#updatecoi input[name="question"]:checked').attr('id');if(coipolicy=='Yes'&&catequeid.indexOf('_others')>-1)
 {var others_des=tinyMCE.activeEditor.getContent();website('#updatecoi #others_des').val(others_des);}
 website('#updatecoi .coicategory option[value="'+coicategory+'"]').attr("selected","selected");website('input[name=question][value="'+cateque+'"]').attr('checked','checked');if(coipolicy=='Yes'&&coicategory=='')
 {new PNotify({title:"Alert",text:'Please select the category.',type:"university",hide:true,styling:"bootstrap3",addclass:"dark ",});}
@@ -50,8 +50,7 @@ website(".modalcoihtmldata").html(pdfdata);website('.modalcoihtmldata #attachmen
 {website(".preloder_wraper").fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website(".preloder_wraper").fadeIn();},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{website('#sendcoiforapproval').modal('hide');website("#Mymodalcoideclara .coigeneratepdf").css("display","none");new PNotify({title:"Alert",text:response.message,type:"university",hide:true,styling:"bootstrap3",addclass:"dark ",});website("#Mymodalcoideclara #downloadpdf").append('<a  href="'+
-response.pdfpath+'" target="_blank" class="downlodthfle btn btn-primary" style="color: white;"><span class="glyphicon-download-alt floatleft">Download</span> </a>');}
+{website('#sendcoiforapproval').modal('hide');website("#Mymodalcoideclara .coigeneratepdf").css("display","none");new PNotify({title:"Alert",text:response.message,type:"university",hide:true,styling:"bootstrap3",addclass:"dark ",});var baseHref=getbaseurl();setTimeout(function(){window.location.href=baseHref+'coi';},1000);}
 else
 {new PNotify({title:"Alert",text:response.message,type:"university",hide:true,styling:"bootstrap3",addclass:"dark ",});}},complete:function(response)
 {website(".preloder_wraper").fadeOut();},error:function(jqXHR,textStatus,errorThrown){},});website("body").on("click",".coigeneratepdf",function(e){website("#sendcoiforapproval").modal("show");});website("body").on("click",".sendcoiform",function(e){var sendtype=website(this).val();website('#updatecoi #formsendtype').val(sendtype);website('#updatecoi').submit();});website("body").on("click",".cateque",function(e){var idattr=website(this).attr('id');if(idattr.indexOf('_others')>-1)

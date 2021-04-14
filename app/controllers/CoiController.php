@@ -127,6 +127,7 @@ class CoiController extends ControllerBase
         $cin = $this->session->memberdoccin;
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
         $email = $this->session->loginauthspuserfront['email'];
+        $managertype = $this->session->loginauthspuserfront['managertype'];
         if($this->request->isPost() == true)
         {
             if($this->request->isAjax() == true)
@@ -201,8 +202,15 @@ class CoiController extends ControllerBase
                         /* Send Mail to HR for Approval */
                         if($formsendtype == 'yes')
                         {
+                            if($managertype == 'hr')
+                            {
+                                $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","dept");
+                            }
+                            else
+                            {
+                                $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
+                            }
                             
-                            $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
                             // print_r($hrmgr);die;
                             foreach($hrmgr as $mgr)
                             { 
@@ -259,6 +267,7 @@ class CoiController extends ControllerBase
         $this->view->disable();
         $getuserid = $this->session->loginauthspuserfront['id'];
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $managertype = $this->session->loginauthspuserfront['managertype'];
         //echo $cin;exit;
         $timeago = time();
 
@@ -296,12 +305,12 @@ class CoiController extends ControllerBase
                 // ------- Pagination End -------
                 if(!empty($coiData))
                 {
-                    $data  = array('logged' => true, 'data' => $coiData,"pgnhtml"=>$pgnhtml); 
+                    $data  = array('logged' => true, 'data' => $coiData,'managertype'=>$managertype,"pgnhtml"=>$pgnhtml); 
                     $this->response->setJsonContent($data);
                 }
                 else
                 {
-                    $data  = array('logged' => false, 'data' => '',"pgnhtml"=>$pgnhtml); 
+                    $data  = array('logged' => false, 'data' => '','managertype'=>$managertype,"pgnhtml"=>$pgnhtml); 
                     $this->response->setJsonContent($data);
                 }
                 $this->response->send();
@@ -586,10 +595,11 @@ class CoiController extends ControllerBase
                 //------ Start: Approval Mail to requester
                     $reqUserId = $this->coicommon->getReqUserId($reqid);          
                     $requestordata = $this->coicommon->getRequestorData($reqUserId);
+                    //print_r($requestordata);exit;
                     $this->coicommon->approvalMailToRequestor($reqid,$requestordata['fullname'],$requestordata['deptname'],$requestordata['email']);
                 //------ End: Approval Mail to requester
                 
-                if($managertype == "hr")
+                if($managertype == "hr" && $requestordata['managertype']!= 'dept')
                 {
                     $deptmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","dept");
                     // print_r($deptmgr);die;
@@ -634,7 +644,7 @@ class CoiController extends ControllerBase
                         $this->response->setJsonContent($data);
                     }
                 }
-                else if($managertype == "dept")
+                else if($managertype == "dept" || $requestordata['managertype'] == 'dept')
                 {
                     //-------------- Start: CCO and CS email intimation -------------//
                          $YORuser = $this->coicommon->checkYORuser($uid);
@@ -902,6 +912,7 @@ class CoiController extends ControllerBase
         $getuserid = $this->session->loginauthspuserfront['id'];
         $cin = $this->session->memberdoccin;
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $managertype = $this->session->loginauthspuserfront['managertype'];
         if($this->request->isPost() == true)
         {
             if($this->request->isAjax() == true)
@@ -1001,7 +1012,14 @@ class CoiController extends ControllerBase
                         if($formsendtype == 'yes')
                         {
                             $deptdata = $this->coicommon->getDeptaccess($getuserid);
-                            $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
+                            if($managertype == 'hr')
+                            {
+                                $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","dept");
+                            }
+                            else
+                            {
+                                $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
+                            }
                             // print_r($hrmgr);die;
                             foreach($hrmgr as $mgr)
                             {
