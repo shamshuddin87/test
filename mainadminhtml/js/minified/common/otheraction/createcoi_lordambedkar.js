@@ -13,8 +13,7 @@ website.ajax({url:"coi/fetchCateQuestions",data:formdata,method:"POST",contentTy
 {if(response.logged===true)
 {var target='textareforedit';tinymce.get(target).setContent('');website('#insertcoi #coiothers').css("display","none");website('.coicateque').html(response.data)}},complete:function(response){},error:function(jqXHR,textStatus,errorThrown){},});});website('body').on('click','.savecoi',function(e)
 {var coipolicy=website('#insertcoi input[name="coipolicy"]:checked').val();if(coipolicy=='Yes')
-{var others_des=tinyMCE.activeEditor.getContent();website('#insertcoi #others_des').val(others_des);}
-var coicategory=website('#insertcoi #coicategory').val();var cateque=website('#insertcoi input[name="question"]:checked').val();var catequeid=website('#insertcoi input[name="question"]:checked').attr('id');website('#insertcoi .coicategory option[value="'+coicategory+'"]').attr("selected","selected");website('input[name=question][value="'+cateque+'"]').attr('checked','checked');if(coipolicy=='Yes'&&coicategory=='')
+{var others_des=tinyMCE.activeEditor.getContent();website('#insertcoi #others_des').val(others_des);var coicategory=website('#insertcoi #coicategory').val();var cateque=website('#insertcoi input[name="question"]:checked').val();var catequeid=website('#insertcoi input[name="question"]:checked').attr('id');website('#insertcoi .coicategory option[value="'+coicategory+'"]').attr("selected","selected");website('input[name=question][value="'+cateque+'"]').attr('checked','checked');if(coipolicy=='Yes'&&coicategory=='')
 {new PNotify({title:"Alert",text:'Please select the category.',type:"university",hide:true,styling:"bootstrap3",addclass:"dark ",});}
 else if(coipolicy=='Yes'&&!cateque)
 {new PNotify({title:"Alert",text:'Please select the category question.',type:"university",hide:true,styling:"bootstrap3",addclass:"dark ",});}
@@ -24,7 +23,9 @@ else
 var pdfdata=website("div .coihtmldata").html();website('#insertcoi #coipdfhtml').val(pdfdata)
 website(".modalcoihtmldata").html(pdfdata);website('.modalcoihtmldata #textarea_othersbox').css("display","block");if(others_des)
 {website('#insertcoi #coiothers').css("display","block");}
-website('#insertcoi #textarea_othersbox').css("display","none");website('#insertcoi #attachment_section').css("display","block");website('.modalcoihtmldata #attachment_section').css("display","none");website("#Mymodalcoideclara").modal("show");}});website("#insertcoi").ajaxForm({dataType:"json",beforeSend:function()
+website('#insertcoi #textarea_othersbox').css("display","none");website('#insertcoi #attachment_section').css("display","block");website('.modalcoihtmldata #attachment_section').css("display","none");website("#Mymodalcoideclara").modal("show");}}
+else
+{new PNotify({title:"Alert",text:'You have selected any actual / potential conflict of interest situations you are facing as per Conflict of Interest Policy as No.',type:"university",hide:true,styling:"bootstrap3",addclass:"dark ",});}});website("#insertcoi").ajaxForm({dataType:"json",beforeSend:function()
 {website(".preloder_wraper").fadeIn();},uploadProgress:function(event,position,total,percentComplete)
 {website(".preloder_wraper").fadeIn();},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)

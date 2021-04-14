@@ -51,8 +51,8 @@ tr,td {
 
 }
 
-.glyphicon
-{font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;}
+/*.glyphicon
+{font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;}*/
 .glyphicon-download-alt:before {
     content: "\e025";
     font-family:  'Glyphicons Halflings';

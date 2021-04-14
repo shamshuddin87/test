@@ -126,73 +126,85 @@ website('body').on('click','.savecoi',function(e)
     {
         var others_des = tinyMCE.activeEditor.getContent();
         website('#insertcoi #others_des').val(others_des);
-    }
-    var coicategory = website('#insertcoi #coicategory').val();
-    var cateque = website('#insertcoi input[name="question"]:checked').val();
-    var catequeid = website('#insertcoi input[name="question"]:checked').attr('id');
-    //console.log(catequeid)
-    website('#insertcoi .coicategory option[value="'+coicategory+'"]').attr("selected", "selected");
-    website('input[name=question][value="'+cateque+'"]').attr('checked', 'checked');
-    
-    
-    if(coipolicy == 'Yes' && coicategory == '')
-    {
-        new PNotify({
-            title: "Alert",
-            text: 'Please select the category.',
-            type: "university",
-            hide: true,
-            styling: "bootstrap3",
-            addclass: "dark ",
-        });
-    }
-    else if(coipolicy == 'Yes' && !cateque)
-    {
-        new PNotify({
-            title: "Alert",
-            text: 'Please select the category question.',
-            type: "university",
-            hide: true,
-            styling: "bootstrap3",
-            addclass: "dark ",
-        });
+        var coicategory = website('#insertcoi #coicategory').val();
+        var cateque = website('#insertcoi input[name="question"]:checked').val();
+        var catequeid = website('#insertcoi input[name="question"]:checked').attr('id');
+        //console.log(catequeid)
+        website('#insertcoi .coicategory option[value="'+coicategory+'"]').attr("selected", "selected");
+        website('input[name=question][value="'+cateque+'"]').attr('checked', 'checked');
+
+
+        if(coipolicy == 'Yes' && coicategory == '')
+        {
+            new PNotify({
+                title: "Alert",
+                text: 'Please select the category.',
+                type: "university",
+                hide: true,
+                styling: "bootstrap3",
+                addclass: "dark ",
+            });
+        }
+        else if(coipolicy == 'Yes' && !cateque)
+        {
+            new PNotify({
+                title: "Alert",
+                text: 'Please select the category question.',
+                type: "university",
+                hide: true,
+                styling: "bootstrap3",
+                addclass: "dark ",
+            });
+        }
+        else
+        {
+            website('#insertcoi #attachment_section').css("display", "none");
+            if(others_des)
+            {
+
+                /*var target = 'textareforedit';
+                tinymce.get(target).setContent('contentkjk');*/
+                website('#insertcoi #textarea_othersbox').html('<div class="form-group"><textarea class="form-control rounded-0" id="textarea_othershtml" rows="5" style="pointer-events: all;"></textarea></div>');
+                website('#insertcoi #textarea_othersbox').css("display", "block");
+                website('#insertcoi #coiothers').css("display", "none");
+                var decoded_others_des = website("<div/>").html(others_des).text();
+                website('#insertcoi #textarea_othershtml').html(decoded_others_des);
+            }
+
+            var pdfdata = website("div .coihtmldata").html();
+            //console.log(pdfdata)
+            website('#insertcoi #coipdfhtml').val(pdfdata)
+            //console.log(pdfdata);
+            /*website('#insertcoi #attachment_section').css("display", "block");*/
+            website(".modalcoihtmldata").html(pdfdata);
+
+            website('.modalcoihtmldata #textarea_othersbox').css("display", "block");
+            if(others_des)
+            {
+                website('#insertcoi #coiothers').css("display", "block");
+            }
+            website('#insertcoi #textarea_othersbox').css("display", "none");
+            website('#insertcoi #attachment_section').css("display", "block");
+
+            //website('.modalcoihtmldata #textarea_othershtml').html(others_des);
+            website('.modalcoihtmldata #attachment_section').css("display", "none");
+            /*website('.modalcoihtmldata #textarea_others').css("display", "none");*/
+            website("#Mymodalcoideclara").modal("show");
+
+        }
     }
     else
     {
-        website('#insertcoi #attachment_section').css("display", "none");
-        if(others_des)
-        {
-            
-            /*var target = 'textareforedit';
-            tinymce.get(target).setContent('contentkjk');*/
-            website('#insertcoi #textarea_othersbox').html('<div class="form-group"><textarea class="form-control rounded-0" id="textarea_othershtml" rows="5" style="pointer-events: all;"></textarea></div>');
-            website('#insertcoi #textarea_othersbox').css("display", "block");
-            website('#insertcoi #coiothers').css("display", "none");
-            var decoded_others_des = website("<div/>").html(others_des).text();
-            website('#insertcoi #textarea_othershtml').html(decoded_others_des);
-        }
-        
-        var pdfdata = website("div .coihtmldata").html();
-        //console.log(pdfdata)
-        website('#insertcoi #coipdfhtml').val(pdfdata)
-        //console.log(pdfdata);
-        /*website('#insertcoi #attachment_section').css("display", "block");*/
-        website(".modalcoihtmldata").html(pdfdata);
-        
-        website('.modalcoihtmldata #textarea_othersbox').css("display", "block");
-        if(others_des)
-        {
-            website('#insertcoi #coiothers').css("display", "block");
-        }
-        website('#insertcoi #textarea_othersbox').css("display", "none");
-        website('#insertcoi #attachment_section').css("display", "block");
-        
-        //website('.modalcoihtmldata #textarea_othershtml').html(others_des);
-        website('.modalcoihtmldata #attachment_section').css("display", "none");
-        /*website('.modalcoihtmldata #textarea_others').css("display", "none");*/
-        website("#Mymodalcoideclara").modal("show");
-        
+        new PNotify({
+                title: "Alert",
+                text: 'You have selected any actual / potential conflict of interest situations you are facing as per Conflict of Interest Policy as No.',
+                type: "university",
+                hide: true,
+                styling: "bootstrap3",
+                addclass: "dark ",
+            });
     }
+    
     
 });
 
