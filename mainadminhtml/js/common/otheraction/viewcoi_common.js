@@ -128,22 +128,22 @@ function fetchCoiMgrData()
                 }
                 
                 addhtmlnxt += '<td width="10%" style="text-align:center">';
-                if(status == 'Returned' || status == 'Rejected' || status == 'Approved')
+                if(status == 'Pending Approval')
                 {
-                    var cssvar = 'csspointernone';
+                    addhtmlnxt += '<i class="fa fa-check faiconbtn " id="approve" reqid="'+response.data[i]["reqid"]+'"  title="Approve"></i>';
+                    addhtmlnxt += '&nbsp;&nbsp;<i class="fa fa-times faiconbtn " id="reject" reqid="'+response.data[i]["reqid"]+'"  title="Reject"></i>';
+                    addhtmlnxt += '&nbsp;&nbsp;<i class="fa fa-exchange faiconbtn " id="return" reqid="'+response.data[i]["reqid"]+'"  title="Return"></i>';
                 }
-                else
-                {
-                    var cssvar = '';
-                }
-                addhtmlnxt += '<i class="fa fa-check faiconbtn '+cssvar+'" id="approve" reqid="'+response.data[i]["reqid"]+'"  title="Approve"></i>';
-                addhtmlnxt += '&nbsp;&nbsp;<i class="fa fa-times faiconbtn '+cssvar+'" id="reject" reqid="'+response.data[i]["reqid"]+'"  title="Reject"></i>';
-                addhtmlnxt += '&nbsp;&nbsp;<i class="fa fa-exchange faiconbtn '+cssvar+'" id="return" reqid="'+response.data[i]["reqid"]+'"  title="Return"></i>';
                 addhtmlnxt += '</td>';
                 
                 addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-list-ul faicon" id="audit_trail" reqid="'+response.data[i]["reqid"]+'" title="Audit Trail"></i></td>';
                 
-                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-file faicon" id="coi_attachment" reqid="'+response.data[i]["reqid"]+'" attachments="'+response.data[i]["attachments"]+'" title="Attachment"></i></td>';
+                addhtmlnxt += '<td width="11%" style="text-align:center">';
+                if(response.data[i]["attachments"])
+                {
+                    addhtmlnxt += '<i class="fa fa-file faicon" id="coi_attachment" reqid="'+response.data[i]["reqid"]+'" attachments="'+response.data[i]["attachments"]+'" title="Attachment"></i>';
+                }
+                addhtmlnxt += '</td>';
                 
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
                 if(response.data[i]["coi_pdfpath"])

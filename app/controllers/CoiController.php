@@ -335,6 +335,7 @@ class CoiController extends ControllerBase
         $this->view->disable();
         $uid = $this->session->loginauthspuserfront['id'];
         $user_group_id = $this->session->loginauthspuserfront['user_group_id'];
+        $managertype = $this->session->loginauthspuserfront['managertype'];
         $timeago = time();
 
         if($this->request->isPost() == true)
@@ -343,7 +344,14 @@ class CoiController extends ControllerBase
             {
                 $reqid = $this->request->getPost('reqid');
                 $deptdata = $this->coicommon->getDeptaccess($uid);
-                $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
+                if($managertype == 'hr')
+                {
+                    $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","dept");
+                }
+                else
+                {
+                    $hrmgr = $this->coicommon->getHrDeptMgrs($deptdata['deptid'],"","hr");
+                }
                 // print_r($hrmgr);die;
                 foreach($hrmgr as $mgr)
                 {

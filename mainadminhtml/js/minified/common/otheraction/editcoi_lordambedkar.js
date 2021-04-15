@@ -12,7 +12,7 @@ website.ajax({url:"coi/fetchSingleCoiData",data:formdata,method:"POST",contentTy
 {var addattachment='';website('#updatecoi input[name=coipolicy][value="'+response.data.coi_policy+'"]').attr('checked','checked');if(response.data.coi_policy=='Yes')
 {website('#updatecoi input[name=coipolicy][value="No"]').removeAttr('checked','checked');inittinymace(response.data.other_description);website('#updatecoi .divcoipolicy').css('display','block');website('#updatecoi #attachment_section').css('display','block');website('#updatecoi #coicategory').val(response.data.catid);if(response.data.attachments!='')
 {addattachment+='<div class="sectionbox">';addattachment+='<h2 class="h2_heading" style="text-align:center;">Attachments</h2>';addattachment+='<div class="p-15px">';var attachmentArray=response.data.attachments.split(',');var row='';for(var i=0;i<attachmentArray.length;i++)
-{row=i;row++;addattachment+='<div class="col-md-12 col-xs-12 " id="row-'+row+'">';addattachment+='<label class="control-label">Upload File</label>';addattachment+='<a href="'+attachmentArray[i]+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a>';addattachment+='<input type="hidden" name="upattachment['+i+']" id="upattachment" value="'+attachmentArray[i]+'">';addattachment+='<div class="choose_files">';addattachment+='<input type="file" name="attachment['+i+']" id="attachment" >';addattachment+='</div>';addattachment+='</div>';}
+{row=i;row++;addattachment+='<div class="col-md-12 col-xs-12 " id="row-'+row+'">';addattachment+='<label class="control-label">Upload File</label>';addattachment+='<a href="'+attachmentArray[i]+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a>';addattachment+='<i class="fa fa-trash removeAttachment" rowid="'+row+'" title="Delete Entry" style="float: right;"></i>';addattachment+='<input type="hidden" name="upattachment['+i+']" id="upattachment" value="'+attachmentArray[i]+'">';addattachment+='<div class="choose_files">';addattachment+='<input type="file" name="attachment['+i+']" id="attachment" >';addattachment+='</div>';addattachment+='</div>';}
 addattachment+='<div class="appendfile"  filecntr="1"></div>';addattachment+='<div class="">';addattachment+='<input type="button" class="btn btn-primary btnaddfile" value="+" >';addattachment+='<input type="button" class="btn btn-primary btndeletefile" value="-" >';addattachment+='</div>';addattachment+='</div>';addattachment+='</div>';website('#attachment_section').html(addattachment)
 getlastid=row++;website('.appendfile').attr('filecntr',getlastid);}
 fetchCateQuestions(response.data.catid,response.data.catqueid);}
@@ -61,4 +61,5 @@ else
 {var rownum=website('.appendfile').attr('filecntr');if(rownum!=1)
 {website('.appendfile #row-'+rownum).remove();website('.appendfile').attr('filecntr',parseInt(rownum)-1);}
 else
-{return false;}});;
+{return false;}});website('body').on('click','.removeAttachment',function()
+{var rowid=website(this).attr('rowid');website('#row-'+rowid).remove();});;

@@ -290,7 +290,7 @@ class Elements extends Component
             $pre = $cur_page - 1;
             $msg .= "<li p='$pre' class='active'>Previous</li>";
         } else if ($previous_btn) {
-            $msg .= "<li class='inactive'>Previous</li>";
+            $msg .= "<li p='$cur_page' class='inactive'>Previous</li>";
         }
         for ($i = $start_loop; $i <= $end_loop; $i++) {
 
@@ -305,7 +305,7 @@ class Elements extends Component
             $nex = $cur_page + 1;
             $msg .= "<li p='$nex' class='active'>Next</li>";
         } else if ($next_btn) {
-            $msg .= "<li class='inactive'>Next</li>";
+            $msg .= "<li p='$cur_page' class='inactive'>Next</li>";
         }
 
         // TO ENABLE THE END BUTTON

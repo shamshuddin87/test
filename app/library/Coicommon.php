@@ -382,6 +382,13 @@ class Coicommon extends Component
                      `deptM_processed_status`= 'To Be Send'
                      WHERE id =  '".$reqid."' " ;
             }
+            else
+            {
+                $queryget = "UPDATE `coi_declaration` 
+                     SET `hrM_processed_status` = 'Pending Approval',
+                     `deptM_processed_status`= 'To Be Send'
+                     WHERE id =  '".$reqid."' ";
+            }
         }
         else if($action == "approval")
         {

@@ -101,6 +101,7 @@ function fetchSingleCoiData()
                         addattachment+='<div class="col-md-12 col-xs-12 " id="row-'+row+'">';
                         addattachment+='<label class="control-label">Upload File</label>';
                         addattachment+='<a href="'+attachmentArray[i]+'" download>&nbsp;<i class="fa fa-download" id="uploadattached1" aria-hidden="true"></i></a>';
+                        addattachment+= '<i class="fa fa-trash removeAttachment" rowid="'+row+'" title="Delete Entry" style="float: right;"></i>';
                         addattachment+='<input type="hidden" name="upattachment['+i+']" id="upattachment" value="'+attachmentArray[i]+'">';
                         addattachment+='<div class="choose_files">';
                         addattachment+='<input type="file" name="attachment['+i+']" id="attachment" >';
@@ -390,3 +391,10 @@ website('body').on('click','.btndeletefile',function()
     }    
 });
 /* ----- Start Add/Delete Email Rows ----- */
+
+website('body').on('click','.removeAttachment',function()
+{
+    var rowid = website(this).attr('rowid');
+    //console.log(rowid);
+    website('#row-'+rowid).remove();
+});
