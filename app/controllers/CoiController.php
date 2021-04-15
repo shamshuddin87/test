@@ -216,21 +216,21 @@ class CoiController extends ControllerBase
                             { 
                                 $mailsentstatus = $this->coicommon->sendaprvmailtomgr($deptdata['deptname'],$mgr['mgrname'],$mgr['email'],$getres['coiid']);
                             }
-
+                            //print_r($mailsentstatus);exit;
                             if($mailsentstatus)
                             {
-                                 //-------------- Start: On request for approval: CCO and CS email intimation -------------//
-                                $YORuser = $this->coicommon->checkYORuser($getuserid);
-                                $recipientnames = array("CCO","CS");
-                                $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
-                                if($YORuser)
-                                {
-                                    for ($i=0; $i < count($recipientnames); $i++) 
-                                    { 
-                                        $this->coicommon->requestapprmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
-                                    } 
-                                }
-                         
+                                  //-------------- Start: On request for approval: CCO and CS email intimation -------------//
+                                     $YORuser = $this->coicommon->checkYORuser($getuserid);
+                                     $recipientnames = array("CCO","CS");
+                                     $recipientemailids = array("kusum@volody.com","hemang@volody.com");
+                                     if($YORuser)
+                                        {
+                                         for ($i=0; $i < count($recipientnames); $i++) 
+                                            { 
+                                                $this->coicommon->requestapprmailtoccoandcs($getres['coiid'],$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i]);
+                                            } 
+                                        }
+
                                 //-------------- End: On request for approval: CCO and CS email intimation -------------//
                             
                                 //$this->coicommon->updateCOIRequest($reqid,"sent");
@@ -365,7 +365,7 @@ class CoiController extends ControllerBase
                     //-------------- Start: On request for approval: CCO and CS email intimation -------------//
                          $YORuser = $this->coicommon->checkYORuser($uid);
                          $recipientnames = array("CCO","CS");
-                         $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
+                         $recipientemailids = array("kusum@volody.com","hemang@volody.com");
                          if($YORuser)
                             {
                              for ($i=0; $i < count($recipientnames); $i++) 
@@ -620,9 +620,9 @@ class CoiController extends ControllerBase
                     if($mailsentstatus)
                     {
                         
-                         $YORuser = $this->coicommon->checkYORuser($uid);
+                         $YORuser = $this->coicommon->checkYORuser($reqUserId);
                          $recipientnames = array("CCO","CS");
-                         $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
+                         $recipientemailids = array("kusum@volody.com","hemang@volody.com");
                          if($YORuser)
                             {
                              for ($i=0; $i < count($recipientnames); $i++) 
@@ -657,7 +657,7 @@ class CoiController extends ControllerBase
                     //-------------- Start: CCO and CS email intimation -------------//
                          $YORuser = $this->coicommon->checkYORuser($uid);
                          $recipientnames = array("CCO","CS");
-                         $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
+                         $recipientemailids = array("kusum@volody.com","hemang@volody.com");
                          if($YORuser)
                             {
                              for ($i=0; $i < count($recipientnames); $i++) 
@@ -760,9 +760,9 @@ class CoiController extends ControllerBase
                 //-------------- Start: On reject: CCO and CS email intimation -------------//
                 $reqUserId = $this->coicommon->getReqUserId($reqid);          
                 $deptdata = $this->coicommon->getDeptaccess($reqUserId);
-                 $YORuser = $this->coicommon->checkYORuser($uid);
+                 $YORuser = $this->coicommon->checkYORuser($reqUserId);
                  $recipientnames = array("CCO","CS");
-                 $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
+                 $recipientemailids = array("kusum@volody.com","hemang@volody.com");
                  if($YORuser)
                     {
                      for ($i=0; $i < count($recipientnames); $i++) 
@@ -827,18 +827,18 @@ class CoiController extends ControllerBase
                 //------ End: Return Mail to requester
 
                 //-------------- Start: On return: CCO and CS email intimation -------------//
-                $reqUserId = $this->coicommon->getReqUserId($reqid);          
+                /*$reqUserId = $this->coicommon->getReqUserId($reqid);          
                 $deptdata = $this->coicommon->getDeptaccess($reqUserId);
                  $YORuser = $this->coicommon->checkYORuser($uid);
                  $recipientnames = array("CCO","CS");
-                 $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
+                 $recipientemailids = array("kusum@volody.com","hemang@volody.com");
                  if($YORuser)
                     {
                      for ($i=0; $i < count($recipientnames); $i++) 
                         { 
                             $this->coicommon->returnmailtoccoandcs($reqid,$recipientnames[$i],$deptdata['deptname'],$recipientemailids[$i],$returnBy);
                         } 
-                    }
+                    }*/
                 //-------------- End: On return: CCO and CS email intimation -------------//
 
                 if($managertype == "hr")
@@ -1039,7 +1039,7 @@ class CoiController extends ControllerBase
                                  //-------------- Start: On request for approval: CCO and CS email intimation -------------//
                                 $YORuser = $this->coicommon->checkYORuser($getuserid);
                                 $recipientnames = array("CCO","CS");
-                                $recipientemailids = array("kusum@volody.com1","hemang@volody.com1");
+                                $recipientemailids = array("kusum@volody.com","hemang@volody.com");
                                 if($YORuser)
                                 {
                                     for ($i=0; $i < count($recipientnames); $i++) 
