@@ -137,6 +137,8 @@ class Coicommon extends Component
                     $deptmsts = 'To Be Send';
                 }
             }
+            $others_des = str_replace("'","^",$others_des);
+            
             $queryin = "INSERT INTO `coi_declaration` (`user_id`, `user_group_id`,`coi_policy`,`catid`,`catqueid`,`other_description`,`attachments`,`coi_pdfpath`,`sent_status`,`sent_date`,`hrM_processed_status`,`deptM_processed_status`,`date_added`,`date_modified`,`timeago`) 
             VALUES   ('".$getuserid."','".$user_group_id."','".$coipolicy."','".$coicategory."','".$catequeid."','".$others_des."','".$attachments."','".$pdfpath."','".$formsend_status."','".$todaydate."','".$hrmsts."','".$deptmsts."',NOW(),NOW(),'".$time."')"; 
              //echo $queryin; exit;
@@ -847,6 +849,7 @@ class Coicommon extends Component
         $todaydate = date('d-m-Y');
         try
         {
+            $others_des = str_replace("'","^",$others_des);
             $queryup = "UPDATE `coi_declaration` SET `coi_policy`='".$coipolicy."',`catid`='".$coicategory."',`catqueid`='".$catequeid."',`other_description`='".$others_des."',`attachments`='".$attachments."',`coi_pdfpath`='".$pdfpath."',`sent_status`='".$formsend_status."',`sent_date`='".$todaydate."',`date_modified`=NOW() WHERE `id`='".$coieditid."'"; 
              //echo $queryin; exit;
             $exegetqry = $connection->query($queryup);
