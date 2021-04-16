@@ -626,8 +626,8 @@ class Coicommon extends Component
                 }
                  else if($managertype == "dept")
                  {
-                     $query = "INSERT INTO `coi_audit_trail` (`req_id`, `action`,`action_date`,`status`,`date_added`,`date_modified`,`timeago`) 
-             VALUES   ('".$req_id."','Dept Manager Approval','".$todaydate."','Approved',NOW(),NOW(),'".$time."')"; 
+                     $query = "INSERT INTO `coi_audit_trail` (`req_id`, `action`,`action_date`,`status`,`recommendation`,`date_added`,`date_modified`,`timeago`) 
+             VALUES   ('".$req_id."','Dept Manager Approval','".$todaydate."','Rejected','".$recommendation."',NOW(),NOW(),'".$time."')"; 
                  }
             }
             else if($action == "return")

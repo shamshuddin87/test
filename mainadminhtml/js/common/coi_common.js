@@ -113,14 +113,14 @@ function fetchCoiAllData()
                 addhtmlnxt += '</td>';
                 
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
-                if((!response.managertype && (response.data[i]["hrM_processed_status"] == "Returned" || response.data[i]["hrM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'hr' && (response.data[i]["deptM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'dept' && (response.data[i]["deptM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")))
+                if((!response.managertype && (response.data[i]["hrM_processed_status"] == "Returned" || response.data[i]["hrM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'hr' && (response.data[i]["deptM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'dept' && ((response.data[i]["deptM_processed_status"] == "To Be Send" && response.data[i]["hrM_processed_status"]!= "Rejected")|| response.data[i]["deptM_processed_status"] == "Returned")))
                 {
                     addhtmlnxt += '<i class="fa fa-edit coiedit" reqid="'+response.data[i]["id"]+'" title="Edit Entry"></i>';
                 }
                 addhtmlnxt += '</td>';
                 
                 addhtmlnxt += '<td width="11%" style="text-align:center">';
-                if((!response.managertype && (response.data[i]["hrM_processed_status"] == "Returned" || response.data[i]["hrM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'hr' && (response.data[i]["deptM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'dept' && (response.data[i]["deptM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")))
+                if((!response.managertype && (response.data[i]["hrM_processed_status"] == "Returned" || response.data[i]["hrM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'hr' && (response.data[i]["deptM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'dept' && ((response.data[i]["deptM_processed_status"] == "To Be Send" && response.data[i]["hrM_processed_status"]!= "Rejected") || response.data[i]["deptM_processed_status"] == "Returned")))
                 {
                     addhtmlnxt += '<i class="fa fa-trash coidelete" reqid="'+response.data[i]["id"]+'" title="Delete Entry"></i>';
                 }
