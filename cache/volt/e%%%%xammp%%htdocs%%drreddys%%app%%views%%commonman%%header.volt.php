@@ -15,7 +15,11 @@
 <div class="col-md-3 left_col" id="#style-1">
    <div class="left_col scroll-view">
       <div class="navbar nav_title nav_bg" style="border: 0;">
-         <a href="https://www.volody.com/user/home" class="site_title">
+          <?php if($coiaccess!= 'yes'){?>
+         <a href="home" class="site_title">
+             <?php  } else { ?>
+          <a href="coi" class="site_title">   
+             <?php } ?>
          <i class="responsive"><img src="img/logo_responsive.png"></i>
          <span><img src="img/logo.png" alt=""></span>
          </a>
