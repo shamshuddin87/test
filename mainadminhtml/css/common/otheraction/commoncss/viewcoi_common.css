@@ -337,3 +337,9 @@ margin:18px 0;}
 input[type="button"]#dtrange {
   line-height: 1.42857143;
 }
+
+
+#returnModal .btn, #apprModalyesno .btn, #rejectModal .btn
+{
+    width: 60px;
+}
