@@ -61,7 +61,7 @@ response.relativefirm[i]["decision"]+"</td>";addhtmlnxt5+='<td width="25%">'+
 response.relativefirm[i]["transaction"]+"</td>";addhtmlnxt+="</tr>";}}}
 if(response.relativepubpri!=0){for(var i=0;i<response.relativepubpri.length;i++){if(response.relativepubpri[i]["relative"]!=""){addhtmlnxt6+='<tr class="counter">';addhtmlnxt6+='<td width="25%">'+
 response.relativepubpri[i]["relative"]+"</td>";addhtmlnxt6+='<td width="25%">'+
-response.relativepubpri[i]["company"]+"</td>";var interst="";if(response.relativepubpri[i]["interest"]==1){interst="Member";}else if(response.relativepubpri[i]["interest"]==1){interst="Director";}else if(response.relativepubpri[i]["interest"]==1){interst="Member and Director";}
+response.relativepubpri[i]["company"]+"</td>";var interst="";if(response.relativepubpri[i]["interest"]==1){interst="Member";}else if(response.relativepubpri[i]["interest"]==2){interst="Director";}else if(response.relativepubpri[i]["interest"]==3){interst="Member and Director";}
 addhtmlnxt6+='<td width="25%">'+interst+"</td>";addhtmlnxt6+='<td width="25%">'+
 response.relativepubpri[i]["noofshare"]+"</td>";addhtmlnxt6+='<td width="25%">'+
 response.relativepubpri[i]["decision"]+"</td>";addhtmlnxt6+='<td width="25%">'+
