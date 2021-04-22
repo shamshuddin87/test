@@ -624,6 +624,42 @@ $SIDEBAR_MENU.find('a').on('click', function(ev) {
     });
 */
 
+/* --------- Start Open DatePicker according to field & screen position --------- */
+//website('.bootdatepick').click(function(e)
+website('body').on('click','.bootdatepick',function(e)
+{
+    //console.log(e.pageX+'_*_'+e.pageY);   // get field coordinates as per page
+    //console.log(e.screenX+'_*_'+e.screenY);   // get field coordinates as per user click position
+    
+    var windowHeightCenter = parseInt(website(window).height()) / 2;
+    //console.log(windowHeightCenter);
+    
+    //console.log(e.screenY+'_*_'+windowHeightCenter);
+    var escreenY = (e.screenY - 160);
+    //console.log(escreenY+'_*_'+windowHeightCenter);
+    
+    //if(e.screenY <= windowHeightCenter)
+    if(escreenY <= windowHeightCenter)
+    {
+        //console.log('inif');
+        var dtpkrAdjustPX = e.pageY + 25;
+        
+        website('.datetimepicker').css({
+          'top' : dtpkrAdjustPX
+        });
+    }
+    //console.log(dtpkrAdjustPX);
+});
+/*website('.bootdatepick').on('keyup', function(e)
+{
+    //console.log(this.id); return false;
+    var objId = this.id;
+    
+    //console.log('#'+objId+'.bootdatepick'); return false;
+    website('#'+objId+'.bootdatepick').click();
+});*/
+/* --------- End Open DatePicker according to field & screen position --------- */
+
 
 // ------------- SideBar End -------------
 

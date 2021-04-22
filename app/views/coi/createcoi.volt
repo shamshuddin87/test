@@ -101,7 +101,7 @@ $category = $this->coicommon->fetchCategory();
                       <div class="choose_files">
                          <input type="file" name="attachment[]" id="attachment" >
                       </div>
-                    <div class="appendfile"  filecntr='1'></div>
+                    <div class="appendfile row"  filecntr='1'></div>
                     <div class="">
                         <input type="button" class="btn btn-primary btnaddfile" value="+" >
                         <input type="button" class="btn btn-primary btndeletefile" value="-" >                    

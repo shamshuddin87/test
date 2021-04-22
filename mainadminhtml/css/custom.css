@@ -293,6 +293,13 @@ i.fa.fa-edit { margin-right: 7px; font-size: 14px; line-height: 18px}
 
 .cssfooter { text-align: center;  /* background: #EDEDED;  width: 100% */}
 
+.cssfooter {
+  text-align: center;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
 @media only screen and ( max-width:1024px) { 
 .upcom, .doc, .fin { width: 100%; float: left; margin-bottom: 10px;}
 .calender_list, .date_box {width: 50%;}
@@ -381,4 +388,10 @@ input#upload, input#uploadagrm { cursor: pointer; }
 
     body.nav-md .container.body .col-md-3.left_col {
     overflow: unset;
+}
+
+.btn[data-dismiss="modal"] {
+  color: #000;
+  background-color: #f6f6f6 !important;
+  border-color: #522c8f !important;
 }

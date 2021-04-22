@@ -33,7 +33,7 @@ $condeptsess = $this->session->contractdepartment;
             <label>Status Filter</label>
             <select id="filterstatus" name="filterstatus" class="form-control">
                 <option value="">All</option>
-                <option value="To Be Send">To Be Send</option>
+                <!--<option value="To Be Send">To Be Send</option>-->
                 <option value="Pending Approval">Pending Approval</option>
                 <option value="Returned">Returned</option>
                 <option value="Rejected">Rejected</option>
@@ -72,8 +72,10 @@ $condeptsess = $this->session->contractdepartment;
             <th>Request Date</th>      
             <th>Status</th>                                           
             <th>Action</th>                                           
-            <th>Audit Trail</th>                                           
-            <th>Download</th>                                           
+            <th>Audit Trail</th>
+            <th>Attachment</th> 
+            <th>Declaration</th>                                           
+                                                      
           </tr>
          </thead>
         <tbody class="approvaldata" appendrow='1'></tbody>
@@ -206,6 +208,32 @@ $condeptsess = $this->session->contractdepartment;
       </div>
   </div>
 </div>
+    
+<div id="attachmentsModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Attachments</h4>
+        </div>
+        <div class="modal-body show_shadow">
+          <div class="text-center adminform_heading">
+              <div class="clearelement"></div> 
+              <table width="100%" border="1" class="table table-inverse" id="datableabhi">
+             <thead>
+              <tr>
+                <th>Sr no</th> 
+                <th>Attachment</th>                                                 
+              </tr>
+             </thead>
+            <tbody id="attachment" appendrow='1'></tbody>
+            </table>
+
+          </div>            
+      </div>      
+  </div>
+  </div>
+</div> 
         
 <div class="clearelement"></div>
 <div class="preloder_wraper">
