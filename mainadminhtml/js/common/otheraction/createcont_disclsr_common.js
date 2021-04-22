@@ -998,11 +998,11 @@ function getpdfdata(uniqueid)
                             {
                                 interst = 'Member';
                             }
-                            else if(response.relativepubpri[i]['interest'] == 1)
+                            else if(response.relativepubpri[i]['interest'] == 2)
                             {
                                 interst = 'Director';
                             }
-                            else if(response.relativepubpri[i]['interest'] == 1)
+                            else if(response.relativepubpri[i]['interest'] == 3)
                             {
                                 interst = 'Member and Director';
                             }

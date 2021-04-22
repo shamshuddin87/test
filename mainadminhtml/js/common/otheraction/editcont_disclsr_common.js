@@ -1047,9 +1047,9 @@ function getpdfdata(uniqueid) {
                 var interst = "";
                 if (response.relativepubpri[i]["interest"] == 1) {
                   interst = "Member";
-                } else if (response.relativepubpri[i]["interest"] == 1) {
+                } else if (response.relativepubpri[i]["interest"] == 2) {
                   interst = "Director";
-                } else if (response.relativepubpri[i]["interest"] == 1) {
+                } else if (response.relativepubpri[i]["interest"] == 3) {
                   interst = "Member and Director";
                 }
                 addhtmlnxt6 += '<td width="25%">' + interst + "</td>";
