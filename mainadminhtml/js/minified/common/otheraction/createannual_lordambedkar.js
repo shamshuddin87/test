@@ -34,7 +34,7 @@ response.selfcompany[i]["transaction"]+"</td>";addhtmlnxt+="</tr>";}}
 if(response.selffirm!=0){for(var i=0;i<response.selffirm.length;i++){addhtmlnxt1+='<tr class="counter">';addhtmlnxt1+='<td width="25%">'+response.selffirm[i]["firm"]+"</td>";addhtmlnxt1+='<td width="25%">'+response.selffirm[i]["interest"]+"</td>";addhtmlnxt1+='<td width="25%">'+response.selffirm[i]["decision"]+"</td>";addhtmlnxt1+='<td width="25%">'+
 response.selffirm[i]["transaction"]+"</td>";addhtmlnxt+="</tr>";}}
 if(response.selfpubpri!=0){for(var i=0;i<response.selfpubpri.length;i++){addhtmlnxt2+='<tr class="counter">';addhtmlnxt2+='<td width="25%">'+
-response.selfpubpri[i]["company"]+"</td>";var interst="";if(response.selfpubpri[i]["interest"]==1){interst="Member";}else if(response.selfpubpri[i]["interest"]==1){interst="Director";}else if(response.selfpubpri[i]["interest"]==1){interst="Member and Director";}
+response.selfpubpri[i]["company"]+"</td>";var interst="";if(response.selfpubpri[i]["interest"]==1){interst="Member";}else if(response.selfpubpri[i]["interest"]==2){interst="Director";}else if(response.selfpubpri[i]["interest"]==3){interst="Member and Director";}
 addhtmlnxt2+='<td width="25%">'+interst+"</td>";addhtmlnxt2+='<td width="25%">'+
 response.selfpubpri[i]["noofshare"]+"</td>";addhtmlnxt2+='<td width="25%">'+
 response.selfpubpri[i]["decision"]+"</td>";addhtmlnxt2+='<td width="25%">'+

@@ -699,6 +699,7 @@
                        <option value="">Select Option</option>
                        <option value="1">Member</option>
                        <option value="2">Director</option>
+                       <option value="3">Director And Member</option>
                       
                     </select>
                      </div>

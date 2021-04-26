@@ -907,9 +907,9 @@ function getpdfdata(uniqueid) {
               var interst = "";
               if (response.selfpubpri[i]["interest"] == 1) {
                 interst = "Member";
-              } else if (response.selfpubpri[i]["interest"] == 1) {
+              } else if (response.selfpubpri[i]["interest"] == 2) {
                 interst = "Director";
-              } else if (response.selfpubpri[i]["interest"] == 1) {
+              } else if (response.selfpubpri[i]["interest"] == 3) {
                 interst = "Member and Director";
               }
               addhtmlnxt2 += '<td width="25%">' + interst + "</td>";

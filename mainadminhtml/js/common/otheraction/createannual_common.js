@@ -183,7 +183,7 @@ function addhtml(clicked) {
         addhtmlnxt +=
           ' <td><div class="input">  <select class="form-control inputbox4" id="d3ques2" rownum="row' +
           getlastid +
-          '" name="d3ques2[]"><option value="">Select Option</option><option value="1">Member</option><option value="2">Director</option>/select></div></td>';
+          '" name="d3ques2[]"><option value="">Select Option</option><option value="1">Member</option><option value="2">Director</option><option value="3">Director And Member</option></select></div></td>';
         addhtmlnxt +=
           '<td><input type="text" class="form-control inputbox4" id="d3ques5" name="d3ques5[]" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></td>';
         addhtmlnxt +=
@@ -894,9 +894,9 @@ function getpdfdata(uniqueid) {
               var interst = "";
               if (response.selfpubpri[i]["interest"] == 1) {
                 interst = "Member";
-              } else if (response.selfpubpri[i]["interest"] == 1) {
+              } else if (response.selfpubpri[i]["interest"] == 2) {
                 interst = "Director";
-              } else if (response.selfpubpri[i]["interest"] == 1) {
+              } else if (response.selfpubpri[i]["interest"] == 3) {
                 interst = "Member and Director";
               }
               addhtmlnxt2 += '<td width="25%">' + interst + "</td>";
