@@ -1065,7 +1065,7 @@ class AnnualdeclarationController extends ControllerBase
 
 
 
-                     $getres3 = $this->annualdeclarationcommon->upannualselfpubprivate($getuserid,$d3ques1,$d3ques2,$d3ques3,$d3ques4,$uniqueid,$d3id);
+                     $getres3 = $this->annualdeclarationcommon->upannualselfpubprivate($getuserid,$d3ques1,$d3ques2,$d3ques3,$d3ques4,$d3ques5,$uniqueid,$d3id);
                      
                     $getres4 = $this->annualdeclarationcommon->upannualselfpubshare($getuserid,$d4ques1,$d4ques2,$d4ques3,$d4ques4,$uniqueid,$d4id);
 

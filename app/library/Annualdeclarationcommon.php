@@ -1314,7 +1314,7 @@ public function upannualselffirm($uid,$company,$interest,$decision,$transaction,
 }
 
 
-public function upannualselfpubprivate($uid,$company,$interest,$decision,$transaction,$unique,$id)
+public function upannualselfpubprivate($uid,$company,$interest,$decision,$transaction,$noofshare,$unique,$id)
   {
     
     $connection = $this->dbtrd;
@@ -1339,7 +1339,7 @@ public function upannualselfpubprivate($uid,$company,$interest,$decision,$transa
           if(array_key_exists($i,$id))
           {   
 
-         $queryupdate =  'UPDATE `annual_self_publicprivate` SET `company` = "'.$company[$i].'",`interest` = "'.$interest[$i].'",`decision` = "'.$decision[$i].'",`transaction` = "'.$transaction[$i].'",`date_added`=NOW(),`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = "'.$id[$i].'" ';
+         $queryupdate =  'UPDATE `annual_self_publicprivate` SET `company` = "'.$company[$i].'",`interest` = "'.$interest[$i].'",`decision` = "'.$decision[$i].'",`transaction` = "'.$transaction[$i].'",`noofshare` = "'.$noofshare[$i].'",`date_added`=NOW(),`date_modified`=NOW(),`timeago`="'.$time.'" WHERE `user_id` ="'.$uid.'" AND `uniqueid`="'.$unique.'" AND `id` = "'.$id[$i].'" ';
 
           $exegetqry = $connection->query($queryupdate);
         
@@ -1348,8 +1348,8 @@ public function upannualselfpubprivate($uid,$company,$interest,$decision,$transa
          {
 
             $queryinsert = 'INSERT INTO `annual_self_publicprivate`
-            (`user_id`,`company`,`interest`,`decision`,`transaction`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
-             VALUES ("'.$uid.'","'.$company[$i].'","'.$interest[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
+            (`user_id`,`company`,`interest`,`decision`,`transaction`,`noofshare`,`uniqueid`, `date_added`, `date_modified`,`timeago`)
+             VALUES ("'.$uid.'","'.$company[$i].'","'.$interest[$i].'","'.$decision[$i].'","'.$transaction[$i].'","'.$noofshare[$i].'","'.$unique.'",NOW(),NOW(),"'.$time.'")';
               $exegetqry = $connection->query($queryinsert);
                            
 
