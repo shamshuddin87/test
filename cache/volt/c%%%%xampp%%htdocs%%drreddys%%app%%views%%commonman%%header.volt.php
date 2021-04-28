@@ -207,6 +207,10 @@
                      <?php } else { ?>
                      <li><a href="annualdeclaration"><i class=""></i>Annual Declaration</a></li>
                      <?php } ?> 
+                      <li><a href="coi"><i class=""></i>COI Declaration</a></li>
+                     <?php if($managertype == 'hr' || $managertype == 'dept'){?>
+                     <li><a href="coi/viewcoi"><i class=""></i>View COI Declaration</a></li>
+                      <?php } ?>
                   </ul>
                </li>
                
