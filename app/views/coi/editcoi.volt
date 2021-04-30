@@ -89,7 +89,7 @@ $category = $this->coicommon->fetchCategory();
                         </div>
                     </div>
                     </div>
-                    <div id="textarea_others"></div>
+                    <div class="p-15px" id="textarea_others"></div>
                    </div>
                  </div>
                  

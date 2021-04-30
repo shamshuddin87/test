@@ -189,7 +189,7 @@ class CoiController extends ControllerBase
                 else
                 {
                     $pdfpath = $this->dompdfgen->getpdf($coipdfhtml,'COI','Declaration','coi');
-                    //print_r($pdfpath);exit;
+                    //print_r($others_des);exit;
                     $getres = $this->coicommon->insertcoi($getuserid,$user_group_id,$coipolicy,$coicategory,$catequeid,$others_des,$attachments,$formsend_status,$pdfpath);
                     
                     if($getres['status'] === true)

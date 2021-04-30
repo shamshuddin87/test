@@ -161,14 +161,15 @@ website('body').on('click','.savecoi',function(e)
             website('#insertcoi #attachment_section').css("display", "none");
             if(others_des)
             {
-
+                console.log(others_des)
                 /*var target = 'textareforedit';
                 tinymce.get(target).setContent('contentkjk');*/
-                website('#insertcoi #textarea_othersbox').html('<div class="form-group"><textarea class="form-control rounded-0" id="textarea_othershtml" rows="5" style="pointer-events: all;"></textarea></div>');
+                
                 website('#insertcoi #textarea_othersbox').css("display", "block");
                 website('#insertcoi #coiothers').css("display", "none");
-                var decoded_others_des = website("<div/>").html(others_des).text();
-                website('#insertcoi #textarea_othershtml').html(decoded_others_des);
+                //var decoded_others_des = website("<div/>").html(others_des).text();
+                website('#insertcoi #textarea_othersbox').html(others_des);
+                //website('#insertcoi #textarea_othershtml').html(decoded_others_des);
             }
 
             var pdfdata = website("div .coihtmldata").html();

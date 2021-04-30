@@ -44,7 +44,7 @@ else if(coipolicy=='Yes'&&!cateque)
 {new PNotify({title:"Alert",text:'Please select the category question.',type:"university",hide:true,styling:"bootstrap3",addclass:"dark ",});}
 else
 {website('#updatecoi #attachment_section').css("display","none");if(others_des)
-{website('#updatecoi #textarea_others').html('<div class="form-group"><textarea class="form-control rounded-0" id="textarea_othershtml"></textarea></div>');website('#updatecoi #textarea_others').css("display","block");website('#updatecoi #coiothers').css("display","none");var decoded_others_des=website("<div/>").html(others_des).text();website('#updatecoi #textarea_othershtml').html(decoded_others_des);}
+{website('#updatecoi #textarea_others').css("display","block");website('#updatecoi #coiothers').css("display","none");website('#updatecoi #textarea_others').html(others_des);}
 var pdfdata=website("div .coihtmldata").html();website('#updatecoi #coipdfhtml').val(pdfdata)
 website(".modalcoihtmldata").html(pdfdata);website('.modalcoihtmldata #attachment_section').css("display","none");website("#Mymodalcoideclara").modal("show");}});website("#updatecoi").ajaxForm({dataType:"json",beforeSend:function()
 {website(".preloder_wraper").fadeIn();},uploadProgress:function(event,position,total,percentComplete)
