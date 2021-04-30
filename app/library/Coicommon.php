@@ -138,6 +138,7 @@ class Coicommon extends Component
                 }
             }
             $others_des = str_replace("'","^",$others_des);
+            
             $queryin = "INSERT INTO `coi_declaration` (`user_id`, `user_group_id`,`coi_policy`,`catid`,`catqueid`,`other_description`,`attachments`,`coi_pdfpath`,`sent_status`,`sent_date`,`hrM_processed_status`,`deptM_processed_status`,`date_added`,`date_modified`,`timeago`) 
             VALUES   ('".$getuserid."','".$user_group_id."','".$coipolicy."','".$coicategory."','".$catequeid."','".$others_des."','".$attachments."','".$pdfpath."','".$formsend_status."','".$todaydate."','".$hrmsts."','".$deptmsts."',NOW(),NOW(),'".$time."')"; 
              //echo $queryin; exit;
