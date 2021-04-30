@@ -65,10 +65,10 @@ function fetchCoiAllData()
                 var sentdate = response.data[i]['sent_date']?response.data[i]['sent_date']:"";
                 addhtmlnxt += '<tr class="counter">';
                 addhtmlnxt += '<td width="5%">'+j+'</td>';
-                addhtmlnxt += '<td width="11%">'+response.data[i]['date_added']+'</td>';
+                addhtmlnxt += '<td width="15%">'+response.data[i]['date_added']+'</td>';
                 
                 
-                addhtmlnxt += '<td width="11%" style="text-align:center">';
+                addhtmlnxt += '<td width="15%">';
                 if(response.managertype == 'hr')
                 {
                     addhtmlnxt += 'NA';
@@ -88,7 +88,7 @@ function fetchCoiAllData()
                 
                 addhtmlnxt += '</td>';
                 
-                addhtmlnxt += '<td width="11%" style="text-align:center">';
+                addhtmlnxt += '<td width="15%">';
                 if(response.managertype == 'dept')
                 {
                     addhtmlnxt += 'NA';
@@ -103,33 +103,33 @@ function fetchCoiAllData()
                 }
                 addhtmlnxt += '</td>';
                 
-                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-list-ul faicon" id="audit_trail" reqid="'+response.data[i]["id"]+'" title="Audit Trail"></i></td>';
+                addhtmlnxt += '<td width="10%"><i class="fa fa-list-ul faicon" id="audit_trail" reqid="'+response.data[i]["id"]+'" title="Audit Trail"></i></td>';
                 
-                addhtmlnxt += '<td width="11%" style="text-align:center">';
+                addhtmlnxt += '<td width="11%">';
                 if(response.data[i]["attachments"])
                 {
                     addhtmlnxt += '<i class="fa fa-file faicon" id="coi_attachment" reqid="'+response.data[i]["id"]+'" attachments="'+response.data[i]["attachments"]+'" title="Attachment"></i>';
                 }
                 addhtmlnxt += '</td>';
                 
-                addhtmlnxt += '<td width="11%" style="text-align:center">';
+                addhtmlnxt += '<td width="10%">';
                 if((!response.managertype && (response.data[i]["hrM_processed_status"] == "Returned" || response.data[i]["hrM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'hr' && (response.data[i]["deptM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'dept' && ((response.data[i]["deptM_processed_status"] == "To Be Send" && response.data[i]["hrM_processed_status"]!= "Rejected")|| response.data[i]["deptM_processed_status"] == "Returned")))
                 {
                     addhtmlnxt += '<i class="fa fa-edit coiedit" reqid="'+response.data[i]["id"]+'" title="Edit Entry"></i>';
                 }
                 addhtmlnxt += '</td>';
                 
-                addhtmlnxt += '<td width="11%" style="text-align:center">';
+                addhtmlnxt += '<td width="10%">';
                 if((!response.managertype && (response.data[i]["hrM_processed_status"] == "Returned" || response.data[i]["hrM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'hr' && (response.data[i]["deptM_processed_status"] == "To Be Send" || response.data[i]["deptM_processed_status"] == "Returned")) || (response.managertype == 'dept' && ((response.data[i]["deptM_processed_status"] == "To Be Send" && response.data[i]["hrM_processed_status"]!= "Rejected") || response.data[i]["deptM_processed_status"] == "Returned")))
                 {
                     addhtmlnxt += '<i class="fa fa-trash coidelete" reqid="'+response.data[i]["id"]+'" title="Delete Entry"></i>';
                 }
                 addhtmlnxt += '</td>';
                 
-                addhtmlnxt += '<td width="11%" style="text-align:center">';
+                addhtmlnxt += '<td width="10%">';
                 if(response.data[i]["coi_pdfpath"])
                 {
-                    addhtmlnxt += '<a  href="'+response.data[i]["coi_pdfpath"]+'" target="_blank" class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a>';
+                    addhtmlnxt += '<a  href="'+response.data[i]["coi_pdfpath"]+'" target="_blank" class="downlodthfle" style="color:black;"><i class="fa fa-download floatleft"></i></a>';
                 }
                 addhtmlnxt += '</td>';
                 
@@ -326,7 +326,7 @@ website('body').on('click','#coi_attachment', function(e)
             // console.log(response);
             addhtmlnxt += '<tr class="counter">';
             addhtmlnxt += '<td width="5%">'+j+'</td>';
-            addhtmlnxt += '<td width="5%"><a  href="'+attachment[i]+'" target="_blank"  class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a></td>';                    
+            addhtmlnxt += '<td width="5%"><a  href="'+attachment[i]+'" target="_blank"  class="downlodthfle" style="color:black;"><i class="fa fa-download floatleft"></i></a></td>';                    
             addhtmlnxt += '</tr>';      
         }
         website('#attachment').html(addhtmlnxt);

@@ -395,3 +395,9 @@ input#upload, input#uploadagrm { cursor: pointer; }
   background-color: #f6f6f6 !important;
   border-color: #522c8f !important;
 }
+
+
+
+.right_col {
+  margin-bottom: 53px;
+}

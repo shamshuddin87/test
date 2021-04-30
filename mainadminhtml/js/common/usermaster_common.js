@@ -1037,15 +1037,28 @@ website(document).ready(function(){
         {   }
 });
 
-website('body').on('click','#managertype', function(e) 
+website('body').on('change','#insertmasterlist #managertype', function(e) 
 {
     var mgrtype = website(this).val();
     if(mgrtype)
     {   
-        website("#main_mgrindept").show();
+        website("#insertmasterlist #main_mgrindept").show();
     }
     else
     {
-        website("#main_mgrindept").hide();
+        website("#insertmasterlist #main_mgrindept").hide();
+    }
+});
+
+website('body').on('change','#updatemasterlistid #managertype', function(e) 
+{
+    var mgrtype = website(this).val();
+    if(mgrtype)
+    {   
+        website("#updatemasterlistid #main_mgrindept").show();
+    }
+    else
+    {
+        website("#updatemasterlistid #main_mgrindept").hide();
     }
 });

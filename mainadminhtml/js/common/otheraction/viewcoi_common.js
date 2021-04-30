@@ -127,7 +127,7 @@ function fetchCoiMgrData()
                   var status = response.data[i]['deptMstatus'];
                 }
                 
-                addhtmlnxt += '<td width="10%" style="text-align:center">';
+                addhtmlnxt += '<td width="12%">';
                 if(status == 'Pending Approval')
                 {
                     addhtmlnxt += '<i class="fa fa-check faiconbtn " id="approve" reqid="'+response.data[i]["reqid"]+'"  title="Approve"></i>';
@@ -136,16 +136,16 @@ function fetchCoiMgrData()
                 }
                 addhtmlnxt += '</td>';
                 
-                addhtmlnxt += '<td width="11%" style="text-align:center"><i class="fa fa-list-ul faicon" id="audit_trail" reqid="'+response.data[i]["reqid"]+'" title="Audit Trail"></i></td>';
+                addhtmlnxt += '<td width="11%"><i class="fa fa-list-ul faicon" id="audit_trail" reqid="'+response.data[i]["reqid"]+'" title="Audit Trail"></i></td>';
                 
-                addhtmlnxt += '<td width="11%" style="text-align:center">';
+                addhtmlnxt += '<td width="11%">';
                 if(response.data[i]["attachments"])
                 {
                     addhtmlnxt += '<i class="fa fa-file faicon" id="coi_attachment" reqid="'+response.data[i]["reqid"]+'" attachments="'+response.data[i]["attachments"]+'" title="Attachment"></i>';
                 }
                 addhtmlnxt += '</td>';
                 
-                addhtmlnxt += '<td width="11%" style="text-align:center">';
+                addhtmlnxt += '<td width="11%">';
                 if(response.data[i]["coi_pdfpath"])
                 {
                     addhtmlnxt += '<a  href="'+response.data[i]["coi_pdfpath"]+'" target="_blank"  class="downlodthfle" style="color:black;"><span class="glyphicon glyphicon-download-alt floatleft"></span></a>';
