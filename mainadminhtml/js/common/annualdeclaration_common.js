@@ -449,6 +449,50 @@ website.ajax({
 });
 
 
+website('body').on('click','#create_declaration',function(){
+ 
+  website.ajax({
+          url:'annualdeclaration/checkNationality',
+          data:{},
+          method:'POST',
+          contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+          dataType:"json",
+          cache:false,
+          beforeSend: function()
+           { 
+           },
+           uploadProgress: function(event, position, total, percentComplete)
+           { 
+           },
+           success: function(response, textStatus, jqXHR) 
+           {
+              if(response.logged==true)
+              {
+                   window.location.href = "annualdeclaration/createannual";
+              }
+              else
+              {
+                  website("#updpersndetails").modal('show');
+              }
+                
+           },
+          complete: function(response) 
+          {
+          
+          },
+          error: function(jqXHR, textStatus, errorThrown)
+          {   }
+  });
+
+});
+
+website('body').on('click','#gotopersndet',function(){
+
+  window.location.href = "employeemodule";
+
+});
+
+
 
 
 

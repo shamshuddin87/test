@@ -1123,7 +1123,19 @@ class AnnualdeclarationController extends ControllerBase
         $uid = $this->session->loginauthspuserfront['id'];
         $usergroup = $this->session->loginauthspuserfront['user_group_id'];
         $relatives_info = $this->annualdeclarationcommon->relatives_info($uid);
-        $this->view->relativesinfo = $relatives_info;
+        
+        $personaldetails = $this->employeemodulecommon->getmydetails($uid,$usergroup);
+
+        $nationality = $personaldetails['nationality'];
+
+        if($nationality=="")
+        {
+            return $this->response->redirect('employeemodule');
+        }
+        else
+        {
+            $this->view->relativesinfo = $relatives_info;
+        }
     }
 
      public function fetchrelativeAction()
@@ -1304,6 +1316,47 @@ class AnnualdeclarationController extends ControllerBase
                 }
                 $this->response->send();
             }
+            else
+            {
+                exit('No direct script access allowed to this area');
+                $connection->close();
+            }
+        }
+        else
+        {
+            return $this->response->redirect('errors/show404');
+            exit('No direct script access allowed');
+        }
+    }
+
+
+    public function checkNationalityAction()
+    {     
+        $this->view->disable();
+        $uid = $this->session->loginauthspuserfront['id'];
+        $usergroup = $this->session->loginauthspuserfront['user_group_id'];
+
+        if($this->request->isPost() == true)
+        {
+            if($this->request->isAjax() == true)
+            {
+                
+                $personaldetails = $this->employeemodulecommon->getmydetails($uid,$usergroup);
+
+                $nationality = $personaldetails['nationality'];
+                
+                if($nationality!="")
+                {
+                    $data  = array('logged' => true, 'msg' => 'Nationality field is filled by User');
+                    $this->response->setJsonContent($data);
+                }
+                else
+                {
+                    $data  = array('logged' => false, 'msg' => 'Nationality field is not filled by User'); 
+                    $this->response->setJsonContent($data);
+                }
+                $this->response->send();
+             }
             else
             {
                 exit('No direct script access allowed to this area');

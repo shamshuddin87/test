@@ -20,7 +20,8 @@ $condeptsess = $this->session->contractdepartment;
        <span style="display: inline-block;padding: 5px 2px;">Annual declaration is to be filed once every year before 15th of April.</span>
    </div>
   <div class="create_button">
-   <a href="annualdeclaration/createannual"> <button type="button" class="btn btn-primary getdata">Create Declaration</button></a>
+   <!--<a href="annualdeclaration/createannual"> <button type="button" class="btn btn-primary getdata">Create Declaration</button></a>-->
+   <button type="button" class="btn btn-primary getdata" id="create_declaration">Create Declaration</button>
    </div>
 
    
@@ -58,6 +59,25 @@ $condeptsess = $this->session->contractdepartment;
             <h5 style="text-align: center;">Are You Sure To Send This Request?</h5> </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-success" id="sendreq" tempid="">Send</button> 
+            </div>
+        </div>
+    </div>
+</div>    
+        
+    <div id="updpersndetails" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                    &times;</button>
+            
+            </div>
+            <div class="modal-body">
+               <h5 style="text-align: center;">Please update your Nationality by going to the  'Personal Information' section in the tool</h5> 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" id="gotopersndet" tempid="">Ok</button> 
             </div>
         </div>
     </div>

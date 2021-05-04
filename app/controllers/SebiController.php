@@ -981,26 +981,26 @@ class SebiController extends ControllerBase
                 }
                 /*Date Validation for Date Infimation,From Date and To date End */
                 
-                if(strpos('3,4,5',$formcupdata['requestmodeid']) !== false && !empty($formcupdata['dateoftrans']))
-                {
-                    $transdate = $formcupdata['dateoftrans'];
-                    $transdate_arr = explode('-', $transdate);
+                // if(strpos('3,4,5',$formcupdata['requestmodeid']) !== false && !empty($formcupdata['dateoftrans']))
+                // {
+                //     $transdate = $formcupdata['dateoftrans'];
+                //     $transdate_arr = explode('-', $transdate);
 
-                    $transdatem = $transdate_arr[1];
-                    $transdatey = $transdate_arr[2];
-                    $transdated = $transdate_arr[0];
-                    $transdatestatus = $this->elements->checkdate($transdatem,$transdatey,$transdated);
-                }
-                if(strpos('3,4,5',$formcupdata['requestmodeid']) !== false && $transdatestatus != "valid")
-                {
-                    $data = array("logged" => false,'message' => 'Please provide correct Date of transaction');
-                    $this->response->setJsonContent($data);
-                }
-                else if(strpos('3,4,5',$formcupdata['requestmodeid']) !== false && strtotime($formcupdata['dateoftrans']) > strtotime($todaysdate))
-                {
-                    $data = array("logged" => false,'message' => 'Date of transaction should not be in future');
-                    $this->response->setJsonContent($data);
-                }
+                //     $transdatem = $transdate_arr[1];
+                //     $transdatey = $transdate_arr[2];
+                //     $transdated = $transdate_arr[0];
+                //     $transdatestatus = $this->elements->checkdate($transdatem,$transdatey,$transdated);
+                // }
+                // if(strpos('3,4,5',$formcupdata['requestmodeid']) !== false && $transdatestatus != "valid")
+                // {
+                //     $data = array("logged" => false,'message' => 'Please provide correct Date of transaction');
+                //     $this->response->setJsonContent($data);
+                // }
+                // else if(strpos('3,4,5',$formcupdata['requestmodeid']) !== false && strtotime($formcupdata['dateoftrans']) > strtotime($todaysdate))
+                // {
+                //     $data = array("logged" => false,'message' => 'Date of transaction should not be in future');
+                //     $this->response->setJsonContent($data);
+                // }
                 /*else if(empty($formcupdata['dateofintimtn']))
                 {
                     $data = array("logged" => false,'message' => " Date of intimation to company should not empty..!!");
@@ -1016,7 +1016,7 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Date of intimation to company should not be in future');
                     $this->response->setJsonContent($data);
                 }*/
-                else if(empty($formcupdata['fromdate']))
+                if(empty($formcupdata['fromdate']))
                 {
                     $data = array("logged" => false,'message' => " Date of allotment From should not empty..!!");
                     $this->response->setJsonContent($data);
@@ -1943,17 +1943,17 @@ class SebiController extends ControllerBase
                 
                 /*Date Validation for Date of transaction,Date Infimation,From Date and To date Start */
                 
-                if(!empty($type1data['dateoftrans']))
-                {
-                    $dateoftrans = $type1data['dateoftrans'];
-                    $dateoftrans_arr = explode('-', $dateoftrans);
+                // if(!empty($type1data['dateoftrans']))
+                // {
+                //     $dateoftrans = $type1data['dateoftrans'];
+                //     $dateoftrans_arr = explode('-', $dateoftrans);
 
-                    $dateoftransm = $dateoftrans_arr[1];
-                    $dateoftransy = $dateoftrans_arr[2];
-                    $dateoftransd = $dateoftrans_arr[0];
-                    $dateoftransstatus = $this->elements->checkdate($dateoftransm,$dateoftransy,$dateoftransd);
-                    $transdateday = date('l', strtotime($dateoftrans)); // check week day(cannot be saturday and sunday)
-                }
+                //     $dateoftransm = $dateoftrans_arr[1];
+                //     $dateoftransy = $dateoftrans_arr[2];
+                //     $dateoftransd = $dateoftrans_arr[0];
+                //     $dateoftransstatus = $this->elements->checkdate($dateoftransm,$dateoftransy,$dateoftransd);
+                //     $transdateday = date('l', strtotime($dateoftrans)); // check week day(cannot be saturday and sunday)
+                // }
                 
                 /*if(!empty($type1data['dateofintimtn']))
                 {
@@ -1991,21 +1991,21 @@ class SebiController extends ControllerBase
                 }
                 /*Date Validation for Date of transaction,Date Infimation,From Date and To date End */
                 
-                if($dateoftransstatus != "valid")
-                {
-                    $data = array("logged" => false,'message' => 'Please provide correct Date of Transaction');
-                    $this->response->setJsonContent($data);
-                }
-                else if(strtotime($type1data['dateoftrans']) > strtotime($todaysdate))
-                {
-                    $data = array("logged" => false,'message' => 'Date of transaction should not be in future');
-                    $this->response->setJsonContent($data);
-                }
-                else if($transdateday == 'Saturday' || $transdateday == 'Sunday')
-                {
-                    $data = array("logged" => false,'message' => " Date of transaction cannot be Saturday and Sunday");
-                    $this->response->setJsonContent($data);
-                }
+                // if($dateoftransstatus != "valid")
+                // {
+                //     $data = array("logged" => false,'message' => 'Please provide correct Date of Transaction');
+                //     $this->response->setJsonContent($data);
+                // }
+                // else if(strtotime($type1data['dateoftrans']) > strtotime($todaysdate))
+                // {
+                //     $data = array("logged" => false,'message' => 'Date of transaction should not be in future');
+                //     $this->response->setJsonContent($data);
+                // }
+                // else if($transdateday == 'Saturday' || $transdateday == 'Sunday')
+                // {
+                //     $data = array("logged" => false,'message' => " Date of transaction cannot be Saturday and Sunday");
+                //     $this->response->setJsonContent($data);
+                // }
                 /*else if(empty($type1data['dateofintimtn']))
                 {
                     $data = array("logged" => false,'message' => " Date of intimation to company should not empty..!!");
@@ -2021,7 +2021,7 @@ class SebiController extends ControllerBase
                     $data = array("logged" => false,'message' => 'Date of intimation to company should not be in future');
                     $this->response->setJsonContent($data);
                 }*/
-                else if(empty($type1data['fromdate']))
+                if(empty($type1data['fromdate']))
                 {
                     $data = array("logged" => false,'message' => " Date of allotment From should not empty..!!");
                     $this->response->setJsonContent($data);

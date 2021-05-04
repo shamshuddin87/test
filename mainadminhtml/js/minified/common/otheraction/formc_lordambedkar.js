@@ -82,7 +82,7 @@ else
 {website('#modaldocument .formcpdf').show();},uploadProgress:function(event,position,total,percentComplete)
 {},success:function(response,textStatus,jqXHR)
 {if(response.logged===true)
-{dtfrom=response.formdata['fromdate'].split("-");ddmmyyfrom=dtfrom[2]+'-'+dtfrom[1]+'-'+dtfrom[0];dteto=response.formdata['todate'].split("-");ddmmyyto=dteto[2]+'-'+dteto[1]+'-'+dteto[0];dteadded=response.formdata['date_added'].split(" ");dtadd=dteadded[0].split("-");finaldtadd=dtadd[2]+'-'+dtadd[1]+'-'+dtadd[0];if(response.formdata['dateofintimtn'])
+{dtfrom=response.formdata['fromdate'].split("-");ddmmyyfrom=dtfrom[0]+'-'+dtfrom[1]+'-'+dtfrom[2];dteto=response.formdata['todate'].split("-");ddmmyyto=dteto[0]+'-'+dteto[1]+'-'+dteto[2];dteadded=response.formdata['date_added'].split(" ");dtadd=dteadded[0].split("-");finaldtadd=dtadd[2]+'-'+dtadd[1]+'-'+dtadd[0];if(response.formdata['dateofintimtn'])
 {dtinti=response.formdata['dateofintimtn'].split("-");ddmmyyinti=dtinti[2]+'-'+dtinti[1]+'-'+dtinti[0];}
 else
 {ddmmyyinti='';}

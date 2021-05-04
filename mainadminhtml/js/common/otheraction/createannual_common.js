@@ -1482,6 +1482,39 @@ function loadnoofsec() {
 website("body").on("click", "#submituserdata", function (e) {
   var pdfdata = website("div #belowleveluserdet").html();
   //console.log(pdfdata);
-  website(".modalform").html(pdfdata);
-  website("#Mymodaldeclara").modal("show");
+
+  website.ajax({
+          url:'annualdeclaration/checkNationality',
+          data:{},
+          method:'POST',
+          contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+          dataType:"json",
+          cache:false,
+          beforeSend: function()
+           { 
+           },
+           uploadProgress: function(event, position, total, percentComplete)
+           { 
+           },
+           success: function(response, textStatus, jqXHR) 
+           {
+              if(response.logged==true)
+              {
+                  website(".modalform").html(pdfdata);
+                  website("#Mymodaldeclara").modal("show");
+              }
+              else
+              {
+                  window.location.href = "employeemodule";
+              }
+                
+           },
+          complete: function(response) 
+          {
+          
+          },
+          error: function(jqXHR, textStatus, errorThrown)
+          {   }
+  });
+
 });

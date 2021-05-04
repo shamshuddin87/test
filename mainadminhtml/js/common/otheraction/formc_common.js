@@ -429,10 +429,12 @@ website('body').on('click','#previewc',function()
            {
                 //date from
                 dtfrom = response.formdata['fromdate'].split("-"); 
-                ddmmyyfrom = dtfrom[2]+'-'+dtfrom[1]+'-'+dtfrom[0];
+                //ddmmyyfrom = dtfrom[2]+'-'+dtfrom[1]+'-'+dtfrom[0];
+                ddmmyyfrom = dtfrom[0]+'-'+dtfrom[1]+'-'+dtfrom[2];
                 //date to
                 dteto = response.formdata['todate'].split("-"); 
-                ddmmyyto = dteto[2]+'-'+dteto[1]+'-'+dteto[0];
+                //ddmmyyto = dteto[2]+'-'+dteto[1]+'-'+dteto[0];
+                ddmmyyto = dteto[0]+'-'+dteto[1]+'-'+dteto[2];
 
                 dteadded = response.formdata['date_added'].split(" "); 
                 dtadd =   dteadded[0].split("-"); 

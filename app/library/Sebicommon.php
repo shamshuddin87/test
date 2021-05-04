@@ -943,6 +943,8 @@ class Sebicommon extends Component
         }
         $connection = $this->dbtrd; 
         $time = time();
+        //$dateoftrans = $formcupdata['dateoftrans'];
+        $dateoftrans = "";
            $queryinsert = "UPDATE `sebiformc_usrdata` SET `category`='".$formcupdata['category']."', `fromdate`='".$formcupdata['fromdate']."', `todate`='".$formcupdata['todate']."', `dateofintimtn`='', `acquimode`='".$aquimode."',`exetrd`='".$exetrd."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['upformcid']."'"; 
         //print_r($queryinsert);exit;
         //, `pretrans`='".$formcupdata['pretrans']."', `posttrans`='".$formcupdata['posttrans']."',`buyvalue`='".$formcupdata['buyvalue']."',`buynumbrunt`='".$formcupdata['buynumbrunt']."',`sellvalue`='".$formcupdata['sellvalue']."',`sellnumbrunt`='".$formcupdata['sellnumbrunt']."'
@@ -953,7 +955,7 @@ class Sebicommon extends Component
             {
                 if(strpos('3,4,5',$formcupdata['requestmodeid']) !== false)
                 {
-                    $querytrd = "UPDATE `trading_status` SET `sectype`='".$formcupdata['sectype']."', `no_of_share`='".$formcupdata['noofshare']."',`price_per_share`='".$formcupdata['pricepershare']."', `total_amount`='".$formcupdata['totalamt']."',`demat_acc_no`='".$formcupdata['demataccno']."',`date_of_transaction`='".$formcupdata['dateoftrans']."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['tradeid']."'"; 
+                    $querytrd = "UPDATE `trading_status` SET `sectype`='".$formcupdata['sectype']."', `no_of_share`='".$formcupdata['noofshare']."',`price_per_share`='".$formcupdata['pricepershare']."', `total_amount`='".$formcupdata['totalamt']."',`demat_acc_no`='".$formcupdata['demataccno']."',`date_of_transaction`='".$dateoftrans."', `date_modified`=NOW(),`timeago`='".$time."' WHERE `id`='".$formcupdata['tradeid']."'"; 
                     $exetrd = $connection->query($querytrd);
                     if($exetrd)
                     {
@@ -2203,9 +2205,12 @@ class Sebicommon extends Component
         $time = time();
         $result = array();
         $connection = $this->dbtrd;
+
+        //$dateoftrans = $type1data['dateoftrans'];
+        $dateoftrans = "";
         try
         {
-           $query = "INSERT INTO  `trading_status` (`req_id`, `user_id`, `user_group_id`,`id_of_company`,`sectype`,`no_of_share`,`price_per_share`,`trading_status`,`demat_acc_no`,`total_amount`,`date_of_transaction`,`date_added`,`date_modified`,`type_of_request`,`timeago`) VALUES ('".$req_id."','".$getuserid."','".$user_group_id."','1','".$type1data['sectype']."','".$type1data['noofshare']."','".$type1data['pricepershare']."','1','".$type1data['demataccno']."','".$type1data['totalamt']."','".$type1data['dateoftrans']."',NOW(),NOW(),'1','".$time."')";  
+           $query = "INSERT INTO  `trading_status` (`req_id`, `user_id`, `user_group_id`,`id_of_company`,`sectype`,`no_of_share`,`price_per_share`,`trading_status`,`demat_acc_no`,`total_amount`,`date_of_transaction`,`date_added`,`date_modified`,`type_of_request`,`timeago`) VALUES ('".$req_id."','".$getuserid."','".$user_group_id."','1','".$type1data['sectype']."','".$type1data['noofshare']."','".$type1data['pricepershare']."','1','".$type1data['demataccno']."','".$type1data['totalamt']."','".$dateoftrans."',NOW(),NOW(),'1','".$time."')";  
             //print_r($query);exit;
             $exeget = $connection->query($query);
             if($exeget)

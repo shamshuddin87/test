@@ -375,7 +375,8 @@ $condeptsess = $this->session->contractdepartment;
                     <section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Address</label>
-                                <input type="text" id="address" name="address" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $address;?>" readonly required>
+                                <!--<input type="text" id="address" name="address" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $address;?>" readonly required>-->
+                                <textarea id="address" name="address" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $address;?>" style="height: 38px;" readonly required><?php echo $address;?></textarea>
                             </div>
                     </section>
                         
@@ -478,11 +479,11 @@ $condeptsess = $this->session->contractdepartment;
                         </div>
                     </section>
                
-                    <section class="col col-md-4 col-xs-4">
+                    <!--<section class="col col-md-4 col-xs-4">
                             <div class="input">
                                 <label class="control-label">Date of Transaction</label>
                                 <input type="text" id="dateoftrans" name="dateoftrans" class="form-control " placeholder="dd-mm-yyyy" maxlength="10" required>
-                            </div>
+                            </div>-->
                         </section>
                         </div>
                       <!--<section class="col col-md-6 col-xs-6">
