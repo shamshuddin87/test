@@ -26,6 +26,9 @@
     float: left;
     padding-top: 15px;
 }
+.h1_heading {
+    margin-bottom: 20px;
+}
 /*.form-control { height: 30px; }*/
 .srcfac .btn { padding: 4px 12px; }
 

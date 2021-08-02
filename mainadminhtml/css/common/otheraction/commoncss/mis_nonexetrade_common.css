@@ -4,6 +4,7 @@
     box-shadow: 1px 4px 3px #ccc;
     margin: 15px 0;
 }
+
 .itntfr .cssnumrws {
     color: #000;
     margin: 10px 0;
@@ -11,14 +12,20 @@
     float: left;
     padding-top: 15px;
 }
-.srcfac .btn { padding: 4px 12px; }
+
+.srcfac .btn {
+    padding: 4px 12px;
+}
 
 .design_info h3 {
     color: #000;
     padding: 12px 0px;
 }
 
-input#date1, input#date2, input#desdate1 , input#desdate2 {
+input#date1,
+input#date2,
+input#desdate1,
+input#desdate2 {
     padding: 4px 10px;
     border-radius: 3px;
     border: none;
@@ -32,14 +39,39 @@ input#srch {
     border: 1px solid #ccc;
 }
 
+.h1_heading {
+    margin-bottom: 20px;
+}
 /*################ Pagination Start ######################*/
-.paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
+.paginationmn .paginateul {
+    float: left;
+    padding: 0px;
+    margin: 0px auto
+}
+
 .paginationmn .pagination ul li.inactive,
-.paginationmn .pagination ul li.inactive:hover{background-color:#ededed;
-color:#bababa; border:1px solid #bababa; cursor: default;}
-.paginationmn .data ul li{ list-style: none; font-family: verdana; margin: 5px 0 5px 0; color: #000;font-size: 13px;}
-.paginationmn .pagination{width: 100%;margin: 0px auto; /*height: 25px;*/}
-.paginationmn .pagination ul li{
+.paginationmn .pagination ul li.inactive:hover {
+    background-color: #ededed;
+    color: #bababa;
+    border: 1px solid #bababa;
+    cursor: default;
+}
+
+.paginationmn .data ul li {
+    list-style: none;
+    font-family: verdana;
+    margin: 5px 0 5px 0;
+    color: #000;
+    font-size: 13px;
+}
+
+.paginationmn .pagination {
+    width: 100%;
+    margin: 0px auto;
+    /*height: 25px;*/
+}
+
+.paginationmn .pagination ul li {
     list-style: none;
     float: left;
     border: 1px solid #5d6677;
@@ -52,25 +84,82 @@ color:#bababa; border:1px solid #bababa; cursor: default;}
     background-color: #f2f2f2;
     width: auto !important;
 }
-.paginationmn .pagination ul li:hover{ color: #fff; background-color: #5d6677; cursor: pointer;}
-.go_button
-{background: transparent; border:1px solid #0747A6;color:#000000;padding:2px 6px 2px 6px;cursor:pointer;/*position:absolute;*/margin-top:-1px;
+
+.paginationmn .pagination ul li:hover {
+    color: #fff;
+    background-color: #5d6677;
+    cursor: pointer;
 }
-.total {float:right;font-family:'robotoregular';color:#666; font-size: 12px;}
-.gotobtn {text-align: center;}
-.ttolmnbtn{margin: 5px auto;}
-.gobtnman{ margin: 1px 10px;border-right: 1px dotted #5d6677; padding-right: 10px;}
-.paginationmn.topmnp .pagination{border-bottom: 1px dotted #dadada; margin-bottom: 30px;padding-bottom: 12px;}
-.floatright.gobtnmnh { float: right;}
-.textarea textarea.disabled {width: 120px;}
-.floatright.ttolmnbtn {float: right;}
 
-input.gotobtn:hover { background: #5d6677; color: #fff;  } 
-.go_button:hover {background: #5d6677;}
-input.gotobtn { padding: 2px 6px 2px 6px; border: 1px solid #5d6677;}
-.cssuprslctn { margin-bottom: 20px;}
-.floatleft { float: left;}
+.go_button {
+    background: transparent;
+    border: 1px solid #0747A6;
+    color: #000000;
+    padding: 2px 6px 2px 6px;
+    cursor: pointer;
+    /*position:absolute;*/
+    margin-top: -1px;
+}
+
+.total {
+    float: right;
+    font-family: 'robotoregular';
+    color: #666;
+    font-size: 12px;
+}
+
+.gotobtn {
+    text-align: center;
+}
+
+.ttolmnbtn {
+    margin: 5px auto;
+}
+
+.gobtnman {
+    margin: 1px 10px;
+    border-right: 1px dotted #5d6677;
+    padding-right: 10px;
+}
+
+.paginationmn.topmnp .pagination {
+    border-bottom: 1px dotted #dadada;
+    margin-bottom: 30px;
+    padding-bottom: 12px;
+}
+
+.floatright.gobtnmnh {
+    float: right;
+}
+
+.textarea textarea.disabled {
+    width: 120px;
+}
+
+.floatright.ttolmnbtn {
+    float: right;
+}
+
+input.gotobtn:hover {
+    background: #5d6677;
+    color: #fff;
+}
+
+.go_button:hover {
+    background: #5d6677;
+}
+
+input.gotobtn {
+    padding: 2px 6px 2px 6px;
+    border: 1px solid #5d6677;
+}
+
+.cssuprslctn {
+    margin-bottom: 20px;
+}
+
+.floatleft {
+    float: left;
+}
+
 /*################ Pagination End ######################*/
-
-
-

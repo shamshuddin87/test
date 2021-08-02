@@ -98,10 +98,11 @@ input.gotobtn { padding: 2px 6px 2px 6px; border: 1px solid #5d6677;}
 .cssnumrws.showentry {
     color: #000;
     margin: 10px 0;
+    margin-top: 42px;
     float: left;
     width: auto;
     padding: 0;
-    padding-bottom: 10px;
+    *padding-bottom: 10px;
 }
 
 .otherfilter{

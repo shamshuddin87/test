@@ -1,62 +1,264 @@
-.trailreq th ,.trailreq td { padding:10px;color: #000;   border: 1px solid #ddd;}
-.trailreq th { color: #000;  background: #7c6cad; color: #fff;}
-table#datable {background: #fff;}
-.control-label.form-group {float: right; padding: 0 10px;}
-.trailreq tr:nth-child(even){background-color: #f2f2f2;}
-.trailreq tr:hover {background-color: #ddd;}
-.mytable {border: 1px solid #ccc;}
-/* The Modal (background) */
-.modal {display: none; /* Hidden by default */position: fixed; /* Stay in place */
-z-index: 1; /* Sit on top */
-padding-top: 8px; /* Location of the box */left: 0;top: 0;
- width: 100%; /* Full width */
-height: 100%; /* Full height */
-overflow: auto; /* Enable scroll if needed */
- background-color: rgb(0,0,0); /* Fallback color */
- background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}  
+.trailreq th,
+.trailreq td {
+    padding: 10px;
+    color: #000;
+    border: 1px solid #ddd;
+}
 
-.form-control { height: 33px; } 
+.trailreq th {
+    color: #000;
+    background: #7c6cad;
+    color: #fff;
+}
+
+table#datable {
+    background: #fff;
+}
+
+.control-label.form-group {
+    float: right;
+    padding: 0 10px;
+}
+
+.trailreq tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.trailreq tr:hover {
+    background-color: #ddd;
+}
+
+.mytable {
+    border: 1px solid #ccc;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 8px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+.form-control {
+    height: 33px;
+}
+
 /* The Close Button */
-.close { color: #000; float: right; font-size: 28px; font-weight: bold;}
+.close {
+    color: #000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
 .close:hover,
-.close:focus {color: #000;text-decoration: none; cursor: pointer;}
-.floatright.gobtnmnh {float: right;}
-.floatright.ttolmnbtn { float: right;}
-.total {float: right;font-family: 'robotoregular';color: #666; font-size: 12px;}
-.gobtnman {  margin: 1px 10px;border-right: 1px dotted #5d6677;padding-right: 10px;}
-.tradedate { margin-top: 30px; }
-.modal-backdrop { z-index: 0; }
-.date_h4 { text-align: center; color: #000; }
-#Mymodalaudittrail p { color: black; font-weight: 540;}
-i.fa.fa-bar-chart{cursor: pointer;}
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.floatright.gobtnmnh {
+    float: right;
+}
+
+.floatright.ttolmnbtn {
+    float: right;
+}
+
+.total {
+    float: right;
+    font-family: 'robotoregular';
+    color: #666;
+    font-size: 12px;
+}
+
+.gobtnman {
+    margin: 1px 10px;
+    border-right: 1px dotted #5d6677;
+    padding-right: 10px;
+}
+
+.tradedate {
+    margin-top: 30px;
+}
+
+.modal-backdrop {
+    z-index: 0;
+}
+
+.date_h4 {
+    text-align: center;
+    color: #000;
+}
+
+#Mymodalaudittrail p {
+    color: black;
+    font-weight: 540;
+}
+
+i.fa.fa-bar-chart {
+    cursor: pointer;
+}
+
 /* ******************************** Pagination Start ******************************** */
-.paginationmn{margin: 10px;}
-.paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
+.paginationmn {
+    margin: 10px;
+}
+
+.paginationmn .paginateul {
+    float: left;
+    padding: 0px;
+    margin: 0px auto
+}
+
 .paginationmn .pagination ul li.inactive,
-.paginationmn .pagination ul li.inactive:hover{ background-color:#ededed; color:#bababa; border:1px solid #bababa;cursor: default;}
-.paginationmn .data ul li{ list-style: none;font-family: verdana;margin: 5px 0 5px 0; color: #000;font-size: 13px;}
-.paginationmn .pagination{width: 100%; margin: 0px auto; /*height: 25px;*/}
-.paginationmn .pagination ul li{list-style: none;float: left;border: 1px solid #5d6677; padding: 2px 6px 2px 6px;margin: 0 3px 0 3px; font-family: arial;
-font-size: 14px;color: #5d6677;font-weight: bold;background-color: #f2f2f2; width: auto !important;}
-.paginationmn .pagination ul li:hover{ color: #fff; background-color: #5d6677; cursor: pointer;}
-.paginationmn .go_button{background: transparent; border:1px solid #0747A6;color:#000000;padding:2px 6px 2px 6px;cursor:pointer;/*position:absolute;*/margin-top:-1px;}
-.paginationmn .total {float:right;font-family:'robotoregular';color:#666; font-size: 12px;}
-.paginationmn .gotobtn {text-align: center;}
-.paginationmn .ttolmnbtn{margin: 5px auto;}
-.paginationmn .gobtnman{    margin: 1px 10px; border-right: 1px dotted #5d6677;padding-right: 10px;}
-.paginationmn.topmnp .pagination{border-bottom: 1px dotted #dadada; margin-bottom: 30px;padding-bottom: 12px;}
-.paginationmn .floatright.gobtnmnh { float: right;}
-.paginationmn .textarea textarea.disabled {width: 120px;}
-.paginationmn .floatright.ttolmnbtn {float: right;}
-.paginationmn input.gotobtn:hover { background: #5d6677; color: #fff;  } 
-.paginationmn .go_button:hover {background: #5d6677;}
-.paginationmn input.gotobtn { padding: 2px 6px 2px 6px; border: 1px solid #5d6677;}
-.paginationmn .floatleft { float: left;}
+.paginationmn .pagination ul li.inactive:hover {
+    background-color: #ededed;
+    color: #bababa;
+    border: 1px solid #bababa;
+    cursor: default;
+}
+
+.paginationmn .data ul li {
+    list-style: none;
+    font-family: verdana;
+    margin: 5px 0 5px 0;
+    color: #000;
+    font-size: 13px;
+}
+
+.paginationmn .pagination {
+    width: 100%;
+    margin: 0px auto;
+    /*height: 25px;*/
+}
+
+.paginationmn .pagination ul li {
+    list-style: none;
+    float: left;
+    border: 1px solid #5d6677;
+    padding: 2px 6px 2px 6px;
+    margin: 0 3px 0 3px;
+    font-family: arial;
+    font-size: 14px;
+    color: #5d6677;
+    font-weight: bold;
+    background-color: #f2f2f2;
+    width: auto !important;
+}
+
+.paginationmn .pagination ul li:hover {
+    color: #fff;
+    background-color: #5d6677;
+    cursor: pointer;
+}
+
+.paginationmn .go_button {
+    background: transparent;
+    border: 1px solid #0747A6;
+    color: #000000;
+    padding: 2px 6px 2px 6px;
+    cursor: pointer;
+    /*position:absolute;*/
+    margin-top: -1px;
+}
+
+.paginationmn .total {
+    float: right;
+    font-family: 'robotoregular';
+    color: #666;
+    font-size: 12px;
+}
+
+.paginationmn .gotobtn {
+    text-align: center;
+}
+
+.paginationmn .ttolmnbtn {
+    margin: 5px auto;
+}
+
+.paginationmn .gobtnman {
+    margin: 1px 10px;
+    border-right: 1px dotted #5d6677;
+    padding-right: 10px;
+}
+
+.paginationmn.topmnp .pagination {
+    border-bottom: 1px dotted #dadada;
+    margin-bottom: 30px;
+    padding-bottom: 12px;
+}
+
+.paginationmn .floatright.gobtnmnh {
+    float: right;
+}
+
+.paginationmn .textarea textarea.disabled {
+    width: 120px;
+}
+
+.paginationmn .floatright.ttolmnbtn {
+    float: right;
+}
+
+.paginationmn input.gotobtn:hover {
+    background: #5d6677;
+    color: #fff;
+}
+
+.paginationmn .go_button:hover {
+    background: #5d6677;
+}
+
+.paginationmn input.gotobtn {
+    padding: 2px 6px 2px 6px;
+    border: 1px solid #5d6677;
+}
+
+.paginationmn .floatleft {
+    float: left;
+}
+
 /* ******************************** Pagination End ******************************** */
 /* start: status filter */
-.makeitresponsive { float: left; width: 100%;}
-.cssfilter { width: 25%;   float: right;}
-.approve_button { float: right; padding-top: 32px;}
-.panel { padding:12px; }
+.makeitresponsive {
+    float: left;
+    width: 100%;
+}
+
+/*.cssfilter {
+    width: 25%;
+    float: right;
+}*/
+
+.approve_button {
+    float: right;
+    padding-top: 32px;
+}
+
+.panel {
+    padding: 12px;
+}
+.cssnumrws {
+    margin-top: 34px;
+}
 /* end: status filter */

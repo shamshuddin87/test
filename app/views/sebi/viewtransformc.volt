@@ -15,7 +15,7 @@ $condeptsess = $this->session->contractdepartment;
 <!-- My messages -->
 <div class="mainelementfom">
 	<input type="hidden" id="usrgroupid" value="<?php print_r($user_group_id)?>">
-    <h1 class="h1_heading text-center">Form C</h1>
+    <h1 class="h1_heading">Form C</h1>
     <div class="containergrid">   
     </div>
     

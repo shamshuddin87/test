@@ -15,7 +15,7 @@ $condeptsess = $this->session->contractdepartment;
 <div class="mainelementfom">
      
 
-    <h1 class="h1_heading text-center">Company Restriction</h1>
+    <h1 class="h1_heading">Company Restriction</h1>
    
     <div class="containergrid">       
     <div class="formcss">     

@@ -13,7 +13,7 @@ $condeptsess = $this->session->contractdepartment;
 
 <!-- My messages -->
 <div class="mainelementfom">
-    <div>  <h1 class="h1_heading text-center">View Initial Declaration Forms</h1> </div>
+    <div>  <h1 class="h1_heading">View Initial Declaration Forms</h1> </div>
        <div class="containergrid">       
         <div class="formcss">                           
             <div class="typography form_pad">

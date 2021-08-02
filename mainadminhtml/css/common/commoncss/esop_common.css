@@ -1,16 +1,89 @@
-.formelementmain {padding: 30px 0; background: #fff;border-radius: 4px;box-shadow: 2px 2px 5px #cccc;margin: 20px 0; width: 50%; margin:0 auto;}
-.fa-eye{cursor: pointer;}
-.submit_b { float: left;margin: 26px 0;}
-.sample_down.floatleft {padding: 10px 0;}
-input#reconcilationfile {display: block; width: 100%;}
+.formelementmain {
+    padding: 30px 0;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgb(0 0 0 / 30%);
+    margin: 20px 0;
+    width: 50%;
+    margin: 20px auto;
+}
+
+.fa-eye {
+    cursor: pointer;
+}
+
+.submit_b {
+    float: left;
+    margin: 26px 0;
+}
+
+.sample_down.floatleft {
+    padding: 10px 0;
+}
+
+input#reconcilationfile {
+    display: block;
+    width: 100%;
+}
+
 /*################ Pagination Start ######################*/
-.paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
+.paginationmn .paginateul {
+    float: left;
+    padding: 0px;
+    margin: 0px auto
+}
+
 .paginationmn .pagination ul li.inactive,
-.paginationmn .pagination ul li.inactive:hover{background-color:#ededed;
-color:#bababa; border:1px solid #bababa; cursor: default;}
-.paginationmn .data ul li{ list-style: none; font-family: verdana; margin: 5px 0 5px 0; color: #000;font-size: 13px;}
-.paginationmn .pagination{width: 100%;margin: 0px auto; /*height: 25px;*/}
-.paginationmn .pagination ul li{list-style: none; float: left;border: 1px solid #5d6677; padding: 2px 6px 2px 6px; margin: 0 3px 0 3px;font-family: arial;font-size: 14px;
-color: #5d6677;font-weight: bold;background-color: #f2f2f2;width: auto !important;cursor: pointer;}
-.choose_files { border: 1px solid #ccc; padding: 9px;}
-.table_wraper { background: #fff; padding: 10px; box-shadow: 2px 5px 3px #ccc; margin-top: 10px;}
+.paginationmn .pagination ul li.inactive:hover {
+    background-color: #ededed;
+    color: #bababa;
+    border: 1px solid #bababa;
+    cursor: default;
+}
+
+.paginationmn .data ul li {
+    list-style: none;
+    font-family: verdana;
+    margin: 5px 0 5px 0;
+    color: #000;
+    font-size: 13px;
+}
+
+.paginationmn .pagination {
+    width: 100%;
+    margin: 0px auto;
+    /*height: 25px;*/
+}
+
+.paginationmn .pagination ul li {
+    list-style: none;
+    float: left;
+    border: 1px solid #5d6677;
+    padding: 2px 6px 2px 6px;
+    margin: 0 3px 0 3px;
+    font-family: arial;
+    font-size: 14px;
+    color: #5d6677;
+    font-weight: bold;
+    background-color: #f2f2f2;
+    width: auto !important;
+    cursor: pointer;
+}
+
+.choose_files {
+    border: 1px solid #ccc;
+    padding: 9px;
+}
+
+/*.table_wraper {
+    background: #fff;
+    padding: 10px;
+    box-shadow: 2px 5px 3px #ccc;
+    margin-top: 10px;
+}*/
+
+input.btn.btn-primary.insrtesop {
+    margin-bottom: 0;
+    padding: 9px 12px;
+    margin-top: -2px;
+}

@@ -1,19 +1,31 @@
-
-body.nav-md .container.body .right_col.right_col {min-height: 700px;    height: auto;padding-bottom: 20px;}
+body.nav-md .container.body .right_col.right_col {
+    min-height: 700px;
+    height: auto;
+    padding-bottom: 20px;
+}
 
 /*----------------------- General CSS START ------------------------------*/
-.lodranchor{
+.lodranchor {
     cursor: pointer;
 }
 
 .padding_side {
     padding: 9px;
 }
-table.dataTable thead th, table.dataTable thead td { padding: 10px 4px; }
+
+table.dataTable thead th,
+table.dataTable thead td {
+    padding: 10px 4px;
+}
+
 table.dataTable thead>tr>th.sorting_asc,
-table.dataTable thead>tr>th.sorting_desc, 
-table.dataTable thead>tr>th.sorting, 
-table.dataTable thead>tr>td.sorting_asc, table.dataTable thead>tr>td.sorting_desc, table.dataTable thead>tr>td.sorting { padding-right:23px; }
+table.dataTable thead>tr>th.sorting_desc,
+table.dataTable thead>tr>th.sorting,
+table.dataTable thead>tr>td.sorting_asc,
+table.dataTable thead>tr>td.sorting_desc,
+table.dataTable thead>tr>td.sorting {
+    padding-right: 23px;
+}
 
 .panel.panel-primary {
     border: none;
@@ -30,9 +42,12 @@ input[type="search"] {
     padding: 5px;
 }
 
-.table th { color:#fff; }
+.table th {
+    color: #fff;
+}
 
-th.sorting, th.sorting_asc {
+th.sorting,
+th.sorting_asc {
     color: #fff;
 }
 
@@ -41,50 +56,61 @@ th.sorting, th.sorting_asc {
 }*/
 .h1_heading {
     /* font-family: 'Gotham Rounded'; */
-    color: #000;  padding-bottom: 15px; text-align: center;
+    color: #000;
+    padding-bottom: 15px;
+    text-align: center;
 }
 
 
 .horizontal_line {
     border: 0;
     height: 1px;
-    background-image: linear-gradient(to right,rgba(0,0,0,0),rgb(0,0,0),rgba(0,0,0,0));
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0));
 }
 
-.panel-title{color:#73879c!important;}
-.panel-title:hover{color:black!important;}
+.panel-title {
+    color: #73879c !important;
+}
 
-.mainboxcss{
+.panel-title:hover {
+    color: black !important;
+}
+
+.mainboxcss {
     width: 270px;
     height: 275px;
     margin: 10px;
     padding: 4px 0px 0px 0px;
-    border-radius: 100%; 
+    border-radius: 100%;
 }
+
 .pad_p a p:hover,
 .pad_p a p:focus,
 .anchortagch:hover,
-.anchortagch:focus{
-  color:#fff !important;
+.anchortagch:focus {
+    color: #fff !important;
 }
 
-.pad_p a p:hover{
-  transform: scale(1.2);
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-   
+.pad_p a p:hover {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+
 }
-.heading_center{
-    text-shadow: 0px 2px 1px rgba(34, 34, 34, 0.51);    
+
+.heading_center {
+    text-shadow: 0px 2px 1px rgba(34, 34, 34, 0.51);
 }
+
 .floatright {
     float: right;
 }
+
 /*----------------------- General CSS END ------------------------------*/
 
 /*----------------------- Form CSS Start ------------------------------*/
-.formcss{
+.formcss {
     background-color: white;
     list-style: none;
     width: 100%;
@@ -97,16 +123,18 @@ th.sorting, th.sorting_asc {
     -ms-transform-origin: 0% 0%;
     -moz-transform-origin: 0% 0%;
     -webkit-transform-origin: 0% 0%;
-    -o-transition: opacity 0.8s,-o-transform 0.8s;
-    -ms-transition: opacity 0.8s,-ms-transform 0.8s;
-    -moz-transition: opacity 0.8s,-moz-transform 0.8s;
-    -webkit-transition: opacity 0.8s,-webkit-transform 0.8s;
-    box-shadow: 0 0 20px rgba(0,0,0,.3);
+    -o-transition: opacity 0.8s, -o-transform 0.8s;
+    -ms-transition: opacity 0.8s, -ms-transform 0.8s;
+    -moz-transition: opacity 0.8s, -moz-transform 0.8s;
+    -webkit-transition: opacity 0.8s, -webkit-transform 0.8s;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .3);
 }
+
 .form_pad {
-   padding: 25px;
+    padding: 25px;
 }
-.form_heading{
+
+.form_heading {
     text-decoration: underline;
     padding: 5px;
     font-weight: 700;
@@ -114,80 +142,151 @@ th.sorting, th.sorting_asc {
     font-family: 'Gotham Rounded';
     text-align: center;
 }
-.form_fields{
+
+.form_fields {
     border-radius: 3px;
     line-height: 30px;
     width: 78%;
     margin: 0px 0px 20px 0px;
-        outline: none; margin-right: 10px;
+    outline: none;
+    margin-right: 10px;
     border: 1px solid #ddd;
 }
-label.control-label {
-    padding: 5px 0; color: #000;
-}
-.note{color:#000; padding: 12px 0;} 
-.genderlbltxt{padding-right: 15px;padding-left: 5px;}
-.gensec{margin-top: 25px;}
 
-.litiboxshadow{
+label.control-label {
+    padding: 5px 0;
+    color: #000;
+}
+
+.note {
+    color: #000;
+    padding: 12px 0;
+}
+
+.genderlbltxt {
+    padding-right: 15px;
+    padding-left: 5px;
+}
+
+.gensec {
+    margin-top: 25px;
+}
+
+.litiboxshadow {
     width: 50%;
     box-shadow: 0px 2px 7px;
     padding: 15px;
-    height:auto;
-    margin: auto ;margin: 20px auto;
-}
-.upload_label{text-align: center;display: block;margin: 0px auto;margin-bottom: 10px;border-bottom: 2px dotted #dadada;
-padding-bottom: 5px;}
-.choose_files input{
-     padding-left: 10px;
+    height: auto;
+    margin: auto;
+    margin: 20px auto;
 }
 
-.faicon{cursor: pointer;font-size: 18px;padding: 5px 0px; margin: 0px 5px;}
-.faicon:hover,.faicon:focus,.faicon:active{color:black;}
-.btnsubmitme{
+.upload_label {
+    text-align: center;
+    display: block;
+    margin: 0px auto;
+    margin-bottom: 10px;
+    border-bottom: 2px dotted #dadada;
+    padding-bottom: 5px;
+}
+
+.choose_files input {
+    padding-left: 10px;
+}
+
+.faicon {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px 0px;
+    margin: 0px 5px;
+}
+
+.faicon:hover,
+.faicon:focus,
+.faicon:active {
+    color: black;
+}
+
+.btnsubmitme {
     clear: both;
 }
-.btnsubmitme .btn-primary{
+
+.btnsubmitme .btn-primary {
     margin: 10px auto;
-    display: block;    
+    display: block;
 }
-.mar_0{margin:0px;}
-.show_shadow{
+
+.mar_0 {
+    margin: 0px;
+}
+
+.show_shadow {
     box-shadow: 0px 2px 5px #aaa;
     display: block;
     margin: 40px;
-    padding: 15px;    
+    padding: 15px;
 }
+
 .excluplod {
     margin: 0 auto;
     /* float: left; */
-    width: 50%; margin-bottom: 40px;
+    width: 50%;
+    margin-bottom: 40px;
 }
+
 input.btn.btn-primary.btnlblne.uploadcmdbtn {
     float: left;
 }
+
 /*----------------------- Form CSS End ------------------------------*/
 
 /*-------------------------- Upload Section CSS END-----------------------------*/
-.boxshadow{
+.boxshadow {
     width: 100%;
     box-shadow: 0px 2px 7px;
     padding: 15px;
     float: left;
     margin: 20px auto;
 }
-.labelcss{text-align: center;display: block;margin: 0px auto;margin-bottom: 10px;border-bottom: 2px dotted #dadada;
-padding-bottom: 5px;}
-.choose_excelfiles input{
+
+.labelcss {
+    text-align: center;
+    display: block;
+    margin: 0px auto;
+    margin-bottom: 10px;
+    border-bottom: 2px dotted #dadada;
+    padding-bottom: 5px;
+}
+
+.choose_excelfiles input {
     margin: 0px auto;
     padding-left: 66px;
 }
-.updatefile{margin: 0px auto;margin-top: 10px}
-.sample_down{line-height: normal;}
-.sample_down a{display: block;margin: 0px auto;text-align: center;}
-.sample_down a:hover{color:#666 !important;}
-.uploadeventsbtn{margin:10px;}
-.message{
+
+.updatefile {
+    margin: 0px auto;
+    margin-top: 10px
+}
+
+.sample_down {
+    line-height: normal;
+}
+
+.sample_down a {
+    display: block;
+    margin: 0px auto;
+    text-align: center;
+}
+
+.sample_down a:hover {
+    color: #666 !important;
+}
+
+.uploadeventsbtn {
+    margin: 10px;
+}
+
+.message {
     font-size: 13px;
     font-weight: 600;
     color: #1a82c3;
@@ -201,135 +300,306 @@ padding-bottom: 5px;}
 
 /* ####################### VIKI DASHBOARD CSS START ####################### */
 /* -------------------- logan democss START -------------------- */
- html, body, aside {
-  display: block;
-  margin: 0;
-  padding: 0;
+html,
+body,
+aside {
+    display: block;
+    margin: 0;
+    padding: 0;
 }
 
 aside {
-  width: 233px;
-  min-height: 500px;
+    width: 233px;
+    min-height: 500px;
 }
+
 aside.right {
-  margin-left: auto;
+    margin-left: auto;
 }
+
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
+
 a:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 
 }
 
 @media screen and (max-width: 1000px) {
-  body {
-    padding: 20px;
-  }
+    body {
+        padding: 20px;
+    }
 }
+
 @media screen and (max-width: 767px) {
 
-  aside {
-    width: auto;
-  }
+    aside {
+        width: auto;
+    }
 }
+
 /* -------------------- logan democss END -------------------- */
 
 /
-
- /* -------------------- Structure CSS START -------------------- */
+/* -------------------- Structure CSS START -------------------- */
 
 
 
 
 
 /* -------------------- Table Section START -------------------- */
-.accordion .panel-heading{background:#f7f7f7; }
-.accordion .panel:hover{background:#fff; }
-.table-liti{padding: 15px;}
-table{
-  *border: 1px solid #ddd;  
-  border-collapse: collapse;
+.accordion .panel-heading {
+    background: #f7f7f7;
 }
- thead td,th{
-  *border:1px solid #ddd;
-  border-bottom:1px solid #666;
-  padding:8px;  
-  color:#555;
-      font-size: 13px;
-    font-family: sans-serif;
- }
 
- tbody tr > td{
-  padding:8px; 
-  color:#696969;
-  font-size:13px; 
+.accordion .panel:hover {
+    background: #fff;
 }
- tbody tr{
-  border-top:1px solid #ddd;  
- }   
+
+.table-liti {
+    padding: 15px;
+}
+
+table {
+    *border: 1px solid #ddd;
+    border-collapse: collapse;
+}
+
+thead td,
+th {
+    *border: 1px solid #ddd;
+    border-bottom: 1px solid #666;
+    padding: 8px;
+    color: #555;
+    font-size: 13px;
+    font-family: sans-serif;
+}
+
+tbody tr>td {
+    padding: 8px;
+    color: #696969;
+    font-size: 13px;
+}
+
+tbody tr {
+    border-top: 1px solid #ddd;
+}
+
 /* -------------------- Table Section END -------------------- */
 
 /* ####################### VIKI DASHBOARD CSS END ####################### */
 
-.flex-fill {float:left; width:20.33%;padding: 5px;   }
+.flex-fill {
+    float: left;
+    width: 20.33%;
+    padding: 5px;
+}
+
 input#tdays {
     width: 20%;
 }
+
 .lstc {
     margin-left: 35%;
 }
-span#tot_contract { text-align: center;  padding: 25px;}
-.Segregate_sec{ width:100%; display: inline-block;}
-.cardmain { background-color: #fff;  background-clip: border-box;  border: 1px solid #e5e9f2;  border-radius: .2rem; margin-right : 140px;}
-.card {margin-right : 20px;}
-.labelcss {text-align: center; display: block;  margin: 0px auto; margin-bottom: 10px; border-bottom: 2px dotted #dadada; padding-bottom: 5px; }
-.updatefile {margin: 0px auto; margin-top: 10px;height: 35px;}
+
+span#tot_contract {
+    text-align: center;
+    padding: 25px;
+}
+
+.Segregate_sec {
+    width: 100%;
+    display: inline-block;
+}
+
+.cardmain {
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e5e9f2;
+    border-radius: .2rem;
+    margin-right: 140px;
+}
+
+.card {
+    margin-right: 20px;
+}
+
+.labelcss {
+    text-align: center;
+    display: block;
+    margin: 0px auto;
+    margin-bottom: 10px;
+    border-bottom: 2px dotted #dadada;
+    padding-bottom: 5px;
+}
+
+.updatefile {
+    margin: 0px auto;
+    margin-top: 10px;
+    height: 35px;
+}
+
 /*
 .lstc { background: #fff; float: left; box-shadow: 2px 3px 5px #ccc;display: block;float: right; margin: 10px;}*/
-.custom-select select {background: #17395b;color: #fff;padding: 7px 0;border-radius: 3px; border: none;}
-.cssnumrws{padding: 15px 5px;float: left; width: 100%; }
-.entries {float: right;}
-input#srch {padding: 4px; border-radius: 3px; border: none; border: 1px solid;}
+.custom-select select {
+    background: #17395b;
+    color: #fff;
+    padding: 7px 0;
+    border-radius: 3px;
+    border: none;
+}
+
+.cssnumrws {
+    padding: 15px 5px;
+    float: left;
+    width: 100%;
+}
+
+.entries {
+    float: right;
+}
+
+input#srch {
+    padding: 4px;
+    border-radius: 3px;
+    border: none;
+    border: 1px solid;
+}
+
 /*################ Pagination Start ######################*/
-.paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
+.paginationmn .paginateul {
+    float: left;
+    padding: 0px;
+    margin: 0px auto
+}
+
 .paginationmn .pagination ul li.inactive,
-.paginationmn .pagination ul li.inactive:hover{background-color:#ededed;
-color:#bababa; border:1px solid #bababa; cursor: default;}
-.paginationmn .data ul li{ list-style: none; font-family: verdana; margin: 5px 0 5px 0; color: #000;font-size: 13px;}
-.paginationmn .pagination{width: 100%;margin: 0px auto; /*height: 25px;*/}
-.paginationmn .pagination ul li{ list-style: none;float: left; border: 1px solid #5d6677; padding: 2px 6px 2px 6px; margin: 0 3px 0 3px; font-family: arial;
+.paginationmn .pagination ul li.inactive:hover {
+    background-color: #ededed;
+    color: #bababa;
+    border: 1px solid #bababa;
+    cursor: default;
+}
+
+.paginationmn .data ul li {
+    list-style: none;
+    font-family: verdana;
+    margin: 5px 0 5px 0;
+    color: #000;
+    font-size: 13px;
+}
+
+.paginationmn .pagination {
+    width: 100%;
+    margin: 0px auto;
+    /*height: 25px;*/
+}
+
+.paginationmn .pagination ul li {
+    list-style: none;
+    float: left;
+    border: 1px solid #5d6677;
+    padding: 2px 6px 2px 6px;
+    margin: 0 3px 0 3px;
+    font-family: arial;
     font-size: 14px;
     color: #5d6677;
     font-weight: bold;
     background-color: #f2f2f2;
     width: auto !important;
 }
-.paginationmn .pagination ul li:hover{ color: #fff; background-color: #5d6677; cursor: pointer;}
-.go_button
-{background: transparent; border:1px solid #0747A6;color:#000000;padding:2px 6px 2px 6px;cursor:pointer;/*position:absolute;*/margin-top:-1px;
-}
-.total {float:right;font-family:'robotoregular';color:#666; font-size: 12px;}
-.gotobtn {text-align: center;}
-.ttolmnbtn{margin: 5px auto;}
-.gobtnman{ margin: 1px 10px;border-right: 1px dotted #5d6677; padding-right: 10px;}
-.paginationmn.topmnp .pagination{border-bottom: 1px dotted #dadada; margin-bottom: 30px;padding-bottom: 12px;}
-.floatright.gobtnmnh { float: right;}
-.textarea textarea.disabled {width: 120px;}
-.floatright.ttolmnbtn {float: right;}
 
-input.gotobtn:hover { background: #5d6677; color: #fff;  } 
-.go_button:hover {background: #5d6677;}
-input.gotobtn { padding: 2px 6px 2px 6px; border: 1px solid #5d6677;}
-.cssuprslctn { margin-bottom: 20px;}
-.floatleft { float: left;}
+.paginationmn .pagination ul li:hover {
+    color: #fff;
+    background-color: #5d6677;
+    cursor: pointer;
+}
+
+.go_button {
+    background: transparent;
+    border: 1px solid #0747A6;
+    color: #000000;
+    padding: 2px 6px 2px 6px;
+    cursor: pointer;
+    /*position:absolute;*/
+    margin-top: -1px;
+}
+
+.total {
+    float: right;
+    font-family: 'robotoregular';
+    color: #666;
+    font-size: 12px;
+}
+
+.gotobtn {
+    text-align: center;
+}
+
+.ttolmnbtn {
+    margin: 5px auto;
+}
+
+.gobtnman {
+    margin: 1px 10px;
+    border-right: 1px dotted #5d6677;
+    padding-right: 10px;
+}
+
+.paginationmn.topmnp .pagination {
+    border-bottom: 1px dotted #dadada;
+    margin-bottom: 30px;
+    padding-bottom: 12px;
+}
+
+.floatright.gobtnmnh {
+    float: right;
+}
+
+.textarea textarea.disabled {
+    width: 120px;
+}
+
+.floatright.ttolmnbtn {
+    float: right;
+}
+
+input.gotobtn:hover {
+    background: #5d6677;
+    color: #fff;
+}
+
+.go_button:hover {
+    background: #5d6677;
+}
+
+input.gotobtn {
+    padding: 2px 6px 2px 6px;
+    border: 1px solid #5d6677;
+}
+
+.cssuprslctn {
+    margin-bottom: 20px;
+}
+
+.floatleft {
+    float: left;
+}
+
 /*################ Pagination End ######################*/
-th.sorting, th.sorting_asc {
+th.sorting,
+th.sorting_asc {
     color: #fff;
 }
 
 /*.table th {
     background: #17395b;
 }*/
+
+#mduptradedays {
+    padding: 8px 12px;
+}

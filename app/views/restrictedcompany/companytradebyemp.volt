@@ -15,7 +15,7 @@ $condeptsess = $this->session->contractdepartment;
 <div class="mainelementfom">
      
 
-    <h1 class="h1_heading text-center">Company Restriction</h1>
+    <h1 class="h1_heading">Company Restriction</h1>
     <?php if($user_group_id == 2)
     { ?>
     <div class="containergrid">       

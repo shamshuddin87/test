@@ -35,6 +35,9 @@ input#srch {
     border: 1px solid #ccc;
 }
 
+.h1_heading {
+    margin-bottom: 20px;
+}
 /*################ Pagination Start ######################*/
 .paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
 .paginationmn .pagination ul li.inactive,

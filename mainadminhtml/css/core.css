@@ -223,7 +223,7 @@ body.nav-md .container.body .col-md-3.left_col {
     padding: 0;
     position: fixed;
     display: flex;
-    z-index: 999;
+    z-index: 9;
     overflow: scroll;
     height: 100%;
 }

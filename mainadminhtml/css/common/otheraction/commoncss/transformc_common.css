@@ -1,7 +1,11 @@
-.modal-content { width:auto; }
-.preloder_wraper{
+.modal-content {
+    width: auto;
+}
+
+.preloder_wraper {
     z-index: 1111;
 }
+
 .formelementmain {
     padding: 30px 0;
     background: #fff;
@@ -9,12 +13,18 @@
     box-shadow: 2px 2px 5px #cccc;
     margin: 20px 0;
 }
+
 .formcpdf i.fa.fa-file-pdf-o {
     color: #c10000;
     margin-right: 5px;
 }
-.modal_width { width: 82% }
-input[type="radio"], input[type="checkbox"] {
+
+.modal_width {
+    width: 82%
+}
+
+input[type="radio"],
+input[type="checkbox"] {
     margin: 4px 5px 0;
     margin-top: 1px 9;
     line-height: normal;
@@ -30,38 +40,49 @@ i.fa.fa-check {
     color: #226700;
     font-size: 18px;
 }
-button.formcpdf, button.down_load {
+
+button.formcpdf,
+button.down_load {
     padding: 7px;
     border-radius: 4px;
-    border: none; color: #1A82C3;
+    border: none;
+    color: #1A82C3;
 }
 
-
+.formcss {
+    padding: 20px 25px;
+}
 .button_pdf {
     display: inline-block;
     width: 96%;
     text-align: right;
 }
+
 .button_pdf i.fa.fa-download {
     margin-right: 6px;
 }
 
-.btn-primary {
+.formcbtn .btn-primary {
     color: #fff;
     background-color: #522c8f;
     border-color: #522c8f;
-    margin:10px;
+    margin: 10px;
+    width: 15%;
 }
 
 .formcbtn {
-    float: right;
+    display: flex;
+    justify-content: space-evenly;
 }
+
 .table-responsive.table_wraper {
     width: 100%;
 }
+
 .input {
     margin: 12px 0 0 0;
 }
+
 label.control-label.heading {
     font-size: 15px;
     float: left;
@@ -72,34 +93,60 @@ input.btn.btn-primary.saveformbbtn {
     margin: 15px 0;
     float: right;
 }
+
 i.fa.fa-edit.faicon.floatleft.editformb {
     margin: 0 7px;
     font-size: 16px;
     cursor: pointer;
 }
+
 i.fa-trash-o.faicon.floatleft.deleteformb {
     margin: 0 7px;
     font-size: 16px;
     cursor: pointer;
 }
+
 input.btn.btn-primary.updateformbbtn {
     margin: 15px 0;
     float: right;
 }
-.table_wraper {
+
+/*.table_wraper {
     background: #fff;
     padding: 10px;
     box-shadow: 2px 5px 3px #ccc;
-}
+}*/
 
 /*################ Pagination Start ######################*/
-.paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
+.paginationmn .paginateul {
+    float: left;
+    padding: 0px;
+    margin: 0px auto
+}
+
 .paginationmn .pagination ul li.inactive,
-.paginationmn .pagination ul li.inactive:hover{background-color:#ededed;
-color:#bababa; border:1px solid #bababa; cursor: default;}
-.paginationmn .data ul li{ list-style: none; font-family: verdana; margin: 5px 0 5px 0; color: #000;font-size: 13px;}
-.paginationmn .pagination{width: 100%;margin: 0px auto; /*height: 25px;*/}
-.paginationmn .pagination ul li{
+.paginationmn .pagination ul li.inactive:hover {
+    background-color: #ededed;
+    color: #bababa;
+    border: 1px solid #bababa;
+    cursor: default;
+}
+
+.paginationmn .data ul li {
+    list-style: none;
+    font-family: verdana;
+    margin: 5px 0 5px 0;
+    color: #000;
+    font-size: 13px;
+}
+
+.paginationmn .pagination {
+    width: 100%;
+    margin: 0px auto;
+    /*height: 25px;*/
+}
+
+.paginationmn .pagination ul li {
     list-style: none;
     float: left;
     border: 1px solid #5d6677;
@@ -113,7 +160,3 @@ color:#bababa; border:1px solid #bababa; cursor: default;}
     width: auto !important;
     cursor: pointer;
 }
-
-
-
-

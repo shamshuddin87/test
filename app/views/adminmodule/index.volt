@@ -6,14 +6,15 @@
 
 <!-- ########################################## PageContent Start ########################################## --> 
 <div class="right_col" role="main">
-<div class="row">
+<div class="*row">
 <div class="content">
 
 <!-- My messages -->
 <div class="mainelementfom">
 
 <div class="mainelementfom">
-            <h1 class="h1_heading text-center">Master List</h1>
+            <h1 class="h1_heading">User Module Access</h1>
+            <p class="text-center">Give module wise access</p>
             <div class="cssnumrws">
              <span>Show</span>
               <select id="noofrows" name="noofrows" class="noofrows">

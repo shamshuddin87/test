@@ -72,7 +72,7 @@ function subuserapproval()
                     
                     if(contraexcapvsts==1)
                     {
-                       addhtmlnxt += '<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;">Approved</i></td>'; 
+                       addhtmlnxt += '<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;"></i></td>'; 
                     }
                     else if(contraexcapvsts==2)
                     {

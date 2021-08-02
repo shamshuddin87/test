@@ -14,7 +14,7 @@
 
 
 <div class="table_data">
-  <h1 class="h1_heading text-center">User Information</h3>
+  <h1 class="h1_heading">User Information</h3>
  <table class="table table-inverse" id="datableabhi">
    <thead>
     <tr>
@@ -45,7 +45,7 @@
         </select> 
         <span>Entries</span>
     </div> -->
-          <h1 class="h1_heading text-center">Past Employer Details</h3>
+          <h1 class="h1_heading">Past Employer Details</h3>
           <table class="table datatable-responsive" class="templatetbl" id="datableabhi" dtausi = "">
                     <thead>
                         <tr>

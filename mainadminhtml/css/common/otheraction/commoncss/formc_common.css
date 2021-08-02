@@ -1,25 +1,36 @@
-.modal-content {  }
-.table_wraper {
+.modal-content {}
+
+/*.table_wraper {
     background: #fff;
-    padding: 10px; box-shadow: 2px 5px 3px #ccc;
+    padding: 10px;
+    box-shadow: 2px 5px 3px #ccc;
+}*/
+.h1_heading {
+    margin-bottom: 20px;
 }
 /* form b form c form d css*/
-.downloadpdf { float: right; }
+.downloadpdf {
+    float: right;
+}
+
 a.downlodthfle {
     background: #522c8f;
     float: left;
     padding: 10px 14px;
     border-radius: 3px;
 }
+
 .pdf_button {
     background: no-repeat;
-    border: none; float: right;
+    border: none;
+    float: right;
 }
 
 .downloadpdf.btn.btn-primary.floatright.pdf_button:hover {
     background: none;
     box-shadow: none;
 }
+
 /*form b form c form d */
 
 i#sendforaprvformc {
@@ -27,14 +38,17 @@ i#sendforaprvformc {
     width: 69%;
     font-size: 18px;
 }
+
 i#previewc {
     text-align: center;
     width: 69%;
     font-size: 18px;
 }
-.preloder_wraper{
+
+.preloder_wraper {
     z-index: 1111;
 }
+
 .formelementmain {
     padding: 30px 0;
     background: #fff;
@@ -42,16 +56,24 @@ i#previewc {
     box-shadow: 2px 2px 5px #cccc;
     margin: 20px 0;
 }
+
 .formcpdf i.fa.fa-file-pdf-o {
     color: #c10000;
     margin-right: 5px;
 }
-.modal_width { width: 90% }
-@media (max-width: 1360px)
-{
-    .modal_width { width: 96% }
+
+.modal_width {
+    width: 90%
 }
-input[type="radio"], input[type="checkbox"] {
+
+@media (max-width: 1360px) {
+    .modal_width {
+        width: 96%
+    }
+}
+
+input[type="radio"],
+input[type="checkbox"] {
     margin: 4px 5px 0;
     margin-top: 1px 9;
     line-height: normal;
@@ -67,10 +89,13 @@ i.fa.fa-check {
     color: #226700;
     font-size: 18px;
 }
-button.formcpdf, button.down_load {
+
+button.formcpdf,
+button.down_load {
     padding: 7px;
     border-radius: 4px;
-    border: none; color: #1A82C3;
+    border: none;
+    color: #1A82C3;
 }
 
 
@@ -79,6 +104,7 @@ button.formcpdf, button.down_load {
     width: 96%;
     text-align: right;
 }
+
 .button_pdf i.fa.fa-download {
     margin-right: 6px;
 }
@@ -89,6 +115,7 @@ button.formcpdf, button.down_load {
     border-color: #522c8f;
     margin-left: 10px;
 }
+
 button.btn.btn-default.btn-default-one {
     color: #fff !important;
     margin-top: 20px;
@@ -100,12 +127,15 @@ button.btn.btn-default.btn-default-one {
     float: right;
     width: 13%;
 }
+
 .table-responsive.table_wraper {
     width: 100%;
 }
+
 .input {
     margin: 12px 0 0 0;
 }
+
 label.control-label.heading {
     font-size: 15px;
     float: left;
@@ -116,32 +146,59 @@ input.btn.btn-primary.saveformbbtn {
     margin: 15px 0;
     float: right;
 }
+
 i.fa.fa-edit.faicon.floatleft.editformb {
     margin: 0 7px;
     font-size: 16px;
     cursor: pointer;
 }
+
 i.fa-trash-o.faicon.floatleft.deleteformb {
     margin: 0 7px;
     font-size: 16px;
     cursor: pointer;
 }
+
 input.btn.btn-primary.updateformbbtn {
     margin: 15px 0;
     float: right;
 }
+
 button.btn.btn-primary.previous {
     background: #522c8f;
     border: #522c8f;
 }
+
 /*################ Pagination Start ######################*/
-.paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
+.paginationmn .paginateul {
+    float: left;
+    padding: 0px;
+    margin: 0px auto
+}
+
 .paginationmn .pagination ul li.inactive,
-.paginationmn .pagination ul li.inactive:hover{background-color:#ededed;
-color:#bababa; border:1px solid #bababa; cursor: default;}
-.paginationmn .data ul li{ list-style: none; font-family: verdana; margin: 5px 0 5px 0; color: #000;font-size: 13px;}
-.paginationmn .pagination{width: 100%;margin: 0px auto; /*height: 25px;*/}
-.paginationmn .pagination ul li{
+.paginationmn .pagination ul li.inactive:hover {
+    background-color: #ededed;
+    color: #bababa;
+    border: 1px solid #bababa;
+    cursor: default;
+}
+
+.paginationmn .data ul li {
+    list-style: none;
+    font-family: verdana;
+    margin: 5px 0 5px 0;
+    color: #000;
+    font-size: 13px;
+}
+
+.paginationmn .pagination {
+    width: 100%;
+    margin: 0px auto;
+    /*height: 25px;*/
+}
+
+.paginationmn .pagination ul li {
     list-style: none;
     float: left;
     border: 1px solid #5d6677;
@@ -159,4 +216,3 @@ color:#bababa; border:1px solid #bababa; cursor: default;}
 td {
     font-size: 13px !important;
 }
-

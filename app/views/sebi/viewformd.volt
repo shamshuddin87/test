@@ -16,7 +16,7 @@ $condeptsess = $this->session->contractdepartment;
 <div class="mainelementfom">
      
 
-    <h1 class="h1_heading text-center">Form D</h1>
+    <h1 class="h1_heading">Form D</h1>
 <!--
     <div class="containergrid">       
         <div class="formcss">                           

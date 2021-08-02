@@ -13,7 +13,7 @@ var total_amount=response.data[i].total_amount?response.data[i].total_amount:'';
 else if(trading_status==0)
 {var file='';}
 if(contraexcapvsts==1)
-{addhtmlnxt+='<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;">Approved</i></td>';}
+{addhtmlnxt+='<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;"></i></td>';}
 else if(contraexcapvsts==2)
 {addhtmlnxt+='<td width="15%" class="getmsg" mymessage="'+messagepersnl+'"><i class="fa fa-close" style="font-size:18px;color:red;">Rejected</i></td>';}
 else

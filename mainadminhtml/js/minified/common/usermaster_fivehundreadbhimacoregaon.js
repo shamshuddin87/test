@@ -171,8 +171,12 @@ else
 else
 {new PNotify({title:'Alert',text:response.message,type:'university',hide:true,styling:'bootstrap3',addclass:'dark ',});}},complete:function(response)
 {website('.preloder_wraper').fadeOut();},error:function()
-{}});website('body').on('click','#managertype',function(e)
+{}});website('body').on('change','#insertmasterlist #managertype',function(e)
 {var mgrtype=website(this).val();if(mgrtype)
-{website("#main_mgrindept").show();}
+{website("#insertmasterlist #main_mgrindept").show();}
 else
-{website("#main_mgrindept").hide();}});;
+{website("#insertmasterlist #main_mgrindept").hide();}});website('body').on('change','#updatemasterlistid #managertype',function(e)
+{var mgrtype=website(this).val();if(mgrtype)
+{website("#updatemasterlistid #main_mgrindept").show();}
+else
+{website("#updatemasterlistid #main_mgrindept").hide();}});;

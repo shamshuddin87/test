@@ -6,17 +6,17 @@
 
 <!-- ########################################## PageContent Start ########################################## --> 
 <div class="right_col" role="main">
-<div class="row">
+<div class="*row">
 <div class="content">
 <div class="mainelementfom">
 
 
           <button type="button" class="btn btn-primary uptbtn"  id="upsi_conn_per" value="Submit">Update</button>
           <input type="hidden" name="getuserid" class="getuserid" id="getuserid" value="<?php print_r($userid); ?>">
-            <h1 class="h1_heading text-center">UPSI Access</h1>
+            <h1 class="h1_heading">UPSI Access</h1>
               <div class="containergrid">
                 <div class="panel panel-primary">
-                    <div class="table-responsive">
+                    <div class="table-responsive table_wraper">
                         <table class="table table-inverse" id="datablerushi">
                           <thead>
                             <tr>
@@ -137,7 +137,7 @@
 
 <!--             <button type="button" class="btn btn-primary uptbtn"  id="rest_comp_list" value="Submit">Update</button>-->
 <!--
-            <h1 class="h1_heading text-center">Restricted Company List</h1>
+            <h1 class="h1_heading">Restricted Company List</h1>
               <div class="containergrid">
                 <div class="panel panel-primary">
                     <div class="table-responsive">

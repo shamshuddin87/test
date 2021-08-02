@@ -11,7 +11,7 @@
 <!-- My messages -->
 <div class="mainelementfom">
     
-                <h1 class="h1_heading text-center">Approval For Personal Information</h1>
+                <h1 class="h1_heading">Approval For Personal Information</h1>
                 <!--table start-->
                 <div class="containergrid">
                     <div class="panel panel-primary">

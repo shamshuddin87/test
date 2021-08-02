@@ -14,7 +14,7 @@ $condeptsess = $this->session->contractdepartment;
 <!-- My messages -->
 <div class="mainelementfom">
      
-<div id = "edittradeplan"><h1 class="h1_heading text-center">Trading Plan</h1>
+<div id = "edittradeplan"><h1 class="h1_heading">Trading Plan</h1>
  <div class="containergrid">       
     <div class="formcss">                           
      <div class="typography form_pad">
@@ -92,7 +92,7 @@ $condeptsess = $this->session->contractdepartment;
             </div>
        </div>     
     </div></div>
-    <h1 class="h1_heading text-center">View Trading Plan</h1>       
+    <h1 class="h1_heading">View Trading Plan</h1>       
 
     <input type = "hidden" value="<?php echo $planid; ?>" id="tradeid">
     <input type = "hidden" value="<?php echo $planuniqueid; ?>" id="tradeuniqueid">

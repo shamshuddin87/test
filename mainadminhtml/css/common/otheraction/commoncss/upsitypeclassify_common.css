@@ -73,16 +73,11 @@ label.control-label { color: #000; }
     text-align: right;
 }
 
-/*
-button.btn.btn-primary.genfile.pdf_bg {
-    background: #c40000 !important;
-    border: none;
+
+button.btn.btn-primary.genfile.pdf_bg, button.btn.btn-primary.genfile.excel_bg  {
+    margin-top: 2px;
 }
-button.btn.btn-primary.genfile.excel_bg {
-    background: #27774a;
-    border: none;
-}
-*/
+
 
 /*################ Pagination Start ######################*/
 .paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}

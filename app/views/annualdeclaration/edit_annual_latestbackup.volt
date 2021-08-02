@@ -12,7 +12,7 @@
 <!-- My messages -->
 <div class="mainelementfom">
 <div>
-   <h1 class="h1_heading text-center">Update Annual Declaration Form
+   <h1 class="h1_heading">Update Annual Declaration Form
    </h1>
 </div>
 <div class="containergrid">

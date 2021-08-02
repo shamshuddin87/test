@@ -15,7 +15,7 @@ $condeptsess = $this->session->contractdepartment;
 <div class="mainelementfom">
      
 
-    <h1 class="h1_heading text-center">Holding Statement</h1>
+    <h1 class="h1_heading">Holding Statement</h1>
     <div class="containergrid">       
         <div class="formcss">                           
             <div class="typography form_pad">

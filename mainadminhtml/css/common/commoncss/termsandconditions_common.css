@@ -6,13 +6,11 @@
     color: #000;
 }
 
-form#termsandconditions {
-    width: 33%;
+#termsandconditions {
+    width: 43%;
     background: #fff;
     padding: 10px;
-    /* position: absolute; */
-  /*   left: 42% */;
-    box-shadow: 5px 3px 5px #ccc;
+    box-shadow: 0 0 20px rgb(0 0 0 / 30%);
     border-radius: 5px;
     margin: 0 auto;
 }
@@ -23,12 +21,22 @@ form#termsandconditions {
     padding: 6px 3px;
     border-radius: 3px;
 }
+
 .trading-resources {
     margin: 19px 0;
 }
-#termsandconditions h4, #termsandconditions h5 { color:#000; }
 
-input#fileToUpload {
+#termsandconditions h5 {
+    color: #000;
+}
+
+    #fileToUpload {
     border: 1px solid #ccc;
     padding: 9px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.h1_heading {
+    margin-bottom: 20px;
 }

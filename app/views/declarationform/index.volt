@@ -15,7 +15,7 @@ $condeptsess = $this->session->contractdepartment;
 <div class="mainelementfom">
      
 
-    <h1 class="h1_heading text-center">Declaration Form</h1>
+    <h1 class="h1_heading">Declaration Form</h1>
     <div class="containergrid">       
         <div class="declare_form">                           
            <div class="declare_content">You hereby agree that all the trading transactions done by you shall only be done from the demat accounts disclosed by you in the 'Demat Accounts' tab under main tab 'My Info' </div> 

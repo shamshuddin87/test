@@ -15,7 +15,7 @@ $condeptsess = $this->session->contractdepartment;
 <div class="mainelementfom">
      
 
-    <h1 class="h1_heading text-center">View Trading Plan</h1>       
+    <h1 class="h1_heading">View Trading Plan</h1>       
 
     <input type = "hidden" value="<?php echo $planid; ?>" id="tradeid">
     <input type = "hidden" value="<?php echo $planuniqueid; ?>" id="tradeuniqueid">
