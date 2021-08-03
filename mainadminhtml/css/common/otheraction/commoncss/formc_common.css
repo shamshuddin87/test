@@ -216,3 +216,6 @@ button.btn.btn-primary.previous {
 td {
     font-size: 13px !important;
 }
+table.table.muticasttabletupeone tr th, table.table.muticasttabletupeone tr td {
+    word-break: break-word;
+}

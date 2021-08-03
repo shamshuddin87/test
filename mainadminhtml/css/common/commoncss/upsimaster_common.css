@@ -530,7 +530,7 @@ button.btn.btn-default.btn-default-one {
 .header-search-wrapper .fa-search {
     position: absolute;
     font-size: 18px;
-    top: 10px;
+    top: 8px;
     left: 10px;
     line-height: normal;
     -webkit-transition: color 200ms ease;

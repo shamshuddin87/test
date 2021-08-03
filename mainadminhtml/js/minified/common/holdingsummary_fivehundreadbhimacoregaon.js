@@ -42,7 +42,7 @@ addhtmlnxt+='<td width="10%">'+response.resdta[k].esop+'</td>';if(response.equit
 {var esop=Number(closblnceq+Number(response.resdta[k].esop));addhtmlnxt+='<td width="10%">'+esop+'</td>';}
 if(response.prefer.length!=0)
 {addhtmlnxt+='<td width="10%">'+closblncpref+'</td>';}
-addhtmlnxt+='<td width="10%"><i class="fa fa-edit editopngblnc " editopngblncid="'+response.resdta[k].id+'"   style="font-size:20px;"></i></td>'
+addhtmlnxt+='<td width="10%"><i class="fa fa-edit editopngblnc " editopngblncid="'+response.resdta[k].id+'"></i></td>'
 addhtmlnxt+='</tr>';}
 website('.appendrow').html(addhtmlnxt);website('.paginationmn').html(response.pgnhtml);}
 else

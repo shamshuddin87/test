@@ -1644,9 +1644,9 @@ function getmfrdata() {
           myhtml +=
             '<td><i class="fa fa-edit mymfredit"  mfredit="' +
             response.data[i].id +
-            '" style="font-size:20px;"></i><i class="fa fa-trash delmfr"  mfrdel="' +
+            '"></i><i class="fa fa-trash delmfr"  mfrdel="' +
             response.data[i].id +
-            '" style="font-size:20px;"></i></td>';
+            '"></i></td>';
           myhtml += "</tr>";
           j++;
         }
@@ -2416,7 +2416,7 @@ website("body").on("click", ".add_button", function (e) {
     var htmlele = '<div class="box_css">';
     for (var i = 0; i < getno; i++) {
       htmlele +=
-        '<section class="col col-md-6 col-xs-6">' +
+        '<section class="col col-sm-6 col-xs-12">' +
         '<div class="input">' +
         '<label class="control-label">Name of employer*</label>' +
         '<input type="text" id="empname_' +
@@ -2424,7 +2424,7 @@ website("body").on("click", ".add_button", function (e) {
         '" name="empname" class="form_fields form-control col-md-7 col-xs-12 empnm" required>' +
         "</div>" +
         "</section>" +
-        '<section class="col col-md-6 col-xs-6">' +
+        '<section class="col col-sm-6 col-xs-12">' +
         '<div class="input">' +
         '<label class="control-label">Designation Served*</label>' +
         '<input type="text" id="designtn_' +
@@ -2432,7 +2432,7 @@ website("body").on("click", ".add_button", function (e) {
         '" name="designtn" class="form_fields form-control col-md-7 col-xs-12 desig" required>' +
         "</div>" +
         "</section>" +
-        '<section class="col col-md-6 col-xs-6">' +
+        '<section class="col col-sm-6 col-xs-12">' +
         '<div class="input">' +
         '<label class="control-label">Start Date of Employment*</label>' +
         '<input type="text" name="strtdte" id="strtdte_' +
@@ -2440,7 +2440,7 @@ website("body").on("click", ".add_button", function (e) {
         '" class="form-control sde" placeholder="dd-mm-yyyy" maxlength="10" required>' +
         "</div>" +
         "</section>" +
-        '<section class="col col-md-6 col-xs-6">' +
+        '<section class="col col-sm-6 col-xs-12">' +
         '<div class="input">' +
         '<label class="control-label">End Date of employment*</label>' +
         '<input type="text" name="enddte" id="enddte_' +
@@ -2842,10 +2842,10 @@ function getpastempdata() {
             : "";
           htmlele +=
             '<div class="box_css">' +
-            '<div class="col-md-12 text-right"><i class="fa fa-trash deletepastemp" id ="' +
+            '<div class="col-xs-12 text-right"><i class="fa fa-trash deletepastemp" id ="' +
             response.resdta[i].id +
             '"  aria-hidden="true" onclick="deleteemp(this.id);"></i></div>' +
-            '<section class="col col-md-6 col-xs-6">' +
+            '<section class="col col-sm-6 col-xs-12">' +
             '<div class="input">' +
             '<label class="control-label">Name of employer*</label>' +
             '<input type="text" id="empid_' +
@@ -2864,7 +2864,7 @@ function getpastempdata() {
             '" required>' +
             "</div>" +
             "</section>" +
-            '<section class="col col-md-6 col-xs-6">' +
+            '<section class="col col-sm-6 col-xs-12">' +
             '<div class="input">' +
             '<label class="control-label">Designation Served*</label>' +
             '<input type="text" id="designtn_' +
@@ -2876,7 +2876,7 @@ function getpastempdata() {
             '" required>' +
             "</div>" +
             "</section>" +
-            '<section class="col col-md-6 col-xs-6">' +
+            '<section class="col col-sm-6 col-xs-12">' +
             '<div class="input">' +
             '<label class="control-label">Start Date of Employment*</label>' +
             '<input type="text" name="strtdte" id="strtdte_' +
@@ -2888,7 +2888,7 @@ function getpastempdata() {
             '"  required>' +
             "</div>" +
             "</section>" +
-            '<section class="col col-md-6 col-xs-6">' +
+            '<section class="col col-sm-6 col-xs-12">' +
             '<div class="input">' +
             '<label class="control-label">End Date of employment*</label>' +
             '<input type="text" name="enddte" id="enddte_' +

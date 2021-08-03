@@ -33,7 +33,9 @@ input[type="checkbox"] {
     position: relative;
     max-width: 500px;
 }
-
+.table-responsive .dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #bfbebe;
+}
 .header-search-wrapper .fa-search {
     position: absolute;
     font-size: 18px;
@@ -168,8 +170,6 @@ input[type="checkbox"] {
 
 i.fa.fa-edit.faicon.floatleft.editrestrictedcmp {
     margin: 0 7px;
-    font-size: 16px;
-    cursor: pointer;
 }
 
 i.fa.fa-trash-o.faicon.floatleft.deleterestrictedcmp {

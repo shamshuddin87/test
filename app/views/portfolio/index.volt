@@ -9,7 +9,7 @@
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
 <div class="right_col" role="main">
-<div class="row">
+<div class="*row">
 <div class="content">
     
 <!--    Total Number of Contracts Ends-->
@@ -106,19 +106,19 @@
 <div id="myModalyesno" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <!-- <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                
-            </div>
+            </div> -->
             <div class="modal-body show_shadow">
                 <div class="text-center modal_heading">
                   <input type="hidden"  id="delid" name="delid" value="">
                     <div class="clearelement"></div>
-                   Are You Sure To Delete This Account?
+                   <h5 class="delete-title">Are You Sure To Delete This Account?</h5>
                 </div>
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer t-center">
                 <button type="button" class="btn btn-primary mar_0 yesconfirm">Yes</button>
                 <button type="button" class="btn btn-danger  " data-dismiss="modal">No</button>
             </div>
@@ -273,19 +273,18 @@
 <div id="myModalrel" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <!-- <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                
-            </div>
+            </div> -->
             <div class="modal-body show_shadow">
-                <div class="text-center modal_heading">
-                
-                    <div class="clearelement"></div>
-                   Are You Sure To Delete This Account?
+                <div class="text-center modal_heading">                
+                  <div class="clearelement"></div>
+                  <h5 class="delete-title">Are You Sure To Delete This Account?</h5>
                 </div>
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer t-center">
                 <button type="button" class="btn btn-danger mar_0 reldel" reldel="">Yes</button>
                 <button type="button" class="btn btn-default btn-default-one" data-dismiss="modal">No</button>
             </div>
@@ -300,12 +299,12 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Edit Content</h4>
-        <div class="col-md-12 list_co">
+        <div class="list_co">
           <label class="modal-title">Name</label>
              <input type="text" id="reledname" name="reledname" class="form_fields form-control col-md-7 col-xs-12" required="required" readonly/>
               <input type="hidden" id="relednation" name="relednation" class="form_fields form-control col-md-7 col-xs-12" required="required" readonly/>
         </div>  
-        <div class="col-md-12 list_co">
+        <div class="list_co">
             <label class="modal-title">Account No</label>
              <input type="text" id="releditaccno" name="releditaccno" class="form_fields form-control col-md-7 col-xs-12 showhovertext1" required="required" onkeypress="return isAlphaNumeric(event,this.value);"maxlength="16" pattern="[A-Za-z0-9]{16}" onmouseover="boxshow(this.className)" onmouseout="boxhide(this.className)">
               <span id= "showhovertext1" class ="cssclass " style="display: none;z-index: 2;">
@@ -317,7 +316,7 @@
         </span>
         </div>    
         
-        <div class="col-md-12 list_co">
+        <div class="list_co">
           <label class="modal-title">Depository Participant</label>
             <input type="text" id="dparrel" name="dparrel" class="form_fields form-control col-md-7 col-xs-12 " required="required" >
 

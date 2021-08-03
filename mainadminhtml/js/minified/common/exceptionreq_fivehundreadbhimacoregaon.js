@@ -66,14 +66,14 @@ else
 var no_of_shares=response.data[i].no_of_shares?response.data[i].no_of_shares:'';var type_of_transaction=response.data[i].transaction?response.data[i].transaction:'';var price_per_share=response.data[i].price_per_share?response.data[i].price_per_share:''
 var total_amount=response.data[i].total_amount?response.data[i].total_amount:'';var date_added=response.data[i].date_added?response.data[i].date_added:'';var date_modified=response.data[i].date_modified?response.data[i].date_modified:'';var transaction_date=response.data[i].date_of_transaction?response.data[i].date_of_transaction:'';var trading_date=response.data[i].trading_date?response.data[i].trading_date:'';var send_status=response.data[i].send_status;var approved_status=response.data[i].approved_status;var file=response.data[i].file?response.data[i].file:'';var type_of_request=response.data[i].type_of_request?response.data[i].type_of_request:'';var trading_status=response.data[i].trading_status?response.data[i].trading_status:'';var message=response.data[i].rejmessage?response.data[i].rejmessage:'';var typeofrequest=response.data[i].request_type?response.data[i].request_type:'';var nameofreq=response.data[i].name?response.data[i].name:'';var relationship=response.data[i].relationship?response.data[i].relationship:'';var excep_approv=response.data[i].excepapp_status?response.data[i].excepapp_status:'';addhtmlnxt+='<tr class="counter" tempid="'+response.data[i].id+'" >';addhtmlnxt+='<td>'+j+'</td>';addhtmlnxt+='<td>'+sectype+'</td>';addhtmlnxt+='<td>'+type_of_transaction+'</td>';addhtmlnxt+='<td>'+no_of_shares+'</td>';addhtmlnxt+='<td>'+typeofrequest+'</td>';addhtmlnxt+='<td>'+nameofreq+'</td>';addhtmlnxt+='<td>'+relationship+'</td>';if(response.data[i].sent_contraexeaprvl==1)
 {if(response.data[i].contraexcapvsts==1)
-{addhtmlnxt+='<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;">Approved</i></td>';}
+{addhtmlnxt+='<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;"></i></td>';}
 else if(response.data[i].contraexcapvsts==2)
 {addhtmlnxt+='<td width="15%" class="rejmessage" mymessage="'+message+'"><i class="fa fa-close" style="font-size:18px;color:red;">Rejected</i></td>';}
 else
 {addhtmlnxt+='<td width="15%">Not Approved</td>';}}
 else
 {if(excep_approv==1)
-{addhtmlnxt+='<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;">Approved</i></td>';}
+{addhtmlnxt+='<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;"></i></td>';}
 else if(excep_approv==2)
 {addhtmlnxt+='<td width="15%" class="rejmessage" mymessage="'+message+'"><i class="fa fa-close" style="font-size:18px;color:red;">Rejected</i></td>';}
 else

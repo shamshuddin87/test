@@ -10,7 +10,7 @@
             <!--    Total Number of Contracts Ends-->
             <!-- My messages -->
             <div class="mainelementfom">
-                <h1 class="h1_heading text-center"> Approve Requests</h1>
+                <h1 class="h1_heading"> Approve Requests</h1>
                 <div class="">
                     <!-- <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
                         <div class="login-button-container clearfix">

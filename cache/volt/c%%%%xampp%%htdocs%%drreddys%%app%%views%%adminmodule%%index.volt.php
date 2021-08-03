@@ -13,7 +13,7 @@
 <div class="mainelementfom">
 
 <div class="mainelementfom">
-            <h1 class="h1_heading text-center">User Module Access</h1>
+            <h1 class="h1_heading">User Module Access</h1>
             <p class="text-center">Give module wise access</p>
             <div class="cssnumrws">
              <span>Show</span>

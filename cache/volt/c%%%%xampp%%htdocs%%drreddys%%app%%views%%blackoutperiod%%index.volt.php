@@ -15,9 +15,9 @@ $condeptsess = $this->session->contractdepartment;
 <div class="mainelementfom">
      
 
-    <h1 class="h1_heading">Add Trading Window</h1>
     <?php if($user_group_id == 2 || $user_group_id == 14)
     { ?>
+    <h1 class="h1_heading">Add Trading Window</h1>
     <div class="containergrid">       
         <div class="formcss">                           
             <div class="typography form_pad">

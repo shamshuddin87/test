@@ -256,7 +256,11 @@
 <div id="myModal" class="modal">
     <div class="modal-dialog">
         <div class="modal-content">
-            <span class="close"  data-dismiss="modal">&times;</span>
+            <div class="modal-header">
+                <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Trading Status</h4>
+            </div>
+            <!-- <span class="close"  data-dismiss="modal">&times;</span> -->
             <table class="table table-inverse mytable" id="datablerushi" typage="reqview">
                 <thead>
                     <tr>

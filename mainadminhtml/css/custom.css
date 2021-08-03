@@ -5694,6 +5694,7 @@ input[type="checkbox"] {
     margin: 4px 5px 0;
     margin-top: 1px \9;
     line-height: normal;
+    vertical-align: text-bottom;
 }
 
 .h1_heading {

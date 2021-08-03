@@ -8,7 +8,7 @@
             <div class="mainelementfom">
                 <div class="containergrid">
                     <div class="formcss">
-                        <h1 class="h1_heading text-center">Add Department Master</h1>
+                        <h1 class="h1_heading">Add Department Master</h1>
                         <div class="typography *form_pad">
                             <div class="tablitiledesc text-center">
                                 <div class="note" style="color: #000;padding: 12px 0;">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="table-responsive table_wraper">
-                        <h1 class="h1_heading text-center">View Department Master</h1>
+                        <h1 class="h1_heading">View Department Master</h1>
                         <div class="cssnumrws">
                             <span>Show</span>
                             <select id="noofrows" name="noofrows" class="noofrows">

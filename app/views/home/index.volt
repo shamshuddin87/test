@@ -154,7 +154,7 @@
                                              <tbody class ="holdingsummry">
                                              </tbody>
                                           </table>
-                                          <a href="holdingsummary "><button class="viewmore btn btn-primary">View More</button></a>
+                                          <a href="holdingsummary "><button class="viewmore btn btn-primary mt-20">View More</button></a>
                                        </div>
                                     </div>
                                  </div>

@@ -255,7 +255,7 @@ function getdataonload()
                 // }
             
 
-            addhtmlnxt+='<td width="10%"><i class="fa fa-edit editopngblnc " editopngblncid="'+response.resdta[k].id+'"   style="font-size:20px;"></i></td>'
+            addhtmlnxt+='<td width="10%"><i class="fa fa-edit editopngblnc " editopngblncid="'+response.resdta[k].id+'"></i></td>'
             addhtmlnxt += '</tr>';
            
             

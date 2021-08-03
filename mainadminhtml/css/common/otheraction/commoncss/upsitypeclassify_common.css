@@ -1,6 +1,9 @@
 .containergrid.formcss {
-    background: #fff; padding: 10px; box-shadow: 0px 2px 8px 3px #ccc;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0px 2px 8px 3px #ccc;
 }
+
 .formelementmain {
     padding: 30px 0;
     background: #fff;
@@ -15,11 +18,12 @@ tbody.appendrow {
 
 .control-label.btnsubmitme.cntrol_tab_one {
     float: left;
-   
+
     margin-top: 20px;
 }
 
-input[type="radio"], input[type="checkbox"] {
+input[type="radio"],
+input[type="checkbox"] {
     margin: 4px 5px 0;
     margin-top: 1px 9;
     line-height: normal;
@@ -28,11 +32,12 @@ input[type="radio"], input[type="checkbox"] {
 .faicon {
     margin: 0px 20px;
 }
+
 .fa-search.active {
     color: #373F89;
 }
 
-.boxshadow{
+.boxshadow {
     background-color: white;
     list-style: none;
     width: 100%;
@@ -42,13 +47,20 @@ input[type="radio"], input[type="checkbox"] {
     margin: 35px 0;
     border: 1px solid #e7ecf3;
 }
-.company_asses { text-align: right; }
+
+.company_asses {
+    text-align: right;
+}
+
 .input {
     margin: 12px 0 0 0;
 }
-label.control-label { color: #000; }
 
-.form_heading{
+label.control-label {
+    color: #000;
+}
+
+.form_heading {
     text-decoration: underline;
     padding: 5px;
     font-weight: 700;
@@ -62,31 +74,69 @@ label.control-label { color: #000; }
     overflow-x: auto;
     min-height: 0.01%;
 }
-.trailshare th ,.trailshare td { padding:10px;color: #000;   border: 1px solid #ddd;}
-.trailshare th { color: #000;  background: #17395b; color: #fff;}
 
-.trailshare tr:nth-child(even){background-color: #f2f2f2;}
+.trailshare th,
+.trailshare td {
+    padding: 10px;
+    color: #000;
+    border: 1px solid #ddd;
+}
 
-.trailshare tr:hover {background-color: #ddd;}
+.trailshare th {
+    color: #000;
+    background: #17395b;
+    color: #fff;
+}
+
+.trailshare tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.trailshare tr:hover {
+    background-color: #ddd;
+}
 
 .floatright {
     text-align: right;
 }
 
 
-button.btn.btn-primary.genfile.pdf_bg, button.btn.btn-primary.genfile.excel_bg  {
+button.btn.btn-primary.genfile.pdf_bg,
+button.btn.btn-primary.genfile.excel_bg {
     margin-top: 2px;
 }
 
 
 /*################ Pagination Start ######################*/
-.paginationmn .paginateul{float: left;padding: 0px;margin: 0px auto}
+.paginationmn .paginateul {
+    float: left;
+    padding: 0px;
+    margin: 0px auto
+}
+
 .paginationmn .pagination ul li.inactive,
-.paginationmn .pagination ul li.inactive:hover{background-color:#ededed;
-color:#bababa; border:1px solid #bababa; cursor: default;}
-.paginationmn .data ul li{ list-style: none; font-family: verdana; margin: 5px 0 5px 0; color: #000;font-size: 13px;}
-.paginationmn .pagination{width: 100%;margin: 0px auto; /*height: 25px;*/}
-.paginationmn .pagination ul li{
+.paginationmn .pagination ul li.inactive:hover {
+    background-color: #ededed;
+    color: #bababa;
+    border: 1px solid #bababa;
+    cursor: default;
+}
+
+.paginationmn .data ul li {
+    list-style: none;
+    font-family: verdana;
+    margin: 5px 0 5px 0;
+    color: #000;
+    font-size: 13px;
+}
+
+.paginationmn .pagination {
+    width: 100%;
+    margin: 0px auto;
+    /*height: 25px;*/
+}
+
+.paginationmn .pagination ul li {
     list-style: none;
     float: left;
     border: 1px solid #5d6677;
@@ -100,4 +150,18 @@ color:#bababa; border:1px solid #bababa; cursor: default;}
     width: auto !important;
     cursor: pointer;
 }
-  .exportcss {background:#0747A6; text-decoration: none;color: #fff;font-family: 'robotoregular'; font-size: 14px;padding: 8px 20px; border-radius: 5px;box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);}
+
+.exportcss {
+    background: #0747A6;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'robotoregular';
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+}
+
+tr.getallups {
+    cursor: pointer;
+}

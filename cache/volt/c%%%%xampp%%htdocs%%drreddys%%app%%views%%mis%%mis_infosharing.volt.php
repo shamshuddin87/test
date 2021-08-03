@@ -8,7 +8,7 @@ $condeptsess = $this->session->contractdepartment;
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
 <div class="right_col" role="main">
-<div class="row">
+<div class="*row">
 <div class="content">
 
 <!-- My messages -->
@@ -52,11 +52,11 @@ $condeptsess = $this->session->contractdepartment;
                     <tbody class="appendrow" appendrow='1'>
                     </tbody>
                 </table>
+                <div class="">
+                    <div class="paginationmn"></div>
+                    <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
+                </div>    
             </div>
- <div class="panel panel-white">
-            <div class="paginationmn"></div>
-            <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
-        </div>    
 
          
 <div class="clearelement"></div>

@@ -13,7 +13,7 @@
             <!-- My messages -->
             <div class="mainelementfom">
                 <input type="hidden" name="upsitypeid" class="upsitypeid" id="upsitypeid" value="<?php echo $upsiid;?>">
-                <h1 class="h1_heading text-center">Add <?php echo $upsitype['upsitype'];?></h1>
+                <h1 class="h1_heading">Add <?php echo $upsitype['upsitype'];?></h1>
                 <h2 class="text-center">(Database of information shared)</h2>
                 <div class="containergrid">
                     <div class="formcss">
@@ -169,7 +169,7 @@
                     </div>
                 </div>
                 <div class="table-responsive table_wraper">
-                    <h1 class="h1_heading text-center">View <?php echo $upsitype['upsitype'];?></h1>
+                    <h1 class="h1_heading">View <?php echo $upsitype['upsitype'];?></h1>
                     <div class="cssnumrws">
                         <span>Show</span>
                         <select id="noofrows" name="noofrows" class="noofrows">

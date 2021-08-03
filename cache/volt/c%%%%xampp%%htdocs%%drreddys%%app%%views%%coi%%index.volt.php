@@ -8,13 +8,13 @@ $condeptsess = $this->session->contractdepartment;
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
 <div class="right_col" role="main">
-<div class="row">
+<div class="*row">
 <div class="content">
 
 <!-- My messages -->
 <div class="mainelementfom">
    
-    <h1 class="h1_heading text-center" style="text-align: center;">COI Declaration</h1>
+    <h1 class="h1_heading">COI Declaration</h1>
     <div class="create_button">
         <a href="coi/createcoi"> <button type="button" class="btn btn-primary getdata">Create Declaration</button></a>
     </div>
@@ -54,15 +54,16 @@ $condeptsess = $this->session->contractdepartment;
 <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
-        <div class="modal-header">
+        <!-- <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-        </div>
+        </div> -->
         <div class="modal-body">
         <input type="hidden" id="reqid" value="" name="">
-        <h5 style="text-align: center;">Are You Sure To Send This Request?</h5> </div>
-        <div class="modal-footer">
+        <h5 class="delete-title">Are You Sure To Send This Request?</h5> </div>
+        <div class="modal-footer t-center">
           <button type="button" class="btn btn-success" id="sendreq" tempid="">Send</button> 
+          <button type="button" class="close" data-dismiss="modal">Close</button>
         </div>
     </div>
 </div>
@@ -102,15 +103,16 @@ $condeptsess = $this->session->contractdepartment;
    <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
-         <div class="modal-header">
+         <!-- <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"> &times;</button>
-         </div>
+         </div> -->
          <div class="modal-body">
             <input type="hidden" id="deleteid" value="" name="">
-            <h5 style="text-align: center;">Are You Sure To Delete This Request?</h5>
+            <h5 class="delete-title">Are You Sure To Delete This Request?</h5>
          </div>
-         <div class="modal-footer">
+         <div class="modal-footer t-center">
             <button type="button" class="btn btn-danger" id="confirmdeletereq" tempid="">Delete</button> 
+            <button type="button" class="btn btn-primary" data-dismiss="modal"> Close</button>
          </div>
       </div>
    </div>

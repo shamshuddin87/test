@@ -8,7 +8,7 @@ $condeptsess = $this->session->contractdepartment;
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
 <div class="right_col" role="main">
-<div class="row">
+<div class="*row">
 <div class="content">
 
 <!-- My messages -->
@@ -92,16 +92,17 @@ $condeptsess = $this->session->contractdepartment;
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
+            <!-- <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">
                     &times;</button>
             
-            </div>
+            </div> -->
             <div class="modal-body">
             <input type="hidden" id="reqid" value="" name="">
-            <h5 style="text-align: center;">Are You Sure To Send This Request?</h5> </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-success" id="sendreq" tempid="">Send</button> 
+            <h5 class="delete-title">Are You Sure To Send This Request?</h5> </div>
+            <div class="modal-footer t-center">
+              <button type="button" class="btn btn-success" id="sendreq" tempid="">Send</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -111,15 +112,16 @@ $condeptsess = $this->session->contractdepartment;
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
+            <!-- <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">
                     &times;</button>
             
-            </div>
+            </div> -->
             <div class="modal-body">
-            <h5 style="text-align: center;">Click on 'Create Declaration' button to create a new declaration.</h5> </div>
-            <div class="modal-footer">
+            <h5 class="delete-title">Click on 'Create Declaration' button to create a new declaration.</h5> </div>
+            <div class="modal-footer t-center">
               <button type="button" class="btn btn-default btn-default-one" data-dismiss="modal">Ok</button> 
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

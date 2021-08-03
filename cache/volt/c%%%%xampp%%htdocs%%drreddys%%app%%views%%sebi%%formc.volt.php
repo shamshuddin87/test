@@ -85,42 +85,42 @@ $condeptsess = $this->session->contractdepartment;
         <div class="modal-body">
            <form id="insertformc" action="sebi/insertformc" method="post" enctype="multipart/form-data" autocomplete="off" > 
                      <input type = "hidden" name="approverid" id="approverid" value="<?php echo $approverid;?>">
-                     <section class="col col-md-6 col-xs-6">
+                     <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Name</label>
                                 <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $name;?>" readonly required>
                             </div>
                     </section>
                         
-                    <section class="col col-md-6 col-xs-6">
+                    <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">PAN</label>
                                 <input type="text" id="pan" name="pan" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $pan;?>" readonly required>
                             </div>
                     </section>
                         
-                    <section class="col col-md-6 col-xs-6">
+                    <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Address</label>
                                 <input type="text" id="address" name="address" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $address;?>" readonly required>
                             </div>
                     </section>
                         
-                    <section class="col col-md-6 col-xs-6">
+                    <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Contact No.</label>
                                 <input type="text" id="cntctno" name="cntctno" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $cntctno;?>" readonly required>
                             </div>
                     </section>
                         
-                    <section class="col col-md-6 col-xs-6">
+                    <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">CIN/DIN</label>
                                 <input type="text" id="cin" name="cin" class="form_fields form-control col-md-7 col-xs-12" value="" readonly required>
                             </div>
                     </section>
                
-                     <section class="col col-md-6 col-xs-6">
+                     <section class="col col-md-6 col-xs-12">
                          <div class="input">
                             <label class="control-label">Category</label>
                             <select id="category" name="category" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -132,7 +132,7 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                         </section>
                         
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                          <div class="input">
                             <label class="control-label">Company Name</label>
                             <select id="cmpnme" name="cmpnme" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -148,14 +148,14 @@ $condeptsess = $this->session->contractdepartment;
                             <div class="input">
                             <label class="control-label heading">Date of allotment advice/acquisition of shares/sale of shares specify</label>
                            
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                             <label class="control-label">From</label>
                              <input type="text" id="fromdate" name="fromdate" class="form-control bootdatepick" readonly required>
                             </div>
                         </section>
                
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">To</label>
                                 <input type="text" id="todate" name="todate" class="form-control bootdatepick" readonly required>
@@ -168,14 +168,14 @@ $condeptsess = $this->session->contractdepartment;
                             <div class="input">
                             <label class="control-label heading">% of shareholding</label>
                            
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                             <label class="control-label">Pretransaction</label>
                              <input type="text" id="pretrans" name="pretrans" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                         </section>
                
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Posttransaction</label>
                                 <input type="text" id="posttrans" name="posttrans" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
@@ -184,14 +184,14 @@ $condeptsess = $this->session->contractdepartment;
                          </div>
                     </section>
                
-                    <section class="col col-md-6 col-xs-6">
+                    <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Date of intimation to company</label>
                                 <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control bootdatepick" readonly required>
                             </div>
                     </section> 
                
-                 <section class="col col-md-6 col-xs-6">
+                 <section class="col col-md-6 col-xs-12">
                          <div class="input">
                             <label class="control-label">Mode of acquisition</label>
                             <select id="acquimode" name="acquimode" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -207,28 +207,28 @@ $condeptsess = $this->session->contractdepartment;
                             <div class="input">
                             <label class="control-label heading">Trading in derivatives (Specify type of contract, Futures or Options etc)</label>
                            
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                             <label class="control-label">Buy Value</label>
                              <input type="text" id="buyvalue" name="buyvalue" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                         </section>
                                 
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Buy Number of units(contracts* lot size)</label>
                                 <input type="text" id="buynumbrunt" name="buynumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                        </section>
                                 
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                             <label class="control-label">Sell Value</label>
                              <input type="text" id="sellvalue" name="sellvalue" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                         </section>
                
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Sell Number of units(contracts* lot size)</label>
                                 <input type="text" id="sellnumbrunt" name="sellnumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
@@ -238,7 +238,7 @@ $condeptsess = $this->session->contractdepartment;
                     </section>
                
                     
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Exchange on which the trade was executed</label>
                                 <input type="text" id="exetrd" name="exetrd" class="form_fields form-control col-md-7 col-xs-12">
@@ -343,7 +343,7 @@ $condeptsess = $this->session->contractdepartment;
 </div>
 
 <div id="Mymodaledit" class="modal fade" role="dialog" tabIndex=-1>
-  <div class="modal-dialog" style="width: 700px;">
+  <div class="modal-dialog modal-lg">
 
     <div class="modal-content">
       <div class="modal-header" style="margin: 0;">
@@ -357,7 +357,7 @@ $condeptsess = $this->session->contractdepartment;
                     <input type="hidden" name="requestmodeid" id="requestmodeid">
                     <input type="hidden" name="tradeid" id="tradeid">
                     <input type="hidden" name="reqid" id="reqid">
-                     <section class="col col-md-4 col-xs-4">
+                     <section class="col col-md-4 col-sm-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Name</label>
                                 <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $name;?>" readonly required>
@@ -365,14 +365,14 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                     </section>
                         
-                    <section class="col col-md-4 col-xs-4">
+                    <section class="col col-md-4 col-sm-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">PAN</label>
                                 <input type="text" id="pan" name="pan" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $pan;?>" readonly required>
                             </div>
                     </section>
                         
-                    <section class="col col-md-4 col-xs-4">
+                    <section class="col col-md-4 col-sm-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Address</label>
                                 <!--<input type="text" id="address" name="address" class="form_fields form-control col-md-7 col-xs-12" value="<?php echo $address;?>" readonly required>-->
@@ -380,7 +380,7 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                     </section>
                         
-                    <section class="col col-md-4 col-xs-4">
+                    <section class="col col-md-4 col-sm-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Contact No.</label>
                                 <!-- <div><br></div> -->
@@ -389,7 +389,7 @@ $condeptsess = $this->session->contractdepartment;
                     </section>
                         
 <!--
-                    <section class="col col-md-6 col-xs-6">
+                    <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">CIN/DIN</label>
                                 
@@ -400,7 +400,7 @@ $condeptsess = $this->session->contractdepartment;
 -->
                     
                
-                     <section class="col col-md-4 col-xs-4">
+                     <section class="col col-md-4 col-sm-6 col-xs-12">
                          <div class="input">
                             <label class="control-label">Category</label>
                              <!-- <div><br></div>
@@ -413,7 +413,7 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                         </section>
                         
-                        <!-- <section class="col col-md-4 col-xs-4">
+                        <!-- <section class="col col-md-4 col-sm-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Date of intimation to company</label>
                                 <input type="text" id="dateofintimtn" name="dateofintimtn" class="form-control " placeholder="dd-mm-yyyy" maxlength="10" required>
@@ -421,7 +421,7 @@ $condeptsess = $this->session->contractdepartment;
                         </section>  -->
                     
                     <div id="formctypesshow" style="display:none">
-                    <section class="col col-md-4 col-xs-4">
+                    <section class="col col-md-4 col-sm-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Type Of Security</label>
                                 <select id="sectypeid" name="sectype" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -433,7 +433,7 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                     </section>
                
-                    <section class="col col-md-4 col-xs-4">
+                    <section class="col col-md-4 col-sm-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Demat Account No.</label>
                                 <select id="demataccno" name="demataccno" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -445,28 +445,28 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                     </section>
                
-                    <section class="col col-md-4 col-xs-4">
+                    <section class="col col-md-4 col-sm-6 col-xs-12">
                         <div class="input">
                             <label class="control-label">No. of Shares / ADRs</label>
                             <input type="text" id="noofshare" name="noofshare" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57  || event.charCode == 46' required>
                         </div>
                     </section>
                
-                    <section class="col col-md-4 col-xs-4">
+                    <section class="col col-md-4 col-sm-6 col-xs-12">
                         <div class="input">
                             <label class="control-label">Price per Share / ADR</label>
                             <input type="text" id="pricepershare" name="pricepershare" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57  || event.charCode == 46' required>
                         </div>
                     </section>
                
-                    <section class="col col-md-4 col-xs-4">
+                    <section class="col col-md-4 col-sm-6 col-xs-12">
                         <div class="input">
                             <label class="control-label">Total Amount</label>
                             <input type="text" id="totalamt" name="totalamt" class="form-control" readonly required>
                         </div>
                     </section>
                
-                    <section class="col col-md-4 col-xs-4" id="selecttrans">
+                    <section class="col col-md-4 col-sm-6 col-xs-12" id="selecttrans">
                         <div class="input">
                             <label class="control-label">Type of Transaction</label>
                             <select class="form-control" id="typeoftrans" name="typeoftrans">
@@ -479,14 +479,14 @@ $condeptsess = $this->session->contractdepartment;
                         </div>
                     </section>
                
-                    <!--<section class="col col-md-4 col-xs-4">
+                    <!--<section class="col col-md-4 col-sm-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Date of Transaction</label>
                                 <input type="text" id="dateoftrans" name="dateoftrans" class="form-control " placeholder="dd-mm-yyyy" maxlength="10" required>
                             </div>-->
                         </section>
                         </div>
-                      <!--<section class="col col-md-6 col-xs-6">
+                      <!--<section class="col col-md-6 col-xs-12">
                          <div class="input">
                             <label class="control-label">Type Of Contract</label>
                             <select id="contracttype" name="contracttype" class="form_fields form-control col-md-7 col-xs-12">
@@ -499,7 +499,7 @@ $condeptsess = $this->session->contractdepartment;
 
 
 
-                        <!--<section class="col col-md-6 col-xs-6">
+                        <!--<section class="col col-md-6 col-xs-12">
                             <div class="input">
                             <label class="control-label">Contract Specification</label>
                              <input type="text" id="contractspeci" name="contractspeci" class="form-control">
@@ -510,14 +510,14 @@ $condeptsess = $this->session->contractdepartment;
                             <div class="input ">
                             <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 20px;">Date of allotment advice/acquisition of shares/sale of shares specify</label>
                            
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                             <label class="control-label">From</label>
                              <input type="text" id="fromdate" name="fromdate" class="form-control" placeholder="dd-mm-yyyy" maxlength="10"  required>
                             </div>
                         </section>
                
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">To</label>
                                 <input type="text" id="todate" name="todate" class="form-control" placeholder="dd-mm-yyyy" maxlength="10" required>
@@ -529,7 +529,7 @@ $condeptsess = $this->session->contractdepartment;
                
                     
                
-                 <section class="col col-md-6 col-xs-6" id="modeformctype1">
+                 <section class="col col-md-6 col-xs-12" id="modeformctype1">
                          <div class="input">
                             <label class="control-label">Mode of transaction</label>
                              <!-- <div><br></div> -->
@@ -542,7 +542,7 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                     </section>
                
-                    <section class="col col-md-6 col-xs-6" id="modeformctypeother" style="display:none;">
+                    <section class="col col-md-6 col-xs-12" id="modeformctypeother" style="display:none;">
                          <div class="input">
                             <label class="control-label">Mode of transaction</label>
                              <!-- <div><br></div> -->
@@ -554,28 +554,28 @@ $condeptsess = $this->session->contractdepartment;
                             <div class="input">
                             <label class="control-label heading col col-md-12 col-xs-12" style="margin-top: 10px;">Trading in derivatives (Specify type of contract, Futures or Options etc)</label>
                            
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                             <label class="control-label">Buy Value</label>
                              <input type="text" id="buyvalue" name="buyvalue" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                         </section>
                                 
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Buy No of units(contracts* lot size)</label>
                                 <input type="text" id="buynumbrunt" name="buynumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                        </section>
                                 
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                             <label class="control-label">Sell Value</label>
                              <input type="text" id="sellvalue" name="sellvalue" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
                             </div>
                         </section>
                
-                        <section class="col col-md-6 col-xs-6">
+                        <section class="col col-md-6 col-xs-12">
                             <div class="input">
                                 <label class="control-label">Sell No of units(contracts* lot size)</label>
                                 <input type="text" id="sellnumbrunt" name="sellnumbrunt" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57|| event.charCode == 46' >
@@ -585,7 +585,7 @@ $condeptsess = $this->session->contractdepartment;
                     </section>-->
                
                     
-                        <section class="col col-md-6 col-xs-6" id="exeformctype1">
+                        <section class="col col-md-6 col-xs-12" id="exeformctype1">
                             <div class="input">
                                 <label class="control-label">Exchange on which the trade was executed</label>
                                 <select id="exetrd" name="exetrd" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -598,14 +598,14 @@ $condeptsess = $this->session->contractdepartment;
                             </div>
                        </section>
                         
-                        <section class="col col-md-6 col-xs-6" id="exeformctypeother" style="display:none;">
+                        <section class="col col-md-6 col-xs-12" id="exeformctypeother" style="display:none;">
                          <div class="input">
                             <label class="control-label">Exchange on which the trade was executed</label>
                              <input type="text" id="exetrdother" name="exetrdother" class="form_fields form-control col-md-7 col-xs-12" value="" readonly >
                             </div>
                         </section>         
                
-                      <section class="col col-md-12 company_asses">
+                      <section class="col col-xs-12 company_asses">
                             <input type="submit" value="Update" class="btn btn-primary updateformbbtn">
                         </section>
                         <div class="clearelement"></div>

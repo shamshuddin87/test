@@ -88,22 +88,18 @@ a.tooltip_c {
 }
 
 .h1_heading {
-    font-size: 28px;
-    font-weight: normal;
-    color: #000;
-    margin-bottom: 18px;
-    padding-left: 9px;
+    margin: 0;
+    text-align: left;
 }
 
-.belowleveluserdetcss
-{
-        position: relative;
+/*.belowleveluserdetcss {
+    position: relative;
     padding: 15px;
     border: 1px solid rgb(216, 216, 216);
     box-shadow: 0 0 10px #00000059;
-        margin-bottom: 20px;
-        background: #fff;
-}
+    margin-bottom: 20px;
+    background: #fff;
+}*/
 
 .h2_heading
 {
@@ -248,7 +244,7 @@ body.nav-sm .main_container .top_nav,
 a.compnamedata_btn {
     text-align: right;
     float: right;
-    margin-right: 30px;
+    margin-right: 0;
     font-size: 16px;
 }
 

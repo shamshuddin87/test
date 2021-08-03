@@ -110,11 +110,11 @@ input[type="checkbox"] {
     margin-left: 0px;
 }
 
-div#datableabhi_wrapper {
+/*div#datableabhi_wrapper {
     float: left;
     background: #fff;
     *padding: 10px;
-}
+}*/
 
 .table-responsive.table_wraper {
     background: #fff;
@@ -249,12 +249,12 @@ label.control-label {
 
 .dataTables_wrapper .dataTables_filter {
     float: right;
-    text-align: left;
+    text-align: right;
 }
 
-.dataTables_filter {
+/*.dataTables_filter {
     width: 40%;
-}
+}*/
 
 .h1_heading {
     margin-bottom: 20px;

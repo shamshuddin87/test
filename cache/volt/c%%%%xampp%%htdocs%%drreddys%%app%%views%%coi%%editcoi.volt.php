@@ -8,7 +8,7 @@ $category = $this->coicommon->fetchCategory();
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
 <div class="right_col" role="main">
-<div class="row">
+<div class="*row">
 <div class="content">
 
 <!-- My messages -->
@@ -16,13 +16,13 @@ $category = $this->coicommon->fetchCategory();
     
     
     <div class="containergrid">
+                 <h1 class="h1_heading text-center" style="text-align: center;">Conflict Of Interest Declaration Form</h1>
         <div class="formcss">
             <form action="coi/updatecoi" id="updatecoi" method="post" autocomplete="off" enctype="multipart/form-data">
             <input type="hidden" name="coieditid" id="coieditid" value="<?php echo $coieditid;?>">
             <input type="hidden" name="coipdfhtml" id="coipdfhtml" value="">
             <input type="hidden" name="formsendtype" id="formsendtype" value="">
              <div class="coihtmldata">
-                 <h1 class="h1_heading text-center" style="text-align: center;">Conflict Of Interest Declaration Form</h1>
                 <div class="sectionbox">
                     <h2 class="h2_heading" style="text-align:center;">Employee Details</h2>
                     <div class="p-15px">

@@ -17,7 +17,7 @@
                         <div class="typography form_pad">
                             <div class="formelementmain mb-0 pb-0">
                                 <form id="insertrecipient" action="sensitiveinformation/insertrecipient" method="post" enctype="multipart/form-data" autocomplete="off">
-                                    <section class="col col-md-4 col-xs-12">
+                                    <section class="col col-md-4 col-sm-6 col-xs-12">
                                         <label class="control-label">Category*</label>
                                         <div class="input">
                                             <select id="category" name="category" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -30,51 +30,51 @@
                                     </section>
                                     <div class="othercate"></div>
                                     <div class="employeecate"></div>
-                                    <section class="col col-md-4 col-xs-12">
+                                    <section class="col col-md-4 col-sm-6 col-xs-12">
                                         <div class="input">
                                             <label class="control-label">Name Of Entity</label>
                                             <input type="text" id="entity" name="entity" class="form_fields form-control col-md-7 col-xs-12">
                                         </div>
                                     </section>
-                                    <section class="col col-md-4 col-xs-12">
+                                    <section class="col col-md-4 col-sm-6 col-xs-12">
                                         <div class="input">
                                             <label class="control-label">PAN of the Entity*</label>
                                             <input type="text" id="panentity" name="panentity" class="form_fields form-control col-md-7 col-xs-12" onkeypress ="return isAlphaNumeric(event);" maxlength="10" minlength="10" required="">
                                         </div>
                                     </section>
-                                    <section class="col col-md-4 col-xs-12 nameofemployee" >
+                                    <section class="col col-md-4 col-sm-6 col-xs-12 nameofemployee" >
                                         <div class="input">
                                             <label class="control-label">Name Of The Recipient*</label>
                                             <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12"  required>
                                         </div>
                                         <div id="searchuser"></div>
                                     </section>
-                                    <section class="col col-md-4 col-xs-12">
+                                    <section class="col col-md-4 col-sm-6 col-xs-12">
                                         <div class="input">
                                             <label class="control-label">Identity Number (PAN/Aadhar etc.)*</label>
                                             <input type="text" id="identitynum" name="identitynum" class="form_fields form-control col-md-7 col-xs-12" onkeypress ="return numberalphOnly(event);" maxlength="12" >
                                         </div>
                                     </section>
-                                    <section class="col col-md-4 col-xs-12">
+                                    <section class="col col-md-4 col-sm-6 col-xs-12">
                                         <div class="input">
                                             <label class="control-label">Mobile Number</label>
                                             <input type="text" id="mobilenum" name="mobilenum" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="10">
                                         </div>
                                     </section>
-                                    <section class="col col-md-4 col-xs-12">
+                                    <section class="col col-md-4 col-sm-6 col-xs-12">
                                         <div class="input">
                                             <label class="control-label">Designation</label>
                                             <input type="text" id="designation" name="designation" class="form_fields form-control col-md-7 col-xs-12">
                                         </div>
                                     </section>
-                                    <section class="col col-md-4 col-xs-12">
+                                    <section class="col col-md-4 col-sm-6 col-xs-12">
                                         <div class="input">
                                             <label class="control-label">Email ID*</label>
                                             <input type="email" id="email" name="email" class="form_fields form-control col-md-7 col-xs-12" onkeypress ="return emailOnly(event);">
                                             <input type="hidden" id="wr_id" name="wr_id" class="form_fields form-control col-md-7 col-xs-12">
                                         </div>
                                     </section>
-                                    <section class="col col-md-4 col-xs-12">
+                                    <section class="col col-md-4 col-sm-6 col-xs-12">
                                         <div class="input">
                                             <label class="control-label">Upload Identity Proof Of Recipient</label>
                                             <div class="choose_files">
@@ -82,7 +82,7 @@
                                             </div>
                                         </div>
                                     </section>
-                                    <section class="col col-md-4 col-xs-12">
+                                    <section class="col col-md-4 col-sm-6 col-xs-12">
                                         <div class="input">
                                             <label class="control-label">Upload Confidentiality Agreement</label>
                                             <div class="choose_files">
@@ -167,7 +167,7 @@
                     <input type="hidden" name="tempid" class="tempid" id="tempid" value="">
                     <input type="hidden" name="confiagrmnt" class="confiagrmnt" id="confiagrmnt" value="">
                     <input type="hidden" name="identityfile" class="identityfile" id="identityfile" value="">
-                    <section class="col col-md-4 col-xs-12">
+                    <section class="col col-md-4 col-sm-6 col-xs-12">
                         <div class="input">
                             <label class="control-label">Category*</label>
                             <select id="category" name="category" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -182,19 +182,19 @@
                     </section>
                     <section class="othercateedit col col-md-8 col-xs-12">
                     </section>
-                    <section class="col col-md-4 col-xs-12">
+                    <section class="col col-md-4 col-sm-6 col-xs-12">
                         <div class="input">
                             <label class="control-label">Name Of Entity</label>
                             <input type="text" id="entity" name="entity" class="form_fields form-control col-md-7 col-xs-12">
                         </div>
                     </section>
-                    <section class="col col-md-4 col-xs-12">
+                    <section class="col col-md-4 col-sm-6 col-xs-12">
                         <div class="input">
                             <label class="control-label">PAN of the Entity*</label>
                             <input type="text" id="panentity" name="panentity" class="form_fields form-control col-md-7 col-xs-12" onkeypress ="return isAlphaNumeric(event);" maxlength="10" minlength="10" required="">
                         </div>
                     </section>
-                    <section class="col col-md-4 col-xs-12 nameofemployee" >
+                    <section class="col col-md-4 col-sm-6 col-xs-12 nameofemployee" >
                         <div class="input">
                             <label class="control-label">Name Of The Recipient*</label>
                             <input type="text" id="name" name="name" class="form_fields form-control col-md-7 col-xs-12" required>
@@ -207,25 +207,25 @@
                             <input type="text" id="identitynum" name="identitynum" class="form_fields form-control col-md-7 col-xs-12" onkeypress ="return numberalphOnly(event);" required>
                         </div>
                     </section>
-                    <section class="col col-md-6 col-xs-12">
+                    <section class="col col-sm-6 col-xs-12">
                         <div class="input">
                             <label class="control-label">Mobile Number</label>
                             <input type="text" id="mobilenum" name="mobilenum" class="form_fields form-control col-md-7 col-xs-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="10">
                         </div>
                     </section>
-                    <section class="col col-md-6 col-xs-12">
+                    <section class="col col-sm-6 col-xs-12">
                         <div class="input">
                             <label class="control-label">Designation</label>
                             <input type="text" id="designation" name="designation" class="form_fields form-control col-md-7 col-xs-12" >
                         </div>
                     </section>
-                    <section class="col col-md-6 col-xs-12">
+                    <section class="col col-sm-6 col-xs-12">
                         <div class="input">
                             <label class="control-label">Email ID</label>
                             <input type="email" id="email" name="email" class="form_fields form-control col-md-7 col-xs-12" onkeypress ="return emailOnly(event);">
                         </div>
                     </section>
-                    <section class="col col-md-6 col-xs-12">
+                    <section class="col col-sm-6 col-xs-12">
                         <div class="input">
                             <label class="control-label">Upload Identity Proof Of Recipient</label>
                             <div class="choose_files">

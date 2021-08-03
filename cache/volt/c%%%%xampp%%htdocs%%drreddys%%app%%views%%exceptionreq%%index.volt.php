@@ -324,9 +324,9 @@
             </div>
             <!-------------------------------MODAL BOX FOR UPLOAD FILE------------------------------------------------------>
             <div id="uploadmyfile" class="modal fade" role="dialog" tabIndex=-1>
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <!-- Modal content-->
-                    <div class="modal-content margin-top"  style="width:900px;">
+                    <div class="modal-content margin-top">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">×</button>
                             <h4 class="modal-title">Trading Status</h4>

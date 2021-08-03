@@ -38,7 +38,7 @@
 <!-- Main content -->
 <!-- ########################################## PageContent Start ########################################## --> 
 <div class="right_col" role="main">
-<div class="row">
+<div class="*row">
 <div class="content">
 <!-- My messages -->
 <div class="mainelementfom">
@@ -104,135 +104,137 @@
         </table> </div>-->
 
 
-
-        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;  width: 600px;" class="table table-responsive table-inverse" width="100%">
-            <thead>
-            <tr>
-                <th style="width: 63px;">Sr No.</th>
-                <th >Particulars</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-              <?php if(!empty($userlevel)){ ?> 
-              <tr>
-                <td>1</td>
-                <td>Employee ID</td>
-                <td><?php echo $userlevel['employeecode'];?></td>                
-              </tr>
-               <tr>
-                <td>2</td>
-                <td>Employee Name</td>
-                <td><?php echo $personaldetail['name'];?></td>                
-              </tr>
-               <tr>
-                <td>3</td>
-                <td>Email ID</td>
-                <td><?php echo $userlevel['email'];?></td>               
-              </tr>
-               <tr>
-                <td>4</td>
-                <td>PAN (In case of Indian Nationals)</td>
-                <td><?php echo $pan;?></td>               
-              </tr>
-               <tr>
-                <td>5</td>
-                <td>Other Identification no. (In case of Foreign Nationals)</td>
-                <td><?php echo $identityno;?></td>               
-              </tr>
-               <tr>
-                <td>6</td>
-                <td>Nature of Identification no. (In case of Foreign Nationals)</td>
-                <td><?php echo $nature;?></td>                
-              </tr>
-
-               <tr>
-                <td>7</td>
-                <td>Aadhaar</td>
-                <td><?php echo $personaldetail['aadhar'];?></td>                
-              </tr>
-
-               <tr>
-                <td>8</td>
-                <td>DOB</td>
-                <td><?php echo $personaldetail['dob'];?></td>                
-              </tr>
-               <tr>
-                <td>9</td>
-                <td>Gender</td>
-                <td><?php echo $personaldetail['sex'];?></td>                
-              </tr>
-               <tr>
-                <td>10</td>
-                <td>Educational Qualification</td>
-                <td><?php echo $personaldetail['education'];?></td>               
-              </tr>
-               <tr>
-                <td>11</td>
-                <td>Institute from which qualification was acquired</td>
-                <td><?php echo $personaldetail['institute'];?></td>               
-              </tr>
-               <tr>
-                <td>12</td>
-                <td>Residential Address</td>
-                <td><?php echo $personaldetail['address'];?></td>              
-              </tr>
-               <tr>
-                <td>13</td>
-                <td>Mobile no.</td>
-                <td><?php echo $personaldetail['mobileno'];?></td>                
-              </tr>
-               <tr>
-                <td>14</td>
-                <td>No. of shares of Dr. Reddys held by you</td>
-                <td><?php echo $personaldetail['sharehldng'];?></td>               
-              </tr>
-               <tr>
-                <td>15</td>
-                <td>No. of ADRs of Dr. Reddys held by you</td>
-                <td><?php echo $personaldetail['adrshldng'];?></td>                
-              </tr>
-            <tr>
-               <?php } else{?>
-                <td colspan ="14">No Data Found..</td>
-               <?php  } ?>             
-            </tr>
-            </tbody>
-        </table>
-          
-          
-          <h3 class="h3_heading">II.  Past Employer Details</h3>
-        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
-            <thead>
-            <tr>
-                <th>Sr No.</th>
-                <th>Name of Employer</th>
-                <th>Designation Served</th>
-                <th>Start Date of Employment</th>
-                <th>End Date of Employment</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-                
-             <?php if(!empty($empdetail)){ for($i=0;$i<sizeof($empdetail);$i++){ $j = $i;$j++;?>
+        <div class="table-responsive">
+            <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;  width: 600px;" class="table table-inverse" width="100%">
+                <thead>
                 <tr>
-                 <td><?php echo $j;?></td>
-                 <td><?php echo $empdetail[$i]['emp_name'];?></td>
-                 <td><?php echo $empdetail[$i]['emp_desigtn'];?></td>
-                 <td><?php echo $empdetail[$i]['startdate'];?></td>
-                 <td><?php echo $empdetail[$i]['enddate'];?></td>
-                    </tr>
-               <?php } } else { ?>
-                <tr>
-                <td colspan ="14">No Data Found..</td>
+                    <th style="width: 63px;">Sr No.</th>
+                    <th >Particulars</th>
+                    <th>Description</th>
                 </tr>
-               <?php  } ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                  <?php if(!empty($userlevel)){ ?> 
+                  <tr>
+                    <td>1</td>
+                    <td>Employee ID</td>
+                    <td><?php echo $userlevel['employeecode'];?></td>                
+                  </tr>
+                   <tr>
+                    <td>2</td>
+                    <td>Employee Name</td>
+                    <td><?php echo $personaldetail['name'];?></td>                
+                  </tr>
+                   <tr>
+                    <td>3</td>
+                    <td>Email ID</td>
+                    <td><?php echo $userlevel['email'];?></td>               
+                  </tr>
+                   <tr>
+                    <td>4</td>
+                    <td>PAN (In case of Indian Nationals)</td>
+                    <td><?php echo $pan;?></td>               
+                  </tr>
+                   <tr>
+                    <td>5</td>
+                    <td>Other Identification no. (In case of Foreign Nationals)</td>
+                    <td><?php echo $identityno;?></td>               
+                  </tr>
+                   <tr>
+                    <td>6</td>
+                    <td>Nature of Identification no. (In case of Foreign Nationals)</td>
+                    <td><?php echo $nature;?></td>                
+                  </tr>
+
+                   <tr>
+                    <td>7</td>
+                    <td>Aadhaar</td>
+                    <td><?php echo $personaldetail['aadhar'];?></td>                
+                  </tr>
+
+                   <tr>
+                    <td>8</td>
+                    <td>DOB</td>
+                    <td><?php echo $personaldetail['dob'];?></td>                
+                  </tr>
+                   <tr>
+                    <td>9</td>
+                    <td>Gender</td>
+                    <td><?php echo $personaldetail['sex'];?></td>                
+                  </tr>
+                   <tr>
+                    <td>10</td>
+                    <td>Educational Qualification</td>
+                    <td><?php echo $personaldetail['education'];?></td>               
+                  </tr>
+                   <tr>
+                    <td>11</td>
+                    <td>Institute from which qualification was acquired</td>
+                    <td><?php echo $personaldetail['institute'];?></td>               
+                  </tr>
+                   <tr>
+                    <td>12</td>
+                    <td>Residential Address</td>
+                    <td><?php echo $personaldetail['address'];?></td>              
+                  </tr>
+                   <tr>
+                    <td>13</td>
+                    <td>Mobile no.</td>
+                    <td><?php echo $personaldetail['mobileno'];?></td>                
+                  </tr>
+                   <tr>
+                    <td>14</td>
+                    <td>No. of shares of Dr. Reddys held by you</td>
+                    <td><?php echo $personaldetail['sharehldng'];?></td>               
+                  </tr>
+                   <tr>
+                    <td>15</td>
+                    <td>No. of ADRs of Dr. Reddys held by you</td>
+                    <td><?php echo $personaldetail['adrshldng'];?></td>                
+                  </tr>
+                <tr>
+                   <?php } else{?>
+                    <td colspan ="14">No Data Found..</td>
+                   <?php  } ?>             
+                </tr>
+                </tbody>
+            </table>
+        </div>
           
+        <h3 class="h3_heading">II.  Past Employer Details</h3>
+        <div class="table-responsive">
+            <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-inverse" width="100%">
+                <thead>
+                <tr>
+                    <th>Sr No.</th>
+                    <th>Name of Employer</th>
+                    <th>Designation Served</th>
+                    <th>Start Date of Employment</th>
+                    <th>End Date of Employment</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                    
+                 <?php if(!empty($empdetail)){ for($i=0;$i<sizeof($empdetail);$i++){ $j = $i;$j++;?>
+                    <tr>
+                     <td><?php echo $j;?></td>
+                     <td><?php echo $empdetail[$i]['emp_name'];?></td>
+                     <td><?php echo $empdetail[$i]['emp_desigtn'];?></td>
+                     <td><?php echo $empdetail[$i]['startdate'];?></td>
+                     <td><?php echo $empdetail[$i]['enddate'];?></td>
+                        </tr>
+                   <?php } } else { ?>
+                    <tr>
+                    <td colspan ="14">No Data Found..</td>
+                    </tr>
+                   <?php  } ?>
+                </tbody>
+            </table>
+        </div>
         <h3 class="h3_heading">III.  Material Financial Relationship</h3>
-        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
+        <div class="table-responsive">
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
@@ -259,9 +261,11 @@
                <?php  } ?>
             </tbody>
         </table>
+        </div>
           
-           <h3 class="h3_heading">IV.  Demat/Securities Account Details</h3>
-        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+        <h3 class="h3_heading">IV.  Demat/Securities Account Details</h3>
+        <div class="table-responsive">
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
@@ -285,12 +289,13 @@
             </tbody>
         </table>
         </div>
+        </div>
          <div class="belowleveluserdetcss">
           
           <h2 class="h2_heading">B. Details of Relatives</h2>          
           <h3 class="h3_heading">I.  List of Relatives</h3>
-        <div class="overflowXscroll">
-          <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+        <div class="table-responsive overflowXscroll">
+          <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
@@ -363,7 +368,8 @@
           
 
         <h3 class="h3_heading">II.  Demat/Securities Account Details</h3>
-        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
+        <div class="table-responsive">
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
@@ -388,6 +394,7 @@
                <?php  } ?>
             </tbody>
         </table>
+        </div>
 
         <div style="color: #000">
           <p><b>The above information is true to the best of my knowledge and belief.</b></p>
@@ -402,7 +409,7 @@
           </div>
           </div>         
           
-          <div class="col-md-12 text-right" style="margin: 15px 0 20px 0;"> 
+          <div class="col-xs-12 text-right" style="margin: 15px 0 20px 0;"> 
                   <button type="submit" class="btn btn-primary " id="submituserdata">Submit</button>
             </div>
         </div>
@@ -418,8 +425,8 @@
              <div class="belowleveluserdetcss">
           <h2 class="h2_heading">A.  Details Of Self</h2>
          <h3 class="h3_heading">I.  Personal Details</h3>
-      
-        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;  width: 600px;" class="table table-responsive table-inverse" width="100%">
+        <div class="table-responsive">
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc;" class="table table-inverse" width="100%">
             <tbody>
               <?php if(!empty($userlevel)){ ?> 
               <tr>
@@ -506,10 +513,12 @@
             </tr>
             </tbody>
         </table>
+        </div>
           
           
           <h3 class="h3_heading">II.  Past Employer Details</h3>
-        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+          <div class="table-responsive">
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
@@ -537,9 +546,10 @@
                <?php  } ?>
             </tbody>
         </table>
-          
+          </div>
         <h3 class="h3_heading">III.  Material Financial Relationship</h3>
-        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
+        <div class="table-responsive">
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
@@ -565,10 +575,13 @@
                 </tr>
                <?php  } ?>
             </tbody>
-        </table>
+        </table>\
+        </div>
           
-           <h3 class="h3_heading">IV.  Demat/Securities Account Details</h3>
-        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+        
+        h3 class="h3_heading">IV.  Demat/Securities Account Details</h3>
+        <div class="table-responsive">
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc" class="table table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
@@ -593,6 +606,7 @@
                <?php  } ?>
             </tbody>
         </table>
+        </div>
                  
             <h3 class="h3_heading">V.  Related Party Details</h3>
             <!-- table 2 start -->
@@ -607,7 +621,7 @@
                   </tr>
                   <tr>
                      <td colspan="5">
-                        <div class="col-md-12">
+                        <div class="col-xs-12">
                            <label style="padding-left: 17px;">i. Firm </label>
                         </div>
                      </td>
@@ -656,7 +670,7 @@
                      <td colspan="5" style="">
                         <div class = "appenddiv2" id="appenddiv2">
                         </div>
-                        <div class="adddiv2section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+                        <div class="adddiv2section1 col-xs-12"  style="padding-bottom: 10px; text-align: right;">
                            <input type="button" id ="adddiv2" class="btn btn-primary "  value="+" onclick="addhtml(this.id);">
                            <input type="button" id = "remvdiv2" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                            <input type="hidden" class="appendd2" plancntr="1">
@@ -725,7 +739,7 @@
                   <tr>
                   <td colspan="6" >
                   <div class = "appenddiv3 " id="appenddiv3" ></div>
-                  <div class="adddiv3section1 col-md-12"  style="text-align: right;">
+                  <div class="adddiv3section1 col-xs-12"  style="text-align: right;">
                   <input type="button" id = "adddiv3" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
                   <input type="button" id = "remvdiv3" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                   <input type="hidden" class="appendd3" plancntr="1">
@@ -789,7 +803,7 @@
                <tr>
                <td colspan="5" style="">
                <div class = "appenddiv4 " id="appenddiv4"></div>
-               <div class="adddiv4section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+               <div class="adddiv4section1 col-xs-12"  style="padding-bottom: 10px; text-align: right;">
                <input type="button" id ="adddiv4" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
                <input type="button" id = "remvdiv4" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                <input type="hidden" class="appendd4" plancntr="1">
@@ -847,7 +861,7 @@
                <tr>
                <td colspan="5" style="">
                <div class = "appenddiv8 " id="appenddiv8"></div>
-               <div class="adddiv8section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+               <div class="adddiv8section1 col-xs-12"  style="padding-bottom: 10px; text-align: right;">
                <input type="button" id ="adddiv8" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
                <input type="button" id = "remvdiv8" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                <input type="hidden" class="appendd8" plancntr="1">
@@ -914,7 +928,7 @@
                      <td colspan="4" >
                         <div class = "appenddiv1 " id="appenddiv1">
                         </div>
-                        <div class="adddiv1section1 col-md-12" style="text-align: right; padding: 10px 0;
+                        <div class="adddiv1section1 col-xs-12" style="text-align: right; padding: 10px 0;
 ">
                            <input type="button" id = "adddiv1" class="btn btn-primary " value="+" onclick="addhtml(this.id);">
                            <input type="button" id = "remvdiv1" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
@@ -934,8 +948,8 @@
           
           <h2 class="h2_heading">B. Details of Relatives</h2>
           <h3 class="h3_heading">I.  List of Relatives</h3>
-          <div class="overflowXscroll">
-        <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-responsive table-inverse" width="100%">
+          <div class="table-responsive overflowXscroll">
+        <table border="1"  style="border-collapse: collapse; border: 1px solid #ccc" class="table table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
@@ -1012,7 +1026,8 @@
       </div>
           
         <h3 class="h3_heading">II. Demat/Securities Account Details</h3>
-        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-responsive table-inverse" width="100%">
+        <div class="table-responsive">
+        <table border="1" style="border-collapse: collapse; border: 1px solid #ccc"  class="table table-inverse" width="100%">
             <thead>
             <tr>
                 <th>Sr No.</th>
@@ -1038,6 +1053,7 @@
                <?php  } ?>
             </tbody>
         </table>
+        </div>
                  
                  
         <h3 class="h3_heading">III.  Related Party Details</h3>
@@ -1056,7 +1072,7 @@
 
                <tr>
                <td colspan="6">
-               <div class="col-md-12">
+               <div class="col-xs-12">
                <label style="padding-left: 20px;">i. Firm</label>
                </div>
                </td>
@@ -1280,7 +1296,7 @@
                <tr>
                    <td colspan="6" style="">
                    <div class = "appenddiv9 " id="appenddiv9"></div>
-                   <div class="adddiv9section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+                   <div class="adddiv9section1 col-xs-12"  style="padding-bottom: 10px; text-align: right;">
                    <input type="button" id ="adddiv9" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
                    <input type="button" id = "remvdiv9" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                    <input type="hidden" class="appendd9" plancntr="1">
@@ -1355,7 +1371,7 @@
                <tr>
                <td colspan="5" style="">
                <div class = "appenddiv10 " id="appenddiv10"></div>
-               <div class="adddiv10section1 col-md-12"  style="padding-bottom: 10px; text-align: right;">
+               <div class="adddiv10section1 col-xs-12"  style="padding-bottom: 10px; text-align: right;">
                <input type="button" id ="adddiv10" class="btn btn-primary" value="+" onclick="addhtml(this.id);">
                <input type="button" id = "remvdiv10" class="btn btn-primary " value="-" onclick="removehtml(this.id);">
                <input type="hidden" class="appendd10" plancntr="1">
@@ -1465,7 +1481,7 @@
                 
     
     
-                <div class="col-md-12 text-right" style="margin-top: 20px;"> 
+                <div class="col-xs-12 text-right" style="margin-top: 20px;"> 
                   <button type="submit" class="btn btn-primary ">Submit</button>
                </div>
             </form>     

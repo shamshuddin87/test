@@ -91,7 +91,7 @@
                      <section class="col col-md-6 col-xs-6">
                         <div class="input">
                            <label class="control-label">UPSI Description</label>
-                           <textarea name="projdesc" id="projdesc" class="projdesc  form-control" style="margin: 0px;width: 475px;height: 73px;"></textarea>
+                           <textarea name="projdesc" id="projdesc" class="projdesc form_fields form-control"></textarea>
                         </div>
                      </section>
                   </form>
@@ -135,7 +135,7 @@
                      </thead>
                      <tbody class="upsitails" appendrow='1'></tbody>
                   </table>
-                  <div class="panel panel-white">
+                  <div class="">
                      <div class="paginationmn"></div>
                      <input type="hidden" id="pagenum" name="pagenum" class="pagechnum" value="1">
                   </div>

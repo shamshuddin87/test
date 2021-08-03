@@ -134,9 +134,9 @@ if(response.relativepubpri!=0)
 {if(response.relativepubpri[i]['relative']!='')
 {addhtmlnxt6+='<tr class="counter">';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['relative']+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['company']+'</td>';var interst='';if(response.relativepubpri[i]['interest']==1)
 {interst='Member';}
-else if(response.relativepubpri[i]['interest']==1)
+else if(response.relativepubpri[i]['interest']==2)
 {interst='Director';}
-else if(response.relativepubpri[i]['interest']==1)
+else if(response.relativepubpri[i]['interest']==3)
 {interst='Member and Director';}
 addhtmlnxt6+='<td width="25%">'+interst+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['noofshare']+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['decision']+'</td>';addhtmlnxt6+='<td width="25%">'+response.relativepubpri[i]['transaction']+'</td>'
 addhtmlnxt6+='</tr>';}}}

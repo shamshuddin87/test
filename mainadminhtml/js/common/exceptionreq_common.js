@@ -516,7 +516,7 @@ function getalltradingrequest()
                                 {
                                     if(response.data[i].contraexcapvsts==1)
                                     {
-                                        addhtmlnxt += '<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;">Approved</i></td>';
+                                        addhtmlnxt += '<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;"></i></td>';
                                     }
                                     else if(response.data[i].contraexcapvsts==2)
                                     {
@@ -531,7 +531,7 @@ function getalltradingrequest()
                                 {
                                     if(excep_approv==1)
                                     {
-                                        addhtmlnxt += '<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;">Approved</i></td>';
+                                        addhtmlnxt += '<td width="15%"><i class="fa fa-check-circle" style="font-size:18px;color:green;"></i></td>';
                                     }
                                     else if(excep_approv==2)
                                     {
