@@ -142,6 +142,7 @@ class Elements extends Component
 
         $m = "SELECT * FROM `web_reg_user_ext` WHERE `userid`='".$getuserid."'";
         $uid =0;
+
         if($gettyp=='empl')
         {
             $m = "SELECT * FROM `web_reg_user_ext` WHERE `childid`='".$getuserid."'";
@@ -150,8 +151,8 @@ class Elements extends Component
             $exegetuinfo = $this->usercommon->getuinfoext($uid);
             $exegetuinfo = array_shift($exegetuinfo);
         }
-        $exegetuinfo = $this->usercommon->getuinfoext($getuserid);
-        $exegetuinfo = array_shift($exegetuinfo);
+        // $exegetuinfo = $this->usercommon->getuinfoext($getuserid);
+        // $exegetuinfo = array_shift($exegetuinfo);
         //echo 'Coming herer';echo count($exegetuinfo);
         //echo '<pre>';print_r($exegetuinfo);exit;
 
@@ -159,7 +160,7 @@ class Elements extends Component
 
             $getdir = $this->imagecommon->getimgdir($getuserid,$dir_uname,$this->session->getId(),'profilecommondir');
             //echo $getdir;exit;
-
+            $exegetuinfo = array();
             if(count($exegetuinfo)==0)
             {
                 $exegetuinfo['taxtypeset'] = '1';

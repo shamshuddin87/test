@@ -412,7 +412,7 @@ class Homecommon extends Component
     public function upsiholding($getuserid)
     {
         $connection = $this->dbtrd;
-        $getlist = '';
+        $getlist = [];
          
         
         $queryget = "SELECT * FROM upsimaster WHERE (projectowner = '".$getuserid."' OR  FIND_IN_SET('".$getuserid."',`connecteddps`)) ";
